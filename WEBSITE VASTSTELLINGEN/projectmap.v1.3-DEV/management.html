@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beheer Vaststellingensysteem - Stad Antwerpen</title>
+    
+    <!-- Antwerp Core Branding -->
+    <link rel="stylesheet" href="https://cdn.antwerpen.be/core_branding_scss/6.0.0/main.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .management-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .management-section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .management-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--antwerp-red);
+        }
+        
+        .management-icon {
+            width: 48px;
+            height: 48px;
+            fill: var(--antwerp-red);
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .warning-icon {
+            width: 24px;
+            height: 24px;
+            fill: #856404;
+            flex-shrink: 0;
+        }
+        
+        .tariff-section {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .current-tariff {
+            background: #e8f5e8;
+            border: 2px solid #28a745;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .tariff-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #28a745;
+            margin: 0.5rem 0;
+        }
+        
+        .audit-log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            padding: 0.5rem;
+            border-bottom: 1px solid #eee;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+        
+        .log-timestamp {
+            color: #666;
+            font-weight: bold;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .readonly-field {
+            background-color: #f8f9fa;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="management-container">
+        <!-- Header -->
+        <div class="management-section">
+            <div class="management-header">
+                <svg class="management-icon" viewBox="0 0 24 24">
+                    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11.03L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11.03C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
+                </svg>
+                <div>
+                    <h1>Beheer Vaststellingensysteem</h1>
+                    <p>Configuratie en beheer van het vaststellingensysteem</p>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <svg class="warning-icon" viewBox="0 0 24 24">
+                    <path d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                </svg>
+                <div>
+                    <strong>Waarschuwing:</strong> Deze beheersectie is alleen toegankelijk voor geautoriseerd personeel. 
+                    Wijzigingen aan tarieven en configuratie hebben directe impact op alle vaststellingen.
+                </div>
+            </div>
+        </div>
+
+        <!-- Tariff Management Section -->
+        <div class="management-section">
+            <h2>🏛️ Tariefbeheer</h2>
+            
+            <div class="current-tariff">
+                <div>Huidig tarief</div>
+                <div class="tariff-value" id="current_tariff">€5.00 per m²/dag</div>
+                <div style="font-size: 0.9rem; color: #666;">
+                    Volgens Reglement Vaststellingen Art. 15.2
+                </div>
+            </div>
+            
+            <div class="tariff-section">
+                <h3>Tarief aanpassen</h3>
+                
+                <form id="tariff_form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="new_tariff">Nieuw tarief (€ per m²/dag):</label>
+                            <input type="number" id="new_tariff" name="new_tariff" 
+                                   step="0.01" min="0" max="100" 
+                                   placeholder="5.00" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="effective_date">Ingangsdatum:</label>
+                            <input type="date" id="effective_date" name="effective_date" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="regulation_reference">Wettelijke referentie:</label>
+                        <input type="text" id="regulation_reference" name="regulation_reference" 
+                               placeholder="Reglement Vaststellingen Art. X.X" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="change_reason">Reden voor wijziging:</label>
+                        <textarea id="change_reason" name="change_reason" rows="3" 
+                                  placeholder="Beschrijf de reden voor deze tariefwijziging..." required></textarea>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="submit" class="a-button a-button--default">
+                            💾 Tarief opslaan
+                        </button>
+                        <button type="button" class="a-button a-button--secondary" onclick="resetTariffForm()">
+                            🔄 Reset
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Audit Log Section -->
+        <div class="management-section">
+            <h2>📋 Audit Log - Tariefwijzigingen</h2>
+            
+            <div class="audit-log" id="audit_log">
+                <div class="log-entry">
+                    <span class="log-timestamp">[2024-01-15 14:30:25]</span> 
+                    Systeem geïnitialiseerd - Tarief ingesteld op €5.00/m²/dag (Reglement Vaststellingen Art. 15.2)
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button type="button" class="a-button a-button--secondary" onclick="exportAuditLog()">
+                    📄 Export Audit Log
+                </button>
+                <button type="button" class="a-button a-button--secondary" onclick="refreshAuditLog()">
+                    🔄 Vernieuwen
+                </button>
+            </div>
+        </div>
+
+        <!-- System Information -->
+        <div class="management-section">
+            <h2>ℹ️ Systeeminformatie</h2>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Versie:</label>
+                    <input type="text" value="4.0.0" class="readonly-field" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Laatste update:</label>
+                    <input type="text" value="2024-01-15" class="readonly-field" readonly>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Configuratie bestand:</label>
+                <input type="text" value="data/config.json" class="readonly-field" readonly>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="management-section">
+            <div class="button-group">
+                <a href="index.html" class="a-button a-button--default">
+                    ← Terug naar Vaststellingsformulier
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/dataManager.js"></script>
+    <script>
+        /**
+         * Management system initialization
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeManagementSystem();
+        });
+
+        /**
+         * Initialize the management system
+         */
+        async function initializeManagementSystem() {
+            console.log('🔧 Initializing management system...');
+            
+            // Initialize data manager
+            window.dataManager = new DataManager();
+            await window.dataManager.initialize();
+            
+            // Load current configuration
+            loadCurrentTariff();
+            loadAuditLog();
+            setDefaultDate();
+            
+            // Setup form handlers
+            document.getElementById('tariff_form').addEventListener('submit', handleTariffSubmission);
+            
+            console.log('✅ Management system initialized');
+        }
+
+        /**
+         * Load current tariff from configuration
+         */
+        function loadCurrentTariff() {
+            if (window.dataManager && window.dataManager.config) {
+                const financialSettings = window.dataManager.config.configuration.financialSettings;
+                
+                if (financialSettings && financialSettings.dailyRate) {
+                    const tariffElement = document.getElementById('current_tariff');
+                    tariffElement.textContent = `€${financialSettings.dailyRate.value.toFixed(2)} per m²/dag`;
+                    
+                    // Pre-fill form with current values
+                    document.getElementById('new_tariff').value = financialSettings.dailyRate.value.toFixed(2);
+                    document.getElementById('regulation_reference').value = financialSettings.dailyRate.regulationReference || '';
+                }
+            }
+        }
+
+        /**
+         * Set default effective date to tomorrow
+         */
+        function setDefaultDate() {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dateString = tomorrow.toISOString().split('T')[0];
+            document.getElementById('effective_date').value = dateString;
+        }
+
+        /**
+         * Handle tariff form submission
+         */
+        async function handleTariffSubmission(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const newTariff = parseFloat(formData.get('new_tariff'));
+            const effectiveDate = formData.get('effective_date');
+            const regulationReference = formData.get('regulation_reference');
+            const changeReason = formData.get('change_reason');
+            
+            // Validate input
+            if (newTariff <= 0 || newTariff > 100) {
+                alert('Tarief moet tussen €0.01 en €100.00 liggen');
+                return;
+            }
+            
+            if (new Date(effectiveDate) <= new Date()) {
+                if (!confirm('De ingangsdatum ligt in het verleden of is vandaag. Wilt u doorgaan?')) {
+                    return;
+                }
+            }
+            
+            // Confirm the change
+            const confirmMessage = `
+Bent u zeker dat u het tarief wilt wijzigen naar €${newTariff.toFixed(2)} per m²/dag?
+
+Ingangsdatum: ${effectiveDate}
+Wettelijke referentie: ${regulationReference}
+Reden: ${changeReason}
+
+Deze wijziging is onomkeerbaar en wordt direct actief in het systeem.`;
+            
+            if (!confirm(confirmMessage)) {
+                return;
+            }
+            
+            try {
+                // Update configuration
+                const config = window.dataManager.config;
+                const oldTariff = config.configuration.financialSettings.dailyRate.value;
+                
+                config.configuration.financialSettings.dailyRate = {
+                    value: newTariff,
+                    description: `Dagelijks tarief voor overschrijding vergunning per m²`,
+                    regulationReference: regulationReference,
+                    effectiveDate: effectiveDate,
+                    lastModified: new Date().toISOString()
+                };
+                
+                // Save configuration
+                await window.dataManager.saveConfig(config);
+                
+                // Add audit log entry
+                addAuditLogEntry('TARIFF_CHANGE', {
+                    oldTariff: oldTariff,
+                    newTariff: newTariff,
+                    effectiveDate: effectiveDate,
+                    regulationReference: regulationReference,
+                    reason: changeReason
+                });
+                
+                // Update display
+                loadCurrentTariff();
+                loadAuditLog();
+                
+                alert(`✅ Tarief succesvol gewijzigd naar €${newTariff.toFixed(2)} per m²/dag`);
+                
+            } catch (error) {
+                console.error('Error updating tariff:', error);
+                alert('❌ Fout bij het opslaan van het nieuwe tarief. Probeer opnieuw.');
+            }
+        }
+
+        /**
+         * Add entry to audit log
+         */
+        function addAuditLogEntry(action, details) {
+            const auditLog = JSON.parse(localStorage.getItem('tariff_audit_log') || '[]');
+            
+            const entry = {
+                timestamp: new Date().toISOString(),
+                action: action,
+                details: details,
+                user: 'System Admin' // In real system, this would be the logged-in user
+            };
+            
+            auditLog.unshift(entry); // Add to beginning
+            
+            // Keep only last 100 entries
+            if (auditLog.length > 100) {
+                auditLog.splice(100);
+            }
+            
+            localStorage.setItem('tariff_audit_log', JSON.stringify(auditLog));
+        }
+
+        /**
+         * Load and display audit log
+         */
+        function loadAuditLog() {
+            const auditLog = JSON.parse(localStorage.getItem('tariff_audit_log') || '[]');
+            const logContainer = document.getElementById('audit_log');
+            
+            if (auditLog.length === 0) {
+                logContainer.innerHTML = `
+                    <div class="log-entry">
+                        <span class="log-timestamp">[${new Date().toLocaleString('nl-BE')}]</span> 
+                        Systeem geïnitialiseerd - Tarief ingesteld op €5.00/m²/dag (Reglement Vaststellingen Art. 15.2)
+                    </div>
+                `;
+                return;
+            }
+            
+            logContainer.innerHTML = auditLog.map(entry => {
+                const timestamp = new Date(entry.timestamp).toLocaleString('nl-BE');
+                let description = '';
+                
+                switch (entry.action) {
+                    case 'TARIFF_CHANGE':
+                        description = `Tarief gewijzigd van €${entry.details.oldTariff}/m²/dag naar €${entry.details.newTariff}/m²/dag (${entry.details.regulationReference}) - Reden: ${entry.details.reason}`;
+                        break;
+                    default:
+                        description = JSON.stringify(entry.details);
+                }
+                
+                return `
+                    <div class="log-entry">
+                        <span class="log-timestamp">[${timestamp}]</span> 
+                        ${description}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        /**
+         * Reset tariff form
+         */
+        function resetTariffForm() {
+            document.getElementById('tariff_form').reset();
+            loadCurrentTariff();
+            setDefaultDate();
+        }
+
+        /**
+         * Export audit log
+         */
+        function exportAuditLog() {
+            const auditLog = JSON.parse(localStorage.getItem('tariff_audit_log') || '[]');
+            
+            let csvContent = "Timestamp,Action,Old Tariff,New Tariff,Regulation Reference,Reason,User\n";
+            
+            auditLog.forEach(entry => {
+                const timestamp = new Date(entry.timestamp).toISOString();
+                const details = entry.details;
+                
+                csvContent += `"${timestamp}","${entry.action}","${details.oldTariff || ''}","${details.newTariff || ''}","${details.regulationReference || ''}","${details.reason || ''}","${entry.user}"\n`;
+            });
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `tariff_audit_log_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        /**
+         * Refresh audit log
+         */
+        function refreshAuditLog() {
+            loadAuditLog();
+        }
+    </script>
+</body>
+</html>

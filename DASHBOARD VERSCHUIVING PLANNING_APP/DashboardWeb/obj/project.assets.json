@@ -1,0 +1,116 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "DashboardVerschuivingen/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/DashboardVerschuivingen.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DashboardVerschuivingen.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DashboardVerschuivingen/1.0.0": {
+      "type": "project",
+      "path": "../DashboardVerschuivingen/DashboardVerschuivingen.csproj",
+      "msbuildProject": "../DashboardVerschuivingen/DashboardVerschuivingen.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "DashboardVerschuivingen >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\5129\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\5129\\OneDrive - digipolis.onmicrosoft.com\\Apps\\DASHBOARD VERSCHUIVING PLANNING\\DashboardWeb\\DashboardWeb.csproj",
+      "projectName": "DashboardWeb",
+      "projectPath": "C:\\Users\\5129\\OneDrive - digipolis.onmicrosoft.com\\Apps\\DASHBOARD VERSCHUIVING PLANNING\\DashboardWeb\\DashboardWeb.csproj",
+      "packagesPath": "C:\\Users\\5129\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\5129\\OneDrive - digipolis.onmicrosoft.com\\Apps\\DASHBOARD VERSCHUIVING PLANNING\\DashboardWeb\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\5129\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "C:\\Users\\5129\\OneDrive - digipolis.onmicrosoft.com\\Apps\\DASHBOARD VERSCHUIVING PLANNING\\DashboardVerschuivingen\\DashboardVerschuivingen.csproj": {
+              "projectPath": "C:\\Users\\5129\\OneDrive - digipolis.onmicrosoft.com\\Apps\\DASHBOARD VERSCHUIVING PLANNING\\DashboardVerschuivingen\\DashboardVerschuivingen.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.20, 8.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[8.0.20, 8.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.20, 8.0.20]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.20, 8.0.20]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

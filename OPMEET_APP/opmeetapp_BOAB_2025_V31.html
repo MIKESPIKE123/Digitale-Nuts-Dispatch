@@ -1,0 +1,679 @@
+<!doctype html>
+<!--
+  OPMEETAPP V31
+  - Excel-berekening met verbeterde UI
+  - Goede grid-tekening en mouse-snapping
+  - Instellingen onder aparte knop
+  - Logo linksboven
+-->
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Stadsontwikkeling - Publieke ruimte - Stad Antwerpen OPMEETAPP (V31)</title>
+<style>
+  :root{ --ant-red:#e1001a; --border:#e5e7eb; --muted:#6b7280; --bg:#f3f4f6; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#111827}
+  
+  header{position:sticky;top:0;z-index:10;background:#fff;padding:12px 16px;border-bottom:3px solid var(--ant-red);display:flex;align-items:center;justify-content:space-between;gap:8px}
+  header .logo-title{display:flex;align-items:center;gap:12px}
+  header .logo{width:40px;height:40px;background:url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iNiIgZmlsbD0iI2UxMDAxYSIvPgo8cGF0aCBkPSJNMTIgMTJIMjhWMjhIMTJWMTJaIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiLz4KPHN2Zz4K') center/contain no-repeat}
+  header h1{margin:0;font-size:18px;font-weight:700}
+  header .actions{display:flex;gap:8px}
+  
+  main{display:grid;grid-template-columns:420px 1fr;gap:16px;padding:16px}
+  @media (max-width:1100px){main{grid-template-columns:1fr}}
+  
+  .card{background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .pane{padding:16px}
+  
+  .row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+  .row h2{margin:4px 0 0 0;font-size:14px;font-weight:600}
+  
+  label{font-size:12px;color:#374151;display:flex;flex-direction:column;gap:4px}
+  input,select{padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff;font-size:13px}
+  input[type="number"]{width:120px}
+  
+  .btn{padding:8px 12px;border-radius:100px;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:13px;font-weight:500;transition:all 0.2s}
+  .btn:hover{background:#f9fafb;transform:translateY(-1px)}
+  .btn.primary{background:var(--ant-red);color:#fff;border-color:var(--ant-red)}
+  .btn.primary:hover{background:#c8001a}
+  .btn.active{background:var(--ant-red);color:#fff;border-color:var(--ant-red);box-shadow:0 0 0 3px rgba(225,0,26,0.25)}
+  .btn.secondary{background:#f3f4f6;color:#374151}
+  
+  .settings-panel{display:none;background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:12px}
+  .settings-panel.show{display:block}
+  
+  .tools-section{margin:16px 0}
+  .tools-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  
+  .plan-container{position:relative}
+  .grid-wrap{padding:16px;position:relative}
+  .plan{background:#fff;border-radius:16px;box-shadow:inset 0 0 0 1px var(--border),0 1px 6px rgba(0,0,0,.06);width:100%;height:600px;touch-action:none;display:block;cursor:crosshair}
+  
+  .coordinates{position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.7);color:white;padding:4px 8px;border-radius:6px;font-size:11px;font-family:monospace;pointer-events:none;opacity:0;transition:opacity 0.2s}
+  .coordinates.show{opacity:1}
+  
+  .summary-container {
+    margin-top: 20px;
+  }
+  .summary-section {
+    margin-bottom: 20px;
+  }
+  .summary-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: #111827;
+  }
+  .kpi-grid{display:grid;gap:12px}
+  .kpi-large {
+    background:#f9fafb;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding: 16px;
+    transition:all 0.2s;
+  }
+  .kpi-large:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+  .kpi-large h4 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #6b7280;
+  }
+  .kpi-large p {
+    margin: 6px 0 0 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .kpi-total {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-color: #93c5fd;
+  }
+  .kpi-total h4 {
+    font-weight: 600;
+    color: #1e40af;
+  }
+  .kpi-total p {
+    font-weight: 700;
+    color: #1e40af;
+    font-size: 24px;
+  }
+  
+  .details-panel{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;margin-top:12px;font-size:12px;color:#64748b}
+  .details-panel h5{margin:0 0 8px 0;font-weight:600;color:#475569}
+  .details-row{display:flex;justify-content:space-between;margin:4px 0}
+  
+  .status-bar{background:#f1f5f9;border-top:1px solid #e2e8f0;padding:8px 16px;font-size:12px;color:#64748b;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo-title">
+    <div class="logo"></div>
+    <h1>OPMEETAPP - Stad Antwerpen</h1>
+  </div>
+  <div class="actions">
+    <button class="btn primary" id="btnPDF">📄 PDF</button>
+    <button class="btn" id="btnUndo">↶</button>
+    <button class="btn" id="btnRedo">↷</button>
+    <button class="btn secondary" id="btnClear">🗑️ Wissen</button>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <div class="pane">
+      <div class="row">
+        <h2>Configuratie</h2>
+        <button class="btn" id="btnSettings">⚙️ Instellingen</button>
+      </div>
+      
+      <div class="settings-panel" id="settingsPanel">
+        <div class="row">
+          <label>Buffer (m)<input type="number" id="buffer" value="0.30" min="0" max="2" step="0.05"></label>
+          <label>Min. zone (m²)<input type="number" id="minZone" value="1.00" min="0" max="10" step="0.25"></label>
+        </div>
+        
+        <div class="row">
+          <label>Grid Breedte (m)<input type="number" id="cellWidth" value="0.25" min="0.1" max="2" step="0.05"></label>
+          <label>Grid Hoogte (m)<input type="number" id="cellHeight" value="0.25" min="0.1" max="2" step="0.05"></label>
+        </div>
+        
+        <div class="row">
+          <label>V-tarief (€/m²)<input type="number" id="rateV" value="180.00" min="0" step="0.01"></label>
+          <label>H-tarief (€/m²)<input type="number" id="rateH" value="120.00" min="0" step="0.01"></label>
+        </div>
+      </div>
+
+      <div class="tools-section">
+        <h3>Tekenen</h3>
+        <div class="tools-grid">
+          <button class="btn" id="toolV">🟥 V-zone</button>
+          <button class="btn" id="toolH">🟦 H-zone</button>
+          <button class="btn" id="toolE">🧽 Gum</button>
+        </div>
+      </div>
+
+      <div class="summary-container">
+        <div class="summary-section">
+          <h3>Berekening (Excel-formule)</h3>
+          
+          <div class="kpi-grid">
+            <div class="kpi-large">
+              <h4>V-zone totaal</h4>
+              <p id="m2VReg">0,00 m²</p>
+            </div>
+            
+            <div class="kpi-large">
+              <h4>H-zone totaal</h4>
+              <p id="m2HReg">0,00 m²</p>
+            </div>
+            
+            <div class="kpi-large kpi-total">
+              <h4>TOTAAL (incl. 21% BTW)</h4>
+              <p id="totalEuro">€ 0,00</p>
+            </div>
+          </div>
+          
+          <div class="details-panel" id="detailsPanel">
+            <h5>Berekeningsdetails</h5>
+            <div id="calculationDetails">Geen zones getekend</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="plan-container">
+      <div class="grid-wrap">
+        <canvas id="plan" class="plan" width="800" height="600"></canvas>
+        <div class="coordinates" id="coordinates">0,0</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="status-bar">
+  <span id="statusText">Excel-berekening actief • Klik en sleep om zones te tekenen</span>
+</div>
+
+<script>
+// === SETTINGS ===
+const settings = {
+  cellWidth: 0.25,
+  cellHeight: 0.25,
+  rows: 24,
+  cols: 32,
+  buffer: 0.30,
+  minZone: 1.0,
+  rateV: 180.00,
+  rateH: 120.00,
+  vatRatePct: 21.0
+};
+
+// === DOM ELEMENTS ===
+const canvas = document.getElementById('plan');
+const ctx = canvas.getContext('2d');
+const bufferEl = document.getElementById('buffer');
+const minZoneEl = document.getElementById('minZone');
+const cellWidthEl = document.getElementById('cellWidth');
+const cellHeightEl = document.getElementById('cellHeight');
+const rateVEl = document.getElementById('rateV');
+const rateHEl = document.getElementById('rateH');
+const toolVBtn = document.getElementById('toolV');
+const toolHBtn = document.getElementById('toolH');
+const toolEBtn = document.getElementById('toolE');
+const btnPDF = document.getElementById('btnPDF');
+const btnUndo = document.getElementById('btnUndo');
+const btnRedo = document.getElementById('btnRedo');
+const btnClear = document.getElementById('btnClear');
+const btnSettings = document.getElementById('btnSettings');
+const settingsPanel = document.getElementById('settingsPanel');
+const coordinates = document.getElementById('coordinates');
+const statusText = document.getElementById('statusText');
+const calculationDetails = document.getElementById('calculationDetails');
+
+// === STATE ===
+let grid = [];
+let currentTool = 'V';
+let isDrawing = false;
+let history = [];
+let historyIndex = -1;
+let hoveredCell = null;
+
+// === INITIALIZE ===
+function initGrid() {
+  grid = [];
+  for (let r = 0; r < settings.rows; r++) {
+    grid[r] = [];
+    for (let c = 0; c < settings.cols; c++) {
+      grid[r][c] = null;
+    }
+  }
+}
+
+function updateFromInputs() {
+  settings.buffer = parseFloat(bufferEl.value) || 0.30;
+  settings.minZone = parseFloat(minZoneEl.value) || 1.0;
+  settings.cellWidth = parseFloat(cellWidthEl.value) || 0.25;
+  settings.cellHeight = parseFloat(cellHeightEl.value) || 0.25;
+  settings.rateV = parseFloat(rateVEl.value) || 180.0;
+  settings.rateH = parseFloat(rateHEl.value) || 120.0;
+}
+
+function saveToHistory() {
+  historyIndex++;
+  history = history.slice(0, historyIndex);
+  history.push(JSON.parse(JSON.stringify(grid)));
+  if (history.length > 50) {
+    history.shift();
+    historyIndex--;
+  }
+}
+
+// === EXCEL BEREKENING ===
+function calculateAreas() {
+  const cw = settings.cellWidth;
+  const ch = settings.cellHeight;
+  const bufferM = settings.buffer;
+  
+  // Vind alle V en H zones en hun bounding boxes
+  const vCells = [];
+  const hCells = [];
+  
+  for (let r = 0; r < settings.rows; r++) {
+    for (let c = 0; c < settings.cols; c++) {
+      if (grid[r][c] === 'V') vCells.push([r, c]);
+      if (grid[r][c] === 'H') hCells.push([r, c]);
+    }
+  }
+  
+  // Bereken netto oppervlaktes
+  const vNetto = vCells.length * cw * ch;
+  const hNetto = hCells.length * cw * ch;
+  
+  let detailsHtml = '';
+  
+  // Excel buffer berekening (exacte formule)
+  let vBuffer = 0;
+  let hBuffer = 0;
+  const hasOverlap = vCells.length > 0 && hCells.length > 0;
+  
+  if (vCells.length > 0) {
+    const vBounds = getBounds(vCells);
+    const vWidth = (vBounds.maxC - vBounds.minC + 1) * cw;
+    const vHeight = (vBounds.maxR - vBounds.minR + 1) * ch;
+    const vMaxDim = Math.max(vWidth, vHeight);
+    
+    const vSideStrips = 3 * bufferM * vMaxDim;
+    const vCorners = 4 * bufferM * bufferM;
+    vBuffer = vSideStrips + vCorners;
+    
+    detailsHtml += `<div class="details-row"><span>V-zone netto:</span><span>${vNetto.toFixed(3)} m²</span></div>`;
+    detailsHtml += `<div class="details-row"><span>V-zone stroken (3×${bufferM}×${vMaxDim.toFixed(2)}):</span><span>+${vSideStrips.toFixed(3)} m²</span></div>`;
+    detailsHtml += `<div class="details-row"><span>V-zone hoeken (4×${bufferM}²):</span><span>+${vCorners.toFixed(3)} m²</span></div>`;
+  }
+  
+  if (hCells.length > 0) {
+    const hBounds = getBounds(hCells);
+    const hWidth = (hBounds.maxC - hBounds.minC + 1) * cw;
+    const hHeight = (hBounds.maxR - hBounds.minR + 1) * ch;
+    const hMaxDim = Math.max(hWidth, hHeight);
+    
+    const hSideStrips = 3 * bufferM * hMaxDim;
+    const hCorners = hasOverlap ? 0 : (4 * bufferM * bufferM);
+    hBuffer = hSideStrips + hCorners;
+    
+    detailsHtml += `<div class="details-row"><span>H-zone netto:</span><span>${hNetto.toFixed(3)} m²</span></div>`;
+    detailsHtml += `<div class="details-row"><span>H-zone stroken (3×${bufferM}×${hMaxDim.toFixed(2)}):</span><span>+${hSideStrips.toFixed(3)} m²</span></div>`;
+    if (hasOverlap) {
+      detailsHtml += `<div class="details-row"><span>H-zone hoeken (overlap met V):</span><span>+0,000 m²</span></div>`;
+    } else {
+      detailsHtml += `<div class="details-row"><span>H-zone hoeken (4×${bufferM}²):</span><span>+${hCorners.toFixed(3)} m²</span></div>`;
+    }
+  }
+  
+  if (vCells.length === 0 && hCells.length === 0) {
+    detailsHtml = 'Geen zones getekend';
+  }
+  
+  const vTotal = vNetto + vBuffer;
+  const hTotal = hNetto + hBuffer;
+  
+  const vEuro = vTotal * settings.rateV;
+  const hEuro = hTotal * settings.rateH;
+  const totalExclBtw = vEuro + hEuro;
+  const btw = totalExclBtw * (settings.vatRatePct / 100);
+  const totalInclBtw = totalExclBtw + btw;
+  
+  // Update UI
+  document.getElementById('m2VReg').textContent = vTotal.toFixed(2).replace('.', ',') + ' m²';
+  document.getElementById('m2HReg').textContent = hTotal.toFixed(2).replace('.', ',') + ' m²';
+  document.getElementById('totalEuro').textContent = '€ ' + totalInclBtw.toFixed(2).replace('.', ',');
+  calculationDetails.innerHTML = detailsHtml;
+  
+  // Update status
+  if (vCells.length > 0 || hCells.length > 0) {
+    statusText.textContent = `Excel-berekening: ${vCells.length + hCells.length} cellen • €${totalInclBtw.toFixed(2)}`;
+  } else {
+    statusText.textContent = 'Excel-berekening actief • Klik en sleep om zones te tekenen';
+  }
+  
+  console.log(`EXCEL: V=${vTotal.toFixed(2)} m² (€${vEuro.toFixed(2)}), H=${hTotal.toFixed(2)} m² (€${hEuro.toFixed(2)}), Totaal=€${totalInclBtw.toFixed(2)}`);
+}
+
+function getBounds(cells) {
+  if (cells.length === 0) return { minR: 0, maxR: 0, minC: 0, maxC: 0 };
+  
+  let minR = cells[0][0], maxR = cells[0][0];
+  let minC = cells[0][1], maxC = cells[0][1];
+  
+  for (const [r, c] of cells) {
+    minR = Math.min(minR, r);
+    maxR = Math.max(maxR, r);
+    minC = Math.min(minC, c);
+    maxC = Math.max(maxC, c);
+  }
+  
+  return { minR, maxR, minC, maxC };
+}
+
+// === DRAWING ===
+function getCanvasMetrics() {
+  const rect = canvas.getBoundingClientRect();
+  const padding = 20;
+  const availableWidth = rect.width - (padding * 2);
+  const availableHeight = rect.height - (padding * 2);
+  
+  const totalGridWidth = settings.cols * settings.cellWidth;
+  const totalGridHeight = settings.rows * settings.cellHeight;
+  
+  const scaleX = availableWidth / totalGridWidth;
+  const scaleY = availableHeight / totalGridHeight;
+  const scale = Math.min(scaleX, scaleY, 40); // Max 40px per meter
+  
+  const cellPxW = settings.cellWidth * scale;
+  const cellPxH = settings.cellHeight * scale;
+  
+  const gridPixelWidth = settings.cols * cellPxW;
+  const gridPixelHeight = settings.rows * cellPxH;
+  
+  const offsetX = (rect.width - gridPixelWidth) / 2;
+  const offsetY = (rect.height - gridPixelHeight) / 2;
+  
+  return { scale, cellPxW, cellPxH, offsetX, offsetY, gridPixelWidth, gridPixelHeight };
+}
+
+function draw() {
+  const metrics = getCanvasMetrics();
+  const { cellPxW, cellPxH, offsetX, offsetY } = metrics;
+  
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // Draw grid background
+  ctx.fillStyle = '#fafafa';
+  ctx.fillRect(offsetX, offsetY, settings.cols * cellPxW, settings.rows * cellPxH);
+  
+  // Draw cells
+  for (let r = 0; r < settings.rows; r++) {
+    for (let c = 0; c < settings.cols; c++) {
+      const x = offsetX + c * cellPxW;
+      const y = offsetY + r * cellPxH;
+      
+      const cell = grid[r][c];
+      if (cell) {
+        if (cell === 'V') {
+          ctx.fillStyle = '#ffcdd2';
+          ctx.strokeStyle = '#f44336';
+        } else if (cell === 'H') {
+          ctx.fillStyle = '#bbdefb';
+          ctx.strokeStyle = '#2196f3';
+        }
+        ctx.fillRect(x + 1, y + 1, cellPxW - 2, cellPxH - 2);
+        ctx.lineWidth = 1;
+        ctx.strokeRect(x + 1, y + 1, cellPxW - 2, cellPxH - 2);
+      }
+      
+      // Highlight hovered cell
+      if (hoveredCell && hoveredCell[0] === r && hoveredCell[1] === c) {
+        ctx.fillStyle = currentTool === 'V' ? 'rgba(244,67,54,0.3)' : 
+                        currentTool === 'H' ? 'rgba(33,150,243,0.3)' : 'rgba(158,158,158,0.3)';
+        ctx.fillRect(x + 1, y + 1, cellPxW - 2, cellPxH - 2);
+      }
+    }
+  }
+  
+  // Draw grid lines
+  ctx.strokeStyle = '#e0e0e0';
+  ctx.lineWidth = 0.5;
+  
+  // Vertical lines
+  for (let c = 0; c <= settings.cols; c++) {
+    const x = offsetX + c * cellPxW;
+    ctx.beginPath();
+    ctx.moveTo(x, offsetY);
+    ctx.lineTo(x, offsetY + settings.rows * cellPxH);
+    ctx.stroke();
+  }
+  
+  // Horizontal lines
+  for (let r = 0; r <= settings.rows; r++) {
+    const y = offsetY + r * cellPxH;
+    ctx.beginPath();
+    ctx.moveTo(offsetX, y);
+    ctx.lineTo(offsetX + settings.cols * cellPxW, y);
+    ctx.stroke();
+  }
+  
+  // Draw labels every 5 cells
+  ctx.fillStyle = '#666';
+  ctx.font = '10px Inter';
+  ctx.textAlign = 'center';
+  
+  // Column labels (top)
+  for (let c = 0; c < settings.cols; c += 5) {
+    const x = offsetX + (c + 0.5) * cellPxW;
+    const distance = (c * settings.cellWidth).toFixed(1) + 'm';
+    ctx.fillText(distance, x, offsetY - 6);
+  }
+  
+  // Row labels (left)
+  ctx.textAlign = 'right';
+  for (let r = 0; r < settings.rows; r += 5) {
+    const y = offsetY + (r + 0.5) * cellPxH;
+    const distance = (r * settings.cellHeight).toFixed(1) + 'm';
+    ctx.fillText(distance, offsetX - 6, y + 3);
+  }
+}
+
+function getCellFromMouse(e) {
+  const rect = canvas.getBoundingClientRect();
+  const metrics = getCanvasMetrics();
+  const { cellPxW, cellPxH, offsetX, offsetY } = metrics;
+  
+  const x = e.clientX - rect.left - offsetX;
+  const y = e.clientY - rect.top - offsetY;
+  
+  if (x < 0 || y < 0) return null;
+  
+  const c = Math.floor(x / cellPxW);
+  const r = Math.floor(y / cellPxH);
+  
+  if (r >= 0 && r < settings.rows && c >= 0 && c < settings.cols) {
+    return [r, c];
+  }
+  return null;
+}
+
+function setCell(r, c, value) {
+  if (r >= 0 && r < settings.rows && c >= 0 && c < settings.cols) {
+    grid[r][c] = value;
+  }
+}
+
+// === EVENT HANDLERS ===
+canvas.addEventListener('mousedown', (e) => {
+  const cell = getCellFromMouse(e);
+  if (cell) {
+    isDrawing = true;
+    const [r, c] = cell;
+    if (currentTool === 'E') {
+      setCell(r, c, null);
+    } else {
+      setCell(r, c, currentTool);
+    }
+    draw();
+  }
+});
+
+canvas.addEventListener('mousemove', (e) => {
+  const cell = getCellFromMouse(e);
+  
+  if (cell) {
+    const [r, c] = cell;
+    hoveredCell = [r, c];
+    
+    // Update coordinates
+    const realX = c * settings.cellWidth;
+    const realY = r * settings.cellHeight;
+    coordinates.textContent = `${realX.toFixed(2)}m, ${realY.toFixed(2)}m`;
+    coordinates.classList.add('show');
+    
+    if (isDrawing) {
+      if (currentTool === 'E') {
+        setCell(r, c, null);
+      } else {
+        setCell(r, c, currentTool);
+      }
+    }
+    draw();
+  } else {
+    hoveredCell = null;
+    coordinates.classList.remove('show');
+    draw();
+  }
+});
+
+canvas.addEventListener('mouseleave', () => {
+  hoveredCell = null;
+  coordinates.classList.remove('show');
+  draw();
+});
+
+canvas.addEventListener('mouseup', () => {
+  if (isDrawing) {
+    isDrawing = false;
+    saveToHistory();
+    calculateAreas();
+  }
+});
+
+// Tool buttons
+toolVBtn.addEventListener('click', () => {
+  currentTool = 'V';
+  document.querySelectorAll('.tools-grid .btn').forEach(b => b.classList.remove('active'));
+  toolVBtn.classList.add('active');
+  canvas.style.cursor = 'crosshair';
+});
+
+toolHBtn.addEventListener('click', () => {
+  currentTool = 'H';
+  document.querySelectorAll('.tools-grid .btn').forEach(b => b.classList.remove('active'));
+  toolHBtn.classList.add('active');
+  canvas.style.cursor = 'crosshair';
+});
+
+toolEBtn.addEventListener('click', () => {
+  currentTool = 'E';
+  document.querySelectorAll('.tools-grid .btn').forEach(b => b.classList.remove('active'));
+  toolEBtn.classList.add('active');
+  canvas.style.cursor = 'pointer';
+});
+
+// Settings toggle
+btnSettings.addEventListener('click', () => {
+  settingsPanel.classList.toggle('show');
+  btnSettings.classList.toggle('active');
+});
+
+// Undo/Redo
+btnUndo.addEventListener('click', () => {
+  if (historyIndex > 0) {
+    historyIndex--;
+    grid = JSON.parse(JSON.stringify(history[historyIndex]));
+    draw();
+    calculateAreas();
+  }
+});
+
+btnRedo.addEventListener('click', () => {
+  if (historyIndex < history.length - 1) {
+    historyIndex++;
+    grid = JSON.parse(JSON.stringify(history[historyIndex]));
+    draw();
+    calculateAreas();
+  }
+});
+
+btnClear.addEventListener('click', () => {
+  if (confirm('Weet je zeker dat je alles wilt wissen?')) {
+    initGrid();
+    saveToHistory();
+    draw();
+    calculateAreas();
+  }
+});
+
+// Input changes
+bufferEl.addEventListener('change', () => { updateFromInputs(); calculateAreas(); });
+minZoneEl.addEventListener('change', () => { updateFromInputs(); calculateAreas(); });
+cellWidthEl.addEventListener('change', () => { updateFromInputs(); draw(); calculateAreas(); });
+cellHeightEl.addEventListener('change', () => { updateFromInputs(); draw(); calculateAreas(); });
+rateVEl.addEventListener('change', () => { updateFromInputs(); calculateAreas(); });
+rateHEl.addEventListener('change', () => { updateFromInputs(); calculateAreas(); });
+
+// Resize handling
+window.addEventListener('resize', () => {
+  setTimeout(() => {
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    draw();
+  }, 100);
+});
+
+// Initialize
+function init() {
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width;
+  canvas.height = rect.height;
+  
+  initGrid();
+  saveToHistory();
+  toolVBtn.classList.add('active');
+  draw();
+  calculateAreas();
+  
+  // Set initial values
+  bufferEl.value = settings.buffer;
+  minZoneEl.value = settings.minZone;
+  cellWidthEl.value = settings.cellWidth;
+  cellHeightEl.value = settings.cellHeight;
+  rateVEl.value = settings.rateV;
+  rateHEl.value = settings.rateH;
+}
+
+// Start when loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+console.log('OPMEETAPP V31 geladen - Excel-berekening met verbeterde UI');
+</script>
+</body>
+</html>

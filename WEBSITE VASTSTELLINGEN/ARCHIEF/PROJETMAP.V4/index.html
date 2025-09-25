@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Beheerpagina</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f4f4f9; }
+    input, button { margin-top: 5px; }
+  </style>
+  <script>
+    let appData = {
+      vaststellers: ["Fred", "Erik", "Luc", "Marc", "Michel"],
+      postcodes: [
+        "2000 Antwerpen (Centrum)",
+        "2018 Antwerpen (Zuid)",
+        "2020 Antwerpen (Kiel)",
+        "2030 Antwerpen (Noord)"
+      ],
+      types: ["Electriciteit", "Water", "Gas", "Telecom"],
+      nutsmaatschappijen: ["FLUVIUS", "PROXIMUS", "WATER-LINK"]
+    };
+
+    function downloadJSON() {
+      const blob = new Blob([JSON.stringify(appData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "data.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</head>
+<body>
+  <h1>Beheer Vaststellingen</h1>
+  <p>Gebruik dit overzicht om snel data.json te genereren of bij te werken.</p>
+  <button onclick="downloadJSON()">Download data.json</button><br><br>
+  <a href="vaststelling_formulier.html">→ Ga naar formulier</a>
+</body>
+</html>

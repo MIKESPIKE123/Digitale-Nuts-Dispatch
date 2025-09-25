@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab Switching Test - Vaststellingen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .container {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .test-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .test-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        
+        .info-box {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .feature-list li:before {
+            content: "✅ ";
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Tab Switching Succesvol Geïmplementeerd!</h1>
+        
+        <div class="info-box">
+            <h2>🚀 Wat is er nieuw:</h2>
+            <ul class="feature-list">
+                <li><strong>Perfecte Tab Switching:</strong> Elke tab toont nu alleen zijn eigen inhoud</li>
+                <li><strong>Visuele Feedback:</strong> Actieve tab krijgt duidelijke styling</li>
+                <li><strong>Smooth Animaties:</strong> Fade-in effect bij tab wissel</li>
+                <li><strong>Automatische Initialisatie:</strong> Dashboard wordt automatisch geactiveerd</li>
+                <li><strong>Test Functionaliteit:</strong> Ingebouwde test knop voor alle tabs</li>
+                <li><strong>Collapse/Expand:</strong> Elk sectie kan nu in-/uitgeklapt worden met ↕️</li>
+                <li><strong>Bulk Toggle:</strong> "↕ Alles" knop voor alle secties tegelijk</li>
+            </ul>
+        </div>
+        
+        <div class="info-box">
+            <h3>📋 Beschikbare Tabs:</h3>
+            <p><strong>Dashboard</strong> - Overzicht en snelle acties</p>
+            <p><strong>Vaststelling</strong> - Volledig vaststellingsformulier</p>
+            <p><strong>Beheer</strong> - Beheer sectie</p>
+            <p><strong>Archief</strong> - Archief functionaliteit</p>
+            <p><strong>Export</strong> - Data export en import</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="test-btn" onclick="window.location.href='index.html'">
+                🏠 Ga naar Hoofdapplicatie
+            </button>
+            <button class="test-btn" onclick="window.location.href='index.html?debug=tabs'">
+                🧪 Test Mode (met auto tab test)
+            </button>
+        </div>
+        
+        <div class="info-box">
+            <h3>🔧 Technische Details:</h3>
+            <p>• <strong>showSection()</strong> functie met validatie en error handling</p>
+            <p>• <strong>CSS display:none/block</strong> voor perfecte sectie hiding</p>
+            <p>• <strong>Smooth animaties</strong> met CSS transitions</p>
+            <p>• <strong>Automatische scrolling</strong> naar top bij tab wissel</p>
+            <p>• <strong>Responsive design</strong> behouden</p>
+            
+            <h3>🆕 Collapse/Expand Functionaliteit:</h3>
+            <p>• <strong>Standaard ingeklapt</strong> - Alle secties starten ingeklapt voor overzicht</p>
+            <p>• <strong>↕️ Symbool</strong> in elke sectie header - Klik om in/uit te klappen</p>
+            <p>• <strong>Smooth animaties</strong> met CSS max-height transitions</p>
+            <p>• <strong>"↕ Uitklappen" knop</strong> - Intelligente toggle (toont juiste actie)</p>
+            <p>• <strong>Visual feedback</strong> - Collapsed secties krijgen grijze styling</p>
+            <p>• <strong>Tooltip ondersteuning</strong> - Hover voor instructies</p>
+        </div>
+    </div>
+</body>
+</html>

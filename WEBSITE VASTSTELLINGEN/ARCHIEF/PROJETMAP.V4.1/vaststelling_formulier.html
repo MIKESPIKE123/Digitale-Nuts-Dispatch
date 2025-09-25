@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Vaststelling Formulier</title>
+  <script>
+    fetch('data.json')
+      .then(res => res.json())
+      .then(data => {
+        ['supervisor', 'postcode', 'type', 'nuts'].forEach(id => {
+          const select = document.getElementById(id);
+          let items = [];
+          switch(id) {
+            case 'supervisor': items = data.vaststellers; break;
+            case 'postcode': items = data.postcodes; break;
+            case 'type': items = data.types; break;
+            case 'nuts': items = data.nutsmaatschappijen; break;
+          }
+          items.forEach(val => {
+            const opt = document.createElement("option");
+            opt.value = val;
+            opt.textContent = val;
+            select.appendChild(opt);
+          });
+        });
+      });
+  </script>
+</head>
+<body>
+  <h1>Nieuwe Vaststelling</h1>
+  <a href="index.html">Ga naar beheer</a>
+  <form>
+    <label for="supervisor">Vaststeller:</label>
+    <select id="supervisor"><option>Kies...</option></select><br>
+    <label for="postcode">Postcode:</label>
+    <select id="postcode"><option>Kies...</option></select><br>
+    <label for="type">Type nutsmaatschappij:</label>
+    <select id="type"><option>Kies...</option></select><br>
+    <label for="nuts">Nutsmaatschappij:</label>
+    <select id="nuts"><option>Kies...</option></select><br>
+    <button type="submit">Opslaan</button>
+  </form>
+</body>
+</html>

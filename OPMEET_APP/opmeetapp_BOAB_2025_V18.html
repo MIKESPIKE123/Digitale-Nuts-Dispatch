@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="nl">
+    
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Opmeet – Stad Antwerpen (V5)</title>
+<style>
+  :root{ --ant-red:#e1001a; --border:#e5e7eb; --muted:#6b7280; --bg:#f3f4f6; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#111827}
+  header{position:sticky;top:0;z-index:10;background:#fff;padding:14px 18px;border-bottom:3px solid var(--ant-red)}
+  header h1{margin:0;font-size:18px;font-weight:700}
+  main{display:grid;grid-template-columns:420px 1fr;gap:16px;padding:16px}
+  @media (max-width:1100px){main{grid-template-columns:1fr}}
+  .card{background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .pane{padding:16px}
+  .row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+  .row h2{margin:4px 0 0 0;font-size:14px}
+  label{font-size:12px;color:#374151}
+  input,select{padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+  input[type="number"]{width:120px}
+  .btn{padding:8px 12px;border-radius:100px;border:1px solid var(--border);background:#fff;cursor:pointer}
+  .btn:hover{background:#f9fafb}
+  .btn.primary{background:var(--ant-red);color:#fff;border-color:var(--ant-red)}
+.btn.active{outline:3px solid rgba(225,0,26,0.25)}
+.plan{box-shadow:inset 0 0 0 1px var(--border),0 1px 6px rgba(0,0,0,0.06)}
+  .grid-wrap{padding:16px}
+  .plan{background:#fff;border-radius:16px;box-shadow:inset 0 0 0 1px var(--border),0 1px 6px rgba(0,0,0,.06);width:100%;height:600px;touch-action:none;display:block}
+  .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+  .kpi{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px}
+  .kpi h3{margin:0;font-size:12px;color:#6b7280} .kpi p{margin:2px 0 0 0;font-size:18px;font-weight:700}
+  .sep{height:1px;background:var(--border);margin:12px 0}
+  /* Utilities */
+  .logo-preview{height:40px;display:none;border:1px solid var(--border);border-radius:6px;padding:4px;background:#fff}
+  .hint{font-size:12px;color:#6b7280}
+  .print-only{display:none}
+/* === Signatures (PATCH S2) === */
+    .sigwrap{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+    .sigbox{border:1px dashed #e5e7eb;border-radius:8px;padding:8px;background:#fff}
+    .sigbox canvas{background:#fff;border-radius:6px;border:1px solid #e5e7eb;display:block}
+    .sigbox .lbl{font-size:12px;color:#374151;margin:6px 0 2px}
+    .sigbox .txt{width:180px;padding:8px 10px;border:1px solid #e5e7eb;border-radius:10px}
+ /* PATCH: canvas interactie altijd toestaan (muis + touch) */
+
+  /* PATCH T1 */
+#grid { position: relative; z-index: 10; }
+#stage { position: relative; z-index: 5; }
+
+#grid,
+#stage canvas,
+.sigbox canvas,
+canvas {
+  pointer-events: auto !important;
+  touch-action: none;
+}
+/* A4 met kleine marge */
+@page { size: A4 portrait; margin: 12mm; }
+
+@media print {
+  /* PDF-specifieke layout */
+  body {
+    background: #fff;
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+  }
+  /* Verberg de webapp-header in PDF (rode lijn + "Opmeet – Stad Antwerpen") */
+  header { display: none !important; }
+  main {
+    display: none; /* Verberg de interactieve app */
+  }
+  .print-only {
+    display: block !important; /* Toon de PDF-layout */
+  }
+
+  #pdf-output {
+    padding: 0.8cm;
+  }
+  .pdf-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid #000;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  .pdf-header h1 {
+    font-size: 20pt;
+    margin: 0;
+  }
+  .pdf-header img {
+    max-width: 150px;
+  }
+  .pdf-section {
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  .pdf-section h2 {
+    font-size: 12pt;
+    margin: 0 0 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+  }
+  .pdf-dossier-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .pdf-dossier-info p { margin: 2px 0; }
+  .pdf-dossier-info strong { display: inline-block; width: 120px; }
+
+  .pdf-kpi-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .pdf-kpi-table th, .pdf-kpi-table td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    text-align: left;
+  }
+  .pdf-kpi-table th { background-color: #f2f2f2; }
+  .pdf-kpi-table .num { text-align: right; }
+  .pdf-kpi-table tr.total-row td {
+    font-weight: 700;
+    border-top: 2px solid #000;
+    background: #fff1f1; /* zachte accentkleur */
+    font-size: 12pt;
+  }
+
+  #pdf-plan-img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 12cm; /* default, overridden by inline from UI */
+    object-fit: contain;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+    display: block;
+  }
+
+  .pdf-signatures {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .pdf-sigbox {
+    width: 48%;
+    border-top: 1px solid #000;
+    padding-top: 8px;
+  }
+  .pdf-sigbox .name { font-weight: bold; }
+  .pdf-sigbox .date { color: #555; }
+}
+</style>
+
+
+</head>
+<body>
+<header><h1>Opmeet – Stad Antwerpen</h1></header>
+
+<main>
+  <div class="card">
+    <div class="pane">
+      <div class="row">
+        <h2>Grid parameters</h2>
+      </div>
+      <div class="row">
+        <label>Celbreedte (m)<input type="number" id="cellWidth" value="0.25" min="0.1" max="2" step="0.05"></label>
+        <label>Celhoogte (m)<input type="number" id="cellHeight" value="0.25" min="0.1" max="2" step="0.05"></label>
+      </div>
+      <div class="row">
+        <label>Rijen<input type="number" id="rows" value="20" min="1" max="100"></label>
+        <label>Kolommen<input type="number" id="cols" value="20" min="1" max="100"></label>
+      </div>
+
+      <div class="row">
+        <h2>Reglementaire parameters</h2>
+      </div>
+      <div class="row">
+  <label>Buffer (m)<input type="number" id="buffer" value="0.30" min="0" max="2" step="0.05"></label>
+  <label>Min. zone (m²)<input type="number" id="minZone" value="1.00" min="0" max="10" step="0.25"></label>
+  <label>Buffermode
+  <select id="bufferMode" title="Buffermode">
+          <option value="exact">Exacte buffer</option>
+          <option value="strook">Als strook</option>
+  </select>
+  </label>
+      </div>
+<div class="row">
+  <h2>Rooilijn / Voetpadlijn</h2>
+</div>
+<div class="row">
+  <label>Rooilijn
+    <select id="rooiType">
+      <option value="none">Geen</option>
+      <option value="vertical">Verticaal (x = m)</option>
+      <option value="horizontal" selected>Horizontaal (y = m)</option>
+    </select>
+    <input type="number" id="rooiPos" value="0.00" step="0.01">
+  </label>
+  <label>Voetpadlijn
+    <select id="voetType">
+      <option value="none">Geen</option>
+      <option value="vertical">Verticaal (x = m)</option>
+      <option value="horizontal" selected>Horizontaal (y = m)</option>
+    </select>
+    <input type="number" id="voetPos" value="0.00" step="0.01">
+  </label>
+</div>
+
+<!-- === Dossier Info (PATCH PDF) === -->
+<div class="row">
+  <h2>Dossiergegevens (voor PDF)</h2>
+</div>
+<div class="row">
+  <label>Dossiernummer<input type="text" id="dossierNr" value=""></label>
+  <label>Adres<input type="text" id="dossierAdres" value=""></label>
+  <label>Datum opmeting<input type="date" id="dossierDatum"></label>
+</div>
+
+<!-- === PDF & Handtekeningen (PATCH S1) === -->
+<div class="row">
+  <button class="btn primary" id="btnPDF">Maak PDF / Print</button>
+  <label>Planhoogte PDF
+    <select id="pdfPlanHeight" title="Maximale hoogte van opmetingsplan in PDF">
+      <option value="10cm">10 cm</option>
+      <option value="12cm" selected>12 cm</option>
+      <option value="14cm">14 cm</option>
+      <option value="16cm">16 cm</option>
+    </select>
+  </label>
+</div>
+
+<!-- Optioneel: eigen logo toevoegen zodat het altijd in de PDF verschijnt -->
+<div class="row">
+  <label>Logo (optioneel)
+    <input type="file" id="logoFile" accept="image/*">
+  </label>
+  <img id="logoPreview" alt="Logo preview" class="logo-preview" />
+  <span class="hint">Kies een lokaal logo; dit wordt opgeslagen en gebruikt in de PDF.</span>
+  </div>
+
+<div class="sep"></div>
+<div class="row"><h2>Handtekeningen</h2></div>
+<div class="sigwrap">
+  <div class="sigbox">
+    <div class="lbl">Toezichter</div>
+    <canvas id="sigA" width="340" height="120"></canvas>
+    <div class="row">
+      <input id="sigAName" class="txt" placeholder="Naam toezichter" />
+  <input id="sigADate" class="txt" type="date" title="Datum toezichter" />
+      <button class="btn" id="sigAClear">Wissen</button>
+    </div>
+  </div>
+  <div class="sigbox">
+    <div class="lbl">Belanghebbende</div>
+    <canvas id="sigB" width="340" height="120"></canvas>
+    <div class="row">
+      <input id="sigBName" class="txt" placeholder="Naam belanghebbende" />
+  <input id="sigBDate" class="txt" type="date" title="Datum belanghebbende" />
+      <button class="btn" id="sigBClear">Wissen</button>
+    </div>
+  </div>
+</div>
+
+      <div class="row">
+        <label><input type="checkbox" id="showBuffer" checked> Toon bufferzone</label>
+        <label><input type="checkbox" id="showStrips" checked> Toon stroken</label>
+        <label><input type="checkbox" id="showDims"> Toon maatvoering</label>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="row">
+        <h2>Tarieven</h2>
+      </div>
+      <div class="row">
+        <label>€/m² V<input type="number" id="rateV" value="180.00"></label>
+        <label>€/m² H<input type="number" id="rateH" value="120.00"></label>
+      </div>
+<!-- ergens bij je KPI's -->
+<div class="kpi">
+  <div class="kpi-label">m² gap-unie (t/m 0,50 m)</div>
+  <div class="kpi-value" id="m2GapUnion">0,00</div>
+</div>
+
+      <div class="summary">
+        <div class="kpi">
+          <h3>Aantal V</h3>
+          <p id="kpiV">0</p>
+        </div>
+        <div class="kpi">
+          <h3>Aantal H</h3>
+          <p id="kpiH">0</p>
+        </div>
+        <div class="kpi">
+          <h3>m² V (netto)</h3>
+          <p id="m2V">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² H (netto)</h3>
+          <p id="m2H">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² V (reglementair)</h3>
+          <p id="m2VReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² H (reglementair)</h3>
+          <p id="m2HReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>€ V</h3>
+          <p id="eurV">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>€ H</h3>
+          <p id="eurH">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal m² (netto)</h3>
+          <p id="m2T">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal m² (regl.)</h3>
+          <p id="m2TReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal €</h3>
+          <p id="eurT">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal € (regl.)</h3>
+          <p id="eurTReg">€ 0,00</p>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+
+   
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="grid-wrap">
+      <canvas id="grid" class="plan" aria-label="tekenraster"></canvas>
+      <div class="row">
+        <button class="btn" id="btnV" data-tool="V">V-zone</button>
+        <button class="btn" id="btnH" data-tool="H">H-zone</button>
+        <button class="btn" id="btnE" data-tool="E">Gum</button>
+
+        <button class="btn" id="btnUndo" title="Ongedaan maken (Ctrl+Z)">↶ Ongedaan</button>
+        <button class="btn" id="btnRedo" title="Opnieuw (Ctrl+Y)">↷ Opnieuw</button>
+        <button class="btn" id="btnClear">Leegmaken</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="pdf-output" class="print-only">
+  <!-- Deze content wordt gevuld door JavaScript voor het printen -->
+</div>
+
+<script>
+(function(){
+    // === DOM Elements ===
+    const canvas = document.getElementById('grid');
+    const ctx = canvas?.getContext('2d');
+    
+    if (!canvas || !ctx) {
+        console.error('Canvas setup failed');
+        return;
+    }
+
+    // === State ===
+    let rows = 20;
+    let cols = 20;
+    let grid = [];
+    let tool = 'V';
+    let hover = null;
+    let down = false;
+    let history = [];
+    let redoStack = [];
+
+    // === DOM Elements ===
+    const cellWidthEl = document.getElementById('cellWidth');
+    const cellHeightEl = document.getElementById('cellHeight');
+    const bufferEl = document.getElementById('buffer');
+    const showBufferEl = document.getElementById('showBuffer');
+    const toolButtons = Array.from(document.querySelectorAll('[data-tool]'));
+    const rooiTypeEl = document.getElementById('rooiType');
+    const rooiPosEl = document.getElementById('rooiPos');
+    const voetTypeEl = document.getElementById('voetType');
+    const voetPosEl = document.getElementById('voetPos');
+    const rateVEl = document.getElementById('rateV');
+    const rateHEl = document.getElementById('rateH');
+    const rowsEl = document.getElementById('rows');
+    const colsEl = document.getElementById('cols');
+    const btnPDF = document.getElementById('btnPDF');
+    const btnUndo = document.getElementById('btnUndo');
+    const btnRedo = document.getElementById('btnRedo');
+    const btnClear = document.getElementById('btnClear');
+    const bufferModeEl = document.getElementById('bufferMode');
+    const sigAEl = document.getElementById('sigA');
+    const sigBEl = document.getElementById('sigB');
+  const showDimsEl = document.getElementById('showDims');
+  const pdfPlanHeightEl = document.getElementById('pdfPlanHeight');
+  const logoFileEl = document.getElementById('logoFile');
+  const logoPreviewEl = document.getElementById('logoPreview');
+
+  // Aangepast: custom logo (persist via localStorage)
+  let customLogo = null;
+  try {
+    customLogo = localStorage.getItem('customLogo') || null;
+    if (customLogo && logoPreviewEl) {
+      logoPreviewEl.src = customLogo;
+      logoPreviewEl.style.display = 'inline-block';
+    }
+  } catch (e) { /* ignore storage errors */ }
+
+  logoFileEl?.addEventListener('change', (e) => {
+    const file = e.target?.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      customLogo = reader.result;
+      try { localStorage.setItem('customLogo', customLogo); } catch (e) { /* ignore */ }
+      if (logoPreviewEl) {
+        logoPreviewEl.src = customLogo;
+        logoPreviewEl.style.display = 'inline-block';
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+
+    // === Helper Functions ===
+    function parseBE(s, fallback = 0) {
+        try {
+            return parseFloat(s.replace(',', '.')) || fallback;
+        } catch (e) {
+            return fallback;
+        }
+    }
+
+    function getGridMetrics() {
+        const rect = canvas.getBoundingClientRect();
+        const cw = parseBE(cellWidthEl?.value || '0.25');
+        const ch = parseBE(cellHeightEl?.value || '0.25');
+        const totalWidth = cols * cw;
+        const totalHeight = rows * ch;
+        const scale = Math.min(rect.width / totalWidth, rect.height / totalHeight);
+        const csX = cw * scale;
+        const csY = ch * scale;
+        const offsetX = 0; //(rect.width - cols * csX) / 2;
+        const offsetY = 0; //(rect.height - rows * csY) / 2;
+        return { csX, csY, offsetX, offsetY, scale, cw, ch };
+    }
+
+    function getCellFromEvent(e) {
+        const { csX, csY, offsetX, offsetY } = getGridMetrics();
+        const rect = canvas.getBoundingClientRect();
+        let x = e.clientX - rect.left - offsetX;
+        let y = e.clientY - rect.top - offsetY;
+        const c = Math.floor(x / csX);
+        const r = Math.floor(y / csY);
+        if (r >= 0 && r < rows && c >= 0 && c < cols) {
+            return { r, c };
+        }
+        return null;
+    }
+
+    resizeCanvasToDisplaySize = () => {
+        const dpr = Math.min(1.75, window.devicePixelRatio || 1);
+        const rect = canvas.getBoundingClientRect();
+        const w = Math.round(rect.width * dpr);
+        const h = Math.round(rect.height * dpr);
+        if (canvas.width !== w || canvas.height !== h) {
+            canvas.width = w;
+            canvas.height = h;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            return true;
+        }
+        return false;
+    }
+
+    // === Core Functions ===
+    function resetGrid() {
+        grid = Array.from({ length: rows }, () => Array(cols).fill(null));
+        hover = null;
+        down = false;
+        history = [JSON.stringify(grid)];
+        redoStack = [];
+    }
+
+    function setTool(t) {
+        tool = t;
+        toolButtons.forEach(b => b.classList.toggle('active', b.dataset.tool === t));
+    }
+
+    // === Drawing Functions ===
+    function clearCanvas() {
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.restore();
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function drawGrid() {
+        const { csX, csY, offsetX, offsetY } = getGridMetrics();
+
+        ctx.save();
+        ctx.translate(offsetX, offsetY);
+
+        // Draw cells
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                if (grid[r][c] === 'V') {
+                    ctx.fillStyle = 'rgba(239,68,68,0.4)';
+                    ctx.fillRect(c * csX, r * csY, csX, csY);
+                } else if (grid[r][c] === 'H') {
+                    ctx.fillStyle = 'rgba(59,130,246,0.4)';
+                    ctx.fillRect(c * csX, r * csY, csX, csY);
+                }
+            }
+        }
+
+        // Draw grid lines
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.beginPath();
+        for (let r = 0; r <= rows; r++) {
+            ctx.moveTo(0, r * csY);
+            ctx.lineTo(cols * csX, r * csY);
+        }
+        for (let c = 0; c <= cols; c++) {
+            ctx.moveTo(c * csX, 0);
+            ctx.lineTo(c * csX, rows * csY);
+        }
+        ctx.stroke();
+
+        ctx.restore();
+    }
+
+    function drawGuideline(typeEl, posEl, color) {
+        const type = typeEl?.value || 'none';
+        const posM = parseBE(posEl?.value || '0');
+        if (type === 'none') return;
+
+        const { csX, csY, offsetX, offsetY, scale, cw, ch } = getGridMetrics();
+        ctx.save();
+        ctx.translate(offsetX, offsetY);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.setLineDash([8, 6]);
+
+        if (type === 'vertical') {
+            const x = posM * scale; // meters → pixels
+            ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, rows * csY); ctx.stroke();
+        } else if (type === 'horizontal') {
+            const y = posM * scale;
+            ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(cols * csX, y); ctx.stroke();
+        }
+
+        ctx.restore();
+    }
+
+    function drawHover() {
+        if (!hover) return;
+        const { csX, csY, offsetX, offsetY } = getGridMetrics();
+        ctx.save();
+        ctx.translate(offsetX, offsetY);
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.4)';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([4, 2]);
+        ctx.strokeRect(hover.c * csX + 1, hover.r * csY + 1, csX - 2, csY - 2);
+        ctx.restore();
+    }
+
+    function drawAll() {
+        clearCanvas();
+        drawGrid();
+        drawGuideline(rooiTypeEl, rooiPosEl, '#111827'); // rooilijn
+        drawGuideline(voetTypeEl, voetPosEl, '#6b7280'); // voetpadlijn
+        drawBuffer();
+        if (showDimsEl?.checked) drawDimensions();
+        if (hover) drawHover();
+    }
+
+    function drawDimensions() {
+        const { csX, csY, offsetX, offsetY, cw, ch } = getGridMetrics();
+        const components = [...findComponents('V'), ...findComponents('H')];
+
+        ctx.save();
+        ctx.translate(offsetX, offsetY);
+        ctx.font = '12px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        components.forEach(comp => {
+            const widthM = (comp.maxC - comp.minC + 1) * cw;
+            const heightM = (comp.maxR - comp.minR + 1) * ch;
+
+            const centerX = (comp.minC + (comp.maxC - comp.minC + 1) / 2) * csX;
+            const centerY = (comp.minR + (comp.maxR - comp.minR + 1) / 2) * csY;
+
+            const topY = comp.minR * csY;
+            const bottomY = (comp.maxR + 1) * csY;
+            const leftX = comp.minC * csX;
+            const rightX = (comp.maxC + 1) * csX;
+
+            // Draw horizontal dimension line
+            ctx.beginPath();
+            ctx.moveTo(leftX, topY - 15);
+            ctx.lineTo(rightX, topY - 15);
+            ctx.moveTo(leftX, topY - 20);
+            ctx.lineTo(leftX, topY - 10);
+            ctx.moveTo(rightX, topY - 20);
+            ctx.lineTo(rightX, topY - 10);
+            ctx.strokeStyle = '#000';
+            ctx.stroke();
+            ctx.fillStyle = '#000';
+            ctx.fillText(`${widthM.toFixed(2)} m`, centerX, topY - 25);
+
+            // Draw vertical dimension line
+            ctx.beginPath();
+            ctx.moveTo(leftX - 15, topY);
+            ctx.lineTo(leftX - 15, bottomY);
+            ctx.moveTo(leftX - 20, topY);
+            ctx.lineTo(leftX - 10, topY);
+            ctx.moveTo(leftX - 20, bottomY);
+            ctx.lineTo(leftX - 10, bottomY);
+            ctx.stroke();
+            ctx.save();
+            ctx.translate(leftX - 25, centerY);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText(`${heightM.toFixed(2)} m`, 0, 0);
+            ctx.restore();
+        });
+
+        ctx.restore();
+    }
+
+    // === Buffer Functions ===
+    function computeRegMasks(cw, ch, bufferM, mode) {
+        const sub = 8;
+        const microRows = rows * sub;
+        const microCols = cols * sub;
+        const mx = cw / sub;
+        const my = ch / sub;
+        const microArea = mx * my;
+
+        const maskV = new Uint8Array(microRows * microCols);
+        const maskH = new Uint8Array(microRows * microCols);
+
+        function setRect(mask, r0, c0, r1, c1) {
+            const rs = Math.max(0, Math.floor(r0));
+            const re = Math.min(microRows - 1, Math.floor(r1));
+            const cs = Math.max(0, Math.floor(c0));
+            const ce = Math.min(microCols - 1, Math.floor(c1));
+            for (let rr = rs; rr <= re; rr++) {
+                let idx = rr * microCols + cs;
+                for (let cc = cs; cc <= ce; cc++, idx++) {
+                    mask[idx] = 1;
+                }
+            }
+        }
+
+        const compsV = findComponents('V');
+        const compsH = findComponents('H');
+
+        if (mode === 'strip') {
+            const padY = Math.ceil(bufferM / my);
+            const padX = Math.ceil(bufferM / mx);
+            for (const comp of compsV) {
+                const r0 = comp.minR * sub - padY;
+                const c0 = comp.minC * sub - padX;
+                const r1 = (comp.maxR + 1) * sub - 1 + padY;
+                const c1 = (comp.maxC + 1) * sub - 1 + padX;
+                setRect(maskV, r0, c0, r1, r1);
+            }
+            for (const comp of compsH) {
+                const r0 = comp.minR * sub - padY;
+                const c0 = comp.minC * sub - padX;
+                const r1 = (comp.maxR + 1) * sub - 1 + padY;
+                const c1 = (comp.maxC + 1) * sub - 1 + padX;
+                setRect(maskH, r0, c0, r1, r1);
+            }
+        } else {
+            // Exact mode
+            function markExact(comp, mask) {
+                const prim = [];
+                for (const [r, c] of comp.cells) {
+                    const baseR = r * sub, baseC = c * sub;
+                    for (let dr = 0; dr < sub; dr++) {
+                        for (let dc = 0; dc < sub; dc++) {
+                            const mr = baseR + dr, mc = baseC + dc;
+                            mask[mr * microCols + mc] = 1;
+                            prim.push({ x: (mc + 0.5) * mx, y: (mr + 0.5) * my });
+                        }
+                    }
+                }
+                const minMR = Math.max(0, comp.minR * sub - Math.ceil(bufferM / my));
+                const maxMR = Math.min(microRows - 1, (comp.maxR + 1) * sub - 1 + Math.ceil(bufferM / my));
+                const minMC = Math.max(0, comp.minC * sub - Math.ceil(bufferM / mx));
+                const maxMC = Math.min(microCols - 1, (comp.maxC + 1) * sub - 1 + Math.ceil(bufferM / mx));
+                const buf2 = bufferM * bufferM;
+                for (let mr = minMR; mr <= maxMR; mr++) {
+                    const y = (mr + 0.5) * my;
+                    for (let mc = minMC; mc <= maxMC; mc++) {
+                        const idx = mr * microCols + mc;
+                        if (mask[idx]) continue;
+                        const x = (mc + 0.5) * mx;
+                        let minD2 = Infinity;
+                        for (let k = 0; k < prim.length; k++) {
+                            const dx = x - prim[k].x;
+                            const dy = y - prim[k].y;
+                            const d2 = dx * dx + dy * dy;
+                            if (d2 < minD2) minD2 = d2;
+                            if (minD2 <= buf2) break;
+                        }
+                        if (minD2 <= buf2) mask[idx] = 1;
+                    }
+                }
+            }
+            for (const comp of compsV) markExact(comp, maskV);
+            for (const comp of compsH) markExact(comp, maskH);
+        }
+
+        return { maskV, maskH, microRows, microCols, sub, microArea, compsV, compsH };
+    }
+
+    function findComponents(zoneType) {
+        const visited = Array(rows).fill(null).map(() => Array(cols).fill(false));
+        const components = [];
+
+        function dfs(r, c, component) {
+            if (r < 0 || r >= rows || c < 0 || c >= cols || visited[r][c] || grid[r][c] !== zoneType) return;
+            visited[r][c] = true;
+            component.cells.push([r, c]);
+            component.minR = Math.min(component.minR, r);
+            component.maxR = Math.max(component.maxR, r);
+            component.minC = Math.min(component.minC, c);
+            component.maxC = Math.max(component.maxC, c);
+            dfs(r + 1, c, component);
+            dfs(r - 1, c, component);
+            dfs(r, c + 1, component);
+            dfs(r, c - 1, component);
+        }
+
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                if (grid[r][c] === zoneType && !visited[r][c]) {
+                    const component = { cells: [], minR: rows, maxR: -1, minC: cols, maxC: -1 };
+                    dfs(r, c, component);
+                    components.push(component);
+                }
+            }
+        }
+
+        return components;
+    }
+
+    // === Draw Buffer ===
+    function drawBuffer() {
+        if (!showBufferEl?.checked) return;
+
+        const { csX, csY, offsetX, offsetY } = getGridMetrics();
+        const bufferM = parseBE(bufferEl?.value || '0.30');
+        const raw = (bufferModeEl?.value || 'strook');   // UI: 'exact' | 'strook'
+        const mode = raw === 'exact' ? 'exact' : 'strip'; // interne keys: 'exact' | 'strip'
+
+        const { maskV, maskH, microRows, microCols, sub } = computeRegMasks(
+            parseBE(cellWidthEl?.value || '0.25'),
+            parseBE(cellHeightEl?.value || '0.25'),
+            bufferM,
+            mode
+        );
+
+        const microPxX = csX / sub;
+        const microPxY = csY / sub;
+
+        ctx.save();
+        ctx.translate(offsetX, offsetY);
+
+        // H mask (blauw)
+        ctx.fillStyle = 'rgba(59,130,246,0.18)';
+        for (let mr = 0, idx = 0; mr < microRows; mr++) {
+            for (let mc = 0; mc < microCols; mc++, idx++) {
+                if (maskH[idx]) {
+                    ctx.fillRect(mc * microPxX, mr * microPxY, microPxX, microPxY);
+                }
+            }
+        }
+
+        // V mask (rood, alleen waar geen H)
+        ctx.fillStyle = 'rgba(239,68,68,0.18)';
+        for (let mr = 0, idx = 0; mr < microRows; mr++) {
+            for (let mc = 0; mc < microCols; mc++, idx++) {
+                if (maskV[idx] && !maskH[idx]) {
+                    ctx.fillRect(mc * microPxX, mr * microPxY, microPxX, microPxY);
+                }
+            }
+        }
+
+        ctx.restore();
+    }
+
+    // === KPI Functions ===
+    function updateKPIs() {
+        const cw = parseBE(cellWidthEl?.value || '0.25');
+        const ch = parseBE(cellHeightEl?.value || '0.25');
+        const bufferM = parseBE(bufferEl?.value || '0.30');
+        const mode = (bufferModeEl?.value || 'strook') === 'exact' ? 'exact' : 'strip';
+        const rateV = parseBE(rateVEl?.value || '180.00');
+        const rateH = parseBE(rateHEl?.value || '120.00');
+
+        // Bereken de reglementaire oppervlakten
+        const { maskV, maskH, microRows, microCols, sub, microArea, compsV, compsH } = computeRegMasks(cw, ch, bufferM, mode);
+
+        const cV = compsV.reduce((total, comp) => total + comp.cells.length, 0);
+        const cH = compsH.reduce((total, comp) => total + comp.cells.length, 0);
+
+        const m2V = cV * cw * ch;
+        const m2H = cH * cw * ch;
+        const m2T = m2V + m2H;
+
+        let m2VReg = 0;
+        let m2HReg = 0;
+
+        for (let i = 0; i < microRows * microCols; i++) {
+            if (maskV[i] && !maskH[i]) { // V only
+                m2VReg += microArea;
+            } else if (maskH[i]) { // H (and V+H overlap)
+                m2HReg += microArea;
+            } else if (maskV[i]) { // Should not happen due to first if, but for safety
+                m2VReg += microArea;
+            }
+        }
+
+        const m2TReg = m2VReg + m2HReg;
+
+        const eurV = m2V * rateV;
+        const eurH = m2H * rateH;
+        const eurT = eurV + eurH;
+
+        const eurVReg = m2VReg * rateV;
+        const eurHReg = m2HReg * rateH;
+        const eurTReg = eurVReg + eurHReg;
+
+        // Update DOM elements safely
+        function safeSetContent(id, value) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        }
+
+        safeSetContent('kpiV', cV);
+        safeSetContent('kpiH', cH);
+        safeSetContent('m2V', m2V.toFixed(2).replace('.', ','));
+        safeSetContent('m2H', m2H.toFixed(2).replace('.', ','));
+        safeSetContent('m2T', m2T.toFixed(2).replace('.', ','));
+
+        safeSetContent('m2VReg', m2VReg.toFixed(2).replace('.', ','));
+        safeSetContent('m2HReg', m2HReg.toFixed(2).replace('.', ','));
+        safeSetContent('m2TReg', m2TReg.toFixed(2).replace('.', ','));
+
+        safeSetContent('eurV', `€ ${eurV.toFixed(2).replace('.', ',')}`);
+        safeSetContent('eurH', `€ ${eurH.toFixed(2).replace('.', ',')}`);
+        safeSetContent('eurT', `€ ${eurT.toFixed(2).replace('.', ',')}`);
+
+        safeSetContent('eurVReg', `€ ${eurVReg.toFixed(2).replace('.', ',')}`);
+        safeSetContent('eurHReg', `€ ${eurHReg.toFixed(2).replace('.', ',')}`);
+        safeSetContent('eurTReg', `€ ${eurTReg.toFixed(2).replace('.', ',')}`);
+    }
+
+    // === Event Listeners ===
+    canvas.addEventListener('pointerdown', e => {
+        e.preventDefault();
+        const cell = getCellFromEvent(e);
+        if (cell && (e.buttons & 1)) {
+            down = true;
+            grid[cell.r][cell.c] = tool === 'E' ? null : tool;
+            history.push(JSON.stringify(grid));
+            drawAll();
+            updateKPIs();
+        }
+    });
+
+    canvas.addEventListener('pointermove', e => {
+        const cell = getCellFromEvent(e);
+        hover = cell;
+        if (down && (e.buttons & 1) && cell) {
+            grid[cell.r][cell.c] = tool === 'E' ? null : tool;
+            drawAll();
+            updateKPIs();
+        } else {
+            drawAll();
+        }
+    });
+
+    canvas.addEventListener('pointerup', () => {
+        down = false;
+    });
+
+    canvas.addEventListener('pointerleave', () => {
+        down = false;
+        hover = null;
+        drawAll();
+    });
+
+    // Tool buttons
+    toolButtons.forEach(btn => {
+        btn.addEventListener('click', () => setTool(btn.dataset.tool));
+    });
+
+    // Input fields
+    cellWidthEl.addEventListener('change', updateKPIs);
+    cellHeightEl.addEventListener('change', updateKPIs);
+    bufferEl.addEventListener('change', updateKPIs);
+    rateVEl.addEventListener('change', updateKPIs);
+    rateHEl.addEventListener('change', updateKPIs);
+    rowsEl?.addEventListener('change', ()=>{ rows = +rowsEl.value||rows; resetGrid(); drawAll(); updateKPIs(); });
+    colsEl?.addEventListener('change', ()=>{ cols = +colsEl.value||cols; resetGrid(); drawAll(); updateKPIs(); });
+
+    // Buffer mode
+    bufferModeEl.addEventListener('change', drawAll);
+
+    // Show buffer
+    showBufferEl.addEventListener('change', drawAll);
+    showDimsEl?.addEventListener('change', drawAll);
+
+    // PDF button
+    btnPDF?.addEventListener('click', function() {
+        // Neem de huidige states
+        const showBufferState = showBufferEl.checked;
+        const showDimsState = showDimsEl.checked;
+        
+        // Maak een offscreen canvas voor betere kwaliteit
+        const offscreen = document.createElement('canvas');
+        offscreen.width = 1200;  // Grotere afmetingen voor betere kwaliteit
+        offscreen.height = 1200;
+        const offCtx = offscreen.getContext('2d');
+        
+        // Schaal en kopieer de originele canvas
+        offCtx.fillStyle = '#ffffff';
+        offCtx.fillRect(0, 0, offscreen.width, offscreen.height);
+        offCtx.scale(2, 2);  // Verhoog de schaal voor betere kwaliteit
+        
+        // Zorg dat alles zichtbaar is voor de PDF
+        showBufferEl.checked = true;
+        showDimsEl.checked = true;
+        
+        // Teken op de originele canvas
+        drawAll();
+        
+        // Kopieer naar de offscreen canvas
+        offCtx.drawImage(canvas, 0, 0);
+        
+        // Verzamel alle data
+        const dossierNr = document.getElementById('dossierNr')?.value || 'N/A';
+        const dossierAdres = document.getElementById('dossierAdres')?.value || 'N/A';
+        const dossierDatum = document.getElementById('dossierDatum')?.value || new Date().toLocaleDateString('nl-BE');
+        
+        // Verzamel handtekeningen met hoge kwaliteit
+        const sigAImg = sigAEl.toDataURL('image/png', 1.0);
+        const sigBImg = sigBEl.toDataURL('image/png', 1.0);
+        const sigAName = document.getElementById('sigAName')?.value || '';
+        const sigADate = document.getElementById('sigADate')?.value || '';
+        const sigBName = document.getElementById('sigBName')?.value || '';
+        const sigBDate = document.getElementById('sigBDate')?.value || '';
+        
+        // Neem een snapshot van het plan met hoge kwaliteit
+        const planImg = offscreen.toDataURL('image/png', 1.0);
+        
+        // Verzamel alleen de gevraagde KPI's en markeer het groot totaal
+        let kpiTableHTML = '';
+        const kpiOrder = [
+          'kpiV','kpiH',
+          'm2V','m2H',
+          'm2VReg','m2HReg',
+          'eurV','eurH',
+          'm2T','m2TReg',
+          'eurT','eurTReg'
+        ];
+        const kpiLabels = {
+          kpiV: 'Aantal V',
+          kpiH: 'Aantal H',
+          m2V: 'm² V (netto)',
+          m2H: 'm² H (netto)',
+          m2VReg: 'm² V (reglementair)',
+          m2HReg: 'm² H (reglementair)',
+          eurV: '€ V',
+          eurH: '€ H',
+          m2T: 'Totaal m² (netto)',
+          m2TReg: 'Totaal m² (regl.)',
+          eurT: 'Totaal €',
+          eurTReg: 'Totaal € (regl.)'
+        };
+        for (const id of kpiOrder) {
+          const value = document.getElementById(id)?.textContent || '0,00';
+          const isGrand = id === 'eurTReg';
+          kpiTableHTML += `<tr class="${isGrand ? 'total-row' : ''}"><td>${kpiLabels[id]}</td><td class="num">${value}</td></tr>`;
+        }
+        
+        // Maak de PDF HTML
+  const planMaxH = (pdfPlanHeightEl?.value || '12cm');
+  const pdfHTML = `
+          <div class="pdf-header">
+            <h1>Opmetingsplan</h1>
+            <img src="${customLogo || 'https://www.antwerpen.be/assets/aStad/assets/images/layout/logo_antwerpen.svg'}" alt="Logo Stad Antwerpen" referrerpolicy="no-referrer" style="max-height:48px;">
+          </div>
+          
+          <div class="pdf-section">
+            <h2>Dossiergegevens</h2>
+            <div class="pdf-dossier-info">
+              <p><strong>Dossiernummer:</strong> ${dossierNr}</p>
+              <p><strong>Adres:</strong> ${dossierAdres}</p>
+              <p><strong>Datum opmeting:</strong> ${dossierDatum}</p>
+            </div>
+          </div>
+
+          <div class="pdf-section">
+            <h2>Opmetingsparameters</h2>
+            <div class="pdf-dossier-info">
+              <p><strong>Celbreedte (m):</strong> ${document.getElementById('cellWidth')?.value || 'N/A'}</p>
+              <p><strong>Celhoogte (m):</strong> ${document.getElementById('cellHeight')?.value || 'N/A'}</p>
+              <p><strong>Buffer (m):</strong> ${document.getElementById('buffer')?.value || 'N/A'}</p>
+              <p><strong>Buffermode:</strong> ${document.getElementById('bufferMode')?.value || 'N/A'}</p>
+              <p><strong>Rooilijn:</strong> ${document.getElementById('rooiType')?.value} @ ${document.getElementById('rooiPos')?.value} m</p>
+              <p><strong>Voetpadlijn:</strong> ${document.getElementById('voetType')?.value} @ ${document.getElementById('voetPos')?.value} m</p>
+            </div>
+          </div>
+
+          <div class="pdf-section">
+            <h2>Opmetingsplan</h2>
+            <div style="background: #fff; padding: 10px; border: 1px solid #ccc; margin-top: 10px;">
+              <img id="pdf-plan-img" src="${planImg}" style="width:100%; height:auto; max-height:${planMaxH}; display:block; object-fit:contain;">
+            </div>
+          </div>
+
+          <div class="pdf-section">
+            <h2>Berekening</h2>
+            <table class="pdf-kpi-table">
+              <thead><tr><th>Parameter</th><th>Waarde</th></tr></thead>
+              <tbody>${kpiTableHTML}</tbody>
+            </table>
+          </div>
+
+          <div class="pdf-signatures">
+            <div class="pdf-sigbox">
+              <p><strong>Toezichter</strong></p>
+              <div style="background: #fff; padding: 10px; border: 1px solid #ccc; margin: 5px 0;">
+                <img src="${sigAImg}" style="width:200px; height:60px; display:block;">
+              </div>
+              <p class="name">${sigAName}</p>
+              <p class="date">${sigADate}</p>
+            </div>
+            <div class="pdf-sigbox">
+              <p><strong>Belanghebbende</strong></p>
+              <div style="background: #fff; padding: 10px; border: 1px solid #ccc; margin: 5px 0;">
+                <img src="${sigBImg}" style="width:200px; height:60px; display:block;">
+              </div>
+              <p class="name">${sigBName}</p>
+              <p class="date">${sigBDate}</p>
+            </div>
+          </div>
+        `;
+
+        // Plaats de PDF HTML en wacht tot alle afbeeldingen geladen zijn
+        const pdfOutput = document.getElementById('pdf-output');
+        if (pdfOutput) {
+            pdfOutput.innerHTML = pdfHTML;
+            const imgs = Array.from(pdfOutput.querySelectorAll('img'));
+            const waitForImages = Promise.all(
+              imgs.map(img => img.complete ? Promise.resolve() : new Promise(res => {
+                img.onload = img.onerror = () => res();
+              }))
+            );
+            waitForImages.then(() => {
+              setTimeout(() => {
+                window.print();
+              }, 50);
+            });
+            // Opruimen na print (optioneel)
+            const cleanup = () => {
+              window.removeEventListener('afterprint', cleanup);
+              // pdfOutput.innerHTML = '';
+            };
+            window.addEventListener('afterprint', cleanup);
+        }
+        
+        // Herstel de originele instellingen
+        showBufferEl.checked = showBufferState;
+        showDimsEl.checked = showDimsState;
+        drawAll();
+    });
+
+    // Undo/Redo buttons
+    btnClear?.addEventListener('click', ()=>{ resetGrid(); drawAll(); updateKPIs(); });
+
+    btnUndo?.addEventListener('click', ()=>{
+      if(history.length > 1){
+        redoStack.push(history.pop());
+        grid = JSON.parse(history[history.length-1]);
+        drawAll(); updateKPIs();
+      }
+    });
+
+    btnRedo?.addEventListener('click', ()=>{
+      if(redoStack.length){
+        const state = redoStack.pop();
+        history.push(state);
+        grid = JSON.parse(state);
+        drawAll(); updateKPIs();
+      }
+    });
+
+    // === Signature ===
+    function makeSimpleSignature(canvas){
+      const c = canvas.getContext('2d');
+      let d=false, prev=null;
+      canvas.addEventListener('pointerdown',e=>{d=true; prev={x:e.offsetX,y:e.offsetY}});
+      canvas.addEventListener('pointermove',e=>{
+        if(!d) return;
+        c.lineWidth=2; c.lineCap='round'; c.strokeStyle='#111';
+        c.beginPath(); c.moveTo(prev.x,prev.y); c.lineTo(e.offsetX,e.offsetY); c.stroke();
+        prev={x:e.offsetX,y:e.offsetY};
+      });
+      ['pointerup','pointerleave'].forEach(ev=>canvas.addEventListener(ev,()=>d=false));
+    }
+
+    makeSimpleSignature(sigAEl);
+    makeSimpleSignature(sigBEl);
+
+    document.getElementById('sigAClear')?.addEventListener('click',()=>{
+      const c = sigAEl.getContext('2d');
+      c.clearRect(0,0,sigAEl.width,sigAEl.height);
+    });
+
+    document.getElementById('sigBClear')?.addEventListener('click',()=>{
+      const c = sigBEl.getContext('2d');
+      c.clearRect(0,0,sigBEl.width,sigBEl.height);
+    });
+
+    // === Initialize ===
+    function init() {
+        resetGrid();
+        resizeCanvasToDisplaySize();
+        setTool('V'); // Start with V-zone tool
+        drawAll();
+        updateKPIs();
+    }
+
+    // === Resize Observer ===
+    const resizeObserver = new ResizeObserver(() => {
+        if (resizeCanvasToDisplaySize()) {
+            drawAll();
+        }
+    });
+
+
+
+
+    init();    // Start the app    resizeObserver.observe(canvas);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "liveServer.settings.root": "/",
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.file": "index.html",
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveServer.settings.host": "127.0.0.1",
+  "liveServer.settings.ignoreFiles": [
+    "**/.vscode/**",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.ts"
+  ],
+  "liveServer.settings.wait": 100,
+
+  // Live Preview (Microsoft) default page
+  "livePreview.defaultPreviewPath": "/index.html",
+
+  // Use a PowerShell profile that starts with ExecutionPolicy Bypass in VS Code terminals
+  "terminal.integrated.defaultProfile.windows": "PowerShell (Bypass)",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell (Bypass)": {
+      "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass"
+      ]
+    }
+  }
+}

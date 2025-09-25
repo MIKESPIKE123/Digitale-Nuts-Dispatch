@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Opmeet – Stad Antwerpen (V5)</title>
+<style>
+  :root{ --ant-red:#e1001a; --border:#e5e7eb; --muted:#6b7280; --bg:#f3f4f6; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#111827}
+  header{position:sticky;top:0;z-index:10;background:#fff;padding:14px 18px;border-bottom:3px solid var(--ant-red)}
+  header h1{margin:0;font-size:18px;font-weight:700}
+  main{display:grid;grid-template-columns:420px 1fr;gap:16px;padding:16px}
+  @media (max-width:1100px){main{grid-template-columns:1fr}}
+  .card{background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .pane{padding:16px}
+  .row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+  .row h2{margin:4px 0 0 0;font-size:14px}
+  label{font-size:12px;color:#374151}
+  input,select{padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+  input[type="number"]{width:120px}
+  .btn{padding:8px 12px;border-radius:100px;border:1px solid var(--border);background:#fff;cursor:pointer}
+  .btn:hover{background:#f9fafb}
+  .btn.primary{background:var(--ant-red);color:#fff;border-color:var(--ant-red)}
+  .btn.active{outline:3px solid rgba(225,0,26,.25)}
+  .grid-wrap{padding:16px}
+  .plan{background:#fff;border-radius:16px;box-shadow:inset 0 0 0 1px var(--border),0 1px 6px rgba(0,0,0,.06);width:100%;height:600px;touch-action:none;display:block}
+  .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+  .kpi{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px}
+  .kpi h3{margin:0;font-size:12px;color:#6b7280} .kpi p{margin:2px 0 0 0;font-size:18px;font-weight:700}
+  .sep{height:1px;background:var(--border);margin:12px 0}
+  .sigwrap{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+  .sigbox{border:1px dashed var(--border);border-radius:8px;padding:8px}
+  .sigbox canvas{background:#fff;border-radius:6px;border:1px solid var(--border);display:block}
+  .sigbox .lbl{font-size:12px;color:#374151;margin:6px 0 2px}
+  .sigbox .txt{width:180px;padding:8px 10px;border:1px solid var(--border);border-radius:10px}
+</style>
+</head>
+<body>
+<header><h1>Opmeet – Stad Antwerpen</h1></header>
+
+<main>
+  <div class="card">
+    <div class="pane">
+      <div class="row">
+        <h2>Grid parameters</h2>
+      </div>
+      <div class="row">
+        <label>Celbreedte (m)<input type="number" id="cellWidth" value="0.25" min="0.1" max="2" step="0.05"></label>
+        <label>Celhoogte (m)<input type="number" id="cellHeight" value="0.25" min="0.1" max="2" step="0.05"></label>
+      </div>
+      <div class="row">
+        <label>Rijen<input type="number" id="rows" value="20" min="1" max="100"></label>
+        <label>Kolommen<input type="number" id="cols" value="20" min="1" max="100"></label>
+      </div>
+
+      <div class="row">
+        <h2>Reglementaire parameters</h2>
+      </div>
+      <div class="row">
+        <label>Buffer (m)<input type="number" id="buffer" value="0.30" min="0" max="2" step="0.05"></label>
+        <label>Min. zone (m²)<input type="number" id="minZone" value="1.00" min="0" max="10" step="0.25"></label>
+        <select id="bufferMode">
+          <option value="exact">Exacte buffer</option>
+          <option value="strook">Als strook</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label><input type="checkbox" id="showBuffer" checked> Toon bufferzone</label>
+        <label><input type="checkbox" id="showStrips" checked> Toon stroken</label>
+        <label><input type="checkbox" id="showDims"> Toon maatvoering</label>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="row">
+        <h2>Tarieven</h2>
+      </div>
+      <div class="row">
+        <label>€/m² V<input type="number" id="rateV" value="180.00"></label>
+        <label>€/m² H<input type="number" id="rateH" value="120.00"></label>
+      </div>
+
+      <div class="summary">
+        <div class="kpi">
+          <h3>Aantal V</h3>
+          <p id="kpiV">0</p>
+        </div>
+        <div class="kpi">
+          <h3>Aantal H</h3>
+          <p id="kpiH">0</p>
+        </div>
+        <div class="kpi">
+          <h3>m² V (netto)</h3>
+          <p id="m2V">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² H (netto)</h3>
+          <p id="m2H">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² V (reglementair)</h3>
+          <p id="m2VReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² H (reglementair)</h3>
+          <p id="m2HReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>€ V</h3>
+          <p id="eurV">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>€ H</h3>
+          <p id="eurH">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal m² (netto)</h3>
+          <p id="m2T">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal m² (regl.)</h3>
+          <p id="m2TReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal €</h3>
+          <p id="eurT">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal € (regl.)</h3>
+          <p id="eurTReg">€ 0,00</p>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="row toolbar">
+        <button class="btn" id="btnUndo" title="Ongedaan maken (Ctrl+Z)">↶ Ongedaan</button>
+        <button class="btn" id="btnRedo" title="Opnieuw (Ctrl+Y)">↷ Opnieuw</button>
+        <button class="btn" id="btnClear">Leegmaken</button>
+        <button class="btn primary" id="btnPDF">PDF maken</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="grid-wrap">
+      <canvas id="grid" class="plan" aria-label="tekenraster"></canvas>
+      <div class="row">
+        <button class="btn" id="btnV" data-tool="V">V-zone</button>
+        <button class="btn" id="btnH" data-tool="H">H-zone</button>
+        <button class="btn" id="btnE" data-tool="E">Gum</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  /* ===== DOM ===== */
+  function q(s){ return document.querySelector(s); }
+  const canvas = document.getElementById('grid');
+  const ctx = canvas.getContext('2d');
+  const rowsEl = q('#rows'), colsEl = q('#cols');
+  const cellWidthEl = q('#cellWidth'), cellHeightEl = q('#cellHeight');
+  const bufferEl = q('#buffer'), minZoneEl = q('#minZone');
+  const rateVEl = q('#rateV'), rateHEl = q('#rateH');
+  const showBufferEl = q('#showBuffer'), showStripsEl = q('#showStrips'), showDimsEl = q('#showDims');
+  const bufferModeEl = q('#bufferMode');
+  const btnV = q('#btnV'), btnH = q('#btnH'), btnE = q('#btnE');
+  const btnClear = q('#btnClear'), btnUndo = q('#btnUndo'), btnRedo = q('#btnRedo'), btnPDF = q('#btnPDF');
+  const toolButtons = [btnV, btnH, btnE];
+
+  /* ===== State ===== */
+  let rows = +rowsEl.value, cols = +colsEl.value, tool = 'V';
+  let grid = [], history = [], redoStack = [];
+  let down = false, hover = null;
+
+  function resizeCanvasToDisplaySize(){
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    const w = Math.round(rect.width * dpr);
+    const h = Math.round(rect.height * dpr);
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w; canvas.height = h;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+  }
+
+  function clearCanvas(){
+    ctx.save();
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.restore();
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+  }
+
+  function drawGrid(){
+    const rect = canvas.getBoundingClientRect();
+    const cw = parseFloat(cellWidthEl.value);
+    const ch = parseFloat(cellHeightEl.value);
+    
+    // Bereken schaal om alle cellen passend te maken
+    const totalWidth = cols * cw;  // Totale breedte in meters
+    const totalHeight = rows * ch; // Totale hoogte in meters
+    const scale = Math.min(rect.width/totalWidth, rect.height/totalHeight);
+    
+    // Bereken werkelijke pixel-afmetingen van cellen
+    const csX = cw * scale;
+    const csY = ch * scale;
+    
+    // Centreer het grid
+    const offsetX = (rect.width - (cols * csX)) / 2;
+    const offsetY = (rect.height - (rows * csY)) / 2;
+    
+    ctx.save();
+    ctx.translate(offsetX, offsetY);
+
+    // Vul gekleurde cellen
+    for (let r=0; r<rows; r++){
+        for (let c=0; c<cols; c++){
+            const v = grid[r][c];
+            if (!v) continue;
+            ctx.fillStyle = v === 'V' ? '#ef444466' : '#3b82f666';
+            ctx.fillRect(c*csX, r*csY, csX, csY);
+        }
+    }
+
+    // Rasterlijnen
+    ctx.strokeStyle = '#e5e7eb';
+    ctx.lineWidth = 1;
+    for (let r=0; r<=rows; r++){
+        const y = r * csY;
+        ctx.beginPath(); 
+        ctx.moveTo(0, y); 
+        ctx.lineTo(cols*csX, y); 
+        ctx.stroke();
+    }
+    for (let c=0; c<=cols; c++){
+        const x = c * csX;
+        ctx.beginPath(); 
+        ctx.moveTo(x, 0); 
+        ctx.lineTo(x, rows*csY); 
+        ctx.stroke();
+    }
+
+    // Teken maatvoering als showDims aangevinkt is
+    if(showDimsEl.checked){
+        ctx.font = '12px Inter';
+        ctx.fillStyle = '#374151';
+        // Breedte bovenaan
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(`${cw}m`, csX/2, -5);
+        // Hoogte links
+        ctx.save();
+        ctx.translate(-5, csY/2);
+        ctx.rotate(-Math.PI/2);
+        ctx.fillText(`${ch}m`, 0, 0);
+        ctx.restore();
+    }
+
+    ctx.restore();
+  }
+
+  // Vervang bestaande drawBuffer() door deze implementatie die masken bouwt en H-voorrang toepast,
+// plus helper computeRegMasks() die zowel 'exact' als 'strook' ondersteunt.
+
+function computeRegMasks(cw, ch, bufferM, mode){
+  const sub = 8;
+  const microRows = rows * sub;
+  const microCols = cols * sub;
+  const mx = cw / sub; // meters per microcell x
+  const my = ch / sub; // meters per microcell y
+  const microArea = mx * my;
+
+  const maskV = new Uint8Array(microRows * microCols);
+  const maskH = new Uint8Array(microRows * microCols);
+
+  function setRect(mask, r0, c0, r1, c1){
+    const rs = Math.max(0, Math.floor(r0));
+    const re = Math.min(microRows - 1, Math.floor(r1));
+    const cs = Math.max(0, Math.floor(c0));
+    const ce = Math.min(microCols - 1, Math.floor(c1));
+    for (let rr = rs; rr <= re; rr++){
+      let idx = rr * microCols + cs;
+      for (let cc = cs; cc <= ce; cc++, idx++){
+        mask[idx] = 1;
+      }
+    }
+  }
+
+  const compsV = findComponents('V');
+  const compsH = findComponents('H');
+
+  if (mode === 'strook'){
+    const padY = Math.ceil(bufferM / my);
+    const padX = Math.ceil(bufferM / mx);
+    for (const comp of compsV){
+      const r0 = comp.minR * sub - padY;
+      const c0 = comp.minC * sub - padX;
+      const r1 = (comp.maxR + 1) * sub - 1 + padY;
+      const c1 = (comp.maxC + 1) * sub - 1 + padX;
+      setRect(maskV, r0, c0, r1, c1);
+    }
+    for (const comp of compsH){
+      const r0 = comp.minR * sub - padY;
+      const c0 = comp.minC * sub - padX;
+      const r1 = (comp.maxR + 1) * sub - 1 + padY;
+      const c1 = (comp.maxC + 1) * sub - 1 + padX;
+      setRect(maskH, r0, c0, r1, c1);
+    }
+  } else {
+    // Exact mode: voor iedere component, markeer eerst de primaire microcellen,
+    // daarna voor elke microcel in een begrensde box: als de afstand tot enige primaire cel <= bufferM, markeer.
+    function markExact(comp, mask){
+      const prim = [];
+      for (const [r, c] of comp.cells){
+        const baseR = r * sub, baseC = c * sub;
+        for (let dr = 0; dr < sub; dr++){
+          for (let dc = 0; dc < sub; dc++){
+            const mr = baseR + dr, mc = baseC + dc;
+            mask[mr * microCols + mc] = 1;
+            prim.push({ x: (mc + 0.5) * mx, y: (mr + 0.5) * my });
+          }
+        }
+      }
+      const minMR = Math.max(0, comp.minR * sub - Math.ceil(bufferM / my));
+      const maxMR = Math.min(microRows - 1, (comp.maxR + 1) * sub - 1 + Math.ceil(bufferM / my));
+      const minMC = Math.max(0, comp.minC * sub - Math.ceil(bufferM / mx));
+      const maxMC = Math.min(microCols - 1, (comp.maxC + 1) * sub - 1 + Math.ceil(bufferM / mx));
+      const buf2 = bufferM * bufferM;
+      for (let mr = minMR; mr <= maxMR; mr++){
+        const y = (mr + 0.5) * my;
+        for (let mc = minMC; mc <= maxMC; mc++){
+          const idx = mr * microCols + mc;
+          if (mask[idx]) continue;
+          const x = (mc + 0.5) * mx;
+          let minD2 = Infinity;
+          for (let k = 0; k < prim.length; k++){
+            const dx = x - prim[k].x;
+            const dy = y - prim[k].y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < minD2) minD2 = d2;
+            if (minD2 <= buf2) break;
+          }
+          if (minD2 <= buf2) mask[idx] = 1;
+        }
+      }
+    }
+    for (const comp of compsV) markExact(comp, maskV);
+    for (const comp of compsH) markExact(comp, maskH);
+  }
+
+  return { maskV, maskH, microRows, microCols, sub, microArea };
+}
+
+function drawBuffer() {
+  if (!showBufferEl || !showBufferEl.checked) return;
+  const { csX, csY, offsetX, offsetY } = getGridMetrics();
+  const bufferM = parseFloat(bufferEl.value);
+  const mode = bufferModeEl && bufferModeEl.value ? bufferModeEl.value : 'exact';
+  const { maskV, maskH, microRows, microCols, sub, microArea } = computeRegMasks(parseFloat(cellWidthEl.value), parseFloat(cellHeightEl.value), bufferM, mode);
+  const microPxX = csX / sub;
+  const microPxY = csY / sub;
+
+  ctx.save();
+  ctx.translate(offsetX, offsetY);
+  // Eerst: teken H-mask (blauw)
+  ctx.fillStyle = 'rgba(0,102,153,0.20)';
+  for (let mr = 0; mr < microRows; mr++){
+    for (let mc = 0; mc < microCols; mc++){
+      if (maskH[mr * microCols + mc])
+        ctx.fillRect(mc * microPxX, mr * microPxY, microPxX, microPxY);
+    }
+  }
+  // Daarna: teken V-mask (rood) alleen waar H niet aanwezig
+  ctx.fillStyle = 'rgba(225,0,26,0.20)';
+  for (let mr = 0; mr < microRows; mr++){
+    for (let mc = 0; mc < microCols; mc++){
+      const idx = mr * microCols + mc;
+      if (maskV[idx] && !maskH[idx])
+        ctx.fillRect(mc * microPxX, mr * microPxY, microPxX, microPxY);
+    }
+  }
+  ctx.restore();
+}
+
+  function drawAll(){
+    clearCanvas();
+    drawGrid();
+    drawBuffer();  // <-- Voeg deze regel toe
+    if(hover) drawHover();
+  }
+
+  function drawHover(){
+    if(!hover) return;
+    const rect = canvas.getBoundingClientRect();
+    const cw = parseFloat(cellWidthEl.value);
+    const ch = parseFloat(cellHeightEl.value);
+    const totalWidth = cols * cw;
+    const totalHeight = rows * ch;
+    const scale = Math.min(rect.width/totalWidth, rect.height/totalHeight);
+    const csX = cw * scale;
+    const csY = ch * scale;
+    const offsetX = (rect.width - (cols * csX)) / 2;
+    const offsetY = (rect.height - (rows * csY)) / 2;
+
+    ctx.save();
+    ctx.translate(offsetX, offsetY);
+    ctx.strokeStyle = '#000';
+    ctx.strokeRect(hover.c*csX, hover.r*csY, csX, csY);
+    ctx.restore();
+  }
+
+  function setTool(t){
+    tool = t;
+    toolButtons.forEach(b => b.classList.toggle('active', b.dataset.tool === t));
+  }
+
+  function initGrid(r, c){
+    rows = r; cols = c;
+    grid = Array.from({length: rows}, () => Array(cols).fill(null));
+    history = []; redoStack = [];
+    resizeCanvasToDisplaySize();
+    drawAll();
+  }
+
+  function getGridMetrics() {
+    const rect = canvas.getBoundingClientRect();
+    const cw = parseFloat(cellWidthEl.value);
+    const ch = parseFloat(cellHeightEl.value);
+    const totalWidth = cols * cw;
+    const totalHeight = rows * ch;
+    const scale = Math.min(rect.width / totalWidth, rect.height / totalHeight);
+    const csX = cw * scale;
+    const csY = ch * scale;
+    const offsetX = (rect.width - cols * csX) / 2;
+    const offsetY = (rect.height - rows * csY) / 2;
+    return { csX, csY, offsetX, offsetY, scale, cw, ch };
+  }
+
+  function getCellFromEvent(e) {
+    const { csX, csY, offsetX, offsetY } = getGridMetrics();
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left - offsetX;
+    const y = e.clientY - rect.top - offsetY;
+    const c = Math.floor(x / csX);
+    const r = Math.floor(y / csY);
+    if (r < 0 || r >= rows || c < 0 || c >= cols) return null;
+    return { r, c };
+  }
+  
+  function paintAt(e){
+    const cell = getCellFromEvent(e);
+    if (!cell) return;
+    const desired = (tool === 'E') ? null : tool;
+    if (grid[cell.r][cell.c] === desired) return;
+    history.push(JSON.stringify(grid));
+    grid[cell.r][cell.c] = desired;
+    drawAll();
+    updateKPIs();
+  }
+  
+  /* ===== Reglementaire unie / KPI ===== */
+
+  // Vervang de bestaande updateKPIs() door deze versie die de unie correct berekent
+  function updateKPIs(){
+    const cw = parseFloat(cellWidthEl.value);
+    const ch = parseFloat(cellHeightEl.value);
+    const bufferM = parseFloat(bufferEl.value);
+    const minZone = parseFloat(minZoneEl.value);
+
+    // Netto tellers
+    let cV = 0, cH = 0;
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        if(grid[r][c] === 'V') cV++;
+        else if(grid[r][c] === 'H') cH++;
+      }
+    }
+
+    const m2V = cV * cw * ch;
+    const m2H = cH * cw * ch;
+    const m2T = m2V + m2H;
+
+    // Bereken reglementaire oppervlakte als unie (afhankelijk van mode)
+    const mode = bufferModeEl && bufferModeEl.value ? bufferModeEl.value : 'exact';
+    const { m2VReg, m2HReg, m2TReg } = computeRegUnionAreas(cw, ch, bufferM, minZone, mode);
+
+    // Tarieven
+    const rateV = parseFloat(rateVEl.value);
+    const rateH = parseFloat(rateHEl.value);
+
+    const eurV = m2V * rateV;
+    const eurH = m2H * rateH;
+    const eurVReg = m2VReg * rateV;
+    const eurHReg = m2HReg * rateH;
+    const eurT = eurV + eurH;
+    const eurTReg = eurVReg + eurHReg;
+
+    // Update UI
+    q('#kpiV').textContent = cV;
+    q('#kpiH').textContent = cH;
+    q('#m2V').textContent = m2V.toFixed(2).replace('.',',');
+    q('#m2H').textContent = m2H.toFixed(2).replace('.',',');
+    q('#m2VReg').textContent = m2VReg.toFixed(2).replace('.',',');
+    q('#m2HReg').textContent = m2HReg.toFixed(2).replace('.',',');
+    q('#m2T').textContent = m2T.toFixed(2).replace('.',',');
+    q('#m2TReg').textContent = m2TReg.toFixed(2).replace('.',',');
+    q('#eurV').textContent = '€ ' + eurV.toFixed(2).replace('.',',');
+    q('#eurH').textContent = '€ ' + eurH.toFixed(2).replace('.',',');
+    q('#eurVReg').textContent = '€ ' + eurVReg.toFixed(2).replace('.',',');
+    q('#eurHReg').textContent = '€ ' + eurHReg.toFixed(2).replace('.',',');
+    q('#eurT').textContent = '€ ' + eurT.toFixed(2).replace('.',',');
+    q('#eurTReg').textContent = '€ ' + eurTReg.toFixed(2).replace('.',',');
+  }
+
+  // Compute union areas using a microcell raster.
+  // Returns separate reg areas for V and H and the total union (no double counting).
+  function computeRegUnionAreas(cw, ch, bufferM, minZone, mode){
+    const sub = 8; // micro resolution per cell
+    const microRows = rows * sub;
+    const microCols = cols * sub;
+    const mx = cw / sub; // meters per microcell horizontally
+    const my = ch / sub; // meters per microcell vertically
+    const microArea = mx * my;
+
+    // Masks per type
+    const maskV = new Uint8Array(microRows * microCols);
+    const maskH = new Uint8Array(microRows * microCols);
+
+    // helper to set rect in mask
+    function setRect(mask, r0,c0, r1,c1){
+      const rStart = Math.max(0, r0);
+      const rEnd = Math.min(microRows-1, r1);
+      const cStart = Math.max(0, c0);
+      const cEnd = Math.min(microCols-1, c1);
+      for(let rr=rStart; rr<=rEnd; rr++){
+        let base = rr * microCols + cStart;
+        for(let cc=cStart; cc<=cEnd; cc++, base++){
+          mask[base] = 1;
+        }
+      }
+    }
+
+    // get components once
+    const compsV = findComponents('V');
+    const compsH = findComponents('H');
+
+    // Strook-mode: mark outer rect per component (expanded bbox)
+    if(mode === 'strook'){
+      const padMicroY = Math.ceil(bufferM / my);
+      const padMicroX = Math.ceil(bufferM / mx);
+
+      for(const comp of compsV){
+        const r0 = comp.minR * sub - padMicroY;
+        const c0 = comp.minC * sub - padMicroX;
+        const r1 = (comp.maxR+1) * sub - 1 + padMicroY;
+        const c1 = (comp.maxC+1) * sub - 1 + padMicroX;
+        setRect(maskV, r0, c0, r1, c1);
+      }
+      for(const comp of compsH){
+        const r0 = comp.minR * sub - padMicroY;
+        const c0 = comp.minC * sub - padMicroX;
+        const r1 = (comp.maxR+1) * sub - 1 + padMicroY;
+        const c1 = (comp.maxC+1) * sub - 1 + padMicroX;
+        setRect(maskH, r0, c0, r1, c1);
+      }
+    } else {
+      // Exact-mode: for each component, mark all microcells within buffer distance from any primary microcell
+      // Precompute component microcell centers (in meters)
+      function markExactForComponent(comp, mask){
+        const compMicro = [];
+        for(const [r,c] of comp.cells){
+          const baseR = r*sub;
+          const baseC = c*sub;
+          for(let dr=0; dr<sub; dr++){
+            for(let dc=0; dc<sub; dc++){
+              const mr = baseR + dr;
+              const mc = baseC + dc;
+              // center coords in meters
+              const y = (mr + 0.5) * my;
+              const x = (mc + 0.5) * mx;
+              compMicro.push([mr,mc,x,y]);
+              // mark primary cell area too
+              mask[mr * microCols + mc] = 1;
+            }
+          }
+        }
+        if(compMicro.length === 0) return;
+        const buf = bufferM;
+        // For each microcell in bounding area (to limit work), compute distance
+        const minMR = Math.max(0, comp.minR*sub - Math.ceil(buf/my));
+        const maxMR = Math.min(microRows-1, (comp.maxR+1)*sub -1 + Math.ceil(buf/my));
+        const minMC = Math.max(0, comp.minC*sub - Math.ceil(buf/mx));
+        const maxMC = Math.min(microCols-1, (comp.maxC+1)*sub -1 + Math.ceil(buf/mx));
+        for(let mr = minMR; mr <= maxMR; mr++){
+          const y = (mr + 0.5) * my;
+          for(let mc = minMC; mc <= maxMC; mc++){
+            const x = (mc + 0.5) * mx;
+            const idx = mr * microCols + mc;
+            if(mask[idx]) continue; // already primary/marked
+            // compute min distance to comp micro centers
+            let minD2 = Infinity;
+            for(let k=0;k<compMicro.length;k++){
+              const dx = x - compMicro[k][3]; // careful order: compMicro stores [mr,mc,x,y] -> bugfix below
+              // Actually compMicro entries: [mr,mc,x,y] => compMicro[k][2]=x, [3]=y
+            }
+            // Correct loop to use proper indices:
+            // We'll reimplement inner loop properly to avoid mistakes.
+          }
+        }
+        // Because of complexity above, use simpler approach: check every microcell in bounding box and compare to every comp micro center.
+        for(let mr = minMR; mr <= maxMR; mr++){
+          const y = (mr + 0.5) * my;
+          for(let mc = minMC; mc <= maxMC; mc++){
+            const x = (mc + 0.5) * mx;
+            const idx = mr * microCols + mc;
+            if(mask[idx]) continue;
+            let minD2 = Infinity;
+            for(let k=0;k<compMicro.length;k++){
+              const cx = compMicro[k][2];
+              const cy = compMicro[k][3];
+              const dx = x - cx;
+              const dy = y - cy;
+              const d2 = dx*dx + dy*dy;
+              if(d2 < minD2) minD2 = d2;
+              if(minD2 <= bufferM*bufferM) break;
+            }
+            if(minD2 <= bufferM*bufferM) mask[idx] = 1;
+          }
+        }
+      }
+
+      for(const comp of compsV) markExactForComponent(comp, maskV);
+      for(const comp of compsH) markExactForComponent(comp, maskH);
+    }
+
+    // Nu hebben we maskV en maskH (may overlap). Compute union mask and areas.
+    let countV = 0, countH = 0, countUnion = 0;
+    for(let i=0;i<microRows * microCols;i++){
+      const v = maskV[i] ? 1 : 0;
+      const h = maskH[i] ? 1 : 0;
+      if(v) countV++;
+      if(h) countH++;
+      if(v || h) countUnion++;
+    }
+
+    let areaV = countV * microArea;
+    let areaH = countH * microArea;
+    let areaUnion = countUnion * microArea;
+
+    // Apply minZone rule per component? Simpler: ensure total meets at least minZone if >0
+    if(areaUnion < minZone) areaUnion = minZone;
+
+    // Distribute union total to V/H proportionally to net area if you prefer consistent billing across types.
+    // We'll compute final m2VReg and m2HReg by proportional allocation of the union area using netto shares,
+    // unless there's meaningful separate per-type covered area (we have areaV/areaH from masks).
+    // Use masks to determine per-type reg areas but avoid double-counting:
+    // If you want per-type reg area excluding shared overlap, you can use areaV and areaH directly (they may double count overlap).
+    // Here: compute m2TReg = union, and split proportionally by netto (previous approach).
+    const netTotal = m2V + m2H;
+    let m2VReg = 0, m2HReg = 0;
+    if(netTotal > 0){
+      m2VReg = areaUnion * (m2V / netTotal);
+      m2HReg = areaUnion * (m2H / netTotal);
+    } else {
+      // fallback: if no net cells, allocate from mask counts (rare)
+      const maskTotal = areaV + areaH;
+      if(maskTotal > 0){
+        m2VReg = areaUnion * (areaV / maskTotal);
+        m2HReg = areaUnion * (areaH / maskTotal);
+      }
+    }
+
+    return { m2VReg, m2HReg, m2TReg: areaUnion };
+  }
+
+  /* ===== Init & Events ===== */
+  initGrid(rows, cols);
+  setTool('V');
+
+  window.addEventListener('resize', () => {
+    resizeCanvasToDisplaySize();
+    drawAll();
+  });
+
+  canvas.addEventListener('pointerdown', paintAt);
+  canvas.addEventListener('pointermove', e => {
+    const cell = getCellFromEvent(e);
+    hover = cell;
+    if (e.buttons & 1) paintAt(e);
+    drawAll();
+  });
+  canvas.addEventListener('pointerleave', () => {
+    hover = null;
+    drawAll();
+  });
+
+  toolButtons.forEach(b => b.addEventListener('click', () => setTool(b.dataset.tool)));
+  btnClear.addEventListener('click', () => initGrid(rows, cols));
+  btnUndo.addEventListener('click', undo);
+  btnRedo.addEventListener('click', redo);
+
+  [rowsEl, colsEl, cellWidthEl, cellHeightEl].forEach(el => el.addEventListener('input', () => {
+    rows = +rowsEl.value;
+    cols = +colsEl.value;
+    initGrid(rows, cols);
+    updateKPIs();
+  }));
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "vaststellers": [
+    "Fred",
+    "Luc"
+  ],
+  "postcodes": [
+    "2000 Antwerpen",
+    "2018 Antwerpen"
+  ],
+  "types": [
+    "Electriciteit",
+    "Water"
+  ],
+  "nutsmaatschappijen": [
+    "FLUVIUS",
+    "PROXIMUS",
+    "wyre"
+  ]
+}

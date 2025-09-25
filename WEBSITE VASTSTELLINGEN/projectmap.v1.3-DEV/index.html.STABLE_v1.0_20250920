@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaststellingen Management Systeem</title>
+    
+    <!-- Antwerp Core Branding CSS -->
+    <link rel="stylesheet" href="https://cdn.antwerpen.be/core_branding_scss/7.1.0/main.min.css">
+    
+    <!-- EXIF.js library voor foto metadata -->
+    <script src="https://cdn.jsdelivr.net/npm/exif-js@2.3.0/exif.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div style="background: #ffe066; color: #222; font-weight: bold; padding: 8px 0; text-align: center; font-size: 1.2rem; letter-spacing: 1px;">versie appelsap 1.1</div>
+    
+    <!-- Navigation -->
+    <header class="a-header">
+        <div class="m-header">
+            <div class="m-header__content">
+                <div class="m-header__left">
+                    <h1 class="h2">🏗️ Vaststellingen Management</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <!-- Main Navigation -->
+     
+    <nav class="navigation">
+        
+        <button type="button" class="nav-btn active" data-section="dashboard" onclick="showSection('dashboard')">
+            
+            <span class="nav-icon">📊</span>
+            
+            Dashboard
+            
+        </button>
+        <button type="button" class="nav-btn" data-section="inspection" onclick="showSection('inspection')">
+            <span class="nav-icon">📝</span>
+            Vaststelling
+        </button>
+        <button type="button" class="nav-btn" data-section="management" onclick="showSection('management')">
+            <span class="nav-icon">⚙️</span>
+            Beheer
+        </button>
+        <button type="button" class="nav-btn" data-section="archive" onclick="showSection('archive')">
+            <span class="nav-icon">📁</span>
+            Archief
+        </button>
+        <button type="button" class="nav-btn" data-section="export" onclick="showSection('export')">
+            <span class="nav-icon">📤</span>
+            Export
+        </button>
+    </nav>
+
+    <!-- Test Alert - Removed, now integrated in dashboard -->
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="a-panel a-panel--primary">
+                <div class="a-panel__header">
+                    <h2 class="a-panel__title">
+                        <span class="fa fa-chart-bar u-margin-right-xs icon-primary"></span>
+                        Dashboard Overzicht
+                    </h2>
+                </div>
+                <div class="a-panel__body">
+                    <!-- Quick Actions -->
+                    <div class="u-margin-bottom">
+                        <button type="button" class="a-button a-button--primary u-margin-right-xs" 
+                                onclick="showSection('inspection')">
+                            <span class="fa fa-plus u-margin-right-xs"></span>
+                            Nieuwe Vaststelling
+                        </button>
+                        <button type="button" class="a-button a-button--outline" 
+                                onclick="testFunction()">
+                            <span class="fa fa-flask u-margin-right-xs"></span>
+                            System Test
+                        </button>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="m-card-deck m-card-deck--gutter">
+                        <div class="m-card m-card--shadow">
+                            <div class="m-card__body u-text-center">
+                                <h3 class="h4 u-margin-bottom-xs">
+                                    <span class="fa fa-file-alt u-margin-right-xs icon-primary"></span>
+                                    Totaal Vaststellingen
+                                </h3>
+                                <div class="display-2 u-text-bold u-text-primary" id="totalInspections">0</div>
+                            </div>
+                        </div>
+                        <div class="m-card m-card--shadow">
+                            <div class="m-card__body u-text-center">
+                                <h3 class="h4 u-margin-bottom-xs">
+                                    <span class="fa fa-user-check u-margin-right-xs icon-success"></span>
+                                    Schema Status
+                                </h3>
+                                <div class="display-2 u-text-bold u-text-success" id="schemaStatus">✅</div>
+                            </div>
+                        </div>
+                        <div class="m-card m-card--shadow">
+                            <div class="m-card__body u-text-center">
+                                <h3 class="h4 u-margin-bottom-xs">
+                                    <span class="fa fa-cogs u-margin-right-xs icon-info"></span>
+                                    System Status
+                                </h3>
+                                <div class="display-2 u-text-bold u-text-info" id="systemStatus">✅</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- System Info -->
+                    <div class="a-panel a-panel--secondary u-margin-top">
+                        <div class="a-panel__header">
+                            <h3 class="a-panel__title">
+                                <span class="fa fa-info-circle u-margin-right-xs icon-secondary"></span>
+                                System Status
+                            </h3>
+                        </div>
+                        <div class="a-panel__body">
+                            <div class="alert alert-success">
+                                <strong>Schema Renderer:</strong> <span id="rendererStatus">Checking...</span><br>
+                                <strong>Navigation:</strong> <span id="navigationStatus">Checking...</span><br>
+                                <strong>Data Manager:</strong> <span id="dataManagerStatus">Checking...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Management Section -->
+        <section id="management" class="section">
+            <div class="a-panel a-panel--primary">
+                <div class="a-panel__header">
+                    <h2 class="a-panel__title">
+                        <span class="fa fa-cog u-margin-right-xs icon-primary"></span>
+                        Data Beheer
+                    </h2>
+                </div>
+                <div class="a-panel__body">
+                    <!-- Vaststellers Management -->
+                    <div class="management-section">
+                        <h3 class="h4 u-margin-bottom">
+                            <span class="fa fa-users u-margin-right-xs icon-secondary"></span>
+                            Vaststellers Beheren
+                        </h3>
+                        
+                        <div class="a-panel a-panel--secondary u-margin-bottom">
+                            <div class="a-panel__header">
+                                <h4 class="a-panel__title">Nieuwe Vaststeller Toevoegen</h4>
+                            </div>
+                            <div class="a-panel__body">
+                                <div class="m-form-group">
+                                    <div class="a-input">
+                                        <label class="a-input__label" for="newSupervisorName">Naam van nieuwe vaststeller:</label>
+                                        <input type="text" id="newSupervisorName" class="a-input__field" 
+                                               placeholder="Voer naam in van nieuwe vaststeller">
+                                    </div>
+                                </div>
+                                <div class="m-button-group">
+                                    <button type="button" class="a-button a-button--success" onclick="addNewSupervisor()">
+                                        <span class="fa fa-plus u-margin-right-xs"></span>
+                                        Toevoegen
+                                    </button>
+                                    <button type="button" class="a-button a-button--outline" onclick="testFunction()">
+                                        <span class="fa fa-flask u-margin-right-xs"></span>
+                                        Test
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="a-panel">
+                            <div class="a-panel__header">
+                                <h4 class="a-panel__title">Bestaande Vaststellers</h4>
+                            </div>
+                            <div class="a-panel__body">
+                                <div class="m-table">
+                                    <table class="a-table a-table--primary">
+                                        <thead>
+                                            <tr>
+                                                <th class="a-table__header">
+                                                    <button class="a-button a-button--transparent a-button--sm" onclick="sortSupervisors('name')">
+                                                        Naam <span class="fa fa-sort"></span>
+                                                    </button>
+                                                </th>
+                                                <th class="a-table__header">Status</th>
+                                                <th class="a-table__header">Acties</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="supervisorsTableBody">
+                                            <!-- Wordt gevuld door JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="a-panel a-panel--accent u-margin-top" id="configManagerPanel">
+                            <div class="a-panel__header">
+                                <h4 class="a-panel__title">
+                                    <span class="fa fa-sliders-h u-margin-right-xs"></span>
+                                    Configuratie Keuzelijsten
+                                </h4>
+                            </div>
+                            <div class="a-panel__body">
+                                <p class="a-body-text u-margin-bottom-xs">
+                                    Pas hieronder dynamisch de waarden aan die gebruikt worden in het vaststellingsformulier. Opslaan = direct beschikbaar.
+                                </p>
+                                <div id="configEditorTabs" class="config-tabs u-margin-bottom">
+                                    <!-- Tabs worden via JS gevuld -->
+                                </div>
+                                <div id="configEditorContent" class="config-editor">
+                                    <!-- Editor wordt via JS gevuld -->
+                                </div>
+                                <div class="u-margin-top">
+                                    <button type="button" class="a-button a-button--success u-margin-right-xs" onclick="configManager.saveCurrent()">
+                                        💾 Bewaar Huidige Lijst
+                                    </button>
+                                    <button type="button" class="a-button a-button--outline u-margin-right-xs" onclick="configManager.reload()">
+                                        🔄 Herladen
+                                    </button>
+                                    <button type="button" class="a-button a-button--danger a-button--outline" onclick="configManager.resetAll()">
+                                        ♻️ Reset Alles (Factory)
+                                    </button>
+                                </div>
+                                <div id="configSaveStatus" class="u-margin-top-xs small text-muted"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vaststelling Formulier Section -->
+        <section id="inspection" class="section">
+            <h2 class="h3 u-margin-bottom">📝 Nieuwe Vaststelling (Schema Layout)</h2>
+            <div class="two-pane-form">
+                <div class="form-tabs" id="formTabBar"></div>
+                <div class="tab-content-wrapper">
+                    <div id="activeTabTitle" class="tab-active-title"></div>
+                    <div class="tab-grid-layout">
+                        <div class="tab-col" id="tabColLeft"></div>
+                        <div class="tab-col" id="tabColRight"></div>
+                    </div>
+                    <div class="tab-footer-actions">
+                        <button type="button" class="a-button a-button--outline" onclick="toggleAllGroups()">↕ Alles</button>
+                        <button type="button" class="a-button a-button--secondary" onclick="resetInspectionSchema()">Reset</button>
+                        <button type="button" class="a-button a-button--success" onclick="submitInspectionSchema()">💾 Opslaan</button>
+                    </div>
+                </div>
+            </div>
+            <details class="legacy-wrapper"><summary>Legacy formulier</summary><div class="legacy-disabled-note">Niet meer actief.</div></details>
+        </section>
+
+        <section id="archive" class="section">
+            <div class="card">
+                <h2>📁 Archief</h2>
+                <p>Archief sectie - tijdelijk vereenvoudigd voor debugging</p>
+            </div>
+        </section>
+
+        <section id="export" class="section">
+            <div class="a-panel a-panel--primary">
+                <div class="a-panel__header">
+                    <h2 class="a-panel__title">
+                        <span class="fa fa-download u-margin-right-xs icon-primary"></span>
+                        Data Export & Import
+                    </h2>
+                </div>
+                <div class="a-panel__body">
+                    
+                    <!-- Export Section -->
+                    <div class="export-section u-margin-bottom-lg">
+                        <h3 class="h4 u-margin-bottom">
+                            <span class="fa fa-file-export u-margin-right-xs icon-success"></span>
+                            Gegevens Exporteren
+                        </h3>
+                        
+                        <div class="a-panel a-panel--secondary u-margin-bottom">
+                            <div class="a-panel__body">
+                                <h4 class="h6 u-margin-bottom">� Huidige Formulier Data</h4>
+                                <p class="a-body-text u-margin-bottom">Export de huidige form state en ingevulde gegevens.</p>
+                                
+                                <div class="m-button-group">
+                                    <button type="button" class="a-button a-button--success u-margin-right-xs" onclick="exportCurrentFormJSON()">
+                                        <span class="fa fa-file-code u-margin-right-xs"></span>
+                                        Export als JSON
+                                    </button>
+                                    <button type="button" class="a-button a-button--success u-margin-right-xs" onclick="exportCurrentFormCSV()">
+                                        <span class="fa fa-table u-margin-right-xs"></span>
+                                        Export als CSV
+                                    </button>
+                                    <button type="button" class="a-button a-button--outline" onclick="showFormStateModal()">
+                                        <span class="fa fa-eye u-margin-right-xs"></span>
+                                        Bekijk Data
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="a-panel a-panel--secondary u-margin-bottom">
+                            <div class="a-panel__body">
+                                <h4 class="h6 u-margin-bottom">🗄️ Alle Vaststellingen</h4>
+                                <p class="a-body-text u-margin-bottom">Export alle opgeslagen vaststellingen (mock data voor demo).</p>
+                                
+                                <div class="m-button-group">
+                                    <button type="button" class="a-button a-button--primary u-margin-right-xs" onclick="exportAllDataJSON()">
+                                        <span class="fa fa-database u-margin-right-xs"></span>
+                                        Alle Data als JSON
+                                    </button>
+                                    <button type="button" class="a-button a-button--primary u-margin-right-xs" onclick="exportAllDataCSV()">
+                                        <span class="fa fa-file-csv u-margin-right-xs"></span>
+                                        Alle Data als CSV
+                                    </button>
+                                    <button type="button" class="a-button a-button--secondary" onclick="exportConfig()">
+                                        <span class="fa fa-cog u-margin-right-xs"></span>
+                                        Export Schema Config
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Import Section -->
+                    <div class="import-section">
+                        <h3 class="h4 u-margin-bottom">
+                            <span class="fa fa-file-import u-margin-right-xs icon-warning"></span>
+                            Gegevens Importeren
+                        </h3>
+                        
+                        <div class="a-panel a-panel--accent">
+                            <div class="a-panel__body">
+                                <h4 class="h6 u-margin-bottom">📂 Import Vaststelling Data</h4>
+                                <p class="a-body-text u-margin-bottom">Importeer eerder geëxporteerde JSON data terug in het systeem.</p>
+                                
+                                <div class="m-form-group">
+                                    <div class="a-input">
+                                        <label class="a-input__label" for="importFile">
+                                            <span class="fa fa-upload u-margin-right-xs"></span>
+                                            Selecteer JSON bestand:
+                                        </label>
+                                        <input type="file" id="importFile" class="a-input__field" accept=".json" onchange="handleFileImport(this)">
+                                    </div>
+                                </div>
+                                
+                                <div class="m-button-group">
+                                    <button type="button" class="a-button a-button--warning" onclick="importFromFile()" disabled id="importBtn">
+                                        <span class="fa fa-upload u-margin-right-xs"></span>
+                                        Importeer Data
+                                    </button>
+                                    <button type="button" class="a-button a-button--outline" onclick="clearImport()">
+                                        <span class="fa fa-times u-margin-right-xs"></span>
+                                        Wis Selectie
+                                    </button>
+                                </div>
+                                
+                                <div id="importStatus" class="u-margin-top import-status-hidden"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Section -->
+                    <div class="statistics-section u-margin-top-lg">
+                        <h3 class="h4 u-margin-bottom">
+                            <span class="fa fa-chart-line u-margin-right-xs icon-secondary"></span>
+                            Export Statistieken
+                        </h3>
+                        
+                        <div class="a-panel">
+                            <div class="a-panel__body">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3">
+                                        <div class="stat-box u-text-center">
+                                            <div class="stat-number" id="exportTotalFields">--</div>
+                                            <div class="stat-label">Totaal Velden</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3">
+                                        <div class="stat-box u-text-center">
+                                            <div class="stat-number" id="exportFilledFields">--</div>
+                                            <div class="stat-label">Ingevulde Velden</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3">
+                                        <div class="stat-box u-text-center">
+                                            <div class="stat-number" id="exportCompleteness">--%</div>
+                                            <div class="stat-label">Volledigheid</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3">
+                                        <div class="stat-box u-text-center">
+                                            <div class="stat-number" id="exportLastUpdate">--</div>
+                                            <div class="stat-label">Laatste Update</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =================================================================== -->
+    <!-- START VERVANGING: VERWIJDER ALLES HIERNA EN VERVANG DOOR DIT BLOK -->
+    <!-- =================================================================== -->
+
+    <!-- Core Application Scripts -->
+    <script src="js/dataManager.js"></script>
+    <script src="js/app.js"></script>
+    
+    <script>
+        let formSchema = null;
+
+        // 1. Initialize schema system with guaranteed fallback
+        console.log('🚀 Initializing schema system...');
+        
+        // IMMEDIATE schema initialization - no delays, no async, always works
+        (function initializeSchema() {
+            // Force embedded schema load first
+            if (typeof getEmbeddedSchema === 'function') {
+                formSchema = getEmbeddedSchema();
+                window.formSchema = formSchema;
+                console.log('✅ Embedded schema loaded with', Object.keys(formSchema.fields || {}).length, 'fields');
+            } else {
+                console.error('❌ CRITICAL: getEmbeddedSchema function not found!');
+                // Absolute fallback - hardcode minimal schema
+                formSchema = {
+                    layout: { tabs: [], groups: {} },
+                    fields: {},
+                    codelists: {},
+                    repeaters: {}
+                };
+                window.formSchema = formSchema;
+            }
+        })();
+        
+        // DOM ready handler for external schema and renderer initialization
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('🎯 DOM Ready - Schema system active');
+            
+            // Optional: Try external schema (non-blocking)
+            try {
+                const response = await fetch('./config/form.schema.json');
+                if (response.ok) {
+                    const externalSchema = await response.json();
+                    if (externalSchema && externalSchema.layout && externalSchema.fields) {
+                        formSchema = externalSchema;
+                        window.formSchema = formSchema;
+                        console.log('✅ External schema loaded successfully');
+                    }
+                }
+            } catch (e) {
+                console.log('ℹ️ External schema not available, using embedded version');
+            }
+            
+            // Always initialize renderer after DOM is ready
+            console.log('📊 Final schema has', Object.keys(formSchema.fields || {}).length, 'fields');
+            
+            // Force renderer initialization with multiple fallback attempts
+            let attempts = 0;
+            const maxAttempts = 10;
+            
+            const tryInitRenderer = () => {
+                attempts++;
+                console.log(`🔄 Renderer initialization attempt ${attempts}/${maxAttempts}`);
+                
+                if (typeof window.initSchemaLayout === 'function') {
+                    try {
+                        console.log('🎨 Calling initSchemaLayout with schema...');
+                        window.initSchemaLayout(formSchema);
+                        console.log('✅ Schema renderer initialized successfully!');
+                        
+                        // Update stats after successful initialization
+                        setTimeout(updateExportStats, 500);
+                        return;
+                    } catch (error) {
+                        console.error('❌ Renderer initialization error:', error);
+                    }
+                }
+                
+                // Retry if function not ready yet
+                if (attempts < maxAttempts) {
+                    setTimeout(tryInitRenderer, 100);
+                } else {
+                    console.error('❌ FAILED: Could not initialize schema renderer after', maxAttempts, 'attempts');
+                    console.log('🧪 Running automatic diagnostics...');
+                    if (typeof window.testFunction === 'function') {
+                        setTimeout(() => window.testFunction(), 1000);
+                    }
+                }
+            };
+            
+            // Start initialization attempts
+            setTimeout(tryInitRenderer, 50);
+        });
+
+        // Embedded schema als fallback (VOLLEDIGE VERSIE)
+        function getEmbeddedSchema() {
+            return {
+                layout: {
+                    tabs: [ { id: "basis", label: "Basis" }, { id: "werken", label: "Werken" }, { id: "observatie", label: "Observatie" }, { id: "berekening", label: "Berekening" }, { id: "relaties", label: "Relaties" }, { id: "context", label: "Context" }, { id: "media", label: "Media" }, { id: "opvolging", label: "Opvolging" } ],
+                    groups: { g_basis_ident: { title: "Identificatie", tab: "basis", column: "left" }, g_basis_loc: { title: "Locatie & Datum", tab: "basis", column: "right" }, g_werk_nuts: { title: "Nuts & Type", tab: "werken", column: "left" }, g_werk_planning: { title: "Planning", tab: "werken", column: "right" }, g_obs_main: { title: "Hoofdvaststelling", tab: "observatie", column: "left" }, g_obs_detail: { title: "Detail & Veiligheid", tab: "observatie", column: "right" }, g_obs_defects: { title: "Gebreken & Herstelling", tab: "observatie", column: "left" }, g_obs_material: { title: "Materiaal", tab: "observatie", column: "right" }, g_calc_locblocks: { title: "Locatie Metingen", tab: "berekening", column: "left" }, g_calc_totals: { title: "Financiële Totalen", tab: "berekening", column: "right" }, g_calc_duration: { title: "Doorlooptijd", tab: "berekening", column: "right" }, g_rel_links: { title: "Relaties & Vergunning", tab: "relaties", column: "left" }, g_ctx_status: { title: "Status & Resultaat", tab: "context", column: "left" }, g_ctx_conditions: { title: "Omstandigheden", tab: "context", column: "right" }, g_ctx_contacts: { title: "Contacten", tab: "context", column: "left" }, g_ctx_extra: { title: "Uitloop & Redenen", tab: "context", column: "right" }, g_media_upload: { title: "Media", tab: "media", column: "left" }, g_follow_notes: { title: "Opmerkingen & Opvolging", tab: "opvolging", column: "left" }, g_follow_planning: { title: "Volgende Acties", tab: "opvolging", column: "right" } }
+                },
+                codelists: { utilities: [ { value: "wyre", label: "Wyre" }, { value: "proximus", label: "Proximus" }, { value: "fluvius", label: "Fluvius" }, { value: "waterlink", label: "Water-link" } ], utility_types: [ { value: "water", label: "Water" }, { value: "gas", label: "Gas" }, { value: "elektra", label: "Elektriciteit" }, { value: "telecom", label: "Telecom" }, { value: "riool", label: "Riool" } ], postcodes: [ { value: "2000", label: "2000" }, { value: "2018", label: "2018" }, { value: "2050", label: "2050" } ], priority: [ { value: "low", label: "Laag" }, { value: "normal", label: "Normaal" }, { value: "high", label: "Hoog" }, { value: "urgent", label: "Urgent" } ], statuses: [ { value: "planned", label: "Gepland" }, { value: "in_progress", label: "In uitvoering" }, { value: "completed", label: "Voltooid" }, { value: "cancelled", label: "Geannuleerd" }, { value: "postponed", label: "Uitgesteld" }, { value: "rescheduled", label: "Herplanning" } ] },
+                repeaters: { location_blocks: { min: 1, fields: [ { id: "loc_address", label: "Locatie/Adres", type: "text" }, { id: "loc_length", label: "Lengte (m)", type: "number", step: "0.1" }, { id: "loc_width", label: "Breedte (m)", type: "number", step: "0.1" }, { id: "loc_area", label: "Oppervlakte (m²)", type: "number", readOnly: true }, { id: "loc_perm_dur", label: "Vergunde Dagen", type: "number" }, { id: "loc_extra_dur", label: "Extra Dagen", type: "number" }, { id: "loc_violation_days", label: "Subtotaal Overtreding", type: "number", readOnly: true } ] } },
+                fields: { gipod_number: { id:"gipod_number", label:"GIPOD Nummer", type:"text", group:"g_basis_ident", pattern:"\\d{8}", placeholder:"8-cijferig nummer" }, inspection_date: { id:"inspection_date", label:"Datum Vaststelling", type:"date", group:"g_basis_loc", default:"today", required:true }, description: { id:"description", label:"Beschrijving / Adres", type:"textarea", rows:3, group:"g_basis_loc", required:true }, use_gps: { id:"use_gps", label:"Gebruik GPS", type:"checkbox", group:"g_basis_loc" }, gps_latitude: { id:"gps_latitude", label:"Latitude", type:"text", group:"g_basis_loc", readOnly:true }, gps_longitude: { id:"gps_longitude", label:"Longitude", type:"text", group:"g_basis_loc", readOnly:true }, gps_accuracy: { id:"gps_accuracy", label:"Nauwkeurigheid", type:"text", group:"g_basis_loc", readOnly:true }, utility_company: { id:"utility_company", label:"NUTS", type:"select", codelist:"utilities", group:"g_werk_nuts", required:true }, utility_type: { id:"utility_type", label:"Type nutsmaatschappij", type:"select", codelist:"utility_types", group:"g_werk_nuts" }, postcode: { id:"postcode", label:"Postcode", type:"select", codelist:"postcodes", group:"g_werk_planning", required:true }, supervisor: { id:"supervisor", label:"Vaststeller", type:"text", group:"g_werk_planning" }, start_date: { id:"start_date", label:"Geplande Start", type:"date", group:"g_werk_planning" }, end_date: { id:"end_date", label:"Geplande Einde", type:"date", group:"g_werk_planning" }, finding_type: { id:"finding_type", label:"Vaststelling ter Plaatse", type:"radio", group:"g_obs_main", options:[ {value:"geen_signalisatie", label:"GEEN SIGNALISATIE GEEN WERKEN"}, {value:"signalisatie_geen_werken", label:"SIGNALISATIE GEEN WERKEN"}, {value:"signalisatie_werken_uitvoering", label:"WERKEN IN UITVOERING"}, {value:"signalisatie_werken_niet_uitvoering", label:"WERKEN NIET IN UITVOERING"}, {value:"werken_uitgevoerd", label:"WERKEN UITGEVOERD"} ] }, executed: { id:"executed", label:"Werken uitgevoerd?", type:"radio", group:"g_obs_detail", options:[{value:"ja",label:"Ja"},{value:"neen",label:"Neen"}] }, visible: { id:"visible", label:"Werfafbakening OK?", type:"radio", group:"g_obs_detail", options:[{value:"ja",label:"Ja"},{value:"neen",label:"Neen (niet OK)"}] }, safety_remarks: { id:"safety_remarks", label:"Opmerkingen Veiligheid", type:"checkbox-group", group:"g_obs_detail", options:[ {value:"connections", label:"Huisaansluitingen DWA/RWA maken"}, {value:"cyclists", label:"Doorgang fietsers voorzien"}, {value:"pedestrians", label:"Doorgang voetgangers vrijhouden"} ], visibility:{ all:[{field:"visible", equals:"neen"}] } }, material_present: { id:"material_present", label:"Achtergebleven Materiaal?", type:"radio", group:"g_obs_material", options:[{value:"neen", label:"Geen materiaal"},{value:"ja", label:"Ja, materiaal aanwezig"}] }, material_types: { id:"material_types", label:"Type materiaal", type:"checkbox-group", group:"g_obs_material", options:[ {value:"los_materiaal", label:"Los materiaal"}, {value:"signalisatie", label:"Signalisatie"} ], visibility:{ all:[{field:"material_present", equals:"ja"}]} }, defects_present: { id:"defects_present", label:"Gebreken vastgesteld?", type:"radio", group:"g_obs_defects", options:[{value:"neen",label:"Neen"},{value:"ja",label:"Ja"}] }, defects_list: { id:"defects_list", label:"Gebreken", type:"checkbox-group", group:"g_obs_defects", options:[ {value:"spleetvorming", label:"Spleetvorming"}, {value:"losse_delen", label:"Losse delen"}, {value:"oneffen_oppervlak", label:"Oneffen oppervlak"} ], visibility:{ all:[{field:"defects_present", equals:"ja"}]} }, repair_assessment: { id:"repair_assessment", label:"Herstelling / bestrating", type:"checkbox-group", group:"g_obs_defects", options:[ {value:"behandeling_zichtbaar", label:"Behandeling zichtbaar"}, {value:"materiaal_afwijkend", label:"Materiaal wijkt af"}, {value:"andere", label:"Andere"} ] }, repair_other_comment: { id:"repair_other_comment", label:"Andere opmerking", type:"textarea", rows:2, group:"g_obs_defects", visibility:{ all:[{field:"repair_assessment", contains:"andere"}]} }, urgent_action: { id:"urgent_action", label:"Dringende Actie Nodig?", type:"radio", group:"g_obs_detail", options:[{value:"ja",label:"Ja"},{value:"nee",label:"Nee"}] }, location_blocks: { id:"location_blocks", label:"Locaties", type:"repeater", repeater:"location_blocks", group:"g_calc_locblocks" }, daily_rate: { id:"daily_rate", label:"Tarief €/m²/dag", type:"number", group:"g_calc_totals", default:"5.00", readOnly:true }, violation_days: { id:"violation_days", label:"Aantal Dagen Overtreding", type:"number", group:"g_calc_totals", readOnly:true }, total_area: { id:"total_area", label:"Totale Oppervlakte (m²)", type:"number", group:"g_calc_totals", readOnly:true }, total_fine: { id:"total_fine", label:"Totaal Retributie (€)", type:"number", group:"g_calc_totals", readOnly:true }, permitted_area: { id:"permitted_area", label:"Vergunde Oppervlakte (m²)", type:"number", group:"g_calc_totals" }, actual_area: { id:"actual_area", label:"Werkelijke Oppervlakte (m²)", type:"number", group:"g_calc_totals" }, duration_types: { id:"duration_types", label:"Doorlooptijd Vaststelling", type:"checkbox-group", group:"g_calc_duration", options:[{value:"actual", label:"Afwijking Ingenomen Doorlooptijd"}] }, permitted_duration: { id:"permitted_duration", label:"Vergunde Doorlooptijd (dagen)", type:"number", group:"g_calc_duration", visibility:{ all:[{field:"duration_types", contains:"actual"}]} }, actual_duration: { id:"actual_duration", label:"Werkelijke Doorlooptijd (dagen)", type:"number", group:"g_calc_duration", visibility:{ all:[{field:"duration_types", contains:"actual"}]} }, additional_duration: { id:"additional_duration", label:"Bijkomende Doorlooptijd (dagen)", type:"number", group:"g_calc_duration", visibility:{ all:[{field:"duration_types", contains:"actual"}]} }, signalization_permit_nr: { id:"signalization_permit_nr", label:"Nr. Signalisatievergunning", type:"text", group:"g_rel_links" }, permit_expiry_date: { id:"permit_expiry_date", label:"Vervaldatum Vergunning", type:"date", group:"g_rel_links" }, violation_start_date: { id:"violation_start_date", label:"Start Overtreding", type:"date", group:"g_rel_links" }, link_related_findings: { id:"link_related_findings", label:"Gerelateerd aan andere vaststellingen", type:"checkbox", group:"g_rel_links" }, related_inspection_ids: { id:"related_inspection_ids", label:"Gerelateerde Vaststelling Nummers", type:"text", group:"g_rel_links", visibility:{ all:[{field:"link_related_findings", equals:true}]} }, work_reference: { id:"work_reference", label:"Werk Referentie", type:"text", group:"g_rel_links" }, relation_type: { id:"relation_type", label:"Relatie Type", type:"text", group:"g_rel_links" }, inspection_status: { id:"inspection_status", label:"Status", type:"select", group:"g_ctx_status", codelist:"statuses" }, inspection_result: { id:"inspection_result", label:"Resultaat Controle", type:"select", group:"g_ctx_status", options:[ {value:"conform",label:"Conform"}, {value:"non_conform",label:"Niet-conform"}, {value:"partial_conform",label:"Gedeeltelijk conform"}, {value:"recheck_needed",label:"Hercontrole nodig"}, {value:"pending",label:"In behandeling"} ] }, work_type: { id:"work_type", label:"Type Werkzaamheden", type:"text", group:"g_ctx_status" }, priority_level: { id:"priority_level", label:"Prioriteit", type:"select", codelist:"priority", group:"g_ctx_status" }, weather_conditions: { id:"weather_conditions", label:"Weersomstandigheden", type:"text", group:"g_ctx_conditions" }, inspection_type: { id:"inspection_type", label:"Type Controle", type:"text", group:"g_ctx_conditions" }, project_manager: { id:"project_manager", label:"Projectleider", type:"text", group:"g_ctx_contacts" }, contractor: { id:"contractor", label:"Hoofdaannemer", type:"text", group:"g_ctx_contacts" }, city_contact: { id:"city_contact", label:"Contact Stad", type:"text", group:"g_ctx_contacts" }, emergency_contact: { id:"emergency_contact", label:"Noodcontact", type:"text", group:"g_ctx_contacts" }, overage_reason: { id:"overage_reason", label:"Reden Uitloop/Vertraging", type:"text", group:"g_ctx_extra" }, photos: { id:"photos", label:"Foto's (upload extern)", type:"info", group:"g_media_upload", hint:"Gebruik bestaande uploadcomponent (nog te koppelen)" }, inspection_notes: { id:"inspection_notes", label:"Opmerkingen Controle", type:"textarea", rows:3, group:"g_follow_notes" }, follow_up_actions: { id:"follow_up_actions", label:"Opvolging Acties", type:"textarea", rows:2, group:"g_follow_notes" }, additional_info: { id:"additional_info", label:"Bijkomende Info", type:"textarea", rows:2, group:"g_follow_notes" }, next_inspection_date: { id:"next_inspection_date", label:"Volgende Controle", type:"date", group:"g_follow_planning" }, inspection_duration: { id:"inspection_duration", label:"Duur Controle (minuten)", type:"number", group:"g_follow_planning" } }
+            };
+        }
+        
+        // Make embedded schema function globally available
+        window.getEmbeddedSchema = getEmbeddedSchema;
+
+        // 2. Definieer de globale UI en export/import functies
+        window.showSection = function(sectionId) {
+            console.log('🔄 showSection called with:', sectionId);
+            
+            // Verberg alle secties en toon de juiste
+            const sections = document.querySelectorAll('.section');
+            console.log('📋 Found sections:', sections.length);
+            sections.forEach(s => s.classList.remove('active'));
+            
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                console.log('✅ Activated section:', sectionId);
+            } else {
+                console.warn('⚠️ Section not found:', sectionId);
+            }
+
+            // Update de actieve staat van de navigatieknoppen (voorkeur: data-section, fallback: onclick)
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                const fromData = btn.dataset && btn.dataset.section ? btn.dataset.section : null;
+                const oc = btn.getAttribute('onclick');
+                const m = oc ? oc.match(/'([^']+)'/) : null;
+                const fromOnClick = m && m[1] ? m[1] : null;
+                const btnSectionId = fromData || fromOnClick;
+                btn.classList.toggle('active', btnSectionId === sectionId);
+            });
+        };
+        window.exportCurrentFormJSON = () => downloadJSON(collectSchemaData(), 'vaststelling-huidig.json');
+        window.exportCurrentFormCSV = () => downloadCSV([collectSchemaData()], 'vaststelling-huidig.csv');
+        window.showFormStateModal = () => showDataModal('Huidige Formulier Data', collectSchemaData());
+        window.exportAllDataJSON = () => downloadJSON(generateMockVaststellingen(), 'alle-vaststellingen.json');
+        window.exportAllDataCSV = () => downloadCSV(generateMockVaststellingen(), 'alle-vaststellingen.csv');
+        window.exportConfig = () => downloadJSON(formSchema, 'form-schema-config.json');
+        window.handleFileImport = (input) => {
+            document.getElementById('importBtn').disabled = !(input.files[0] && input.files[0].type === 'application/json');
+        };
+        window.importFromFile = () => alert("Import-functie nog te implementeren voor nieuwe renderer.");
+        window.clearImport = () => {
+            document.getElementById('importFile').value = '';
+            document.getElementById('importBtn').disabled = true;
+        };
+
+        // 3. Helpers
+        function showDataModal(title, data) {
+            const modal = document.createElement('div');
+            modal.className = 'config-state-modal';
+            modal.innerHTML = `<div class="a-overlay" onclick="this.parentElement.remove()"><div class="a-modal" onclick="event.stopPropagation()"><div class="a-modal__header"><h3 class="a-modal__title">${title}</h3><button class="a-modal__close" onclick="this.closest('.config-state-modal').remove()">×</button></div><div class="a-modal__body"><pre style="background:#f8f9fa;padding:1rem;border-radius:4px;overflow:auto;max-height:400px;">${JSON.stringify(data,null,2)}</pre></div></div></div>`;
+            document.body.appendChild(modal);
+        }
+        function generateMockVaststellingen() { return [ { id: 1, status: 'completed' }, { id: 2, status: 'in_progress' } ]; }
+        function downloadBlob(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = filename;
+            document.body.appendChild(a); a.click();
+            document.body.removeChild(a); URL.revokeObjectURL(url);
+        }
+        function downloadJSON(data, filename) { downloadBlob(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }), filename); }
+        function downloadCSV(data, filename) {
+            if (!data.length) return;
+            const headers = Object.keys(data[0]);
+            const csv = [headers.join(','), ...data.map(r => headers.map(h => `"${(r[h]||'')}"`).join(','))].join('\n');
+            downloadBlob(new Blob([csv], { type: 'text/csv' }), filename);
+        }
+        function updateExportStats() {
+            if (!window.collectSchemaData || !formSchema) return;
+            const data = collectSchemaData();
+            const total = Object.keys(formSchema.fields || {}).length;
+            const filled = Object.values(data).filter(v => v && (!Array.isArray(v) || v.length > 0)).length;
+            document.getElementById('exportTotalFields').textContent = total;
+            document.getElementById('exportFilledFields').textContent = filled;
+            document.getElementById('exportCompleteness').textContent = total > 0 ? `${Math.round(filled/total*100)}%` : '0%';
+            document.getElementById('exportLastUpdate').textContent = new Date().toLocaleTimeString();
+        }
+
+        // 4. Enhanced Test Function
+        window.testFunction = () => {
+            console.log('🧪 COMPREHENSIVE DIAGNOSTICS:');
+            console.log('=====================================');
+            
+            // Schema Tests
+            console.log('📋 SCHEMA TESTS:');
+            const schemaLoaded = !!formSchema;
+            const schemaValid = schemaLoaded && formSchema.layout && formSchema.fields;
+            console.log('Schema Loaded:', schemaLoaded);
+            console.log('Schema Valid:', schemaValid);
+            console.log('Schema Fields Count:', schemaLoaded ? Object.keys(formSchema.fields || {}).length : 0);
+            console.log('Schema Tabs Count:', schemaLoaded ? (formSchema.layout?.tabs?.length || 0) : 0);
+            
+            // Renderer Tests
+            console.log('🎨 RENDERER TESTS:');
+            const rendererActive = typeof initSchemaLayout === 'function';
+            const buildTabsExists = typeof buildTabs === 'function';
+            const schemaStateExists = !!window.schemaState;
+            console.log('initSchemaLayout function exists:', rendererActive);
+            console.log('buildTabs function exists:', buildTabsExists);
+            console.log('schemaState object exists:', schemaStateExists);
+            
+            // UI Tests
+            console.log('🖼️ UI TESTS:');
+            const tabsRendered = !!document.querySelector('.form-tab-btn');
+            const formTabBar = !!document.getElementById('formTabBar');
+            const tabCols = document.querySelectorAll('[id^="tabCol"]').length;
+            console.log('Form tabs rendered:', tabsRendered);
+            console.log('Form tab bar exists:', formTabBar);
+            console.log('Tab columns found:', tabCols);
+            
+            // Repeater Tests
+            console.log('� REPEATER TESTS:');
+            const addRepeaterExists = typeof addRepeaterItem === 'function';
+            const removeRepeaterExists = typeof removeRepeaterItem === 'function';
+            const initRepeatersExists = typeof initRepeaters === 'function';
+            const handleChangeExists = typeof handleRepeaterFieldChange === 'function';
+            console.log('addRepeaterItem function exists:', addRepeaterExists);
+            console.log('removeRepeaterItem function exists:', removeRepeaterExists);
+            console.log('initRepeaters function exists:', initRepeatersExists);
+            console.log('handleRepeaterFieldChange function exists:', handleChangeExists);
+            
+            // Visibility Tests  
+            console.log('👁️ VISIBILITY TESTS:');
+            const evalVisExists = typeof evalVis === 'function';
+            const getValExists = typeof getVal === 'function';
+            const evaluateVisibilityExists = typeof evaluateVisibility === 'function';
+            console.log('evalVis function exists:', evalVisExists);
+            console.log('getVal function exists:', getValExists);
+            console.log('evaluateVisibility function exists:', evaluateVisibilityExists);
+            
+            // Navigation Tests
+            console.log('� NAVIGATION TESTS:');
+            const navWorks = typeof window.showSection === 'function';
+            const activateTabExists = typeof activateTab === 'function';
+            const buildGroupsExists = typeof buildGroups === 'function';
+            console.log('showSection function exists:', navWorks);
+            console.log('activateTab function exists:', activateTabExists);
+            console.log('buildGroups function exists:', buildGroupsExists);
+            
+            // Try to activate inspection section
+            console.log('🧪 TESTING FORM ACTIVATION:');
+            if (navWorks) {
+                try {
+                    window.showSection('inspection');
+                    console.log('✅ Successfully navigated to inspection section');
+                    
+                    // Test repeater functionality
+                    setTimeout(() => {
+                        if (typeof addRepeaterItem === 'function') {
+                            console.log('🧪 TESTING REPEATER:');
+                            try {
+                                addRepeaterItem('location_blocks');
+                                const items = document.querySelectorAll('.repeater-item');
+                                console.log('✅ Repeater item added successfully. Total items:', items.length);
+                            } catch (error) {
+                                console.error('❌ Repeater test failed:', error);
+                            }
+                        }
+                    }, 500);
+                } catch (error) {
+                    console.error('❌ Navigation test failed:', error);
+                }
+            }
+            
+            // Overall Status
+            const allSystemsGo = schemaValid && rendererActive && tabsRendered && navWorks && 
+                               addRepeaterExists && evalVisExists && buildGroupsExists;
+            
+            const summary = `
+SYSTEM STATUS REPORT
+====================
+✅ Schema: ${schemaValid ? 'OK' : 'FAIL'}
+✅ Renderer: ${rendererActive ? 'OK' : 'FAIL'} 
+✅ UI Tabs: ${tabsRendered ? 'OK' : 'FAIL'}
+✅ Navigation: ${navWorks ? 'OK' : 'FAIL'}
+✅ Repeaters: ${addRepeaterExists ? 'OK' : 'FAIL'}
+✅ Visibility: ${evalVisExists ? 'OK' : 'FAIL'}
+
+OVERALL: ${allSystemsGo ? '🎉 ALL SYSTEMS OPERATIONAL!' : '⚠️ ISSUES DETECTED'}
+            `;
+            
+            console.log(summary);
+            alert(summary);
+        };
+</script>
+
+
+
+    <!-- CONFIG MANAGER (keuzelijsten beheer) -->
+    <script>
+        const CONFIG_STORAGE_KEY = 'vaststellingen_config_v1';
+        const defaultConfigData = { utility_companies: [ {value:'wyre', label:'Wyre'}, {value:'proximus', label:'Proximus'}, {value:'fluvius', label:'Fluvius'}, {value:'waterlink', label:'Water-link'} ], utility_types: [ {value:'water', label:'Water'}, {value:'gas', label:'Gas'}, {value:'elektra', label:'Elektriciteit'}, {value:'telecom', label:'Telecom'}, {value:'riool', label:'Riool'} ], postcodes: [ {value:'2000', label:'2000'}, {value:'2018', label:'2018'}, {value:'2050', label:'2050'} ], work_types: [ {value:'sewer_work', label:'Rioolwerken'}, {value:'water_work', label:'Waterwerken'}, {value:'gas_work', label:'Gaswerken'}, {value:'electricity_work', label:'Elektriciteitswerken'}, {value:'telecom_work', label:'Telecomwerken'}, {value:'road_work', label:'Wegwerken'} ], priority_levels: [ {value:'low', label:'Laag'}, {value:'normal', label:'Normaal'}, {value:'high', label:'Hoog'}, {value:'urgent', label:'Urgent'} ], weather_conditions: [ {value:'sunny', label:'Zonnig'}, {value:'cloudy', label:'Bewolkt'}, {value:'rainy', label:'Regen'}, {value:'storm', label:'Storm'}, {value:'snow', label:'Sneeuw'} ], inspection_types: [ {value:'pre_work', label:'Voor-controle'}, {value:'during_work', label:'Tussentijdse controle'}, {value:'post_work', label:'Na-controle'} ], overage_reasons: [ {value:'weather', label:'Weer'}, {value:'technical', label:'Technisch'}, {value:'permit', label:'Vergunning'}, {value:'coordination', label:'Coördinatie'}, {value:'safety', label:'Veiligheid'}, {value:'other', label:'Andere'} ], relation_types: [ {value:'same_work', label:'Zelfde werk'}, {value:'follow_up', label:'Opvolging'}, {value:'correction', label:'Correctie'}, {value:'extension', label:'Uitbreiding'}, {value:'completion', label:'Afronding'} ], project_managers: [ {value:'sarah_willems', label:'Sarah Willems'}, {value:'tom_martens', label:'Tom Martens'} ], contractors: [ {value:'jan_janssen', label:'Bouwbedrijf Janssen'}, {value:'david_vermeulen', label:'Ingenieursbureau Vermeulen'} ], city_contacts: [ {value:'marie_pieters', label:'Marie Pieters'}, {value:'luc_vermeulen', label:'Luc Vermeulen'} ], emergency_contacts: [ {value:'peter_vandenberghe', label:'Peter Vandenberghe'}, {value:'emergency_service', label:'Algemene nooddienst'} ], defects: [ {value:'spleetvorming', label:'Spleetvorming'}, {value:'losse_delen', label:'Losse delen'}, {value:'oneffen_oppervlak', label:'Oneffen oppervlak'} ], repair_assessment: [ {value:'behandeling_zichtbaar', label:'Behandeling zichtbaar'}, {value:'materiaal_afwijkend', label:'Materiaal afwijkend'} ] };
+        const configGroups = [ { key:'utility_companies', label:'Nutsbedrijven' }, { key:'utility_types', label:'Types Nuts' }, { key:'postcodes', label:'Postcodes' }, { key:'work_types', label:'Werksoorten' }, { key:'priority_levels', label:'Prioriteit' }, { key:'weather_conditions', label:'Weer' }, { key:'inspection_types', label:'Controle Types' }, { key:'overage_reasons', label:'Uitloop Redenen' }, { key:'relation_types', label:'Relatie Types' }, { key:'project_managers', label:'Projectleiders' }, { key:'contractors', label:'Aannemers' }, { key:'city_contacts', label:'Contact Stad' }, { key:'emergency_contacts', label:'Noodcontact' }, { key:'defects', label:'Gebreken Opties' }, { key:'repair_assessment', label:'Herstelling Beoordeling'} ];
+        const configManager = {
+            data: {},
+            activeKey: null,
+            load() {
+                try {
+                    const raw = localStorage.getItem(CONFIG_STORAGE_KEY);
+                    this.data = raw ? JSON.parse(raw) : structuredClone(defaultConfigData);
+                } catch(e){
+                    this.data = structuredClone(defaultConfigData);
+                }
+            },
+            persist() { localStorage.setItem(CONFIG_STORAGE_KEY, JSON.stringify(this.data)); },
+            initUI() {
+                const tabs = document.getElementById('configEditorTabs');
+                if(!tabs) return;
+                tabs.innerHTML = '';
+                configGroups.forEach(g=>{
+                    const btn = document.createElement('button');
+                    btn.type='button';
+                    btn.className='config-tab-btn';
+                    btn.textContent=g.label;
+                    btn.onclick=()=>this.open(g.key);
+                    if(!this.activeKey) this.activeKey=g.key;
+                    if(this.activeKey===g.key) btn.classList.add('active');
+                    tabs.appendChild(btn);
+                });
+                this.renderEditor();
+            },
+            open(key){
+                this.activeKey = key;
+                document.querySelectorAll('.config-tab-btn').forEach(b=>{
+                    b.classList.toggle('active', b.textContent===this.getLabel(key));
+                });
+                this.renderEditor();
+            },
+            getLabel(key){
+                const g = configGroups.find(c=>c.key===key);
+                return g?g.label:key;
+            },
+            renderEditor() {
+                const container = document.getElementById('configEditorContent');
+                if(!container) return;
+                let list = this.data[this.activeKey] || [];
+                // OVERRIDE: Voor postcodes altijd de DataManager gebruiken als die bestaat
+                if(this.activeKey === 'postcodes' && window.dataManager && window.dataManager.config && window.dataManager.config.configuration && Array.isArray(window.dataManager.config.configuration.postcodes)) {
+                    list = window.dataManager.config.configuration.postcodes.map(pc => ({ value: pc.code, label: pc.description || pc.code }));
+                }
+                container.innerHTML = `<div class="u-margin-bottom-xs small">Lijst: <strong>${this.getLabel(this.activeKey)}</strong> (${list.length} items)</div><table><thead><tr><th style="width:160px">Value (key)</th><th>Label (zichtbaar)</th><th style="width:70px">Acties</th></tr></thead><tbody id="configRows">${list.map((row,i)=>`<tr data-index="${i}"><td><input type="text" value="${row.value}" data-field="value"></td><td><input type="text" value="${row.label}" data-field="label"></td><td class="config-row-actions"><button type="button" class="a-button a-button--sm a-button--outline" onclick="configManager.dupRow(${i})">➕</button><button type="button" class="a-button a-button--sm a-button--danger" onclick="configManager.delRow(${i})">🗑️</button></td></tr>`).join('')}</tbody></table><div class="config-add-row"><button type="button" class="a-button a-button--outline" onclick="configManager.addRow()">➕ Item toevoegen</button><button type="button" class="a-button a-button--outline u-margin-left-xs" onclick="configManager.sortAlpha()">⬆️ Sorteren A-Z</button></div>`;
+                container.querySelectorAll('input[data-field]').forEach(inp=>{
+                    inp.addEventListener('input', ()=>{
+                        const tr = inp.closest('tr');
+                        this.data[this.activeKey][parseInt(tr.dataset.index,10)][inp.dataset.field] = inp.value.trim();
+                    });
+                });
+            },
+            addRow() { this.data[this.activeKey].push({value:'nieuw_'+Date.now(), label:'Nieuw item'}); this.renderEditor(); },
+            dupRow(i){ const r = {...this.data[this.activeKey][i]}; r.value = r.value+'_copy'; this.data[this.activeKey].splice(i+1,0,r); this.renderEditor(); },
+            delRow(i){ this.data[this.activeKey].splice(i,1); this.renderEditor(); },
+            sortAlpha(){ this.data[this.activeKey].sort((a,b)=>a.label.localeCompare(b.label,'nl')); this.renderEditor(); },
+            saveCurrent(){ this.persist(); this.flashStatus('✅ Opgeslagen'); },
+            reload(){ this.load(); this.initUI(); this.flashStatus('🔄 Herladen'); },
+            resetAll(){ if(!confirm('Reset?')) return; this.data = structuredClone(defaultConfigData); this.persist(); this.initUI(); this.flashStatus('♻️ Gereset'); },
+            flashStatus(msg){ const el = document.getElementById('configSaveStatus'); if(!el) return; el.textContent = msg; setTimeout(()=>{ el.textContent=''; }, 2500); }
+        };
+        document.addEventListener('DOMContentLoaded', ()=>{ configManager.load(); configManager.initUI(); });
+        window.configManager = configManager;
+    </script>
+
+    <!-- SCHEMA RENDERER -->
+    <script>
+        console.log('🚀 Loading Schema Renderer...');
+        
+        const schemaState = {schema: null, repeaterCounters: {}};
+        
+        let schemaInitialized = false;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🎯 DOM Ready - Starting schema polling...');
+            let pollAttempts = 0;
+            const maxAttempts = 50; // Max 10 seconds (50 * 200ms)
+            
+            const poll = setInterval(() => {
+                pollAttempts++;
+                
+                if (window.formSchema && !schemaInitialized) {
+                    console.log('✅ Schema found:', window.formSchema);
+                    schemaInitialized = true;
+                    clearInterval(poll);
+                    
+                    try {
+                        initSchemaLayout(window.formSchema);
+                        console.log('🎉 Schema renderer initialization started!');
+                    } catch (error) {
+                        console.error('❌ Schema initialization failed:', error);
+                    }
+                } else if (pollAttempts >= maxAttempts) {
+                    console.warn('⚠️ Schema polling stopped after max attempts');
+                    clearInterval(poll);
+                } else {
+                    console.log('⏳ Waiting for schema... (attempt ' + pollAttempts + '/' + maxAttempts + ')');
+                }
+            }, 200); 
+        });
+        
+        function initSchemaLayout(s) {
+            console.log('🎨 initSchemaLayout called with schema:', s);
+            
+            if (!s || !s.layout || !s.fields) {
+                console.error('❌ Invalid schema provided to initSchemaLayout:', s);
+                return;
+            }
+            
+            schemaState.schema = s;
+            console.log('✅ Schema assigned to schemaState');
+            
+            // Wait a moment for all functions to be defined, then build tabs
+            setTimeout(() => {
+                if (typeof buildTabs === 'function') {
+                    console.log('✅ Building tabs now...');
+                    try {
+                        buildTabs();
+                        console.log('✅ Tabs built successfully');
+                        
+                        // Initialize repeaters after tabs are built
+                        if (typeof initRepeaters === 'function') {
+                            console.log('🔄 Initializing repeaters...');
+                            initRepeaters();
+                        }
+                        
+                        // Evaluate visibility after everything is built
+                        if (typeof evaluateVisibility === 'function') {
+                            console.log('👁️ Evaluating visibility...');
+                            evaluateVisibility();
+                        }
+                        
+                    } catch (error) {
+                        console.error('❌ Error building tabs:', error);
+                    }
+                } else {
+                    console.error('❌ buildTabs function not available');
+                }
+            }, 50); // Increased delay to ensure all functions are loaded
+        }
+
+        // Make function globally available immediately
+        window.initSchemaLayout = initSchemaLayout;
+        
+        // Apply compatibility shim
+        (function() {
+            function isCompat(s) {
+                try {
+                    return !!(s && s.layout && Array.isArray(s.layout.tabs) && s.layout.groups);
+                } catch(e) {
+                    return false;
+                }
+            }
+            
+            const orig = window.initSchemaLayout;
+            if (typeof orig === 'function') {
+                window.initSchemaLayout = function(s) {
+                    console.log('🔍 Compatibility check for schema:', s ? 'provided' : 'null');
+                    if (!isCompat(s)) {
+                        console.warn('⚠️ Schema not compatible or missing, using embedded schema.');
+                        if (typeof window.getEmbeddedSchema === 'function') {
+                            s = window.getEmbeddedSchema();
+                            console.log('✅ Embedded schema applied as fallback');
+                        } else {
+                            console.error('❌ No embedded schema available!');
+                            return;
+                        }
+                    }
+                    return orig(s);
+                };
+                console.log('✅ Schema compatibility shim applied');
+            }
+        })();
+
+        // Dashboard status checker
+        function updateDashboardStatus() {
+            // Check schema renderer
+            const rendererOk = typeof window.initSchemaLayout === 'function';
+            const rendererStatusEl = document.getElementById('rendererStatus');
+            if (rendererStatusEl) {
+                rendererStatusEl.textContent = rendererOk ? '✅ Actief' : '❌ Niet geladen';
+            }
+            
+            // Check navigation
+            const navOk = typeof window.showSection === 'function';
+            const navStatusEl = document.getElementById('navigationStatus');
+            if (navStatusEl) {
+                navStatusEl.textContent = navOk ? '✅ Werkend' : '❌ Defect';
+            }
+            
+            // Check data manager (correct variable name)
+            const dataOk = (typeof window.dataManager !== 'undefined' && window.dataManager !== null);
+            const dataStatusEl = document.getElementById('dataManagerStatus');
+            if (dataStatusEl) {
+                dataStatusEl.textContent = dataOk ? '✅ Geladen' : '❌ Niet gevonden';
+            }
+            
+            // Update schema status card
+            const schemaStatusEl = document.getElementById('schemaStatus');
+            if (schemaStatusEl) {
+                schemaStatusEl.textContent = (rendererOk && window.formSchema) ? '✅' : '❌';
+            }
+            
+            // Update system status card
+            const systemStatusEl = document.getElementById('systemStatus');
+            if (systemStatusEl) {
+                systemStatusEl.textContent = (rendererOk && navOk && dataOk) ? '✅' : '❌';
+            }
+        }
+
+        // Update status every 2 seconds
+        setInterval(updateDashboardStatus, 2000);
+        // Also update immediately when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateDashboardStatus, 500);
+        });
+        function buildTabs() {
+            const tabs = schemaState.schema && schemaState.schema.layout && schemaState.schema.layout.tabs;
+            const bar = document.getElementById('formTabBar');
+            try {
+                console.log('DEBUG: tabs object (raw):', tabs);
+                console.log('DEBUG: tabs type:', typeof tabs, Array.isArray(tabs));
+                if (tabs && typeof tabs === 'object') {
+                    console.log('DEBUG: tabs as JSON:', JSON.stringify(tabs));
+                    if (Object.keys(tabs).length > 0) {
+                        Object.keys(tabs).forEach(k => {
+                            console.log('DEBUG: tabs['+k+']:', tabs[k]);
+                        });
+                    }
+                }
+            } catch(e) { console.error('DEBUG: tabs inspectie error', e); }
+            if (!bar) {
+                console.warn('⚠️ formTabBar not found!');
+                return;
+            }
+            if (!Array.isArray(tabs)) {
+                console.error('❌ tabs is geen array! Type:', typeof tabs, 'Value:', tabs);
+                bar.innerHTML = '<button class="form-tab-btn active" style="background:#ffe066;color:#222;">DEBUG: tabs is geen array</button>';
+                return;
+            }
+            if (tabs.length === 0) {
+                console.error('❌ tabs array is leeg!');
+                bar.innerHTML = '<button class="form-tab-btn active" style="background:#ffe066;color:#222;">DEBUG: tabs array is leeg</button>';
+                return;
+            }
+            console.log('🏗️ Building tabs:', tabs.length, tabs);
+            bar.innerHTML = '';
+            tabs.forEach((t, i) => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'form-tab-btn' + (i === 0 ? ' active' : '');
+                b.textContent = t.label;
+                b.dataset.tabId = t.id;
+                b.onclick = () => activateTab(t.id);
+                bar.appendChild(b);
+            });
+            setTimeout(() => activateTab(tabs[0].id), 0);
+            console.log('✅ Tabs built successfully');
+        }
+        function activateTab(id) {
+            console.log('🏷️ Activating tab:', id);
+            
+            // Update tab button states
+            document.querySelectorAll('.form-tab-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.tabId === id);
+            });
+            
+            // Update tab title
+            const title = document.getElementById('activeTabTitle');
+            if (schemaState.schema && schemaState.schema.layout && schemaState.schema.layout.tabs) {
+                const cfg = schemaState.schema.layout.tabs.find(t => t.id === id);
+                if (title) title.textContent = cfg ? cfg.label : '';
+            }
+            
+            // Build groups for this tab
+            buildGroups(id);
+        }
+        function buildGroups(tabId) {
+            console.log('🏗️ Building groups for tab:', tabId);
+            
+            if (!schemaState.schema || !schemaState.schema.layout || !schemaState.schema.layout.groups) {
+                console.error('❌ Schema groups not available');
+                return;
+            }
+            
+            const groups = schemaState.schema.layout.groups;
+            
+            // Clear existing columns
+            ['Left', 'Right'].forEach(side => {
+                const el = document.getElementById('tabCol' + side);
+                if (el) el.innerHTML = '';
+            });
+            
+            // Add groups for this tab
+            Object.entries(groups)
+                .filter(([key, group]) => group.tab === tabId)
+                .forEach(([key, group]) => {
+                    const panel = document.createElement('div');
+                    panel.className = 'group-panel';
+                    panel.innerHTML = `
+                        <div class="group-header" onclick="this.parentElement.classList.toggle('collapsed')">
+                            <h4>${group.title}</h4>
+                            <button type="button" class="group-toggle">↕</button>
+                        </div>
+                        <div class="group-body" id="groupBody-${key}"></div>
+                    `;
+                    
+                    const targetCol = document.getElementById(
+                        group.column === 'right' ? 'tabColRight' : 'tabColLeft'
+                    );
+                    if (targetCol) {
+                        targetCol.appendChild(panel);
+                        renderGroupFields(key);
+                    }
+                });
+            
+            // Re-evaluate visibility after building groups and initialize repeaters
+            setTimeout(() => {
+                evaluateVisibility();
+                initRepeaters();
+            }, 100);
+        }
+        function renderGroupFields(key) {
+            const body = document.getElementById('groupBody-' + key);
+            if (!body) {
+                console.warn('⚠️ Group body not found:', key);
+                return;
+            }
+            
+            if (!schemaState.schema || !schemaState.schema.fields) {
+                body.innerHTML = '<div class="small text-muted">Schema velden niet beschikbaar</div>';
+                return;
+            }
+            
+            const fields = Object.values(schemaState.schema.fields).filter(f => f.group === key);
+            
+            if (fields.length === 0) {
+                body.innerHTML = '<div class="small text-muted">Geen velden</div>';
+                return;
+            }
+            
+            fields.forEach(field => {
+                try {
+                    const fieldElement = renderField(field);
+                    if (fieldElement) {
+                        body.appendChild(fieldElement);
+                    }
+                } catch (error) {
+                    console.error('❌ Error rendering field:', field.id, error);
+                }
+            });
+        }
+        function renderField(f) {
+            if (!f || !f.id || !f.type) {
+                console.error('❌ Invalid field definition:', f);
+                return null;
+            }
+            
+            const wrapper = document.createElement('div');
+            wrapper.className = 'm-form-group';
+            wrapper.dataset.fieldId = f.id;
+            
+            if (f.visibility) {
+                wrapper.dataset.visibility = JSON.stringify(f.visibility);
+            }
+            
+            let content = '';
+            
+            try {
+                switch (f.type) {
+                    case 'text':
+                    case 'date':
+                    case 'number':
+                        content = `<input ${f.readOnly ? 'readonly' : ''} 
+                                   type="${f.type}" id="${f.id}" 
+                                   class="a-input__field" 
+                                   ${f.placeholder ? `placeholder="${f.placeholder}"` : ''}
+                                   ${f.pattern ? `pattern="${f.pattern}"` : ''}
+                                   ${f.required ? 'required' : ''}>`;
+                        break;
+                        
+                    case 'textarea':
+                        content = `<textarea id="${f.id}" 
+                                   rows="${f.rows || 3}" 
+                                   class="a-input__field"
+                                   ${f.required ? 'required' : ''}></textarea>`;
+                        break;
+                        
+                    case 'checkbox':
+                        wrapper.innerHTML = `
+                            <div class="a-input__checkbox">
+                                <input type="checkbox" id="${f.id}">
+                                <label for="${f.id}">${f.label}</label>
+                            </div>
+                        `;
+                        return wrapper;
+                        
+                    case 'radio':
+                        if (!f.options || !Array.isArray(f.options)) {
+                            console.warn('⚠️ Radio field missing options:', f.id);
+                            content = '<div class="text-muted">Geen opties beschikbaar</div>';
+                        } else {
+                            content = f.options.map(option => `
+                                <div class="a-input__checkbox">
+                                    <input type="radio" name="${f.id}" 
+                                           id="${f.id}_${option.value}" 
+                                           value="${option.value}">
+                                    <label for="${f.id}_${option.value}">${option.label}</label>
+                                </div>
+                            `).join('');
+                        }
+                        break;
+                        
+                    case 'select':
+                        let options = [];
+                        
+                        if (f.codelist && schemaState.schema && schemaState.schema.codelists) {
+                            options = schemaState.schema.codelists[f.codelist] || [];
+                        } else if (f.options) {
+                            options = f.options;
+                        }
+                        
+                        content = `
+                            <select id="${f.id}" class="a-input__field" ${f.required ? 'required' : ''}>
+                                <option value="" disabled selected>Kies...</option>
+                                ${options.map(o => `<option value="${o.value}">${o.label}</option>`).join('')}
+                            </select>
+                        `;
+                        break;
+                        
+                    case 'checkbox-group':
+                        if (!f.options || !Array.isArray(f.options)) {
+                            content = '<div class="text-muted">Geen opties beschikbaar</div>';
+                        } else {
+                            content = `
+                                <div class="checkbox-group-wrap">
+                                    ${f.options.map(option => `
+                                        <label class="a-input__checkbox">
+                                            <input type="checkbox" name="${f.id}" value="${option.value}">
+                                            <span>${option.label}</span>
+                                        </label>
+                                    `).join('')}
+                                </div>
+                            `;
+                        }
+                        break;
+                        
+                    case 'repeater':
+                        content = renderRepeaterShell(f);
+                        break;
+                        
+                    case 'info':
+                        content = `<div class="info-field-box">${f.hint || 'Info veld'}</div>`;
+                        break;
+                        
+                    default:
+                        console.warn('⚠️ Unknown field type:', f.type);
+                        content = `<input type="text" id="${f.id}" class="a-input__field">`;
+                        break;
+                }
+            } catch (error) {
+                console.error('❌ Error rendering field content:', f.id, error);
+                content = '<div class="text-danger">Fout bij renderen van veld</div>';
+            }
+            
+            // Wrap content with label (except for checkbox which handles its own label)
+            if (f.type !== 'checkbox') {
+                wrapper.innerHTML = `
+                    <div class="a-input">
+                        <label class="a-input__label">${f.label || f.id}</label>
+                        ${content}
+                    </div>
+                `;
+            }
+            
+            return wrapper;
+        }
+        function renderRepeaterShell(f) {
+            if (!f.repeater) {
+                console.error('❌ Field missing repeater config:', f.id);
+                return '<div class="text-danger">Repeater configuratie ontbreekt</div>';
+            }
+            
+            if (!schemaState.schema || !schemaState.schema.repeaters) {
+                console.error('❌ Schema repeaters not available');
+                return '<div class="text-danger">Schema niet beschikbaar</div>';
+            }
+            
+            const repeaterConfig = schemaState.schema.repeaters[f.repeater];
+            if (!repeaterConfig) {
+                console.error('❌ Repeater config not found:', f.repeater);
+                return '<div class="text-danger">Onbekende repeater: ' + f.repeater + '</div>';
+            }
+            
+            // Initialize counter
+            if (!(f.id in schemaState.repeaterCounters)) {
+                schemaState.repeaterCounters[f.id] = 0;
+            }
+            
+            return `
+                <div class="repeater-wrapper" id="${f.id}_wrapper">
+                    <div id="${f.id}_items" class="repeater-items-container"></div>
+                    <button type="button" 
+                            class="a-button a-button--outline repeater-add-btn" 
+                            onclick="addRepeaterItem('${f.id}')">
+                        ➕ ${repeaterConfig.addButtonLabel || 'Item toevoegen'}
+                    </button>
+                </div>
+            `;
+        }
+        
+        function addRepeaterItem(rid) {
+            console.log('➕ Adding repeater item for:', rid);
+            
+            // Validate schema availability
+            if (!schemaState.schema || !schemaState.schema.fields || !schemaState.schema.repeaters) {
+                console.error('❌ Schema not available for repeater');
+                alert('Schema niet beschikbaar');
+                return;
+            }
+            
+            // Get field definition
+            const fieldDef = schemaState.schema.fields[rid];
+            if (!fieldDef || fieldDef.type !== 'repeater') {
+                console.error('❌ Field not found or not a repeater:', rid);
+                alert('Veld niet gevonden of geen repeater: ' + rid);
+                return;
+            }
+            
+            // Get repeater configuration
+            const repeaterConfig = schemaState.schema.repeaters[fieldDef.repeater];
+            if (!repeaterConfig || !repeaterConfig.fields) {
+                console.error('❌ Repeater config not found:', fieldDef.repeater);
+                alert('Repeater configuratie niet gevonden: ' + fieldDef.repeater);
+                return;
+            }
+            
+            // Get container element
+            const container = document.getElementById(rid + '_items');
+            if (!container) {
+                console.error('❌ Repeater container not found:', rid + '_items');
+                alert('Repeater container niet gevonden');
+                return;
+            }
+            
+            // Initialize/increment counter
+            if (!(rid in schemaState.repeaterCounters)) {
+                schemaState.repeaterCounters[rid] = 0;
+            }
+            const itemIndex = ++schemaState.repeaterCounters[rid];
+            
+            // Create item container
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'repeater-item';
+            itemDiv.dataset.idx = itemIndex;
+            itemDiv.dataset.repeaterId = rid;
+            
+            // Build item HTML
+            let itemHtml = `
+                <div class="repeater-item-header">
+                    <span class="repeater-item-title">Item ${itemIndex}</span>
+                    <button type="button" 
+                            class="remove-btn a-button a-button--sm a-button--danger" 
+                            onclick="removeRepeaterItem(this)" 
+                            title="Item verwijderen">
+                        ✖
+                    </button>
+                </div>
+                <div class="repeater-item-body">
+            `;
+            
+            // Add fields for this repeater item
+            repeaterConfig.fields.forEach(subField => {
+                const fieldId = `${rid}_${subField.id}_${itemIndex}`;
+                let inputHtml = '';
+                
+                try {
+                    switch (subField.type) {
+                        case 'number':
+                            inputHtml = `
+                                <input type="number" 
+                                       ${subField.readOnly ? 'readonly' : ''} 
+                                       id="${fieldId}" 
+                                       class="a-input__field" 
+                                       ${subField.step ? `step="${subField.step}"` : ''}
+                                       ${subField.min !== undefined ? `min="${subField.min}"` : ''}
+                                       ${subField.max !== undefined ? `max="${subField.max}"` : ''}
+                                       ${subField.required ? 'required' : ''}
+                                       onchange="handleRepeaterFieldChange('${rid}', '${itemIndex}')">
+                            `;
+                            break;
+                            
+                        case 'text':
+                        default:
+                            inputHtml = `
+                                <input type="${subField.type || 'text'}" 
+                                       ${subField.readOnly ? 'readonly' : ''} 
+                                       id="${fieldId}" 
+                                       class="a-input__field"
+                                       ${subField.required ? 'required' : ''}
+                                       ${subField.placeholder ? `placeholder="${subField.placeholder}"` : ''}
+                                       onchange="handleRepeaterFieldChange('${rid}', '${itemIndex}')">
+                            `;
+                            break;
+                    }
+                    
+                    itemHtml += `
+                        <div class="m-form-group">
+                            <div class="a-input">
+                                <label class="a-input__label" for="${fieldId}">${subField.label}</label>
+                                ${inputHtml}
+                            </div>
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error('❌ Error rendering repeater field:', subField.id, error);
+                    itemHtml += `
+                        <div class="m-form-group">
+                            <div class="text-danger">Fout bij renderen van veld: ${subField.id}</div>
+                        </div>
+                    `;
+                }
+            });
+            
+            itemHtml += '</div>'; // Close repeater-item-body
+            
+            // Set HTML and append
+            itemDiv.innerHTML = itemHtml;
+            container.appendChild(itemDiv);
+            
+            // Re-evaluate visibility after adding
+            setTimeout(() => {
+                evaluateVisibility();
+                // Auto-calculate if this is location_blocks repeater
+                if (rid === 'location_blocks') {
+                    handleRepeaterFieldChange(rid, itemIndex);
+                }
+            }, 100);
+            
+            console.log('✅ Repeater item added successfully:', rid, itemIndex);
+        }
+        
+        // Helper function to remove repeater items
+        function removeRepeaterItem(button) {
+            const item = button.closest('.repeater-item');
+            if (!item) return;
+            
+            const repeaterId = item.dataset.repeaterId;
+            const itemIndex = item.dataset.idx;
+            
+            if (confirm('Weet je zeker dat je dit item wilt verwijderen?')) {
+                item.remove();
+                console.log('🗑️ Repeater item removed:', repeaterId, itemIndex);
+                
+                // Re-evaluate visibility and calculations after removal
+                setTimeout(() => {
+                    evaluateVisibility();
+                    if (repeaterId === 'location_blocks') {
+                        updateLocationCalculations();
+                    }
+                }, 100);
+            }
+        }
+        
+        // Helper function to handle repeater field changes
+        function handleRepeaterFieldChange(repeaterId, itemIndex) {
+            if (repeaterId === 'location_blocks') {
+                // Auto-calculate area and violation days for location blocks
+                const lengthEl = document.getElementById(`location_blocks_loc_length_${itemIndex}`);
+                const widthEl = document.getElementById(`location_blocks_loc_width_${itemIndex}`);
+                const areaEl = document.getElementById(`location_blocks_loc_area_${itemIndex}`);
+                const permDurEl = document.getElementById(`location_blocks_loc_perm_dur_${itemIndex}`);
+                const extraDurEl = document.getElementById(`location_blocks_loc_extra_dur_${itemIndex}`);
+                const violationEl = document.getElementById(`location_blocks_loc_violation_days_${itemIndex}`);
+                
+                if (lengthEl && widthEl && areaEl) {
+                    const length = parseFloat(lengthEl.value) || 0;
+                    const width = parseFloat(widthEl.value) || 0;
+                    areaEl.value = (length * width).toFixed(2);
+                }
+                
+                if (permDurEl && extraDurEl && violationEl) {
+                    const permDur = parseFloat(permDurEl.value) || 0;
+                    const extraDur = parseFloat(extraDurEl.value) || 0;
+                    violationEl.value = Math.max(0, extraDur - permDur);
+                }
+                
+                // Update global totals
+                setTimeout(() => updateLocationCalculations(), 50);
+            }
+        }
+        
+        // Helper function to update location calculations
+        function updateLocationCalculations() {
+            const items = document.querySelectorAll('[data-repeater-id="location_blocks"] .repeater-item');
+            let totalArea = 0;
+            let totalViolationDays = 0;
+            
+            items.forEach(item => {
+                const idx = item.dataset.idx;
+                const area = parseFloat(document.getElementById(`location_blocks_loc_area_${idx}`)?.value) || 0;
+                const violation = parseFloat(document.getElementById(`location_blocks_loc_violation_days_${idx}`)?.value) || 0;
+                
+                totalArea += area;
+                totalViolationDays += violation;
+            });
+            
+            // Update global totals
+            const totalAreaEl = document.getElementById('total_area');
+            const violationDaysEl = document.getElementById('violation_days');
+            const totalFineEl = document.getElementById('total_fine');
+            const dailyRateEl = document.getElementById('daily_rate');
+            
+            if (totalAreaEl) totalAreaEl.value = totalArea.toFixed(2);
+            if (violationDaysEl) violationDaysEl.value = totalViolationDays;
+            
+            // Calculate total fine
+            if (totalFineEl && dailyRateEl) {
+                const dailyRate = parseFloat(dailyRateEl.value) || 5.00;
+                const totalFine = totalArea * totalViolationDays * dailyRate;
+                totalFineEl.value = totalFine.toFixed(2);
+            }
+        }
+        
+        function evaluateVisibility() {
+            document.querySelectorAll('[data-visibility]').forEach(el => {
+                try {
+                    const rules = JSON.parse(el.dataset.visibility);
+                    const isVisible = evalVis(rules);
+                    el.style.display = isVisible ? '' : 'none';
+                } catch (e) {
+                    console.warn('⚠️ Error evaluating visibility for element:', el, e);
+                }
+            });
+        }
+        
+        function getVal(id) {
+            if (!schemaState.schema || !schemaState.schema.fields) {
+                return null;
+            }
+            
+            const fieldDef = schemaState.schema.fields[id];
+            if (!fieldDef) return null;
+            
+            try {
+                switch (fieldDef.type) {
+                    case 'radio':
+                        const selectedRadio = document.querySelector(`input[name="${id}"]:checked`);
+                        return selectedRadio ? selectedRadio.value : null;
+                        
+                    case 'checkbox':
+                        const checkbox = document.getElementById(id);
+                        return checkbox ? checkbox.checked : false;
+                        
+                    case 'checkbox-group':
+                        const checkedBoxes = document.querySelectorAll(`input[name="${id}"]:checked`);
+                        return Array.from(checkedBoxes).map(cb => cb.value);
+                        
+                    default:
+                        const element = document.getElementById(id);
+                        return element ? element.value : null;
+                }
+            } catch (error) {
+                console.error('❌ Error getting value for field:', id, error);
+                return null;
+            }
+        }
+        
+        function evalVis(rules) {
+            const testConditions = (conditions, mode) => {
+                if (!Array.isArray(conditions)) return true;
+                
+                const results = conditions.map(condition => {
+                    const fieldValue = getVal(condition.field);
+                    
+                    if ('equals' in condition) {
+                        return fieldValue === condition.equals;
+                    }
+                    
+                    if ('contains' in condition) {
+                        if (Array.isArray(fieldValue)) {
+                            return fieldValue.includes(condition.contains);
+                        }
+                        return fieldValue === condition.contains;
+                    }
+                    
+                    return true;
+                });
+                
+                return mode === 'all' ? results.every(Boolean) : results.some(Boolean);
+            };
+            
+            if (rules.all) {
+                return testConditions(rules.all, 'all');
+            }
+            
+            if (rules.any) {
+                return testConditions(rules.any, 'any');
+            }
+            
+            return true;
+        }
+        function collectRepeater(rid) {
+            const items = [];
+            
+            const host = document.getElementById(rid + '_items');
+            if (!host) {
+                console.warn('⚠️ Repeater host not found:', rid);
+                return items;
+            }
+            
+            if (!schemaState.schema || !schemaState.schema.fields || !schemaState.schema.repeaters) {
+                console.warn('⚠️ Schema not available for collecting repeater data');
+                return items;
+            }
+            
+            const def = schemaState.schema.fields[rid];
+            if (!def || !def.repeater) {
+                console.warn('⚠️ Repeater definition not found:', rid);
+                return items;
+            }
+            
+            const cfg = schemaState.schema.repeaters[def.repeater];
+            if (!cfg || !cfg.fields) {
+                console.warn('⚠️ Repeater config not found:', def.repeater);
+                return items;
+            }
+            
+            host.querySelectorAll('.repeater-item').forEach(item => {
+                const idx = item.dataset.idx;
+                const obj = {};
+                
+                cfg.fields.forEach(subField => {
+                    const fieldId = `${rid}_${subField.id}_${idx}`;
+                    const element = document.getElementById(fieldId);
+                    
+                    if (element) {
+                        let value = element.value;
+                        
+                        // Convert number fields to proper numbers
+                        if (subField.type === 'number' && value !== '') {
+                            value = parseFloat(value) || 0;
+                        }
+                        
+                        obj[subField.id] = value || null;
+                    } else {
+                        obj[subField.id] = null;
+                    }
+                });
+                
+                items.push(obj);
+            });
+            
+            return items;
+        }
+        function collectSchemaData(){const out={};Object.values(schemaState.schema.fields).forEach(f=>{if(f.type==='repeater')out[f.id]=collectRepeater(f.id);else if(f.type==='checkbox-group')out[f.id]=getVal(f.id)||[];else out[f.id]=getVal(f.id);});return out;}
+        function submitInspectionSchema() {
+            console.log('💾 Schema submit', collectSchemaData());
+            alert('✅ Opgeslagen (console)');
+        }
+        
+        function resetInspectionSchema() {
+            if (!confirm('Reset?')) return;
+            
+            Object.values(schemaState.schema.fields).forEach(f => {
+                if (f.type === 'radio') {
+                    document.querySelectorAll(`input[name="${f.id}"]`).forEach(r => r.checked = false);
+                } else if (f.type === 'checkbox') {
+                    const el = document.getElementById(f.id);
+                    if (el) el.checked = false;
+                } else if (f.type === 'checkbox-group') {
+                    document.querySelectorAll(`input[name="${f.id}"]`).forEach(c => c.checked = false);
+                } else if (f.type === 'repeater') {
+                    const host = document.getElementById(f.id + '_items');
+                    if (host) host.innerHTML = '';
+                    schemaState.repeaterCounters[f.id] = 0;
+                } else {
+                    const el = document.getElementById(f.id);
+                    if (el) el.value = '';
+                }
+            });
+            
+            initRepeaters();
+            evaluateVisibility();
+        }
+        
+        function initRepeaters() {
+            if (!schemaState.schema || !schemaState.schema.fields || !schemaState.schema.repeaters) {
+                console.warn('⚠️ Schema not available for repeater initialization');
+                return;
+            }
+            
+            console.log('🔄 Initializing repeaters...');
+            
+            Object.values(schemaState.schema.fields)
+                .filter(f => f.type === 'repeater')
+                .forEach(field => {
+                    try {
+                        const repeaterConfig = schemaState.schema.repeaters[field.repeater];
+                        if (!repeaterConfig) {
+                            console.warn(`⚠️ Repeater config not found for: ${field.repeater}`);
+                            return;
+                        }
+                        
+                        // Check if container exists (field is rendered)
+                        const container = document.getElementById(field.id + '_items');
+                        if (!container) {
+                            console.log(`ℹ️ Repeater container not found for ${field.id}, skipping`);
+                            return;
+                        }
+                        
+                        // Check current count
+                        const currentItems = container.querySelectorAll('.repeater-item').length;
+                        const minItems = repeaterConfig.min || 0;
+                        
+                        if (currentItems < minItems) {
+                            console.log(`➕ Adding ${minItems - currentItems} minimum items for ${field.id}`);
+                            for (let i = currentItems; i < minItems; i++) {
+                                addRepeaterItem(field.id);
+                            }
+                        }
+                    } catch (error) {
+                        console.error(`❌ Error initializing repeater ${field.id}:`, error);
+                    }
+                });
+                
+            console.log('✅ Repeaters initialization complete');
+        }
+        window.toggleAllGroups=()=>document.querySelectorAll('.group-panel').forEach(p=>p.classList.toggle('collapsed'));
+    </script>
+
+    <!-- =================================================================== -->
+    <!-- EINDE VERVANGING -->
+    <!-- =================================================================== -->
+
+</body>
+</html>

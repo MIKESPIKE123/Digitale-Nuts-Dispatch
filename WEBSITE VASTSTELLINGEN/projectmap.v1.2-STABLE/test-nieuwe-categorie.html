@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Nieuwe Categorie</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        .error { color: red; }
+        .success { color: green; }
+        select { width: 200px; height: 120px; }
+        button { margin: 5px; padding: 8px 12px; }
+    </style>
+</head>
+<body>
+    <h1>Test Nieuwe Categorie Functionaliteit</h1>
+    
+    <div class="test-section">
+        <h3>1. Test Field Types</h3>
+        <button onclick="testFieldTypes()">Test Field Types</button>
+        <div id="fieldTypesResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>2. Test Nieuwe Categorie Toevoegen</h3>
+        <form onsubmit="return testAddCategory(event)">
+            <p>Key: <input type="text" id="testKey" value="testCategory" required></p>
+            <p>Label: <input type="text" id="testLabel" value="Test Categorie" required></p>
+            <p>Velden: 
+                <select id="testFields" multiple>
+                    <!-- Wordt gevuld door JavaScript -->
+                </select>
+            </p>
+            <button type="submit">Categorie Toevoegen</button>
+        </form>
+        <div id="addCategoryResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>3. Test Schema Status</h3>
+        <button onclick="testSchema()">Test Schema</button>
+        <div id="schemaResult"></div>
+    </div>
+
+    <script src="js/dataManager.js"></script>
+    <script>
+        let dataManager;
+        
+        function init() {
+            console.log('Initializing test...');
+            dataManager = new DataManager();
+            
+            setTimeout(() => {
+                console.log('DataManager initialized:', dataManager);
+                populateFieldsSelect();
+            }, 100);
+        }
+        
+        function testFieldTypes() {
+            const fieldTypes = dataManager.getFieldTypes();
+            console.log('Field types:', fieldTypes);
+            
+            const result = document.getElementById('fieldTypesResult');
+            const count = Object.keys(fieldTypes).length;
+            
+            if (count > 0) {
+                result.innerHTML = `<div class="success">✅ ${count} field types gevonden: ${Object.keys(fieldTypes).join(', ')}</div>`;
+            } else {
+                result.innerHTML = `<div class="error">❌ Geen field types gevonden!</div>`;
+            }
+        }
+        
+        function populateFieldsSelect() {
+            const fieldTypes = dataManager.getFieldTypes();
+            const select = document.getElementById('testFields');
+            
+            select.innerHTML = '';
+            Object.keys(fieldTypes).forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = fieldTypes[key].label;
+                select.appendChild(option);
+            });
+            
+            // Selecteer de eerste twee opties
+            if (select.options.length >= 2) {
+                select.options[0].selected = true;
+                select.options[1].selected = true;
+            }
+        }
+        
+        function testAddCategory(event) {
+            event.preventDefault();
+            
+            const key = document.getElementById('testKey').value;
+            const label = document.getElementById('testLabel').value;
+            const fieldsSelect = document.getElementById('testFields');
+            const fields = Array.from(fieldsSelect.selectedOptions).map(option => option.value);
+            
+            console.log('Testing add category with:', { key, label, fields });
+            
+            if (fields.length === 0) {
+                document.getElementById('addCategoryResult').innerHTML = 
+                    `<div class="error">❌ Selecteer minstens één veld!</div>`;
+                return false;
+            }
+            
+            const groupData = {
+                key: key,
+                label: label,
+                fields: fields
+            };
+            
+            const success = dataManager.addConfigGroup(groupData);
+            const result = document.getElementById('addCategoryResult');
+            
+            if (success) {
+                result.innerHTML = `<div class="success">✅ Categorie '${label}' succesvol toegevoegd!</div>`;
+                
+                // Test of de nieuwe methoden werken
+                setTimeout(() => {
+                    testNewMethods(key);
+                }, 100);
+            } else {
+                result.innerHTML = `<div class="error">❌ Fout bij toevoegen van categorie!</div>`;
+            }
+            
+            return false;
+        }
+        
+        function testNewMethods(key) {
+            const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+            const getMethod = `getActive${capitalizedKey}`;
+            const addMethod = `add${capitalizedKey}`;
+            
+            console.log('Testing methods:', getMethod, addMethod);
+            
+            const result = document.getElementById('addCategoryResult');
+            let html = result.innerHTML;
+            
+            if (typeof dataManager[getMethod] === 'function') {
+                const items = dataManager[getMethod]();
+                html += `<br>✅ Get methode werkt: ${items.length} items gevonden`;
+            } else {
+                html += `<br>❌ Get methode niet gevonden: ${getMethod}`;
+            }
+            
+            if (typeof dataManager[addMethod] === 'function') {
+                html += `<br>✅ Add methode gevonden: ${addMethod}`;
+            } else {
+                html += `<br>❌ Add methode niet gevonden: ${addMethod}`;
+            }
+            
+            result.innerHTML = html;
+        }
+        
+        function testSchema() {
+            dataManager.ensureSchemaInitialized();
+            
+            const schema = dataManager.config?.schema;
+            const result = document.getElementById('schemaResult');
+            
+            if (schema) {
+                const groupCount = schema.configGroups ? schema.configGroups.length : 0;
+                const fieldCount = schema.fieldTypes ? Object.keys(schema.fieldTypes).length : 0;
+                
+                result.innerHTML = `
+                    <div class="success">
+                        ✅ Schema geladen:<br>
+                        - ${groupCount} configuratie groepen<br>
+                        - ${fieldCount} veld types
+                    </div>
+                `;
+            } else {
+                result.innerHTML = `<div class="error">❌ Schema niet geladen!</div>`;
+            }
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

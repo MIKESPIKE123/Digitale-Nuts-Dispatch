@@ -1,0 +1,162 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-09-09",
+  "configuration": {
+    "supervisors": [
+      { "id": "fred", "name": "Fred Stoks", "active": true },
+      { "id": "erik", "name": "Erik Vanboven", "active": true },
+      { "id": "luc", "name": "Luc Smets", "active": true },
+      { "id": "marc", "name": "Marc Vereycken", "active": true },
+      { "id": "paul", "name": "Paul Cornelis", "active": true },
+      { "id": "chris_vl", "name": "Chris Vanlerberghe", "active": true },
+      { "id": "dieter", "name": "Dieter van Meensel", "active": true },
+      { "id": "Carlo", "name": "Carlo Cami", "active": true },
+      { "id": "Bram", "name": "Bram Coenen", "active": true },
+      { "id": "david", "name": "David de Weerdt", "active": true },
+      { "id": "francois", "name": "Francois va eyck", "active": true },
+      { "id": "ingrid", "name": "Ingrid", "active": true },
+      { "id": "jill", "name": "Jill", "active": true },
+      { "id": "michel", "name": "Michel", "active": true },
+      { "id": "jens", "name": "Jens", "active": true },
+      { "id": "patrick", "name": "Patrick", "active": true },
+      { "id": "chris_s", "name": "Chris S.", "active": true },
+      { "id": "werner", "name": "Werner", "active": true },
+      { "id": "maarten", "name": "Maarten", "active": true },
+      { "id": "dave", "name": "Dave", "active": true },
+      { "id": "staf", "name": "Staf", "active": true },
+      { "id": "stefan", "name": "Stefan", "active": true }
+    ],
+    "utilityTypes": [
+      { "id": "electriciteit", "name": "Electriciteit", "active": true },
+      { "id": "water", "name": "Water", "active": true },
+      { "id": "gas", "name": "Gas", "active": true },
+      { "id": "riolering", "name": "Riolering", "active": true },
+      { "id": "telecom", "name": "Telecom", "active": true },
+      { "id": "warmte", "name": "Warmte", "active": true },
+      { "id": "andere", "name": "Andere", "active": true }
+    ],
+    "utilities": [
+      { "id": "fluvius", "name": "FLUVIUS", "type": "electriciteit", "active": true },
+      { "id": "proximus", "name": "PROXIMUS", "type": "telecom", "active": true },
+      { "id": "wyre", "name": "WYRE", "type": "telecom", "active": true },
+      { "id": "waterlink_rio", "name": "WATER-LINK(Rio)", "type": "riolering", "active": true },
+      { "id": "waterlink_water", "name": "WATER-LINK(Water)", "type": "water", "active": true },
+      { "id": "fluvius_warmte", "name": "FLUVIUS WARMTE", "type": "warmte", "active": true }
+    ],
+    "postcodes": [
+      { "id": "2000", "code": "2000", "description": "Antwerpen (Centrum)", "active": true },
+      { "id": "2018", "code": "2018", "description": "Antwerpen (Zuid)", "active": true },
+      { "id": "2020", "code": "2020", "description": "Antwerpen (Kiel)", "active": true },
+      { "id": "2030", "code": "2030", "description": "Antwerpen (Noord)", "active": true },
+      { "id": "2040", "code": "2040", "description": "Antwerpen (Lillo, Berendrecht, Zandvliet)", "active": true },
+      { "id": "2050", "code": "2050", "description": "Antwerpen (Linkeroever)", "active": true },
+      { "id": "2060", "code": "2060", "description": "Antwerpen (Dam, Stuivenberg, Seefhoek)", "active": true },
+      { "id": "2100", "code": "2100", "description": "Deurne", "active": true },
+      { "id": "2140", "code": "2140", "description": "Borgerhout", "active": true },
+      { "id": "2150", "code": "2150", "description": "Borsbeek", "active": true },
+      { "id": "2170", "code": "2170", "description": "Merksem", "active": true },
+      { "id": "2180", "code": "2180", "description": "Ekeren", "active": true },
+      { "id": "2600", "code": "2600", "description": "Berchem", "active": true },
+      { "id": "2610", "code": "2610", "description": "Wilrijk", "active": true },
+      { "id": "2660", "code": "2660", "description": "Hoboken", "active": true }
+    ],
+    "inspectionStatuses": [
+      { "id": "planned", "name": "Gepland", "color": "#3498db", "active": true },
+      { "id": "in_progress", "name": "In uitvoering", "color": "#f39c12", "active": true },
+      { "id": "completed", "name": "Voltooid", "color": "#27ae60", "active": true },
+      { "id": "cancelled", "name": "Geannuleerd", "color": "#e74c3c", "active": true },
+      { "id": "postponed", "name": "Uitgesteld", "color": "#9b59b6", "active": true },
+      { "id": "rescheduled", "name": "Herplanning", "color": "#34495e", "active": true }
+    ],
+    "workTypes": [
+      { "id": "sewer_work", "name": "Rioolwerken", "description": "Riolering aanleg/onderhoud", "active": true },
+      { "id": "water_work", "name": "Waterwerken", "description": "Waterleiding aanleg/onderhoud", "active": true },
+      { "id": "gas_work", "name": "Gaswerken", "description": "Gasleiding aanleg/onderhoud", "active": true },
+      { "id": "electricity_work", "name": "Elektriciteitswerken", "description": "Elektrische infrastructuur", "active": true },
+      { "id": "telecom_work", "name": "Telecomwerken", "description": "Telecom infrastructuur", "active": true },
+      { "id": "road_work", "name": "Wegwerken", "description": "Wegenwerken en heraanleg", "active": true },
+      { "id": "maintenance", "name": "Onderhoud", "description": "Algemeen onderhoud", "active": true },
+      { "id": "emergency", "name": "Spoedinterventie", "description": "Noodinterventie", "active": true }
+    ],
+    "priorities": [
+      { "id": "low", "name": "Laag", "level": 1, "color": "#95a5a6", "active": true },
+      { "id": "normal", "name": "Normaal", "level": 2, "color": "#3498db", "active": true },
+      { "id": "high", "name": "Hoog", "level": 3, "color": "#f39c12", "active": true },
+      { "id": "urgent", "name": "Urgent", "level": 4, "color": "#e67e22", "active": true },
+      { "id": "emergency", "name": "Spoedgeval", "level": 5, "color": "#e74c3c", "active": true }
+    ],
+    "inspectionResults": [
+      { "id": "conform", "name": "Conform", "description": "Werk uitgevoerd volgens voorschriften", "color": "#27ae60", "active": true },
+      { "id": "non_conform", "name": "Niet-conform", "description": "Werk niet volgens voorschriften", "color": "#e74c3c", "active": true },
+      { "id": "partial_conform", "name": "Gedeeltelijk conform", "description": "Gedeeltelijk volgens voorschriften", "color": "#f39c12", "active": true },
+      { "id": "recheck_needed", "name": "Hercontrole nodig", "description": "Aanvullende controle vereist", "color": "#9b59b6", "active": true },
+      { "id": "pending", "name": "In behandeling", "description": "Controle nog niet afgerond", "color": "#34495e", "active": true }
+    ],
+    "contactRoles": [
+      { "id": "project_manager", "name": "Projectleider", "description": "Verantwoordelijke voor het project", "active": true },
+      { "id": "contractor", "name": "Aannemer", "description": "Uitvoerende partij", "active": true },
+      { "id": "subcontractor", "name": "Onderaannemer", "description": "Gespecialiseerde uitvoerder", "active": true },
+      { "id": "city_contact", "name": "Contactpersoon Stad", "description": "Vertegenwoordiger stad Antwerpen", "active": true },
+      { "id": "resident_contact", "name": "Bewonerscontact", "description": "Contactpersoon bewoners", "active": true },
+      { "id": "emergency_contact", "name": "Noodcontact", "description": "24/7 bereikbaar contact", "active": true }
+    ],
+    "contactPersons": [
+      { "id": "jan_janssen", "name": "Jan Janssen", "phone": "+32 123 456 789", "email": "jan.janssen@example.com", "company": "Bouwbedrijf Janssen", "role": "contractor", "active": true },
+      { "id": "marie_pieters", "name": "Marie Pieters", "phone": "+32 234 567 890", "email": "marie.pieters@fluvius.be", "company": "Fluvius", "role": "city_contact", "active": true },
+      { "id": "peter_vandenberghe", "name": "Peter Vandenberghe", "phone": "+32 345 678 901", "email": "peter.vdb@veiligheid.be", "company": "Veiligheid Vandenberghe", "role": "emergency_contact", "active": true },
+      { "id": "sarah_willems", "name": "Sarah Willems", "phone": "+32 456 789 012", "email": "sarah.willems@waterlink.be", "company": "Water-link", "role": "project_manager", "active": true },
+      { "id": "david_vermeulen", "name": "David Vermeulen", "phone": "+32 567 890 123", "email": "david.vermeulen@ingenieur.be", "company": "Ingenieursbureau Vermeulen", "role": "contractor", "active": true },
+      { "id": "lisa_de_vos", "name": "Lisa De Vos", "phone": "+32 678 901 234", "email": "lisa.devos@werfleiding.be", "company": "Werfleiding Plus", "role": "subcontractor", "active": true },
+      { "id": "tom_martens", "name": "Tom Martens", "phone": "+32 789 012 345", "email": "tom.martens@kwaliteit.be", "company": "Kwaliteitscontrole Martens", "role": "project_manager", "active": true },
+      { "id": "nathalie_roels", "name": "Nathalie Roels", "phone": "+32 890 123 456", "email": "nathalie.roels@project.be", "company": "Projectbureau Roels", "role": "contractor", "active": true }
+    ],
+    "inspectionTypes": [
+      { "id": "pre_work", "name": "Voor-controle", "description": "Controle voor start werken", "active": true },
+      { "id": "during_work", "name": "Tussentijdse controle", "description": "Controle tijdens uitvoering", "active": true },
+      { "id": "post_work", "name": "Na-controle", "description": "Controle na afronding", "active": true },
+      { "id": "quality_check", "name": "Kwaliteitscontrole", "description": "Gedetailleerde kwaliteitscheck", "active": true },
+      { "id": "safety_check", "name": "Veiligheidscontrole", "description": "Controle veiligheidsmaatregelen", "active": true },
+      { "id": "final_inspection", "name": "Eindcontrole", "description": "Definitieve oplevering", "active": true }
+    ],
+    "weatherConditions": [
+      { "id": "sunny", "name": "Zonnig", "icon": "☀️", "active": true },
+      { "id": "cloudy", "name": "Bewolkt", "icon": "☁️", "active": true },
+      { "id": "rainy", "name": "Regenachtig", "icon": "🌧️", "active": true },
+      { "id": "stormy", "name": "Stormachtig", "icon": "⛈️", "active": true },
+      { "id": "snow", "name": "Sneeuw", "icon": "❄️", "active": true },
+      { "id": "fog", "name": "Mistig", "icon": "🌫️", "active": true }
+    ],
+    "overageReasons": [
+      { "id": "weather", "name": "Weersomstandigheden", "description": "Vertraging door slecht weer", "active": true },
+      { "id": "technical", "name": "Technische problemen", "description": "Onvoorziene technische complicaties", "active": true },
+      { "id": "permit", "name": "Vergunning uitbreiding", "description": "Wachten op uitbreiding vergunning", "active": true },
+      { "id": "coordination", "name": "Coördinatie problemen", "description": "Problemen met planning/afstemming", "active": true },
+      { "id": "safety", "name": "Veiligheidsredenen", "description": "Veiligheidsmaatregelen vereisten meer tijd", "active": true },
+      { "id": "utilities", "name": "Nutsmaatschappijen", "description": "Vertraging door nutsmaatschappijen", "active": true },
+      { "id": "materials", "name": "Materiaal leveringsproblemen", "description": "Vertraging door materiaallevering", "active": true },
+      { "id": "other", "name": "Andere", "description": "Andere redenen (specificeren in opmerkingen)", "active": true }
+    ],
+    "relationTypes": [
+      { "id": "same_work", "name": "Zelfde werk/project", "description": "Vaststellingen behorend tot hetzelfde project", "active": true },
+      { "id": "follow_up", "name": "Opvolging vaststelling", "description": "Hercontrole van eerder vastgestelde problemen", "active": true },
+      { "id": "correction", "name": "Correctie eerdere vaststelling", "description": "Correctie of aanvulling op eerdere vaststelling", "active": true },
+      { "id": "extension", "name": "Uitbreiding werkzone", "description": "Uitbreiding van de oorspronkelijke werkzone", "active": true },
+      { "id": "completion", "name": "Afronding werkzaamheden", "description": "Finale controle bij afronding project", "active": true },
+      { "id": "phase", "name": "Fase van project", "description": "Deel van een meerledige projectfase", "active": true }
+    ],
+    "durationTypes": [
+      { "id": "actual", "name": "Werkelijk Ingenomen Doorlooptijd", "description": "Daadwerkelijke tijd in beslag genomen", "active": true }
+    ],
+    "financialSettings": {
+      "dailyRate": {
+        "value": 5.00,
+        "currency": "EUR",
+        "unit": "m²/dag",
+        "description": "Vast tarief volgens reglement vaststellingen",
+        "lastUpdated": "2025-09-10",
+        "regulationReference": "Reglement Vaststellingen Art. 15.2",
+        "editable": false
+      }
+    }
+  }
+}

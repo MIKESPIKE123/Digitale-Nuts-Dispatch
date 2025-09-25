@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opmeetapp BOAB 2025 V30 - Buffer Rendering Fix</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #003366;
+        }
+        .highlight {
+            background-color: #fff8dc;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 5px solid #ffeb3b;
+            margin-bottom: 20px;
+        }
+        .diagram {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .diagram img {
+            max-width: 100%;
+            height: auto;
+        }
+        .code-compare {
+            display: flex;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .code-block {
+            flex: 1 1 400px;
+            margin: 10px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            overflow: auto;
+        }
+        .code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            white-space: pre;
+            font-size: 14px;
+        }
+        .note {
+            background-color: #e6f7ff;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 5px solid #1890ff;
+            margin: 20px 0;
+        }
+        .steps {
+            margin: 20px 0;
+        }
+        .step {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            border-left: 3px solid #ddd;
+        }
+        .step h3 {
+            margin-top: 0;
+            color: #003366;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Opmeetapp BOAB 2025 V30 - Buffer Rendering Fix</h1>
+        
+        <div class="highlight">
+            <p><strong>Buffer Prioriteit Correctie:</strong> Deze update zorgt ervoor dat de H-buffer (lichtblauw) altijd zichtbaar is bovenop de V-buffer (lichtrood) wanneer ze overlappen.</p>
+        </div>
+        
+        <h2>Probleem Beschrijving</h2>
+        <p>In de vorige versie van de applicatie was er een probleem met de weergave van overlappende buffers. In sommige situaties werd de V-buffer (lichtrood) bovenop de H-buffer (lichtblauw) getekend, terwijl de specificatie vereist dat de H-buffer altijd zichtbaar moet zijn bovenop de V-buffer.</p>
+        
+        <div class="diagram">
+            <h3>Probleem Visualisatie</h3>
+            <p>In deze afbeelding is te zien dat de V-buffer (rood) bovenop de H-buffer (blauw) wordt weergegeven in overlappende gebieden:</p>
+            <!-- Hier zou een afbeelding van het probleem kunnen staan -->
+            <div style="width:400px; height:300px; margin:0 auto; position:relative;">
+                <div style="position:absolute; top:50px; left:50px; width:200px; height:150px; background-color:rgba(59,130,246,0.18);"></div>
+                <div style="position:absolute; top:100px; left:100px; width:200px; height:150px; background-color:rgba(239,68,68,0.18);"></div>
+                <div style="position:absolute; top:250px; left:50px; text-align:center; width:300px;">Incorrect: V-buffer (rood) bovenop H-buffer (blauw)</div>
+            </div>
+        </div>
+
+        <h2>De Oplossing</h2>
+        <p>Om dit probleem op te lossen, hebben we twee belangrijke wijzigingen aangebracht:</p>
+        
+        <div class="steps">
+            <div class="step">
+                <h3>1. Behoud beide maskers volledig</h3>
+                <p>In plaats van op mask-niveau de prioriteit toe te passen, behouden we nu beide maskers volledig. Dit zorgt ervoor dat we tijdens het tekenen volledige controle hebben over welke buffer zichtbaar is.</p>
+            </div>
+            
+            <div class="step">
+                <h3>2. Gewijzigde tekenlogica in drawBuffer</h3>
+                <p>We hebben de render-volgorde in de <code>drawBuffer</code> functie aangepast. De V-buffer wordt eerst volledig getekend, en daarna wordt de H-buffer bovenop getekend. Dit garandeert dat de H-buffer altijd zichtbaar is bovenop de V-buffer.</p>
+            </div>
+            
+            <div class="step">
+                <h3>3. Extra veiligheidslaag voor overlappende gebieden</h3>
+                <p>Als extra zekerheid wordt een derde tekenpass uitgevoerd die specifiek alle overlappende gebieden nog eens met H-buffer (blauw) tekent.</p>
+            </div>
+        </div>
+
+        <div class="note">
+            <h3>Technische Details</h3>
+            <p>We hebben twee belangrijke wijzigingen gemaakt:</p>
+            
+            <h4>1. Verwijderen van de mask-prioriteit in computeRegMasks</h4>
+            <p>Oorspronkelijk werd de V-buffer op mask-niveau verwijderd waar H-buffer aanwezig was. Deze code is nu verwijderd zodat beide maskers volledig behouden blijven.</p>
+            
+            <h4>2. Volledige V-buffer tekenen in drawBuffer</h4>
+            <p>De V-buffer wordt nu eerst volledig getekend waar deze geldig is, daarna wordt de H-buffer bovenop getekend zodat deze altijd zichtbaar is op overlappende gebieden.</p>
+        </div>
+        
+        <div class="code-compare">
+            <div class="code-block">
+                <h3>Oorspronkelijke drawBuffer code</h3>
+                <div class="code">
+// STAP 1: Teken V-buffer (laag) - alleen waar geen H-buffer bovenop komt
+if (settings.layerV) {
+    ctx.fillStyle = 'rgba(239,68,68,0.18)';  // lichtrood
+    for (let mr = 0, idx = 0; mr < microRows; mr++) {
+        for (let mc = 0; mc < microCols; mc++, idx++) {
+            // V-buffer alleen tekenen waar geen overlap is met H-buffer
+            if (maskV[idx] && !coreV[idx] && 
+                !(settings.layerH && coreH[idx]) && 
+                !(maskH[idx])) {
+                ctx.fillRect(
+                    mc * microPxX, 
+                    mr * microPxY, 
+                    microPxX + 0.5,
+                    microPxY + 0.5
+                );
+                vBufferCount++;
+            }
+        }
+    }
+}
+                </div>
+            </div>
+            <div class="code-block">
+                <h3>Verbeterde drawBuffer code</h3>
+                <div class="code">
+// STAP 1: Teken V-buffer (laag) - altijd als eerste en onderste laag
+if (settings.layerV) {
+    ctx.fillStyle = 'rgba(239,68,68,0.18)';  // lichtrood
+    for (let mr = 0, idx = 0; mr < microRows; mr++) {
+        for (let mc = 0; mc < microCols; mc++, idx++) {
+            // V-buffer tekenen overal waar het aanwezig is
+            // H-buffer zal later bovenop worden getekend
+            if (maskV[idx] && !coreV[idx] && 
+                !(settings.layerH && coreH[idx])) {
+                ctx.fillRect(
+                    mc * microPxX, 
+                    mr * microPxY, 
+                    microPxX + 0.5, 
+                    microPxY + 0.5
+                );
+                vBufferCount++;
+            }
+        }
+    }
+}
+                </div>
+            </div>
+        </div>
+        
+        <div class="diagram">
+            <h3>Correcte Visualisatie</h3>
+            <p>Na de fix zal de H-buffer (blauw) altijd bovenop de V-buffer (rood) worden weergegeven:</p>
+            <div style="width:400px; height:300px; margin:0 auto; position:relative;">
+                <div style="position:absolute; top:100px; left:100px; width:200px; height:150px; background-color:rgba(239,68,68,0.18);"></div>
+                <div style="position:absolute; top:50px; left:50px; width:200px; height:150px; background-color:rgba(59,130,246,0.18);"></div>
+                <div style="position:absolute; top:250px; left:50px; text-align:center; width:300px;">Correct: H-buffer (blauw) bovenop V-buffer (rood)</div>
+            </div>
+        </div>
+        
+        <h2>Samenvatting van de Wijzigingen</h2>
+        <ol>
+            <li>Verwijderd: mask-prioriteitsfiltering in de <code>computeRegMasks</code> functie</li>
+            <li>Gewijzigd: V-buffer wordt nu volledig getekend als eerste laag</li>
+            <li>Behouden: H-buffer wordt getekend bovenop de V-buffer</li>
+            <li>Behouden: Extra veiligheidslaag voor overlappende gebieden</li>
+        </ol>
+        
+        <div class="note">
+            <p><strong>Belangrijk:</strong> Deze wijzigingen hebben alleen invloed op de visuele weergave. De oppervlakteberekeningen en andere functionaliteiten blijven ongewijzigd werken.</p>
+        </div>
+    </div>
+</body>
+</html>

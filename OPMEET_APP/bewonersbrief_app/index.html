@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generator bewonersbrief – nutswerken</title>
+  <style>
+    :root{ --red:#e1001a; --border:#e5e7eb; --muted:#6b7280; --bg:#f7f7f9 }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#111827}
+    header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#fff;border-bottom:3px solid var(--red)}
+    header h1{margin:0;font-size:18px}
+    .wrap{display:grid;grid-template-columns:360px 1fr;gap:16px;padding:16px}
+    @media (max-width: 1100px){ .wrap{ grid-template-columns:1fr } }
+    .card{background:#fff;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .pane{padding:14px}
+    .row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    label{font-size:12px;color:#374151}
+    input,select,textarea{padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff;font-size:14px}
+    input[type="text"], input[type="date"], input[type="time"], select, textarea{width:100%}
+    textarea{min-height:72px}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+    .btn{padding:8px 12px;border-radius:100px;border:1px solid var(--border);background:#fff;cursor:pointer}
+    .btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+    .btnbar{display:flex;gap:8px;flex-wrap:wrap}
+    .muted{color:var(--muted);font-size:12px}
+
+    .letter{padding:24px;line-height:1.5}
+    .letter h2{margin:0 0 12px 0}
+    .letter .meta{color:#374151;font-size:14px;margin-bottom:12px}
+    .letter p{margin:0 0 10px}
+    .signoff{margin-top:20px}
+  .hidden{display:none}
+
+    @media print{
+      header, .wrap > .card:first-child{ display:none !important }
+      .wrap{ padding:0 }
+      .card{ box-shadow:none }
+      .letter{ padding:0 }
+      body{ background:#fff }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Generator bewonersbrief – nutswerken</h1>
+    <div class="btnbar">
+      <button id="btnSave" class="btn">Bewaar (lokaal)</button>
+      <button id="btnExportHtml" class="btn">Opslaan als HTML</button>
+      <button id="btnPrint" class="btn primary">PDF / Print</button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <aside class="card">
+      <div class="pane">
+        <h3>Project</h3>
+        <div class="grid2 row">
+          <label>Nutmaatschappij
+            <select id="utility">
+              <option value="">—</option>
+              <option>Fluvius</option>
+              <option>De Watergroep</option>
+              <option>Aquafin</option>
+              <option>Telenet</option>
+              <option>Proximus</option>
+              <option>Andere</option>
+            </select>
+          </label>
+          <label>Projecttitel
+            <input id="title" type="text" placeholder="Bv. Vernieuwing nutsleidingen" />
+          </label>
+        </div>
+        <div class="row">
+          <label>Locatie (straten, huisnummers)
+            <input id="location" type="text" placeholder="Bv. Kerkstraat 1–35, tussen X en Y" />
+          </label>
+        </div>
+        <div class="grid3 row">
+          <label>Startdatum
+            <input id="start" type="date" />
+          </label>
+          <label>Einddatum
+            <input id="end" type="date" />
+          </label>
+          <label>Werkuren
+            <input id="hours" type="text" placeholder="Bv. 7u–17u" />
+          </label>
+        </div>
+
+        <h3>Keuzes</h3>
+        <div class="row">
+          <label><input type="checkbox" id="roadClosed" /> Weg volledig afgesloten</label><br/>
+          <label><input type="checkbox" id="localTraffic" /> Enkel plaatselijk verkeer</label><br/>
+          <label><input type="checkbox" id="alternatingTraffic" /> Afwisselend verkeer (lichten/seingevers)</label><br/>
+          <label><input type="checkbox" id="oneWay" /> Tijdelijk éénrichtingsverkeer</label><br/>
+          <label><input type="checkbox" id="sidewalkOpen" checked /> Voetpad blijft toegankelijk</label><br/>
+          <label><input type="checkbox" id="bikepathOpen" checked /> Fietsers kunnen passeren</label><br/>
+          <label><input type="checkbox" id="parkingBan" /> Parkeerverbod nodig</label><br/>
+          <label><input type="checkbox" id="noisyWork" /> Geluidshinder te verwachten</label><br/>
+          <label><input type="checkbox" id="nightWork" /> Nachtwerk</label>
+        </div>
+  <div id="parkingExtra" class="row hidden">
+          <label>Details parkeerverbod
+            <input id="parkingDetails" type="text" placeholder="bv. Tijdelijk parkeerverbod langs werfzone" />
+          </label>
+        </div>
+  <div id="garbageExtra" class="row hidden">
+          <label>Afval-ophaalpunt (indien vuilniswagen niet kan passeren)
+            <input id="garbagePoint" type="text" placeholder="bv. hoek Kerkstraat–Markt" />
+          </label>
+        </div>
+        <div class="row">
+          <label>Extra tekst (optioneel)
+            <textarea id="extra"></textarea>
+          </label>
+        </div>
+
+        <h3>Contact</h3>
+        <div class="grid2 row">
+          <label>Contactpersoon
+            <input id="contactName" type="text" />
+          </label>
+          <label>Telefoon
+            <input id="contactPhone" type="text" />
+          </label>
+        </div>
+        <div class="row">
+          <label>E-mail
+            <input id="contactMail" type="text" />
+          </label>
+        </div>
+        <div class="row">
+          <span class="muted">Velden worden automatisch in de brief opgenomen. De voorbeeldbrief rechts werkt live.</span>
+        </div>
+      </div>
+    </aside>
+
+    <section class="card">
+      <div class="pane letter" id="preview"></div>
+    </section>
+  </div>
+
+  <script>
+    const $ = (id)=>document.getElementById(id);
+
+    const state = {
+      utility: '', title: '', location: '', start: '', end: '', hours: '',
+      roadClosed: false, localTraffic: false, alternatingTraffic: false, oneWay:false,
+      sidewalkOpen:true, bikepathOpen:true, parkingBan:false, noisyWork:false, nightWork:false,
+      parkingDetails:'', garbagePoint:'', extra:'',
+      contactName:'', contactPhone:'', contactMail:''
+    };
+
+    const controls = [
+      'utility','title','location','start','end','hours','parkingDetails','garbagePoint','extra',
+      'contactName','contactPhone','contactMail'
+    ];
+    const toggles = [
+      'roadClosed','localTraffic','alternatingTraffic','oneWay','sidewalkOpen','bikepathOpen','parkingBan','noisyWork','nightWork'
+    ];
+
+    function formatDateNL(iso){
+      if(!iso) return '';
+      const d = new Date(iso+'T12:00:00');
+      const months = ['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+      return d.getDate()+ ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+    }
+
+    function saveLocal(){ try{ localStorage.setItem('bewonersbrief_state', JSON.stringify(state)); }catch{} }
+    function loadLocal(){ try{ const s=JSON.parse(localStorage.getItem('bewonersbrief_state')||'null'); if(s) Object.assign(state, s); }catch{} }
+
+    function clauseList(){
+      const c = [];
+      // Traffic-related
+      if(state.roadClosed){ c.push('Tijdens de werken wordt de weg volledig afgesloten voor gemotoriseerd verkeer.'); }
+      if(state.localTraffic){ c.push('Enkel plaatselijk verkeer is toegelaten binnen de werfzone.'); }
+      if(state.alternatingTraffic){ c.push('Het verkeer verloopt afwisselend met tijdelijke verkeerslichten of seingevers.'); }
+      if(state.oneWay){ c.push('Er geldt tijdelijk éénrichtingsverkeer volgens de signalisatie ter plaatse.'); }
+      // Soft mobility
+      if(state.sidewalkOpen){ c.push('Het voetpad blijft, waar mogelijk, toegankelijk.'); } else { c.push('Het voetpad is (gedeeltelijk) afgesloten. Volg de aangeduide omleiding.'); }
+      if(state.bikepathOpen){ c.push('Fietsers kunnen de werfzone voorzichtig passeren.'); } else { c.push('Fietsers volgen de aangeduide omleiding.'); }
+      // Hinder
+      if(state.noisyWork){ c.push('Geluidshinder is mogelijk tijdens de werkuren. We beperken dit tot het noodzakelijke.'); }
+      if(state.nightWork){ c.push('Er wordt uitzonderlijk ook ’s nachts gewerkt. We trachten de hinder te beperken.'); }
+      // Parking
+      if(state.parkingBan){ c.push('Er geldt een tijdelijk parkeerverbod in en rond de werfzone.' + (state.parkingDetails? ' '+state.parkingDetails : '')); }
+      // Garbage requirement when road closed
+      if(state.roadClosed){
+        const gp = state.garbagePoint ? ' aan '+state.garbagePoint : '';
+        c.push('Op de ophaaldag kan de vuilniswagen mogelijk niet passeren. Gelieve uw afval voor 6u buiten te plaatsen'+gp+'.');
+      }
+      return c;
+    }
+
+    function generateLetter(){
+      const today = new Date();
+      const headerDate = today.toLocaleDateString('nl-BE', { day:'2-digit', month:'long', year:'numeric' });
+      const lines = [];
+
+      // Header
+      lines.push(`<div class="meta">${headerDate}</div>`);
+      const title = state.title || 'Werken aan nutsleidingen';
+      lines.push(`<h2>${title}</h2>`);
+
+      // Intro
+      const util = state.utility? `${state.utility} `: '';
+      const loc = state.location ? ` in ${state.location}` : '';
+      lines.push(`<p>Geachte buurtbewoner,</p>`);
+      lines.push(`<p>Wij informeren u dat ${util}nutswerken zullen plaatsvinden${loc}.</p>`);
+
+      // Timing
+      const period = state.start || state.end ?
+        `De werken starten op ${formatDateNL(state.start) || 'n.t.b.'} en lopen tot ${formatDateNL(state.end) || 'n.t.b.'}.` :
+        'De exacte planning wordt nog bevestigd.';
+      const hours = state.hours? ` De werkuren zijn voorzien van ${state.hours}.` : '';
+      lines.push(`<p>${period}${hours}</p>`);
+
+      // Clauses
+      const clauses = clauseList();
+      if(clauses.length){
+        lines.push('<p>Volgende maatregelen zijn van toepassing:</p>');
+        lines.push('<ul>'+clauses.map(x=>`<li>${x}</li>`).join('')+'</ul>');
+      }
+
+      // Extra
+      if(state.extra){ lines.push(`<p>${state.extra.replace(/\n/g,'<br>')}</p>`); }
+
+      // Accessibility / services (default reassurance)
+      lines.push('<p>Hulpdiensten behouden steeds doorgang. Volg de signalisatie en aanwijzingen van de werfbegeleiding.</p>');
+
+      // Contact
+      const contactParts = [];
+      if(state.contactName) contactParts.push(state.contactName);
+      if(state.contactPhone) contactParts.push(state.contactPhone);
+      if(state.contactMail) contactParts.push(state.contactMail);
+      if(contactParts.length){
+        lines.push('<p>Vragen? Contacteer: '+contactParts.join(' – ')+'</p>');
+      }
+
+      lines.push('<p class="signoff">Met vriendelijke groeten,<br/>'+(state.utility||'')+'</p>');
+
+      $('preview').innerHTML = lines.join('\n');
+    }
+
+    function syncUI(){
+      controls.forEach(id=>{ const el=$(id); if(el && state[id]!==undefined){ el.value = state[id]; }});
+      toggles.forEach(id=>{ const el=$(id); if(el){ el.checked = !!state[id]; }});
+      $('parkingExtra').style.display = state.parkingBan ? '' : 'none';
+      $('garbageExtra').style.display = state.roadClosed ? '' : 'none';
+      generateLetter();
+    }
+
+    function bind(){
+      controls.forEach(id=>{
+        const el=$(id); if(!el) return;
+        el.addEventListener('input', ()=>{ state[id] = el.value; saveLocal(); generateLetter(); });
+      });
+      toggles.forEach(id=>{
+        const el=$(id); if(!el) return;
+        el.addEventListener('change', ()=>{ state[id] = el.checked; saveLocal(); syncUI(); });
+      });
+      $('btnPrint').addEventListener('click', ()=> window.print());
+      $('btnSave').addEventListener('click', ()=>{ saveLocal(); alert('Bewaard op dit toestel.'); });
+      $('btnExportHtml').addEventListener('click', exportAsHtml);
+    }
+
+    function exportAsHtml(){
+      try{
+        const html = document.documentElement.outerHTML;
+        const payload = JSON.stringify(state);
+        const stateScript = `\n<script>window.__BEWONERSBRIEF_STATE__=${payload};<\/script>\n`;
+        const loader = `\n<script>(function(){\n  function restore(){ try{ var st=window.__BEWONERSBRIEF_STATE__; if(!st) return; localStorage.setItem('bewonersbrief_state', JSON.stringify(st)); }catch(e){} }\n  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', restore);} else { restore(); }\n})();<\/script>\n`;
+        const finalHtml = html.replace(/<\/body>/i, stateScript+loader+'</body>');
+        const blob = new Blob([finalHtml], {type:'text/html'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href=url;
+        const ds = (state.start||new Date().toISOString().slice(0,10)).replace(/-/g,'');
+        const dossier = (state.title||'Bewonersbrief').replace(/\s+/g,'_').replace(/[^A-Za-z0-9_\-]/g,'-');
+        a.download = `${ds}_${dossier}.html`;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(()=> URL.revokeObjectURL(url), 1500);
+      }catch(e){ console.error('Export HTML failed', e); }
+    }
+
+    // Init
+    loadLocal();
+    bind();
+    syncUI();
+  </script>
+</body>
+</html>

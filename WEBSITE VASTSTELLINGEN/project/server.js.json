@@ -1,0 +1,96 @@
+
+// 3. server.js - Simple Node.js server to handle data reading/writing
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const multer = require('multer');
+const bodyParser = require('body-parser');
+
+const app = express();
+const port = 3000;
+
+// Set up middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Set up multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const uploadDir = path.join(__dirname, 'uploads');
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir);
+    }
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage: storage });
+
+// Route to serve the form
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'vaststelling_formulier.html'));
+});
+
+// Route to serve the admin panel
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Route to handle form submissions
+app.post('/submit', upload.array('photos'), (req, res) => {
+  try {
+    // Create a new record with form data
+    const formData = {
+      id: Date.now(),
+      date: new Date().toISOString(),
+      ...req.body,
+      photoFiles: req.files ? req.files.map(file => file.filename) : []
+    };
+
+    // Save to a JSON file
+    const dataFile = path.join(__dirname, 'data', 'vaststellingen.json');
+    let vaststellingen = [];
+    
+    // Read existing records if file exists
+    if (fs.existsSync(dataFile)) {
+      const data = fs.readFileSync(dataFile, 'utf8');
+      vaststellingen = JSON.parse(data);
+    } else {
+      // Create directory if it doesn't exist
+      const dir = path.join(__dirname, 'data');
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+      }
+    }
+    
+    // Add new record and save back to file
+    vaststellingen.push(formData);
+    fs.writeFileSync(dataFile, JSON.stringify(vaststellingen, null, 2));
+    
+    res.status(200).send('Vaststelling succesvol opgeslagen!');
+  } catch (error) {
+    console.error('Error saving form data:', error);
+    res.status(500).send('Er is een fout opgetreden bij het opslaan van de gegevens.');
+  }
+});
+
+// Route to save data.json from admin panel
+app.post('/save-data', (req, res) => {
+  try {
+    const data = req.body;
+    fs.writeFileSync(path.join(__dirname, 'public', 'data.json'), JSON.stringify(data, null, 2));
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error saving data:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaststellingen Management Systeem</title>
+    
+    <!-- Antwerp Core Branding CSS -->
+    <link rel="stylesheet" href="https://cdn.antwerpen.be/core_branding_scss/7.0.2/main.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="a-header">
+        <div class="m-header">
+            <div class="m-header__content">
+                <div class="m-header__left">
+                    <h1 class="h2">🏗️ Vaststellingen Management</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="navigation">
+        <button type="button" class="nav-btn active" onclick="showSection('dashboard')">📊 Dashboard</button>
+        <button type="button" class="nav-btn" onclick="showSection('inspection')">📝 Vaststelling</button>
+        <button type="button" class="nav-btn" onclick="showSection('management')">⚙️ Beheer</button>
+        <button type="button" class="nav-btn" onclick="showSection('archive')">📁 Archief</button>
+        <button type="button" class="nav-btn" onclick="showSection('export')">📤 Export</button>
+    </nav>
+
+    <!-- Test Alert -->
+    <div id="testAlert" style="background: yellow; padding: 10px; margin: 10px; display: none;">
+        🧪 JavaScript Test - Klik hieronder om te testen
+        <button type="button" onclick="testFunction()">TEST KNOP</button>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="card">
+                <h2>📊 Dashboard Overzicht</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Totaal Vaststellingen</h3>
+                        <div class="stat-number" id="totalInspections">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Actieve Vaststelleers</h3>
+                        <div class="stat-number" id="activeSupervisors">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Actieve Utilities</h3>
+                        <div class="stat-number" id="activeUtilities">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Actieve Postcodes</h3>
+                        <div class="stat-number" id="activePostcodes">0</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Recente Activiteit</h3>
+                    <div id="recentActivity">
+                        <!-- Wordt gevuld door JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Management Section -->
+        <section id="management" class="section">
+            <div class="card">
+                <h2>⚙️ Data Beheer</h2>
+                
+                <!-- Vaststelleers Management -->
+                <div class="management-section">
+                    <h3>👥 Vaststelleers Beheren</h3>
+                    
+                    <div class="add-new-section">
+                        <div class="form-group">
+                            <label for="newSupervisorName">Nieuwe Vaststeller:</label>
+                            <input type="text" id="newSupervisorName" placeholder="Naam van nieuwe vaststeller">
+                        </div>
+                        <div class="form-group form-button-group">
+                            <button type="button" class="btn btn-success" onclick="addNewSupervisor()">➕ Toevoegen</button>
+                            <button type="button" class="btn btn-info" onclick="testFunction()">🧪 Test</button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>NAAM</th>
+                                    <th>STATUS</th>
+                                    <th>ACTIES</th>
+                                </tr>
+                            </thead>
+                            <tbody id="supervisorsTableBody">
+                                <!-- Wordt gevuld door JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Andere secties weggelaten voor eenvoud -->
+        <section id="inspection" class="section">
+            <div class="card">
+                <h2>📝 Nieuwe Vaststelling</h2>
+                <p>Formulier sectie - tijdelijk vereenvoudigd voor debugging</p>
+            </div>
+        </section>
+
+        <section id="archive" class="section">
+            <div class="card">
+                <h2>📁 Archief</h2>
+                <p>Archief sectie - tijdelijk vereenvoudigd voor debugging</p>
+            </div>
+        </section>
+
+        <section id="export" class="section">
+            <div class="card">
+                <h2>📤 Export</h2>
+                <p>Export sectie - tijdelijk vereenvoudigd voor debugging</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/dataManager.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- Debug script -->
+    <script>
+        // Toon debug alert
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('testAlert').style.display = 'block';
+            console.log('🧪 DEBUG: Page loaded, scripts should be available');
+            console.log('🧪 DEBUG: testFunction available:', typeof testFunction);
+            console.log('🧪 DEBUG: addNewSupervisor available:', typeof addNewSupervisor);
+            console.log('🧪 DEBUG: dataManager available:', typeof window.dataManager);
+        });
+    </script>
+</body>
+</html>

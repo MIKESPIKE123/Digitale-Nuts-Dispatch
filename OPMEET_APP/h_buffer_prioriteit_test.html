@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H-buffer Prioriteit Testpagina</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #003366;
+        }
+        .test-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .test-case {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            width: 45%;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        .description {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .controls {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #004c99;
+        }
+        .legend {
+            display: flex;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        .color-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            border: 1px solid #ddd;
+        }
+        .v-buffer {
+            background-color: rgba(239,68,68,0.18);
+        }
+        .h-buffer {
+            background-color: rgba(59,130,246,0.18);
+        }
+        .v-core {
+            background-color: #ef4444;
+        }
+        .h-core {
+            background-color: #3b82f6;
+        }
+        .note {
+            background-color: #fff8dc;
+            padding: 15px;
+            border-left: 4px solid #ffeb3b;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>H-buffer Prioriteit Testpagina</h1>
+        
+        <div class="note">
+            <p>Deze pagina helpt bij het testen van de H-buffer prioriteit over de V-buffer in overlappende gebieden. De lichtblauwe H-buffer zou altijd zichtbaar moeten zijn bovenop de lichtrode V-buffer wanneer ze overlappen.</p>
+        </div>
+        
+        <div class="legend">
+            <h3>Legenda:</h3>
+            <div class="legend-item">
+                <div class="color-box v-buffer"></div>
+                <span>V-buffer (lichtrood)</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box h-buffer"></div>
+                <span>H-buffer (lichtblauw)</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box v-core"></div>
+                <span>V-kern</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box h-core"></div>
+                <span>H-kern</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button id="testSimple">Test Eenvoudig Patroon</button>
+            <button id="testComplex">Test Complex Patroon</button>
+            <button id="testOverlap">Test Overlap Hoeken</button>
+            <button id="testGradient">Test Gradient Overlay</button>
+        </div>
+        
+        <div class="test-area">
+            <div class="test-case">
+                <h2>Test 1: Standaard V-H Overlap</h2>
+                <canvas id="canvas1" width="400" height="300"></canvas>
+                <div class="description">
+                    <p>Toont een eenvoudig patroon waarbij V en H buffers elkaar overlappen. De H-buffer (lichtblauw) zou altijd zichtbaar moeten zijn bovenop de V-buffer (lichtrood).</p>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <h2>Test 2: Complexe Vorm Overlap</h2>
+                <canvas id="canvas2" width="400" height="300"></canvas>
+                <div class="description">
+                    <p>Toont complexere vormen en patronen waarbij de H-buffer prioriteit zou moeten hebben over de V-buffer in alle overlappende gebieden.</p>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            // Hulpfuncties voor het tekenen
+            function drawVCore(ctx, x, y, width, height) {
+                ctx.fillStyle = '#ef4444';
+                ctx.fillRect(x, y, width, height);
+            }
+            
+            function drawHCore(ctx, x, y, width, height) {
+                ctx.fillStyle = '#3b82f6';
+                ctx.fillRect(x, y, width, height);
+            }
+            
+            function drawVBuffer(ctx, x, y, width, height) {
+                ctx.fillStyle = 'rgba(239,68,68,0.18)';
+                ctx.fillRect(x, y, width, height);
+            }
+            
+            function drawHBuffer(ctx, x, y, width, height) {
+                ctx.fillStyle = 'rgba(59,130,246,0.18)';
+                ctx.fillRect(x, y, width, height);
+            }
+            
+            // Test 1: Standaard V-H Overlap
+            function drawSimpleTest() {
+                const canvas1 = document.getElementById('canvas1');
+                const ctx1 = canvas1.getContext('2d');
+                
+                // Clear canvas
+                ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+                
+                // Draw V core
+                drawVCore(ctx1, 50, 50, 100, 100);
+                
+                // Draw H core
+                drawHCore(ctx1, 200, 50, 100, 100);
+                
+                // Draw H core that overlaps V core
+                drawHCore(ctx1, 120, 120, 100, 100);
+                
+                // Draw V buffer around V core
+                drawVBuffer(ctx1, 30, 30, 140, 140);
+                
+                // Draw H buffer around H cores - should overlay V buffer where they overlap
+                drawHBuffer(ctx1, 180, 30, 140, 140);
+                drawHBuffer(ctx1, 100, 100, 140, 140);
+            }
+            
+            // Test 2: Complexe Vorm Overlap
+            function drawComplexTest() {
+                const canvas2 = document.getElementById('canvas2');
+                const ctx2 = canvas2.getContext('2d');
+                
+                // Clear canvas
+                ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+                
+                // Draw multiple V cores in a pattern
+                drawVCore(ctx2, 50, 50, 60, 60);
+                drawVCore(ctx2, 150, 100, 60, 60);
+                drawVCore(ctx2, 250, 50, 60, 60);
+                
+                // Draw multiple H cores in a different pattern
+                drawHCore(ctx2, 100, 120, 60, 60);
+                drawHCore(ctx2, 200, 170, 60, 60);
+                
+                // Draw V buffers around all V cores
+                drawVBuffer(ctx2, 30, 30, 100, 100);
+                drawVBuffer(ctx2, 130, 80, 100, 100);
+                drawVBuffer(ctx2, 230, 30, 100, 100);
+                
+                // Draw H buffers around all H cores - should overlay V buffer where they overlap
+                drawHBuffer(ctx2, 80, 100, 100, 100);
+                drawHBuffer(ctx2, 180, 150, 100, 100);
+            }
+            
+            // Test Overlap Hoeken
+            function drawOverlapCorners() {
+                const canvas1 = document.getElementById('canvas1');
+                const ctx1 = canvas1.getContext('2d');
+                
+                // Clear canvas
+                ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+                
+                // Draw grid of V and H elements with overlapping buffers at corners
+                const gridSize = 4;
+                const cellSize = 60;
+                const bufferSize = 10;
+                
+                for (let row = 0; row < gridSize; row++) {
+                    for (let col = 0; col < gridSize; col++) {
+                        const x = 40 + col * (cellSize + 10);
+                        const y = 40 + row * (cellSize + 10);
+                        
+                        if ((row + col) % 2 === 0) {
+                            // V element
+                            drawVCore(ctx1, x, y, cellSize, cellSize);
+                            // V buffer
+                            drawVBuffer(ctx1, x - bufferSize, y - bufferSize, 
+                                       cellSize + 2 * bufferSize, cellSize + 2 * bufferSize);
+                        } else {
+                            // H element
+                            drawHCore(ctx1, x, y, cellSize, cellSize);
+                            // H buffer
+                            drawHBuffer(ctx1, x - bufferSize, y - bufferSize, 
+                                       cellSize + 2 * bufferSize, cellSize + 2 * bufferSize);
+                        }
+                    }
+                }
+            }
+            
+            // Test Gradient Overlay
+            function drawGradientOverlay() {
+                const canvas2 = document.getElementById('canvas2');
+                const ctx2 = canvas2.getContext('2d');
+                
+                // Clear canvas
+                ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+                
+                // Draw V core diagonal gradient
+                for (let i = 0; i < 5; i++) {
+                    drawVCore(ctx2, 50 + i * 30, 50 + i * 30, 50, 50);
+                }
+                
+                // Draw H core diagonal gradient shifted
+                for (let i = 0; i < 5; i++) {
+                    drawHCore(ctx2, 100 + i * 30, 70 + i * 30, 50, 50);
+                }
+                
+                // Draw V buffer around all V cores
+                for (let i = 0; i < 5; i++) {
+                    drawVBuffer(ctx2, 30 + i * 30, 30 + i * 30, 90, 90);
+                }
+                
+                // Draw H buffer around all H cores - should overlay V buffer where they overlap
+                for (let i = 0; i < 5; i++) {
+                    drawHBuffer(ctx2, 80 + i * 30, 50 + i * 30, 90, 90);
+                }
+            }
+            
+            // Initialize tests
+            document.addEventListener('DOMContentLoaded', function() {
+                drawSimpleTest();
+                drawComplexTest();
+                
+                // Add event listeners to buttons
+                document.getElementById('testSimple').addEventListener('click', drawSimpleTest);
+                document.getElementById('testComplex').addEventListener('click', drawComplexTest);
+                document.getElementById('testOverlap').addEventListener('click', drawOverlapCorners);
+                document.getElementById('testGradient').addEventListener('click', drawGradientOverlay);
+            });
+        </script>
+    </div>
+</body>
+</html>

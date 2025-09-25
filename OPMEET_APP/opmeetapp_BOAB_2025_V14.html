@@ -1,0 +1,1834 @@
+<!doctype html>
+<html lang="nl">
+    
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Opmeet – Stad Antwerpen (V5)</title>
+<style>
+  :root{ --ant-red:#e1001a; --border:#e5e7eb; --muted:#6b7280; --bg:#f3f4f6; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#111827}
+  header{position:sticky;top:0;z-index:10;background:#fff;padding:14px 18px;border-bottom:3px solid var(--ant-red)}
+  header h1{margin:0;font-size:18px;font-weight:700}
+  main{display:grid;grid-template-columns:420px 1fr;gap:16px;padding:16px}
+  @media (max-width:1100px){main{grid-template-columns:1fr}}
+  .card{background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .pane{padding:16px}
+  .row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+  .row h2{margin:4px 0 0 0;font-size:14px}
+  label{font-size:12px;color:#374151}
+  input,select{padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+  input[type="number"]{width:120px}
+  .btn{padding:8px 12px;border-radius:100px;border:1px solid var(--border);background:#fff;cursor:pointer}
+  .btn:hover{background:#f9fafb}
+  .btn.primary{background:var(--ant-red);color:#fff;border-color:var(--ant-red)}
+  .btn.active{outline:3px solid rgba(225,0,26,.25)}
+  .grid-wrap{padding:16px}
+  .plan{background:#fff;border-radius:16px;box-shadow:inset 0 0 0 1px var(--border),0 1px 6px rgba(0,0,0,.06);width:100%;height:600px;touch-action:none;display:block}
+  .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+  .kpi{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px}
+  .kpi h3{margin:0;font-size:12px;color:#6b7280} .kpi p{margin:2px 0 0 0;font-size:18px;font-weight:700}
+  .sep{height:1px;background:var(--border);margin:12px 0}
+/* === Signatures (PATCH S2) === */
+    .sigwrap{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+    .sigbox{border:1px dashed #e5e7eb;border-radius:8px;padding:8px;background:#fff}
+    .sigbox canvas{background:#fff;border-radius:6px;border:1px solid #e5e7eb;display:block}
+    .sigbox .lbl{font-size:12px;color:#374151;margin:6px 0 2px}
+    .sigbox .txt{width:180px;padding:8px 10px;border:1px solid #e5e7eb;border-radius:10px}
+ /* PATCH: canvas interactie altijd toestaan (muis + touch) */
+
+  /* PATCH T1 */
+#grid { position: relative; z-index: 10; }
+#stage { position: relative; z-index: 5; }
+
+#grid,
+#stage canvas,
+.sigbox canvas,
+canvas {
+  pointer-events: auto !important;
+  touch-action: none;
+}
+
+</style>
+
+
+</head>
+<body>
+<header><h1>Opmeet – Stad Antwerpen</h1></header>
+
+<main>
+  <div class="card">
+    <div class="pane">
+      <div class="row">
+        <h2>Grid parameters</h2>
+      </div>
+      <div class="row">
+        <label>Celbreedte (m)<input type="number" id="cellWidth" value="0.25" min="0.1" max="2" step="0.05"></label>
+        <label>Celhoogte (m)<input type="number" id="cellHeight" value="0.25" min="0.1" max="2" step="0.05"></label>
+      </div>
+      <div class="row">
+        <label>Rijen<input type="number" id="rows" value="20" min="1" max="100"></label>
+        <label>Kolommen<input type="number" id="cols" value="20" min="1" max="100"></label>
+      </div>
+
+      <div class="row">
+        <h2>Reglementaire parameters</h2>
+      </div>
+      <div class="row">
+        <label>Buffer (m)<input type="number" id="buffer" value="0.30" min="0" max="2" step="0.05"></label>
+        <label>Min. zone (m²)<input type="number" id="minZone" value="1.00" min="0" max="10" step="0.25"></label>
+        <select id="bufferMode">
+          <option value="exact">Exacte buffer</option>
+          <option value="strook">Als strook</option>
+        </select>
+      </div>
+<div class="row">
+  <h2>Rooilijn / Voetpadlijn</h2>
+</div>
+<div class="row">
+  <label>Rooilijn
+    <select id="rooiType">
+      <option value="none">Geen</option>
+      <option value="vertical">Verticaal (x = m)</option>
+      <option value="horizontal">Horizontaal (y = m)</option>
+    </select>
+    <input type="number" id="rooiPos" value="0.00" step="0.01">
+  </label>
+  <label>Voetpadlijn
+    <select id="voetType">
+      <option value="none">Geen</option>
+      <option value="vertical">Verticaal (x = m)</option>
+      <option value="horizontal">Horizontaal (y = m)</option>
+    </select>
+    <input type="number" id="voetPos" value="0.00" step="0.01">
+  </label>
+</div>
+<!-- === PDF & Handtekeningen (PATCH S1) === -->
+<div class="row">
+  <button class="btn primary" id="btnPDF">Maak PDF / Print</button>
+</div>
+
+<div class="sep"></div>
+<div class="row"><h2>Handtekeningen</h2></div>
+<div class="sigwrap">
+  <div class="sigbox">
+    <div class="lbl">Toezichter</div>
+    <canvas id="sigA" width="340" height="120"></canvas>
+    <div class="row">
+      <input id="sigAName" class="txt" placeholder="Naam toezichter" />
+      <input id="sigADate" class="txt" type="date" />
+      <button class="btn" id="sigAClear">Wissen</button>
+    </div>
+  </div>
+  <div class="sigbox">
+    <div class="lbl">Belanghebbende</div>
+    <canvas id="sigB" width="340" height="120"></canvas>
+    <div class="row">
+      <input id="sigBName" class="txt" placeholder="Naam belanghebbende" />
+      <input id="sigBDate" class="txt" type="date" />
+      <button class="btn" id="sigBClear">Wissen</button>
+    </div>
+  </div>
+</div>
+
+      <div class="row">
+        <label><input type="checkbox" id="showBuffer" checked> Toon bufferzone</label>
+        <label><input type="checkbox" id="showStrips" checked> Toon stroken</label>
+        <label><input type="checkbox" id="showDims"> Toon maatvoering</label>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="row">
+        <h2>Tarieven</h2>
+      </div>
+      <div class="row">
+        <label>€/m² V<input type="number" id="rateV" value="180.00"></label>
+        <label>€/m² H<input type="number" id="rateH" value="120.00"></label>
+      </div>
+<!-- ergens bij je KPI's -->
+<div class="kpi">
+  <div class="kpi-label">m² gap-unie (t/m 0,50 m)</div>
+  <div class="kpi-value" id="m2GapUnion">0,00</div>
+</div>
+
+      <div class="summary">
+        <div class="kpi">
+          <h3>Aantal V</h3>
+          <p id="kpiV">0</p>
+        </div>
+        <div class="kpi">
+          <h3>Aantal H</h3>
+          <p id="kpiH">0</p>
+        </div>
+        <div class="kpi">
+          <h3>m² V (netto)</h3>
+          <p id="m2V">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² H (netto)</h3>
+          <p id="m2H">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² V (reglementair)</h3>
+          <p id="m2VReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² H (reglementair)</h3>
+          <p id="m2HReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>€ V</h3>
+          <p id="eurV">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>€ H</h3>
+          <p id="eurH">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal m² (netto)</h3>
+          <p id="m2T">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal m² (regl.)</h3>
+          <p id="m2TReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal €</h3>
+          <p id="eurT">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal € (regl.)</h3>
+          <p id="eurTReg">€ 0,00</p>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+
+   
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="grid-wrap">
+      <canvas id="grid" class="plan" aria-label="tekenraster"></canvas>
+      <div class="row">
+        <button class="btn" id="btnV" data-tool="V">V-zone</button>
+        <button class="btn" id="btnH" data-tool="H">H-zone</button>
+        <button class="btn" id="btnE" data-tool="E">Gum</button>
+
+        <button class="btn" id="btnUndo" title="Ongedaan maken (Ctrl+Z)">↶ Ongedaan</button>
+        <button class="btn" id="btnRedo" title="Opnieuw (Ctrl+Y)">↷ Opnieuw</button>
+        <button class="btn" id="btnClear">Leegmaken</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  /* ===== DOM ===== */
+  function q(s){ return document.querySelector(s); }
+  const canvas = document.getElementById('grid');
+  const ctx = canvas.getContext('2d');
+  const rowsEl = q('#rows'), colsEl = q('#cols');
+  const cellWidthEl = q('#cellWidth'), cellHeightEl = q('#cellHeight');
+  const bufferEl = q('#buffer'), minZoneEl = q('#minZone');
+  const rateVEl = q('#rateV'), rateHEl = q('#rateH');
+  const showBufferEl = q('#showBuffer'), showStripsEl = q('#showStrips'), showDimsEl = q('#showDims');
+  const bufferModeEl = q('#bufferMode');
+  const btnV = q('#btnV'), btnH = q('#btnH'), btnE = q('#btnE');
+  const btnClear = q('#btnClear'), btnUndo = q('#btnUndo'), btnRedo = q('#btnRedo'), btnPDF = q('#btnPDF');
+  const toolButtons = [btnV, btnH, btnE];
+const rooiTypeEl = document.querySelector('#rooiType');
+const rooiPosEl  = document.querySelector('#rooiPos');
+const voetTypeEl = document.querySelector('#voetType');
+const voetPosEl  = document.querySelector('#voetPos');
+
+  /* ===== State ===== */
+  let rows = +rowsEl.value, cols = +colsEl.value, tool = 'V';
+  let grid = [], history = [], redoStack = [];
+  let down = false, hover = null;
+// === Signatures (PATCH S3): init tekenpads + clear ===
+(function initSignatures(){
+  const sigA = document.getElementById('sigA');
+  const sigB = document.getElementById('sigB');
+  if(!sigA || !sigB) return; // UI nog niet geplaatst
+
+  makeSigPad(sigA);
+  makeSigPad(sigB);
+
+  const sigAClear = document.getElementById('sigAClear');
+  const sigBClear = document.getElementById('sigBClear');
+  if(sigAClear) sigAClear.addEventListener('click', ()=>clearSig(sigA));
+  if(sigBClear) sigBClear.addEventListener('click', ()=>clearSig(sigB));
+
+  function makeSigPad(c){
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#fff'; ctx.fillRect(0,0,c.width,c.height);
+    ctx.strokeStyle = '#111827'; ctx.lineWidth = 2; ctx.lineCap = 'round';
+    let down=false, lx=0, ly=0;
+    const pos = e => {
+      const r=c.getBoundingClientRect();
+      return {x:(e.touches?e.touches[0].clientX:e.clientX)-r.left,
+              y:(e.touches?e.touches[0].clientY:e.clientY)-r.top};
+    };
+    c.addEventListener('mousedown',e=>{down=true; const p=pos(e); lx=p.x; ly=p.y;});
+    c.addEventListener('mousemove',e=>{ if(!down) return; const p=pos(e);
+      ctx.beginPath(); ctx.moveTo(lx,ly); ctx.lineTo(p.x,p.y); ctx.stroke(); lx=p.x; ly=p.y; });
+    window.addEventListener('mouseup',()=>down=false);
+    c.addEventListener('touchstart',e=>{down=true; const p=pos(e); lx=p.x; ly=p.y; e.preventDefault();});
+    c.addEventListener('touchmove',e=>{ if(!down) return; const p=pos(e);
+      ctx.beginPath(); ctx.moveTo(lx,ly); ctx.lineTo(p.x,p.y); ctx.stroke(); lx=p.x; ly=p.y; e.preventDefault();});
+    c.addEventListener('touchend',()=>down=false);
+  }
+  function clearSig(c){ const ctx=c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height); }
+})();
+// === PDF Export (PATCH S4) ===
+(function setupPDF(){
+ const pdfBtns = document.querySelectorAll('#btnPDF, #btnPDF2');
+if(!pdfBtns.length) return;
+pdfBtns.forEach(b => b.addEventListener('click', makePDF));
+
+  // -- hulpfuncties die we nodig hebben (veilig, bestaan al? dan skippen) --
+  const parseBE = s => {
+    if (s == null) return NaN;
+    if (typeof s !== 'string') return Number(s);
+    let t = s.trim();
+    if (!t) return NaN;
+    if (t.includes(',') && t.includes('.')) t = t.replace(/\./g,'').replace(',', '.');
+    else if (t.includes(',')) t = t.replace(',', '.');
+    return Number(t);
+  };
+  const fmtDec = v => new Intl.NumberFormat('nl-BE',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v);
+
+  function readUnits(){
+    // pakketten: celmaat X/Y
+    const csX = (document.querySelector('#cellWidth')  ? parseBE(document.querySelector('#cellWidth').value)  : NaN);
+    const csY = (document.querySelector('#cellHeight') ? parseBE(document.querySelector('#cellHeight').value) : NaN);
+    const csS = (document.querySelector('#cellSize')   ? parseBE(document.querySelector('#cellSize').value)   : NaN);
+    const csx = Number.isFinite(csX) ? csX : (Number.isFinite(csS) ? csS : 0.25);
+    const csy = Number.isFinite(csY) ? csY : (Number.isFinite(csS) ? csS : 0.25);
+    const rows = window.rows ?? parseInt(document.querySelector('#rows')?.value||'30',10);
+    const cols = window.cols ?? parseInt(document.querySelector('#cols')?.value||'30',10);
+    return {csx, csy, rows, cols};
+  }
+  function readRegl(){
+    const buffer = parseBE(document.querySelector('#bufferM')?.value ?? '0.30') || 0.30;
+    const minZone = parseBE(document.querySelector('#minZoneM2')?.value ?? '1') || 1.0;
+    const mode = document.querySelector('#bufferMode')?.value || 'strip';
+    // lijnen (kunnen ontbreken)
+    const rooi = { t: document.querySelector('#rooiType')?.value || 'none',
+                   p: parseBE(document.querySelector('#rooiPos')?.value || '0') };
+    const voet = { t: document.querySelector('#voetType')?.value || 'none',
+                   p: parseBE(document.querySelector('#voetPos')?.value || '0') };
+    return {buffer, minZone, mode, rooi, voet};
+  }
+  function gridAt(r,c){ try{ return (window.grid && window.grid[r] && window.grid[r][c]) || ''; }catch(e){ return ''; } }
+/* === PATCH J4 : ringArea met clipping (strook) === */
+function ringAreaClipped(comp){
+  const units = getUnits();
+  const lines = getLines();
+  const bufferM = parseBE(document.querySelector('#bufferM')?.value, 0.30);
+  const mode    = document.querySelector('#bufferMode')?.value || 'strip';
+  if(mode !== 'strip'){
+    // Laat je bestaande euclidische berekening hier lopen (indien aanwezig)
+    // return ringAreaEuclid(comp);
+    return 0; // fallback
+  }
+
+  // som van stroken (diepte*randlengte) + rechthoekige hoek-caps (wx*wy), allemaal geclipt
+  let sum = 0;
+  const S = new Set(comp.cells.map(a=>a[0]+','+a[1]));
+  for(const [rr,cc] of comp.cells){
+    const xL = cc * units.csX, xR = (cc+1) * units.csX;
+    const yT = rr * units.csY, yB = (rr+1) * units.csY;
+
+    const nOpen = !S.has((rr-1)+','+cc) && (cellVal(rr-1,cc) === '');
+    const sOpen = !S.has((rr+1)+','+cc) && (cellVal(rr+1,cc) === '');
+    const wOpen = !S.has(rr+','+(cc-1)) && (cellVal(rr,cc-1) === '');
+    const eOpen = !S.has(rr+','+(cc+1)) && (cellVal(rr,cc+1) === '');
+
+    const wN = nOpen ? clipDepth('N', yT, bufferM, lines) : 0;
+    const wS = sOpen ? clipDepth('S', yB, bufferM, lines) : 0;
+    const wW = wOpen ? clipDepth('W', xL, bufferM, lines) : 0;
+    const wE = eOpen ? clipDepth('E', xR, bufferM, lines) : 0;
+
+    if(wN>0) sum += wN * units.csX;  // horizontale randlengte = csX
+    if(wS>0) sum += wS * units.csX;
+    if(wW>0) sum += wW * units.csY;  // verticale randlengte = csY
+    if(wE>0) sum += wE * units.csY;
+
+    // rechte-hoek "caps" (rechthoekjes) — alleen als beide randen open
+    if(wN>0 && wW>0) sum += wN * wW;
+    if(wN>0 && wE>0) sum += wN * wE;
+    if(wS>0 && wW>0) sum += wS * wW;
+    if(wS>0 && wE>0) sum += wS * wE;
+  }
+  return sum;
+}
+
+  // ring-oppervlakte via stroken langs open randen (rechte hoeken) met clipping op rooi/voet
+  function ringAreaStrip(comp, units, regl){
+    const {csx,csy} = units, {buffer, rooi, voet} = regl;
+    const S = new Set(comp.cells.map(a=>a[0]+','+a[1]));
+    let sum = 0;
+    function clipN(yTop){ let w=buffer;
+      if(rooi.t==='horizontal' && rooi.p<=yTop && rooi.p>=yTop-buffer) w = Math.min(w, yTop-rooi.p);
+      if(voet.t==='horizontal' && voet.p<=yTop && voet.p>=yTop-buffer) w = Math.min(w, yTop-voet.p);
+      return Math.max(0,w);
+    }
+    function clipS(yBot){ let w=buffer;
+      if(rooi.t==='horizontal' && rooi.p>=yBot && rooi.p<=yBot+buffer) w = Math.min(w, rooi.p-yBot);
+      if(voet.t==='horizontal' && voet.p>=yBot && voet.p<=yBot+buffer) w = Math.min(w, voet.p-yBot);
+      return Math.max(0,w);
+    }
+    function clipW(xLeft){ let w=buffer;
+      if(rooi.t==='vertical' && rooi.p<=xLeft && rooi.p>=xLeft-buffer) w = Math.min(w, xLeft-rooi.p);
+      if(voet.t==='vertical' && voet.p<=xLeft && voet.p>=xLeft-buffer) w = Math.min(w, xLeft-voet.p);
+      return Math.max(0,w);
+    }
+    function clipE(xRight){ let w=buffer;
+      if(rooi.t==='vertical' && rooi.p>=xRight && rooi.p<=xRight+buffer) w = Math.min(w, rooi.p-xRight);
+      if(voet.t==='vertical' && voet.p>=xRight && voet.p<=xRight+buffer) w = Math.min(w, voet.p-xRight);
+      return Math.max(0,w);
+    }
+    for(const [rr,cc] of comp.cells){
+      const xL=cc*csx, xR=(cc+1)*csx, yT=rr*csy, yB=(rr+1)*csy;
+      // open = buur is leeg
+      if(!S.has((rr-1)+','+cc)) sum += clipN(yT) * csx;  // N: strook-diepte * horizontale randlengte (csx)
+      if(!S.has((rr+1)+','+cc)) sum += clipS(yB) * csx;  // S
+      if(!S.has(rr+','+(cc-1))) sum += clipW(xL) * csy;  // W: strook-diepte * verticale randlengte (csy)
+      if(!S.has(rr+','+(cc+1))) sum += clipE(xR) * csy;  // E
+
+      // hoek-caps (rechthoekjes), geclipt
+      const wN=!S.has((rr-1)+','+cc)?clipN(yT):0, wS=!S.has((rr+1)+','+cc)?clipS(yB):0;
+      const wW=!S.has(rr+','+(cc-1))?clipW(xL):0, wE=!S.has(rr+','+(cc+1))?clipE(xR):0;
+      if(wN>0&&wW>0) sum += wN*wW;
+      if(wN>0&&wE>0) sum += wN*wE;
+      if(wS>0&&wW>0) sum += wS*wW;
+      if(wS>0&&wE>0) sum += wS*wE;
+    }
+    return sum;
+  }
+/* === PATCH J5 : gap-strook tot rooi/voet (≤ 0.50 m) === */
+function extraStripRectsToLines(comp){
+  const un = getUnits(), lines = getLines();
+  const rects = [];
+  const minX = comp.minC * un.csX, maxX = (comp.maxC+1) * un.csX;
+  const minY = comp.minR * un.csY, maxY = (comp.maxR+1) * un.csY;
+  const MAX = 0.50; // 50 cm
+
+  function addV(x0,x1){ const gap=x1-x0; if(gap>0 && gap<=MAX) rects.push(pxRect(un, x0, minY, gap, (maxY-minY))); }
+  function addH(y0,y1){ const gap=y1-y0; if(gap>0 && gap<=MAX) rects.push(pxRect(un, minX, y0, (maxX-minX), gap)); }
+
+  if(lines.rooi.t==='vertical'){
+    if(lines.rooi.p<minX) addV(lines.rooi.p, minX);
+    else if(lines.rooi.p>maxX) addV(maxX, lines.rooi.p);
+  }
+  if(lines.voet.t==='vertical'){
+    if(lines.voet.p<minX) addV(lines.voet.p, minX);
+    else if(lines.voet.p>maxX) addV(maxX, lines.voet.p);
+  }
+  if(lines.rooi.t==='horizontal'){
+    if(lines.rooi.p<minY) addH(lines.rooi.p, minY);
+    else if(lines.rooi.p>maxY) addH(maxY, lines.rooi.p);
+  }
+  if(lines.voet.t==='horizontal'){
+    if(lines.voet.p<minY) addH(lines.voet.p, minY);
+    else if(lines.voet.p>maxY) addH(maxY, lines.voet.p);
+  }
+  return rects;
+
+  function pxRect(un,xM,yM,wM,hM){
+    return { x:(xM/un.widthM)*un.cssW, y:(yM/un.heightM)*un.cssH,
+             w:(wM/un.widthM)*un.cssW, h:(hM/un.heightM)*un.cssH };
+  }
+}
+
+function extraStripAreaToLines(comp){
+  const un = getUnits();
+  const rects = extraStripRectsToLines(comp);
+  if (!rects || !rects.length) return 0;
+
+  if (typeof unionRectsPx !== 'function') {
+    // simple sum if unionRectsPx is absent (rare)
+    let m2 = 0;
+    for (const r of rects) {
+      const wM = (r.w/un.cssW)*un.widthM, hM = (r.h/un.cssH)*un.heightM;
+      m2 += wM*hM;
+    }
+    return m2;
+  }
+
+  const uni = unionRectsPx(rects);
+  let m2 = 0;
+  for (const r of uni) {
+    const wM = (r.w/un.cssW)*un.widthM, hM = (r.h/un.cssH)*un.heightM;
+    m2 += wM*hM;
+  }
+  return m2;
+}
+
+
+  function componentsOf(type, units){
+    // gebruikt jouw findComponents als die bestaat; anders eenvoudige fallback
+    if (typeof findComponents === 'function'){
+      return findComponents(type);
+    }
+    // Fallback BFS
+    const {rows, cols} = units;
+    const vis=Array.from({length:rows},()=>Array(cols).fill(false));
+    const out=[]; const dirs=[[1,0],[-1,0],[0,1],[0,-1]];
+    for(let r=0;r<rows;r++) for(let c=0;c<cols;c++){
+      if(!vis[r][c] && gridAt(r,c)===type){
+        const cells=[],Q=[[r,c]]; vis[r][c]=true;
+        let minR=r,maxR=r,minC=c,maxC=c;
+        while(Q.length){
+          const [rr,cc]=Q.shift(); cells.push([rr,cc]);
+          minR=Math.min(minR,rr); maxR=Math.max(maxR,rr);
+          minC=Math.min(minC,cc); maxC=Math.max(maxC,cc);
+          for(const [dr,dc] of dirs){
+            const nr=rr+dr,nc=cc+dc;
+            if(nr>=0&&nr<rows&&nc>=0&&nc<cols && !vis[nr][nc] && gridAt(nr,nc)===type){
+              vis[nr][nc]=true; Q.push([nr,nc]);
+            }
+          }
+        }
+        out.push({cells,minR,maxR,minC,maxC});
+      }
+    }
+    return out;
+  }
+
+  function rowsFor(type){
+    const units = readUnits();
+    const regl  = readRegl();
+    const comps = componentsOf(type, units);
+    const Acel = units.csx*units.csy;
+    const out=[];
+    for(let i=0;i<comps.length;i++){
+      const c = comps[i];
+      const w = (c.maxC - c.minC + 1) * units.csx;
+      const h = (c.maxR - c.minR + 1) * units.csy;
+      const A = c.cells.length * Acel;
+      const ring = (typeof ringArea === 'function')
+        ? ringArea(c, units.csx /*of cs*/, regl.buffer, regl.mode)   // als jouw ringArea bestaat
+        : ringAreaStrip(c, units, regl);                             // anders: strook-methode
+        
+      let Reg = A + ring;
+      if (Reg < regl.minZone) Reg = regl.minZone;
+      out.push({ i:i+1, w, h, A, Reg });
+    }
+    return out;
+  }
+
+  function capturePlanDataURL(){
+    // 1) voorkeurscanvas: #grid
+    const plan = document.getElementById('grid');
+    if (plan && plan.toDataURL) return plan.toDataURL('image/png');
+
+    // 2) compositing: alle canvassen in #stage
+    const stage = document.getElementById('stage');
+    if (!stage) return null;
+    const canvases = [...stage.querySelectorAll('canvas')];
+    if (!canvases.length) return null;
+    const W = canvases[0].width, H = canvases[0].height;
+    const off = document.createElement('canvas'); off.width=W; off.height=H;
+    const octx = off.getContext('2d');
+    octx.fillStyle = '#fff'; octx.fillRect(0,0,W,H);
+    for(const cv of canvases){ octx.drawImage(cv,0,0); }
+    return off.toDataURL('image/png');
+  }
+
+  function makePDF(){
+    const dataURL = capturePlanDataURL();
+    const sigA = document.getElementById('sigA');
+    const sigB = document.getElementById('sigB');
+    const sigAName = document.getElementById('sigAName')?.value || '—';
+    const sigADate = document.getElementById('sigADate')?.value || '—';
+    const sigBName = document.getElementById('sigBName')?.value || '—';
+    const sigBDate = document.getElementById('sigBDate')?.value || '—';
+
+    const w=window.open('', '_blank', 'width=1000,height=800');
+    if(!w){ alert('Sta pop-ups toe.'); return; }
+    const d=w.document;
+    d.open();
+    d.write('<!doctype html><html><head><meta charset="utf-8"><title>OPMETINGSPLAN</title></head><body></body></html>');
+    d.close();
+
+    const style=d.createElement('style');
+    style.textContent = `
+      @page{size:A4;margin:12mm}
+      body{font:11pt Inter,Arial}
+      h1{color:#e1001a;font-size:16pt;margin:0 0 6mm}
+      h2{font-size:12pt;margin:4mm 0 2mm}
+      .plan{width:100%;border:1px solid #e5e7eb;border-radius:6px}
+      table{width:100%;border-collapse:collapse;margin-top:2mm;font-size:10pt}
+      th,td{border:1px solid #e5e7eb;padding:2mm 3mm;text-align:right}
+      th:first-child,td:first-child{text-align:left}
+      .sigrow{display:flex;gap:8mm;margin-top:8mm}
+      .sig{flex:1}
+      .sig img{width:100%;max-height:30mm;border:1px solid #e5e7eb;display:block}
+    `;
+    d.head.appendChild(style);
+
+    const h1=d.createElement('h1'); h1.textContent='OPMETINGSPLAN — Stad Antwerpen'; d.body.appendChild(h1);
+    const meta=d.createElement('div'); meta.textContent='Datum: '+new Date().toLocaleString('nl-BE'); d.body.appendChild(meta);
+
+    if(dataURL){
+      const img=d.createElement('img'); img.className='plan'; img.src=dataURL; d.body.appendChild(img);
+    }else{
+      const warn=d.createElement('div'); warn.textContent='(Kon plan-afbeelding niet capteren)'; d.body.appendChild(warn);
+    }
+
+    // tabellen (V/H)
+    sectionTable('Zones — Verharding (V)', rowsFor('V'));
+    sectionTable('Zones — Halfverharding (H)', rowsFor('H'));
+
+    // handtekeningen
+    const sigrow=d.createElement('div'); sigrow.className='sigrow'; d.body.appendChild(sigrow);
+    addSig('Toezichter (opmeter)', sigA, sigAName, sigADate);
+    addSig('Belanghebbende / gemachtigde', sigB, sigBName, sigBDate);
+
+    w.focus();
+    setTimeout(()=>w.print(), 300);
+
+    function addSig(title, cnv, name, date){
+      const col=d.createElement('div'); col.className='sig'; sigrow.appendChild(col);
+      const t=d.createElement('div'); t.innerHTML='<strong>'+title+'</strong>'; col.appendChild(t);
+      const im=d.createElement('img'); im.src = (cnv && cnv.toDataURL) ? cnv.toDataURL('image/png') : '';
+      col.appendChild(im);
+      const nm=d.createElement('div'); nm.textContent='Naam: '+name; col.appendChild(nm);
+      const dt=d.createElement('div'); dt.textContent='Datum: '+(date||'—'); col.appendChild(dt);
+    }
+    function sectionTable(title, rows){
+      const h2=d.createElement('h2'); h2.textContent=title; d.body.appendChild(h2);
+      if(!rows.length){ const none=d.createElement('div'); none.textContent='Geen zones'; d.body.appendChild(none); return; }
+      const tbl=d.createElement('table'); d.body.appendChild(tbl);
+      const thead=d.createElement('thead'); const trh=d.createElement('tr'); thead.appendChild(trh); tbl.appendChild(thead);
+      ['#','Breedte (m)','Hoogte (m)','Netto A (m²)','Reglementair A (m²)'].forEach(t=>{
+        const th=d.createElement('th'); th.textContent=t; trh.appendChild(th); });
+      const tbody=d.createElement('tbody'); tbl.appendChild(tbody);
+      for(const r of rows){ const tr=d.createElement('tr'); tbody.appendChild(tr);
+        addCell(tr, r.i); addCell(tr, fmtDec(r.w)); addCell(tr, fmtDec(r.h)); addCell(tr, fmtDec(r.A)); addCell(tr, fmtDec(r.Reg)); }
+      function addCell(tr,txt){ const td=d.createElement('td'); td.textContent=txt; tr.appendChild(td); }
+    }
+  }
+})();
+
+/* === PATCH J1 : helpers === */
+function parseBE(s, fallback=0){
+  try{
+    if (s == null) return fallback;
+    if (typeof s !== 'string'){ const n=Number(s); return Number.isFinite(n)?n:fallback; }
+    let t = s.trim(); if (!t) return fallback;
+    if (t.includes(',') && t.includes('.')) t = t.replace(/\./g,'').replace(',', '.');
+    else if (t.includes(',')) t = t.replace(',', '.');
+    const n = Number(t); return Number.isFinite(n)?n:fallback;
+  }catch{ return fallback; }
+}
+
+  function setTool(t){
+    tool = t;
+    for(const b of toolButtons){ b.classList.toggle('active', b.dataset.tool===t); }
+  }
+
+  function resetGrid(){
+    grid = Array.from({length:rows},()=>Array(cols).fill(''));
+    hover = null; down = false;
+  }
+
+ function updateKPI(){
+  try { updateKPIs(); } catch(e){ console.warn('updateKPI wrapper failed:', e); }
+}
+
+
+function getUnits(){
+  const rows = window.rows ?? parseInt(document.querySelector('#rows')?.value || '30', 10);
+  const cols = window.cols ?? parseInt(document.querySelector('#cols')?.value || '30', 10);
+  const csX = document.querySelector('#cellWidth')  ? parseBE(document.querySelector('#cellWidth').value, 0.25)  :
+               document.querySelector('#cellSize')   ? parseBE(document.querySelector('#cellSize').value, 0.25)   : 0.25;
+  const csY = document.querySelector('#cellHeight') ? parseBE(document.querySelector('#cellHeight').value, 0.25) :
+               document.querySelector('#cellSize')   ? parseBE(document.querySelector('#cellSize').value, 0.25)   : 0.25;
+
+  const canvas = document.getElementById('grid') || document.querySelector('#stage canvas') || document.querySelector('canvas');
+  const cssW = canvas?.clientWidth || 900;
+  const cssH = canvas?.clientHeight || cssW;
+  const cw = cssW / cols, ch = cssH / rows;              // pixels per cel
+  const widthM  = cols * csX, heightM = rows * csY;       // meters
+  return { rows, cols, csX, csY, cssW, cssH, cw, ch, widthM, heightM, canvas };
+}
+function getLines(){
+  return {
+    rooi: {
+      t: rooiTypeEl ? rooiTypeEl.value : 'none',
+      p: parseBE(rooiPosEl ? rooiPosEl.value : '0', 0)
+    },
+    voet: {
+      t: voetTypeEl ? voetTypeEl.value : 'none',
+      p: parseBE(voetPosEl ? voetPosEl.value : '0', 0)
+    }
+  };
+}
+/* === GAP-UNIETOOLS (≤ 0.50 m naar rooilijn/voetpad) === */
+
+// 1) Maak pixel-rects voor de gap (van component-bbox tot rooilijn/voetpad), max 0.50 m
+function extraStripRectsToLines(comp){
+  const un   = (typeof getUnits === 'function') ? getUnits() : null;
+  const lines= (typeof getLines === 'function') ? getLines() : {rooi:{t:'none',p:0}, voet:{t:'none',p:0}};
+  if(!un) return [];
+  const rects = [];
+  const minX = comp.minC * un.csX, maxX = (comp.maxC+1) * un.csX;
+  const minY = comp.minR * un.csY, maxY = (comp.maxR+1) * un.csY;
+  const MAX = 0.50; // 50 cm
+
+  function addV(x0,x1){ const gap=x1-x0; if(gap>0 && gap<=MAX) rects.push(pxRect(un, x0, minY, gap, (maxY-minY))); }
+  function addH(y0,y1){ const gap=y1-y0; if(gap>0 && gap<=MAX) rects.push(pxRect(un, minX, y0, (maxX-minX), gap)); }
+
+  // rooilijn verticaal
+  if(lines.rooi.t==='vertical'){
+    if(lines.rooi.p<minX) addV(lines.rooi.p, minX);
+    else if(lines.rooi.p>maxX) addV(maxX, lines.rooi.p);
+  }
+  // voetpadlijn verticaal
+  if(lines.voet.t==='vertical'){
+    if(lines.voet.p<minX) addV(lines.voet.p, minX);
+    else if(lines.voet.p>maxX) addV(maxX, lines.voet.p);
+  }
+  // rooilijn horizontaal
+  if(lines.rooi.t==='horizontal'){
+    if(lines.rooi.p<minY) addH(lines.rooi.p, minY);
+    else if(lines.rooi.p>maxY) addH(maxY, lines.rooi.p);
+  }
+  // voetpadlijn horizontaal
+  if(lines.voet.t==='horizontal'){
+    if(lines.voet.p<minY) addH(lines.voet.p, minY);
+    else if(lines.voet.p>maxY) addH(maxY, lines.voet.p);
+  }
+  return rects;
+
+  function pxRect(un,xM,yM,wM,hM){
+    return { x:(xM/un.widthM)*un.cssW, y:(yM/un.heightM)*un.cssH,
+             w:(wM/un.widthM)*un.cssW, h:(hM/un.heightM)*un.cssH };
+  }
+}
+
+// 2) Unie van rechthoeken in pixels → samengevoegde lijst
+function unionRectsPx(rects){
+  if(!rects || !rects.length) return [];
+  const xs=new Set(), ys=new Set();
+  rects.forEach(r=>{ xs.add(r.x); xs.add(r.x+r.w); ys.add(r.y); ys.add(r.y+r.h); });
+  const X=[...xs].sort((a,b)=>a-b), Y=[...ys].sort((a,b)=>a-b);
+  const cov=Array(Y.length-1).fill(null).map(()=>Array(X.length-1).fill(false));
+  const EPS=1e-6; const idx=(arr,v)=>{let i=0; while(i<arr.length-1 && arr[i]<v-EPS) i++; return i;};
+  rects.forEach(r=>{
+    const x1=idx(X,r.x), x2=idx(X,r.x+r.w), y1=idx(Y,r.y), y2=idx(Y,r.y+r.h);
+    for(let y=y1;y<y2;y++) for(let x=x1;x<x2;x++) cov[y][x]=true;
+  });
+  const used=cov.map(row=>row.map(()=>false)), out=[];
+  for(let y=0;y<cov.length;y++) for(let x=0;x<cov[y].length;x++){
+    if(!cov[y][x]||used[y][x]) continue;
+    let x2=x; while(x2<cov[y].length && cov[y][x2] && !used[y][x2]) x2++;
+    let y2=y+1; outer: for(;y2<cov.length;y2++){ for(let xi=x;xi<x2;xi++) if(!cov[y2][xi]||used[y2][xi]) break outer; }
+    for(let yy=y;yy<y2;yy++) for(let xx=x;xx<x2;xx++) used[yy][xx]=true;
+    out.push({x:X[x], y:Y[y], w:X[x2]-X[x], h:Y[y2]-Y[y]});
+  }
+  return out;
+}
+
+// 3) Bereken m² van de GAP-UNIE (V + H samen, zonder dubbels)
+function computeGapUnionAreaMeters(compsV, compsH){
+  const rects = [];
+  for (const c of compsV) rects.push(...extraStripRectsToLines(c));
+  for (const c of compsH) rects.push(...extraStripRectsToLines(c));
+  if(!rects.length) return 0;
+
+  const uni = unionRectsPx(rects);
+  const un  = (typeof getUnits === 'function') ? getUnits() : null;
+  if(!un) return 0;
+
+  let m2 = 0;
+  for(const r of uni){
+    const wM = (r.w/un.cssW)*un.widthM;
+    const hM = (r.h/un.cssH)*un.heightM;
+    m2 += wM*hM;
+  }
+  return m2;
+}
+
+// bij wijziging: hertekenen + KPI
+[rooiTypeEl, rooiPosEl, voetTypeEl, voetPosEl].forEach(el=>{
+  if(!el) return;
+  el.addEventListener('input', ()=>{
+    try{ drawAll(); }catch(e){ console.warn(e); }
+    try{ updateKPIs(); }catch(e){ console.warn(e); }
+  });
+});
+function unionRectsPx(rects){
+  if(!rects || !rects.length) return [];
+  const xs=new Set(), ys=new Set();
+  rects.forEach(r=>{ xs.add(r.x); xs.add(r.x+r.w); ys.add(r.y); ys.add(r.y+r.h); });
+  const X=[...xs].sort((a,b)=>a-b), Y=[...ys].sort((a,b)=>a-b);
+  const cov=Array(Y.length-1).fill(null).map(()=>Array(X.length-1).fill(false));
+  const EPS=1e-6; const idx=(arr,v)=>{let i=0; while(i<arr.length-1 && arr[i]<v-EPS) i++; return i;};
+  rects.forEach(r=>{
+    const x1=idx(X,r.x), x2=idx(X,r.x+r.w), y1=idx(Y,r.y), y2=idx(Y,r.y+r.h);
+    for(let y=y1;y<y2;y++) for(let x=x1;x<x2;x++) cov[y][x]=true;
+  });
+  const used=cov.map(row=>row.map(()=>false)), out=[];
+  for(let y=0;y<cov.length;y++) for(let x=0;x<cov[y].length;x++){
+    if(!cov[y][x]||used[y][x]) continue;
+    let x2=x; while(x2<cov[y].length && cov[y][x2] && !used[y][x2]) x2++;
+    let y2=y+1; outer: for(;y2<cov.length;y2++){ for(let xi=x;xi<x2;xi++) if(!cov[y2][xi]||used[y2][xi]) break outer; }
+    for(let yy=y;yy<y2;yy++) for(let xx=x;xx<x2;xx++) used[yy][xx]=true;
+    out.push({x:X[x], y:Y[y], w:X[x2]-X[x], h:Y[y2]-Y[y]});
+  }
+  return out;
+}
+
+  // helper om een cel te testen op leegheid (PATCH J1)
+function isEmptyCell(r,c){
+  try{
+    return (window.grid?.[r]?.[c] ?? '') === '';
+  }catch(e){ return true; } // buiten raster: beschouw als leeg
+}
+function cellVal(r,c){
+  try{ return window.grid?.[r]?.[c] ?? ''; }catch(e){ return ''; }
+}
+/* === PATCH J2 : open randen + clipDepth === */
+function clipDepth(dir, edgePosM, bufferM, lines){
+  // edgePosM = positie van de rand (in meter), bufferM = gewenste diepte (m)
+  let w = bufferM;
+  const R = lines.rooi, V = lines.voet;
+
+  const clampN = (yTop)=>{ // N (omhoog)
+    if(R.t==='horizontal' && R.p <= yTop && R.p >= yTop - w) w = Math.min(w, yTop - R.p);
+    if(V.t==='horizontal' && V.p <= yTop && V.p >= yTop - w) w = Math.min(w, yTop - V.p);
+  };
+  const clampS = (yBot)=>{ // S (omlaag)
+    if(R.t==='horizontal' && R.p >= yBot && R.p <= yBot + w) w = Math.min(w, R.p - yBot);
+    if(V.t==='horizontal' && V.p >= yBot && V.p <= yBot + w) w = Math.min(w, V.p - yBot);
+  };
+  const clampW = (xLeft)=>{ // W (links)
+    if(R.t==='vertical' && R.p <= xLeft && R.p >= xLeft - w) w = Math.min(w, xLeft - R.p);
+    if(V.t==='vertical' && V.p <= xLeft && V.p >= xLeft - w) w = Math.min(w, xLeft - V.p);
+  };
+  const clampE = (xRight)=>{ // E (rechts)
+    if(R.t==='vertical' && R.p >= xRight && R.p <= xRight + w) w = Math.min(w, R.p - xRight);
+    if(V.t==='vertical' && V.p >= xRight && V.p <= xRight + w) w = Math.min(w, V.p - xRight);
+  };
+
+  if(dir==='N') clampN(edgePosM);
+  if(dir==='S') clampS(edgePosM);
+  if(dir==='W') clampW(edgePosM);
+  if(dir==='E') clampE(edgePosM);
+
+  return Math.max(0, w);
+}
+
+function openEdgesClipped(comp, type, units, bufferM, lines){
+  const S = new Set(comp.cells.map(a=>a[0]+','+a[1])); // eigen cellen V-of-H component
+  const out = [];
+  for(const [rr,cc] of comp.cells){
+    const xL = cc * units.csX, xR = (cc+1) * units.csX;
+    const yT = rr * units.csY, yB = (rr+1) * units.csY;
+
+    // Alleen "vrije rand": buurcel = leeg (''), niet V/H.
+    // N
+    if(!S.has((rr-1)+','+cc) && (cellVal(rr-1,cc) === '')){
+      const w = clipDepth('N', yT, bufferM, lines);
+      if(w>0) out.push({dir:'N', x0:xL, y:yT, w});
+    }
+    // S
+    if(!S.has((rr+1)+','+cc) && (cellVal(rr+1,cc) === '')){
+      const w = clipDepth('S', yB, bufferM, lines);
+      if(w>0) out.push({dir:'S', x0:xL, y:yB, w});
+    }
+    // W
+    if(!S.has(rr+','+(cc-1)) && (cellVal(rr,cc-1) === '')){
+      const w = clipDepth('W', xL, bufferM, lines);
+      if(w>0) out.push({dir:'W', x:xL, y0:yT, w});
+    }
+    // E
+    if(!S.has(rr+','+(cc+1)) && (cellVal(rr,cc+1) === '')){
+      const w = clipDepth('E', xR, bufferM, lines);
+      if(w>0) out.push({dir:'E', x:xR, y0:yT, w});
+    }
+  }
+  return out;
+}
+
+  function resizeCanvasToDisplaySize(){
+    const dpr = Math.min(1.75, window.devicePixelRatio || 1);
+    const rect = canvas.getBoundingClientRect();
+    const w = Math.round(rect.width * dpr);
+    const h = Math.round(rect.height * dpr);
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w; canvas.height = h;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+  }
+
+  function clearCanvas(){
+    ctx.save();
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.restore();
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+  }
+
+  function drawGrid(){
+    const rect = canvas.getBoundingClientRect();
+    const cw = parseFloat(cellWidthEl.value);
+    const ch = parseFloat(cellHeightEl.value);
+    
+    // Bereken schaal om alle cellen passend te maken
+    const totalWidth = cols * cw;  // Totale breedte in meters
+    const totalHeight = rows * ch; // Totale hoogte in meters
+    const scale = Math.min(rect.width/totalWidth, rect.height/totalHeight);
+    
+    // Bereken werkelijke pixel-afmetingen van cellen
+    const csX = cw * scale;
+    const csY = ch * scale;
+    
+    // Centreer het grid
+    const offsetX = (rect.width - (cols * csX)) / 2;
+    const offsetY = (rect.height - (rows * csY)) / 2;
+    
+    ctx.save();
+    ctx.translate(offsetX, offsetY);
+
+// H eerst (blauw)
+for (let r=0; r<rows; r++){
+  for (let c=0; c<cols; c++){
+    if (grid[r][c] === 'H'){
+      ctx.fillStyle = '#3b82f666';
+      ctx.fillRect(c*csX, r*csY, csX, csY);
+    }
+  }
+}
+// V daarna (rood)
+for (let r=0; r<rows; r++){
+  for (let c=0; c<cols; c++){
+    if (grid[r][c] === 'V'){
+      ctx.fillStyle = '#ef444466';
+      ctx.fillRect(c*csX, r*csY, csX, csY);
+    }
+  }
+}
+
+    // Rasterlijnen
+    ctx.strokeStyle = '#e5e7eb';
+    ctx.lineWidth = 1;
+    for (let r=0; r<=rows; r++){
+        const y = r * csY;
+        ctx.beginPath(); 
+        ctx.moveTo(0, y); 
+        ctx.lineTo(cols*csX, y); 
+        ctx.stroke();
+    }
+    for (let c=0; c<=cols; c++){
+        const x = c * csX;
+        ctx.beginPath(); 
+        ctx.moveTo(x, 0); 
+        ctx.lineTo(x, rows*csY); 
+        ctx.stroke();
+    }
+
+    // Teken maatvoering als showDims aangevinkt is
+    if(showDimsEl.checked){
+        ctx.font = '12px Inter';
+        ctx.fillStyle = '#374151';
+        // Breedte bovenaan
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(`${cw}m`, csX/2, -5);
+        // Hoogte links
+        ctx.save();
+        ctx.translate(-5, csY/2);
+        ctx.rotate(-Math.PI/2);
+        ctx.fillText(`${ch}m`, 0, 0);
+        ctx.restore();
+    }
+
+    ctx.restore();
+  }
+
+  // Vervang bestaande drawBuffer() door deze implementatie die masken bouwt en H-voorrang toepast,
+// plus helper computeRegMasks() die zowel 'exact' als 'strook' ondersteunt.
+function findComponents(type){
+  const out = [];
+  const vis = Array.from({length:rows}, ()=>Array(cols).fill(false));
+  const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      if(!vis[r][c] && grid[r][c]===type){
+        const cells=[], Q=[[r,c]]; vis[r][c]=true;
+        let minR=r,maxR=r,minC=c,maxC=c;
+        while(Q.length){
+          const [rr,cc]=Q.shift(); cells.push([rr,cc]);
+          minR=Math.min(minR,rr); maxR=Math.max(maxR,rr);
+          minC=Math.min(minC,cc); maxC=Math.max(maxC,cc);
+          for(const [dr,dc] of dirs){
+            const nr=rr+dr, nc=cc+dc;
+            if(nr>=0&&nr<rows&&nc>=0&&nc<cols && !vis[nr][nc] && grid[nr][nc]===type){
+              vis[nr][nc]=true; Q.push([nr,nc]);
+            }
+          }
+        }
+        out.push({cells,minR,maxR,minC,maxC});
+      }
+    }
+  }
+  return out;
+}
+
+
+function computeRegMasks(cw, ch, bufferM, mode){
+  const sub = 8;
+  const microRows = rows * sub;
+  const microCols = cols * sub;
+  const mx = cw / sub; // meters per microcell x
+  const my = ch / sub; // meters per microcell y
+  const microArea = mx * my;
+
+  const maskV = new Uint8Array(microRows * microCols);
+  const maskH = new Uint8Array(microRows * microCols);
+
+  function setRect(mask, r0, c0, r1, c1){
+    const rs = Math.max(0, Math.floor(r0));
+    const re = Math.min(microRows - 1, Math.floor(r1));
+    const cs = Math.max(0, Math.floor(c0));
+    const ce = Math.min(microCols - 1, Math.floor(c1));
+    for (let rr = rs; rr <= re; rr++){
+      let idx = rr * microCols + cs;
+      for (let cc = cs; cc <= ce; cc++, idx++){
+        mask[idx] = 1;
+      }
+    }
+  }
+
+  const compsV = findComponents('V');
+  const compsH = findComponents('H');
+
+  if (mode === 'strook'){
+    const padY = Math.ceil(bufferM / my);
+    const padX = Math.ceil(bufferM / mx);
+    for (const comp of compsV){
+      const r0 = comp.minR * sub - padY;
+      const c0 = comp.minC * sub - padX;
+      const r1 = (comp.maxR + 1) * sub - 1 + padY;
+      const c1 = (comp.maxC + 1) * sub - 1 + padX;
+      setRect(maskV, r0, c0, r1, c1);
+    }
+    for (const comp of compsH){
+      const r0 = comp.minR * sub - padY;
+      const c0 = comp.minC * sub - padX;
+      const r1 = (comp.maxR + 1) * sub - 1 + padY;
+      const c1 = (comp.maxC + 1) * sub - 1 + padX;
+      setRect(maskH, r0, c0, r1, c1);
+    }
+  } else {
+    // Exact mode: voor iedere component, markeer eerst de primaire microcellen,
+    // daarna voor elke microcel in een begrensde box: als de afstand tot enige primaire cel <= bufferM, markeer.
+    function markExact(comp, mask){
+      const prim = [];
+      for (const [r, c] of comp.cells){
+        const baseR = r * sub, baseC = c * sub;
+        for (let dr = 0; dr < sub; dr++){
+          for (let dc = 0; dc < sub; dc++){
+            const mr = baseR + dr, mc = baseC + dc;
+            mask[mr * microCols + mc] = 1;
+            prim.push({ x: (mc + 0.5) * mx, y: (mr + 0.5) * my });
+          }
+        }
+      }
+      const minMR = Math.max(0, comp.minR * sub - Math.ceil(bufferM / my));
+      const maxMR = Math.min(microRows - 1, (comp.maxR + 1) * sub - 1 + Math.ceil(bufferM / my));
+      const minMC = Math.max(0, comp.minC * sub - Math.ceil(bufferM / mx));
+      const maxMC = Math.min(microCols - 1, (comp.maxC + 1) * sub - 1 + Math.ceil(bufferM / mx));
+      const buf2 = bufferM * bufferM;
+      for (let mr = minMR; mr <= maxMR; mr++){
+        const y = (mr + 0.5) * my;
+        for (let mc = minMC; mc <= maxMC; mc++){
+          const idx = mr * microCols + mc;
+          if (mask[idx]) continue;
+          const x = (mc + 0.5) * mx;
+          let minD2 = Infinity;
+          for (let k = 0; k < prim.length; k++){
+            const dx = x - prim[k].x;
+            const dy = y - prim[k].y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < minD2) minD2 = d2;
+            if (minD2 <= buf2) break;
+          }
+          if (minD2 <= buf2) mask[idx] = 1;
+        }
+      }
+    }
+    for (const comp of compsV) markExact(comp, maskV);
+    for (const comp of compsH) markExact(comp, maskH);
+  }
+
+  return { maskV, maskH, microRows, microCols, sub, microArea };
+}
+
+function drawBuffer(){
+
+
+if (!showBufferEl || !showBufferEl.checked) return;
+
+  const { csX, csY, offsetX, offsetY } = getGridMetrics();
+  const bufferM = parseFloat(bufferEl?.value || '0.30');
+  let mode = (bufferModeEl && bufferModeEl.value) ? bufferModeEl.value : 'strip';
+  if (mode === 'exact') mode = 'euclid'; // oude alias
+
+  // masks op microcelniveau
+  const { maskV, maskH, microRows, microCols, sub } =
+    computeRegMasks(parseFloat(cellWidthEl?.value || '0.25'),
+                    parseFloat(cellHeightEl?.value || '0.25'),
+                    bufferM, mode);
+
+  const microPxX = csX / sub;
+  const microPxY = csY / sub;
+
+  // --- V-voorrang visueel: haal overlap uit H weg, V blijft intact
+  const maskHdraw = maskH.slice();
+  for (let i = 0; i < maskHdraw.length; i++){
+    if (maskV[i] && maskHdraw[i]) maskHdraw[i] = 0;
+  }
+
+  const ctx2 = ctx; // zelfde canvas-context
+  ctx2.save();
+  ctx2.translate(offsetX, offsetY);
+
+  // 1) H-buffer (blauw) ONDER
+  ctx2.fillStyle = 'rgba(59,130,246,0.18)';
+  for (let mr = 0, idx = 0; mr < microRows; mr++){
+    for (let mc = 0; mc < microCols; mc++, idx++){
+      if (maskHdraw[idx]) ctx2.fillRect(mc * microPxX, mr * microPxY, microPxX, microPxY);
+    }
+  }
+
+  // 2) V-buffer (rood) BOVEN (geen check meer tegen H)
+  ctx2.fillStyle = 'rgba(239,68,68,0.18)';
+  for (let mr = 0, idx = 0; mr < microRows; mr++){
+    for (let mc = 0; mc < microCols; mc++, idx++){
+      if (maskV[idx]) ctx2.fillRect(mc * microPxX, mr * microPxY, microPxX, microPxY);
+    }
+  }
+
+  ctx2.restore();
+}
+function drawAll(){
+  clearCanvas();
+  try { drawGrid(); }        catch(e){ console.error('drawGrid()', e); }
+  try { drawGuides(); }      catch(e){ console.error('drawGuides()', e); }
+  try { drawBuffer(); }      catch(e){ console.error('drawBuffer()', e); } // buffer mag NOOIT tekenen blokkeren
+  try { if (hover) drawHover(); } catch(e){ console.error('drawHover()', e); }
+}
+
+
+  clearCanvas();
+  try { drawGrid(); }        catch(e){ console.error('drawGrid()', e); }
+  try { drawGuides(); }      catch(e){ console.error('drawGuides()', e); }
+  try { drawBuffer(); }      catch(e){ console.error('drawBuffer()', e); } // buffer mag NOOIT tekenen blokkeren
+  try { if (hover) drawHover(); } catch(e){ console.error('drawHover()', e); }
+}
+function drawGuides(){
+  const { csX, csY, offsetX, offsetY, cw, ch } = getGridMetrics();
+  const lines = getLines();
+  const totalW = cols * cw;
+  const totalH = rows * ch;
+
+  ctx.save();
+  ctx.translate(offsetX, offsetY);
+
+  // (optioneel) maatvoering
+  if (window.showDimsEl && showDimsEl.checked){
+    ctx.strokeStyle = '#9ca3af';
+    ctx.fillStyle   = '#374151';
+    ctx.lineWidth   = 1;
+    ctx.font        = '12px Inter';
+    ctx.textAlign   = 'center'; ctx.textBaseline = 'bottom';
+    ctx.beginPath(); ctx.moveTo(0,-14); ctx.lineTo(cols*csX,-14); ctx.stroke();
+    ctx.fillText(`${totalW.toFixed(2)} m`, (cols*csX)/2, -18);
+
+    ctx.save();
+    ctx.translate(-14, 0); ctx.rotate(-Math.PI/2);
+    ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(rows*csY,0); ctx.stroke();
+    ctx.fillText(`${totalH.toFixed(2)} m`, (rows*csY)/2, -4);
+    ctx.restore();
+  }
+
+  // Rooilijn (rood streep)
+  if (lines.rooi.t !== 'none'){
+    ctx.setLineDash([6,6]); ctx.lineWidth = 2; ctx.strokeStyle = '#ef4444';
+    if (lines.rooi.t === 'vertical'){
+      // lines.rooi.p in meter → canvas x
+      const x = (lines.rooi.p / (cols * cw)) * (cols * csX);
+      ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,rows*csY); ctx.stroke();
+    } else {
+      const y = (lines.rooi.p / (rows * ch)) * (rows * csY);
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(cols*csX,y); ctx.stroke();
+    }
+  }
+
+  // Voetpadlijn (blauw streep)
+  if (lines.voet.t !== 'none'){
+    ctx.setLineDash([6,6]); ctx.lineWidth = 2; ctx.strokeStyle = '#2563eb';
+    if (lines.voet.t === 'vertical'){
+      const x = (lines.voet.p / (cols * cw)) * (cols * csX);
+      ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,rows*csY); ctx.stroke();
+    } else {
+      const y = (lines.voet.p / (rows * ch)) * (rows * csY);
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(cols*csX,y); ctx.stroke();
+    }
+  }
+
+  ctx.restore();
+}
+
+// In drawAll():
+// ...
+// drawGrid();
+try { drawGuides(); } catch(e){ console.warn('drawGuides', e); }
+// drawBuffer();
+// ...
+
+
+  function drawHover(){
+    if(!hover) return;
+    const rect = canvas.getBoundingClientRect();
+    const cw = parseFloat(cellWidthEl.value);
+    const ch = parseFloat(cellHeightEl.value);
+    const totalWidth = cols * cw;
+    const totalHeight = rows * ch;
+    const scale = Math.min(rect.width/totalWidth, rect.height/totalHeight);
+    const csX = cw * scale;
+    const csY = ch * scale;
+    const offsetX = (rect.width - (cols * csX)) / 2;
+    const offsetY = (rect.height - (rows * csY)) / 2;
+
+    ctx.save();
+    ctx.translate(offsetX, offsetY);
+    ctx.strokeStyle = '#000';
+    ctx.strokeRect(hover.c*csX, hover.r*csY, csX, csY);
+    ctx.restore();
+  }
+
+  function setTool(t){
+    tool = t;
+    toolButtons.forEach(b => b.classList.toggle('active', b.dataset.tool === t));
+  }
+
+function initGrid(r, c){
+  rows = r; 
+  cols = c;
+
+  // leeg = '' (geen null)
+  grid = Array.from({length: rows}, () => Array(cols).fill(''));
+  history = [];
+  redoStack = [];
+
+  // houd window.grid in sync voor helpers die daarop rekenen
+  window.grid = grid;
+
+  resizeCanvasToDisplaySize();
+  drawAll();
+
+  // startsnapshot voor undo
+  history.push(JSON.stringify(grid));
+
+  // KPI-update niet laten crashen bij init
+  requestAnimationFrame(() => { 
+    try { updateKPIs(); } catch(e){ console.warn(e); } 
+  });
+}
+
+function safeUpdateKPIs() {
+  requestAnimationFrame(() => {
+    try {
+      updateKPIs();
+    } catch (err) {
+      console.warn('updateKPIs() faalde bij init, probeer later nog eens:', err);
+      // 2e poging iets later, zonder de init te blokkeren
+      setTimeout(() => {
+        try { updateKPIs(); } catch(e){ console.error('updateKPIs() blijft falen:', e); }
+      }, 0);
+      const setDec = (id,v)=>{ const el=document.getElementById(id); if(el) el.textContent = new Intl.NumberFormat('nl-BE',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v); };
+// ...
+setDec('m2GapUnion', gapT || 0);
+
+    }
+  });
+}
+
+  function getGridMetrics() {
+    const rect = canvas.getBoundingClientRect();
+    const cw = parseFloat(cellWidthEl.value);
+    const ch = parseFloat(cellHeightEl.value);
+    const totalWidth = cols * cw;
+    const totalHeight = rows * ch;
+    const scale = Math.min(rect.width / totalWidth, rect.height / totalHeight);
+    const csX = cw * scale;
+    const csY = ch * scale;
+    const offsetX = (rect.width - cols * csX) / 2;
+    const offsetY = (rect.height - rows * csY) / 2;
+    return { csX, csY, offsetX, offsetY, scale, cw, ch };
+  }
+
+  function getCellFromEvent(e) {
+    const { csX, csY, offsetX, offsetY } = getGridMetrics();
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left - offsetX;
+    const y = e.clientY - rect.top - offsetY;
+    const c = Math.floor(x / csX);
+    const r = Math.floor(y / csY);
+    if (r < 0 || r >= rows || c < 0 || c >= cols) return null;
+    return { r, c };
+  }
+/* === PATCH G-U1: unie van gap-stroken (≤ 0.50 m) naar rooilijn/voetpad === */
+function computeGapUnionAreaMeters(compsV, compsH){
+  if (typeof extraStripRectsToLines !== 'function' || typeof unionRectsPx !== 'function') return 0;
+
+  const rects = [];
+  for (const comp of compsV) rects.push(...extraStripRectsToLines(comp));
+  for (const comp of compsH) rects.push(...extraStripRectsToLines(comp));
+
+  if (!rects.length) return 0;
+
+  // Unie in pixelruimte
+  const uni = unionRectsPx(rects);
+
+  // Pixels → meters omzetten
+  const un = (typeof getUnits === 'function') ? getUnits() : null;
+  if (!un) return 0;
+
+  let m2 = 0;
+  for (const r of uni){
+    const wM = (r.w / un.cssW) * un.widthM;
+    const hM = (r.h / un.cssH) * un.heightM;
+    m2 += wM * hM;
+  }
+  return m2;
+}
+
+function paintAt(e){
+  const cell = getCellFromEvent(e);
+  if (!cell) return;
+  const desired = (tool === 'E') ? '' : (tool === 'V' ? 'V' : 'H');
+  if (grid[cell.r][cell.c] === desired) return;
+
+  history.push(JSON.stringify(grid)); // snapshot vóór wijziging
+  redoStack.length = 0;               // nieuwe tak → redo leeg
+  grid[cell.r][cell.c] = desired;
+
+  drawAll();
+  updateKPIs();
+  window.grid = grid; // houd helpers die window.grid gebruiken in sync
+
+}
+
+  
+  /* ===== Reglementaire unie / KPI ===== */
+
+  // Vervang de bestaande updateKPIs() door deze versie die de unie correct berekent
+// ===== Drop-in vervanger voor updateKPIs =====
+// ===== updateKPIs (fix: gebruik lokale grid als die bestaat) =====
+function updateKPIs(){
+  const $ = (s) => document.querySelector(s);
+  const setTxt = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  const nf = new Intl.NumberFormat('nl-BE',{minimumFractionDigits:2, maximumFractionDigits:2});
+  const cf = new Intl.NumberFormat('nl-BE',{style:'currency', currency:'EUR'});
+  const parseBE = (s, fallback=0) => {
+    try{
+      if (s == null) return fallback;
+      if (typeof s !== 'string'){ const n = Number(s); return Number.isFinite(n)?n:fallback; }
+      let t = s.trim(); if(!t) return fallback;
+      if (t.includes(',') && t.includes('.')) t = t.replace(/\./g,'').replace(',', '.');
+      else if (t.includes(',')) t = t.replace(',', '.');
+      const n = Number(t); return Number.isFinite(n)?n:fallback;
+    }catch{ return fallback; }
+  };
+
+  try{
+    // ---- Eenheden & tarieven ----
+    const cw = parseBE((window.cellWidthEl?.value ?? $('#cellWidth')?.value ?? $('#cellSize')?.value), 0.25); // m
+    const ch = parseBE((window.cellHeightEl?.value ?? $('#cellHeight')?.value ?? $('#cellSize')?.value), 0.25); // m
+    const bufferM = parseBE((window.bufferEl?.value ?? $('#bufferM')?.value), 0.30);
+    const minZone = parseBE((window.minZoneEl?.value ?? $('#minZoneM2')?.value), 1.00);
+    const rateV = parseBE($('#rateV')?.value, 180);
+    const rateH = parseBE($('#rateH')?.value, 120);
+
+    // ---- Kies juiste grid ----
+    // Neem lokale 'grid' als die bestaat; anders window.grid; anders lege matrix.
+    const G = (typeof grid !== 'undefined' && Array.isArray(grid))
+      ? grid
+      : (Array.isArray(window.grid) ? window.grid : []);
+
+    const R = G.length;
+    const C = R ? (Array.isArray(G[0]) ? G[0].length : 0) : 0;
+
+    // ---- Netto telling ----
+    let cV = 0, cH = 0;
+    for(let r=0; r<R; r++){
+      const row = G[r] || [];
+      for(let c=0; c<C; c++){
+        const v = row[c];
+        if (v === 'V') cV++;
+        else if (v === 'H') cH++;
+      }
+    }
+    const m2V = cV * cw * ch;
+    const m2H = cH * cw * ch;
+    const m2T = m2V + m2H;
+
+    // ---- Reglementair (twee paden) ----
+    let mode = ($('#bufferMode')?.value || 'strip');
+    if (!['strip','euclid','exact'].includes(mode)) mode = 'strip';
+    if (mode === 'exact') mode = 'euclid';
+
+    let m2VReg = 0, m2HReg = 0, m2TReg = 0;
+
+if (typeof computeRegUnionAreas === 'function'){
+  const out = computeRegUnionAreas(cw, ch, bufferM, minZone, mode, m2V, m2H);
+  if (out && Number.isFinite(out.m2VReg)) {
+    // basis (buffer-unie al correct)
+    let baseV = out.m2VReg, baseH = out.m2HReg, baseT = out.m2TReg;
+
+    // GAP-UNIE (≤ 0.50 m tot rooilijn/voetpad), zonder dubbels
+    let gapT = 0;
+    if (typeof findComponents === 'function' && typeof computeGapUnionAreaMeters === 'function'){
+      const compsV = findComponents('V');
+      const compsH = findComponents('H');
+      gapT = computeGapUnionAreaMeters(compsV, compsH);
+    }
+
+    if (gapT > 0){
+      // verdeel proportioneel over V/H, totaal wordt +gapT
+      const sumBase = Math.max(baseV + baseH, 1e-9);
+      const addV = baseV > 0 ? gapT * (baseV / sumBase) : (baseH>0 ? 0 : gapT);
+      const addH = baseH > 0 ? gapT * (baseH / sumBase) : (baseV>0 ? 0 : gapT);
+      m2VReg = baseV + addV;
+      m2HReg = baseH + addH;
+      m2TReg = baseT + gapT;
+    } else {
+      m2VReg = baseV; m2HReg = baseH; m2TReg = baseT;
+    }
+  }
+} else {
+  // fallback (laat zoals je had, die telt per component reeds extra gap mee)
+}
+
+      const haveFind = (typeof findComponents === 'function');
+      const compsV = haveFind ? findComponents('V') : [];
+      const compsH = haveFind ? findComponents('H') : [];
+
+      const ringOf = (comp) => {
+        if (typeof ringAreaClipped === 'function') return ringAreaClipped(comp); // met rooi/voet-clipping
+        // eenvoudige strookfallback
+        const S = new Set(comp.cells.map(a=>a[0]+','+a[1])); let sum=0;
+        for(const [rr,cc] of comp.cells){
+          const nOpen=!S.has((rr-1)+','+cc) && ((G?.[rr-1]?.[cc] ?? '')==='');
+          const sOpen=!S.has((rr+1)+','+cc) && ((G?.[rr+1]?.[cc] ?? '')==='');
+          const wOpen=!S.has(rr+','+(cc-1)) && ((G?.[rr]?.[cc-1] ?? '')==='');
+          const eOpen=!S.has(rr+','+(cc+1)) && ((G?.[rr]?.[cc+1] ?? '')==='');
+          if(nOpen) sum+=bufferM*cw; if(sOpen) sum+=bufferM*cw;
+          if(wOpen) sum+=bufferM*ch; if(eOpen) sum+=bufferM*ch;
+          if(nOpen&&wOpen) sum+=bufferM*bufferM;
+          if(nOpen&&eOpen) sum+=bufferM*bufferM;
+          if(sOpen&&wOpen) sum+=bufferM*bufferM;
+          if(sOpen&&eOpen) sum+=bufferM*bufferM;
+        }
+        return sum;
+      };
+      const extraGap = (comp) => (typeof extraStripAreaToLines==='function') ? extraStripAreaToLines(comp) : 0;
+      const areaOf = (comp) => comp.cells.length * cw * ch;
+
+      m2VReg = compsV.reduce((s,comp)=>Math.max(areaOf(comp)+ringOf(comp)+extraGap(comp), minZone)+s,0);
+      m2HReg = compsH.reduce((s,comp)=>Math.max(areaOf(comp)+ringOf(comp)+extraGap(comp), minZone)+s,0);
+      m2TReg = m2VReg + m2HReg; // NB: geen V+H-unie in fallback
+    }
+
+    // ---- € ----
+    const eurV = m2V * rateV;
+    const eurH = m2H * rateH;
+    const eurVReg = m2VReg * rateV;
+    const eurHReg = m2HReg * rateH;
+    const eurT = eurV + eurH;
+    const eurTReg = eurVReg + eurHReg;
+
+    // ---- UI ----
+    const setDec = (id,v)=>setTxt(id, nf.format(v));
+    const setEUR = (id,v)=>setTxt(id, cf.format(v));
+
+    setTxt('kpiV', cV); setTxt('kpiH', cH);
+    setDec('m2V', m2V); setDec('m2H', m2H); setDec('m2T', m2T);
+    setDec('m2VReg', m2VReg); setDec('m2HReg', m2HReg); setDec('m2TReg', m2TReg);
+    setEUR('eurV', eurV); setEUR('eurH', eurH); setEUR('eurT', eurT);
+    setEUR('eurVReg', eurVReg); setEUR('eurHReg', eurHReg); setEUR('eurTReg', eurTReg);
+
+  }catch(err){
+    console.warn('updateKPIs() error:', err);
+  }
+}
+
+function computeRegUnionAreas(cw, ch, bufferM, minZone, mode, m2V, m2H){
+  // --- normaliseer mode ---
+  mode = (mode || 'euclid').toLowerCase();
+  if (mode === 'exact') mode = 'euclid';
+  if (mode === 'strook') mode = 'strip';
+
+  const sub = 8; // microresolutie per cel
+  const microRows = rows * sub;
+  const microCols = cols * sub;
+  const mx = cw / sub; // meters per microcel (horizontaal)
+  const my = ch / sub; // meters per microcel (verticaal)
+  const microArea = mx * my;
+
+  const maskV = new Uint8Array(microRows * microCols);
+  const maskH = new Uint8Array(microRows * microCols);
+
+  // --- helpers ---
+  function setRect(mask, r0,c0, r1,c1){
+    const rStart = Math.max(0, r0);
+    const rEnd   = Math.min(microRows-1, r1);
+    const cStart = Math.max(0, c0);
+    const cEnd   = Math.min(microCols-1, c1);
+    for(let rr=rStart; rr<=rEnd; rr++){
+      let base = rr * microCols + cStart;
+      for(let cc=cStart; cc<=cEnd; cc++, base++) mask[base] = 1;
+    }
+  }
+  function bfsComponents(type){
+    if (typeof findComponents === 'function') return findComponents(type);
+    // Fallback: eenvoudige BFS
+    const vis = Array.from({length:rows}, ()=>Array(cols).fill(false));
+    const out = [];
+    const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        if(!vis[r][c] && grid[r][c]===type){
+          const cells=[], Q=[[r,c]]; vis[r][c]=true;
+          let minR=r,maxR=r,minC=c,maxC=c;
+          while(Q.length){
+            const [rr,cc]=Q.shift(); cells.push([rr,cc]);
+            minR=Math.min(minR,rr); maxR=Math.max(maxR,rr);
+            minC=Math.min(minC,cc); maxC=Math.max(maxC,cc);
+            for(const [dr,dc] of dirs){
+              const nr=rr+dr, nc=cc+dc;
+              if(nr>=0&&nr<rows&&nc>=0&&nc<cols && !vis[nr][nc] && grid[nr][nc]===type){
+                vis[nr][nc]=true; Q.push([nr,nc]);
+              }
+            }
+          }
+          out.push({cells,minR,maxR,minC,maxC});
+        }
+      }
+    }
+    return out;
+  }
+
+  const compsV = bfsComponents('V');
+  const compsH = bfsComponents('H');
+
+  if (mode === 'strip'){
+    // --- strook: bbox + pad (eenvoudige strookbenadering) ---
+    const padMicroY = Math.ceil(bufferM / my);
+    const padMicroX = Math.ceil(bufferM / mx);
+    for(const comp of compsV){
+      const r0 = comp.minR * sub - padMicroY;
+      const c0 = comp.minC * sub - padMicroX;
+      const r1 = (comp.maxR+1) * sub - 1 + padMicroY;
+      const c1 = (comp.maxC+1) * sub - 1 + padMicroX;
+      setRect(maskV, r0, c0, r1, c1);
+    }
+    for(const comp of compsH){
+      const r0 = comp.minR * sub - padMicroY;
+      const c0 = comp.minC * sub - padMicroX;
+      const r1 = (comp.maxR+1) * sub - 1 + padMicroY;
+      const c1 = (comp.maxC+1) * sub - 1 + padMicroX;
+      setRect(maskH, r0, c0, r1, c1);
+    }
+  } else {
+    // --- euclid: per component exact bufferen op microcel-niveau ---
+    function markExactForComponent(comp, mask){
+      const prim = [];
+      for (const [r,c] of comp.cells){
+        const baseR = r * sub, baseC = c * sub;
+        for (let dr=0; dr<sub; dr++){
+          for (let dc=0; dc<sub; dc++){
+            const mr = baseR + dr, mc = baseC + dc;
+            mask[mr * microCols + mc] = 1;
+            prim.push({ x:(mc+0.5)*mx, y:(mr+0.5)*my });
+          }
+        }
+      }
+      if (!prim.length) return;
+      const bY = Math.ceil(bufferM / my), bX = Math.ceil(bufferM / mx);
+      const minMR = Math.max(0, comp.minR * sub - bY);
+      const maxMR = Math.min(microRows - 1, (comp.maxR + 1) * sub - 1 + bY);
+      const minMC = Math.max(0, comp.minC * sub - bX);
+      const maxMC = Math.min(microCols - 1, (comp.maxC + 1) * sub - 1 + bX);
+      const buf2 = bufferM * bufferM;
+
+      for (let mr=minMR; mr<=maxMR; mr++){
+        const y = (mr + 0.5) * my;
+        for (let mc=minMC; mc<=maxMC; mc++){
+          const idx = mr * microCols + mc;
+          if (mask[idx]) continue; // al primair
+          const x = (mc + 0.5) * mx;
+          let minD2 = Infinity;
+          for (let k=0; k<prim.length; k++){
+            const dx = x - prim[k].x;
+            const dy = y - prim[k].y;
+            const d2 = dx*dx + dy*dy;
+            if (d2 < minD2) minD2 = d2;
+            if (minD2 <= buf2) break;
+          }
+          if (minD2 <= buf2) mask[idx] = 1;
+        }
+      }
+    }
+    for (const comp of compsV) markExactForComponent(comp, maskV);
+    for (const comp of compsH) markExactForComponent(comp, maskH);
+  }
+
+  // --- V-voorrang in de berekening: haal overlap uit H ---
+  for (let i=0; i<maskV.length; i++){
+    if (maskV[i] && maskH[i]) maskH[i] = 0;
+  }
+
+  // tellen
+  let cV=0, cH=0, cU=0;
+  for (let i=0; i<maskV.length; i++){
+    const v = maskV[i] ? 1 : 0;
+    const h = maskH[i] ? 1 : 0;
+    if (v) cV++;
+    if (h) cH++;
+    if (v || h) cU++;
+  }
+
+  let areaV = cV * microArea;
+  let areaH = cH * microArea;
+  let areaU = cU * microArea;
+
+  // minZone alleen als er iets is (V of H aanwezig)
+  if (areaU < minZone && (areaV > 0 || areaH > 0)) areaU = minZone;
+
+  return { m2VReg: areaV, m2HReg: areaH, m2TReg: areaU,
+           maskV, maskH, microRows, microCols, sub, microArea };
+}
+
+
+
+
+  const maskV = new Uint8Array(microRows * microCols);
+  const maskH = new Uint8Array(microRows * microCols);
+
+  // --- helpers ---
+  function setRect(mask, r0,c0, r1,c1){
+    const rStart = Math.max(0, r0);
+    const rEnd   = Math.min(microRows-1, r1);
+    const cStart = Math.max(0, c0);
+    const cEnd   = Math.min(microCols-1, c1);
+    for(let rr=rStart; rr<=rEnd; rr++){
+      let base = rr * microCols + cStart;
+      for(let cc=cStart; cc<=cEnd; cc++, base++) mask[base] = 1;
+    }
+  }
+  function bfsComponents(type){
+    if (typeof findComponents === 'function') return findComponents(type);
+    // Fallback: eenvoudige BFS
+    const vis = Array.from({length:rows}, ()=>Array(cols).fill(false));
+    const out = [];
+    const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        if(!vis[r][c] && grid[r][c]===type){
+          const cells=[], Q=[[r,c]]; vis[r][c]=true;
+          let minR=r,maxR=r,minC=c,maxC=c;
+          while(Q.length){
+            const [rr,cc]=Q.shift(); cells.push([rr,cc]);
+            minR=Math.min(minR,rr); maxR=Math.max(maxR,rr);
+            minC=Math.min(minC,cc); maxC=Math.max(maxC,cc);
+            for(const [dr,dc] of dirs){
+              const nr=rr+dr, nc=cc+dc;
+              if(nr>=0&&nr<rows&&nc>=0&&nc<cols && !vis[nr][nc] && grid[nr][nc]===type){
+                vis[nr][nc]=true; Q.push([nr,nc]);
+              }
+            }
+          }
+          out.push({cells,minR,maxR,minC,maxC});
+        }
+      }
+    }
+    return out;
+  }
+
+  const compsV = bfsComponents('V');
+  const compsH = bfsComponents('H');
+
+  if (mode === 'strip'){
+    // --- strook: bbox + pad (eenvoudige strookbenadering) ---
+    const padMicroY = Math.ceil(bufferM / my);
+    const padMicroX = Math.ceil(bufferM / mx);
+    for(const comp of compsV){
+      const r0 = comp.minR * sub - padMicroY;
+      const c0 = comp.minC * sub - padMicroX;
+      const r1 = (comp.maxR+1) * sub - 1 + padMicroY;
+      const c1 = (comp.maxC+1) * sub - 1 + padMicroX;
+      setRect(maskV, r0, c0, r1, c1);
+    }
+    for(const comp of compsH){
+      const r0 = comp.minR * sub - padMicroY;
+      const c0 = comp.minC * sub - padMicroX;
+      const r1 = (comp.maxR+1) * sub - 1 + padMicroY;
+      const c1 = (comp.maxC+1) * sub - 1 + padMicroX;
+      setRect(maskH, r0, c0, r1, c1);
+    }
+  } else {
+    // --- euclid: per component exact bufferen op microcel-niveau ---
+    function markExactForComponent(comp, mask){
+      const prim = [];
+      for (const [r,c] of comp.cells){
+        const baseR = r * sub, baseC = c * sub;
+        for (let dr=0; dr<sub; dr++){
+          for (let dc=0; dc<sub; dc++){
+            const mr = baseR + dr, mc = baseC + dc;
+            mask[mr * microCols + mc] = 1;
+            prim.push({ x:(mc+0.5)*mx, y:(mr+0.5)*my });
+          }
+        }
+      }
+      if (!prim.length) return;
+      const bY = Math.ceil(bufferM / my), bX = Math.ceil(bufferM / mx);
+      const minMR = Math.max(0, comp.minR * sub - bY);
+      const maxMR = Math.min(microRows - 1, (comp.maxR + 1) * sub - 1 + bY);
+      const minMC = Math.max(0, comp.minC * sub - bX);
+      const maxMC = Math.min(microCols - 1, (comp.maxC + 1) * sub - 1 + bX);
+      const buf2 = bufferM * bufferM;
+
+      for (let mr=minMR; mr<=maxMR; mr++){
+        const y = (mr + 0.5) * my;
+        for (let mc=minMC; mc<=maxMC; mc++){
+          const idx = mr * microCols + mc;
+          if (mask[idx]) continue; // al primair
+          const x = (mc + 0.5) * mx;
+          let minD2 = Infinity;
+          for (let k=0; k<prim.length; k++){
+            const dx = x - prim[k].x;
+            const dy = y - prim[k].y;
+            const d2 = dx*dx + dy*dy;
+            if (d2 < minD2) minD2 = d2;
+            if (minD2 <= buf2) break;
+          }
+          if (minD2 <= buf2) mask[idx] = 1;
+        }
+      }
+    }
+    for (const comp of compsV) markExactForComponent(comp, maskV);
+    for (const comp of compsH) markExactForComponent(comp, maskH);
+  }
+
+  // --- V-voorrang in de berekening: haal overlap uit H ---
+  for (let i=0; i<maskV.length; i++){
+    if (maskV[i] && maskH[i]) maskH[i] = 0;
+  }
+
+  // tellen
+  let cV=0, cH=0, cU=0;
+  for (let i=0; i<maskV.length; i++){
+    const v = maskV[i] ? 1 : 0;
+    const h = maskH[i] ? 1 : 0;
+    if (v) cV++;
+    if (h) cH++;
+    if (v || h) cU++;
+  }
+
+  let areaV = cV * microArea;
+  let areaH = cH * microArea;
+  let areaU = cU * microArea;
+
+  // minZone alleen als er iets is (V of H aanwezig)
+  if (areaU < minZone && (areaV > 0 || areaH > 0)) areaU = minZone;
+
+  return { m2VReg: areaV, m2HReg: areaH, m2TReg: areaU,
+           maskV, maskH, microRows, microCols, sub, microArea };
+}
+
+  
+
+  /* ===== Init & Events ===== */
+  initGrid(rows, cols);
+  setTool('V');
+
+  window.addEventListener('resize', () => {
+    resizeCanvasToDisplaySize();
+    drawAll();
+  });
+
+  canvas.addEventListener('pointerdown', paintAt);
+  canvas.addEventListener('pointermove', e => {
+    const cell = getCellFromEvent(e);
+    hover = cell;
+    if (e.buttons & 1) paintAt(e);
+    drawAll();
+  });
+  canvas.addEventListener('pointerleave', () => {
+    hover = null;
+    drawAll();
+  });
+
+  toolButtons.forEach(b => b.addEventListener('click', () => setTool(b.dataset.tool)));
+  btnClear.addEventListener('click', () => initGrid(rows, cols));
+  function undo(){
+  if (!history.length) return;
+  // laatste snapshot is de toestand vóór de laatste wijziging
+  const prev = history.pop();
+  if (prev == null) return;
+  redoStack.push(JSON.stringify(grid));
+  grid = JSON.parse(prev);
+  drawAll();
+  updateKPIs();
+  window.grid = grid; // houd helpers die window.grid gebruiken in sync
+
+}
+
+function redo(){
+  if (!redoStack.length) return;
+  const next = redoStack.pop();
+  history.push(JSON.stringify(grid));
+  grid = JSON.parse(next);
+  drawAll();
+  updateKPIs();
+  window.grid = grid; // houd helpers die window.grid gebruiken in sync
+
+}
+
+  btnUndo.addEventListener('click', undo);
+  btnRedo.addEventListener('click', redo);
+
+ [
+  rowsEl, colsEl, cellWidthEl, cellHeightEl,
+  bufferEl, minZoneEl, bufferModeEl,
+  rooiTypeEl, rooiPosEl, voetTypeEl, voetPosEl,
+  showDimsEl, showBufferEl
+].forEach(el => el && el.addEventListener('input', () => {
+  resizeCanvasToDisplaySize();
+  drawAll();
+  updateKPIs();
+}));
+
+})();
+
+</script>
+</body>
+</html>

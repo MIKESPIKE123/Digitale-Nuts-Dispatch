@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beheerpagina - Vaststellingen</title>
+  <script>
+    let appData = {
+      vaststellers: ["Fred", "Luc"],
+      postcodes: ["2000 Antwerpen", "2018 Antwerpen"],
+      types: ["Electriciteit", "Water"],
+      nutsmaatschappijen: ["FLUVIUS", "PROXIMUS"]
+    };
+
+    function downloadJSON() {
+      const blob = new Blob([JSON.stringify(appData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "data.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function addItem(type) {
+      const input = document.getElementById("new-" + type);
+      const val = input.value.trim();
+      if (val && !appData[type].includes(val)) {
+        appData[type].push(val);
+        input.value = '';
+        renderList(type);
+      }
+    }
+
+    function renderList(type) {
+      const list = document.getElementById(type + "-list");
+      list.innerHTML = "";
+      appData[type].forEach((item, idx) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      });
+    }
+
+    window.onload = () => {
+      ["vaststellers", "postcodes", "types", "nutsmaatschappijen"].forEach(renderList);
+    };
+  </script>
+</head>
+<body>
+  <h1>Beheer Gegevens</h1>
+  <a href="vaststelling_formulier.html">Ga naar formulier</a>
+  <hr>
+  <div>
+    <h2>Vaststellers</h2>
+    <ul id="vaststellers-list"></ul>
+    <input id="new-vaststellers"><button onclick="addItem('vaststellers')">Toevoegen</button>
+  </div>
+  <div>
+    <h2>Postcodes</h2>
+    <ul id="postcodes-list"></ul>
+    <input id="new-postcodes"><button onclick="addItem('postcodes')">Toevoegen</button>
+  </div>
+  <div>
+    <h2>Types nutsmaatschappijen</h2>
+    <ul id="types-list"></ul>
+    <input id="new-types"><button onclick="addItem('types')">Toevoegen</button>
+  </div>
+  <div>
+    <h2>Nutsmaatschappijen</h2>
+    <ul id="nutsmaatschappijen-list"></ul>
+    <input id="new-nutsmaatschappijen"><button onclick="addItem('nutsmaatschappijen')">Toevoegen</button>
+  </div>
+  <hr>
+  <button onclick="downloadJSON()">Download aangepaste data.json</button>
+</body>
+</html>

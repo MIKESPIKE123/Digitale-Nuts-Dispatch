@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Debug - Vaststellingen</title>
+    <link rel="stylesheet" href="https://cdn.antwerpen.be/core_branding_scss/7.1.0/main.min.css">
+    <style>
+        .debug-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .debug-log {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-success { background-color: #28a745; }
+        .status-error { background-color: #dc3545; }
+        .status-warning { background-color: #ffc107; }
+        .status-pending { background-color: #6c757d; }
+    </style>
+</head>
+<body>
+    <div class="u-wrapper">
+        <main class="u-main">
+            <div class="debug-container">
+                <h1>🔍 Startup Debug - Vaststellingen Systeem</h1>
+                
+                <div class="a-panel u-margin-bottom">
+                    <div class="a-panel__body">
+                        <h3>📋 Laad Status</h3>
+                        <div id="loadStatus">
+                            <div><span class="status-indicator status-pending"></span>Controleren...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="a-panel u-margin-bottom">
+                    <div class="a-panel__body">
+                        <h3>🔧 Debug Console</h3>
+                        <div id="debugLog" class="debug-log">Initialiseren debug systeem...\n</div>
+                        <div class="u-margin-top">
+                            <button class="a-button a-button--primary" onclick="runTests()">
+                                🧪 Run Tests
+                            </button>
+                            <button class="a-button a-button--secondary u-margin-left-xs" onclick="clearLog()">
+                                🗑️ Clear Log
+                            </button>
+                            <button class="a-button a-button--success u-margin-left-xs" onclick="openMainApp()">
+                                🚀 Open Main App
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="a-panel">
+                    <div class="a-panel__body">
+                        <h3>🎯 Quick Actions</h3>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <button class="a-button a-button--outline u-width-full" onclick="testDataManager()">
+                                    📊 Test DataManager
+                                </button>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <button class="a-button a-button--outline u-width-full" onclick="testConfigLoad()">
+                                    ⚙️ Test Config Load
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row u-margin-top">
+                            <div class="col-xs-12 col-md-6">
+                                <button class="a-button a-button--outline u-width-full" onclick="testFormRenderer()">
+                                    📝 Test Form Renderer
+                                </button>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <button class="a-button a-button--outline u-width-full" onclick="clearStorage()">
+                                    🗃️ Clear Storage
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Load Scripts -->
+    <script src="./js/dataManager.js"></script>
+    <script src="./src/state/formState.js"></script>
+    <script src="./src/state/visibility.js"></script>
+    <script src="./src/ui/formRenderer.js"></script>
+    <script src="./src/services/historyStore.js"></script>
+    <script src="./src/services/export.js"></script>
+
+    <script>
+        let debugLog = '';
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = type === 'error' ? '❌' : type === 'warning' ? '⚠️' : type === 'success' ? '✅' : 'ℹ️';
+            const logMessage = `[${timestamp}] ${prefix} ${message}\n`;
+            debugLog += logMessage;
+            
+            const debugElement = document.getElementById('debugLog');
+            if (debugElement) {
+                debugElement.textContent = debugLog;
+                debugElement.scrollTop = debugElement.scrollHeight;
+            }
+            
+            console.log(`[DEBUG] ${message}`);
+        }
+
+        function clearLog() {
+            debugLog = '';
+            document.getElementById('debugLog').textContent = 'Debug log cleared...\n';
+        }
+
+        function updateStatus(status, text) {
+            const statusElement = document.getElementById('loadStatus');
+            const indicator = status === 'success' ? 'status-success' : 
+                            status === 'error' ? 'status-error' : 
+                            status === 'warning' ? 'status-warning' : 'status-pending';
+            
+            statusElement.innerHTML = `<div><span class="status-indicator ${indicator}"></span>${text}</div>`;
+        }
+
+        async function testDataManager() {
+            log('🔍 Testing DataManager instantiation...');
+            
+            try {
+                if (typeof DataManager === 'undefined') {
+                    throw new Error('DataManager class not found');
+                }
+                
+                const manager = new DataManager();
+                log('✅ DataManager created successfully', 'success');
+                
+                // Test config loading
+                log('🔄 Testing config load...');
+                await manager.loadConfig();
+                
+                if (manager.config) {
+                    log(`✅ Config loaded successfully: ${Object.keys(manager.config).length} keys`, 'success');
+                    log(`📊 Config keys: ${Object.keys(manager.config).join(', ')}`);
+                } else {
+                    log('⚠️ Config is null but no error thrown', 'warning');
+                }
+                
+                updateStatus('success', 'DataManager working properly');
+                
+            } catch (error) {
+                log(`❌ DataManager test failed: ${error.message}`, 'error');
+                updateStatus('error', `DataManager error: ${error.message}`);
+            }
+        }
+
+        async function testConfigLoad() {
+            log('🔍 Testing direct config.json fetch...');
+            
+            try {
+                const response = await fetch('./data/config.json');
+                log(`📡 Fetch response status: ${response.status}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const config = await response.json();
+                log(`✅ Config.json loaded: ${JSON.stringify(config).length} chars`, 'success');
+                log(`📋 Config structure: ${Object.keys(config).join(', ')}`);
+                
+                updateStatus('success', 'Config.json accessible');
+                
+            } catch (error) {
+                log(`❌ Config load failed: ${error.message}`, 'error');
+                log('🔄 Testing fallback mechanisms...');
+                
+                // Test localStorage
+                const localConfig = localStorage.getItem('vaststellingen_config');
+                if (localConfig) {
+                    log('✅ Found config in localStorage', 'success');
+                } else {
+                    log('⚠️ No config in localStorage', 'warning');
+                }
+                
+                updateStatus('warning', 'Using fallback config');
+            }
+        }
+
+        async function testFormRenderer() {
+            log('🔍 Testing FormRenderer...');
+            
+            try {
+                if (typeof FormRenderer === 'undefined') {
+                    throw new Error('FormRenderer class not found');
+                }
+                
+                log('✅ FormRenderer class available', 'success');
+                
+                // Test other classes
+                const classes = ['FormStateManager', 'VisibilityRules', 'HistoryStore', 'ExportService'];
+                classes.forEach(className => {
+                    if (typeof window[className] !== 'undefined') {
+                        log(`✅ ${className} available`, 'success');
+                    } else {
+                        log(`❌ ${className} missing`, 'error');
+                    }
+                });
+                
+                updateStatus('success', 'All form components loaded');
+                
+            } catch (error) {
+                log(`❌ FormRenderer test failed: ${error.message}`, 'error');
+                updateStatus('error', `FormRenderer error: ${error.message}`);
+            }
+        }
+
+        function clearStorage() {
+            log('🗑️ Clearing localStorage...');
+            
+            const keys = Object.keys(localStorage).filter(key => key.startsWith('vaststellingen_'));
+            keys.forEach(key => {
+                localStorage.removeItem(key);
+                log(`🗑️ Removed: ${key}`);
+            });
+            
+            log(`✅ Cleared ${keys.length} storage items`, 'success');
+            updateStatus('success', 'Storage cleared');
+        }
+
+        async function runTests() {
+            log('🧪 Running comprehensive test suite...');
+            clearLog();
+            
+            await testDataManager();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await testConfigLoad();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await testFormRenderer();
+            
+            log('🎯 Test suite completed!', 'success');
+        }
+
+        function openMainApp() {
+            log('🚀 Opening main application...');
+            window.location.href = './index.html';
+        }
+
+        // Auto-run basic tests on load
+        document.addEventListener('DOMContentLoaded', function() {
+            log('🚀 Debug system initialized');
+            updateStatus('pending', 'Ready for testing');
+            
+            // Auto-test DataManager availability
+            setTimeout(testDataManager, 1000);
+        });
+
+        // Catch global errors
+        window.addEventListener('error', function(event) {
+            log(`❌ Global error: ${event.error.message}`, 'error');
+            log(`📍 At: ${event.filename}:${event.lineno}:${event.colno}`, 'error');
+            updateStatus('error', 'Runtime error detected');
+        });
+
+        window.addEventListener('unhandledrejection', function(event) {
+            log(`❌ Unhandled promise rejection: ${event.reason}`, 'error');
+            updateStatus('error', 'Promise rejection detected');
+        });
+    </script>
+</body>
+</html>

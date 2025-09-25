@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="nl">
+    
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Opmeet – Stad Antwerpen (V5)</title>
+<style>
+  :root{ --ant-red:#e1001a; --border:#e5e7eb; --muted:#6b7280; --bg:#f3f4f6; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#111827}
+  header{position:sticky;top:0;z-index:10;background:#fff;padding:14px 18px;border-bottom:3px solid var(--ant-red)}
+  header h1{margin:0;font-size:18px;font-weight:700}
+  main{display:grid;grid-template-columns:420px 1fr;gap:16px;padding:16px}
+  @media (max-width:1100px){main{grid-template-columns:1fr}}
+  .card{background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .pane{padding:16px}
+  .row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+  .row h2{margin:4px 0 0 0;font-size:14px}
+  label{font-size:12px;color:#374151}
+  input,select{padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff}
+  input[type="number"]{width:120px}
+  .btn{padding:8px 12px;border-radius:100px;border:1px solid var(--border);background:#fff;cursor:pointer}
+  .btn:hover{background:#f9fafb}
+  .btn.primary{background:var(--ant-red);color:#fff;border-color:var(--ant-red)}
+.btn.active{outline:3px solid rgba(225,0,26,0.25)}
+.plan{box-shadow:inset 0 0 0 1px var(--border),0 1px 6px rgba(0,0,0,0.06)}
+  .grid-wrap{padding:16px}
+  .plan{background:#fff;border-radius:16px;box-shadow:inset 0 0 0 1px var(--border),0 1px 6px rgba(0,0,0,.06);width:100%;height:600px;touch-action:none;display:block}
+  .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+  .kpi{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px}
+  .kpi h3{margin:0;font-size:12px;color:#6b7280} .kpi p{margin:2px 0 0 0;font-size:18px;font-weight:700}
+  .sep{height:1px;background:var(--border);margin:12px 0}
+/* === Signatures (PATCH S2) === */
+    .sigwrap{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}
+    .sigbox{border:1px dashed #e5e7eb;border-radius:8px;padding:8px;background:#fff}
+    .sigbox canvas{background:#fff;border-radius:6px;border:1px solid #e5e7eb;display:block}
+    .sigbox .lbl{font-size:12px;color:#374151;margin:6px 0 2px}
+    .sigbox .txt{width:180px;padding:8px 10px;border:1px solid #e5e7eb;border-radius:10px}
+ /* PATCH: canvas interactie altijd toestaan (muis + touch) */
+
+  /* PATCH T1 */
+#grid { position: relative; z-index: 10; }
+#stage { position: relative; z-index: 5; }
+
+#grid,
+#stage canvas,
+.sigbox canvas,
+canvas {
+  pointer-events: auto !important;
+  touch-action: none;
+}
+/* A4 met kleine marge */
+@page { size: A4 portrait; margin: 12mm; }
+
+@media print {
+  /* 1 kolom printen */
+  main{ display:flex; flex-direction:column; gap:8px; padding:0; }
+  /* Reorder: canvas-card eerst, parameters/KPI's erna */
+  main > .card:nth-child(2){ order: 1; }
+  main > .card:nth-child(1){ order: 2; }
+
+  header{ display:none; }           /* kop verbergen */
+  .grid-wrap{ margin:0; }
+  .plan{ width:100%; height:auto; } /* geen vaste 600px in print */
+}
+
+</style>
+
+
+</head>
+<body>
+<header><h1>Opmeet – Stad Antwerpen</h1></header>
+
+<main>
+  <div class="card">
+    <div class="pane">
+      <div class="row">
+        <h2>Grid parameters</h2>
+      </div>
+      <div class="row">
+        <label>Celbreedte (m)<input type="number" id="cellWidth" value="0.25" min="0.1" max="2" step="0.05"></label>
+        <label>Celhoogte (m)<input type="number" id="cellHeight" value="0.25" min="0.1" max="2" step="0.05"></label>
+      </div>
+      <div class="row">
+        <label>Rijen<input type="number" id="rows" value="20" min="1" max="100"></label>
+        <label>Kolommen<input type="number" id="cols" value="20" min="1" max="100"></label>
+      </div>
+
+      <div class="row">
+        <h2>Reglementaire parameters</h2>
+      </div>
+      <div class="row">
+        <label>Buffer (m)<input type="number" id="buffer" value="0.30" min="0" max="2" step="0.05"></label>
+        <label>Min. zone (m²)<input type="number" id="minZone" value="1.00" min="0" max="10" step="0.25"></label>
+        <select id="bufferMode">
+          <option value="exact">Exacte buffer</option>
+          <option value="strook">Als strook</option>
+        </select>
+      </div>
+<div class="row">
+  <h2>Rooilijn / Voetpadlijn</h2>
+</div>
+<div class="row">
+  <label>Rooilijn
+    <select id="rooiType">
+      <option value="none">Geen</option>
+      <option value="vertical">Verticaal (x = m)</option>
+      <option value="horizontal">Horizontaal (y = m)</option>
+    </select>
+    <input type="number" id="rooiPos" value="0.00" step="0.01">
+  </label>
+  <label>Voetpadlijn
+    <select id="voetType">
+      <option value="none">Geen</option>
+      <option value="vertical">Verticaal (x = m)</option>
+      <option value="horizontal">Horizontaal (y = m)</option>
+    </select>
+    <input type="number" id="voetPos" value="0.00" step="0.01">
+  </label>
+</div>
+<!-- === PDF & Handtekeningen (PATCH S1) === -->
+<div class="row">
+  <button class="btn primary" id="btnPDF">Maak PDF / Print</button>
+</div>
+
+<div class="sep"></div>
+<div class="row"><h2>Handtekeningen</h2></div>
+<div class="sigwrap">
+  <div class="sigbox">
+    <div class="lbl">Toezichter</div>
+    <canvas id="sigA" width="340" height="120"></canvas>
+    <div class="row">
+      <input id="sigAName" class="txt" placeholder="Naam toezichter" />
+      <input id="sigADate" class="txt" type="date" />
+      <button class="btn" id="sigAClear">Wissen</button>
+    </div>
+  </div>
+  <div class="sigbox">
+    <div class="lbl">Belanghebbende</div>
+    <canvas id="sigB" width="340" height="120"></canvas>
+    <div class="row">
+      <input id="sigBName" class="txt" placeholder="Naam belanghebbende" />
+      <input id="sigBDate" class="txt" type="date" />
+      <button class="btn" id="sigBClear">Wissen</button>
+    </div>
+  </div>
+</div>
+
+      <div class="row">
+        <label><input type="checkbox" id="showBuffer" checked> Toon bufferzone</label>
+        <label><input type="checkbox" id="showStrips" checked> Toon stroken</label>
+        <label><input type="checkbox" id="showDims"> Toon maatvoering</label>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="row">
+        <h2>Tarieven</h2>
+      </div>
+      <div class="row">
+        <label>€/m² V<input type="number" id="rateV" value="180.00"></label>
+        <label>€/m² H<input type="number" id="rateH" value="120.00"></label>
+      </div>
+<!-- ergens bij je KPI's -->
+<div class="kpi">
+  <div class="kpi-label">m² gap-unie (t/m 0,50 m)</div>
+  <div class="kpi-value" id="m2GapUnion">0,00</div>
+</div>
+
+      <div class="summary">
+        <div class="kpi">
+          <h3>Aantal V</h3>
+          <p id="kpiV">0</p>
+        </div>
+        <div class="kpi">
+          <h3>Aantal H</h3>
+          <p id="kpiH">0</p>
+        </div>
+        <div class="kpi">
+          <h3>m² V (netto)</h3>
+          <p id="m2V">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² H (netto)</h3>
+          <p id="m2H">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² V (reglementair)</h3>
+          <p id="m2VReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>m² H (reglementair)</h3>
+          <p id="m2HReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>€ V</h3>
+          <p id="eurV">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>€ H</h3>
+          <p id="eurH">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal m² (netto)</h3>
+          <p id="m2T">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal m² (regl.)</h3>
+          <p id="m2TReg">0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal €</h3>
+          <p id="eurT">€ 0,00</p>
+        </div>
+        <div class="kpi">
+          <h3>Totaal € (regl.)</h3>
+          <p id="eurTReg">€ 0,00</p>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+
+   
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="grid-wrap">
+      <canvas id="grid" class="plan" aria-label="tekenraster"></canvas>
+      <div class="row">
+        <button class="btn" id="btnV" data-tool="V">V-zone</button>
+        <button class="btn" id="btnH" data-tool="H">H-zone</button>
+        <button class="btn" id="btnE" data-tool="E">Gum</button>
+
+        <button class="btn" id="btnUndo" title="Ongedaan maken (Ctrl+Z)">↶ Ongedaan</button>
+        <button class="btn" id="btnRedo" title="Opnieuw (Ctrl+Y)">↷ Opnieuw</button>
+        <button class="btn" id="btnClear">Leegmaken</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+    // === DOM Elements ===
+    const canvas = document.getElementById('grid');
+    const ctx = canvas?.getContext('2d');
+    
+    if (!canvas || !ctx) {
+        console.error('Canvas setup failed');
+        return;
+    }
+// --- extra DOM ---
+const rooiTypeEl = document.getElementById('rooiType');
+const rooiPosEl  = document.getElementById('rooiPos');
+const voetTypeEl = document.getElementById('voetType');
+const voetPosEl  = document.getElementById('voetPos');
+
+const rateVEl = document.getElementById('rateV');
+const rateHEl = document.getElementById('rateH');
+
+const btnPDF = document.getElementById('btnPDF');
+btnPDF?.addEventListener('click', () => window.print());
+const btnUndo  = document.getElementById('btnUndo');
+const btnRedo  = document.getElementById('btnRedo');
+const btnClear = document.getElementById('btnClear');
+
+// --- events (redraw/bereken bij wijziging) ---
+[rooiTypeEl, rooiPosEl, voetTypeEl, voetPosEl, rateVEl, rateHEl].forEach(el=>{
+  el?.addEventListener('input', ()=>{ drawAll(); updateKPIs(); });
+});
+
+// --- knoppen ---
+btnClear?.addEventListener('click', ()=>{ resetGrid(); drawAll(); updateKPIs(); });
+
+btnUndo?.addEventListener('click', ()=>{
+  if(history.length > 1){
+    redoStack.push(history.pop());
+    grid = JSON.parse(history[history.length-1]);
+    drawAll(); updateKPIs();
+  }
+});
+
+btnRedo?.addEventListener('click', ()=>{
+  if(redoStack.length){
+    const state = redoStack.pop();
+    history.push(state);
+    grid = JSON.parse(state);
+    drawAll(); updateKPIs();
+  }
+});
+
+btnPDF?.addEventListener('click', ()=>{
+  window.print(); // simpel & effectief. (Later: toDataURL + jsPDF kan ook)
+});
+
+    // === State ===
+    let rows = 20;
+    let cols = 20;
+    let grid = [];
+    let tool = 'V';
+    let hover = null;
+    let down = false;
+    let history = [];
+    let redoStack = [];
+
+    // === DOM Elements ===
+    const cellWidthEl = document.getElementById('cellWidth');
+    const cellHeightEl = document.getElementById('cellHeight');
+    const bufferEl = document.getElementById('buffer');
+    const showBufferEl = document.getElementById('showBuffer');
+    const toolButtons = Array.from(document.querySelectorAll('[data-tool]'));
+
+    // === Helper Functions ===
+    function getGridMetrics() {
+        const rect = canvas.getBoundingClientRect();
+        const cw = parseFloat(cellWidthEl?.value || '0.25');
+        const ch = parseFloat(cellHeightEl?.value || '0.25');
+        const totalWidth = cols * cw;
+        const totalHeight = rows * ch;
+        const scale = Math.min(rect.width/totalWidth, rect.height/totalHeight);
+        const csX = cw * scale;
+        const csY = ch * scale;
+        const offsetX = (rect.width - cols * csX) / 2;
+        const offsetY = (rect.height - rows * csY) / 2;
+        return { csX, csY, offsetX, offsetY, scale, cw, ch };
+    }
+
+    function getCellFromEvent(e) {
+        const { csX, csY, offsetX, offsetY } = getGridMetrics();
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left - offsetX;
+        const y = e.clientY - rect.top - offsetY;
+        const c = Math.floor(x/csX);
+        const r = Math.floor(y/csY);
+        if(r >= 0 && r < rows && c >= 0 && c < cols) {
+            return {r, c};
+        }
+        return null;
+    }
+
+    function resizeCanvasToDisplaySize() {
+        const dpr = Math.min(1.75, window.devicePixelRatio || 1);
+        const rect = canvas.getBoundingClientRect();
+        const w = Math.round(rect.width * dpr);
+        const h = Math.round(rect.height * dpr);
+        if (canvas.width !== w || canvas.height !== h) {
+            canvas.width = w;
+            canvas.height = h;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            return true;
+        }
+        return false;
+    }
+
+    // === Core Functions ===
+    function resetGrid() {
+        grid = Array.from({length: rows}, () => Array(cols).fill(null));
+        hover = null;
+        down = false;
+        history = [JSON.stringify(grid)];
+        redoStack = [];
+    }
+
+    function setTool(t) {
+        tool = t;
+        toolButtons.forEach(b => b.classList.toggle('active', b.dataset.tool === t));
+    }
+
+    // === Drawing Functions ===
+    function clearCanvas() {
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.restore();
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function drawGrid() {
+        const { csX, csY, offsetX, offsetY } = getGridMetrics();
+
+        ctx.save();
+        ctx.translate(offsetX, offsetY);
+
+        // Draw cells
+        for(let r = 0; r < rows; r++) {
+            for(let c = 0; c < cols; c++) {
+                if(grid[r][c] === 'V') {
+                    ctx.fillStyle = 'rgba(239,68,68,0.4)';
+                    ctx.fillRect(c*csX, r*csY, csX, csY);
+                }
+                else if(grid[r][c] === 'H') {
+                    ctx.fillStyle = 'rgba(59,130,246,0.4)';
+                    ctx.fillRect(c*csX, r*csY, csX, csY);
+                }
+            }
+        }
+
+        // Draw grid lines
+        ctx.strokeStyle = '#e5e7eb';
+        ctx.beginPath();
+        for(let r = 0; r <= rows; r++) {
+            ctx.moveTo(0, r*csY);
+            ctx.lineTo(cols*csX, r*csY);
+        }
+        for(let c = 0; c <= cols; c++) {
+            ctx.moveTo(c*csX, 0);
+            ctx.lineTo(c*csX, rows*csY);
+        }
+        ctx.stroke();
+
+        ctx.restore();
+    }
+    function drawGuideline(typeEl, posEl, color){
+  const type = typeEl?.value || 'none';
+  const posM = parseFloat(posEl?.value || '0');
+  if(type === 'none') return;
+
+  const { csX, csY, offsetX, offsetY, scale, cw, ch } = getGridMetrics();
+  ctx.save();
+  ctx.translate(offsetX, offsetY);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.setLineDash([8,6]);
+
+  if(type === 'vertical'){
+    const x = posM * scale; // meters → pixels
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, rows*csY); ctx.stroke();
+  }else if(type === 'horizontal'){
+    const y = posM * scale;
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(cols*csX, y); ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+function drawDims(){ /* optioneel later: maatlijnen/labels */ }
+
+function drawAll(){
+  clearCanvas();
+  drawGrid();
+  drawGuideline(rooiTypeEl, rooiPosEl,  '#111827'); // donker
+  drawGuideline(voetTypeEl, voetPosEl,  '#6b7280'); // grijs
+  if(hover) drawHover();
+}
+function drawBufferOverlay(){
+  const show = document.getElementById('showBuffer')?.checked;
+  if(!show) return;
+
+  const bufferM = parseFloat(document.getElementById('buffer')?.value || '0');
+  if(bufferM <= 0) return;
+
+  const { csX, csY, offsetX, offsetY, scale } = getGridMetrics();
+  const pad = bufferM * scale; // meters → pixels
+
+  ctx.save();
+  ctx.translate(offsetX, offsetY);
+  ctx.strokeStyle = 'rgba(225,0,26,0.5)';
+  ctx.lineWidth = 1.5;
+
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      const v = grid[r][c];
+      if(!v) continue;
+      const x = c*csX - pad, y = r*csY - pad, w = csX + 2*pad, h = csY + 2*pad;
+      ctx.strokeRect(x, y, w, h);
+    }
+  }
+  ctx.restore();
+}
+function makeSimpleSignature(canvas){
+  const c = canvas.getContext('2d');
+  let d=false, prev=null;
+  canvas.addEventListener('pointerdown',e=>{d=true; prev={x:e.offsetX,y:e.offsetY}});
+  canvas.addEventListener('pointermove',e=>{
+    if(!d) return;
+    c.lineWidth=2; c.lineCap='round'; c.strokeStyle='#111';
+    c.beginPath(); c.moveTo(prev.x,prev.y); c.lineTo(e.offsetX,e.offsetY); c.stroke();
+    prev={x:e.offsetX,y:e.offsetY};
+  });
+  ['pointerup','pointerleave'].forEach(ev=>canvas.addEventListener(ev,()=>d=false));
+}
+
+makeSimpleSignature(document.getElementById('sigA'));
+makeSimpleSignature(document.getElementById('sigB'));
+const sigAEl = document.getElementById('sigA');
+const sigBEl = document.getElementById('sigB');
+
+document.getElementById('sigAClear')?.addEventListener('click',()=>{
+  const c = sigAEl.getContext('2d');
+  c.clearRect(0,0,sigAEl.width,sigAEl.height);
+});
+
+document.getElementById('sigBClear')?.addEventListener('click',()=>{
+  const c = sigBEl.getContext('2d');
+  c.clearRect(0,0,sigBEl.width,sigBEl.height);
+});
+
+
+function updateKPIs(){
+  const m2VEl = document.getElementById('m2V');
+  const m2HEl = document.getElementById('m2H');
+  const m2TEl = document.getElementById('m2T');
+  const eurVEl = document.getElementById('eurV');
+  const eurHEl = document.getElementById('eurH');
+  const eurTEl = document.getElementById('eurT');
+
+  const cw = parseFloat(document.getElementById('cellWidth')?.value || '0.25');
+  const ch = parseFloat(document.getElementById('cellHeight')?.value || '0.25');
+  const cellA = cw * ch;
+
+  let vCount=0, hCount=0;
+  for(let r=0;r<rows;r++)
+    for(let c=0;c<cols;c++){
+      if(grid[r][c]==='V') vCount++;
+      else if(grid[r][c]==='H') hCount++;
+    }
+
+  const m2V = vCount * cellA;
+  const m2H = hCount * cellA;
+  const m2T = m2V + m2H;
+
+  const rateV = parseFloat(rateVEl?.value || '0');
+  const rateH = parseFloat(rateHEl?.value || '0');
+
+  const eurV = m2V * rateV;
+  const eurH = m2H * rateH;
+  const eurT = eurV + eurH;
+
+  const fmtM2  = v => v.toFixed(2).replace('.',',');
+  const fmtEUR = v => '€ ' + v.toFixed(2).replace('.',',');
+
+  if(m2VEl) m2VEl.textContent = fmtM2(m2V);
+  if(m2HEl) m2HEl.textContent = fmtM2(m2H);
+  if(m2TEl) m2TEl.textContent = fmtM2(m2T);
+  if(eurVEl) eurVEl.textContent = fmtEUR(eurV);
+  if(eurHEl) eurHEl.textContent = fmtEUR(eurH);
+  if(eurTEl) eurTEl.textContent = fmtEUR(eurT);
+}
+
+function isPrinting(){
+  return document.documentElement.classList.contains('print-mode');
+}
+
+function getGridMetrics() {
+  const rect = canvas.getBoundingClientRect();
+  const cw = parseFloat(cellWidthEl?.value || '0.25');
+  const ch = parseFloat(cellHeightEl?.value || '0.25');
+  const totalWidth  = cols * cw;
+  const totalHeight = rows * ch;
+  const scale = Math.min(rect.width/totalWidth, rect.height/totalHeight);
+  const csX = cw * scale;
+  const csY = ch * scale;
+  const offsetX = (rect.width  - cols * csX) / 2;
+  const offsetY = isPrinting() ? 0 : (rect.height - rows * csY) / 2; // <-- top-align in print
+  return { csX, csY, offsetX, offsetY, scale, cw, ch };
+}
+
+    function drawHover() {
+        if (!hover) return;
+        const { csX, csY, offsetX, offsetY } = getGridMetrics();
+        ctx.save();
+        ctx.translate(offsetX, offsetY);
+        ctx.strokeStyle = tool === 'E' ? '#6b7280' : (tool === 'V' ? '#ef4444' : '#3b82f6');
+        ctx.strokeRect(hover.c * csX, hover.r * csY, csX, csY);
+        ctx.restore();
+    }
+
+    function drawAll() {
+        clearCanvas();
+        drawGrid();
+        if(hover) drawHover();
+    }
+
+    // === Event Handlers ===
+    canvas.addEventListener('pointerdown', e => {
+        e.preventDefault();
+        const cell = getCellFromEvent(e);
+        if(cell && (e.buttons & 1)) {
+            down = true;
+            grid[cell.r][cell.c] = tool === 'E' ? null : tool;
+            history.push(JSON.stringify(grid));
+            drawAll();
+        }
+    });
+
+    canvas.addEventListener('pointermove', e => {
+        const cell = getCellFromEvent(e);
+        hover = cell;
+        if(down && (e.buttons & 1) && cell) {
+            grid[cell.r][cell.c] = tool === 'E' ? null : tool;
+            drawAll();
+        } else {
+            drawAll();
+        }
+    });
+
+canvas.addEventListener('pointerdown', e=>{
+  const cell = getCellFromEvent(e);
+  if(cell && (e.buttons & 1)){
+    down = true;
+    redoStack = []; // nieuwe tak
+    grid[cell.r][cell.c] = (tool==='E'?null:tool);
+    history.push(JSON.stringify(grid));
+    drawAll(); updateKPIs();
+  }
+});
+
+canvas.addEventListener('pointerup', ()=>{
+  if(down){
+    history.push(JSON.stringify(grid));
+    down = false;
+  }
+});
+
+
+    canvas.addEventListener('pointerleave', () => {
+        down = false;
+        hover = null;
+        drawAll();
+    });
+
+    // === Tool Buttons ===
+    toolButtons.forEach(btn => {
+        btn.addEventListener('click', () => setTool(btn.dataset.tool));
+    });
+
+    // === Initialize ===
+    function init() {
+        resetGrid();
+        resizeCanvasToDisplaySize();
+        setTool('V'); // Start with V-zone tool
+        drawAll();
+    }
+
+    // === Resize Handler ===
+    const resizeObserver = new ResizeObserver(() => {
+        if (resizeCanvasToDisplaySize()) {
+            drawAll();
+        }
+    });
+    resizeObserver.observe(canvas);
+
+    // Start the app
+    init();
+// Gebruik lagere dpr bij print om log heavy canvassen te vermijden
+function resizeCanvasToDisplaySize() {
+  const printMode = document.documentElement.classList.contains('print-mode');
+  const dprBase = printMode ? 1 : (window.devicePixelRatio || 1);
+  const dpr = Math.min(1.75, dprBase);
+  const rect = canvas.getBoundingClientRect();
+  const w = Math.round(rect.width * dpr);
+  const h = Math.round(rect.height * dpr);
+  if (canvas.width !== w || canvas.height !== h) {
+    canvas.width = w; canvas.height = h;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return true;
+  }
+  return false;
+}
+
+// Print lifecycle
+window.addEventListener('beforeprint', () => {
+  document.documentElement.classList.add('print-mode');
+
+  // Bewaar vorige hoogte (bv. 600px) en zet print-hoogte volgens aspect-ratio
+  canvas.dataset.prevH = canvas.style.height || '';
+  const cw = parseFloat(cellWidthEl?.value || '0.25');
+  const ch = parseFloat(cellHeightEl?.value || '0.25');
+  const ar = (rows * ch) / (cols * cw); // hoogte/breedte in meters
+
+  // Breedte is 100% (zie @media print); hoogte sturen we op basis van ar:
+  const rect = canvas.getBoundingClientRect();
+  canvas.style.height = (rect.width * ar) + 'px';
+
+  resizeCanvasToDisplaySize();
+  drawAll();
+});
+
+window.addEventListener('afterprint', () => {
+  document.documentElement.classList.remove('print-mode');
+  canvas.style.height = canvas.dataset.prevH || '600px';
+  resizeCanvasToDisplaySize();
+  drawAll();
+});
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Opmeet App – Reglementaire berekening (buffer, rooilijn)</title>
+<style>
+  :root { --border:#e5e7eb; --muted:#6b7280; --brand:#0ea5e9; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#f3f4f6;color:#111827}
+  header{position:sticky;top:0;z-index:10;background:#fff;padding:12px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  header h1{margin:0;font-size:18px}
+  main{display:grid;grid-template-columns:360px 1fr;gap:16px;padding:16px}
+  @media (max-width:980px){main{grid-template-columns:1fr}}
+  .card{background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .pane{padding:16px}
+  .row{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+  label{font-size:12px;color:#374151}
+  input[type="number"], select{padding:6px 8px;border:1px solid var(--border);border-radius:8px}
+  input[type="number"]{width:120px}
+  .btn{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:#fff;cursor:pointer}
+  .btn:hover{background:#f9fafb}
+  .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .btn.active{outline:3px solid rgba(14,165,233,.35)}
+  .toolbar .btn{min-width:110px}
+  .legend{display:flex;gap:8px;align-items:center;font-size:12px}
+  .swatch{width:16px;height:16px;border-radius:3px;border:1px solid var(--border)}
+  .grid-wrap{padding:16px}
+  canvas{background:#fff;border-radius:16px;box-shadow:inset 0 0 0 1px var(--border),0 1px 6px rgba(0,0,0,.06);width:100%;height:auto;touch-action:none;display:block}
+  .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+  .kpi{background:#f9fafb;border:1px solid var(--border);border-radius:12px;padding:10px}
+  .kpi h3{margin:0;font-size:12px;color:var(--muted)} .kpi p{margin:2px 0 0 0;font-size:18px;font-weight:600}
+  .sep{height:1px;background:var(--border);margin:12px 0}
+  footer{text-align:center;font-size:12px;color:var(--muted);padding:12px 0 32px}
+</style>
+</head>
+<body>
+<header><h1>Opmeet App – tekenen = meten (reglement)</h1></header>
+
+<main>
+  <section class="card pane">
+    <div class="row"><strong>Instellingen raster</strong></div>
+    <div class="row">
+      <label>Raster (cellen):</label>
+      <input type="number" id="rows" min="1" value="20" /> ×
+      <input type="number" id="cols" min="1" value="20" />
+    </div>
+    <div class="row">
+      <label>Celzijde (m):</label>
+      <input type="number" id="cellSize" step="0.01" value="0.25" />
+    </div>
+    <div class="row">
+      <label>Tarief verharding (€/m²):</label>
+      <input type="number" id="rateV" step="1" value="180" />
+      <label>Tarief halfverharding (€/m²):</label>
+      <input type="number" id="rateH" step="1" value="120" />
+    </div>
+
+    <div class="row toolbar">
+      <button class="btn" data-tool="V">Verharding (V)</button>
+      <button class="btn" data-tool="H">Halfverharding (H)</button>
+      <button class="btn" data-tool="E">Gom</button>
+      <button class="btn" id="undo">Undo</button>
+      <button class="btn" id="redo">Redo</button>
+      <button class="btn primary" id="clear">Leegmaken</button>
+    </div>
+
+    <div class="sep"></div>
+    <div class="row"><strong>Reglementaire parameters</strong></div>
+    <div class="row">
+      <label>Technische zone (buffer, m):</label>
+      <input type="number" id="bufferM" step="0.01" value="0.30" />
+      <label>Min. per schadezone (m²):</label>
+      <input type="number" id="minZoneM2" step="0.1" value="1.00" />
+    </div>
+    <div class="row">
+      <label>Rooilijn:</label>
+      <select id="rooiType">
+        <option value="none">Geen</option>
+        <option value="vertical">Verticaal (x = m)</option>
+        <option value="horizontal">Horizontaal (y = m)</option>
+      </select>
+      <input type="number" id="rooiPos" step="0.01" value="0.00" />
+    </div>
+    <div class="row">
+      <label>Voetpadlijn:</label>
+      <select id="voetType">
+        <option value="none">Geen</option>
+        <option value="vertical">Verticaal (x = m)</option>
+        <option value="horizontal">Horizontaal (y = m)</option>
+      </select>
+      <input type="number" id="voetPos" step="0.01" value="0.00" />
+    </div>
+
+    <div class="sep"></div>
+    <div class="summary">
+      <div class="kpi"><h3>V cellen (netto)</h3><p id="kpiV">0</p></div>
+      <div class="kpi"><h3>H cellen (netto)</h3><p id="kpiH">0</p></div>
+      <div class="kpi"><h3>m² V (netto)</h3><p id="m2V">0,00</p></div>
+      <div class="kpi"><h3>m² H (netto)</h3><p id="m2H">0,00</p></div>
+      <div class="kpi"><h3>€ V (netto)</h3><p id="eurV">€ 0,00</p></div>
+      <div class="kpi"><h3>€ H (netto)</h3><p id="eurH">€ 0,00</p></div>
+      <div class="kpi"><h3>Totaal m² (netto)</h3><p id="m2T">0,00</p></div>
+      <div class="kpi"><h3>Totaal € (netto)</h3><p id="eurT">€ 0,00</p></div>
+
+      <div class="kpi"><h3>m² V (reglementair)</h3><p id="m2VReg">0,00</p></div>
+      <div class="kpi"><h3>m² H (reglementair)</h3><p id="m2HReg">0,00</p></div>
+      <div class="kpi"><h3>€ V (reglementair)</h3><p id="eurVReg">€ 0,00</p></div>
+      <div class="kpi"><h3>€ H (reglementair)</h3><p id="eurHReg">€ 0,00</p></div>
+      <div class="kpi"><h3>Totaal m² (reglementair)</h3><p id="m2TReg">0,00</p></div>
+      <div class="kpi"><h3>Totaal € (reglementair)</h3><p id="eurTReg">€ 0,00</p></div>
+    </div>
+  </section>
+
+  <section class="card grid-wrap">
+    <canvas id="grid" aria-label="tekenraster"></canvas>
+  </section>
+</main>
+
+<footer>Reglementair: buffer 30 cm, min. 1 m²/zone, bijkomende strook tot rooilijn/voetpadlijn &lt; 0,5 m.</footer>
+
+<script>
+(function(){
+  // DOM
+  const canvas = document.getElementById('grid');
+  const ctx = canvas.getContext('2d', {alpha:false});
+  const toolButtons = [...document.querySelectorAll('[data-tool]')];
+  const rowsEl = document.getElementById('rows');
+  const colsEl = document.getElementById('cols');
+  const cellSizeEl = document.getElementById('cellSize');
+  const rateVEl = document.getElementById('rateV');
+  const rateHEl = document.getElementById('rateH');
+  const bufferEl = document.getElementById('bufferM');
+  const minZoneEl = document.getElementById('minZoneM2');
+  const rooiTypeEl = document.getElementById('rooiType');
+  const rooiPosEl = document.getElementById('rooiPos');
+  const voetTypeEl = document.getElementById('voetType');
+  const voetPosEl = document.getElementById('voetPos');
+
+  const k = (id)=>document.getElementById(id);
+  const btnClear = document.getElementById('clear');
+  const btnUndo = document.getElementById('undo');
+  const btnRedo = document.getElementById('redo');
+
+  // State
+  let rows = +rowsEl.value, cols = +colsEl.value, tool='V';
+  let grid = [], history=[], redoStack=[];
+  let down=false, hoverRC=null;
+  const colorV='#fff9c4', colorH='#ffe0b2';
+
+  // DPR handling
+  function resizeCanvasToDisplaySize(){
+    const dpr = Math.max(1, window.devicePixelRatio||1);
+    const cssW = canvas.clientWidth || 1000;
+    const cssH = cssW; // vierkant
+    if (canvas.width !== Math.floor(cssW*dpr) || canvas.height !== Math.floor(cssH*dpr)){
+      canvas.width = Math.floor(cssW*dpr);
+      canvas.height = Math.floor(cssH*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    canvas.style.height = cssH+'px';
+  }
+  function sizes(){
+    const cssW=canvas.clientWidth, cssH=canvas.clientHeight;
+    const cw=cssW/cols, ch=cssH/rows;
+    return {cssW, cssH, cw, ch};
+  }
+
+  // Init
+  initGrid(rows, cols);
+  setActiveTool('V');
+  window.addEventListener('resize', ()=>{ resizeCanvasToDisplaySize(); draw(); });
+
+  function initGrid(r,c){
+    rows=r; cols=c;
+    grid = Array.from({length:r}, ()=>Array(c).fill(''));
+    resizeCanvasToDisplaySize();
+    draw();
+    pushHistory();
+    updateKPIs();
+  }
+  function setActiveTool(t){
+    tool=t;
+    toolButtons.forEach(b=>b.classList.toggle('active', b.dataset.tool===t));
+    draw();
+  }
+
+  // Drawing
+  function draw(){
+    const {cssW, cssH, cw, ch} = sizes();
+    ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,cssW,cssH);
+    // cells
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        const v=grid[r][c]; if(!v) continue;
+        ctx.fillStyle = (v==='V')?colorV:colorH;
+        ctx.fillRect(c*cw, r*ch, cw, ch);
+      }
+    }
+    // hover preview
+    if(hoverRC){
+      const hx=hoverRC.c*cw, hy=hoverRC.r*ch;
+      if(tool==='V' || tool==='H'){
+        ctx.save(); ctx.globalAlpha=0.35;
+        ctx.fillStyle=(tool==='V')?colorV:colorH;
+        ctx.fillRect(hx, hy, cw, ch);
+        ctx.restore();
+        ctx.lineWidth=2; ctx.strokeStyle='rgba(14,165,233,.9)';
+        ctx.strokeRect(hx+1, hy+1, cw-2, ch-2);
+      } else {
+        ctx.lineWidth=2; ctx.strokeStyle='rgba(239,68,68,.9)';
+        ctx.strokeRect(hx+1, hy+1, cw-2, ch-2);
+        ctx.beginPath();
+        ctx.moveTo(hx+4,hy+4); ctx.lineTo(hx+cw-4,hy+ch-4);
+        ctx.moveTo(hx+cw-4,hy+4); ctx.lineTo(hx+4,hy+ch-4); ctx.stroke();
+      }
+    }
+    // grid lines
+    ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+    for(let r=0;r<=rows;r++){ ctx.beginPath(); ctx.moveTo(0, r*ch+.5); ctx.lineTo(cssW, r*ch+.5); ctx.stroke(); }
+    for(let c=0;c<=cols;c++){ ctx.beginPath(); ctx.moveTo(c*cw+.5, 0); ctx.lineTo(c*cw+.5, cssH); ctx.stroke(); }
+
+    // rooilijn / voetpadlijn
+    drawGuideLines();
+  }
+
+  function drawGuideLines(){
+    const {cssW, cssH} = sizes();
+    const cs = parseFloat(cellSizeEl.value||0.25);
+    const widthM = cols*cs, heightM = rows*cs;
+
+    ctx.save();
+    ctx.setLineDash([6,6]);
+    ctx.lineWidth = 2;
+
+    const rooiType = rooiTypeEl.value, rooiPos = clamp(parseLocaleFloat(rooiPosEl.value,0), 0, rooiType==='vertical'?widthM:heightM);
+    if(rooiType==='vertical'){
+      const x = (rooiPos/widthM) * cssW;
+      ctx.strokeStyle = '#ef4444'; // rood
+      ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,cssH); ctx.stroke();
+    } else if(rooiType==='horizontal'){
+      const y = (rooiPos/heightM) * cssH;
+      ctx.strokeStyle = '#ef4444';
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(cssW,y); ctx.stroke();
+    }
+
+    const voetType = voetTypeEl.value, voetPos = clamp(parseLocaleFloat(voetPosEl.value,0), 0, voetType==='vertical'?widthM:heightM);
+    if(voetType==='vertical'){
+      const x = (voetPos/widthM) * cssW;
+      ctx.strokeStyle = '#3b82f6'; // blauw
+      ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,cssH); ctx.stroke();
+    } else if(voetType==='horizontal'){
+      const y = (voetPos/heightM) * cssH;
+      ctx.strokeStyle = '#3b82f6';
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(cssW,y); ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  // Events
+  toolButtons.forEach(b=>b.addEventListener('click',()=>setActiveTool(b.dataset.tool)));
+  btnClear.addEventListener('click',()=>{ initGrid(rows,cols); pushHistory(); });
+  btnUndo.addEventListener('click',()=>undo());
+  btnRedo.addEventListener('click',()=>redo());
+
+  [rowsEl, colsEl, cellSizeEl, rateVEl, rateHEl, bufferEl, minZoneEl, rooiTypeEl, rooiPosEl, voetTypeEl, voetPosEl]
+    .forEach(el => el.addEventListener('input', ()=>{ draw(); updateKPIs(); }));
+
+  canvas.addEventListener('mousemove',e=>{ const rc=cellFromEvt(e); hoverRC=rc; draw(); if(down && rc) { applyTool(rc); } });
+  canvas.addEventListener('mouseleave',()=>{ hoverRC=null; draw(); down=false; });
+  canvas.addEventListener('mousedown',e=>{ const rc=cellFromEvt(e); if(!rc) return; down=true; applyTool(rc); pushHistory(); });
+  window.addEventListener('mouseup',()=>{ down=false; });
+
+  canvas.addEventListener('touchstart',e=>{ const rc=cellFromEvt(e); if(!rc) return; hoverRC=rc; draw(); down=true; applyTool(rc); pushHistory(); e.preventDefault(); });
+  canvas.addEventListener('touchmove',e=>{ if(!down) return; const rc=cellFromEvt(e); hoverRC=rc; draw(); if(rc) applyTool(rc); e.preventDefault(); });
+  canvas.addEventListener('touchend',()=>{ down=false; hoverRC=null; draw(); });
+
+  function cellFromEvt(evt){
+    const rect=canvas.getBoundingClientRect();
+    const x=(evt.touches?evt.touches[0].clientX:evt.clientX) - rect.left;
+    const y=(evt.touches?evt.touches[0].clientY:evt.clientY) - rect.top;
+    const {cssW, cssH, cw, ch} = sizes();
+    const c=Math.floor(Math.min(Math.max(x,0),cssW-0.01)/cw);
+    const r=Math.floor(Math.min(Math.max(y,0),cssH-0.01)/ch);
+    if(r<0||r>=rows||c<0||c>=cols) return null;
+    return {r,c};
+  }
+  function applyTool(rc){
+    const prev=grid[rc.r][rc.c];
+    let next=prev;
+    if(tool==='V') next='V';
+    else if(tool==='H') next='H';
+    else if(tool==='E') next='';
+    if(prev!==next){
+      grid[rc.r][rc.c]=next;
+      draw();
+      updateKPIs();
+    }
+  }
+  function pushHistory(){ history.push(JSON.stringify(grid)); if(history.length>200) history.shift(); redoStack.length=0; }
+  function undo(){ if(history.length<=1) return; const cur=history.pop(); redoStack.push(cur); grid=JSON.parse(history[history.length-1]); draw(); updateKPIs(); }
+  function redo(){ if(!redoStack.length) return; const s=redoStack.pop(); history.push(s); grid=JSON.parse(s); draw(); updateKPIs(); }
+
+  // Maths helpers
+  function parseLocaleFloat(s, fallback = 0) {
+  if (s == null) return fallback;
+  if (typeof s !== 'string') {
+    const n = Number(s);
+    return Number.isFinite(n) ? n : fallback;
+  }
+  let t = s.trim();
+  if (!t) return fallback;
+
+  if (t.includes(',') && t.includes('.')) {
+    // Formaat 1.234,56  →  verwijder duizendtallen, vervang komma door punt
+    t = t.replace(/\./g, '').replace(',', '.');
+  } else if (t.includes(',')) {
+    // Formaat 0,25  →  vervang komma door punt
+    t = t.replace(',', '.');
+  }
+  // Anders: 0.25 laten zoals het is
+  const n = Number(t);
+  return Number.isFinite(n) ? n : fallback;
+}
+  function fmtEUR(v){ return new Intl.NumberFormat('nl-BE',{style:'currency',currency:'EUR'}).format(v); }
+  function fmtDec(v){ return new Intl.NumberFormat('nl-BE',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v); }
+  function clamp(v, lo, hi){ return Math.max(lo, Math.min(hi, v)); }
+
+  // KPI update (netto + reglementair)
+  function updateKPIs(){
+    const cs = parseLocaleFloat(cellSizeEl.value, 0.25);
+    const rateV = parseLocaleFloat(rateVEl.value, 180);
+    const rateH = parseLocaleFloat(rateHEl.value, 120);
+
+    // Netto op basis van cellen
+    let cV=0, cH=0;
+    for(let r=0;r<rows;r++) for(let c=0;c<cols;c++){
+      if(grid[r][c]==='V') cV++; else if(grid[r][c]==='H') cH++;
+    }
+    const m2V = cV*cs*cs, m2H = cH*cs*cs, m2T = m2V+m2H;
+    const eurV = m2V*rateV, eurH = m2H*rateH, eurT = eurV+eurH;
+
+    k('kpiV').textContent=cV; k('kpiH').textContent=cH;
+    k('m2V').textContent=fmtDec(m2V); k('m2H').textContent=fmtDec(m2H);
+    k('eurV').textContent=fmtEUR(eurV); k('eurH').textContent=fmtEUR(eurH);
+    k('m2T').textContent=fmtDec(m2T); k('eurT').textContent=fmtEUR(eurT);
+
+    // Reglementair: per type, per zone
+    const bufferM = parseLocaleFloat(bufferEl.value, 0.30);
+    const minZone = parseLocaleFloat(minZoneEl.value, 1.00);
+
+    const rooiType = rooiTypeEl.value, rooiPos = parseLocaleFloat(rooiPosEl.value,0);
+    const voetType = voetTypeEl.value, voetPos = parseLocaleFloat(voetPosEl.value,0);
+
+    const regsV = reglementBereken('V', cs, bufferM, minZone, rooiType, rooiPos, voetType, voetPos);
+    const regsH = reglementBereken('H', cs, bufferM, minZone, rooiType, rooiPos, voetType, voetPos);
+
+    const m2VReg = regsV.totalM2, m2HReg = regsH.totalM2, m2TReg = m2VReg + m2HReg;
+    const eurVReg = m2VReg*rateV, eurHReg = m2HReg*rateH, eurTReg = eurVReg + eurHReg;
+
+    k('m2VReg').textContent=fmtDec(m2VReg);
+    k('m2HReg').textContent=fmtDec(m2HReg);
+    k('m2TReg').textContent=fmtDec(m2TReg);
+    k('eurVReg').textContent=fmtEUR(eurVReg);
+    k('eurHReg').textContent=fmtEUR(eurHReg);
+    k('eurTReg').textContent=fmtEUR(eurTReg);
+  }
+
+  function reglementBereken(typeCode, cs, bufferM, minZone, rooiType, rooiPos, voetType, voetPos){
+    const comps = findComponents(typeCode);
+    let total = 0;
+    for(const comp of comps){
+      const areaPrimary = comp.cells.length * cs * cs;
+      const perimM = perimeterMeters(comp, cs);
+      // buffer via A + P*r + pi*r^2
+      let areaBuffered = areaPrimary + perimM * bufferM + Math.PI * bufferM * bufferM;
+
+      // rooilijn / voetpadlijn: strook tot lijn meerekenen als < 0,5 m
+      areaBuffered += extraStrookToLine(comp, cs, rooiType, rooiPos);
+      areaBuffered += extraStrookToLine(comp, cs, voetType, voetPos);
+
+      // min. m² per zone
+      const areaReg = Math.max(areaBuffered, minZone);
+      total += areaReg;
+    }
+    return { totalM2: total, zones: comps.length };
+  }
+
+  function findComponents(typeCode){
+    const visited = Array.from({length:rows}, ()=>Array(cols).fill(false));
+    const comps = [];
+    const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        if(!visited[r][c] && grid[r][c]===typeCode){
+          const cells=[], queue=[[r,c]];
+          visited[r][c]=true;
+          let minR=r,maxR=r,minC=c,maxC=c;
+          while(queue.length){
+            const [rr,cc]=queue.shift();
+            cells.push([rr,cc]);
+            if(rr<minR)minR=rr; if(rr>maxR)maxR=rr; if(cc<minC)minC=cc; if(cc>maxC)maxC=cc;
+            for(const [dr,dc] of dirs){
+              const nr=rr+dr, nc=cc+dc;
+              if(nr>=0&&nr<rows&&nc>=0&&nc<cols && !visited[nr][nc] && grid[nr][nc]===typeCode){
+                visited[nr][nc]=true; queue.push([nr,nc]);
+              }
+            }
+          }
+          comps.push({cells, minR, maxR, minC, maxC});
+        }
+      }
+    }
+    return comps;
+  }
+
+  function perimeterMeters(comp, cs){
+    const S = new Set(comp.cells.map(([r,c])=>r+','+c));
+    let edges=0;
+    for(const [r,c] of comp.cells){
+      if(!S.has((r-1)+','+c)) edges++; // up
+      if(!S.has((r+1)+','+c)) edges++; // down
+      if(!S.has(r+','+(c-1))) edges++; // left
+      if(!S.has(r+','+(c+1))) edges++; // right
+    }
+    return edges * cs;
+  }
+
+  // Bepaal extra strook tot lijn (regel §2.3): indien < 0,5 m → volledig tussenstuk meetellen
+  function extraStrookToLine(comp, cs, lineType, linePosM){
+    if(lineType==='none') return 0;
+    const minX = comp.minC * cs;
+    const maxX = (comp.maxC+1) * cs;
+    const minY = comp.minR * cs;
+    const maxY = (comp.maxR+1) * cs;
+
+    // Zone projectie-onsnijding
+    if(lineType==='vertical'){
+      const xL = linePosM;
+      let gap = 0;
+      if(xL < minX) gap = (minX - xL);
+      else if(xL > maxX) gap = (xL - maxX);
+      else gap = 0; // lijn snijdt zone
+      if(gap > 0 && gap < 0.5){
+        const height = (comp.maxR - comp.minR + 1) * cs;
+        return gap * height;
+      }
+      return 0;
+    } else if(lineType==='horizontal'){
+      const yL = linePosM;
+      let gap = 0;
+      if(yL < minY) gap = (minY - yL);
+      else if(yL > maxY) gap = (yL - maxY);
+      else gap = 0;
+      if(gap > 0 && gap < 0.5){
+        const width = (comp.maxC - comp.minC + 1) * cs;
+        return gap * width;
+      }
+      return 0;
+    }
+    return 0;
+  }
+
+  // ---- boot
+  function euro(v){ return new Intl.NumberFormat('nl-BE',{style:'currency',currency:'EUR'}).format(v); }
+
+})();
+</script>
+</body>
+</html>

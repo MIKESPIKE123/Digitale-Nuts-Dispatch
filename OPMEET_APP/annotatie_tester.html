@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Annotatie Test - Stad Antwerpen OPMEETAPP</title>
+<style>
+  /* Basisstijlen */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f3f4f6;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    color: #e1001a;
+    margin-bottom: 20px;
+  }
+  button {
+    padding: 10px 15px;
+    background-color: #e1001a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  button:hover {
+    background-color: #c10017;
+  }
+  .test-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+  }
+  .log {
+    background-color: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: monospace;
+  }
+  .log p {
+    margin: 3px 0;
+  }
+  .success {
+    color: green;
+  }
+  .error {
+    color: red;
+  }
+  .info {
+    color: blue;
+  }
+
+  /* Annotation Modal Styles */
+  #annotateModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+  }
+  #annotateContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  #annotateCanvas {
+    display: block;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+  }
+  #annotateToolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Annotatie Systeem Tester</h1>
+  
+  <div class="test-section">
+    <h2>1. Test Componenten</h2>
+    <button onclick="testComponents()">Test Basis Componenten</button>
+    <button onclick="testLocalStorage()">Test LocalStorage</button>
+  </div>
+  
+  <div class="test-section">
+    <h2>2. Foto's en Annotaties</h2>
+    <button onclick="loadTestImage(1)">Laad Test Foto 1</button>
+    <button onclick="loadTestImage(2)">Laad Test Foto 2</button>
+    <button onclick="clearPhotos()">Wis Alle Foto's</button>
+  </div>
+  
+  <div class="test-section">
+    <h2>3. Annotatie Editor</h2>
+    <button onclick="testOpenModal()">Test Modal Weergave</button>
+    <button onclick="testAnnotationEditor(1)">Test Annotatie Editor Foto 1</button>
+    <button onclick="testAnnotationEditor(2)">Test Annotatie Editor Foto 2</button>
+  </div>
+  
+  <div class="log" id="logOutput">
+    <p><strong>Logboek:</strong></p>
+  </div>
+</div>
+
+<!-- Annotation Modal -->
+<div id="annotateModal">
+  <div id="annotateContainer">
+    <canvas id="annotateCanvas" width="600" height="400"></canvas>
+    <div id="annotateToolbar">
+      <button id="toolPen" title="Pen">✏️</button>
+      <button id="toolArrow" title="Pijl">➡️</button>
+      <button id="toolText" title="Tekst">T</button>
+      <button id="btnSaveAnn" title="Opslaan">Opslaan</button>
+      <button id="btnCloseAnn" title="Sluiten">Sluiten</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Logging functie
+  function log(message, type = 'info') {
+    const logElement = document.getElementById('logOutput');
+    const entry = document.createElement('p');
+    entry.className = type;
+    entry.textContent = message;
+    logElement.appendChild(entry);
+    console.log(`[${type}] ${message}`);
+    
+    // Scroll naar beneden
+    logElement.scrollTop = logElement.scrollHeight;
+  }
+  
+  // Test basis componenten
+  function testComponents() {
+    log('Test componenten gestart...');
+    
+    const modal = document.getElementById('annotateModal');
+    const canvas = document.getElementById('annotateCanvas');
+    const container = document.getElementById('annotateContainer');
+    const toolbar = document.getElementById('annotateToolbar');
+    
+    if (modal) log('✓ Modal element gevonden', 'success');
+    else log('✗ Modal element niet gevonden!', 'error');
+    
+    if (canvas) log('✓ Canvas element gevonden', 'success');
+    else log('✗ Canvas element niet gevonden!', 'error');
+    
+    if (container) log('✓ Container element gevonden', 'success');
+    else log('✗ Container element niet gevonden!', 'error');
+    
+    if (toolbar) log('✓ Toolbar element gevonden', 'success');
+    else log('✗ Toolbar element niet gevonden!', 'error');
+  }
+  
+  // Test localStorage
+  function testLocalStorage() {
+    log('Test localStorage gestart...');
+    
+    try {
+      // Test schrijven naar localStorage
+      localStorage.setItem('test', 'Test waarde');
+      
+      // Test lezen van localStorage
+      const testValue = localStorage.getItem('test');
+      if (testValue === 'Test waarde') {
+        log('✓ localStorage lezen/schrijven werkt correct', 'success');
+      } else {
+        log('✗ localStorage lezen/schrijven werkt niet correct', 'error');
+      }
+      
+      // Verwijder test item
+      localStorage.removeItem('test');
+      
+      // Check foto's in localStorage
+      const photo1 = localStorage.getItem('photo1');
+      const photo2 = localStorage.getItem('photo2');
+      
+      log(`Foto 1 in localStorage: ${photo1 ? 'Ja' : 'Nee'}`);
+      log(`Foto 2 in localStorage: ${photo2 ? 'Ja' : 'Nee'}`);
+      
+    } catch (error) {
+      log(`✗ localStorage error: ${error.message}`, 'error');
+    }
+  }
+  
+  // Laad test afbeelding
+  function loadTestImage(index) {
+    log(`Test foto ${index} laden...`);
+    
+    // Maak een canvas om een test afbeelding te genereren
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = 600;
+    tempCanvas.height = 400;
+    const tempCtx = tempCanvas.getContext('2d');
+    
+    // Maak een gradient achtergrond
+    const gradient = tempCtx.createLinearGradient(0, 0, 600, 400);
+    gradient.addColorStop(0, index === 1 ? '#e1001a' : '#1f4acc');
+    gradient.addColorStop(1, '#ffb612');
+    tempCtx.fillStyle = gradient;
+    tempCtx.fillRect(0, 0, 600, 400);
+    
+    // Voeg tekst toe
+    tempCtx.fillStyle = 'white';
+    tempCtx.font = '30px Arial';
+    tempCtx.textAlign = 'center';
+    tempCtx.fillText(`Test Foto ${index}`, 300, 200);
+    
+    // Sla op in localStorage
+    try {
+      const imgData = tempCanvas.toDataURL('image/png');
+      localStorage.setItem(`photo${index}`, imgData);
+      log(`✓ Test foto ${index} opgeslagen in localStorage`, 'success');
+    } catch (error) {
+      log(`✗ Fout bij opslaan test foto ${index}: ${error.message}`, 'error');
+    }
+  }
+  
+  // Wis alle foto's
+  function clearPhotos() {
+    try {
+      localStorage.removeItem('photo1');
+      localStorage.removeItem('photo2');
+      localStorage.removeItem('photo1Ann');
+      localStorage.removeItem('photo2Ann');
+      log('✓ Alle fotos en annotaties gewist', 'success');
+    } catch (error) {
+      log(`✗ Fout bij wissen foto's: ${error.message}`, 'error');
+    }
+  }
+  
+  // Test modal weergave
+  function testOpenModal() {
+    log('Test modal weergave...');
+    const modal = document.getElementById('annotateModal');
+    
+    if (modal) {
+      modal.style.display = 'block';
+      log('Modal geopend. Zou nu zichtbaar moeten zijn.', 'success');
+      
+      // Automatisch sluiten na 3 seconden
+      setTimeout(() => {
+        modal.style.display = 'none';
+        log('Modal automatisch gesloten.', 'info');
+      }, 3000);
+    } else {
+      log('✗ Modal element niet gevonden!', 'error');
+    }
+  }
+  
+  // Test annotatie editor
+  function testAnnotationEditor(index) {
+    log(`Test annotatie editor voor foto ${index}...`);
+    
+    // Check of er een foto is
+    const photoData = localStorage.getItem(`photo${index}`);
+    if (!photoData) {
+      log(`✗ Geen foto ${index} gevonden in localStorage. Laad eerst een test foto.`, 'error');
+      return;
+    }
+    
+    // Open modal
+    const modal = document.getElementById('annotateModal');
+    const canvas = document.getElementById('annotateCanvas');
+    
+    if (!modal || !canvas) {
+      log('✗ Modal of canvas element niet gevonden!', 'error');
+      return;
+    }
+    
+    log('Annotatie editor wordt geopend...', 'info');
+    
+    // Toon modal
+    modal.style.display = 'block';
+    
+    // Teken de afbeelding op het canvas
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.onload = () => {
+      // Pas canvas grootte aan
+      canvas.width = img.width;
+      canvas.height = img.height;
+      
+      // Teken afbeelding
+      ctx.drawImage(img, 0, 0);
+      log('✓ Afbeelding geladen in annotatie editor', 'success');
+    };
+    img.src = photoData;
+    
+    // Voeg event listener toe voor sluiten
+    document.getElementById('btnCloseAnn').onclick = function() {
+      modal.style.display = 'none';
+      log('Annotatie editor gesloten', 'info');
+    };
+  }
+  
+  // Event listeners toevoegen bij laden pagina
+  document.addEventListener('DOMContentLoaded', function() {
+    log('Pagina geladen, tester gereed.', 'success');
+    
+    // Check of annotatie componenten bestaan
+    testComponents();
+  });
+</script>
+</body>
+</html>

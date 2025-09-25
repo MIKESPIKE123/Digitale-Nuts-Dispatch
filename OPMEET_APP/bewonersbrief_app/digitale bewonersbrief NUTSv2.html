@@ -1,0 +1,522 @@
+﻿<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.antwerpen.be/core_branding_scss/6.6.6/main.min.css">
+  <title>Generator bewonersbrief â€“ nutswerken</title>
+  <style>
+    :root{ --red:#e1001a; --border:#e5e7eb; --muted:#6b7280; --bg:#f7f7f9 }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:#111827}
+    header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#fff;border-bottom:3px solid var(--red)}
+    header h1{margin:0;font-size:18px}
+    .wrap{display:grid;grid-template-columns:360px 1fr;gap:16px;padding:16px}
+    @media (max-width: 1100px){ .wrap{ grid-template-columns:1fr } }
+    .card{background:#fff;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .pane{padding:14px}
+    .row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    label{font-size:12px;color:#374151}
+    input,select,textarea{padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:#fff;font-size:14px}
+    input[type="text"], input[type="date"], input[type="time"], select, textarea{width:100%}
+    textarea{min-height:72px}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+    .btn{padding:8px 12px;border-radius:100px;border:1px solid var(--border);background:#fff;cursor:pointer}
+    .btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+    .btnbar{display:flex;gap:8px;flex-wrap:wrap}
+    .muted{color:var(--muted);font-size:12px}
+
+    /* Letter layout (screen + print) */
+    .letter{position:relative; padding:32px 32px 36px 36px; line-height:1.6; max-width:800px; background:#fff}
+    /* Red accent bar at left */
+    .letter::before{content:""; position:absolute; left:8px; top:24px; bottom:24px; width:3px; background:var(--red)}
+    .letter h1{font-size:32px; line-height:1.2; margin:8px 0 6px 0; font-weight:800}
+    .letter h2{margin:0 0 12px 0; font-size:22px}
+    .letter h3{margin:18px 0 8px 0; font-size:20px}
+    .letter .meta{color:#374151;font-size:14px;margin-bottom:12px}
+    .letter p{margin:0 0 10px}
+    .letter .fromline{font-size:18px; color:#111; margin:0 0 18px 0}
+    .letter .hint{color:#6b7280; font-style:italic}
+    .letter .tag{float:right; font-size:16px; color:#111; margin-top:6px}
+    .letter ul{margin:6px 0 12px 20px}
+    .signoff{margin-top:20px}
+  .hidden{display:none}
+  .city-logo{height:36px; margin-bottom:12px}
+
+    @media print{
+      @page { size: A4 portrait; margin: 18mm; }
+      header, .wrap > .card:first-child{ display:none !important }
+      .wrap{ padding:0 }
+      .card{ box-shadow:none }
+      body{ background:#fff }
+      .letter{ padding:0; margin:0; max-width:unset }
+      .letter::before{ left:-8mm; top:0; bottom:0 }
+      .city-logo{ margin-top:0 }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Generator bewonersbrief â€“ nutswerken</h1>
+    <div class="btnbar">
+      <button id="btnSave" class="btn">Bewaar (lokaal)</button>
+      <button id="btnExportHtml" class="btn">Opslaan als HTML</button>
+      <button id="btnPrint" class="btn primary">PDF / Print</button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <aside class="card">
+      <div class="pane">
+        <h3>Project</h3>
+        <div class="grid2 row">
+          <label>Nutmaatschappij
+            <select id="utility">
+              <option value="">”</option>
+              <option>Fluvius</option>
+              <option>waterlink</option>
+              <option>Aquafin</option>
+              <option>Telenet</option>
+              <option>Proximus</option>
+              <option>WYRE</option>
+              <option>ORANGE</option>
+            </select>
+          </label>
+          <label>Projecttitel
+            <input id="title" type="text" list="titleOptions" placeholder="Bv. Vernieuwing nutsleidingen" />
+            <datalist id="titleOptions">
+              <option value="Vernieuwing aanvoerleiding"></option>
+              <option value="Vernieuwing riolering"></option>
+              <option value="Werken in uw straat"></option>
+              <option value="Vernieuwing nutsleidingen"></option>
+            </datalist>
+          </label>
+        </div>
+        <div class="row">
+          <label>Locatie (straten, huisnummers)
+            <input id="location" type="text" placeholder="Bv. Kerkstraat 1â€“35, tussen X en Y" />
+          </label>
+        </div>
+        <div class="grid3 row">
+          <label>Startdatum
+            <input id="start" type="date" />
+          </label>
+          <label>Einddatum
+            <input id="end" type="date" />
+          </label>
+        </div>
+
+        <div class="grid2 row">
+          <label>Vanaf (uur)
+            <input id="startTime" type="time" />
+          </label>
+          <label>Aannemer
+            <input id="contractor" type="text" placeholder="Naam aannemer" />
+          </label>
+        </div>
+        <div class="row">
+          <label>Opdrachtgever(s)
+            <input id="clients" type="text" placeholder="Betrokken overhe(i)d(en)" />
+          </label>
+        </div>
+        <div class="row">
+          <label>Wat (korte omschrijving)
+            <textarea id="what" placeholder="Bv. de straat wordt opnieuw aangelegd, krijgt een nieuwe laag asfalt â€¦"></textarea>
+          </label>
+        </div>
+
+        <h3>Planning</h3>
+        <div class="row">
+          <label>Fasering / Periodes (vrij tekst)
+            <textarea id="planningText" placeholder="Bv. Van 1 mei t.e.m. 10 mei: werken tussen X en Y aan pare zijde."></textarea>
+          </label>
+        </div>
+
+        <h3>Nutsvoorzieningen</h3>
+        <div class="row">
+          <label><input type="checkbox" id="outageWater" /> Water onderbroken</label>
+          <label><input type="checkbox" id="outageInternet" /> Internet onderbroken</label>
+          <label><input type="checkbox" id="outageElectric" /> Elektriciteit onderbroken</label>
+          <label><input type="checkbox" id="outageOther" /> Andere</label>
+        </div>
+        <div class="grid3 row">
+          <label>Van (uur)
+            <input id="outageFrom" type="time" />
+          </label>
+          <label>Tot (uur)
+            <input id="outageTo" type="time" />
+          </label>
+          <label>Andere (specifieer)
+            <input id="outageOtherText" type="text" placeholder="bv. gas, warmte â€¦" />
+          </label>
+        </div>
+
+        <h3>Hinder en omleidingen</h3>
+        <div class="row">
+          <label><input type="checkbox" id="motorDetour" /> Gemotoriseerd verkeer volgt omleiding</label>
+          <label><input type="checkbox" id="autoCanPass" /> Auto: u kan langs de werken</label>
+          <label><input type="checkbox" id="autoFollowDetour" /> Auto: volg de omleiding via pijlen</label>
+          <label><input type="checkbox" id="autoOneWay" /> Auto: tijdelijk éénrichtingsverkeer met route</label>
+          <label><input type="checkbox" id="autoParkingBanBoards" /> Auto: volg de borden 'niet parkeren'</label>
+          <label><input type="checkbox" id="autoGarageYes" /> Auto: de toegang tot garages/opritten blijft mogelijk</label>
+          <label><input type="checkbox" id="autoGarageNo" /> Auto: er is geen toegang tot garages/opritten</label>
+        </div>
+        <div class="grid3 row" id="autoOneWayExtra" style="display:none">
+          <label>Straat (inrichting)
+            <input id="onewayStreet" type="text" />
+          </label>
+          <label>Vanaf straat
+            <input id="onewayFrom" type="text" />
+          </label>
+          <label>Naar straat
+            <input id="onewayTo" type="text" />
+          </label>
+        </div>
+        <div class="row" id="garageExtra" style="display:none">
+          <label>Specificatie garages/opritten (huisnrs)
+            <input id="garageDetail" type="text" placeholder="bv. huisnrs 10â€“24" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label><input type="checkbox" id="bikeCanPass" /> Fiets: u kan langs de werken rijden</label>
+          <label><input type="checkbox" id="bikeFollowDetour" /> Fiets: volg de omleiding via pijlen/borden</label>
+          <label><input type="checkbox" id="bikeKeepSidewalkClear" /> Fiets: hou het voetpad vrij</label>
+        </div>
+        <div class="row">
+          <label><input type="checkbox" id="footCanPass" /> Te voet: u kan langs de werken wandelen</label>
+          <label><input type="checkbox" id="footFollowDetour" /> Te voet: volg de omleiding via pijlen/borden</label>
+        </div>
+        <div class="grid3 row">
+          <label><input type="checkbox" id="ptMoved" /> de Bus/Tram halte werd verplaatst</label>
+          <label>Halte naam
+            <input id="ptStop" type="text" />
+          </label>
+          <label>Naar straat
+            <input id="ptStreet" type="text" />
+          </label>
+        </div>
+        <div class="row">
+          <label>Andere hinder (optioneel)
+            <textarea id="otherHinder"></textarea>
+          </label>
+        </div>
+
+        <h3>Waarom deze werken? (optioneel)</h3>
+        <div class="row">
+          <label>Waarom
+            <textarea id="why"></textarea>
+          </label>
+        </div>
+
+        <h3>Meer informatie</h3>
+        <div class="grid2 row">
+          <label>Website
+            <input id="moreInfoUrl" type="text" placeholder="https://â€¦" />
+          </label>
+          <div class="row" style="align-items:center">
+            <label><input type="checkbox" id="infoPlans" /> plannen</label>
+            <label><input type="checkbox" id="infoTiming" /> timing</label>
+            <label><input type="checkbox" id="infoDetours" /> omleidingen</label>
+          </div>
+        </div>
+
+        <h3>Keuzes</h3>
+        <div class="row">
+          <label><input type="checkbox" id="roadClosed" /> De rijweg is volledig afgesloten</label><br/>
+          <label><input type="checkbox" id="localTraffic" /> Enkel plaatselijk verkeer</label><br/>
+          <label><input type="checkbox" id="alternatingTraffic" /> Afwisselend verkeer (lichten/seingevers)</label><br/>
+          <label><input type="checkbox" id="oneWay" /> Tijdelijk éénrichtingsverkeer</label><br/>
+          <label><input type="checkbox" id="sidewalkOpen" checked /> Voetpad blijft toegankelijk</label><br/>
+          <label><input type="checkbox" id="bikepathOpen" checked /> Fietsers kunnen passeren</label><br/>
+          <label><input type="checkbox" id="parkingBan" /> Parkeerverbod nodig</label><br/>
+          <label><input type="checkbox" id="noisyWork" /> Geluidshinder te verwachten</label><br/>
+          <label><input type="checkbox" id="nightWork" /> Nachtwerk</label>
+        </div>
+  <div id="parkingExtra" class="row hidden">
+          <label>Details parkeerverbod
+            <input id="parkingDetails" type="text" placeholder="bv. Er wordt een tijdelijk parkeerverbod langs de werfzone voorzien" />
+          </label>
+        </div>
+  <div id="garbageExtra" class="row hidden">
+          <label>Afval-ophaalpunt (indien vuilniswagen niet kan passeren)
+            <input id="garbagePoint" type="text" placeholder="bv. hoek Kerkstraat --> Markt" />
+          </label>
+        </div>
+        <div class="row">
+          <label>Extra tekst (optioneel)
+            <textarea id="extra"></textarea>
+          </label>
+        </div>
+
+        <h3>Contact</h3>
+        <div class="grid2 row">
+          <label>Contactpersoon
+            <input id="contactName" type="text" />
+          </label>
+          <label>Telefoon
+            <input id="contactPhone" type="text" />
+          </label>
+        </div>
+        <div class="row">
+          <label>E-mail
+            <input id="contactMail" type="text" />
+          </label>
+        </div>
+        <div class="row">
+          <span class="muted">Velden worden automatisch in de brief opgenomen. De voorbeeldbrief rechts werkt live.</span>
+        </div>
+      </div>
+    </aside>
+
+    <section class="card">
+      <div class="pane letter">
+        <img class="city-logo" alt="Stad Antwerpen" src="../LOGO STAD ANTWERPEN.png" />
+        <div id="preview"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const $ = (id)=>document.getElementById(id);
+
+    const state = {
+      utility: '', title: '', location: '', start: '', end: '', 
+      startTime:'', what:'', contractor:'', clients:'', planningText:'',
+      outageWater:false, outageInternet:false, outageElectric:false, outageOther:false,
+      outageFrom:'', outageTo:'', outageOtherText:'',
+      motorDetour:false,
+      autoCanPass:false, autoFollowDetour:false, autoOneWay:false, autoParkingBanBoards:false,
+      autoGarageYes:false, autoGarageNo:false, onewayStreet:'', onewayFrom:'', onewayTo:'', garageDetail:'',
+      bikeCanPass:false, bikeFollowDetour:false, bikeKeepSidewalkClear:false,
+      footCanPass:false, footFollowDetour:false,
+      ptMoved:false, ptStop:'', ptStreet:'', otherHinder:'', why:'',
+      moreInfoUrl:'', infoPlans:false, infoTiming:false, infoDetours:false,
+      roadClosed: false, localTraffic: false, alternatingTraffic: false, oneWay:false,
+      sidewalkOpen:true, bikepathOpen:true, parkingBan:false, noisyWork:false, nightWork:false,
+      parkingDetails:'', garbagePoint:'', extra:'',
+      contactName:'', contactPhone:'', contactMail:''
+    };
+
+    const controls = [
+      'utility','title','location','start','end','startTime','what','contractor','clients','planningText',
+      'outageFrom','outageTo','outageOtherText',
+      'onewayStreet','onewayFrom','onewayTo','garageDetail','garbagePoint',
+      'otherHinder','why','moreInfoUrl','parkingDetails','extra',
+      'contactName','contactPhone','contactMail','ptStop','ptStreet'
+    ];
+    const toggles = [
+      'outageWater','outageInternet','outageElectric','outageOther',
+      'motorDetour','autoCanPass','autoFollowDetour','autoOneWay','autoParkingBanBoards','autoGarageYes','autoGarageNo',
+      'bikeCanPass','bikeFollowDetour','bikeKeepSidewalkClear','footCanPass','footFollowDetour',
+      'ptMoved','infoPlans','infoTiming','infoDetours',
+      'roadClosed','localTraffic','alternatingTraffic','oneWay','sidewalkOpen','bikepathOpen','parkingBan','noisyWork','nightWork'
+    ];
+
+    function formatDateNL(iso){
+      if(!iso) return '';
+      const d = new Date(iso+'T12:00:00');
+      const months = ['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+      return d.getDate()+ ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+    }
+
+    function saveLocal(){ try{ localStorage.setItem('bewonersbrief_state', JSON.stringify(state)); }catch{} }
+    function loadLocal(){ try{ const s=JSON.parse(localStorage.getItem('bewonersbrief_state')||'null'); if(s) Object.assign(state, s); }catch{} }
+
+    function clauseList() {
+      const c = [];
+      if(state.localTraffic){ c.push('Enkel plaatselijk verkeer is toegelaten binnen de werfzone.'); }
+      if(state.alternatingTraffic){ c.push('Het verkeer verloopt afwisselend met tijdelijke verkeerslichten of seingevers.'); }
+      if(state.oneWay){ c.push('Er geldt tijdelijk éénrichtingsverkeer volgens de signalisatie ter plaatse.'); }
+      // Soft mobility
+      if(state.sidewalkOpen){ c.push('Het voetpad blijft, waar mogelijk, toegankelijk.'); } else { c.push('Het voetpad is (gedeeltelijk) afgesloten. Volg de aangeduide omleiding.'); }
+      if(state.bikepathOpen){ c.push('Fietsers kunnen de werfzone voorzichtig passeren.'); } else { c.push('Fietsers volgen de aangeduide omleiding.'); }
+      // Hinder
+      if(state.noisyWork){ c.push('Geluidshinder is mogelijk tijdens de werkuren. We beperken dit tot het noodzakelijke.'); }
+      if(state.nightWork){ c.push('Er wordt uitzonderlijk ook ’s nachts gewerkt. We trachten de hinder te beperken.'); }
+      // Parking
+      if(state.parkingBan){ c.push('Er geldt een tijdelijk parkeerverbod in en rond de werfzone.' + (state.parkingDetails? ' '+state.parkingDetails : '')); }
+      // Garbage requirement when road closed
+      if(state.roadClosed){
+        const gp = state.garbagePoint ? ' aan '+state.garbagePoint : '';
+        c.push('Op de ophaaldag kan de vuilniswagen mogelijk niet passeren. Gelieve uw afval voor 6u buiten te plaatsen'+gp+'.');
+      }
+      return c;
+    }
+
+    function generateLetter(){
+      const today = new Date();
+      const headerDate = today.toLocaleDateString('nl-BE', { day:'2-digit', month:'long', year:'numeric' });
+      const lines = [];
+
+      // Header
+      lines.push(`<div class="meta">${headerDate}</div>`);
+      const title = state.title || 'Werken aan nutsleidingen';
+      lines.push(`<h2>${title}</h2>`);
+
+      // Intro
+      const util = state.utility? `${state.utility} `: '';
+      const loc = state.location ? ` in ${state.location}` : '';
+      // Right-top tag and title
+      lines.push(`<div class="tag">Infobrief</div>`);
+      const titleTxt = state.title || 'Werken in uw straat';
+      lines.push(`<h1 class="letter-title">${titleTxt}</h1>`);
+      // Vanaf datum, optioneel uur
+      const startFmt = state.start ? formatDateNL(state.start) : '';
+      const fromLine = startFmt ? `Vanaf ${startFmt}${state.startTime? ', '+state.startTime:''}` : '';
+      if(fromLine) lines.push(`<p class="fromline">${fromLine}</p>`);
+      // Wat / aannemer / opdrachtgever(s)
+      if(state.what){ lines.push(`<p><strong>Wat:</strong> <span class="hint">${state.what}</span></p>`); }
+      if(state.contractor){ lines.push(`<p><strong>Aannemer:</strong> ${state.contractor}</p>`); }
+      if(state.clients){ lines.push(`<p><strong>Opdrachtgever(s):</strong> ${state.clients}</p>`); }
+
+      // Timing
+      const period = state.start || state.end ?
+        `De werken starten op ${formatDateNL(state.start) || 'n.t.b.'} en lopen tot ${formatDateNL(state.end) || 'n.t.b.'}.` :
+        'De exacte planning wordt nog bevestigd.';
+      
+      lines.push(`<p>${period}</p>`);
+      if(state.planningText){ lines.push(`<p>${state.planningText.replace(/\n/g,'<br>')}</p>`); }
+
+      // Hinder en omleidingen
+      lines.push('<h3>Hinder en omleidingen</h3>');
+      lines.push('<p>We proberen de gevolgen voor de buurt waar mogelijk te beperken. Werken zonder hinder kan helaas niet.</p>');
+
+      // Nutsvoorzieningen (indien aangevinkt)
+      const outages = [];
+      if(state.outageWater) outages.push('water');
+      if(state.outageInternet) outages.push('internet');
+      if(state.outageElectric) outages.push('elektriciteit');
+      if(state.outageOther && state.outageOtherText) outages.push(state.outageOtherText);
+      if(outages.length){
+        const win = outages.length===1? outages[0] : outages.slice(0,-1).join(', ')+' en '+outages.slice(-1);
+        const t1 = state.outageFrom? state.outageFrom : 'XX';
+        const t2 = state.outageTo? state.outageTo : 'XX';
+        lines.push(`<p>${win.charAt(0).toUpperCase()+win.slice(1)} wordt/worden afgesloten tussen ${t1} en ${t2} uur. U kan ${win} dan niet gebruiken.</p>`);
+      }
+
+      // Afvalophaling
+      if(state.motorDetour){
+        const gp = state.garbagePoint ? ` ${state.garbagePoint}` : '';
+        lines.push(`<p>De vuilniswagen kan niet door de werken rijden. Zet daarom uw afval op een bereikbare plaats${gp? ' ('+gp+')':''}, op uw normale ophaaldagen.</p>`);
+      }
+
+      // Auto
+      const autoPts = [];
+      if(state.autoCanPass) autoPts.push('U kan langs de werken rijden.');
+      if(state.autoFollowDetour) autoPts.push('Volg de omleiding via de pijlen.');
+      if(state.autoOneWay){
+        const st = state.onewayStreet||'de straat'; const fs = state.onewayFrom||'â€¦'; const ts = state.onewayTo||'â€¦';
+        autoPts.push(`Rij ${st} in vanaf ${fs} naar ${ts}.`);
+      }
+      if(state.autoParkingBanBoards) autoPts.push('Volg de borden "niet parkeren". Deze borden worden minstens 48 uur op voorhand geplaatst.');
+      if(state.autoGarageYes) autoPts.push('U kan in de garages of van uw oprit'+(state.garageDetail? ` (${state.garageDetail})`:'')+'.');
+      if(state.autoGarageNo) autoPts.push('U kan niet in de garages of van uw oprit'+(state.garageDetail? ` (${state.garageDetail})`:'')+'.');
+      if(autoPts.length){ lines.push('<p><strong>Bent u met de auto?</strong></p><ul>'+autoPts.map(x=>`<li>${x}</li>`).join('')+'</ul>'); }
+
+      // Fiets
+      const bikePts = [];
+      if(state.bikeCanPass) bikePts.push('U kan langs de werken.');
+      if(state.bikeFollowDetour) bikePts.push('Volg de omleiding via de pijlen of borden.');
+      if(state.bikeKeepSidewalkClear) bikePts.push('Hou het voetpad vrij. Zet geen fietsen op het voetpad tijdens de werken.');
+      if(bikePts.length){ lines.push('<p><strong>Bent u met de fiets?</strong></p><ul>'+bikePts.map(x=>`<li>${x}</li>`).join('')+'</ul>'); }
+
+      // Te voet
+      const footPts = [];
+      if(state.footCanPass) footPts.push('U kan langs de werken.');
+      if(state.footFollowDetour) footPts.push('Volg de omleiding via de pijlen of borden.');
+      if(footPts.length){ lines.push('<p><strong>Bent u te voet?</strong></p><ul>'+footPts.map(x=>`<li>${x}</li>`).join('')+'</ul>'); }
+
+      // OV
+      if(state.ptMoved && (state.ptStop||state.ptStreet)){
+        lines.push(`<p><strong>Bent u met de bus/de tram?</strong><br/>Halte ${state.ptStop||''} verplaatst naar ${state.ptStreet||''}.</p>`);
+      }
+      if(state.otherHinder){ lines.push(`<p>${state.otherHinder.replace(/\n/g,'<br>')}</p>`); }
+
+      // Overzicht van keuzes niet opnemen in de brief/PDF (verzoek)
+
+      // Extra
+      if(state.extra){ lines.push(`<p>${state.extra.replace(/\n/g,'<br>')}</p>`); }
+
+      // Accessibility / services (default reassurance)
+      lines.push('<p>Hulpdiensten behouden steeds doorgang. Volg de signalisatie en aanwijzingen van de werfbegeleiding.</p>');
+      if(state.why){ lines.push('<h3>Waarom deze werken?</h3><p>'+state.why.replace(/\n/g,'<br>')+'</p>'); }
+      if(state.moreInfoUrl){
+        const pts=[]; if(state.infoPlans) pts.push('de plannen van de werken'); if(state.infoTiming) pts.push('de timing van de werken'); if(state.infoDetours) pts.push('de omleidingen op dit moment');
+        const suffix = pts.length? ' over: '+pts.join(', '): '';
+        lines.push(`<p>Meer info: <a href="${state.moreInfoUrl}">${state.moreInfoUrl}</a>${suffix}.</p>`);
+      }
+
+      // Contact
+      const contactParts = [];
+      if(state.contactName) contactParts.push(state.contactName);
+      if(state.contactPhone) contactParts.push(state.contactPhone);
+      if(state.contactMail) contactParts.push(state.contactMail);
+      if(contactParts.length){
+        lines.push('<p>Hebt u praktische vragen over de werken? Contacteer '+(state.contractor||'de aannemer')+' via '+contactParts.join(' â€“ ')+'.</p>');
+        lines.push('<p>U kan ook het telefoonnummer op de borden langs de werf contacteren.</p>');
+      }
+      if(state.utility){ lines.push('<p>Is er een storing? Contacteer '+state.utility+'.</p>'); }
+
+      lines.push('<p class="signoff">Met vriendelijke groeten,<br/>'+(state.utility||'')+'</p>');
+
+      $('preview').innerHTML = lines.join('\n');
+    }
+
+    function syncUI(){
+      controls.forEach(id=>{ const el=$(id); if(el && state[id]!==undefined){ el.value = state[id]; }});
+      toggles.forEach(id=>{ const el=$(id); if(el){ el.checked = !!state[id]; }});
+      $('parkingExtra').style.display = state.parkingBan ? '' : 'none';
+      const ge = $('garbageExtra'); if(ge) ge.style.display = (state.motorDetour || state.roadClosed) ? '' : 'none';
+      const ae = $('autoOneWayExtra'); if(ae) ae.style.display = state.autoOneWay ? '' : 'none';
+      const ga = $('garageExtra'); if(ga) ga.style.display = (state.autoGarageYes || state.autoGarageNo) ? '' : 'none';
+      generateLetter();
+    }
+
+    function bind(){
+      controls.forEach(id=>{
+        const el=$(id); if(!el) return;
+        el.addEventListener('input', ()=>{ state[id] = el.value; saveLocal(); generateLetter(); });
+      });
+      toggles.forEach(id=>{
+        const el=$(id); if(!el) return;
+        el.addEventListener('change', ()=>{ state[id] = el.checked; saveLocal(); syncUI(); });
+      });
+      $('btnPrint').addEventListener('click', ()=> window.print());
+      $('btnSave').addEventListener('click', ()=>{ saveLocal(); alert('Bewaard op dit toestel.'); });
+      $('btnExportHtml').addEventListener('click', exportAsHtml);
+    }
+
+    function exportAsHtml(){
+      try{
+        const html = document.documentElement.outerHTML;
+        const payload = JSON.stringify(state);
+        const stateScript = `\n<script>window.__BEWONERSBRIEF_STATE__=${payload};<\/script>\n`;
+        const loader = `\n<script>(function(){\n  function restore(){ try{ var st=window.__BEWONERSBRIEF_STATE__; if(!st) return; localStorage.setItem('bewonersbrief_state', JSON.stringify(st)); }catch(e){} }\n  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', restore);} else { restore(); }\n})();<\/script>\n`;
+        const finalHtml = html.replace(/<\/body>/i, stateScript+loader+'</body>');
+        const blob = new Blob([finalHtml], {type:'text/html'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href=url;
+        const ds = (state.start||new Date().toISOString().slice(0,10)).replace(/-/g,'');
+        const dossier = (state.title||'Bewonersbrief').replace(/\s+/g,'_').replace(/[^A-Za-z0-9_\-]/g,'-');
+        a.download = `${ds}_${dossier}.html`;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(()=> URL.revokeObjectURL(url), 1500);
+      }catch(e){ console.error('Export HTML failed', e); }
+    }
+
+    // Init
+    loadLocal();
+    bind();
+    syncUI();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Item Bewerken</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; background: #f9f9f9; }
+        .error { color: red; }
+        .success { color: green; }
+        .warning { color: orange; }
+        button { margin: 5px; padding: 8px 12px; }
+        .item-list { max-height: 200px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; }
+        .item { padding: 5px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+    </style>
+</head>
+<body>
+    <h1>Test Item Bewerken Functionaliteit</h1>
+    
+    <div class="test-section">
+        <h3>1. Configuratie Overzicht</h3>
+        <button onclick="testConfigOverview()">Toon Config Overzicht</button>
+        <div id="configOverviewResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>2. Selecteer Categorie</h3>
+        <select id="categorySelect" onchange="loadCategoryItems()">
+            <option value="">Selecteer categorie...</option>
+        </select>
+        <div id="categoryInfo"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>3. Items in Categorie</h3>
+        <div id="itemsList"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>4. Test Edit Interface</h3>
+        <div id="editInterface">
+            <div id="configEditorTabs" style="margin: 10px 0; padding: 10px; background: #f0f0f0;"></div>
+            <div id="configEditorContent" style="border: 1px solid #ddd; padding: 10px; min-height: 300px; background: white;"></div>
+        </div>
+    </div>
+
+    <script src="js/dataManager.js"></script>
+    <script>
+        let dataManager;
+        let configManager;
+        
+        // Simple ConfigManager for testing
+        const testConfigManager = {
+            activeKey: null,
+            
+            getData(key) {
+                if (!dataManager) return [];
+                const group = dataManager.getConfigGroup(key);
+                if (group && typeof dataManager[group.method] === 'function') {
+                    return dataManager[group.method]();
+                }
+                return [];
+            },
+            
+            getLabel(key) {
+                const configGroups = dataManager.getActiveConfigGroups();
+                const g = configGroups.find(c => c.key === key);
+                return g ? g.label : key;
+            },
+            
+            flashStatus(message) {
+                console.log('Status:', message);
+                alert(message);
+            },
+            
+            renderEditor() {
+                const container = document.getElementById('configEditorContent');
+                if (!container || !this.activeKey) return;
+                
+                const items = this.getData(this.activeKey);
+                const group = dataManager.getConfigGroup(this.activeKey);
+                
+                let html = `<h4>Items in ${this.getLabel(this.activeKey)} (${items.length})</h4>`;
+                
+                items.forEach(item => {
+                    html += `
+                        <div class="item">
+                            <span><strong>${item.name || item.code || item.id}</strong> - ${item.description || ''}</span>
+                            <div>
+                                <button onclick="testConfigManager.editItem('${item.id}')">✏️ Bewerken</button>
+                                <button onclick="testConfigManager.deactivateItem('${item.id}')">🗑️ Verwijderen</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+            },
+            
+            editItem(id) {
+                console.log('editItem called with:', id);
+                
+                const configGroups = dataManager.getActiveConfigGroups();
+                const group = configGroups.find(g => g.key === this.activeKey);
+                
+                if (!group) {
+                    alert('Configuratie groep niet gevonden');
+                    return;
+                }
+                
+                const items = this.getData(this.activeKey);
+                const item = items.find(i => i.id === id);
+                
+                if (!item) {
+                    alert('Item niet gevonden');
+                    return;
+                }
+                
+                this.showEditItemForm(item, group);
+            },
+            
+            showEditItemForm(item, group) {
+                const container = document.getElementById('configEditorContent');
+                if (!container) return;
+                
+                const fieldTypes = dataManager.getFieldTypes();
+                
+                let formHTML = `
+                    <h4>Item bewerken - ${group.label}</h4>
+                    <form id="editItemForm" onsubmit="testConfigManager.submitEditItem(event, '${item.id}'); return false;">
+                `;
+                
+                group.fields.forEach(fieldKey => {
+                    const fieldDef = fieldTypes[fieldKey];
+                    if (!fieldDef) return;
+                    
+                    const fieldId = `edit_${fieldKey}`;
+                    const currentValue = item[fieldKey] || '';
+                    const isRequired = fieldDef.required ? 'required' : '';
+                    
+                    formHTML += `
+                        <div class="a-input u-margin-bottom">
+                            <label class="a-input__label">${fieldDef.label} ${fieldDef.required ? '*' : ''}</label>
+                    `;
+                    
+                    if (fieldDef.type === 'select' && fieldDef.source) {
+                        const sourceData = this.getData(fieldDef.source);
+                        formHTML += `
+                            <select id="${fieldId}" class="a-input__field" ${isRequired}>
+                                <option value="">Selecteer...</option>
+                        `;
+                        sourceData.forEach(sourceItem => {
+                            const selected = currentValue === sourceItem.id ? 'selected' : '';
+                            formHTML += `<option value="${sourceItem.id}" ${selected}>${sourceItem.name}</option>`;
+                        });
+                        formHTML += `</select>`;
+                    } else if (fieldDef.type === 'color') {
+                        formHTML += `<input type="color" id="${fieldId}" class="a-input__field" value="${currentValue || fieldDef.default || '#3498db'}" ${isRequired}>`;
+                    } else if (fieldDef.type === 'email') {
+                        formHTML += `<input type="email" id="${fieldId}" class="a-input__field" value="${currentValue}" ${isRequired}>`;
+                    } else if (fieldDef.type === 'tel') {
+                        formHTML += `<input type="tel" id="${fieldId}" class="a-input__field" value="${currentValue}" ${isRequired}>`;
+                    } else {
+                        formHTML += `<input type="text" id="${fieldId}" class="a-input__field" value="${currentValue}" ${isRequired}>`;
+                    }
+                    
+                    formHTML += `</div>`;
+                });
+                
+                formHTML += `
+                        <div class="u-margin-top">
+                            <button type="submit" class="a-button a-button--success">
+                                💾 Item Bijwerken
+                            </button>
+                            <button type="button" class="a-button a-button--outline" onclick="testConfigManager.renderEditor()">
+                                Annuleren
+                            </button>
+                        </div>
+                    </form>
+                `;
+                
+                container.innerHTML = formHTML;
+            },
+            
+            submitEditItem(event, itemId) {
+                event.preventDefault();
+                
+                const configGroups = dataManager.getActiveConfigGroups();
+                const group = configGroups.find(g => g.key === this.activeKey);
+                
+                if (!group) {
+                    alert('Configuratie groep niet gevonden');
+                    return;
+                }
+                
+                const fieldTypes = dataManager.getFieldTypes();
+                let itemData = { id: itemId };
+                let hasError = false;
+                
+                group.fields.forEach(fieldKey => {
+                    const fieldDef = fieldTypes[fieldKey];
+                    if (!fieldDef) return;
+                    
+                    const fieldElement = document.getElementById(`edit_${fieldKey}`);
+                    const value = fieldElement ? fieldElement.value.trim() : '';
+                    
+                    if (fieldDef.required && !value) {
+                        alert(`${fieldDef.label} is verplicht`);
+                        hasError = true;
+                        return;
+                    }
+                    
+                    itemData[fieldKey] = value;
+                });
+                
+                if (hasError) return;
+                
+                const success = dataManager.updateConfigItem(this.activeKey, itemData);
+                
+                if (success) {
+                    this.flashStatus('✅ Item bijgewerkt');
+                    this.renderEditor();
+                } else {
+                    alert('Fout bij bijwerken van item');
+                }
+            },
+            
+            deactivateItem(id) {
+                if (!confirm('Weet je zeker dat je dit item wilt deactiveren?')) return;
+                
+                const success = dataManager.deactivateConfigItem(this.activeKey, id);
+                
+                if (success) {
+                    this.flashStatus('✅ Item gedeactiveerd');
+                    this.renderEditor();
+                } else {
+                    alert('Fout bij deactiveren van item');
+                }
+            }
+        };
+        
+        function init() {
+            console.log('Initializing test...');
+            dataManager = new DataManager();
+            configManager = testConfigManager;
+            window.testConfigManager = testConfigManager;
+            
+            setTimeout(() => {
+                console.log('DataManager initialized');
+                populateCategorySelect();
+            }, 100);
+        }
+        
+        function testConfigOverview() {
+            dataManager.ensureSchemaInitialized();
+            
+            const groups = dataManager.getActiveConfigGroups();
+            const result = document.getElementById('configOverviewResult');
+            
+            let html = `<h4>Configuratie Overzicht</h4>`;
+            
+            groups.forEach(group => {
+                const items = configManager.getData(group.key);
+                html += `
+                    <p><strong>${group.label} (${group.key}):</strong> ${items.length} items</p>
+                `;
+            });
+            
+            result.innerHTML = html;
+        }
+        
+        function populateCategorySelect() {
+            const groups = dataManager.getActiveConfigGroups();
+            const select = document.getElementById('categorySelect');
+            
+            select.innerHTML = '<option value="">Selecteer categorie...</option>';
+            groups.forEach(group => {
+                const option = document.createElement('option');
+                option.value = group.key;
+                option.textContent = `${group.label} (${group.key})`;
+                select.appendChild(option);
+            });
+        }
+        
+        function loadCategoryItems() {
+            const key = document.getElementById('categorySelect').value;
+            const infoDiv = document.getElementById('categoryInfo');
+            const itemsDiv = document.getElementById('itemsList');
+            
+            if (!key) {
+                infoDiv.innerHTML = '';
+                itemsDiv.innerHTML = '';
+                return;
+            }
+            
+            const group = dataManager.getConfigGroup(key);
+            const items = configManager.getData(key);
+            
+            infoDiv.innerHTML = `
+                <p><strong>Groep:</strong> ${group.label}</p>
+                <p><strong>Velden:</strong> ${group.fields.join(', ')}</p>
+                <p><strong>Items:</strong> ${items.length}</p>
+            `;
+            
+            configManager.activeKey = key;
+            configManager.renderEditor();
+        }
+        
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

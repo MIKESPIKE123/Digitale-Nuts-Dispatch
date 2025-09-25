@@ -1,0 +1,304 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2">
+  <diagram name="Zwitsers Zakmes - Max Logica" id="0">
+    <mxGraphModel dx="4753" dy="2803" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" math="0" shadow="0">
+      <root>
+        <mxCell id="0" value="" style="" />
+        <mxCell id="1" value="" style="" parent="0" />
+        <mxCell id="2" value="Blok 1 - Locatie &amp; info" style="shape=swimlane;whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="310" y="370" width="460" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="101" value="GIPOD nummer (8 cijfers)" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="2" vertex="1">
+          <mxGeometry x="20" y="60" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="102" value="GIPOD link actief" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="2" vertex="1">
+          <mxGeometry x="20" y="120" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="103" value="Beschrijving / adres" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="2" vertex="1">
+          <mxGeometry x="20" y="160" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="108" value="Postcode" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="2" vertex="1">
+          <mxGeometry x="220" y="60" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="109" value="Vaststeller" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="2" vertex="1">
+          <mxGeometry x="220" y="120" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="110" value="Periode: start → eind" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="2" vertex="1">
+          <mxGeometry x="210" y="160" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="111" value="Datum vaststelling" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="2" vertex="1">
+          <mxGeometry x="210" y="200" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Blok 3 - Ter plaatse vaststellingen" style="shape=swimlane;whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="950" y="370" width="250" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="Blok 4 - Afwijkingen &amp; berekeningen" style="shape=swimlane;whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1310" y="370" width="260" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="134" value="Vergunning gegevens (nr + verval)" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="5" vertex="1">
+          <mxGeometry x="1000" y="80" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="135" value="Start overtreding" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="5" vertex="1">
+          <mxGeometry x="1000" y="120" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="136" value="Locatiemetingen: L x B → Opp" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="5" vertex="1">
+          <mxGeometry x="1000" y="160" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="137" value="Doorlooptijd per locatie → Dagen" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="5" vertex="1">
+          <mxGeometry x="1000" y="200" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="138" value="Totalen Opp en Dagen" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="5" vertex="1">
+          <mxGeometry x="1000" y="240" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="139" value="Dagtarief (readonly)" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="5" vertex="1">
+          <mxGeometry x="1000" y="280" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="140" value="Totale retributie" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="5" vertex="1">
+          <mxGeometry x="1000" y="320" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="Geschiedenis - Meerdere momenten" style="shape=swimlane;whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="950" y="770" width="580" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="148" value="Opslag per case / work reference" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="7" vertex="1">
+          <mxGeometry x="660" y="420" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="149" value="Tijdlijn vorige vaststellingen" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="7" vertex="1">
+          <mxGeometry x="660" y="460" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="150" value="Klonen vorige → carry over kernvelden" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="7" vertex="1">
+          <mxGeometry x="660" y="500" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="151" value="Relationeel: follow up / correctie / afronding" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="7" vertex="1">
+          <mxGeometry x="660" y="540" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1002" value="geen bijkomende" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="4" target="6" edge="1">
+          <mxGeometry x="-0.2281" y="15" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1003" value="bijkomende ja" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="4" target="5" edge="1">
+          <mxGeometry x="0.0069" y="15" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1004" value="" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="5" target="6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1005" value="8 cijfers" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="101" target="102" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1006" value="beschrijving ingevuld" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="103" target="104" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1007" value="ja" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="105" target="106" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1008" value="nee" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="105" target="107" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1009" value="EXIF" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="144" target="107" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1012" value="laad tijdlijn" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="116" target="149" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1018" value="ja" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="133" target="5" edge="1">
+          <mxGeometry x="-0.0007" y="-10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1019" value="voedt" style="edgeStyle=elbowEdgeStyle;dashed=1;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="136" target="138" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1020" value="voedt" style="edgeStyle=elbowEdgeStyle;dashed=1;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="137" target="138" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1021" value="berekent" style="edgeStyle=elbowEdgeStyle;dashed=1;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="138" target="140" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1022" value="tarief" style="edgeStyle=elbowEdgeStyle;dashed=1;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="139" target="140" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1023" value="context" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="7" target="2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1024" value="context" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="7" target="3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1025" value="context" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="7" target="4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1026" value="context" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="7" target="5" edge="1">
+          <mxGeometry x="0.0068" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1027" value="context" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="7" target="6" edge="1">
+          <mxGeometry x="-0.0869" y="5" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1028" value="carry over" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="117" target="112" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1029" value="carry over" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="119" target="114" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1030" value="carry over" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="150" target="117" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="107" value="EXIF fallback via 1e foto" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="450" y="730" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="106" value="GPS velden zichtbaar" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="250" y="730" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="105" value="Gebruik GPS? (toggle)" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="350" y="660" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="104" value="Google Maps link actief" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="350" y="620" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1000" value="" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="2" target="3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Blok 2 - Werken &amp; betrokkenen" style="shape=swimlane;whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="570" y="820" width="260" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="1001" value="" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="3" target="4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="112" value="Nutsmaatschappij" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="950" y="1000" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="113" value="Type nuts (prefill)" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="950" y="1060" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="114" value="Aannemer" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="950" y="1100" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="115" value="Verantwoordelijke nuts" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="950" y="1140" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="116" value="Work reference / Case Id" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="950" y="1180" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="118" value="Vervaldatum vergunning" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1180" y="1060" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="120" value="Contact persoon → details" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1180" y="1140" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1010" value="prefill" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="112" target="113" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1011" value="select rol → persoon" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="119" target="120" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="122" value="Detailvelden tonen?" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1710" y="490" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="123" value="Uitgevoerd? ja/nee" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1710" y="530" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="124" value="Werfafbakening zichtbaar? ja/nee" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1710" y="570" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="126" value="Materiaal aanwezig? ja/nee" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1710" y="610" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="128" value="Defecten aanwezig? ja/nee" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1710" y="650" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="130" value="Herstelling/bestrating selectie" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1710" y="690" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="132" value="Dringende actie ja/nee" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1710" y="730" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="Blok 5 - Bijlagen &amp; info" style="shape=swimlane;whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1680" y="360" width="590" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="125" value="Veiligheidsopmerkingen tonen" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="6" vertex="1">
+          <mxGeometry x="350" y="200" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="127" value="Materiaaltypes tonen" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="6" vertex="1">
+          <mxGeometry x="350" y="240" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="129" value="Defectenlijst tonen" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="6" vertex="1">
+          <mxGeometry x="350" y="280" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="131" value="Vrije commentaar bij &#39;andere&#39;" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="6" vertex="1">
+          <mxGeometry x="350" y="320" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="121" value="Type vaststelling (radio)" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="6" vertex="1">
+          <mxGeometry x="30" y="60" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="133" value="Bijkomende vaststellingen? ja/nee" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="6" vertex="1">
+          <mxGeometry x="30" y="430" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1013" value="niet &#39;alleen fotos&#39;" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="121" target="122" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1014" value="nee" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="124" target="125" edge="1">
+          <mxGeometry x="0.0109" y="15" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1015" value="ja" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="126" target="127" edge="1">
+          <mxGeometry x="0.0109" y="15" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1016" value="ja" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="128" target="129" edge="1">
+          <mxGeometry x="0.0109" y="15" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1017" value="andere" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" parent="1" source="130" target="131" edge="1">
+          <mxGeometry x="0.0109" y="15" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="141" value="Vergund vs Werkelijk opp" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="2628" y="530" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="142" value="Doorlooptijd types met details" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="2628" y="570" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="143" value="Relaties: IDs + type" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="2628" y="610" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="144" value="Fotos (EXIF, datum, gps)" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="2950" y="450" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="145" value="PDFs" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="2950" y="490" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="146" value="Media samenvatting" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="2950" y="530" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="147" value="Bijkomende info" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="2950" y="570" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2FLBZpsQtPEh6yPOim99-1033" value="" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" edge="1" parent="1" source="150" target="117">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1610" y="1285" as="sourcePoint" />
+            <mxPoint x="1150" y="1015" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="117" value="Signalisatievergunning nr" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1180" y="1000" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="2FLBZpsQtPEh6yPOim99-1034" value="" style="edgeStyle=elbowEdgeStyle;rounded=1;orthogonalLoop=1;labelBackgroundColor=none;strokeColor=#09555B;fontColor=default;" edge="1" parent="1" source="150" target="119">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1610" y="1285" as="sourcePoint" />
+            <mxPoint x="1150" y="1115" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="119" value="Contact rol" style="shape=rectangle;whiteSpace=wrap;html=1;fontSize=11;rounded=1;labelBackgroundColor=none;fillColor=#FAD9D5;strokeColor=#D0CEE2;fontColor=#1A1A1A;" parent="1" vertex="1">
+          <mxGeometry x="1180" y="1100" width="200" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

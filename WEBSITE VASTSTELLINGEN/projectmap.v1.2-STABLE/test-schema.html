@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schema Test</title>
+</head>
+<body>
+    <h1>Schema Test</h1>
+    <p>Open the browser console to see the diagnostics.</p>
+    <button onclick="testSchema()">Test Schema</button>
+    <button onclick="testRenderer()">Test Renderer</button>
+    
+    <script>
+        // Load the main index.html script content for testing
+        function testSchema() {
+            console.log('Testing schema...');
+            if (window.formSchema) {
+                console.log('✅ Schema available:', Object.keys(window.formSchema.fields || {}).length, 'fields');
+            } else {
+                console.log('❌ No schema available');
+            }
+        }
+        
+        function testRenderer() {
+            console.log('Testing renderer...');
+            if (typeof window.initSchemaLayout === 'function') {
+                console.log('✅ initSchemaLayout function available');
+            } else {
+                console.log('❌ initSchemaLayout function not available');
+            }
+            
+            if (typeof window.buildTabs === 'function') {
+                console.log('✅ buildTabs function available'); 
+            } else {
+                console.log('❌ buildTabs function not available');
+            }
+        }
+    </script>
+</body>
+</html>

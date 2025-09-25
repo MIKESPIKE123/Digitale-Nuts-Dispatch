@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beheer Vaststellers</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <style>
+    body {
+      font-family: 'Antwerpen', sans-serif;
+      margin: 20px;
+      background-color: #f4f4f9;
+    }
+    nav.container-fluid {
+      background-color: #004080;
+      color: white;
+    }
+    nav.container-fluid ul {
+      display: flex;
+      justify-content: space-between;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav.container-fluid ul li {
+      padding: 10px 20px;
+    }
+    nav.container-fluid ul li a {
+      color: white;
+      text-decoration: none;
+    }
+    form, section {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .button-group {
+      display: inline-flex;
+      gap: 10px;
+    }
+    .small-button {
+      font-size: 0.8rem;
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="container-fluid">
+    <ul>
+      <li><strong>stad Antwerpen</strong></li>
+    </ul>
+  </nav>
+
+<main class="container">
+  <h1>Beheer Vaststellers</h1>
+
+  <section>
+    <h2>Huidige Vaststellers</h2>
+    <ul id="vaststellers-list"></ul>
+  </section>
+
+  <form id="add-form">
+    <h2>Nieuwe Vaststeller Toevoegen</h2>
+    <label for="new-name">Naam:</label>
+    <input type="text" id="new-name" required>
+    <button type="submit">Toevoegen</button>
+  </form>
+</main>
+
+<script>
+  let vaststellers = ["Fred Stoks", "Erik Vanboven", "Luc Smets", "Marc", "Paul", "Chris Van Lerbergen", "Dieter", "Kenney", "Bram", "David", "Francois", "Ingrid", "Jill", "Michel", "Jens", "Patrick", "Chris S.", "Werner", "Maarten", "Dave", "Staf", "Stefan"];
+
+  const list = document.getElementById('vaststellers-list');
+  const form = document.getElementById('add-form');
+  const input = document.getElementById('new-name');
+
+  function updateList() {
+    list.innerHTML = '';
+    vaststellers.forEach((name, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        ${name} 
+        <span class="button-group">
+          <button class="small-button" onclick="editVaststeller(${index})">Bewerken</button>
+          <button class="small-button" onclick="removeVaststeller(${index})">Verwijderen</button>
+        </span>
+      `;
+      list.appendChild(li);
+    });
+  }
+
+  function removeVaststeller(index) {
+    vaststellers.splice(index, 1);
+    updateList();
+  }
+
+  function editVaststeller(index) {
+    const newName = prompt("Nieuwe naam voor vaststeller:", vaststellers[index]);
+    if (newName && newName.trim() !== '') {
+      vaststellers[index] = newName.trim();
+      updateList();
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (input.value.trim() !== '') {
+      vaststellers.push(input.value.trim());
+      input.value = '';
+      updateList();
+    }
+  });
+
+  updateList();
+</script>
+
+</body>
+</html>

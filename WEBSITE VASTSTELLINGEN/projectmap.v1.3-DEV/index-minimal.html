@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaststellingen Systeem - Minimale Versie</title>
+    <link rel="stylesheet" href="https://cdn.antwerpen.be/core_branding_scss/7.1.0/main.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="u-wrapper">
+        <div class="o-header">
+            <div class="o-header__content-wrapper">
+                <div class="o-header__logo-wrapper">
+                    <span class="o-header__logo">
+                        <img src="https://cdn.antwerpen.be/core_branding_scss/7.1.0/assets/images/a-logo.svg" alt="Antwerpen" height="30">
+                    </span>
+                    <h4 class="o-header__title u-margin--none">📋 Vaststellingen Management</h4>
+                </div>
+            </div>
+        </div>
+
+        <main class="u-main">
+            <div class="u-container">
+                
+                <!-- Status Bar -->
+                <div class="status-bar">
+                    <div class="status-item">
+                        <span class="status-light status-success"></span>
+                        <span id="systemStatus">Systeem wordt geladen...</span>
+                    </div>
+                    <div class="status-time">
+                        <span class="fa fa-clock"></span>
+                        <span id="currentTime"></span>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="m-nav-tabs" role="tablist">
+                    <a href="#" class="a-button a-button--default" data-section="dashboard" onclick="showSection('dashboard'); return false;">
+                        <span class="fa fa-tachometer-alt u-margin-right-xs"></span>Dashboard
+                    </a>
+                    <a href="#" class="a-button a-button--default" data-section="inspection" onclick="showSection('inspection'); return false;">
+                        <span class="fa fa-clipboard-list u-margin-right-xs"></span>Nieuwe Vaststelling
+                    </a>
+                    <a href="#" class="a-button a-button--default" data-section="management" onclick="showSection('management'); return false;">
+                        <span class="fa fa-cog u-margin-right-xs"></span>Beheer
+                    </a>
+                    <a href="#" class="a-button a-button--default" data-section="archive" onclick="showSection('archive'); return false;">
+                        <span class="fa fa-archive u-margin-right-xs"></span>Archief
+                    </a>
+                </nav>
+
+                <!-- Dashboard Section -->
+                <section id="dashboardSection" class="content-section">
+                    <div class="o-layout o-layout--gutter">
+                        <div class="o-layout__item u-1-1 u-1-2@screen-md">
+                            <div class="m-card u-margin-bottom">
+                                <div class="m-card__header">
+                                    <h3 class="m-card__title">📊 Overzicht Statistieken</h3>
+                                </div>
+                                <div class="m-card__body">
+                                    <div class="dashboard-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-number" id="totalInspections">0</span>
+                                            <span class="stat-label">Vaststellingen</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-number" id="activeSupervisors">0</span>
+                                            <span class="stat-label">Toezichthouders</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-number" id="activeUtilities">0</span>
+                                            <span class="stat-label">Nutsbedrijven</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="o-layout__item u-1-1 u-1-2@screen-md">
+                            <div class="m-card">
+                                <div class="m-card__header">
+                                    <h3 class="m-card__title">📈 Recente Activiteit</h3>
+                                </div>
+                                <div class="m-card__body">
+                                    <div id="recentActivity">
+                                        <div class="u-text-center u-padding">
+                                            <span class="fa fa-spinner fa-pulse u-margin-right-xs"></span>
+                                            <span class="u-text-muted">Laden...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Inspection Section (Simplified) -->
+                <section id="inspectionSection" class="content-section" style="display: none;">
+                    <div class="m-card">
+                        <div class="m-card__header">
+                            <h3 class="m-card__title">📝 Nieuwe Vaststelling</h3>
+                        </div>
+                        <div class="m-card__body">
+                            <form id="inspectionForm">
+                                
+                                <!-- Basic Fields Only -->
+                                <div class="row u-margin-bottom">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="a-input">
+                                            <label class="a-input__label" for="type">Type Vaststelling:</label>
+                                            <select id="type" name="type" class="a-input__field" required>
+                                                <option value="" disabled selected>Kies type</option>
+                                                <option value="overtreding">Overtreding openbaar domein</option>
+                                                <option value="controle">Controle werkzaamheden</option>
+                                                <option value="schade">Schade vaststelling</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="a-input">
+                                            <label class="a-input__label" for="nuts">NUTS Bedrijf:</label>
+                                            <select id="nuts" name="nuts" class="a-input__field" required>
+                                                <option value="" disabled selected>Kies nutsbedrijf</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row u-margin-bottom">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="a-input">
+                                            <label class="a-input__label" for="supervisor">Toezichthouder:</label>
+                                            <select id="supervisor" name="supervisor" class="a-input__field" required>
+                                                <option value="" disabled selected>Kies toezichthouder</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="a-input">
+                                            <label class="a-input__label" for="postcode">Postcode:</label>
+                                            <select id="postcode" name="postcode" class="a-input__field" required>
+                                                <option value="" disabled selected>Kies postcode</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row u-margin-bottom">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="a-input">
+                                            <label class="a-input__label" for="start_date">Startdatum:</label>
+                                            <input type="date" id="start_date" name="start_date" class="a-input__field" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="a-input">
+                                            <label class="a-input__label" for="end_date">Einddatum:</label>
+                                            <input type="date" id="end_date" name="end_date" class="a-input__field" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="u-margin-top">
+                                    <button type="submit" class="a-button a-button--primary">
+                                        <span class="fa fa-save u-margin-right-xs"></span>
+                                        Opslaan
+                                    </button>
+                                    <button type="reset" class="a-button a-button--outline u-margin-left-xs">
+                                        <span class="fa fa-refresh u-margin-right-xs"></span>
+                                        Reset
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Management Section (Minimal) -->
+                <section id="managementSection" class="content-section" style="display: none;">
+                    <div class="m-card">
+                        <div class="m-card__header">
+                            <h3 class="m-card__title">⚙️ Systeembeheer</h3>
+                        </div>
+                        <div class="m-card__body">
+                            <p>Beheersfunctionaliteit wordt geladen...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Archive Section (Minimal) -->
+                <section id="archiveSection" class="content-section" style="display: none;">
+                    <div class="m-card">
+                        <div class="m-card__header">
+                            <h3 class="m-card__title">📂 Archief</h3>
+                        </div>
+                        <div class="m-card__body">
+                            <div id="archiveContent">
+                                <p>Archief wordt geladen...</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Load Scripts -->
+    <script src="./js/dataManager.js"></script>
+    
+    <script>
+        // Simplified Application Logic
+        let currentSection = 'dashboard';
+        let dataManager = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('🚀 Starting minimal application...');
+            
+            try {
+                // Initialize DataManager
+                if (typeof DataManager !== 'undefined') {
+                    dataManager = new DataManager();
+                    console.log('✅ DataManager created');
+                    
+                    // Load config
+                    await dataManager.loadConfig();
+                    console.log('✅ Config loaded');
+                    
+                    // Initialize UI
+                    initializeBasicUI();
+                    console.log('✅ Basic UI initialized');
+                    
+                    updateSystemStatus('Systeem operationeel', 'success');
+                } else {
+                    throw new Error('DataManager class not available');
+                }
+                
+            } catch (error) {
+                console.error('❌ Initialization failed:', error);
+                updateSystemStatus('Systeemfout: ' + error.message, 'error');
+            }
+        });
+
+        // Basic UI initialization
+        function initializeBasicUI() {
+            // Populate dropdowns
+            if (dataManager && dataManager.config) {
+                populateBasicDropdowns();
+            }
+            
+            // Set up form handler
+            const form = document.getElementById('inspectionForm');
+            if (form) {
+                form.addEventListener('submit', handleBasicSubmit);
+            }
+            
+            // Update time
+            updateTime();
+            setInterval(updateTime, 1000);
+            
+            // Set today's date
+            const today = new Date().toISOString().split('T')[0];
+            const startDate = document.getElementById('start_date');
+            const endDate = document.getElementById('end_date');
+            if (startDate) startDate.value = today;
+            if (endDate) endDate.value = today;
+        }
+
+        // Populate basic dropdowns
+        function populateBasicDropdowns() {
+            const config = dataManager.config.configuration;
+            
+            // NUTS
+            const nutsSelect = document.getElementById('nuts');
+            if (nutsSelect && config.utilities) {
+                config.utilities.forEach(utility => {
+                    if (utility.active) {
+                        const option = document.createElement('option');
+                        option.value = utility.id;
+                        option.textContent = utility.name;
+                        nutsSelect.appendChild(option);
+                    }
+                });
+            }
+            
+            // Supervisors
+            const supervisorSelect = document.getElementById('supervisor');
+            if (supervisorSelect && config.supervisors) {
+                config.supervisors.forEach(supervisor => {
+                    if (supervisor.active) {
+                        const option = document.createElement('option');
+                        option.value = supervisor.id;
+                        option.textContent = supervisor.name;
+                        supervisorSelect.appendChild(option);
+                    }
+                });
+            }
+            
+            // Postcodes
+            const postcodeSelect = document.getElementById('postcode');
+            if (postcodeSelect && config.postcodes) {
+                config.postcodes.forEach(postcode => {
+                    if (postcode.active) {
+                        const option = document.createElement('option');
+                        option.value = postcode.code;
+                        option.textContent = `${postcode.code} - ${postcode.city}`;
+                        postcodeSelect.appendChild(option);
+                    }
+                });
+            }
+        }
+
+        // Basic form submission
+        async function handleBasicSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                const id = dataManager.saveInspection(data);
+                showAlert('✅ Vaststelling opgeslagen met ID: ' + id, 'success');
+                event.target.reset();
+                updateBasicStats();
+            } catch (error) {
+                console.error('Submission error:', error);
+                showAlert('❌ Fout bij opslaan: ' + error.message, 'danger');
+            }
+        }
+
+        // Update basic statistics
+        function updateBasicStats() {
+            if (!dataManager || !dataManager.config) return;
+            
+            const stats = {
+                totalInspections: dataManager.getInspections().length + dataManager.getArchivedInspections().length,
+                activeSupervisors: dataManager.getActiveSupervisors().length,
+                activeUtilities: dataManager.getActiveUtilities().length
+            };
+            
+            document.getElementById('totalInspections').textContent = stats.totalInspections;
+            document.getElementById('activeSupervisors').textContent = stats.activeSupervisors;
+            document.getElementById('activeUtilities').textContent = stats.activeUtilities;
+        }
+
+        // Section navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(sectionName + 'Section');
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+            
+            // Update navigation
+            document.querySelectorAll('.m-nav-tabs a').forEach(btn => {
+                btn.classList.remove('a-button--primary');
+                btn.classList.add('a-button--default');
+            });
+            
+            const activeBtn = document.querySelector(`[data-section="${sectionName}"]`);
+            if (activeBtn) {
+                activeBtn.classList.remove('a-button--default');
+                activeBtn.classList.add('a-button--primary');
+            }
+            
+            currentSection = sectionName;
+            
+            // Load section-specific content
+            if (sectionName === 'dashboard') {
+                updateBasicStats();
+            }
+        }
+
+        // Utility functions
+        function updateSystemStatus(message, type = 'info') {
+            const statusElement = document.getElementById('systemStatus');
+            if (statusElement) {
+                statusElement.textContent = message;
+            }
+            
+            const light = document.querySelector('.status-light');
+            if (light) {
+                light.className = `status-light status-${type}`;
+            }
+        }
+
+        function updateTime() {
+            const timeElement = document.getElementById('currentTime');
+            if (timeElement) {
+                timeElement.textContent = new Date().toLocaleTimeString('nl-BE');
+            }
+        }
+
+        function showAlert(message, type = 'info') {
+            alert(message); // Simple alert for now
+        }
+
+        // Initialize dashboard on load
+        setTimeout(() => {
+            showSection('dashboard');
+        }, 500);
+    </script>
+</body>
+</html>

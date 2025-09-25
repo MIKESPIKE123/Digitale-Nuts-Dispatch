@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Edit Fix</title>
+</head>
+<body>
+    <h1>Test Edit Functionaliteit</h1>
+    <button onclick="testEdit()">Test Edit utilityTypes</button>
+    <div id="output"></div>
+
+    <script src="js/dataManager.js"></script>
+    <script>
+        let dataManager;
+        
+        function init() {
+            console.log('Initializing DataManager...');
+            dataManager = new DataManager();
+            
+            // Wacht even totdat de data geladen is
+            setTimeout(() => {
+                console.log('DataManager loaded:', dataManager);
+                console.log('Config schema:', dataManager.config?.schema);
+                console.log('Config groups:', dataManager.config?.schema?.configGroups);
+            }, 100);
+        }
+        
+        function testEdit() {
+            console.log('Testing edit for utilityTypes...');
+            
+            // Test getConfigGroup
+            const group = dataManager.getConfigGroup('utilityTypes');
+            console.log('Found group:', group);
+            
+            const output = document.getElementById('output');
+            if (group) {
+                output.innerHTML = `
+                    <h2>Groep gevonden!</h2>
+                    <p><strong>Key:</strong> ${group.key}</p>
+                    <p><strong>Label:</strong> ${group.label}</p>
+                    <p><strong>Method:</strong> ${group.method}</p>
+                    <p><strong>Custom:</strong> ${group.custom}</p>
+                    <p><strong>Active:</strong> ${group.active}</p>
+                `;
+            } else {
+                output.innerHTML = `<h2 style="color: red;">Groep niet gevonden!</h2>`;
+            }
+        }
+        
+        // Initialize op load
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
