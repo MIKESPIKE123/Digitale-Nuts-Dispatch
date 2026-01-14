@@ -1,0 +1,2049 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Objectbeheer Publieke Ruimte - Terreinapp v2.2</title>
+
+  <!-- Stad Antwerpen - Core Branding (A-UI) -->
+  <link rel="stylesheet" href="https://cdn.antwerpen.be/core_branding_scss/7.1.0/main.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" />
+
+  <style>
+    :root {
+      --ink: #111827;
+      --muted: #556070;
+      --brand: #e30613;
+      --brand-dark: #b30510;
+      --blue: #005aa9;
+      --blue-dark: #00407a;
+      --mint: #dff5e1;
+      --sand: #f7f2ec;
+      --card: #ffffff;
+      --line: #e4e7ec;
+      --warn: #f59e0b;
+      --danger: #b91c1c;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(0,90,169,0.15), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(227,6,19,0.12), transparent 55%),
+        linear-gradient(180deg, #f8fafc 0%, #f4f1eb 100%);
+      font-family: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: "Space Grotesk", "Segoe UI", Arial, sans-serif;
+      letter-spacing: -0.01em;
+    }
+
+    .app-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    .header {
+      display: grid;
+      gap: 18px;
+    }
+    .title-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .title-row h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+    }
+    .pill--brand {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand-dark);
+    }
+    .pill--warn {
+      background: #fff7ed;
+      color: #7c2d12;
+      border-color: #fdba74;
+    }
+
+    .header-summary {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .stats-dashboard {
+      background: linear-gradient(135deg, #001b3a 0%, #2b6cb0 100%);
+      color: #fff;
+      padding: 22px;
+      border-radius: 14px;
+      margin: 24px 0;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .stat-box {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    .stat-box__number {
+      font-size: 32px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .stat-box__label {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .control-panel {
+      position: sticky;
+      top: 16px;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 24px 0;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+      backdrop-filter: blur(8px);
+    }
+    .control-title {
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    .search-box {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      background: #fbfdff;
+    }
+    .search-box:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0, 90, 169, 0.12);
+    }
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 10px 0 16px;
+    }
+    .filter-btn {
+      padding: 7px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: transform 0.2s, background 0.2s, color 0.2s;
+    }
+    .filter-btn:hover { transform: translateY(-1px); }
+    .filter-btn.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue-dark);
+    }
+    .toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .filter-status {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .field-brief {
+      margin: 20px 0 30px;
+      display: grid;
+      gap: 16px;
+    }
+    .field-brief h2 { margin: 0; font-size: 20px; }
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      background: #fbfdff;
+    }
+    .field textarea { min-height: 80px; resize: vertical; }
+    .context-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .offline-status {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .object-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      background: var(--card);
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .object-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brand), var(--blue));
+    }
+    .object-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.14);
+    }
+    .object-card.hidden { display: none; }
+    .object-card__header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+    .object-card__title-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+    .object-card__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    .object-card__title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 2px;
+    }
+    .object-card__category {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .badge {
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+    }
+    .badge--critical {
+      background: #fee2e2;
+      color: #7f1d1d;
+      border-color: #fecaca;
+    }
+
+    .action-btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .action-btn--primary {
+      background: var(--brand);
+      color: #fff;
+    }
+    .action-btn--primary:hover {
+      background: var(--brand-dark);
+      transform: scale(1.03);
+    }
+    .action-btn--secondary {
+      background: var(--blue);
+      color: #fff;
+    }
+    .action-btn--secondary:hover { background: var(--blue-dark); }
+    .action-btn--ghost {
+      background: #eef2ff;
+      color: #1e3a8a;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 10px 14px;
+      font-size: 13px;
+      margin: 12px 0;
+      line-height: 1.6;
+    }
+    .info-grid__label { font-weight: 700; color: var(--muted); }
+
+    .alert-box {
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin: 12px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .alert-box--warning {
+      background: #fff7ed;
+      border-left: 4px solid var(--warn);
+      color: #7c2d12;
+    }
+    .alert-box--danger {
+      background: #fee2e2;
+      border-left: 4px solid var(--danger);
+      color: #7f1d1d;
+    }
+    .alert-box--info {
+      background: #e0f2fe;
+      border-left: 4px solid var(--blue);
+      color: #0c4a6e;
+    }
+    .alert-box__icon {
+      font-size: 18px;
+      font-weight: 700;
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.6);
+      display: grid;
+      place-items: center;
+    }
+
+    .timeline {
+      background: #fff7ed;
+      border-left: 4px solid var(--warn);
+      padding: 14px;
+      margin: 12px 0;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+    .timeline__title {
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 8px;
+      color: #7c2d12;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }
+    .chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      cursor: pointer;
+    }
+    .chip[data-action] { color: #1e293b; }
+    .chip[data-action]:hover { background: #e2e8f0; }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0;
+    }
+    .tag {
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 11px;
+      font-weight: 600;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+    .responsibility-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #e0f2fe;
+      color: #0c4a6e;
+    }
+    .resp--toezicht { background: #dbeafe; color: #1e3a8a; }
+    .resp--sb { background: #dcfce7; color: #166534; }
+    .resp--sw { background: #f5d0fe; color: #6b21a8; }
+    .resp--phh { background: #fed7aa; color: #7c2d12; }
+    .resp--external { background: #fecaca; color: #7f1d1d; }
+
+    .flowchart {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 24px 0;
+    }
+    .flowchart__title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+    }
+    .flow-step {
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+      position: relative;
+    }
+    .flow-step::after {
+      content: "->";
+      display: block;
+      text-align: center;
+      font-size: 14px;
+      color: var(--blue);
+      margin: 8px 0 0;
+      letter-spacing: 0.2em;
+    }
+    .flow-step:last-child::after { display: none; }
+
+    .phase-matrix {
+      display: grid;
+      grid-template-columns: 160px repeat(3, 1fr);
+      gap: 1px;
+      background: #e2e8f0;
+      border: 1px solid #e2e8f0;
+      margin: 24px 0;
+      font-size: 12px;
+    }
+    .phase-matrix__cell {
+      background: #fff;
+      padding: 12px;
+    }
+    .phase-matrix__header {
+      background: #f1f5f9;
+      font-weight: 700;
+      text-align: center;
+    }
+    .phase-matrix__label {
+      background: #f1f5f9;
+      font-weight: 700;
+    }
+    .phase-matrix__cell ul {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .notification-form {
+      background: var(--mint);
+      border: 1px solid #86efac;
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 16px;
+      display: none;
+    }
+    .notification-form.active { display: block; }
+
+    .form-field {
+      margin-bottom: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      margin-top: 6px;
+      background: #fff;
+    }
+    .form-field textarea { min-height: 90px; resize: vertical; }
+
+    .footer {
+      margin-top: 40px;
+      padding: 20px;
+      background: #f8fafc;
+      border-radius: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media print {
+      .control-panel, .action-btn, .notification-form, .field-brief { display: none; }
+      .object-card { page-break-inside: avoid; }
+    }
+
+    @media (max-width: 900px) {
+      .phase-matrix { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .control-panel { position: static; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app-shell">
+    <article class="header panel">
+      <div class="title-row">
+        <h1>Objectbeheer Publieke Ruimte - Terreinapp</h1>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <span class="pill pill--brand">v2.2 Interactief</span>
+          <span class="pill">12 objecttypen</span>
+          <span class="pill">6 beheerders</span>
+          <span class="pill pill--warn">Werfmodus</span>
+        </div>
+      </div>
+      <div class="header-summary">
+        Een terreinapp die iedereen dezelfde straat laat lezen: snel detecteren, afstemmen en melden.
+        Gericht op verplaatsing, wegnames, tijdelijke wegname, herplaatsing en ingebruikname van objecten.
+      </div>
+      <div class="header-summary">
+        Doel: toezichters, projectleiders en beheerders krijgen dezelfde kijk, met ruimte voor hun eigen objecten.
+      </div>
+    </article>
+
+    <div class="stats-dashboard">
+      <h2 style="margin:0 0 6px; font-size:20px;">Dashboard objectbeheer</h2>
+      <p style="margin:0; font-size:14px; opacity:0.9;">Overzicht van terreinobjecten en beheerstatus</p>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <span class="stat-box__number" id="stat-total">12</span>
+          <span class="stat-box__label">Objecttypen</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box__number" id="stat-critical">2</span>
+          <span class="stat-box__label">Kritiek erfgoed of contract</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box__number">3</span>
+          <span class="stat-box__label">Fases (voor, tijdens, na)</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box__number" id="stat-filtered">12</span>
+          <span class="stat-box__label">Zichtbaar</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="field-brief panel">
+      <h2>Terreincontext</h2>
+      <div class="field-grid">
+        <label class="field">
+          Project / werf
+          <input id="ctxProject" type="text" placeholder="Project Meir heraanleg 2026">
+        </label>
+        <label class="field">
+          Locatie / adres
+          <input id="ctxLocation" type="text" placeholder="Meir 50, 2000 Antwerpen">
+        </label>
+        <label class="field">
+          Werfzone
+          <input id="ctxZone" type="text" placeholder="Zone B, segment 3">
+        </label>
+        <label class="field">
+          Start werken
+          <input id="ctxStart" type="date">
+        </label>
+        <label class="field">
+          Urgentie
+          <select id="ctxUrgency">
+            <option value="normaal">Normaal</option>
+            <option value="hoog">Hoog</option>
+            <option value="kritiek">Kritiek</option>
+          </select>
+        </label>
+        <label class="field">
+          Toelichting terrein
+          <textarea id="ctxNotes" placeholder="Wat valt op? kwetsbare zones, verkeer, timing..."></textarea>
+        </label>
+      </div>
+      <div class="context-status">
+        <span id="contextStatus">Context klaar: nog leeg</span>
+        <span>Tip: deze context wordt automatisch ingevuld in elke melding.</span>
+      </div>
+      <div class="offline-status" id="offlineStatus">Offline opslag: klaar om te bewaren</div>
+    </section>
+
+    <div class="control-panel">
+      <h2 class="control-title">Interactief controlepaneel</h2>
+      <input type="text" class="search-box" id="searchBox" placeholder="Zoek op objectnaam, beheerder, actie, locatie..." />
+
+      <label style="font-size:13px; font-weight:700; display:block; margin:12px 0 6px;">Filter op categorie</label>
+      <div class="filter-group" id="categoryFilters">
+        <button class="filter-btn active" data-category="all">Alle</button>
+        <button class="filter-btn" data-category="parkeren">Parkeren</button>
+        <button class="filter-btn" data-category="energie">Energie</button>
+        <button class="filter-btn" data-category="afval">Afval</button>
+        <button class="filter-btn" data-category="meubilair">Meubilair</button>
+        <button class="filter-btn" data-category="verlichting">Verlichting</button>
+        <button class="filter-btn" data-category="signalisatie">Signalisatie</button>
+        <button class="filter-btn" data-category="herdenking">Herdenking</button>
+        <button class="filter-btn" data-category="veiligheid">Veiligheid</button>
+      </div>
+
+      <label style="font-size:13px; font-weight:700; display:block; margin:12px 0 6px;">Filter op beheerder</label>
+      <div class="filter-group" id="ownerFilters">
+        <button class="filter-btn active" data-owner="all">Alle</button>
+        <button class="filter-btn" data-owner="SB">Stadsbeheer</button>
+        <button class="filter-btn" data-owner="SW">Stadswacht</button>
+        <button class="filter-btn" data-owner="PHH">PHH/MPA</button>
+        <button class="filter-btn" data-owner="EXTERNAL">Externe</button>
+      </div>
+
+      <label style="font-size:13px; font-weight:700; display:block; margin:12px 0 6px;">Filter op actie</label>
+      <div class="filter-group" id="actionFilters">
+        <button class="filter-btn active" data-action="all">Alle</button>
+        <button class="filter-btn" data-action="verplaatsen">Verplaatsen</button>
+        <button class="filter-btn" data-action="wegnemen">Wegnemen</button>
+        <button class="filter-btn" data-action="beschermen">Beschermen</button>
+        <button class="filter-btn" data-action="nieuw plaatsen">Nieuw plaatsen</button>
+      </div>
+
+      <div class="toggle">
+        <input type="checkbox" id="criticalToggle">
+        <label for="criticalToggle">Toon alleen kritieke objecten</label>
+      </div>
+
+      <div class="filter-status" id="filterStatus">Filters: alle objecten zichtbaar</div>
+
+      <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:10px;">
+        <button class="action-btn action-btn--primary" onclick="exportToExcel()">Exporteer naar Excel</button>
+        <button class="action-btn action-btn--ghost" onclick="window.print()">Print handboek</button>
+        <button class="action-btn action-btn--secondary" onclick="resetFilters()">Reset filters</button>
+      </div>
+    </div>
+    <div class="flowchart panel">
+      <h3 class="flowchart__title">Procesflow: detectie tot afhandeling</h3>
+      <div class="flow-step">
+        <strong>Stap 1: Detectie en inventarisatie</strong><br>
+        <span style="font-size:12px;">Toezichter detecteert objecten in projectzone -> fotografeert -> markeert op plan -> identificeert type.</span>
+      </div>
+      <div class="flow-step">
+        <strong>Stap 2: Bepaal beheerder en actie</strong><br>
+        <span style="font-size:12px;">Gebruik dit handboek -> zoek objecttype -> check doorlooptijd -> bepaal actie.</span>
+      </div>
+      <div class="flow-step">
+        <strong>Stap 3: Proactief contact en melding</strong><br>
+        <span style="font-size:12px;">Meld met context -> voeg fotos en locatie toe -> registreer in werfdossier.</span>
+      </div>
+      <div class="flow-step">
+        <strong>Stap 4: Planning en afstemming</strong><br>
+        <span style="font-size:12px;">Wacht op bevestiging -> integreer in werfplanning -> check beschermingsmaatregelen.</span>
+      </div>
+      <div class="flow-step">
+        <strong>Stap 5: Uitvoering en monitoring</strong><br>
+        <span style="font-size:12px;">Verifieer ter plaatse -> registreer afhandeling -> escaleer bij problemen.</span>
+      </div>
+      <div class="flow-step">
+        <strong>Stap 6: Nazorg en evaluatie</strong><br>
+        <span style="font-size:12px;">Eindcontrole -> registreer leerpunten -> update handboek.</span>
+      </div>
+    </div>
+
+    <h2 style="margin:32px 0 16px; font-size:22px; border-bottom:3px solid var(--blue); padding-bottom:10px;">
+      Objecten database
+    </h2>
+    <div id="objectsContainer"></div>
+
+    <h2 style="margin:40px 0 16px; font-size:22px; border-bottom:3px solid #6a1b9a; padding-bottom:10px;">
+      Responsibiliteiten matrix
+    </h2>
+
+    <div class="phase-matrix">
+      <div class="phase-matrix__cell phase-matrix__label">Actor</div>
+      <div class="phase-matrix__cell phase-matrix__header">Voor</div>
+      <div class="phase-matrix__cell phase-matrix__header">Tijdens</div>
+      <div class="phase-matrix__cell phase-matrix__header">Na</div>
+
+      <div class="phase-matrix__cell phase-matrix__label">Toezichter</div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Detecteert objecten</li>
+          <li>Fotografeert en documenteert</li>
+          <li>Start melding</li>
+          <li>Controleert toegankelijkheid</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Monitoring bescherming</li>
+          <li>Coordineert aannemer</li>
+          <li>Rapporteert issues</li>
+          <li>Verifieert uitvoering</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Eindcontrole plaatsing</li>
+          <li>Registratie leerpunten</li>
+          <li>Archivering documenten</li>
+        </ul>
+      </div>
+
+      <div class="phase-matrix__cell phase-matrix__label">Stadsbeheer</div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Plant verplaatsing</li>
+          <li>Technische haalbaarheid</li>
+          <li>Afstemming Stadswacht</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Uitvoering verplaatsing</li>
+          <li>Technisch beheer</li>
+          <li>Coordineert aannemers</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Kwaliteitscontrole</li>
+          <li>Oplevering objecten</li>
+          <li>Update inventaris</li>
+        </ul>
+      </div>
+
+      <div class="phase-matrix__cell phase-matrix__label">Stadswacht</div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Planning ophaling</li>
+          <li>Afstemming Stadsbeheer</li>
+          <li>Capaciteitscheck</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Lediging afvalbakken</li>
+          <li>Monitoring vulgraad</li>
+          <li>Signalering problemen</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Eindafwerking</li>
+          <li>Update ophaalroutes</li>
+          <li>Evaluatie dienst</li>
+        </ul>
+      </div>
+
+      <div class="phase-matrix__cell phase-matrix__label">PHH / MPA</div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Beoordeelt parkeerregime</li>
+          <li>Planning verplaatsing</li>
+          <li>Afstemming externe partner</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Coordineert uitvoering</li>
+          <li>Monitoring functionaliteit</li>
+          <li>Aanpassing systemen</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Oplevering systemen</li>
+          <li>Test functionaliteit</li>
+          <li>Update databank</li>
+        </ul>
+      </div>
+
+      <div class="phase-matrix__cell phase-matrix__label">Externe partners</div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Technische beoordeling</li>
+          <li>Offerte en planning</li>
+          <li>Afsprakennota</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Uitvoering werkzaamheden</li>
+          <li>Exclusieve interventies</li>
+          <li>Rapportering voortgang</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Oplevering en testing</li>
+          <li>Garantievoorwaarden</li>
+          <li>Documentatie</li>
+        </ul>
+      </div>
+
+      <div class="phase-matrix__cell phase-matrix__label">Projectleider</div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Goedkeuring planning</li>
+          <li>Budget en middelen</li>
+          <li>Integratie werfschema</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Escalatiebeheer</li>
+          <li>Besluitvorming wijzigingen</li>
+          <li>Communicatie stakeholders</li>
+        </ul>
+      </div>
+      <div class="phase-matrix__cell">
+        <ul>
+          <li>Eindoplevering project</li>
+          <li>Evaluatie en rapportage</li>
+          <li>Lessons learned</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p style="margin:0 0 8px;"><strong>Documenteigenaar:</strong> Team Toezicht | <strong>Review:</strong> jaarlijks of bij contractwijziging | <strong>Versie:</strong> 2.2 Terreinapp</p>
+      <p style="margin:0;"><strong>Zwitsers Zakmes</strong> 2026 Stad Antwerpen | Deel van Digitale Werf en Digitale Nuts ecosysteem</p>
+    </div>
+  </main>
+
+  <section class="panel" style="margin:24px 0;">
+    <h2 style="margin:0 0 12px; font-size:20px;">Beheersmodule (v2.2)</h2>
+    <p style="margin:0 0 12px; color:var(--muted); font-size:13px;">
+      Pas hier alle objectgegevens, teksten en thema's aan. Wijzigingen worden lokaal opgeslagen en kunnen later
+      worden geexporteerd of opnieuw ingeladen.
+    </p>
+    <div style="display:flex; flex-wrap:wrap; gap:10px;">
+      <button class="action-btn action-btn--secondary" onclick="openAdmin()">Open beheersmodule</button>
+      <button class="action-btn action-btn--ghost" onclick="exportAdminData()">Exporteer JSON</button>
+      <input type="file" id="importAdminData" accept="application/json" style="display:none;">
+      <button class="action-btn action-btn--ghost" onclick="triggerImport()">Importeer JSON</button>
+      <button class="action-btn action-btn--ghost" onclick="resetAdminData()">Herstel standaard data</button>
+    </div>
+    <div style="margin-top:10px; font-size:12px; color:var(--muted);" id="adminStatus">Beheersmodule: klaar</div>
+  </section>
+
+  <div id="adminModal" style="display:none; position:fixed; inset:0; background:rgba(15,23,42,0.6); z-index:999;">
+    <div class="panel" style="max-width:960px; margin:40px auto; max-height:80vh; overflow:auto;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <h3 style="margin:0;">Beheersmodule</h3>
+        <button class="action-btn action-btn--ghost" onclick="closeAdmin()">Sluiten</button>
+      </div>
+      <div style="margin:12px 0; display:flex; flex-wrap:wrap; gap:10px;">
+        <button class="action-btn action-btn--secondary" onclick="switchAdminTab('objects')">Objecten</button>
+        <button class="action-btn action-btn--secondary" onclick="switchAdminTab('themes')">Themas</button>
+        <button class="action-btn action-btn--secondary" onclick="switchAdminTab('log')">Wijzigingslog</button>
+      </div>
+
+      <div id="adminTabObjects">
+        <div style="margin:12px 0; display:flex; flex-wrap:wrap; gap:10px;">
+        <button class="action-btn action-btn--primary" onclick="addObject()">Nieuw object</button>
+        <select id="adminSelect" style="padding:8px 12px; border:1px solid var(--line); border-radius:8px; font-size:13px;"></select>
+        </div>
+        <div id="adminForm"></div>
+        <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:10px;">
+        <button class="action-btn action-btn--primary" onclick="saveAdminObject()">Bewaar object</button>
+        <button class="action-btn action-btn--ghost" onclick="deleteAdminObject()">Verwijder object</button>
+        </div>
+      </div>
+
+      <div id="adminTabThemes" style="display:none;">
+        <div style="margin:12px 0; display:flex; flex-wrap:wrap; gap:10px;">
+          <button class="action-btn action-btn--primary" onclick="addTheme()">Nieuw thema</button>
+          <select id="themeSelect" style="padding:8px 12px; border:1px solid var(--line); border-radius:8px; font-size:13px;"></select>
+        </div>
+        <div id="themeForm"></div>
+        <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:10px;">
+          <button class="action-btn action-btn--primary" onclick="saveTheme()">Bewaar thema</button>
+          <button class="action-btn action-btn--ghost" onclick="deleteTheme()">Verwijder thema</button>
+        </div>
+      </div>
+
+      <div id="adminTabLog" style="display:none;">
+        <div style="margin-top:10px; font-size:13px; color:var(--muted);">Laatste wijzigingen (lokaal bijgehouden).</div>
+        <div id="changeLogList" style="margin-top:10px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===================================
+    // DATA: OBJECTEN DATABASE
+    // ===================================
+    const defaultObjectsData = [
+      {
+        id: 1,
+        icon: 'PK',
+        name: 'Parkeerautomaten',
+        category: 'parkeren',
+        owner: 'PHH',
+        leadTime: '10 werkdagen',
+        contact: 'advies_phh@antwerpen.be',
+        phone: '',
+        critical: false,
+        description: 'Parkeerautomaten en betalingsterminals in het straatbeeld.',
+        exclusivity: 'MPA werkt met externe aannemer.',
+        risks: 'Late signalering leidt tot werfstart zonder plan. Risico op ad-hoc oplossingen en vertraging.',
+        actions: 'Proactief contacteren zodra gedetecteerd in project- of randzone. Opnemen in werfdossier.',
+        protection: 'Bij behoud: beschermen tegen werfimpact met aanrijdbeveiliging.',
+        gisLayer: 'Stad in Kaart - Parkeerautomaten',
+        quickActions: ['verplaatsen', 'beschermen'],
+        tags: ['betalingssysteem', 'mobiliteit', 'parkeren']
+      },
+      {
+        id: 2,
+        icon: 'PP',
+        name: 'Parkeerpalen',
+        category: 'parkeren',
+        owner: 'PHH',
+        leadTime: '10 werkdagen',
+        contact: 'advies_phh@antwerpen.be',
+        phone: '',
+        critical: false,
+        description: 'Fysieke parkeerpalen voor beperking toegang.',
+        exclusivity: 'Via MPA en externe partner.',
+        risks: 'Beschadiging bij graafwerken of incorrect verplaatsen.',
+        actions: 'Detecteren, markeren en melden via PHH.',
+        protection: 'Markeren op plan, fysieke bescherming indien nodig.',
+        gisLayer: 'Stad in Kaart - Parkeerpalen',
+        quickActions: ['verplaatsen', 'wegnemen'],
+        tags: ['barriere', 'toegangscontrole', 'parkeren']
+      },
+      {
+        id: 3,
+        icon: 'EL',
+        name: 'Elektrische laadpalen',
+        category: 'energie',
+        owner: 'EXTERNAL',
+        leadTime: 'Minimaal 1 week',
+        contact: 'Elektrischladen@Antwerpen.be',
+        phone: '',
+        critical: true,
+        description: 'Laadinfrastructuur voor voertuigen (TotalEnergies exclusief).',
+        exclusivity: 'Enkel TotalEnergies mag interventies uitvoeren.',
+        risks: 'Kritiek: verkeerde partij = contractbreuk en gevaar. Parkeersensor en kabels extra kwetsbaar.',
+        actions: 'Altijd via Elektrischladen@Antwerpen.be, minimaal 1 week vooraf.',
+        protection: 'Expliciet markeren en beschermen: laadpaal, parkeersensor en kabels.',
+        gisLayer: 'Stad in Kaart - Laag Laadpalen',
+        quickActions: ['verplaatsen', 'beschermen'],
+        tags: ['exclusief contract', 'energie', 'mobiliteit']
+      },
+      {
+        id: 4,
+        icon: 'AF',
+        name: 'Papiermanden',
+        category: 'afval',
+        owner: 'SB',
+        leadTime: '5 werkdagen',
+        contact: 'SW_SB_Papiermanden@antwerpen.be',
+        phone: 'Guy Barbiers: +32 470 17 23 39',
+        critical: false,
+        description: 'Standaard papiermanden in publieke ruimte.',
+        exclusivity: 'Stadsbeheer via raamcontract.',
+        risks: 'Vergeten verplaatsen = overlast. Nieuwe plaatsing zonder Stadswacht = geen ophaling.',
+        actions: 'Verplaatsen of wegnemen via Stadsbeheer. Bij nieuwe plaatsing: Stadswacht vooraf verwittigen.',
+        protection: 'Tijdelijke plaatsing afstemmen met Stadswacht voor ophaalschema.',
+        gisLayer: 'Stad in Kaart - Papiermanden',
+        quickActions: ['verplaatsen', 'wegnemen', 'nieuw plaatsen'],
+        tags: ['afval', 'straatmeubilair', 'onderhoud']
+      },
+      {
+        id: 5,
+        icon: 'BB',
+        name: 'BigBelly slimme afvalbakken',
+        category: 'afval',
+        owner: 'SW',
+        leadTime: '5 werkdagen',
+        contact: 'SW_SB_Papiermanden@antwerpen.be',
+        phone: 'Guy Barbiers: +32 470 17 23 39',
+        critical: false,
+        description: 'Zonne-energie aangedreven persafvalbakken met sensoren.',
+        exclusivity: 'Stadswacht en Stadsbeheer.',
+        risks: 'Technische installatie: voorzichtig bij verplaatsen. Data-uitlezing kan verloren gaan.',
+        actions: 'Afstemmen met Stadswacht voor data en Stadsbeheer voor verplaatsing.',
+        protection: 'Extra aandacht voor zonnepaneel en sensoren.',
+        gisLayer: 'Stad in Kaart - BigBelly',
+        quickActions: ['verplaatsen', 'beschermen'],
+        tags: ['smart city', 'afval', 'iot', 'zonne-energie']
+      },
+      {
+        id: 6,
+        icon: 'ZM',
+        name: 'Zitbanken',
+        category: 'meubilair',
+        owner: 'SB',
+        leadTime: '10 werkdagen',
+        contact: 'stadsbeheer@antwerpen.be',
+        phone: '',
+        critical: false,
+        description: 'Publieke zitbanken en rustplaatsen.',
+        exclusivity: 'Stadsbeheer.',
+        risks: 'Beschadiging tijdens transport, vergeten terugplaatsen.',
+        actions: 'Inventariseren, fotograferen, verplaatsingsaanvraag indienen.',
+        protection: 'Afdekken of tijdelijk opslaan indien niet verplaatst.',
+        gisLayer: 'Stad in Kaart - Straatmeubilair',
+        quickActions: ['verplaatsen', 'beschermen'],
+        tags: ['comfort', 'straatmeubilair', 'publieke ruimte']
+      },
+      {
+        id: 7,
+        icon: 'VL',
+        name: 'Openbare verlichting',
+        category: 'verlichting',
+        owner: 'SB',
+        leadTime: '15 werkdagen',
+        contact: 'verlichtingsdienst@antwerpen.be',
+        phone: '',
+        critical: false,
+        description: 'Straatverlichting, lichtmasten en armaturen.',
+        exclusivity: 'Stadsbeheer Verlichtingsdienst.',
+        risks: 'Elektrische veiligheid, kabelschade en uitval verlichting.',
+        actions: 'Vroege melding bij Verlichtingsdienst, afstemming met nutspartners bij kabelwerk.',
+        protection: 'Nooit zelf intervenieren, enkel signaleren. Kabels markeren bij graafwerk.',
+        gisLayer: 'Stad in Kaart - Openbare Verlichting',
+        quickActions: ['verplaatsen', 'beschermen'],
+        tags: ['elektriciteit', 'veiligheid', 'infrastructuur']
+      },
+      {
+        id: 8,
+        icon: 'SG',
+        name: 'Verkeersborden en signalisatie',
+        category: 'signalisatie',
+        owner: 'SB',
+        leadTime: '10 werkdagen',
+        contact: 'signalisatie@antwerpen.be',
+        phone: '',
+        critical: false,
+        description: 'Permanente verkeersborden, bewegwijzering en straatnaamborden.',
+        exclusivity: 'Stadsbeheer Signalisatie.',
+        risks: 'Juridische implicaties bij ontbreken verplichte signalisatie.',
+        actions: 'Duidelijk markeren welke borden tijdelijk weg mogen en welke moeten blijven.',
+        protection: 'Tijdelijke vervanging regelen indien permanent bord moet wijken.',
+        gisLayer: 'Stad in Kaart - Verkeerssignalisatie',
+        quickActions: ['verplaatsen', 'nieuw plaatsen'],
+        tags: ['verkeersveiligheid', 'regelgeving', 'bewegwijzering']
+      },
+      {
+        id: 9,
+        icon: 'ER',
+        name: 'Stolpersteine (struikelstenen)',
+        category: 'herdenking',
+        owner: 'SB',
+        leadTime: '20 werkdagen',
+        contact: 'erfgoed@antwerpen.be',
+        phone: '',
+        critical: true,
+        description: 'Herdenkingsstenen in bestrating ter nagedachtenis aan Holocaust-slachtoffers.',
+        exclusivity: 'Erfgoeddienst en Stadsbeheer.',
+        risks: 'Zeer gevoelig erfgoed. Bescherming en correcte herplaatsing verplicht.',
+        actions: 'Altijd melden aan Erfgoeddienst. Mogelijk tijdelijk demonteren en vakkundig herplaatsen.',
+        protection: 'Maximale zorgvuldigheid, fotodocumentatie voor en na, exacte locatiebepaling.',
+        gisLayer: 'Stad in Kaart - Erfgoed - Stolpersteine',
+        quickActions: ['verplaatsen', 'beschermen'],
+        tags: ['erfgoed', 'herdenking', 'cultureel']
+      },
+      {
+        id: 10,
+        icon: 'VG',
+        name: 'Vlaggemasten',
+        category: 'herdenking',
+        owner: 'SB',
+        leadTime: '15 werkdagen',
+        contact: 'evenementen@antwerpen.be',
+        phone: '',
+        critical: false,
+        description: 'Permanente en tijdelijke vlaggemasten.',
+        exclusivity: 'Stadsbeheer en Evenementendienst.',
+        risks: 'Beschadiging fundering en veiligheidsrisico bij windbelasting.',
+        actions: 'Check of mast permanent of tijdelijk is. Permanent: afstemmen Stadsbeheer.',
+        protection: 'Fundering beschermen bij graafwerk in nabijheid.',
+        gisLayer: 'Stad in Kaart - Straatmeubilair',
+        quickActions: ['verplaatsen', 'beschermen'],
+        tags: ['ceremonieel', 'evenementen', 'structureel']
+      },
+      {
+        id: 11,
+        icon: 'VL',
+        name: 'Paaltjes en afzetpalen',
+        category: 'veiligheid',
+        owner: 'SB',
+        leadTime: '5 werkdagen',
+        contact: 'stadsbeheer@antwerpen.be',
+        phone: '',
+        critical: false,
+        description: 'Verkeersbeperkende paaltjes en afzetpalen.',
+        exclusivity: 'Stadsbeheer.',
+        risks: 'Vergeten verwijderen geeft hinder, vergeten terugplaatsen geeft veiligheidsissue.',
+        actions: 'Inventariseren welke paaltjes weg mogen, registreren voor terugplaatsing.',
+        protection: 'Duidelijke markeringen op plan en fotodocumentatie originele situatie.',
+        gisLayer: 'Stad in Kaart - Straatmeubilair',
+        quickActions: ['verplaatsen', 'wegnemen'],
+        tags: ['verkeersveiligheid', 'toegangscontrole', 'bescherming']
+      },
+      {
+        id: 12,
+        icon: 'DW',
+        name: 'Drinkwaterfonteinen',
+        category: 'meubilair',
+        owner: 'SB',
+        leadTime: '15 werkdagen',
+        contact: 'stadsbeheer@antwerpen.be',
+        phone: '',
+        critical: false,
+        description: 'Publieke drinkwatervoorziening.',
+        exclusivity: 'Stadsbeheer en Waterlink voor aansluiting.',
+        risks: 'Waterleidingschade en hygiene bij tijdelijke uitschakeling.',
+        actions: 'Afstemming Stadsbeheer voor verplaatsing, Waterlink voor leidingwerken.',
+        protection: 'Watertoevoer correct afsluiten, hygienisch afdekken indien buiten gebruik.',
+        gisLayer: 'Stad in Kaart - Straatmeubilair',
+        quickActions: ['verplaatsen', 'beschermen'],
+        tags: ['drinkwater', 'gezondheid', 'duurzaamheid']
+      }
+    ];
+
+    const defaultThemes = [
+      { id: 1, name: 'Parkeren', category: 'parkeren', color: '#1d4ed8', icon: 'PK', description: 'Parkeerinfra en regulatie.' },
+      { id: 2, name: 'Energie', category: 'energie', color: '#0f766e', icon: 'EL', description: 'Laadinfrastructuur en energieobjecten.' },
+      { id: 3, name: 'Afval', category: 'afval', color: '#4d7c0f', icon: 'AF', description: 'Afvalbakken en inzameling.' },
+      { id: 4, name: 'Meubilair', category: 'meubilair', color: '#7c2d12', icon: 'ZM', description: 'Zitbanken, drinkwaterpunten, straatmeubilair.' },
+      { id: 5, name: 'Verlichting', category: 'verlichting', color: '#0f172a', icon: 'VL', description: 'Openbare verlichting en masten.' },
+      { id: 6, name: 'Signalisatie', category: 'signalisatie', color: '#6d28d9', icon: 'SG', description: 'Borden en bewegwijzering.' },
+      { id: 7, name: 'Herdenking', category: 'herdenking', color: '#b91c1c', icon: 'ER', description: 'Erfgoed en herdenking.' },
+      { id: 8, name: 'Veiligheid', category: 'veiligheid', color: '#2563eb', icon: 'VL', description: 'Afzetpalen en verkeersveiligheid.' }
+    ];
+
+    let objectsData = [];
+    let themesData = [];
+    let changeLog = [];
+
+    // ===================================
+    // RENDER FUNCTIONS
+    // ===================================
+    function renderObjects() {
+      const container = document.getElementById('objectsContainer');
+      container.innerHTML = '';
+
+      objectsData.forEach(obj => {
+        const card = document.createElement('div');
+        card.className = 'object-card';
+        card.dataset.category = obj.category;
+        card.dataset.owner = obj.owner;
+        card.dataset.critical = obj.critical ? 'true' : 'false';
+        card.dataset.actions = obj.quickActions.join(',').toLowerCase();
+        card.dataset.searchText = JSON.stringify(obj).toLowerCase();
+
+        const criticalBadge = obj.critical ? '<span class="badge badge--critical">Kritiek</span>' : '';
+
+        card.innerHTML = `
+          <div class="object-card__header">
+            <div class="object-card__title-section">
+              <div class="object-card__icon">${obj.icon}</div>
+              <div>
+                <h3 class="object-card__title">${obj.name}</h3>
+                <div class="object-card__category">${obj.category.toUpperCase()}</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center;">
+              ${criticalBadge}
+              <button class="action-btn action-btn--primary" onclick="showNotificationForm(${obj.id})">
+                Meld dit object
+              </button>
+            </div>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-grid__label">Beschrijving</div>
+            <div class="info-grid__value">${obj.description}</div>
+
+            <div class="info-grid__label">Beheerder</div>
+            <div class="info-grid__value">
+              <span class="responsibility-tag resp--${obj.owner.toLowerCase()}">${getOwnerName(obj.owner)}</span>
+            </div>
+
+            <div class="info-grid__label">Doorlooptijd</div>
+            <div class="info-grid__value"><strong>${obj.leadTime}</strong></div>
+
+            <div class="info-grid__label">Contact</div>
+            <div class="info-grid__value">
+              <a href="mailto:${obj.contact}">${obj.contact}</a>
+              ${obj.phone ? `<br>${obj.phone}` : ''}
+            </div>
+
+            <div class="info-grid__label">Exclusiviteit</div>
+            <div class="info-grid__value">${obj.exclusivity}</div>
+
+            <div class="info-grid__label">GIS locatie</div>
+            <div class="info-grid__value">${obj.gisLayer}</div>
+          </div>
+
+          ${obj.risks ? `
+          <div class="alert-box alert-box--danger">
+            <div class="alert-box__icon">!</div>
+            <div><strong>Risico's:</strong> ${obj.risks}</div>
+          </div>
+          ` : ''}
+
+          <div class="alert-box alert-box--info">
+            <div class="alert-box__icon">i</div>
+            <div><strong>Acties:</strong> ${obj.actions}</div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline__title">Bescherming tijdens werken</div>
+            ${obj.protection}
+          </div>
+
+          <div class="chip-row">
+            ${obj.quickActions.map(action => `<button class="chip" data-action="${action}" onclick="setAction(${obj.id}, '${action}')">${action}</button>`).join('')}
+          </div>
+
+          <div class="tag-cloud">
+            ${obj.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
+          </div>
+
+          <div class="notification-form" id="form-${obj.id}">
+            <h4 style="margin:0 0 12px; color:#166534;">Melding maken voor: ${obj.name}</h4>
+            <div class="form-field">
+              Project / werfreferentie
+              <input type="text" data-field="project" placeholder="Project Meir heraanleg 2026">
+            </div>
+            <div class="form-field">
+              Locatie / adres
+              <input type="text" data-field="location" placeholder="Meir 50, 2000 Antwerpen">
+            </div>
+            <div class="form-field">
+              Werfzone
+              <input type="text" data-field="zone" placeholder="Zone B, segment 3">
+            </div>
+            <div class="form-field">
+              Gewenste actie
+              <select data-field="action">
+                <option>Tijdelijk verplaatsen</option>
+                <option>Definitief verwijderen</option>
+                <option>Beschermen op huidige locatie</option>
+                <option>Nieuw plaatsen</option>
+              </select>
+            </div>
+            <div class="form-field">
+              Urgentie
+              <select data-field="urgency">
+                <option>Normaal</option>
+                <option>Hoog</option>
+                <option>Kritiek</option>
+              </select>
+            </div>
+            <div class="form-field">
+              Start werken (datum)
+              <input type="date" data-field="start">
+            </div>
+            <div class="form-field">
+              Toelichting / bijzonderheden
+              <textarea data-field="notes" placeholder="Voeg relevante informatie toe..."></textarea>
+            </div>
+            <div class="form-field">
+              Fotos uploaden
+              <input type="file" multiple accept="image/*">
+            </div>
+            <button class="action-btn action-btn--primary" onclick="submitNotification(${obj.id})">
+              Verstuur melding naar ${obj.contact}
+            </button>
+            <button class="action-btn action-btn--ghost" onclick="hideNotificationForm(${obj.id})">
+              Annuleren
+            </button>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      updateStats();
+    }
+
+    function getOwnerName(owner) {
+      const names = {
+        'SB': 'Stadsbeheer',
+        'SW': 'Stadswacht',
+        'PHH': 'PHH/MPA',
+        'EXTERNAL': 'Externe partner'
+      };
+      return names[owner] || owner;
+    }
+
+    // ===================================
+    // FILTER FUNCTIONS
+    // ===================================
+    let activeCategory = 'all';
+    let activeOwner = 'all';
+    let activeAction = 'all';
+    let searchQuery = '';
+    let criticalOnly = false;
+
+    function filterObjects() {
+      searchQuery = document.getElementById('searchBox').value.toLowerCase();
+      applyFilters();
+    }
+
+    function setupFilters() {
+      document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('#categoryFilters .filter-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          activeCategory = this.dataset.category;
+          applyFilters();
+        });
+      });
+
+      document.querySelectorAll('#ownerFilters .filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('#ownerFilters .filter-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          activeOwner = this.dataset.owner;
+          applyFilters();
+        });
+      });
+
+      document.querySelectorAll('#actionFilters .filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('#actionFilters .filter-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          activeAction = this.dataset.action;
+          applyFilters();
+        });
+      });
+
+      document.getElementById('criticalToggle').addEventListener('change', function() {
+        criticalOnly = this.checked;
+        applyFilters();
+      });
+
+      document.getElementById('searchBox').addEventListener('keyup', filterObjects);
+    }
+
+    function applyFilters() {
+      let visibleCount = 0;
+
+      document.querySelectorAll('.object-card').forEach(card => {
+        const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+        const matchesOwner = activeOwner === 'all' || card.dataset.owner === activeOwner;
+        const matchesAction = activeAction === 'all' || card.dataset.actions.includes(activeAction);
+        const matchesSearch = searchQuery === '' || card.dataset.searchText.includes(searchQuery);
+        const matchesCritical = !criticalOnly || card.dataset.critical === 'true';
+
+        if (matchesCategory && matchesOwner && matchesAction && matchesSearch && matchesCritical) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      document.getElementById('stat-filtered').textContent = visibleCount;
+      updateFilterStatus(visibleCount);
+    }
+
+    function updateFilterStatus(visibleCount) {
+      const parts = [];
+      if (activeCategory !== 'all') parts.push(`categorie: ${activeCategory}`);
+      if (activeOwner !== 'all') parts.push(`beheerder: ${getOwnerName(activeOwner)}`);
+      if (activeAction !== 'all') parts.push(`actie: ${activeAction}`);
+      if (criticalOnly) parts.push('kritiek: ja');
+      if (searchQuery) parts.push(`zoek: "${searchQuery}"`);
+      const label = parts.length ? parts.join(' | ') : 'geen filters';
+      document.getElementById('filterStatus').textContent = `Filters: ${label}. Zichtbaar: ${visibleCount}.`;
+    }
+
+    function resetFilters() {
+      activeCategory = 'all';
+      activeOwner = 'all';
+      activeAction = 'all';
+      searchQuery = '';
+      criticalOnly = false;
+      document.getElementById('searchBox').value = '';
+      document.getElementById('criticalToggle').checked = false;
+      document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('#ownerFilters .filter-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('#actionFilters .filter-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector('#categoryFilters .filter-btn[data-category=\"all\"]').classList.add('active');
+      document.querySelector('#ownerFilters .filter-btn[data-owner=\"all\"]').classList.add('active');
+      document.querySelector('#actionFilters .filter-btn[data-action=\"all\"]').classList.add('active');
+      applyFilters();
+    }
+
+    function updateStats() {
+      document.getElementById('stat-total').textContent = objectsData.length;
+      document.getElementById('stat-filtered').textContent = objectsData.length;
+      const criticalCount = objectsData.filter(obj => obj.critical).length;
+      document.getElementById('stat-critical').textContent = criticalCount;
+      updateFilterStatus(objectsData.length);
+    }
+
+    // ===================================
+    // ADMIN MODULE
+    // ===================================
+    const ADMIN_STORAGE_KEY = 'opr_objects_v2_2';
+    const ADMIN_THEME_KEY = 'opr_themes_v2_2';
+    const ADMIN_LOG_KEY = 'opr_log_v2_2';
+
+    function loadObjects() {
+      try {
+        const stored = localStorage.getItem(ADMIN_STORAGE_KEY);
+        objectsData = stored ? JSON.parse(stored) : defaultObjectsData.slice();
+      } catch (err) {
+        objectsData = defaultObjectsData.slice();
+      }
+    }
+
+    function saveObjects() {
+      try {
+        localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(objectsData));
+        setAdminStatus('Lokaal opgeslagen');
+      } catch (err) {
+        setAdminStatus('Kan lokaal niet opslaan');
+      }
+    }
+
+    function loadThemes() {
+      try {
+        const stored = localStorage.getItem(ADMIN_THEME_KEY);
+        themesData = stored ? JSON.parse(stored) : defaultThemes.slice();
+      } catch (err) {
+        themesData = defaultThemes.slice();
+      }
+    }
+
+    function saveThemes() {
+      try {
+        localStorage.setItem(ADMIN_THEME_KEY, JSON.stringify(themesData));
+        setAdminStatus('Themas lokaal opgeslagen');
+      } catch (err) {
+        setAdminStatus('Kan themas niet opslaan');
+      }
+    }
+
+    function loadLog() {
+      try {
+        const stored = localStorage.getItem(ADMIN_LOG_KEY);
+        changeLog = stored ? JSON.parse(stored) : [];
+      } catch (err) {
+        changeLog = [];
+      }
+    }
+
+    function saveLog() {
+      try {
+        localStorage.setItem(ADMIN_LOG_KEY, JSON.stringify(changeLog));
+      } catch (err) {
+        setAdminStatus('Kan wijzigingslog niet opslaan');
+      }
+    }
+
+    function logChange(action, detail) {
+      const entry = {
+        time: new Date().toISOString(),
+        action,
+        detail
+      };
+      changeLog.unshift(entry);
+      if (changeLog.length > 50) changeLog = changeLog.slice(0, 50);
+      saveLog();
+      renderLog();
+    }
+
+    function setAdminStatus(message) {
+      const label = document.getElementById('adminStatus');
+      if (label) label.textContent = `Beheersmodule: ${message}`;
+    }
+
+    function switchAdminTab(tab) {
+      document.getElementById('adminTabObjects').style.display = tab === 'objects' ? 'block' : 'none';
+      document.getElementById('adminTabThemes').style.display = tab === 'themes' ? 'block' : 'none';
+      document.getElementById('adminTabLog').style.display = tab === 'log' ? 'block' : 'none';
+      if (tab === 'themes') {
+        buildThemeSelect();
+        renderThemeForm();
+      }
+      if (tab === 'log') {
+        renderLog();
+      }
+    }
+
+    function openAdmin() {
+      document.getElementById('adminModal').style.display = 'block';
+      buildAdminSelect();
+      renderAdminForm();
+      switchAdminTab('objects');
+    }
+
+    function closeAdmin() {
+      document.getElementById('adminModal').style.display = 'none';
+    }
+
+    function buildAdminSelect() {
+      const select = document.getElementById('adminSelect');
+      select.innerHTML = '';
+      objectsData.forEach(obj => {
+        const option = document.createElement('option');
+        option.value = obj.id;
+        option.textContent = `${obj.id} - ${obj.name}`;
+        select.appendChild(option);
+      });
+      select.addEventListener('change', renderAdminForm);
+    }
+
+    function renderAdminForm() {
+      const select = document.getElementById('adminSelect');
+      const selectedId = parseInt(select.value, 10);
+      const obj = objectsData.find(o => o.id === selectedId) || objectsData[0];
+      if (!obj) return;
+      select.value = obj.id;
+      const form = document.getElementById('adminForm');
+      form.innerHTML = `
+        <div class="field-grid">
+          <label class="field">ID<input id="adm-id" type="number" value="${obj.id}"></label>
+          <label class="field">Naam<input id="adm-name" type="text" value="${obj.name}"></label>
+          <label class="field">Icoon<input id="adm-icon" type="text" value="${obj.icon}"></label>
+          <label class="field">Categorie<input id="adm-category" type="text" value="${obj.category}"></label>
+          <label class="field">Beheerder<input id="adm-owner" type="text" value="${obj.owner}"></label>
+          <label class="field">Doorlooptijd<input id="adm-lead" type="text" value="${obj.leadTime}"></label>
+          <label class="field">Contact<input id="adm-contact" type="text" value="${obj.contact}"></label>
+          <label class="field">Telefoon<input id="adm-phone" type="text" value="${obj.phone || ''}"></label>
+          <label class="field">Kritiek<select id="adm-critical"><option value="false">Nee</option><option value="true">Ja</option></select></label>
+          <label class="field">Exclusiviteit<textarea id="adm-exclusivity">${obj.exclusivity}</textarea></label>
+          <label class="field">Risico's<textarea id="adm-risks">${obj.risks || ''}</textarea></label>
+          <label class="field">Acties<textarea id="adm-actions">${obj.actions}</textarea></label>
+          <label class="field">Bescherming<textarea id="adm-protection">${obj.protection}</textarea></label>
+          <label class="field">GIS laag<input id="adm-gis" type="text" value="${obj.gisLayer}"></label>
+          <label class="field">Tags (komma's)<input id="adm-tags" type="text" value="${obj.tags.join(', ')}"></label>
+          <label class="field">Quick actions (komma's)<input id="adm-quick" type="text" value="${obj.quickActions.join(', ')}"></label>
+          <label class="field">Beschrijving<textarea id="adm-description">${obj.description}</textarea></label>
+        </div>
+      `;
+      document.getElementById('adm-critical').value = obj.critical ? 'true' : 'false';
+    }
+
+    function saveAdminObject() {
+      const select = document.getElementById('adminSelect');
+      const selectedId = parseInt(select.value, 10);
+      const index = objectsData.findIndex(o => o.id === selectedId);
+      if (index === -1) return;
+
+      const updated = {
+        id: parseInt(document.getElementById('adm-id').value, 10),
+        name: document.getElementById('adm-name').value.trim(),
+        icon: document.getElementById('adm-icon').value.trim(),
+        category: document.getElementById('adm-category').value.trim(),
+        owner: document.getElementById('adm-owner').value.trim(),
+        leadTime: document.getElementById('adm-lead').value.trim(),
+        contact: document.getElementById('adm-contact').value.trim(),
+        phone: document.getElementById('adm-phone').value.trim(),
+        critical: document.getElementById('adm-critical').value === 'true',
+        exclusivity: document.getElementById('adm-exclusivity').value.trim(),
+        risks: document.getElementById('adm-risks').value.trim(),
+        actions: document.getElementById('adm-actions').value.trim(),
+        protection: document.getElementById('adm-protection').value.trim(),
+        gisLayer: document.getElementById('adm-gis').value.trim(),
+        tags: document.getElementById('adm-tags').value.split(',').map(t => t.trim()).filter(Boolean),
+        quickActions: document.getElementById('adm-quick').value.split(',').map(t => t.trim()).filter(Boolean),
+        description: document.getElementById('adm-description').value.trim()
+      };
+
+      objectsData[index] = updated;
+      saveObjects();
+      renderObjects();
+      buildAdminSelect();
+      select.value = updated.id;
+      logChange('Object opgeslagen', `${updated.id} - ${updated.name}`);
+      setAdminStatus('Object opgeslagen');
+    }
+
+    function addObject() {
+      const newId = objectsData.length ? Math.max(...objectsData.map(o => o.id)) + 1 : 1;
+      const blank = {
+        id: newId,
+        icon: 'NI',
+        name: 'Nieuw object',
+        category: 'nieuw',
+        owner: 'SB',
+        leadTime: 'n.t.b.',
+        contact: 'stadsbeheer@antwerpen.be',
+        phone: '',
+        critical: false,
+        description: '',
+        exclusivity: '',
+        risks: '',
+        actions: '',
+        protection: '',
+        gisLayer: '',
+        quickActions: ['verplaatsen'],
+        tags: []
+      };
+      objectsData.push(blank);
+      saveObjects();
+      renderObjects();
+      buildAdminSelect();
+      document.getElementById('adminSelect').value = blank.id;
+      renderAdminForm();
+      logChange('Object toegevoegd', `${blank.id} - ${blank.name}`);
+      setAdminStatus('Nieuw object toegevoegd');
+    }
+
+    function deleteAdminObject() {
+      const select = document.getElementById('adminSelect');
+      const selectedId = parseInt(select.value, 10);
+      const index = objectsData.findIndex(o => o.id === selectedId);
+      if (index === -1) return;
+      objectsData.splice(index, 1);
+      saveObjects();
+      renderObjects();
+      buildAdminSelect();
+      renderAdminForm();
+      logChange('Object verwijderd', `${selectedId}`);
+      setAdminStatus('Object verwijderd');
+    }
+
+    function exportAdminData() {
+      const data = JSON.stringify(objectsData, null, 2);
+      const blob = new Blob([data], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'objectbeheer_v2_2_data.json';
+      link.click();
+      URL.revokeObjectURL(url);
+      setAdminStatus('JSON export klaar');
+    }
+
+    function triggerImport() {
+      document.getElementById('importAdminData').click();
+    }
+
+    function importAdminData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(loadEvent) {
+        try {
+          const parsed = JSON.parse(loadEvent.target.result);
+          if (Array.isArray(parsed)) {
+            objectsData = parsed;
+            saveObjects();
+            renderObjects();
+            buildAdminSelect();
+            renderAdminForm();
+            logChange('Objecten geimporteerd', `Aantal: ${parsed.length}`);
+            setAdminStatus('JSON geimporteerd');
+          } else {
+            setAdminStatus('JSON is geen lijst');
+          }
+        } catch (err) {
+          setAdminStatus('JSON import mislukt');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function resetAdminData() {
+      objectsData = defaultObjectsData.slice();
+      saveObjects();
+      renderObjects();
+      buildAdminSelect();
+      renderAdminForm();
+      logChange('Objecten hersteld', 'Standaard data');
+      setAdminStatus('Standaard data hersteld');
+    }
+
+    function buildThemeSelect() {
+      const select = document.getElementById('themeSelect');
+      select.innerHTML = '';
+      themesData.forEach(theme => {
+        const option = document.createElement('option');
+        option.value = theme.id;
+        option.textContent = `${theme.id} - ${theme.name}`;
+        select.appendChild(option);
+      });
+      select.addEventListener('change', renderThemeForm);
+    }
+
+    function renderThemeForm() {
+      const select = document.getElementById('themeSelect');
+      const selectedId = parseInt(select.value, 10);
+      const theme = themesData.find(t => t.id === selectedId) || themesData[0];
+      if (!theme) return;
+      select.value = theme.id;
+      const form = document.getElementById('themeForm');
+      form.innerHTML = `
+        <div class="field-grid">
+          <label class="field">ID<input id="th-id" type="number" value="${theme.id}"></label>
+          <label class="field">Naam<input id="th-name" type="text" value="${theme.name}"></label>
+          <label class="field">Categorie<input id="th-category" type="text" value="${theme.category}"></label>
+          <label class="field">Kleur<input id="th-color" type="text" value="${theme.color}"></label>
+          <label class="field">Icoon<input id="th-icon" type="text" value="${theme.icon}"></label>
+          <label class="field">Omschrijving<textarea id="th-description">${theme.description}</textarea></label>
+        </div>
+      `;
+    }
+
+    function saveTheme() {
+      const select = document.getElementById('themeSelect');
+      const selectedId = parseInt(select.value, 10);
+      const index = themesData.findIndex(t => t.id === selectedId);
+      if (index === -1) return;
+      const updated = {
+        id: parseInt(document.getElementById('th-id').value, 10),
+        name: document.getElementById('th-name').value.trim(),
+        category: document.getElementById('th-category').value.trim(),
+        color: document.getElementById('th-color').value.trim(),
+        icon: document.getElementById('th-icon').value.trim(),
+        description: document.getElementById('th-description').value.trim()
+      };
+      themesData[index] = updated;
+      saveThemes();
+      buildThemeSelect();
+      select.value = updated.id;
+      logChange('Thema opgeslagen', `${updated.id} - ${updated.name}`);
+      setAdminStatus('Thema opgeslagen');
+    }
+
+    function addTheme() {
+      const newId = themesData.length ? Math.max(...themesData.map(t => t.id)) + 1 : 1;
+      const blank = {
+        id: newId,
+        name: 'Nieuw thema',
+        category: 'nieuw',
+        color: '#1f2937',
+        icon: 'NT',
+        description: ''
+      };
+      themesData.push(blank);
+      saveThemes();
+      buildThemeSelect();
+      document.getElementById('themeSelect').value = blank.id;
+      renderThemeForm();
+      logChange('Thema toegevoegd', `${blank.id} - ${blank.name}`);
+      setAdminStatus('Nieuw thema toegevoegd');
+    }
+
+    function deleteTheme() {
+      const select = document.getElementById('themeSelect');
+      const selectedId = parseInt(select.value, 10);
+      const index = themesData.findIndex(t => t.id === selectedId);
+      if (index === -1) return;
+      themesData.splice(index, 1);
+      saveThemes();
+      buildThemeSelect();
+      renderThemeForm();
+      logChange('Thema verwijderd', `${selectedId}`);
+      setAdminStatus('Thema verwijderd');
+    }
+
+    function renderLog() {
+      const list = document.getElementById('changeLogList');
+      if (!list) return;
+      if (!changeLog.length) {
+        list.innerHTML = '<div style="font-size:12px; color:var(--muted);">Nog geen wijzigingen.</div>';
+        return;
+      }
+      list.innerHTML = changeLog.map(entry => `
+        <div style="padding:10px; border:1px solid var(--line); border-radius:10px; margin-bottom:8px; font-size:12px;">
+          <strong>${entry.action}</strong><br>
+          ${entry.detail}<br>
+          <span style="color:var(--muted);">${new Date(entry.time).toLocaleString()}</span>
+        </div>
+      `).join('');
+    }
+
+    // ===================================
+    // FIELD CONTEXT
+    // ===================================
+    const STORAGE_KEYS = {
+      context: 'opr_context_v2_1',
+      drafts: 'opr_drafts_v2_1'
+    };
+
+    function getFieldContext() {
+      return {
+        project: document.getElementById('ctxProject').value.trim(),
+        location: document.getElementById('ctxLocation').value.trim(),
+        zone: document.getElementById('ctxZone').value.trim(),
+        start: document.getElementById('ctxStart').value,
+        urgency: document.getElementById('ctxUrgency').value,
+        notes: document.getElementById('ctxNotes').value.trim()
+      };
+    }
+
+    function setFieldContext(ctx) {
+      if (!ctx) return;
+      document.getElementById('ctxProject').value = ctx.project || '';
+      document.getElementById('ctxLocation').value = ctx.location || '';
+      document.getElementById('ctxZone').value = ctx.zone || '';
+      document.getElementById('ctxStart').value = ctx.start || '';
+      document.getElementById('ctxUrgency').value = ctx.urgency || 'normaal';
+      document.getElementById('ctxNotes').value = ctx.notes || '';
+    }
+
+    function updateContextStatus() {
+      const ctx = getFieldContext();
+      const filled = [ctx.project, ctx.location, ctx.zone, ctx.start, ctx.notes].filter(Boolean).length;
+      const status = filled === 0 ? 'Context klaar: nog leeg' : `Context klaar: ${filled} velden ingevuld`;
+      document.getElementById('contextStatus').textContent = status;
+      saveContext();
+    }
+
+    function saveContext() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.context, JSON.stringify(getFieldContext()));
+        setOfflineStatus('Context lokaal opgeslagen');
+      } catch (err) {
+        setOfflineStatus('Kan context niet lokaal bewaren');
+      }
+    }
+
+    function loadContext() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEYS.context);
+        if (stored) {
+          setFieldContext(JSON.parse(stored));
+        }
+      } catch (err) {
+        setOfflineStatus('Kon context niet laden');
+      }
+    }
+
+    function setupFieldContext() {
+      ['ctxProject', 'ctxLocation', 'ctxZone', 'ctxStart', 'ctxUrgency', 'ctxNotes'].forEach(id => {
+        document.getElementById(id).addEventListener('input', updateContextStatus);
+      });
+      loadContext();
+      updateContextStatus();
+    }
+
+    // ===================================
+    // NOTIFICATION FUNCTIONS
+    // ===================================
+    function showNotificationForm(id) {
+      document.querySelectorAll('.notification-form').forEach(form => form.classList.remove('active'));
+      const form = document.getElementById(`form-${id}`);
+      if (!form) return;
+
+      const ctx = getFieldContext();
+      form.querySelector('[data-field="project"]').value = ctx.project;
+      form.querySelector('[data-field="location"]').value = ctx.location;
+      form.querySelector('[data-field="zone"]').value = ctx.zone;
+      form.querySelector('[data-field="start"]').value = ctx.start;
+      form.querySelector('[data-field="urgency"]').value = capitalize(ctx.urgency || 'normaal');
+      form.querySelector('[data-field="notes"]').value = ctx.notes;
+
+      loadDraft(id, form);
+      form.classList.add('active');
+      form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function hideNotificationForm(id) {
+      const form = document.getElementById(`form-${id}`);
+      if (form) form.classList.remove('active');
+    }
+
+    function getDrafts() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEYS.drafts);
+        return stored ? JSON.parse(stored) : {};
+      } catch (err) {
+        return {};
+      }
+    }
+
+    function saveDraft(id, data) {
+      try {
+        const drafts = getDrafts();
+        drafts[id] = data;
+        localStorage.setItem(STORAGE_KEYS.drafts, JSON.stringify(drafts));
+        setOfflineStatus('Conceptmelding lokaal opgeslagen');
+      } catch (err) {
+        setOfflineStatus('Kan conceptmelding niet bewaren');
+      }
+    }
+
+    function loadDraft(id, form) {
+      const drafts = getDrafts();
+      if (!drafts[id]) return;
+      const data = drafts[id];
+      form.querySelector('[data-field="project"]').value = data.project || form.querySelector('[data-field="project"]').value;
+      form.querySelector('[data-field="location"]').value = data.location || form.querySelector('[data-field="location"]').value;
+      form.querySelector('[data-field="zone"]').value = data.zone || form.querySelector('[data-field="zone"]').value;
+      form.querySelector('[data-field="action"]').value = data.action || form.querySelector('[data-field="action"]').value;
+      form.querySelector('[data-field="urgency"]').value = data.urgency || form.querySelector('[data-field="urgency"]').value;
+      form.querySelector('[data-field="start"]').value = data.start || form.querySelector('[data-field="start"]').value;
+      form.querySelector('[data-field="notes"]').value = data.notes || form.querySelector('[data-field="notes"]').value;
+      setOfflineStatus('Conceptmelding geladen');
+    }
+
+    function bindDraftSave(id, form) {
+      const fields = form.querySelectorAll('[data-field]');
+      fields.forEach(field => {
+        field.addEventListener('input', () => {
+          const data = {
+            project: form.querySelector('[data-field="project"]').value.trim(),
+            location: form.querySelector('[data-field="location"]').value.trim(),
+            zone: form.querySelector('[data-field="zone"]').value.trim(),
+            action: form.querySelector('[data-field="action"]').value,
+            urgency: form.querySelector('[data-field="urgency"]').value,
+            start: form.querySelector('[data-field="start"]').value,
+            notes: form.querySelector('[data-field="notes"]').value.trim()
+          };
+          saveDraft(id, data);
+        });
+      });
+    }
+
+    function setAction(id, action) {
+      const form = document.getElementById(`form-${id}`);
+      if (!form) return;
+      const select = form.querySelector('[data-field="action"]');
+      if (!select) return;
+
+      if (action === 'verplaatsen') select.value = 'Tijdelijk verplaatsen';
+      if (action === 'wegnemen') select.value = 'Definitief verwijderen';
+      if (action === 'beschermen') select.value = 'Beschermen op huidige locatie';
+      if (action === 'nieuw plaatsen') select.value = 'Nieuw plaatsen';
+      saveDraft(id, {
+        project: form.querySelector('[data-field="project"]').value.trim(),
+        location: form.querySelector('[data-field="location"]').value.trim(),
+        zone: form.querySelector('[data-field="zone"]').value.trim(),
+        action: select.value,
+        urgency: form.querySelector('[data-field="urgency"]').value,
+        start: form.querySelector('[data-field="start"]').value,
+        notes: form.querySelector('[data-field="notes"]').value.trim()
+      });
+      showNotificationForm(id);
+    }
+
+    function submitNotification(id) {
+      const obj = objectsData.find(o => o.id === id);
+      if (!obj) return;
+      alert(`Melding wordt verstuurd naar:\n${obj.contact}\n\nIn productie wordt dit geintegreerd met het meldingensysteem.`);
+      hideNotificationForm(id);
+    }
+
+    function setOfflineStatus(message) {
+      const label = document.getElementById('offlineStatus');
+      if (label) label.textContent = `Offline opslag: ${message}`;
+    }
+
+    function capitalize(value) {
+      if (!value) return '';
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+
+    // ===================================
+    // EXPORT FUNCTIONS
+    // ===================================
+    function exportToExcel() {
+      alert('Excel export\n\nIn productie genereert dit een Excel-bestand met objectgegevens, contactinfo en doorlooptijden.');
+    }
+
+    // ===================================
+    // INITIALIZE
+    // ===================================
+    document.addEventListener('DOMContentLoaded', function() {
+      loadObjects();
+      loadThemes();
+      loadLog();
+      renderObjects();
+      setupFilters();
+      setupFieldContext();
+      document.querySelectorAll('.notification-form').forEach(form => {
+        const id = form.id.replace('form-', '');
+        bindDraftSave(id, form);
+      });
+      document.getElementById('importAdminData').addEventListener('change', importAdminData);
+    });
+  </script>
+</body>
+</html>
