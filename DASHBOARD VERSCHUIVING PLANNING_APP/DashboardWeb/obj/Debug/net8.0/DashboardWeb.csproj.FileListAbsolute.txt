@@ -1,7 +1,0 @@
-C:\Users\5129\OneDrive - digipolis.onmicrosoft.com\Apps\DASHBOARD VERSCHUIVING PLANNING\DashboardWeb\obj\Debug\net8.0\DashboardWeb.csproj.AssemblyReference.cache
-C:\Users\5129\OneDrive - digipolis.onmicrosoft.com\Apps\DASHBOARD VERSCHUIVING PLANNING\DashboardWeb\obj\Debug\net8.0\DashboardWeb.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\5129\OneDrive - digipolis.onmicrosoft.com\Apps\DASHBOARD VERSCHUIVING PLANNING\DashboardWeb\obj\Debug\net8.0\DashboardWeb.AssemblyInfoInputs.cache
-C:\Users\5129\OneDrive - digipolis.onmicrosoft.com\Apps\DASHBOARD VERSCHUIVING PLANNING\DashboardWeb\obj\Debug\net8.0\DashboardWeb.AssemblyInfo.cs
-C:\Users\5129\OneDrive - digipolis.onmicrosoft.com\Apps\DASHBOARD VERSCHUIVING PLANNING\DashboardWeb\obj\Debug\net8.0\DashboardWeb.csproj.CoreCompileInputs.cache
-C:\Users\5129\OneDrive - digipolis.onmicrosoft.com\Apps\DASHBOARD VERSCHUIVING PLANNING\DashboardWeb\obj\Debug\net8.0\DashboardWeb.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\5129\OneDrive - digipolis.onmicrosoft.com\Apps\DASHBOARD VERSCHUIVING PLANNING\DashboardWeb\obj\Debug\net8.0\rpswa.dswa.cache.json

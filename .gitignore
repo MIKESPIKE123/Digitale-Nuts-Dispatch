@@ -1,2 +1,5 @@
-/Microsoft Edge
-/schillenmodel opbouw.svg
+# Repo opgeschoond: alleen Digitale Nuts App wordt getrackt
+*
+!/.gitignore
+!/digitale-nuts-app/
+!/digitale-nuts-app/**

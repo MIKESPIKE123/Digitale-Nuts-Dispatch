@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 PDF Rapport Demo - Stad Antwerpen Inspectie</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .demo-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .demo-header {
+            background: linear-gradient(135deg, #E10019 0%, #ff4757 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(225, 0, 25, 0.3);
+        }
+        
+        .demo-title {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .demo-subtitle {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #E10019;
+        }
+        
+        .feature-card h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #666;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list li::before {
+            content: "✅ ";
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .instructions {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .instructions h2 {
+            margin: 0 0 20px 0;
+            color: #2c3e50;
+            font-size: 24px;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #E10019;
+        }
+        
+        .step-number {
+            background: #E10019;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .access-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #E10019 0%, #ff4757 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(225, 0, 25, 0.3);
+            transition: transform 0.2s ease;
+        }
+        
+        .access-link:hover {
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1 class="demo-title">📊 PDF Rapport Generator</h1>
+            <p class="demo-subtitle">Stad Antwerpen - Inspectie Rapporten met Actie Opvolging</p>
+        </div>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🎨 Antwerpen Branding</h3>
+                <ul class="feature-list">
+                    <li>Officiële Stad Antwerpen kleuren (#E10019)</li>
+                    <li>Logo en huisstijl elementen</li>
+                    <li>Professional PDF layout</li>
+                    <li>Handtekening sectie</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📋 Slimme Rapportage</h3>
+                <ul class="feature-list">
+                    <li>Lege velden = "N.v.t." (niet van toepassing)</li>
+                    <li>OK/NOK status met icons</li>
+                    <li>Automatische sectie organisatie</li>
+                    <li>GPS coördinaten integratie</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3>⚠️ Actie Opvolging</h3>
+                <ul class="feature-list">
+                    <li>Aparte sectie voor NOK items</li>
+                    <li>Checkboxes: Todo/In uitvoering/Voltooid</li>
+                    <li>Ruimte voor opmerkingen</li>
+                    <li>Datum velden voor opvolging</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🔧 Technische Features</h3>
+                <ul class="feature-list">
+                    <li>jsPDF + autoTable voor tabellen</li>
+                    <li>TypeScript type safety</li>
+                    <li>Automatische filename generatie</li>
+                    <li>Multi-page support</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h2>🚀 Hoe te Testen</h2>
+            
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>Open de Inspectie App:</strong>
+            </div>
+            <a href="http://localhost:3003" class="access-link" target="_blank">
+                🌐 Open Inspectie App (localhost:3003)
+            </a>
+            
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>Navigeer naar Inspectie:</strong> Klik op "Gepland Bezoek" om de inspectie pagina te openen
+            </div>
+            
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>Vul Inspectie Data In:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Vul enkele velden in (anderen laten leeg voor "N.v.t." test)</li>
+                    <li>Selecteer enkele "NOK" opties om actie items te maken</li>
+                    <li>Test checkboxes en dropdown menu's</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">4</span>
+                <strong>Genereer PDF Rapport:</strong> Klik op de "📊 Rapport Genereren" knop onderaan
+            </div>
+            
+            <div class="highlight">
+                <strong>📥 Resultaat:</strong> Een PDF bestand wordt automatisch gedownload met:
+                <br>• Alle ingevulde data georganiseerd per sectie
+                <br>• Lege velden getoond als "N.v.t."
+                <br>• Aparte actie sectie met alle NOK items voor opvolging
+                <br>• Professional Antwerpen branding en layout
+            </div>
+            
+            <h3>📄 PDF Inhoud Overzicht</h3>
+            <div class="code-block">
+📊 INSPECTIE RAPPORT - STAD ANTWERPEN
+═══════════════════════════════════════
+
+📍 INSPECTIE GEGEVENS
+• Datum & Tijd: [automatisch]
+• Locatie: St. Jans Vliet, Antwerpen  
+• Inspecteur: Inspecteur J. Vermeulen
+• GPS Coördinaten: [van GPS component]
+
+📋 BASISGEGEVENS
+┌─────────────────────┬────────┬─────────────┬─────────────┐
+│ Inspectie Item      │ Status │ Resultaat   │ Actie Vereist│
+├─────────────────────┼────────┼─────────────┼─────────────┤
+│ Soort Werkzaamheid │   ●    │ Rioolwerken │             │
+│ Vergunning Nummer   │   ○    │ N.v.t.      │             │
+└─────────────────────┴────────┴─────────────┴─────────────┘
+
+⚠️ TE NEMEN ACTIES - OPVOLGINGSRAPPORT
+┌───┬─────────┬─────────────────┬─────────────┬─────────┬─────────┐
+│ # │ Sectie  │ Item            │ Bevinding   │ Status  │ Datum   │
+├───┼─────────┼─────────────────┼─────────────┼─────────┼─────────┤
+│ 1 │ Veilig. │ Signalisatie    │ Ontbreekt  │ □ Todo  │ _______ │
+│   │         │                 │             │ □ Bezig │         │
+│   │         │                 │             │ □ Klaar │         │
+└───┴─────────┴─────────────────┴─────────────┴─────────┴─────────┘
+
+📝 Inspecteur: _________________    📅 Datum: _________
+            </div>
+        </div>
+    </div>
+</body>
+</html>

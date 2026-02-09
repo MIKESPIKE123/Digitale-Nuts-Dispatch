@@ -1,0 +1,238 @@
+/* OpbraakEnMateriaal.css - Antwerpse digitale huisstijl */
+
+.opbraak-en-materiaal {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Fieldset styling volgens A-UI richtlijnen */
+.form-fieldset {
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 0;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-legend {
+  background: white;
+  color: #2c3e50;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0 16px;
+  margin: 0;
+  border: none;
+}
+
+/* Form group spacing */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Labels volgens A-UI */
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+/* Required asterisk styling */
+.required {
+  color: #E10019;
+  margin-left: 4px;
+}
+
+/* Checkbox container styling */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.checkbox-container:hover {
+  border-color: #E10019;
+  background: #fff5f5;
+}
+
+.checkbox-container:focus-within {
+  border-color: #E10019;
+  box-shadow: 0 0 0 3px rgba(225, 0, 25, 0.1);
+}
+
+/* Checkbox input styling */
+.checkbox-container input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #E10019;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Checkbox label styling */
+.checkbox-label {
+  font-size: 14px;
+  color: #2c3e50;
+  cursor: pointer;
+  margin: 0;
+  font-weight: 500;
+  flex: 1;
+}
+
+/* Select dropdown styling volgens A-UI */
+.form-select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  color: #2c3e50;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #E10019;
+  box-shadow: 0 0 0 3px rgba(225, 0, 25, 0.1);
+}
+
+.form-select.error {
+  border-color: #dc3545;
+  background: #fff5f5;
+}
+
+/* Option styling */
+.nok-option {
+  background: #fff5f5;
+  color: #dc3545;
+  font-weight: 600;
+}
+
+/* Error text styling */
+.error-text {
+  color: #dc3545;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 8px 0 0 0;
+  padding: 8px 12px;
+  background: #fff5f5;
+  border-radius: 6px;
+  border-left: 4px solid #dc3545;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.error-text::before {
+  content: "⚠️";
+  font-size: 14px;
+}
+
+/* Form actions */
+.form-actions {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e9ecef;
+  text-align: center;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #E10019 0%, #ff4757 100%);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(225, 0, 25, 0.3);
+  min-width: 140px;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(225, 0, 25, 0.4);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.submit-button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .opbraak-en-materiaal {
+    padding: 16px;
+  }
+  
+  .form-fieldset {
+    padding: 20px;
+  }
+  
+  .form-legend {
+    font-size: 18px;
+  }
+  
+  .checkbox-container {
+    padding: 10px;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 16px;
+  }
+}
+
+/* Focus management voor toegankelijkheid */
+.form-select:focus,
+.checkbox-container input[type="checkbox"]:focus {
+  outline: 2px solid #E10019;
+  outline-offset: 2px;
+}
+
+/* High contrast mode ondersteuning */
+@media (prefers-contrast: high) {
+  .checkbox-container {
+    border-width: 3px;
+  }
+  
+  .form-select {
+    border-width: 3px;
+  }
+  
+  .error-text {
+    border-left-width: 6px;
+  }
+}
+
+/* Reduced motion ondersteuning */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,33 @@
+# STAD ANTWERPEN - INSPECTIE DATA EXPORT
+# Gegenereerd op: 10/10/2025 14:30:15
+# Inspectie datum: 10/10/2025
+# Inspectie tijd: 14:30
+# Locatie: St. Jans Vliet, Antwerpen
+# Inspecteur: Inspecteur J. Vermeulen
+# GPS Coördinaten: 51.2194°N, 4.4025°E
+
+Sectie;Veld_Naam;Veld_Label;Veld_Type;Verplicht;Ingevulde_Waarde;Weergave_Waarde;Status;Opmerking
+"Basisgegevens";"bonu_nr";"BONU nummer";"input";"Ja";"";"";N.v.t.;"Veld niet ingevuld - mogelijk niet van toepassing"
+"Basisgegevens";"gipod_nr";"GIPOD nummer";"input";"Ja";"";"";N.v.t.;"Veld niet ingevuld - mogelijk niet van toepassing"
+"Basisgegevens";"postcode";"Postcode";"select";"Ja";"2000";"2000";"Ingevuld";""
+"Basisgegevens";"straat_huisnummer";"Straatnaam en huisnummer";"input";"Ja";"St. Jans Vliet 15";"St. Jans Vliet 15";"Ingevuld";""
+"Basisgegevens";"locatie_check";"Locatie controle";"select";"Nee";"OK";"OK";"OK";""
+"Betrokken Partijen";"aannemer";"Aannemer";"input";"Ja";"Aannemer BV";"Aannemer BV";"Ingevuld";""
+"Betrokken Partijen";"opdrachtgever";"Opdrachtgever";"input";"Ja";"";"";N.v.t.;"Veld niet ingevuld - mogelijk niet van toepassing"
+"Veiligheid Werf";"signalisatie";"Signalisatie";"select";"Ja";"NOK_ONTBREEKT";"NOK_ONTBREEKT";"NOK - Actie vereist";"Te controleren/op te lossen"
+"Veiligheid Werf";"bereikbaarheid";"Bereikbaarheid hulpdiensten";"select";"Ja";"OK";"OK";"OK";""
+"Opbraak & Materiaal";"natuursteen_ingeslepen";"Werd natuursteen ingeslepen?";"checkbox";"Ja";"true";"Ja";"Ingevuld";""
+"Opbraak & Materiaal";"asfalt_ingeslepen";"Werd asfalt ingeslepen?";"checkbox";"Ja";"false";"Nee";"Ingevuld";""
+"Opbraak & Materiaal";"materialen_gestockeerd";"Werden materialen veilig gestockeerd?";"select";"Ja";"NOK";"NOK";"NOK - Actie vereist";"Te controleren/op te lossen"
+"Sleufherstelling";"sleufaanvulling";"Sleufaanvulling";"select";"Ja";"";"";N.v.t.;"Veld niet ingevuld - mogelijk niet van toepassing"
+"Sleufherstelling";"wijze_herstel";"Wijze van herstel";"select";"Ja";"";"";N.v.t.;"Veld niet ingevuld - mogelijk niet van toepassing"
+"Zuiverheid & Afwerking";"zuiverheid_greppel";"Greppel zuiver?";"select";"Nee";"OK";"OK";"OK";""
+"Zuiverheid & Afwerking";"zuiverheid_straat";"Straat zuiver?";"select";"Nee";"";"";N.v.t.;"Veld niet ingevuld - mogelijk niet van toepassing"
+
+# SAMENVATTING
+# Totaal aantal velden: 15
+# Ingevulde velden: 8
+# N.v.t. velden: 7
+# OK status: 3
+# NOK status (acties): 2
+# Percentage volledigheid: 53%

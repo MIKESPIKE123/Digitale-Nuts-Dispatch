@@ -1,0 +1,279 @@
+Inspecteurs;Naam ;
+;;Michel Gerits 
+;;Carine Van Royen
+;;Luc Smets
+;;Carlo Cami
+;;Karel Peelman
+;;Christian Vanlerberghe
+;;Dieter Van Meensel
+;;Freddy Stoks
+;;Erik Van Boven
+;;Marc Vereycken
+;;Ingrid Backeljau
+;;David De Weerdt
+;;François Van Eyck
+;;Ireneusz Furmanski
+;;Paul Cornelis
+;;Bram Coenen
+;;Dorota 
+;;
+BASISDATA;;
+;BONU nr ;
+;;(formaat 20201234 (jaarnr&5cijfers)
+;BOJV nr ;
+;GIPOD nr ;(formaat GW12345678 (GW&8 cijfers)  ((deze 8 cijfers opnemen in link Gipod ))
+;GW nr Signalisatievergunning;
+;Jaartoelating Signalisatie;
+plaatsbepaling_locatie (VERPLICHT);;
+;postcode;
+;;2000 Antwerpen
+;;2018 Antwerpen
+;;2020 Antwerpen Kiel
+;;2030 Antwerpen Luchtbal 
+;;2030 Antwerpen EIlandje
+;;2060 Antwerpen Noord
+;;2050 Antwerpen - LInkeroever
+;;2040 BZL
+;;2100 Deurne
+;;2140 Borgerhout
+;;2170 Merksem
+;;2180 Ekeren
+;;2600 Berchem
+;;2610 Wilrijk
+;;2660 Hoboken
+;;2150 Borsbeek
+;straatnaam en huisnummer (van-tot, bv 23-28);
+;GPS code;
+;Locatie check - GIPOD  - SIG Verg;
+;;NOK Grootte werf stemt niet overeen met aangegeven categorie
+;;NOK Locatie komt niet overeen met GIPOD
+Wie werkt er? ;;
+;Aannemer;
+;;"GS_SOLUTIONS
+"
+;;Cas-Vos
+;Signalisatiebedrijf;
+;;Zelfde als nutsmaatschappij
+;;FERO
+;;Verbruggen
+;Nutsbedrijf;
+Synergiewerken ;;
+;NUTSbedrijf (piloot);
+;;FLUVIUS
+;;waterlink ( water )
+;;Waterlink ( RIO)
+;;WYRE
+;;AQUAFIN
+;;PROXIMUS
+;meegaande partijen;
+;;Fluvius
+;;Wyre
+;;Waterlink (water)
+;;Waterlink (Rio)
+;;Proximus
+;;PIDPA
+;wijze van herstel;
+;;Definitief ( door nutsmaatschappij )
+;;Voorlopig ( herstelbon aan te leveren)
+opmeting;;
+;oppervlakte INBRAAK;
+;oppervlakte WERFINNAME;
+Veiligheid werf;;
+;identificatiebord nuts aanwezig;
+;;NOK, werfinformatiebord nuts ontbreekt
+;;"NOK, info op werfinformatiebord nuts onvolledig
+"
+;identificatiebord Signalisatie begin einde aanwezig? ;
+;;OK, bord verantwoordelijke signalisatie begin AANWEZIG ( rode driehoek )
+;;NOK, bord verantwoordelijke signalisatie einde werken NIET aanwezig ( blauwe rechthoek )
+;;NOK, bord verantwoordelijke signalisatie begin werken niet aanwezig ( Rode driehoek )
+;;OK, bord verantwoordelijke signalisatie einde werken AANWEZIG ( blauwe driehoek )
+;Werfafbakening;
+;;Harde afbakeningshekken aanwezig (verplicht vanaf  valhoogte >20cm)
+;;Afbakeningsborden aan elkaar gekoppeld
+;;"Harde afbakeningshekken niet aan elkaar gekoppeld. 
+ACTIE: afbakeningshekkens aan elkaar te bevestigen . "
+;;"Harde afbakeningshekken niet aanwezig (verplicht vanaf valhoogte > 0cm) 
+ACTIE: afbakening van de werfzone is niet veilig. Dringende aanpassing noodzakelijk ."
+;;"Afbakening met zachte netten aanwezig. Deze mogen niet gebruikt worden als afbakening van een werfzone. Deze mogen enkel binnen een grotere werfzone gebruikt worden.  
+ACTIE: Zachte hekken te vervangen door Harde afbakeningsborden"
+;brugjes over sleuf aanwezig;
+;;"NOK - Geen brugjes aanwezig - Onvoldoende toegang tot de woning gegarandeerd
+ACTIE: Toegang tot de woning te garanderen door het plaatsen van brugje. "
+;;"NOK, brugjes niet volledig, niet veilig
+"
+;Parkeerverbod (werf gestart);
+;;"NOK, datums niet conform signalisatievergunning
+"
+;;"NOK, werken niet (tijdig) gestart volgens vermelde data op bord
+"
+;Opmerkingen veiligheid;
+;start - einddatum werken vermeld op bord;
+;;"NOK, data niet correct
+"
+;;NOK Bord ontbreekt
+Veiligheid werfafbakening;;
+;Harde afbakeningshekken aanwezig (verplicht vanaf valhoogte >20cm);
+;;"NOK, Harde afbakeningshekken niet aanwezig (verplicht vanaf valhoogte > 0cm)
+ACTIE: afbakening van de werfzone is niet veilig. Dringende aanpassing noodzakelijk .""
+"
+;;"NOK Afbakening met zachte netten aanwezig. (Deze mogen niet gebruikt worden als afbakening van een werfzone. Deze mogen enkel binnen een grotere werfzone gebruikt worden.) Zachte hekken te vervangen door harde afbakeningsborden
+"
+;Afbakeningsborden aan elkaar gekoppeld;
+;;"NOK, Harde afbakeningshekken niet aan elkaar gekoppeld.
+ACTIE: afbakeningshekkens aan elkaar te bevestigen .
+"
+OPBRAAK MATERIAAL;;
+;Werd natuursteen ingeslepen;
+;Werd asfalt ingeslepen ;
+;Werden de materialen veilig gestockeerd?;
+;;"NOK, herbruikbare gronden en andere materialen buiten vergunde werfzone
+"
+;Werden niet herbruikbare materialen (ook gronden) verwijderd?;
+;;"NOK, niet herbruikbare gronden en materialen zijn niet afgevoerd
+"
+;werd er schade vastgesteld?;
+;;"NOK, aanpalende verhardingen beschadigd
+"
+;;"NOK, aanpalende fundering en/of wegelementen beschadigd
+"
+;;"NOK, schade aan ondergrondse constructie
+"
+;;"NOK, riolering beschadigd
+"
+;;"NOK, andere nutsleidingen beschadigd
+"
+;werd de invloedszone (30 cm) correct toegepast ;
+;;"NOK, geen 30 cm rondom opbraak voorzien voor herstelling bovenbouw
+"
+Sleufherstelling;;
+;sleufaanvulling;
+;;"NOK - niet conform verdicht, lagen van max. 30 cm tot onderkant fundering
+"
+;;"NOK, leidingzone niet verdicht om de 20 cm
+"
+;;"NOK - afbraakmateriaal in sleuf
+"
+;;"NOK - geen geschikt zand gebruikt
+"
+;wijze van herstel;
+;;"herbestratingsbon gevraagd
+"
+;;"omgezet naar voorlopig herstel
+"
+;;"omgezet naar definitief herstel
+"
+;;"ambtshalve herstelling opgelegd
+"
+fundering;;
+;funderingstype;
+;;schraal beton
+;;Waterdoorlatend
+;;Zand
+;;zandcement
+;;beton
+;Dikte;
+;draagvermogen;
+;;"NOK met plaatproef
+"
+legbed;;
+;werd zandbed goed uitgevoerd;
+;;"NOK, minder dan 3 cm
+"
+;;"NOK, geen zandbed
+"
+;;"NOK, meer dan 3 cm
+"
+;Split;
+;;"NOK, minder dan 3 cm
+"
+;;"NOK, geen zandbed
+"
+;;"NOK, meer dan 3 cm
+"
+BESTRATING (nieuw te gebruiken);;
+;Elementverharding BETON;
+;;Beton 30x30 (standaard)
+;;Beton 22x22 (standaard)
+;;Betonsteen (niet standaard formaat)
+;;andere
+;;Betonsteen 22X11
+;Elementverharding NATUURSTEEN ;
+;;Natuursteen 10x10
+;;Natuursteen Andere
+;Asfalt;
+;;Zwart
+;;Roodbruin
+;;fietssuggestie
+;;Geen standaard herstel toegestaan
+;Beton gegoten;
+;;Geborsteld Beton 
+;;Beton met gekleurde toplaag
+;;Geen eigen herstel mogelijk, enkel herstelling via herbestratingsbon. 
+;Schilderwerken;
+;;lijnmarkering
+;;Zebrapad
+;boordsteen beton ;
+;;"NOK  Boordsteen beschadigd 
+ACTIE boordsteen vernieuwen"
+;;NOK - Fundering geimpacteerd
+;;"NOK Kleiner dan 50 cm 
+ACTIE aan te passen"
+bestrating afwerking;;
+;aanwerking kast, put, deksel;
+;Werd correct materiaal gebruikt?;
+;;"NOK  Verkeerd materiaal gebruikt 
+ACTIE : Aan te passen met juiste materiaal "
+;voegbreedte;
+;;"NOK, voegbreedte betontegel meer dan 3 mm
+"
+;Vellingkant;
+;;"NOK, vellingskant meer dan 2/2 mm
+"
+;dikte materiaal;
+;;"NOK, betonstraatsteen is dunner dan 8 cm
+"
+;;"NOK, betontegel is dunner dan 6 cm
+"
+;vlakheid;
+;;"NOK, onderling verschil meer dan 2 mm
+"
+;beschadiging;
+;Afwatering;
+;type;
+;Legrichting;
+;;"NOK, Legrichting ligt niet in de juiste richting 
+ACTIE: Legrichting aan te passen "
+inzanding;;
+;werd voldoende ingezand?;
+;;"NOK, niet ingezand
+"
+;;"NOK, niet ingeveegd
+"
+;;"NOK, te veel
+"
+;;"NOK, te weinig
+"
+;;NOK, Verkeerd materiaal gebruikt 
+;Split ( ;
+;;"NOK, geen split gebruikt 
+"
+;;"NOK, niet ingeveegd
+"
+Bovengrondse nutskasten ;;
+;Juiste locatie nustkast? ;
+;stadsgrijs;
+;identificatielabel;
+;vergund beeldkwaliteit;
+ondergrondse kasten, putten, deksels;;
+;identificatielabel;
+;vlakheid;
+zuiverheid na werken ;Opmerkingen ;
+;;NOK, greppel vuil
+;;NOK, straat vuil
+;;NOK,kolken vuil
+;;NOK, signalisatie achtergelaten
+;;NOK, puin achtergelaten
+;;NOK, stockagemateriaal nog aanwezig
+;;NOK, beschadiging
+;;NOK, niet dagelijks gereinigd bij het beëindigen van de werken (desnoods door het afspuiten met krachtige waterstraal)
