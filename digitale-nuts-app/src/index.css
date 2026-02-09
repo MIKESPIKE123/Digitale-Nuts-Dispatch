@@ -774,9 +774,15 @@ textarea {
 }
 
 .dn-multi-select {
-  min-height: 90px;
+  min-height: 180px;
+  max-height: 280px;
+  overflow-y: auto;
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
+}
+
+.dn-multi-select option {
+  padding: 0.32rem 0.45rem;
 }
 
 .dn-inline-edit-row--compact {

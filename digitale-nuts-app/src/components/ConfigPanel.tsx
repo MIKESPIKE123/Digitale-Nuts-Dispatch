@@ -44,6 +44,8 @@ const isValidPhone = (value?: string) => {
   return PHONE_REGEX.test(value.trim())
 }
 
+const getMultiSelectSize = (optionCount: number) => Math.min(12, Math.max(6, optionCount || 0))
+
 const parseOptionArray = (raw: unknown): ConfigOption[] => {
   if (!Array.isArray(raw)) return []
 
@@ -682,6 +684,7 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({
                       <select
                         className="dn-input dn-multi-select"
                         multiple
+                        size={getMultiSelectSize(sortedPostcodes.length)}
                         value={inspector.assignedPostcodes || []}
                         onChange={(e) => {
                           const selectedValues = Array.from(e.currentTarget.selectedOptions).map((option) => option.value)
@@ -694,6 +697,9 @@ const ConfigPanel: React.FC<ConfigPanelProps> = ({
                           </option>
                         ))}
                       </select>
+                      <span className="dn-muted">
+                        Meerdere selecties: houd `Ctrl` (Windows) of `Cmd` (Mac) ingedrukt tijdens klikken.
+                      </span>
                     </label>
                   </div>
                 ))}
