@@ -23,6 +23,8 @@ Standaard start op `http://localhost:3001`.
 
 ## Belangrijke documentatie
 - `README_NEW.md` - operationele handleiding
+- `BACKLOG_ASIGN_TERRAINVERBETERING.md` - roadmap uit A-Sign analyse
+- `SPRINTPLANNING_ASIGN_2026_Q1.md` - concrete sprintplanning (Q1 2026)
 - `BUSINESS_RULES_DOCUMENTATION.md` - business rules en compliance
 - `TECHNICAL_IMPLEMENTATION_GUIDE.md` - technische architectuur en patronen
 - `VERSIE_BEHEER_INSTRUCTIES.md` - release- en versieproces

@@ -11,6 +11,8 @@
 |---|---|---|
 | `README.md` | iedereen | snel overzicht + start |
 | `README_NEW.md` | operatie | terreinworkflow en gebruik |
+| `BACKLOG_ASIGN_TERRAINVERBETERING.md` | product owner, functioneel beheer | prioriteiten + user stories uit A-Sign analyse |
+| `SPRINTPLANNING_ASIGN_2026_Q1.md` | product owner, projectleiding | sprintindeling + deliverables + acceptatie |
 | `BUSINESS_RULES_DOCUMENTATION.md` | functioneel beheer, trainers | business rules + compliance matrix |
 | `TECHNICAL_IMPLEMENTATION_GUIDE.md` | ontwikkelaars | architectuur, codepatronen, releaseflow |
 | `VERSIE_BEHEER_INSTRUCTIES.md` | releaseverantwoordelijken | stap-voor-stap versieproces |
