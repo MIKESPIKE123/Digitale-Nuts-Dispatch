@@ -71,11 +71,31 @@ const GPSMap: React.FC<GPSMapProps> = ({
   isDraggable = false
 }) => {
   const [currentPosition, setCurrentPosition] = useState<[number, number]>([latitude, longitude])
+  const [isFullscreenOpen, setIsFullscreenOpen] = useState(false)
   const mapHeight = isCompact ? '120px' : '200px'
 
   useEffect(() => {
     setCurrentPosition([latitude, longitude])
   }, [latitude, longitude])
+
+  useEffect(() => {
+    if (!isFullscreenOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsFullscreenOpen(false)
+      }
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isFullscreenOpen])
   
   const handleMarkerDragEnd = (lat: number, lng: number) => {
     setCurrentPosition([lat, lng])
@@ -83,74 +103,98 @@ const GPSMap: React.FC<GPSMapProps> = ({
       onLocationChange(lat, lng)
     }
   }
+
+  const renderMap = (height: string, compactMode: boolean) => (
+    <MapContainer
+      key={`${currentPosition[0]}-${currentPosition[1]}-${compactMode ? 'compact' : 'fullscreen'}`}
+      center={currentPosition}
+      zoom={compactMode ? zoom : Math.max(zoom, 18)}
+      style={{ height, width: '100%', borderRadius: compactMode ? '12px' : '0' }}
+      zoomControl={!compactMode}
+      scrollWheelZoom={!compactMode}
+      dragging={!compactMode}
+      touchZoom={true}
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | Stad Antwerpen'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <DraggableMarker
+        position={currentPosition}
+        onDragEnd={handleMarkerDragEnd}
+        isDraggable={isDraggable}
+      />
+      <Circle
+        center={currentPosition}
+        radius={3}
+        pathOptions={{
+          color: '#E10019',
+          fillColor: '#E10019',
+          fillOpacity: 0.2,
+          weight: 2
+        }}
+      />
+      {Math.abs(currentPosition[0] - 51.2194) > 0.01 && (
+        <Marker position={[51.2194, 4.4025]}>
+          <Popup>
+            <div className="map-popup">
+              <strong>🏛️ Antwerpen Centrum</strong><br />
+              <small>Stadhuis - Grote Markt</small>
+            </div>
+          </Popup>
+        </Marker>
+      )}
+    </MapContainer>
+  )
   
   return (
-    <div className={`gps-map ${isCompact ? 'compact' : ''}`}>
-      <MapContainer
-        key={`${currentPosition[0]}-${currentPosition[1]}`}
-        center={currentPosition}
-        zoom={zoom}
-        style={{ height: mapHeight, width: '100%', borderRadius: '12px' }}
-        zoomControl={!isCompact}
-        scrollWheelZoom={!isCompact}
-        dragging={!isCompact}
-        touchZoom={true}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | Stad Antwerpen'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        
-        {/* Huidige locatie marker */}
-        <DraggableMarker
-          position={currentPosition}
-          onDragEnd={handleMarkerDragEnd}
-          isDraggable={isDraggable}
-        />
-        
-        {/* Nauwkeurigheids cirkel */}
-        <Circle
-          center={currentPosition}
-          radius={3}
-          pathOptions={{
-            color: '#E10019',
-            fillColor: '#E10019',
-            fillOpacity: 0.2,
-            weight: 2
-          }}
-        />
-        
-        {/* Antwerpen centrum referentie (als ver weg) */}
-        {Math.abs(currentPosition[0] - 51.2194) > 0.01 && (
-          <Marker position={[51.2194, 4.4025]}>
-            <Popup>
-              <div className="map-popup">
-                <strong>🏛️ Antwerpen Centrum</strong><br />
-                <small>Stadhuis - Grote Markt</small>
-              </div>
-            </Popup>
-          </Marker>
-        )}
-      </MapContainer>
-      
-      {isCompact && (
-        <div className="map-overlay">
-          <div className="map-coords">
-            📍 {currentPosition[0].toFixed(4)}, {currentPosition[1].toFixed(4)}
-            {isDraggable && <span className="draggable-hint"> (versleepbaar)</span>}
+    <>
+      <div className={`gps-map ${isCompact ? 'compact' : ''}`}>
+        {renderMap(mapHeight, isCompact)}
+
+        {isCompact && (
+          <div className="map-overlay">
+            <div className="map-coords">
+              📍 {currentPosition[0].toFixed(4)}, {currentPosition[1].toFixed(4)}
+              {isDraggable && <span className="draggable-hint"> (versleepbaar)</span>}
+            </div>
+            <button
+              type="button"
+              className="map-fullscreen-btn"
+              title="Open fullscreen kaart"
+              aria-label="Open fullscreen kaart"
+              onClick={() => setIsFullscreenOpen(true)}
+            >
+              🔍
+            </button>
           </div>
-          <button 
-            className="map-fullscreen-btn"
-            onClick={() => {
-              // Hier zou een fullscreen kaart geopend kunnen worden
-              alert('🗺️ Fullscreen kaart\n\nZou hier een groot kaartscherm openen voor gedetailleerde navigatie en locatie selectie.')
-            }}
-          >
-            🔍
-          </button>
+        )}
+      </div>
+
+      {isFullscreenOpen && (
+        <div className="dn-map-fullscreen-backdrop" role="dialog" aria-modal="true" aria-label="Fullscreen kaart">
+          <div className="dn-map-fullscreen-panel">
+            <div className="dn-map-fullscreen-header">
+              <div className="dn-map-fullscreen-title">Fullscreen kaart</div>
+              <button
+                type="button"
+                className="dn-secondary-btn"
+                onClick={() => setIsFullscreenOpen(false)}
+              >
+                Sluiten
+              </button>
+            </div>
+            <div className="dn-map-fullscreen-coords">
+              📍 {currentPosition[0].toFixed(6)}, {currentPosition[1].toFixed(6)}
+              {isDraggable && <span className="draggable-hint"> (pin verslepen om locatie te corrigeren)</span>}
+            </div>
+            <div className="dn-map-fullscreen-body">
+              {renderMap('100%', false)}
+            </div>
+          </div>
         </div>
       )}
-    </div>
+    </>
   )
 }
 

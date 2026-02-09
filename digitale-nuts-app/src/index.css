@@ -205,6 +205,117 @@ textarea {
   margin-top: 0.8rem;
 }
 
+.gps-map {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--BORDER-COLOR-LIGHT);
+}
+
+.map-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.map-coords {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.42rem 0.66rem;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--TEXT-COLOR);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 87, 183, 0.24);
+}
+
+.draggable-hint {
+  color: var(--BRAND-2);
+  font-weight: 700;
+}
+
+.map-fullscreen-btn {
+  background: rgba(0, 87, 183, 0.92);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 56, 101, 0.34);
+}
+
+.map-fullscreen-btn:hover {
+  background: var(--BRAND-1-TINT);
+}
+
+.map-popup {
+  text-align: center;
+}
+
+.map-popup strong {
+  color: var(--BRAND-2);
+}
+
+.map-popup small {
+  color: var(--TEXT-COLOR-LIGHT);
+  line-height: 1.35;
+}
+
+.dn-map-fullscreen-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(4, 15, 33, 0.66);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.dn-map-fullscreen-panel {
+  width: min(1100px, 100vw);
+  height: 100vh;
+  background: var(--BG-COLOR-LIGHT);
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+}
+
+.dn-map-fullscreen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem 0.95rem;
+  border-bottom: 1px solid var(--BORDER-COLOR-LIGHT);
+  background: #fff;
+}
+
+.dn-map-fullscreen-title {
+  font-weight: 800;
+}
+
+.dn-map-fullscreen-coords {
+  padding: 0.5rem 0.95rem;
+  font-size: 0.86rem;
+  color: var(--TEXT-COLOR-LIGHT);
+  background: rgba(0, 87, 183, 0.08);
+  border-bottom: 1px solid var(--BORDER-COLOR-LIGHT);
+}
+
+.dn-map-fullscreen-body {
+  min-height: 0;
+}
+
 .dn-form-grid > label,
 .dn-field {
   display: grid;
