@@ -1,9 +1,19 @@
 # Changelog - Digitale Nuts App
 
 ## Versiebeheer
-- Actuele appversie: `v1.4`
+- Actuele appversie: `v1.4` (doelrelease planning: `v1.5`)
 - Bron van waarheid: `src/version.ts`
-- Laatste update document: 8 februari 2026
+- Laatste update document: 9 februari 2026
+
+## [1.5] - Planning update 2026-02-09
+### Gewijzigd
+- Sprintplanning verder uitgewerkt voor release `v1.5`:
+  - scope in/out;
+  - epics en stories per sprint;
+  - capaciteit en KPI-targets;
+  - risico-register en release-gates.
+- Nieuw plandocument:
+  - `SPRINTPLANNING_ASIGN_2026_Q1.md`
 
 ## [1.4] - 2026-02-08
 ### Toegevoegd

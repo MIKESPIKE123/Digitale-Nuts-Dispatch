@@ -3,7 +3,7 @@
 ## Versiebeheer
 - Appversie: `v1.4`
 - Bron van waarheid: `src/version.ts`
-- Laatste update document: 8 februari 2026
+- Laatste update document: 9 februari 2026
 
 ## Overzicht van alle projectdocumenten
 
