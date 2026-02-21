@@ -1,0 +1,1169 @@
+0001: DIGITALE NUTS - LONG VERSION
+0002: DEEL 1  VOORAanmelding shortlist projecten (DEF)
+0003: Oproep City of Things 2025
+0004: Implementatie van data-gebaseerde innovatieve oplossingen
+0005: voor gedeelde maatschappelijke uitdagingen
+0006: Contactgegevens:
+0007: Stad Antwerpen  Stadsontwikkeling/Publieke ruimte
+0008: Michel Gerits michel.gerits@antwerpen.be 0475 37 16 99
+0009: Grote Markt 1 – 2000 Antwerpen
+0010: Stad Antwerpen  CDO
+0011: Annik Schouteden annik.schouteden@antwerpen.be 0485 49 73 19
+0012: Grote Markt 1 – 2000 Antwerpen
+0013: Kruis aan op welke van volgende domeinen je projectidee inspeelt:
+0014: ​​☐​        Smart Economy (incl. smart ports)
+0015: ​​☒​Smart Government
+0016: ​​☐​Smart People
+0017: ​​☐​Smart Living
+0018: ​​☐​Smart Mobility
+0019: ​​☒​Smart Environment
+0020: Welke maatschappelijke uitdaging zou je willen aanpakken?
+0021: In heel Vlaanderen staan steden, gemeenten en nutsbedrijven voor dezelfde structurele uitdaging: het ontbreken van uniforme, actuele en controleerbare data over nutswerken in de publieke ruimte. Dat tekort aan betrouwbare informatie leidt tot:
+0022: kwaliteitsproblemen bij het herstel van straten;
+0023: langere hinderperiodes voor bewoners en ondernemers;
+0024: een inefficiënte inzet van toezichtcapaciteit;
+0025: slecht geïnformeerde beleidsmakers en stadsgebruikers;
+0026: …
+0027: Het uitgebreide aantal actoren, het gebrek aan overzicht en de onduidelijke communicatie onderling, liggen aan de basis van deze uitdaging. Jaarlijks vinden er bijvoorbeeld in Antwerpen alleen al meer dan 30.000 graafwerken plaats voor energie, telecom, water en andere nutsvoorzieningen. Deze werken veroorzaken niet alleen fysieke schade aan de infrastructuur, maar ook versnipperde communicatie, beperkte toezichtmogelijkheden en frustratie bij bewoners bezoekers en bedrijven.
+0028: De maatschappelijke uitdaging is niet alleen lokaal, maar Vlaams breed. Het Vlaams Regeerakkoord legt de nadruk op vereenvoudiging en digitalisering van graafwerken via GIPOD, zodat nutswerken efficiënter gecoördineerd en opgevolgd worden. Vandaag blijft die data echter vaak onvolledig en versnipperd, waardoor kwaliteitsproblemen en hinder langer aanslepen.
+0029: Het Vlaams Regeerakkoord1 erkent dit probleem en schuift daarom digitale transitie en artificiële intelligentie naar voren als speerpunten om productiviteit en maatschappelijke vooruitgang te versterken. Zonder een uniforme, digitale opvolging van nutswerken blijven die ambities echter dode letter.
+0030: Daarnaast benadrukt Vlaanderen dat oplossingen schaalbaar en samenwerkingsgericht moeten zijn, zodat niet elk bestuur apart digitale tools ontwikkelt. Ook de rol van Athumi als spil voor veilige en interoperabele datadeling toont aan dat er nood is aan een centrale partner om data-uitwisseling structureel en betrouwbaar te organiseren.
+0031: Kortom: er is een duidelijke beleidsmatige erkenning dat de huidige werking rond nutswerken tekortschiet. Het gebrek aan actuele, uniforme en gedeelde data maakt dat de kwaliteit van onze publieke ruimte, de efficiëntie van toezicht en het vertrouwen van burgers structureel onder druk staan.
+0032: Hoewel de principes van goed herstel juridisch zijn vastgelegd, blijft er in de praktijk een grote kloof bestaan tussen beleid en uitvoering. Onze toezichters merken ook op dat arbeiders op het terrein vaak niet vertrouwd zijn met de herstelrichtlijnen. Antwoorden als ‘een fundering in voetpaden, dat hoeft toch niet?’ of ‘zo doen wij dat nooit’ leiden tot verzakkingen, losliggende stenen en slordige legpatronen.
+0033: Een belangrijke oorzaak van deze kloof is dat de bestaande data-uitwisseling via GIPOD2 onvoldoende volledig en actueel is. Hierdoor wordt het moeilijk om proactieve, gerichte controles te plannen en afspraken met nutsmaatschappijen strikt op te volgen. Ook de nutsmaatschappijen staan voor dezelfde uitdaging in de opvolging van de werken en de aannemers.
+0034: De lokale overheden en nutsmaatschappijen delen heel wat van deze uitdagingen, ook de  communicatie naar bewoners en ondernemers.
+0035: Het gewenste antwoord op deze maatschappelijke uitdaging is helder voor het beleid en de betrokken actoren: het waarborgen van een kwalitatieve opvolging van nutswerken en hun impact op de publieke ruimte zodat hinder beperkt wordt en de leefbaarheid in de stad toeneemt. Denk aan het vermijden van dagenlang afgesloten voetpaden zonder voortgang, gebrekkige communicatie naar bewoners  en ondernemers of herstellingen die snel opnieuw verzakken. Dit vraagt om een combinatie van beter toezicht, efficiëntere communicatie naar stadsgebruikers en beleidsmakers, duidelijke werkafspraken en moderne digitale ondersteuning voor alle betrokken partijen. Wat betreft de ondersteuning voor de terreinmedewerkers moet er specifiek voldoende aandacht gaan naar gebruiksvriendelijkheid en digitaal inclusief ontwerp.
+0036: Stad Antwerpen en de partners willen inzetten op een schaalbare, slimme en gedragen aanpak die voor kwaliteitsvolle stuurcijfers zorgt, de administratieve druk verlaagt, de terreinwerking versterkt en de hinder voor burgers en bedrijven tot een minimum beperkt.
+0037: Breder bekeken is de uitdaging om met dit project een katalysator te vormen voor alle steden, gemeenten en nutsbedrijven om meer datagedreven en professioneel (samen) te werken.
+0038: De investering in dit project, zal een financieel terugverdieneffect hebben bij de steden en gemeenten én bij de nutsbedrijven en aannemers.  Het financieel terugverdieneffect schuilt in drie concrete domeinen: (1) lagere toezicht- en administratieve kosten doordat toezichters meer werken kunnen opvolgen binnen dezelfde capaciteit, (2) hogere en correctere inning van herstel- en retributiekosten door uniforme en gedocumenteerde vaststellingen, en (3) vermeden herstel- en hinderkosten bij nutsbedrijven en aannemers dankzij voorspelbare planning en kwaliteitsbenchmarking. De piloot in Antwerpen met 1.900 digitale vaststellingen toonde reeds aan dat foutieve herstellingen sneller konden worden gedetecteerd en verhaald. Jaarlijks gaat het in Vlaanderen om honderdduizenden nutswerken: zelfs een efficiëntiewinst van 10% levert een besparing van miljoenen euro’s per jaar op, gespreid over steden, nutsbedrijven en aannemers.
+0039: Ook voor VLAIO is er een financieel terugverdieneffect te verwachten. VLAIO voorziet immers middelen voor “de Hinderpremie en sluitingspremie bij hinder openbare werken”. We kunnen lagere premies verwachten omdat de hinder beperkter in de tijd zal zijn dankzij de goede opvolging van de werken.
+0040: Wat is er – voor zover je weet – al geprobeerd om een oplossing te vinden voor deze maatschappelijke uitdaging?
+0041: In Antwerpen zijn de afgelopen jaren verschillende initiatieven genomen om de kwaliteit van nutswerken en het toezicht erop te verbeteren. Enkele belangrijke stappen waren:
+0042: Regelgeving en basisregistratie: De invoering van de Code Nuts legde kwaliteitsnormen vast voor uitvoering en herstel, terwijl het gebruik van GIPOD de eerste stap zette naar een centrale registratie van werken.
+0043: Digitale opvolging en GIS-integratie: Diverse steden, waaronder Antwerpen, hebben GIS-viewers en interne opvolgingstools ontwikkeld. Deze tonen potentieel voor betere terreinopvolging, maar zijn vaak lokaal opgezet en niet schaalbaar. De koppeling met bestaande Vlaamse databronnen zoals GIPOD verloopt eerder traag.
+0044: Praktijktesten en proefprojecten: In 2024 voerde Stad Antwerpen een proefproject uit waarbij meer dan 1.900 vaststellingen van nutswerken digitaal werden geregistreerd, inclusief fotologs en rapportage naar nutsmaatschappijen. Dit verbeterde de kwaliteit van herstellingen aantoonbaar, maar integratie met GIPOD en uniforme data-ontsluiting bleef nog achterwege.
+0045: Eigen systemen bij nutsbedrijven: Nutsbedrijven en hun aannemers beschikken vaak over eigen portalen en fotoregistraties, maar deze zijn niet uniform ontsloten richting gemeenten, waardoor samenwerking gefragmenteerd blijft.
+0046: Mobiel Nuts (fase 1): ontwikkeling van een mobiele toezichtstoepassing, stopgezet wegens gebrek aan ontwikkelingscapaciteit.
+0047: Aanvraagportaal gekoppeld aan GIPOD: bedoeld om bijkomende gegevens op te vragen, maar stuitte op weerstand van nutsmaatschappijen omdat data manueel moest worden ingevoerd.
+0048: Procesanalyse intake–herstel–afrekening: volledig in kaart gebracht, maar nog niet digitaal opvolgbaar.
+0049: Retributiereglement inname en berekening: ingevoerd maar juridisch betwist en complex in  uitvoering.
+0050: QR-codes in communicatie aan de bewoners en bedrijven gekoppeld aan www.parkeerverbod.info: stopgezet om veiligheidsredenen.
+0051: Onderzoek en strategische aanbevelingen
+0052: Het KPMG-onderzoek naar de knelpunten in de huidige nutswerking bevestigde de vastgestelde problemen en formuleerde vijf grote actiepunten: het verbeteren van data-uitwisseling, het uniformeren van kwaliteitsnormen, het versterken van toezicht en handhaving, het vereenvoudigen van processen, en het stimuleren van samenwerking tussen gemeenten en nutsbedrijven.
+0053: Conclusie:
+0054: Hoewel er veelbelovende onderdelen bestaan – van regelgeving en GIS-tools tot proefprojecten en procesanalyses – blijven ze versnipperd, lokaal ontwikkeld en onvoldoende gekoppeld aan een uniforme Vlaamse standaard. Zonder integratie, schaalbaarheid en gedeelde data blijft de structurele verbetering van de nutswerking beperkt.
+0055: Waarop zijn deze initiatieven – voor zover je weet – vastgelopen? Waarom zijn die niet (op grote schaal) geïmplementeerd?
+0056: Hoewel afzonderlijke initiatieven veelbelovend waren, zijn ze tot nu toe niet op grote schaal geïmplementeerd door een combinatie van technologische, organisatorische en samenwerkingsproblemen.
+0057: Geen geïntegreerd technologisch landschap: De bestaande tools en platforms werken los van elkaar, sluiten onvoldoende aan op de werkprocessen op het terrein en vereisen veel manuele tussenstappen. Hierdoor gaat de efficiëntiewinst grotendeels verloren.
+0058: Versnipperde en onvolledige data-uitwisseling: De informatie-uitwisseling met nutsmaatschappijen is niet uniform, vaak onvolledig of verouderd. Elke nutsmaatschappij hanteert haar eigen registratiesysteem, zonder structurele koppeling aan GIPOD. Er bestaat geen breed gedragen uniforme datastandaard; het gebruik van OSLO blijft beperkt.
+0059: Lokale oplossingen zonder schaalbaarheid: Verschillende steden en gemeenten hebben eigen, vaak waardevolle oplossingen ontwikkeld, maar deze zijn niet herbruikbaar voor anderen door het ontbreken van standaardisatie en gedeelde architectuur.
+0060: Onvoldoende ontsluiting en real-time opvolging: Correcte data vanuit nutsbedrijven wordt onvoldoende ontsloten, waardoor real-time controle en gerichte terreinopvolging nauwelijks mogelijk zijn.
+0061: Capaciteitsdruk en ontbrekende samenwerkingsstructuren: Door capaciteitsbeperkingen bij Digipolis werd het Antwerpse programma begin 2025 tijdelijk ‘on hold’ gezet, ondanks een sterke business governance. Structurele samenwerking met strategische partners zoals Athumi of een nutsmaatschappij is nog niet opgestart.
+0062: Te brede scope zonder prioritering: Projecten zijn vaak te omvangrijk om in één keer te realiseren. Er ontbreekt een duidelijke fasering en prioriteitenstelling, waardoor onderdelen blijven steken in concept- of testfase.
+0063: Beschrijf het project. Wat denk je dat er nodig is om dit maatschappelijk probleem wel duurzaam en op basis van data aan te pakken? Geef een indicatie van de werkpakketten, deliverables, timing en budget die hiervoor nodig zouden zijn.
+0064: Projectbeschrijving
+0065: Het project Digitale Nuts ontwikkelt een geïntegreerd digitaal ecosysteem dat toezichters, administraties en nutsmaatschappijen verbindt via één gemeenschappelijke werkomgeving. De kern is een mobiele terreinapplicatie – een “digitaal zakmes” – waarmee toezichters in real time toegang hebben tot GIPOD-data, eigen vaststellingen, communicatiekanalen en automatische rapportering.
+0066: Het doel is om een sluitende digitale keten te creëren tussen nutsbedrijven, GIPOD en steden/gemeenten, zodat gestandaardiseerde, actuele en controleerbare data over nutswerken gedeeld en gebruikt kunnen worden voor kwaliteitsopvolging, procesverbetering en communicatie naar bewoners en bedrijven. Voor de communicatie onderzoekt het project een generiek, GDPR-conforme oplossing waarin burgers zich éénmalig registreren en toestemming geven om verwittigd te worden bij hinder in hun straat, ongeacht van welke nutsmaatschappij of gemeente zelf. Zo wordt de communicatie eenduidiger en betrouwbaarder, met respect voor de rechten van de burger.
+0067: Om de eerder geschetste impasse te doorbreken stellen we een gefaseerde, modulaire aanpak voor, gebaseerd op een schillenmodel. Daarbij starten we met een haalbare kernlaag (MVP1) en bouwen we stapsgewijs verder naar een volledig geïntegreerd, schaalbaar systeem dat werkt voor alle Vlaamse gemeenten. Deze aanpak neemt het risico van een te brede scope weg, verlaagt de instapdrempel voor nutsbedrijven en gemeenten en maakt een sneller leertraject mogelijk. Elk van de eerde opgesomde problemen – versnippering, verouderde data, juridische weerstand en capaciteitsdruk – wordt zo stapsgewijs aangepakt in behapbare bouwblokken. Dit maakt het project haalbaar binnen de City of Things-context en tegelijk schaalbaar naar Vlaanderen.
+0068: Schade aan de publieke ruimte zal altijd gemaakt worden, maar door uniforme afspraken en datastandaarden (via o.a. GIPOD) kan de afstemming tussen alle betrokkenen structureel verbeterd worden. Zo ontstaat er een win-win-win: nutsbedrijven kunnen hun beheer uitvoeren met minder foutgevoelige informatie-uitwisseling, steden kunnen de staat van de publieke ruimte beter monitoren en bijsturen en burgers en bedrijven ondervinden minder hinder en genieten van de voordelen van een goed onderhouden publieke ruimte.
+0069: Gefaseerde opbouw (schillenmodel)
+0070: De ontwikkeling verloopt modulair, zodat snelle eerste resultaten worden geboekt en tegelijk een schaalbare architectuur ontstaat die inzetbaar is in andere steden.
+0071: De voordelen van het schillenmodel zijn :
+0072: Geen alles-of-niets aanpak: als je alles tegelijk wil digitaliseren (vergunningen, herstelbonnen, bewonerscommunicatie, beeldherkenning, retributie), bots je op te veel afhankelijkheden en te hoge complexiteit. Door te starten met een kernlaag (vaststellingen-app + basis GIPOD-koppeling) lever je meteen tastbare waarde en bewijs je het nut van de tool.
+0073: Lagere drempel voor nutsbedrijven en steden: Nutsbedrijven hoeven niet vanaf dag één hun interne processen open te breken. Gemeenten kunnen instappen in het MVP zonder meteen alle modules te moeten implementeren. Dat verlaagt de weerstand en verhoogt de kans op engagement.
+0074: Beheersbaar juridisch en technisch traject: Elke laag heeft zijn eigen aanbesteding. Zo vermijd je vertraging door te brede aanbestedingspakketten. Technische koppelingen (bv. GIPOD, KLM3, WIS4) worden gefaseerd ingebouwd en getest, zodat bugs en juridische knelpunten sneller zichtbaar en oplosbaar zijn.
+0075: Versnelde leer- en verbetercyclus: Een MVP met beperkte scope laat toe om feedback van toezichters en nutsmaatschappijen in te bouwen voor de uitbreiding. Fouten of weerstand worden in een vroeg stadium opgespoord en bijgestuurd.
+0076: Schaalbaarheid en overdraagbaarheid: Het modulair ontwerp is makkelijker herbruikbaar in andere Vlaamse steden. Kleine besturen kunnen starten met de kernlaag en later opschalen. Grote steden kunnen sneller de geavanceerde lagen integreren waarbij de schaalkeuze telkens invloed heeft op de inspanningen, de noodzakelijke organisatorische en procesmatige aanpassingen én de kostprijs.
+0077: Duurzame verankering: Door de gelaagde aanpak sluit elke module apart aan bij bestaande Vlaamse standaarden (OSLO, GIPOD-API). Dat garandeert dat het systeem niet lokaal verankerd blijft maar generiek toepasbaar wordt.
+0078: Werkpakketten en deliverables
+0079: De gelaagde opbouw van het project resulteert in drie hoofdwerkpakketten (lagen). Onderstaande tabel koppelt de werkpakketten rechtstreeks aan hun activiteiten en deliverables.
+0080: Inzoomen op enkele deliverables
+0081: Objectieve KPI’s voor nutswerken: Het project maakt de kwaliteit, doorlooptijd en hinder van nutswerken voor het eerst objectief en automatisch meetbaar. Via de app worden foto’s, GPS-data, herstelbonnen, GIPOD-updates en klachtenregistraties samengebracht tot uniforme KPI’s. Zo volgen we o.a. het % correcte herstellingen, de mediane hersteltijd, het aantal klachten door bewoners en bedrijven, de OSLO-conformiteit van dossiers en de efficiëntie van nutsmaatschappijen. Alle indicatoren worden real-time gegenereerd, zonder manuele rapportage. Dit maakt het mogelijk om prestaties van nutsbedrijven en gemeenten transparant te vergelijken en vormt de basis voor een Vlaamse benchmark en meer datagedreven lokaal en Vlaams Beleid.
+0082: Samenwerkingsmodel om de oplossing overdraagbaar te maken naar andere steden en gemeenten en modaliteiten rond updates.
+0083: De kern van het project (laag 1)  focust op het realiseren van uniforme, actuele data-uitwisseling. Dit is noodzakelijk om de structurele samenwerking tussen lokale besturen en nutsbedrijven te verbeteren. Hierbij wordt bewust een evenwicht gezocht: enkel stabiele, procesrelevante data (zoals locatie, timing en status van werken) worden via GIPOD gestandaardiseerd. Dit vermijdt dat steden of nutsbedrijven onnodig complexe of concurrentiegevoelige data moeten vrijgeven, terwijl de essentiële informatie voor planning en opvolging wél gedeeld wordt.
+0084: Indicatieve timing (nog verder te verfijnen)
+0085: We benutten niet de volledige subsidieperiode van 3 jaar. Dit is een bewuste keuze: de urgentie op het terrein vraagt snelle implementatie en testresultaten, terwijl projecten van deze omvang vaak vertraging oplopen. Door een kortere kernplanning te hanteren, houden we ruimte vrij voor eventuele vertraging én voor bredere uitrol en verfijnde testing binnen de voorziene termijn.
+0086: 2026 Q2 – 2027 Q2: Ontwikkeling MVP (laag 1) en eerste veldtesten
+0087: 2027 Q2 – 2028 Q1: Uitbreiding naar laag 2-functionaliteiten
+0088: 2028 Q1 – 2028 Q3: Integratie laag 3 en ter beschikking stellen van de oplossing aan andere steden/gemeenten die geen deel uitmaken van dit project
+0089: Indicatief budget
+0090: Voor dit project voorzien we een indicatief totaalbudget van 2,4 miljoen euro, opgesplitst tussen programmacoördinatie en business-werk (1,0 miljoen euro) en de technische analyse en implementatie van de drie lagen (1,4 miljoen euro).
+0091: Programma coördinatie, stakeholder management, business werk – 1 mio euro
+0092: Wie? business partners (steden, nutsbedrijven, Athumi, …) en mogelijk externe projectleiding
+0093: Wat?
+0094: Personeelsinzet en consultancy (projectmanagement, business analyse, veldwerk)
+0095: Ontwikkelen van gebruikersreizen voor de verschillende betrokken spelers
+0096: Data-definiëring
+0097: Onderzoek naar efficiëntiewinsten dankzij inzet van beeldmateriaal en AI.
+0098: Communicatie & opleiding
+0099: Coördinatie van de test- en evaluatiefases in meerdere steden
+0100: Juridisch kader
+0101: Samenwerkingsmodel en – modaliteiten vastleggen rond hergebruik van de oplossing en toekomstige aanpassingen
+0102: Technische analyse en implementatie van de respectievelijk lagen
+0103: Laag 1: 750k euro  - Laag 2: 400k euro - Laag 3: 250k euro – totaal: 1,4 mio euro
+0104: Wie? Digipolis Antwerpen, Athumi en externe ontwikkelaar/leverancier
+0105: Wat?
+0106: Personeelsinzet en consultancy (projectmanagement, technische analyse)
+0107: Technische data-definiëring, - opzet en integraties
+0108: Onderzoek naar efficiëntiewinsten dankzij inzet van beeldmateriaal en AI.
+0109: Ontwikkeling van standaarden en oplossingen, inclusief test- en evaluatiesessies
+0110: Aandachtspunten:
+0111: Athumi zal maximaal 15% van het totale budget toegekend krijgen.
+0112: Budgetverdeling over stad Antwerpen, andere steden en partners wordt uitgewerkt in de volgende fase.
+0113: Welke partners heb je al gesproken en is er engagement om betrokken te worden bij het project? Dit kunnen andere lokale besturen zijn, intercommunales, provincies, entiteiten van de Vlaamse overheid, enzovoort.
+0114: Stad Antwerpen stelt in haar bestuursakkoord de kwaliteit en leefbaarheid van de publieke ruimte centraal:
+0115: “De publieke ruimte is de plek die we met zijn allen delen. De kwaliteit van ons openbaar domein is van uitzonderlijk groot belang”
+0116: “Aannemers van nutswerken worden verplicht om inbreuken meteen definitief te herstellen om de straat ook tijdens de werken proper en veilig te houden. We zetten verder in op de verbetering van de coördinatie en communicatie van nutswerken op het grondgebied van de stad …”
+0117: Dit project beantwoordt aan deze doelstellingen door nutswerken systematisch digitaal op te volgen, de hinder voor bewoners, bezoekers en handelaars te beperken en de samenwerking met nutsbedrijven en districten te structureren.
+0118: Digipolis Antwerpen is de partner voor de digitale ontwikkeling.
+0119: Stad Vilvoorde stapt mee in het verhaal vanuit hun eigen zoektocht naar een gedragen terreinoplossing en vernieuwde nutswerking.  Het bestuursakkoord van de stad geeft aan dat werken door aannemers van nutsbedrijven beter moeten worden opgevolgd en dat boetes worden gebruikt als stok achter de deur. Ook stelt de stad dat een werfopvolger aangesteld moet worden die actief moet optreden indien het openbaar domein niet in de oorspronkelijke staat wordt achtergelaten door aannemers en nutsmaatschappijen.
+0120: Nutsmaatschappij of intercommunale5: praktijkpartner voor datakoppeling en testopvolging op terrein. In een overleg met verantwoordelijken uit de hoofdzetel en uit het regiokantoor Antwerpen, geeft Fluvius aan de problematiek te herkennen en achter de voorgestelde oplossing te staan. In verdere gesprekken verfijnen we de samenwerking met hen in dit dossier.
+0121: Er is ook een gesprek met Wyre opgestart.
+0122: Athumi (Vlaamse Datadelingsautoriteit): bevestigde haar rol als partner vanuit hun rol in het bestaande ecosysteem met de nutssector. Hun inbreng verzekert de schaalbaarheid naar andere steden en gemeenten, de standaarden en API’s en eventuele decretale verankering voor ontsluiting van GIPOD-gegevens.
+0123: De Vlaamse Regering ziet digitalisering en innovatie als een van de vier strategische speerpunten van haar economisch beleid. Binnen dit kader wordt Athumi expliciet aangeduid als spilorganisatie voor de ontwikkeling van datakluizen, digitale identiteit en veilige datadeling. Athumi garandeert dat nieuwe toepassingen niet lokaal verankerd blijven, maar aansluiten bij Vlaamse en Europese standaarden voor openheid en interoperabiliteit.
+0124: Voor het project digitale nuts is de rol van Athumi cruciaal:
+0125: Verzekeren dat de data-uitwisseling tussen steden, nutsmaatschappijen en Vlaamse platformen (zoals GIPOD) gebeurt volgens OSLO-standaarden en met respect voor GDPR en data-soevereiniteit.
+0126: Zorgen voor een repliceerbare en schaalbare oplossing naar andere Vlaamse steden en gemeenten.
+0127: Voldoen aan de Vlaamse beleidslijn dat innovatieprojecten structureel bijdragen tot interoperabiliteit en gedeelde digitale infrastructuur.
+0128: De inzet op digitalisering en innovatie is niet alleen een technologische meerwaarde, maar ook een structureel beleidsantwoord dat steden en nutsmaatschappijen helpt om de kloof tussen beleid en uitvoering duurzaam te dichten.
+0129: Agentschap Wegen & Verkeer (AVW): potentieel partner i.v.m. gewestwegen (GIS-koppeling en uitzonderingen);
+0130: Vlaamse stedennetwerken (kennisnetwerk, VVSG, VVSG Smart Region Hub): voor kennisdeling en schaalvergroting. Gesprekken over hun mogelijke rol worden gevoerd.
+0131: Welke eindresultaten heeft het project voor ogen? Wat is de beoogde meerwaarde voor de partners binnen én buiten het project? Hoe kunnen de resultaten verduurzaamd worden na afloop van het project?
+0132: Meerwaarde in termen van deliverables: zie boven
+0133: Meerwaarde op het vlak van impact
+0134: Betere communicatie
+0135: Duidelijke communicatie naar bewoners en handelaars via digitale kanalen;
+0136: Vermindering van hinder voor bewoners en ondernemers;
+0137: Betere inzet van toezicht en handhaving.
+0138: Betere data
+0139: Alle werken lopen via één efficiënte, digitale workflow van intake tot nazorg van nutswerken;
+0140: OSLO-conform datamodel als Vlaamse standaard;
+0141: Uniforme en actuele data-uitwisseling in Vlaanderen;
+0142: Een werkbare, schaalbare terreinapplicatie voor toezichters met realtime GIPOD-data;
+0143: Een gedeeld dataplatform met slimme filters voor herstel, toezicht en retributie.
+0144: Beter herstel
+0145: Hogere kwaliteit en kortere doorlooptijd van herstellingen;
+0146: Bewezen daling van hersteltermijnen, klachten en foutieve innames.
+0147: Betere afspraken
+0148: Afsprakenkaders en datastandaarden met nutsmaatschappijen;
+0149: Brede herbruikbaarheid van de oplossing voor andere steden en voor andere domeinen in de publieke ruimte.
+0150: Innovatief karakter
+0151: Digitale keten in één systeem: Voor het eerst worden vergunning, uitvoering, toezicht en herstel digitaal aan elkaar geknoopt.
+0152: Automatische KPI’s: Geen manuele rapportering, maar real-time monitoring via foto’s, GPS, GIPOD-data en AI-beeldanalyse.
+0153: Modulaire schillenaanpak: Innovatief organisatiemodel dat het mogelijk maakt om stapsgewijs in te stappen, risico’s te spreiden en tegelijk schaalbaarheid te garanderen.
+0154: Privacy by design: Integratie van DPIA, automatische blur en Athumi-datadiensten als neutrale toegangspoort – ongezien in Vlaamse toezichttoepassingen.
+0155: Open standaarden als hefboom: Gebruik van OSLO-profielen en open API’s, waardoor het systeem herbruikbaar is voor alle Vlaamse steden en niet gebonden blijft aan één leverancier of stad.
+0156: Verduurzaming na afloop van het project
+0157: Het project Digitale Nuts overstijgt de context van de deelnemende steden en nutsbedrijven. De uitdagingen die wij signaleren – hinder door nutswerken, gebrek aan afstemming, en de kloof tussen beleid en uitvoering – komen in alle Vlaamse steden en gemeenten voor. De aanpak die we ontwikkelen is daarom expliciet ontworpen om transfereerbaar te zijn binnen Vlaanderen. We onderzoeken met Athumi en eventueel andere Vlaamse partners naar een model om het eindresultaat van dit project duurzaam te verankeren zodat ook andere Vlaamse steden en gemeenten en nutsbedrijven de ontwikkelde oplossing kunnen gebruiken.
+0158: Vlaamse partners als hefboom
+0159: Athumi (Vlaamse datadelingsautoriteit): garandeert dat de datadeling niet lokaal verankerd blijft, maar aansluit bij Vlaamse standaarden voor interoperabiliteit, API’s en datakluizen. Hun betrokkenheid verzekert dat de oplossing ook voor andere lokale besturen toepasbaar wordt.
+0160: GIPOD: vormt de centrale motor voor de planning van grondwerken en is al een Vlaamse standaard. Door onze oplossing rechtstreeks hierop te enten, creëren we een generiek platform dat inzetbaar is voor álle steden en gemeenten.
+0161: VVSG en Kenniscentrum Vlaamse Steden: krijgen een rol in kennisdeling, afstemming en verspreiding van de resultaten naar andere lokale besturen. Zij fungeren als multiplicator om de methodiek breed ingang te doen vinden.
+0162: Digitaal Vlaanderen als sparring partner om tot een oplossing te komen voor de duurzame verankering.
+0163: Brede maatschappelijke relevantie
+0164: De maatschappelijke uitdaging (jaarlijks honderdduizenden nutswerken in Vlaanderen) is Vlaams breed erkend en wordt bevestigd in recente audits, persartikels en klachtenstromen bij andere steden.
+0165: Door de koppeling met Vlaamse beleidsdoelen zoals Minder Hinder, energietransitie en OSLO-standaarden wordt het project ingebed in de Vlaamse beleidskaders en krijgt het vanzelf een bovenlokale reikwijdte.
+0166: Mechanismen voor opschaling en transfereerbaarheid
+0167: Technische schaalbaarheid: de architectuur bouwt op GIPOD als backbone, waardoor elk lokaal bestuur dat vandaag al GIPOD gebruikt, kan aansluiten.
+0168: Governance schaalbaarheid: de opzet met steden, nutsbedrijven en Vlaamse actoren maakt dat dit project niet enkel een stedelijke toepassing is, maar een testbed voor een Vlaams model.
+0169: Disseminatie en implementatie: de resultaten (digitale tool, modelbestek, draaiboek en businessmodel) worden gedeeld via VVSG en raamcontracten, zodat andere steden en gemeenten zonder zware instapkosten kunnen intekenen.
+0170: Antwerpen fungeert als living lab waar de werking getest wordt.
+0171: De verdere uitrol is voorzien via samenwerking met Vilvoorde die reeds hun interesse hebben bevestigd en mogelijk andere steden die nog aansluiten.
+0172: De verankering gebeurt door de koppeling met Vlaamse standaarden en door het voorzien van instrumenten (bv. via raamcontracten) zodat niet-partners eenvoudig kunnen instappen. De concretisering hiervan moet nog uitgewerkt worden.
+0173: BIJLAGE Feedback Digitale Nuts  uit juryverslag
+0174: “Het project vertrekt vanuit een duidelijke maatschappelijke nood en bouwt voort op eerdere ervaringen. Hoewel het niet uitzonderlijk innovatief is, wordt er sterk ingezet op datagedreven werken, wat positief is. De impact werd al deels gekwantificeerd, wat de maturiteit van het voorstel onderstreept. De koppeling van data en het vergemakkelijken van de lokale opvolging van werken via een applicatie zijn relevante ambities binnen de scope van de oproep. De betrokkenheid van burgers en ondernemingen versterkt de maatschappelijke relevantie.
+0175: Wat betreft de rol van lokale besturen is het beeld gemengd. Enerzijds nemen Antwerpen en Vilvoorde een actieve rol op, anderzijds lijkt de capaciteitsopbouw bij andere besturen mogelijk beperkt. Het project lijkt eerder een initiatief vóór dan dóór lokale besturen. Verdere verduidelijking over de rol van andere besturen en hoe kennisdeling zal plaatsvinden is wenselijk. Een expliciete verwijzing naar de beleidscontext van alle betrokken besturen ontbreekt nog. Er zijn wel linken met Binnenlands Bestuur en Omgeving, maar bijkomende koppelingen met Vlaamse beleidsniveaus, zoals mobiliteit, kunnen het dossier versterken.
+0176: De gelaagde opbouw van het project biedt potentieel voor opschaling, wat een sterke troef is. De rol van Athumi in dit kader is positief. Toch blijft het onduidelijk hoe het businessmodel en de technische koppeling van de mobiele app eruit zullen zien, en hoe laagdrempelig deze zal zijn voor andere besturen. Een formele betrokkenheid van bijkomende besturen – al is het als volger – zou het draagvlak versterken.
+0177: Het project wil duidelijk komen tot een interoperabele oplossing, maar een aantal vragen blijven zoals hoe de app in andere besturen gekoppeld zal kunnen worden, eventueel aan verschillende legacy back-ends? Zal de datadoorstroming overal op dezelfde manier gaan en hoe wordt hiermee omgegaan? Dit kan meer gedetailleerd worden.
+0178: Tot slot is het positief dat er al acties en deliverables zijn uitgewerkt binnen de verschillende lagen. De keuze om niet met werkpakketten maar met lagen te werken sluit aan bij de eigenheid van het project. De timing is voorlopig nog high-level, maar realistisch dankzij een ingebouwde buffer. Gezien de omvang van het budget is meer detail nodig om een goed oordeel te kunnen vellen. De rolverdeling tussen de partners, en in het bijzonder het aandeel van Athumi (15%), ligt in lijn met de verwachtingen binnen deze oproep. “
+0179: ANALYSE VAN HET JURYVERSLAG
+0180: Elementen die zeker aangevuld moeten worden in de definitieve aanvraag
+0181: Rol van lokale besturen
+0182: Hoe worden andere lokale besturen (naast Antwerpen en Vilvoorde) actief betrokken?
+0183: Op welke manier wordt capaciteitsopbouw bij andere besturen gestimuleerd?
+0184: Op welke manier wordt capaciteitsopbouw bij andere besturen gestimuleerd?"
+0185: Hiermee wordt bedoeld:Hoe zorgt het project ervoor dat andere steden en gemeenten (dus niet alleen Antwerpen en Vilvoorde) sterker worden in het opvolgen, beheren en digitaliseren van nutswerken?Het gaat dus om het vergroten van de kennis, vaardigheden, middelen en digitale infrastructuur bij andere lokale besturen, zodat zij zelfstandig en duurzaam met het systeem kunnen werken.
+0186: Voorbeelden van capaciteitsopbouw:
+0187: Opleidingen en workshops voor medewerkers van andere besturen.
+0188: Handleidingen, draaiboeken en best practices delen.
+0189: Pilootprojecten waarbij andere besturen actief kunnen testen en leren.
+0190: Netwerkvorming via VVSG of kenniscentra, zodat besturen ervaringen kunnen uitwisselen.
+0191: Technische ondersteuning bij de implementatie van de digitale tool.
+0192: Budget voorzien voor actieve en volgende besturen om deel te nemen aan het project.
+0193: Waarom is dit belangrijk?
+0194: Zonder capaciteitsopbouw blijft de oplossing beperkt tot de trekkende steden. Door andere besturen te ondersteunen, wordt het project schaalbaar en duurzaam voor heel Vlaanderen.
+0195: Is het project een initiatief vóór of dóór lokale besturen? Maak dit expliciet.
+0196: Geef aan hoe kennisdeling en samenwerking met andere besturen concreet zal plaatsvinden.
+0197: Beleidscontext
+0198: Voeg een expliciete verwijzing toe naar de beleidscontext van alle betrokken besturen.
+0199: Werk bijkomende koppelingen uit met relevante Vlaamse beleidsniveaus, zoals mobiliteit, om het dossier te versterken. [city_of_th...challenges]
+0200: Businessmodel en technische koppeling
+0201: Geef meer detail over het businessmodel van de mobiele app.
+0202: Licht toe hoe de technische koppeling van de app met verschillende (legacy) back-ends bij andere besturen zal verlopen.
+0203: Beschrijf hoe de datadoorstroming overal op dezelfde manier gegarandeerd wordt en hoe eventuele verschillen worden aangepakt. [city_of_th...challenges]
+0204: Formele betrokkenheid van bijkomende besturen
+0205: Werk uit hoe bijkomende besturen formeel kunnen aansluiten, bijvoorbeeld als volger.
+0206: Geef aan hoe dit het draagvlak van het project versterkt. [city_of_th...challenges]
+0207: Acties en deliverables per laag
+0208: Geef meer detail over de acties en deliverables binnen de verschillende lagen van het project.
+0209: Zorg voor een duidelijke koppeling tussen werkpakketten, timing en resultaten. [city_of_th...challenges]
+0210: Timing en budget
+0211: Werk de timing verder uit, zodat deze minder high-level en meer concreet is.
+0212: Geef meer detail over de budgetverdeling en de rolverdeling tussen partners, met bijzondere aandacht voor het aandeel van Athumi (15%).
+0213: BIJLAGE Oproep Partners en volgers.
+0214: Beste collega
+0215: Steden, gemeenten en nutsbedrijven in heel Vlaanderen staan voor dezelfde uitdaging: het gebrek aan uniforme, actuele en controleerbare data over nutswerken in de publieke ruimte. Dit leidt tot inefficiënties, kwaliteitsproblemen en onnodige hinder voor burgers en bedrijven.
+0216: Daarom slaan stad Antwerpen, stad Vilvoorde, Athumi en de nutsmaatschappijen de handen in elkaar voor het project Digitale Nuts, dat ingediend zal worden bij de oproep City of Things 2025.
+0217: Wat is Digitale Nuts?
+0218: Digitale Nuts ontwikkelt een geïntegreerd digitaal ecosysteem dat toezichters, administraties en nutsmaatschappijen verbindt via één mobiele werkomgeving – een “digitaal zakmes” voor de publieke ruimte. Via een terreinapplicatie krijgen toezichters real-time toegang tot uitgebreide GIPOD-data, eigen vaststellingen, communicatiekanalen en automatische rapportering. Het doel is een sluitende digitale keten tussen nutsbedrijven, GIPOD en lokale besturen, met als resultaat betere kwaliteitsopvolging, efficiëntere processen en duidelijke communicatie naar bewoners.
+0219: We zoeken steden en gemeenten die willen aansluiten:
+0220: Als actieve partner: je denkt mee vanuit je lokale context, test mee in je stad/gemeente.
+0221: Als volger: je blijft op de hoogte via halfjaarlijkse updates en krijgt toegang tot de resultaten en inzichten.
+0222: Waarom meedoen?
+0223: Een gedeeld Vlaams probleem vraagt om een gedeelde oplossing
+0224: Elke Vlaamse stad of gemeente heeft te maken met nutswerken, hinder, slechte afwerking, versnipperde data en gebrekkige afstemming. Digitale Nuts pakt deze structurele problemen aan met een oplossing die specifiek ontworpen is om breed inzetbaar te zijn. Je hoeft dus niet zelf het wiel opnieuw uit te vinden.
+0225: Lage instapdrempel, hoge impact
+0226: Dankzij de modulaire aanpak (startend met een MVP) kunnen steden en gemeenten stapsgewijs instappen, zonder grote investeringen of complexe implementaties. De koppeling met bestaande systemen zoals GIPOD maakt het technisch haalbaar en juridisch verdedigbaar.
+0227: Directe meerwaarde voor je werking
+0228: Met de mobiele applicatie krijgen toezichters en administraties real-time toegang tot relevante data, automatische rapportering en gestroomlijnde communicatie. Dit verhoogt de efficiëntie, verbetert de kwaliteit van de opvolging en verkleint de kans op fouten.
+0229: Betere communicatie naar burgers
+0230: Het project onderzoekt een generiek, GDPR-conform model waarbij burgers zich éénmalig registreren om hinderinfo te ontvangen, ongeacht de nutsmaatschappij of gemeente. Dit maakt communicatie duidelijker, betrouwbaarder en burgergericht.
+0231: Je bouwt mee aan een Vlaams model
+0232: Door nu aan te sluiten, werk je mee aan een Vlaamse standaard. Je test mee in je eigen context en helpt mee richting geven aan een oplossing die later via VVSG en raamcontracten breed uitgerold kan worden en inzet op de effectieve verbetering van de manier waarop werken worden uitgevoerd op het terrein.
+0233: Interesse om aan te sluiten?Laat het ons weten vóór 20 oktober 2025. Je geeft dan aan geïnteresseerd te zijn in het project (als partner of volger), maar we vragen op dit moment nog geen definitief engagement.
+0234: Neem gerust contact op voor meer informatie over het project. Je kan hiervoor terecht bij:
+0235: Michel Gerits (afdeling publiek ruimte, stad Antwerpen)
+0236: Michel.gerits@antwerpen.be
+0237: 0475/371699
+0238: Op aanvraag bezorgen we je onze vooraanmelding bij City of Things, op basis waarvan we werden geselecteerd voor de tweede ronde.
+0239: BIJLAGE Verwachtingen Partners en Volgers
+0240: Alvast bedankt voor de interesse en je gerichte vraag.
+0241: We beschreven de taakverdeling van een deelnemende en volgende partij als volgt.  Let wel dat dit een draft is die nog kan wijzigen. Geef gerust aan waar dat niet zou passen, enig maatwerk blijft mogelijk.
+0242: 1. Actieve Deelnemer (…) – Intentieverklaring
+0243: DoelStad [_X_] treedt toe als actieve deelnemer in het project “Digitale Nuts” met het oog op het werken aan minder hinder en sneller en beter herstel van nutswerken door één OSLO-conforme dataketen tussen stad, nutsbedrijven en GIPOD.
+0244: Engagementen van Stad [ _X_]
+0245: Governance: we duiden een project-sponsor, product-owner lokaal, pilootleider toezicht en architectuurcontact aan; we nemen deel aan stuurgroep (maandelijks) en productboard (tweewekelijks).
+0246: Piloot: we stellen een pilotgebied en 2–4 toezichters ter beschikking en voeren minimaal 12 weken veldproeven uit met de toezichtersapp, GIPOD-koppeling en KPI-registratie.
+0247: Data & privacy: we ondertekenen het dataconvenant, voeren een DPIA uit en respecteren IAM- en security-afspraken.
+0248: Koppelingen: we leveren toegang tot relevante bronsystemen (klachten/signalisatie/vergunningen) en GIS-lagen voor de pilot.
+0249: KPI-sturing: we werken mee aan nulmeting en evaluatie, met focus op doorlooptijd (mediaan/P90), first-time-right en volledigheid van vaststellingen.
+0250: Opschaling: bij positieve evaluatie onderzoeken we aanbesteding via raamcontract/groepsaankoop, met lokale addenda waar nodig.
+0251: Engagementen van de Aanvrager (Stad Antwerpen)
+0252: Productie van artefacts: OSLO-profiel, OpenAPI-specificaties, dataconvenant, modelbestek(ken), SLA-sjablonen en implementatiedraaiboek.
+0253: Ontwikkeling & support: beschikbaar stellen van toezichtersapp (pilot), portaaltoegang en dashboards, incl. onboarding en training.
+0254: Begeleiding: coördinatie van governance, productboard, architectuurboard en klankbordgroep; ondersteuning bij DPIA en security.
+0255: Evaluatie: maandelijkse rapportage, pilotrapport met KPI-analyse en verbeterplan.
+0256: TermijnDeze intentieverklaring geldt vanaf ondertekening tot de beslissingsmijlpaal “opschaling/aanbesteding” (verwacht binnen 12–18 maanden na projectstart).
+0257: Niet-bindend karakter voor eindafnameDe intentie tot instap via raamcontract is geen afnameverplichting; de definitieve beslissing volgt na de pilot-evaluatie en interne procedures van Stad [___].
+0258: Financiele afspraken volgens handleiding Vlaio:
+0259: Deelnemer: in deze rol wordt budget voorzien voor een actieve bijdrage aan het project, zoals deskresearch, werkpakketten trekken en uitvoeren, implementatie en opschaling voorbereiden, onderaannemers aanstellen en aansturen, kerngroepen/stuurgroepen/klankbordgroepen mee organiseren en actieve deelname, interne kennisopbouw en -borging, ..., een living lab-omgeving voorzien enzovoort. Het beschikbaar budget is kleiner dan dat van de coördinator maar voldoende om dit soort taken te dekken.
+0260: 2. Volger – Taakafspraak
+0261: Doel[Gemeente/Stad X] sluit aan als volger bij “Digitale Nuts” om te leren, te toetsen en opschaling voor te bereiden.
+0262: Engagement van [Gemeente/Stad X]
+0263: Deelname aan klankbordgroep en demo-dagen (≥ 80%).
+0264: Review van hoofd-deliverables (OSLO-profiel, OpenAPI, modelbestek, dataconvenant) met schriftelijke feedback.
+0265: Optioneel: aanleveren geanonimiseerde KPI-basis voor benchmark.
+0266: Engagement van de Aanvrager ( Stad Antwerpen)
+0267: Tijdige beschikbaarstelling van concept-deliverables.
+0268: Toegang verlenen tot documentatieportaal, demo-omgevingen en infosessies.
+0269: Opname van feedback in product- en architectuurboard (transparant).
+0270: TermijnGeldig tot einde project + 3 maanden ifv verspreiding en eventuele instap via raamcontract.
+0271: Financiële afspraken volgens handleiding Vlaio:
+0272: Volger: lokale besturen in deze rol kunnen aanspraak maken op een beperkt budget om het project van nabij te volgen en bijvoorbeeld mee lokale werksessies te organiseren, input en feedback te leveren, terugkoppeling naar lokaal beleid en belanghebbenden te doen,… Deze besturen kunnen ook bijdragen door mee te communiceren over het project en bijvoorbeeld oproepen of leerlessen (lokaal) te verspreiden.
+0273: Bevestig je gerust de aard van je engagement. 😊
+0274: Uiteraard zijn we steeds bereid meer info te verschaffen.
+0275: ONDERSTAANDE UITDAGINGEN NIET OPNEMEN IN DE VOORAANMELDING.  Wel relevant voor verdere uitwerking.
+0276: Onderzochte uitdagingen:
+0277: In het voortraject van dit project werden reeds verschillende challenges vastgesteld. De volgende uitdagingen bij de aanmelding van het project geven een overzicht van de onderzochte en gedefinieerde deelonderzoeken. Ze verduidelijken de uitdaging waarvoor een oplossing wordt gezochte en geven een antwoord op de voorgestelde oplossing. Ze dienen als voorbereiding voor de opmaak van het volledig aanvraagdossier.
+0278: Uitdaging: Nutswerken zijn een Vlaams breed probleem
+0279: Uitdaging
+0280: De problematiek van gebrekkige herstellingen, slechte signalisatie, onvoldoende communicatie en onvoldoende digitale opvolging door nutswerken speelt niet alleen in Antwerpen, maar is een breder Vlaams probleem.Recente signalen uit de pers:- Vlaams parlementslid pleit voor afdwingbaar systeem bij slordige nutswerken, met nadruk op gevolgen voor uitvoerders - 748 inbreuken op nutswerken in Antwerpen in drie weken – slordige bestrating en signalisatie - Klachten over slechte communicatie en signalisatie bij werken in Vlaamse gemeenten
+0281: stad-keurt-plan-goed-om-hinder-door-nutswerken-aan-te-pakken
+0282: Oplossing
+0283: Met het project “Digitale Nuts” ontwikkelen we een gestandaardiseerde, Vlaamse aanpak die:1. Centrale datastroom creëert tussen nutsmaatschappijen, GIPOD en gemeenten.2. Uniforme toezichtmethodiek oplevert, zodat inspecties en rapportering overal op dezelfde manier gebeuren.3. Bewonerscommunicatie verbetert door automatische koppeling van actuele werkinfo aan GIS-viewers, werfborden en digitale meldingskanalen.4. Kwaliteits- en herstelvoorschriften digitaal ontsluit voor aannemers en toezichters.5. Meetpunten en KPI’s gebruikt die bovenlokaal vergelijkbaar zijn, waardoor prestaties van nutsmaatschappijen transparant worden.
+0284: Innovatief karakter
+0285: - Vlaams breed schaalbaar: één oplossing, meerdere lokale implementaties.- Datagedreven toezicht: realtime koppeling van GIPOD met vaststellingen en fotodocumentatie.- Uniforme normering: zelfde meetpunten, zelfde interpretatie, overal in Vlaanderen.- AI-ondersteunde kwaliteitscontrole: automatische detectie van fouten of afwijkingen in herstelkwaliteit.- Samenwerking boven concurrentie: steden en gemeenten delen kennis en data via hetzelfde platform.
+0286: Impact
+0287: - Voor burgers: minder hinder, sneller herstel, duidelijkere communicatie.- Voor lokale besturen: betere grip op de uitvoering van werken, minder administratieve last.- Voor Vlaanderen: efficiëntere samenwerking tussen publieke en private partijen, minder verspilling van middelen, hogere kwaliteit van het openbaar domein.- Voor nutsmaatschappijen: duidelijke, voorspelbare randvoorwaarden, minder interpretatieverschillen, hogere tevredenheid bij klanten en overheden.
+0288: Schaalbaarheid
+0289: Het project wordt vanaf dag één opgezet als herbruikbaar Vlaams sjabloon, met:- Modulaire componenten (GIS-viewer, mobiele toezicht-app, bewonerscommunicatiemodule, rapporteringstool).- Open standaarden (OSLO, GIPOD-API’s).- Governance-model dat samenwerking tussen lokale besturen en nutsmaatschappijen structureel verankert.- Duidelijke afspraken over eigenaarschap van data en doorontwikkeling.
+0290: Bijlage: Persartikels – Vlaams brede problematiek
+0291: Uitdaging: Weerstand nutsbedrijven
+0292: Uitdaging
+0293: Nutsbedrijven hebben historisch een sterke operationele autonomie en zijn gewend om Vlaanderenbreed met één uniforme interne aanpak te werken. Lokale afwijkingen of nieuwe processen (bv. digitale datakoppeling) botsen daardoor op logge technische structuren en trage besluitvorming.
+0294: Bij commerciële spelers (vooral telecomdistributeurs) speelt bovendien het risico op een concurrentieel nadeel: open en tijdige ontsluiting van werk- of aansluitdata wordt gezien als strategische bedrijfsinformatie.
+0295: Het gevolg: beperkte of vertraagde datadeling, waardoor steden onvoldoende zicht krijgen op geplande of uitgevoerde werken..
+0296: Oplossing
+0297: Koppeling met domeinvergunning: de verplichting tot het aanvragen van een domeintoelating voor werken kan rechtstreeks verbonden worden aan data-aanlevering in OSLO-standaard. Zonder correcte dataset → geen vergunning.
+0298: Rol van Athumi: als neutrale actor kan Athumi instaan voor veilige datakluizen en gecontroleerde toegang, zodat nutsbedrijven hun data niet “commercieel open” hoeven te zetten, maar toch voldoen aan beleids- en vergunningseisen.
+0299: Gefaseerd proeftraject: starten met één nutsmaatschappij (bv. WYRE-pilot) om voordelen aan te tonen en vertrouwen te winnen → daarna verbreden naar de sector.
+0300: Beleidsniveau: Vlaamse randvoorwaarden in decreet of Code Nuts versterken, zodat steden een eenduidige juridische basis hebben.
+0301: Innovatief karakter
+0302: Niet alleen technische innovatie, maar ook juridische en governance-innovatie: koppeling van data-ontsluiting aan vergunningverlening is een nieuwe hefboom.
+0303: Gebruik van Athumi-datadiensten als neutraal kanaal maakt datadeling veilig en controleerbaar.
+0304: Impact
+0305: Transparantie in planning en uitvoering van nutswerken.
+0306: Minder laattijdige herstellingen en minder hinder voor burgers.
+0307: Steden en gemeenten krijgen juridisch afdwingbare tools om correcte data te eisen.
+0308: Schaalbaarheid
+0309: Het model is herbruikbaar voor heel Vlaanderen, aangezien domeinvergunningen overal verplicht zijn.
+0310: Athumi biedt een centrale infrastructuur die alle gemeenten kunnen gebruiken.
+0311: Uitdaging: Gefaseerde, modulaire aanpak – schillenmodel als sleutel tot haalbaarheid.
+0312: Uitdaging
+0313: De nood is groot, de vraag is groot: we hebben een totaaloplossing nodig die zowel de opvolging, kwaliteitscontrole als communicatie rond nutswerken digitaliseert.De volledige scope omvat:
+0314: GIPOD-koppelingen & realtime GIS-viewer
+0315: AI-ondersteunde terreinapp
+0316: Integratie van vergunningen, signalisatie en herstelbonnen
+0317: Koppeling naar meldings- en klachtenplatformen
+0318: Rapportering, monitoring & KPI-dashboards
+0319: Bewonerscommunicatie en hinderinfo
+0320: Alles in één keer ontwikkelen binnen één City of Things-project is te zwaar en verhoogt het risico op vertraging of niet-haalbaarheid. Het is noodzakelijk de ambitie te behouden, maar via een gefaseerde en modulaire opbouw.
+0321: Oplossing
+0322: Met een modulaire, gefaseerde aanpak (schillenmodel) vermijden we deze valkuil.
+0323: We starten met een kernlaag (MVP) die onmiddellijk tastbare waarde oplevert: mobiele vaststellingen-app, basis GIPOD-koppeling, fotolog en kern-KPI’s.
+0324: Daarna volgen uitbreidingslagen (vergunningintegratie, AI-controle, bewonerscommunicatie) en ten slotte innovatieve lagen (predictive deployment, retributie, volledige Vlaamse data-uitwisseling).
+0325: Elke laag heeft een eigen scope, werkpakket, planning en budget, maar wordt vanaf dag één ontworpen om naadloos in het geheel te passen.
+0326: Kernlaag (laag 1) – absoluut noodzakelijk voor de start:
+0327: Mobile-first vaststellingen-app
+0328: Basis GIPOD-koppeling voor werkzones en plandata
+0329: Kern-GIS-viewer met geotagged foto’s
+0330: Basisrapportering & KPI’s (veiligheid, signalisatie, hersteltijd)
+0331: Uitbreidingslaag (laag 2) – na eerste succes:
+0332: Integratie met vergunningendatabases
+0333: AI-beeldherkenning voor materiaal en schade
+0334: Automatische validatie tegen Code Nuts & OSLO-profiel
+0335: Bewonersbrief-generator & infobordenmodule
+0336: Innovatielaag (laag 3) – opschaling en optimalisatie:
+0337: Predictive deployment voor toezichters
+0338: Geautomatiseerde retributie- en facturatiemodules
+0339: Regionale/Vlaamse data-uitwisseling met andere steden
+0340: Elke laag heeft zijn eigen scope, deliverables, budget en planning, maar is vanaf dag één ontworpen om in het geheel te passen.
+0341: Innovatief karakter
+0342: Modulair & schaalbaar: elke laag kan apart gefinancierd, getest en uitgerold worden.
+0343: Snelle eerste waarde: laag 1 levert al meetbare verbeteringen (kortere doorlooptijd, hogere datakwaliteit).
+0344: Toekomstgericht: architectuur houdt rekening met AI-evolutie en nieuwe OSLO-standaarden.
+0345: Flexibele instap: nutsbedrijven en gemeenten kunnen beginnen met de kernlaag en later opschalen, wat de drempel verlaagt en adoptie versnelt.
+0346: Herbruikbaar in Vlaanderen: geen Antwerpen specifiek ontwerp, maar generiek toepasbaar.
+0347: Marktgericht aanbesteden: elke module kan apart aanbesteed worden met selectiecriteria rond openheid en interoperabiliteit, wat de markt stimuleert en vendor lock-in voorkomt.
+0348: Impact
+0349: Operationeel: directe reductie van fouten en manueel werk in kernprocessen.
+0350: Personeel: minder druk op toezichters door betere voorbereiding en live contextinfo.
+0351: Samenwerking: nutsbedrijven hoeven niet vanaf dag één hun hele interne structuur open te breken, maar kunnen stap voor stap aansluiten.
+0352: Burger: meer transparantie over werken en herstellingen.
+0353: Vlaams niveau: mogelijkheid tot brede adoptie via gestandaardiseerde data-uitwisseling.
+0354: Schaalbaarheid
+0355: Ontwikkelbaar met bestaande bouwblokken (OSLO, GIPOD-API, bestaande GIS-componenten, standaard mobiele frameworks).
+0356: Opschalingsmodel: kleine gemeenten kunnen starten met de kernlaag, grotere steden kunnen meteen meerdere lagen implementeren.
+0357: Eenvoudige uitrol naar andere steden via parametrisatie van lokale regels en materialen.
+0358: Gefaseerde modules zijn beter inpasbaar in meerjarenbegrotingen en aanbestedingsprocedures, en laten toe om kennis en ervaring stelselmatig te borgen.
+0359: Private partners kunnen laag 3-innovaties cofinancieren.
+0360: Kostenverdeling:
+0361: Stad Antwerpen: kernlaag + integratie
+0362: VLAIO-subsidie: innovatiecomponenten + Vlaamse herbruikbaarheid
+0363: Nutsbedrijven: bijdrage in foto-upload, datakwaliteit en communicatie
+0364: Verdere uitwerking schillenmodel
+0365: Kernlaag (Laag 1) – “run first”
+0366: Mobiele vaststellingen-app (field)
+0367: Doel: snel vaststellen, foto’s/geo, status & basis-PV onsite.
+0368: Functies: offline queue, geotagged foto’s, inline annotatie, statuszetten, miniGIS.
+0369: Interfaces: Auth, GIPODread, Mediastore, Notificaties.
+0370: PO: Stad (business); SM: Digipolis.
+0371: Bron: nood aan centrale mobiele registratie & PV’s.
+0372: Backoffice workflow & toewijzing
+0373: Doel: triëren, batchtoewijzing, opvolging SH/NSH, statuslogica.
+0374: Functies: filteren (cat 3), toewijzen toezichters, statustriggers, historiek.
+0375: Interfaces: GIPOD sync, Mail/Notificaties, SAANportaal.
+0376: Bron: epics “selectie 10% SH”, “status triggert acties”.
+0377: GIPODkoppeling & synchronisatie
+0378: Doel: instroom/updates CAT 13 (status, planning, geometrie), deduplicatie.
+0379: Functies: initiële instroom, statuswebhooks/polling, historiek.
+0380: Interfaces: GIPOD API, GIS, Backoffice.
+0381: Bron: “cat.3 doorstromen, dubbels, statusovergangen”.
+0382: GISkern (kaart & lagenbeheer)
+0383: Doel: één kaartstack: GIPOD, SGW/signalisatie, WISmaterialen, strategische zones, beheer door derden.
+0384: Functies: lagenbeheer, maatvoering, intekening m², routehulp.
+0385: Interfaces: Field app, Backoffice, Validatieengine.
+0386: Bron: gelaagde checks (WIS, sperzones, beheer derden, SIK/gewestwegen).
+0387: Rapportering & KPI’s (MVP)
+0388: Doel: dashboards veiligheid/signalisatie/hersteltijd, directeursrapport.
+0389: Functies: kernKPI’s, periodieke exports.
+0390: Interfaces: DWH/BIapp, PDFgenerator.
+0391: Bron: bestaande BItraject & nood aan periodieke rapporten.
+0392: Uitbreidingslaag (Laag 2) – “close the loop”
+0393: Vergunningenhub (ASign & domeintoelating)
+0394: Doel: eenduidige koppeling signalisatie/domeinvergunning ↔ grondwerk.
+0395: Functies: lookup, status, referenties in case, QRkoppeling.
+0396: Interfaces: ASign, GIPOD, Backoffice.
+0397: Bron: huidige versnippering tussen domein- en signalisatievergunning.
+0398: Validatieengine Code Nuts + OSLO
+0399: Doel: automatische check op regels & datamodellen.
+0400: Functies: rulesets (materiaal, timing, zones), OSLOmapping, explainreport.
+0401: Interfaces: GIS, GIPODdata, Backoffice.
+0402: Bron: “automatische validatie tegen Code Nuts & OSLO”, PLCkwaliteitstoets.
+0403: AIbeeldherkenning (materiaal/schade)
+0404: Doel: versnellen en objectiveren van vaststellingen.
+0405: Functies: detectie materiaaltype, schadeklasse, kwaliteitsflags.
+0406: Interfaces: Mediastore, Backoffice, Validatieengine.
+0407: Bron: voorzien in uitbreidingslaag voor materiaal/schade.
+0408: Communicatie-suite (bewonersbrief & infoborden)
+0409: Doel: consistente bewonerscommunicatie, digitaal & druk.
+0410: Functies: sjablonen, QR/URL, distributielog, koppeling naar hinder op kaart.
+0411: Interfaces: ASign, GIPOD, PublicatieAPI.
+0412: Bron: “bewonersbrief-generator & infobordenmodule”, hinder op kaart.
+0413: Externe portalen
+0414: SAANportaal (stadsaannemer, NSH): opname, status, foto’s, notificaties.
+0415: Nutsportaal: stadsstatus, beantwoorden mails/attachments, notificaties.
+0416: Bron: aparte epics voor beide portalen.
+0417: Klachten/Meldingenconnector
+0418: Doel: klachten/meldingen over nuts in één flow trekken.
+0419: Functies: import, verrijking, terugkoppeling naar burger.
+0420: Interfaces: KLM2, Backoffice, Communicatie.
+0421: Bron: “Mijn Melding → KLM2 → mail” stroomlijn.
+0422: Innovatielaag (Laag 3) – “optimize & scale”
+0423: Predictive deployment & planning
+0424: Doel: slimme routes, selectie 10% SHcontroles, risicohotspots.
+0425: Functies: AIadvies, planningsconflicten, bundeling nabijgelegen werven.
+0426: Interfaces: GIS, Backoffice, Field app.
+0427: Bron: selectie & bundeling in epics; innovatielaag “predictive deployment”.
+0428: Retributie & facturatiekernel
+0429: Doel: automatische inname/herstelretributies, bulk of per grondwerk, vrijstellingen en toeslagen.
+0430: Functies: m²berekening, tarieven, collegebesluitdata, exports naar financieel systeem (bv. SAP HANA).
+0431: Interfaces: GIS, Backoffice, Fin/SAP.
+0432: Bron: epics retributie inname/herstel, proefprojecten en standaardantwoorden.
+0433: Regionale/Vlaamse datauitwisseling
+0434: Doel: schaalbaar delen/ontvangen (andere steden, Digitaal Vlaanderen).
+0435: Functies: open API’s, OSLOconforme payloads, datacatalogus.
+0436: Interfaces: Publieke APIgateway.
+0437: Bron: “Vlaamse datauitwisseling” als innovatiedoel.
+0438: Crosscutting (voor alle lagen)
+0439: Identiteit & Rollen/Rechten
+0440: IAM, rolprofielen (toezichter, SPOC, SAAN, nuts), audittrail (GDPR).
+0441: PLCexpert GDPR en Security betrokken.
+0442: Media & Documentservices
+0443: Centrale opslag foto/video, PV/rapportPDF generator, emailservice.
+0444: Nodig voor PV’s met fotolog.
+0445: Notificatie & sjabloonservice
+0446: Statusmails/bundeling, beheerbare sjablonen, meerkanaals (mail, evt. push).
+0447: Past bij “mail vanuit systeem, bundeling combinaties”.
+0448: Datawarehouse & BIapp
+0449: Curatie laag 13 KPI’s, directeursrapporten, historiek.
+0450: Aandacht : Aansluiting op bestaand BItraject binnen stad antwerpen
+0451: Uitdaging:  Stakeholder Engagement & Governance, rollen en verantwoordelijkheden
+0452: In deze bijlage worden de rollen van de verschillende partners beschreven
+0453: Generiek worden de rollen ingevuld vanuit hun specifieke kernopdrachten
+0454: Stad Antwerpen: Trekker
+0455: Digipolis:
+0456: Stad Vilvoorde en andere steden: testbed en spiegelgroepen.
+0457: VVSG:
+0458: Athumi: datakluis en veilige uitwisseling.
+0459: Nutsbedrijven: verplicht data ontsluiten via GIPOD en deelnemen aan proefprojecten (bv. WYRE).
+0460: Andere steden: testbed en spiegelgroepen.
+0461: Rol van de Afdeling Publieke Ruimte – Stadsontwikkeling
+0462: De afdeling Publieke Ruimte binnen Stadsontwikkeling is de motor achter het terreinwerk en het inhoudelijk beleid rond de kwalitatieve inrichting en het beheer van de publieke ruimte in Antwerpen. Binnen het project “Digitale Nuts” neemt deze afdeling een cruciale, trekkende rol op, zowel in de beleidsvoorbereiding als in de operationele praktijktoetsing van digitale oplossingen.
+0463: 1. Eigenaarschap over het nutsproces op het terrein
+0464: De afdeling is:
+0465: proceseigenaar van het volledige nutsdossier, van aanvraag tot herstel.
+0466: verantwoordelijk voor de opvolging van graafwerken door nutsmaatschappijen op het terrein.
+0467: het aanspreekpunt voor:
+0468: klachten van burgers,
+0469: controle op herstelkwaliteit,
+0470: sanctionering via het retributiereglement bij vastgestelde tekortkomingen.
+0471: Impliceert: Het digitale systeem moet de werking van onze toezichters, administratie en vaststellers versterken. Onze input bepaalt welke informatie nodig is, hoe die geregistreerd moet worden, en welke workflows in de tool ingebakken moeten worden.
+0472: 2. Beleidsmatige bewaking en inhoudelijke aansturing
+0473: Als afdeling binnen Stadsontwikkeling bewaken we:
+0474: de beleidskaders rond herstelkwaliteit, herinrichtingsnormen, en reglementaire voorwaarden (bv. Code Nuts).
+0475: de afstemming met stadsbrede doelstellingen zoals de robuuste stad, vergroening, energietransitie en bewonerscomfort.
+0476: de correcte implementatie van het retributiereglement inname en herstel, inclusief de voorwaarden voor tijdelijke of definitieve herstellingen, materiaalgebruik, enz.
+0477: Impliceert: We zorgen dat het digitale project aansluit bij bestaande reglementen en beleidsdoelstellingen, en formuleren inhoudelijke vereisten voor hergebruik in bestekken en werkprocessen.
+0478: 3. Ontwerper en gebruiker van de digitale oplossing
+0479: De afdeling is:
+0480: producteigenaar van de oplossing: we bepalen mee de prioriteiten, valideren de MVP’s en bewaken het eindresultaat.
+0481: klant en tester van het systeem: toezichters, administratie en SPOC’s zijn eindgebruikers van de digitale flows.
+0482: impliceert: Onze afdeling levert de praktijkkennis aan die cruciaal is voor de ontwikkeling van een bruikbare tool – inclusief kennis van sleufopbouw, asfalt- en natuursteenherstel, communicatie met nutsmaatschappijen en opvolging van meldingen.
+0483: 4. Verbindende rol tussen veld, beleid en techniek
+0484: We verbinden:
+0485: de noden van het terrein (bv. mobiele registratietool, werklijsten, fotovaststellingen),
+0486: met de technische ontwikkeling (samen met Digipolis en externe ontwikkelaars),
+0487: én met de beleidscontext en regelgeving (bv. hoe herstelverplichtingen geïnterpreteerd worden).
+0488: Impliceert: De afdeling speelt een brugfunctie tussen alle partners, en zorgt ervoor dat de tool niet enkel technisch werkt, maar ook juridisch sluitend, praktisch bruikbaar én beleidsmatig relevant is.
+0489: Samengevat: onze rol in het project
+0490: Rol van Digipolis Antwerpen
+0491: 1. Trekker en ontwikkelingspartner binnen digitale projecten van Stad Antwerpen
+0492: Digipolis is de structurele digitale partner van Stad Antwerpen en is verantwoordelijk voor de ontwikkeling, ondersteuning en integratie van digitale oplossingen binnen het stedelijk landschap.
+0493: In dit project:
+0494: Treedt Digipolis op als trekker voor de digitale realisatie van de verbeterde nutswerking.
+0495: Coördineert zij het digitale luik van het project, gaande van technische analyse en architectuur tot opvolging van ontwikkeling, testen en oplevering.
+0496: Stelt zij experten ter beschikking voor data, beveiliging, gebruikerservaring en integraties (bv. met GIPOD, WIS, A-sign, SAP Hana, KLM).
+0497: 2. Begeleider van het volledige PLC 2.0-traject
+0498: De digitale werking in Antwerpen verloopt volgens het vernieuwde PLC 2.0-model (Project Life Cycle). Digipolis heeft hier een dubbele rol:
+0499: a. Operationeel:
+0500: Account expert van Digipolis begeleidt de projectopdracht vanaf het vooronderzoek tot aan oplevering.
+0501: Stelt vragen die helpen de businessbehoefte te verfijnen en bewaakt de aansluiting met de bredere digitale strategie.
+0502: Bereidt samen met de stad de documenten voor de klankbordgroep (KBG) voor.
+0503: b. Technisch & strategisch:
+0504: Business architecten en analisten vanuit Digipolis vertalen de proceswensen naar functionele digitale flows.
+0505: Digipolis bewaakt de kwaliteit van de digitale oplossing (OTOBOS: op tijd, op budget, op scope).
+0506: Zorgt dat de oplossing duurzaam, herbruikbaar en onderhoudbaar is.
+0507: 3. Gemandateerd engagement vanuit het College via de CDO
+0508: De Chief Digital Officer (CDO) kreeg van de bevoegde schepen expliciet de opdracht om het City of Things-dossier actief te ondersteunen. In praktijk betekent dit:
+0509: Digipolis/accountteam engageert zich om de digitale roadmap en MVP’s te helpen structureren.
+0510: De CDO stelt experten en begeleiding ter beschikking voor:
+0511: Data (Pascal Vyncke / Steven Penneman)
+0512: GIS (Jeffry Van Waeyenberghe)
+0513: UX & inclusie (David Sprengers)
+0514: Security en GDPR (DPO-office - Lisa Hendrickx / Chloë Dierckx)
+0515: Er is ondersteuning voorzien bij de subsidieaanvraag, zowel inhoudelijk als procesmatig.
+0516: 4. Co-creatie met private ontwikkelaar
+0517: Digipolis zal:
+0518: Meewerken aan het opstellen van het programma van eisen voor de externe ontwikkelpartner (die de tool uitrolt als SaaS).
+0519: De aansluiting met bestaande stedelijke systemen (bv. Monitor SW, A-sign) technisch coördineren.
+0520: Meebouwen aan de teststrategie, beveiliging, hosting of integratie afhankelijk van het gekozen model (in-house, hybride, of uitbesteed).
+0521: 5. Ondersteuner van de opschaling naar andere steden en toepassingen
+0522: Digipolis bewaakt bij elke ontwikkeling:
+0523: Herbruikbaarheid van modules (via API’s of open standaarden).
+0524: Gebruik van OSLO-datamodellen en semantische interoperabiliteit.
+0525: De mogelijkheid tot centrale koppeling met GIPOD, Athumi en Vlaamse oplossingen zoals Spotbooking.
+0526: Samengevat: hun engagement in het project
+0527: Rol van GIPOD/Athumi
+0528: Het project “DIgitale Nuts” is gebouwd op een digitale datastructuur waarin interoperabiliteit, toegankelijkheid en betrouwbare brondata cruciaal zijn. Binnen deze architectuur nemen GIPOD (beheer door Digitaal Vlaanderen) en Athumi (de Vlaamse datadelingsautoriteit) een kernpositie in als fundament van de dataflow en coördinatie tussen nutsmaatschappijen, steden en aannemers.
+0529: 1. GIPOD als centrale planningsbron
+0530: GIPOD is het centrale Vlaamse platform waar alle geplande grondwerken worden geregistreerd.Het systeem fungeert als:
+0531: bronbestand voor alle meldingen van categorie 1, 2 en 3 grondwerken;
+0532: referentie voor de locatie, tijdstip, uitvoerder en werkstatus van ingrepen in de ondergrond;
+0533: distributiekanaal naar de toepassingen van de stad, aannemers en andere steden.
+0534: In het project:
+0535: Worden GIPOD-data geautomatiseerd gepolld en gesynchroniseerd met de stedelijke toepassing “Mobiel Nuts”.
+0536: Worden categorie 3-werken (die nu vaak onder de radar blijven) automatisch opgehaald correct gegeo-reffereerd en gefilterd op relevantie
+0537: Gebruiken we GIPOD-data als trigger voor meldingen, controleopdrachten en herstelverantwoordelijkheid.
+0538: Implicatie: Zonder GIPOD is er geen betrouwbare, uniforme datastroom. GIPOD is de “motor” die meldingen initieert, opvolging triggert en herstellingen traceerbaar maakt.
+0539: 2. Athumi als veilige datadelingsschakel
+0540: Athumi biedt het Vlaamse framework voor vertrouwelijke en gecontroleerde datadeling tussen overheden, burgers en private actoren (bv. nutsbedrijven, aannemers).
+0541: In dit project:
+0542: Wordt Athumi ingeschakeld om gegevensuitwisseling tussen de stad en nutsbedrijven GDPR-conform en technisch robuust te organiseren.
+0543: Kunnen via Athumi Connectors automatisch dataflows worden opgezet tussen GIPOD, de stedelijke backend en de frontends van nutsbedrijven (bv. rapporten, herstelopvolging).
+0544: Kan Athumi helpen bij het beheer van toegangsrechten, identiteiten en logging voor derden die toegang hebben tot het portaal (bv. stadsaannemer, nutsaannemers).
+0545: Implicatie: Athumi maakt het mogelijk om schaalbaar én privacy-proof de gegevensdeling met meerdere actoren uit te rollen. Dit is essentieel voor de toekomstbestendigheid van de tool.
+0546: 3. backbone voor slimme dataservices
+0547: GIPOD/Athumi vormt de technische backbone waarop slimme toepassingen en beslissingsondersteuning gebouwd worden:
+0548: Automatische detectie van conflicten in werkplanning;
+0549: Verificatie van volledigheid van dossiers (bv. ontbrekende vergunningen of herstelvoorwaarden);
+0550: Triggers voor herstelbonnen, bewonerscommunicatie of herinschatting van sleufherstellingen (bv. via GIS en WIS).
+0551: In combinatie met het OSLO-datamodel ontstaat zo een open, uitbreidbare digitale infrastructuur die ook in andere steden, toepassingen of beheertools gebruikt kan worden.
+0552: Samengevat: hun rol in het project
+0553: Rol van VVSG en Kenniscentrum Vlaamse Steden
+0554: 1. Netwerkregisseur en verbinder van lokale besturen
+0555: Rol: VVSG en KVS kunnen optreden als facilitator tussen de Stad Antwerpen en andere geïnteresseerde steden of intergemeentelijke samenwerkingenConcreet:
+0556: Organiseren van interbestuurlijke overlegmomenten.
+0557: Cureren van een lerend netwerk rond “slimme nutsopvolging” of “beheer van ondergrond”.
+0558: Opvolgen van vragen en drempels van kleinere steden/gemeenten rond implementatie of schaalbaarheid.
+0559: Vraag aan VVSG/KVS:“Willen jullie het netwerk van lokale besturen activeren en mee begeleiden in een lerend traject rond nutsbeheer en ondergrondkwaliteit, gelinkt aan de digitale nutsoplossing die wij ontwikkelen?”
+0560: 2. Behoeftenverkenning en klankbordrol
+0561: Rol: VVSG en/of KVS kunnen zorgen voor de inventarisatie van de noden en verwachtingen bij andere steden en gemeenten.Concreet:
+0562: Uitsturen van een korte bevraging of scan.
+0563: Verzamelen van use cases of knelpunten rond nutsopvolging.
+0564: Valideren van de schaalbaarheid van de Antwerpse aanpak.
+0565: Vraag aan VVSG/KVS:“Zouden jullie een korte bevraging of workshop kunnen opzetten bij lokale besturen over hun uitdagingen rond nutswerken, toezicht, herstel en datakoppelingen (bv. GIPOD) — als input voor de generieke uitrol van onze tool?”
+0566: 3. Strategische toets op herbruikbaarheid en beleidsimpact
+0567: Rol: VVSG/KVS helpen om de generieke componenten van de Antwerpse tool af te toetsen op Vlaamse schaal.Concreet:
+0568: Mee bepalen van de functionele vereisten die relevant zijn voor álle steden/gemeenten.
+0569: Toetsen of de voorgestelde API’s, rapporten, of OSLO-modellen herbruikbaar zijn binnen bestaande VVSG-instrumenten of andere tools.
+0570: Adviseren over juridische, organisatorische of financiële knelpunten bij uitrol.
+0571: Vraag aan VVSG/KVS:“Kunnen jullie mee instaan voor de toetsing van de Vlaamse toepasbaarheid en beleidsimpact van de digitale oplossing, in functie van herbruikbaarheid binnen VVSG-instrumenten of aanbevelingen?”
+0572: 4. Versterking van de beleidskloof (policy–implementation gap)
+0573: Rol: VVSG kan via haar contacten met de Vlaamse administratie en sectororganisaties de terugkoppeling maken naar Vlaamse beleidslijnen (bv. Code voor Infrastructuurwerken, decreet lokaal bestuur, Digitaal Vlaanderen-strategie).
+0574: Vraag aan VVSG: “Willen jullie mee zoeken naar manieren om het beleid op Vlaams niveau (bv. standaardisatie, herstelaanpak, randvoorwaarden voor nutsmaatschappijen) beter te verbinden met de lokale uitvoering, o.a. via input in dit project?”
+0575: Samenvattende vraagstelling
+0576: Rol en opdracht van de nutsbedrijven
+0577: De nutsbedrijven (gas, elektriciteit, telecom, water, warmte, verlichting) zijn sleutelactoren in het publieke domein. Zij voeren ingrepen uit die ingrijpen op de ondergrond én bepalen mede de kwaliteit van de publieke ruimte. Binnen het project Verbeterde Werking Nuts krijgen ze een meer structurele rol toebedeeld — als verantwoordelijke mede-uitvoerder van een gedeelde stedelijke opdracht.
+0578: 1. Opdracht: kwaliteitsvol, transparant en gecoördineerd werken
+0579: De nutsbedrijven worden niet langer enkel gezien als passieve aanvragers, maar als actieve partners met gedeelde verantwoordelijkheden. Ze krijgen de opdracht om:
+0580: Hun geplande werken correct en tijdig aan te leveren via GIPOD.
+0581: Hun uitvoering af te stemmen op de stedelijke regels rond herstel, communicatie en vergunning.
+0582: Zorg te dragen voor correcte herstelling van het wegdek conform het stedelijke herstelreglement en de Code Nuts.
+0583: Constructief te reageren op meldingen, vaststellingen en herstelopdrachten binnen de gestelde termijnen.
+0584: Deze opdracht geldt zowel voor individuele nutsmaatschappijen als voor de verenigde nutsactoren via overlegorganen zoals COATT.
+0585: 2. Rol in het wegwerken van de policy–implementation gap
+0586: De beleidsdoelstelling is duidelijk: minder hinder, snellere afhandeling, beter herstel. In de praktijk blijft de uitvoering echter steken door:
+0587: onderaannemers zonder kennis van stedelijke normen,
+0588: gebrekkige herstellingen (geen chape, verkeerde stenen),
+0589: onvolledige communicatie of afwezigheid in GIPOD.
+0590: Het project biedt de nutsbedrijven een kader om deze kloof te helpen dichten:
+0591: Door deze engagementen expliciet te maken, krijgen nutsbedrijven mee de verantwoordelijkheid voor kwaliteitsvol beheer van de publieke ruimte.
+0592: 3. Verplichting tot datadeling via GIPOD
+0593: Voor een succesvolle digitalisering is het essentieel dat nutsbedrijven:
+0594: alle werken correct registreren in GIPOD (minstens conform de Vlaamse verplichting bij categorie 3),
+0595: hun data verrijken met gedetailleerde statusinformatie, intekening en materialen,
+0596: deze data actueel houden, zodat ze bruikbaar zijn voor toezicht, communicatie en rapportering.
+0597: Hoewel het GIPOD-decreet al een juridische basis legt, voorziet dit project in aanvullende digitale tools en procesafspraken die de nutsbedrijven ertoe aanzetten (en in sommige gevallen verplichten) om hun datakwaliteit te verhogen.
+0598: Samengevat: rol en verantwoordelijkheden nutsbedrijven
+0599: Voorstel voor communicatie naar nutsbedrijven (COATT of individueel)
+0600: “De stad Antwerpen beschouwt de nutsbedrijven als volwaardige partners in het streven naar een robuuste en kwalitatieve publieke ruimte. Via dit project willen we samen met jullie de overstap maken van administratief dossierbeheer naar actief kwaliteitsbeheer op het terrein. Jullie engagement in GIPOD, herstel en communicatie is hierbij cruciaal.”
+0601: Rol van meedenkende steden
+0602: Meedenkende steden zijn lokale besturen die reeds ervaring hebben met:
+0603: het gebruik van GIPOD in hun werkprocessen,
+0604: de uitrol van nutsreglementen of herstellingsverplichtingen,
+0605: eerdere City of Things (COT)-trajecten,
+0606: of het verbeteren van het beheer van hun publieke ruimte.
+0607: Ze kunnen vanuit die ervaring als praktijkklankbord, implementatiepartner en beleidsversneller worden ingeschakeld in het traject.
+0608: 1. Rol als realiteitstoets en klankbord
+0609: Opdracht:
+0610: Feedback geven op de MVP’s in ontwikkeling.
+0611: Aangeven waar processen realistisch zijn in kleinere steden of bij minder capaciteit.
+0612: Suggesties doen voor “lichte versies” van modules (bv. manuele opvolging i.p.v. automatische bonkoppeling).
+0613: Concreet:
+0614: "Wat heb jij als stad écht nodig om toezicht te houden op nutswerken, en waar loopt het vandaag vast?"
+0615: 2. Testpartners in lokale piloten
+0616: Opdracht:
+0617: Eén deelproces testen (bv. herstelopvolging in de binnenstad).
+0618: Data verzamelen over sleufkwaliteit, toezichtstijd, klachtenafhandeling.
+0619: Rapporteren over ervaringen met de tool in hun eigen context.
+0620: Concreet:
+0621: “Leveren de meldingen vanuit GIPOD effectief bruikbare input op voor je toezichters?”“Hoeveel tijd spaar je uit via automatische notificaties of herstelbonnen?”
+0622: 3. Begeleiders van inhoudelijke standaardisering
+0623: Opdracht:
+0624: Meeschrijven aan OSLO-uitbreidingen of lokale afspraken.
+0625: Feedback geven op datamodellen (bv. WIS-materialen, hersteltypes, statusflows).
+0626: Co-creatie van sjablonen voor brieven, workflows en vergunningvoorwaarden.
+0627: Concreet:
+0628: “Welke types herstel komen bij jullie het vaakst voor en hoe kunnen we die standaardiseren in het systeem?”
+0629: 4. Politieke en bestuurlijke steunversterking
+0630: Opdracht:
+0631: Uitzetten van politieke steun (via eigen schepen, VVSG-werkgroep, intergemeentelijke samenwerkingen).
+0632: Aankaarten van structurele knelpunten bij nutsmaatschappijen (via eigen overlegstructuren of COATT).
+0633: Concreet:
+0634: “Zou jouw bestuur dit mee kunnen verdedigen op een VVSG-platform of in overleg met Fluvius/Proximus?”
+0635: 5. Delen van good practices en documentatie
+0636: Opdracht:
+0637: Voorbeelden aanleveren van goed werkende praktijken of eerdere COT-projecten.
+0638: Ter beschikking stellen van bestaande tools, contractmodellen of visualisaties.
+0639: Concreet:
+0640: “Welke tool gebruik jij nu voor herstellingsopvolging, en wat werkt daar goed aan?”“Heb je een bewonersbrief of GIPOD-dashboard dat je met ons kan delen?”
+0641: Samengevatte rolverdeling van meedenkende steden
+0642: Communicatief voorstel
+0643: “Dit project mikt niet op een stadseiland, maar op een gedeeld stedelijk ecosysteem. We nodigen andere steden uit om als meedenkende partner hun stem, ervaring en cases in te brengen. Zo zorgen we samen voor een aanpak die zowel in Antwerpen als in andere steden kan landen.”
+0644: Uitdaging: bepalen van use cases.
+0645: Top 10 use cases uit het voorstel
+0646: Vaststellingen op de werf (toezichters)
+0647: Toezichters registreren via smartphone of tablet een vaststelling met foto, GPS-locatie en timestamp.
+0648: Automatische blur van gezichten en nummerplaten (privacy by design).
+0649: Controle van signalisatievergunningen (toezichters/stad)
+0650: Check of tijdelijke verkeersmaatregelen (parkeerverbod, omleiding) conform de vergunning zijn geplaatst.
+0651: Herstelcontrole (toezichters/stadsaannemer)
+0652: Fotolog en checklists om te valideren of de sleuf correct werd dichtgelegd (fundering, chape cement, natuursteen, asfalt).
+0653: Koppeling met GIPOD (nutsbedrijven & stad)
+0654: Alle werken automatisch zichtbaar in de app (waar, wanneer, welke nutsmaatschappij).
+0655: Toezichters zien realtime overlap met andere werken.
+0656: Bewonerscommunicatie (bewoners)
+0657: Pushmeldingen of QR-code op werfbord: info over aard, duur en hinder van de werken.
+0658: Link naar klachtenplatform (bv. KLM2 of meldingen.antwerpen.be).
+0659: Rapportering voor retributies (stad/beleidsmedewerkers)
+0660: Automatische bundeling van vaststellingen en herstellingskosten in een dossier voor facturatie of retributie.
+0661: Kwaliteitsdashboards (beleidsmedewerkers)
+0662: KPI’s over doorlooptijd, herstelnauwkeurigheid, klachtenafhandeling → bruikbaar voor beleidsrapportering en monitoring van nutsbedrijven.
+0663: Samenwerking nutsbedrijven (nutsmaatschappijen)
+0664: Inzage in hun eigen werken en herstelbonnen.
+0665: Mogelijkheid om tijdelijke maatregelen (bv. asfaltlap) in de app te registreren.
+0666: Juridisch bewijs (juridische dienst/stadsaannemer)
+0667: Vaststellingen (foto + metadata) dienen als rechtsgeldig bewijs bij betwisting met nutsbedrijven of aannemers.
+0668: AI-beeldherkenning (toezichters/beleidsmedewerkers)
+0669: Automatische detectie van fouten in herstelling of ontbrekende signalisatie op foto’s.
+0670: Waarschuwingsfunctie voor toezichters (“mogelijke fout gespot”).
+0671: Out-of-the-box nieuwe toepassingsgebieden
+0672: Slimme hinderindex voor bewoners
+0673: Automatisch berekende hinderindex (geluid, duur, overlap met andere werken, locatiegevoeligheid) → geeft bewoners een realistisch beeld van hinder in hun buurt.
+0674: Integratie met circulair materiaalbeheer
+0675: App registreert welke materialen vrijkomen bij graafwerken (bv. kasseien, natuursteen) → koppeling met stedelijke stock en hergebruik.
+0676: Klimaat/energie-koppeling
+0677: Automatische detectie of werken kansen bieden voor coördinatie met warmtenetten of laadpalen.
+0678: AI-gestuurde preventieplanning
+0679: Voorspelt waar herhaalde klachten of herstelproblemen zullen optreden (bv. wijken met slechte ondergrond of veel overlappende werken).
+0680: Gamification voor toezichters
+0681: Leerrapport per toezichter: wie registreert snelst en volledigst, wie mist minder controles → kan motiverend werken.
+0682: Participatie via bewoners-app
+0683: Bewoners kunnen hun eigen meldingen (foto’s van hinder, ontbrekende signalisatie) uploaden → die automatisch gematcht worden met GIPOD-werken in de buurt.
+0684: Integratie met drones of bodycams
+0685: Extra vaststellingskanalen voor grote werven of moeilijk bereikbare zones.
+0686: Realtime koppeling politie/brandweer
+0687: App signaleert open sleuven of gevaarlijke situaties ook aan nood- en hulpdiensten.
+0688: Wie gebruikt de app en wat is hun meerwaarde?
+0689: Persona 1 De stadstoezichter
+0690: Naam: Hendrik, toezichter nutswerken bij de stad.Context: Hendrik is dagelijks op pad in de stad. Hij controleert werken van nutsmaatschappijen, volgt herstelbonnen op en moet snel schakelen bij klachten van bewoners. Tot nu toe werkte hij vooral met papieren notities en losse foto’s op zijn gsm.
+0691: Hoe de app Hendrik helpt
+0692: Snelle vaststellingen: Hendrik opent de app, maakt een foto van een sleuf in de straat. Automatisch worden locatie en tijd geregistreerd, gezichten en nummerplaten geblurd.
+0693: Vergunningen bij de hand: Op hetzelfde scherm ziet hij meteen of er een signalisatievergunning is aangevraagd voor die plek. Geen papieren bundel meer nodig.
+0694: Herstelcontrole: Wanneer de aannemer het werk heeft dichtgelegd, checkt Hendrik via een eenvoudige checklist (fundering, chape, natuursteen/asfalt) of alles correct gebeurde.
+0695: Juridisch bewijs: Elke vaststelling wordt meteen veilig opgeslagen, zodat de juridische dienst het kan gebruiken bij eventuele betwistingen.
+0696: Alle dossiers in één zakcomputer: Geen dikke mappen of losse mails meer, alles digitaal en actueel.
+0697: Slimme assistent: AI markeert mogelijke fouten zodat Hendrik gericht en sneller kan controleren.
+0698: Vergunning bij de hand: Hij hoeft nooit meer te zoeken in GIPOD of Excel-lijsten: de app toont meteen of de aannemer een geldige domeinvergunning heeft.
+0699: Directe opvolging herstel: Hij tikt aan “herstel correct uitgevoerd” → dit wordt automatisch doorgestuurd naar de administratie voor verrekening.
+0700: Samenwerking met collega’s: Als hij ziek is, kan een collega zijn openstaande vaststellingen eenvoudig overnemen.
+0701: Resultaat voor Hendrik
+0702: Minder werkdruk: Hij kan meer werven per dag controleren, zonder stress dat iets vergeten raakt.
+0703: Sterkere positie: Hij kan aannemers en nutsbedrijven sneller aanspreken, mét harde bewijzen.
+0704: Efficiëntie voor de stad: Zijn vaststellingen stromen automatisch door naar administratie, juridische dienst en facturatie → geen dubbel werk meer.
+0705: Trots: Hendrik ziet eindelijk dat zijn werk impact heeft: fouten verdwijnen sneller, burgers klagen minder, en hij wordt erkend als cruciale schakel.
+0706: Persona S2 – De Bewoner
+0707: Naam: Fatima, bewoonster in een smalle binnenstraat in Antwerpen.Context: Voor haar deur zijn vaak graafwerken. Ze heeft een kleine garage en voelt zich machteloos als er plots werfhekken staan of sleuven openliggen. Tot nu toe moest ze bellen naar het contactcentrum en kreeg ze vaak geen concreet antwoord.
+0708: Hoe de app Fatima helpt
+0709: Transparantie: Op een QR-code op het werfbord scant ze met haar gsm de info. Ze ziet meteen: wie voert de werken uit, waarom, en tot wanneer.
+0710: Hindercommunicatie: Ze krijgt een pushmelding dat de straat de volgende dag tijdelijk niet bereikbaar zal zijn voor een levering.
+0711: Participatie: Als ze merkt dat er geen signalisatie is geplaatst bij een open sleuf, maakt ze zelf een melding via de app. Die melding wordt automatisch gekoppeld aan het juiste GIPOD-dossier.
+0712: Feedbackloop: Binnen 24 uur krijgt ze een melding terug: “Uw signaal is opgevolgd, signalisatie geplaatst door aannemer.”
+0713: Resultaat voor Fatima
+0714: Ze voelt zich geïnformeerd en gehoord, in plaats van gefrustreerd en machteloos.
+0715: Ze ervaart minder hinder omdat ze zich kan voorbereiden op afsluitingen.
+0716: Ze ziet dat de stad en nutsbedrijven haar melding serieus nemen en opvolgen → vertrouwen groeit.
+0717: Persona S3 De nutsmaatschappij
+0718: Naam: Thomas, projectcoördinator bij een grote nutsmaatschappij (bv. telecomoperator).Context: Thomas plant jaarlijks honderden graafwerken. Hij krijgt vaak klachten van de stad over herstelkwaliteit of hinder, maar heeft weinig overzicht. Zijn aannemers voeren de werken uit, en Thomas moet vertrouwen op hun rapportage.
+0719: Hoe de app Thomas helpt
+0720: Realtime overzicht: In de app ziet hij welke van zijn werken vandaag openliggen, welke in uitvoering zijn en waar de toezichters al een vaststelling hebben gemaakt.
+0721: Eigen herstelregistratie: Zijn aannemer kan via de app aanduiden dat een tijdelijke asfaltlaag is aangebracht. Foto en GPS worden automatisch toegevoegd → bewijs dat het werk veilig is achtergelaten.
+0722: Snellere terugkoppeling: Als er een fout wordt vastgesteld, krijgt Thomas meteen een notificatie. Hij kan sneller ingrijpen, zonder weken later een factuur of klacht te ontvangen.
+0723: Transparantie naar de stad: Doordat alle data uniform en OSLO-conform gedeeld wordt, hoeft hij geen aparte Excelrapporten meer te maken voor de stad.
+0724: Bewijsvoering: Als een betwisting ontstaat (bv. schade was er al voor de werken), kan hij in de app aantonen dat de aannemer correct gewerkt heeft.
+0725: Resultaat voor Thomas
+0726: Minder discussies en juridische conflicten met de stad, dankzij gedeeld en objectief bewijsmateriaal.
+0727: Efficiënter projectbeheer: hij hoeft minder tijd te steken in nazorg en klachtenafhandeling.
+0728: Sterkere reputatie: door transparant te werken toont zijn nutsmaatschappij dat ze kwaliteit en hinderbeperking ernstig nemen.
+0729: Kostenbeheersing: minder onverwachte retributies en boetes, omdat fouten sneller worden rechtgezet.
+0730: Persona S4 – De Beleidsmedewerker
+0731: Naam: Sarah, beleidsmedewerker Publieke Ruimte bij de stad.Context: Sarah moet de schepen en gemeenteraad regelmatig rapporteren over de kwaliteit van nutswerken, de klachten van bewoners en de voortgang van projecten. Vandaag moet ze data sprokkelen uit losse Excelbestanden, mails en klachtenregistraties. Haar rapporten zijn vaak achterhaald en moeilijk te vergelijken.
+0732: Hoe de app Sarah helpt
+0733: KPI-dashboards: Sarah krijgt realtime inzicht in doorlooptijd van herstellingen, kwaliteit per nutsbedrijf en aantal openstaande klachten.
+0734: Vergelijking tussen wijken: Ze kan zien welke districten het meeste hinder ondervinden en waar de samenwerking met nutsbedrijven vlot loopt.
+0735: Trendanalyses: De app geeft inzicht in structurele problemen, bv. “operator X scoort slecht in natuursteenherstel” of “de meeste vertragingen zijn in de binnenstad”.
+0736: Beleidscommunicatie: Ze kan in één klik een export maken voor de schepen: heldere grafieken, juridisch correcte cijfers en concrete aanbevelingen.
+0737: Ondersteuning bij onderhandelingen: Bij overleg met nutsbedrijven of in COATT kan Sarah met objectieve data aantonen waar verbeteringen nodig zijn.
+0738: Resultaat voor Sarah
+0739: Minder tijdverlies aan data verzamelen → meer tijd voor beleidsadvies.
+0740: Sterker dossier: objectieve data maakt haar rapporten betrouwbaar en overtuigend, zowel intern als extern.
+0741: Politieke meerwaarde: de schepen kan bewoners en pers geruststellen met concrete cijfers en verbeteracties.
+0742: Strategische hefboom: Sarah kan betere afspraken afdwingen met nutsmaatschappijen, omdat ze beschikt over harde cijfers i.p.v. klachten anekdotisch te moeten brengen.
+0743: Persona S5 – De Stadsaannemer
+0744: Naam: Karim, ploegbaas bij een aannemer die regelmatig in opdracht van de stad herstelwerken uitvoert.Context: Karim en zijn team worden vaak opgeroepen om straten opnieuw te herstellen na nutswerken. Hij krijgt zijn opdrachten via mail of telefoon, en moet soms ter plaatse uitzoeken wat er exact verwacht wordt. Discussies met nutsmaatschappijen of toezichters komen geregeld voor.
+0745: Hoe de app Karim helpt
+0746: Heldere opdrachten: Wanneer Karim een opdracht krijgt, ziet hij in de app meteen de exacte locatie, foto’s van de schade, en welke materialen moeten worden gebruikt (bv. natuursteen, asfalt).
+0747: Geen misverstanden: De foto’s van de toezichter vóór de herstelling zijn beschikbaar → duidelijk bewijs van de situatie.
+0748: Terugrapportage: Karim kan na uitvoering een foto toevoegen die automatisch aan het dossier wordt gekoppeld, inclusief tijd en locatie.
+0749: Snelle goedkeuring: De toezichter ziet zijn herstelrapport meteen in de app en kan goedkeuren of bijkomende opmerkingen geven.
+0750: Betalingszekerheid: Omdat alles geregistreerd is, verloopt de afrekening transparant en zonder betwistingen.
+0751: Resultaat voor Karim
+0752: Efficiënter werk: minder tijdverlies door heen-en-weer bellen of onduidelijke info.
+0753: Minder frustratie: hij hoeft niet telkens te bewijzen dat zijn team correct heeft gewerkt – de app levert dat bewijs.
+0754: Betere relatie met de stad: opdrachten en betalingen verlopen vlotter, zonder eindeloze discussie.
+0755: Professioneel imago: door transparant te werken, toont zijn bedrijf betrouwbaarheid en vakmanschap.
+0756: Uitdaging: Toepassing van OSLO als fundament in het project digitale Nuts
+0757: Uitdaging
+0758: De opvolging van nutswerken in Vlaanderen wordt momenteel belemmerd door:- Versnipperde datamodellen tussen steden, nutsmaatschappijen en GIPOD.- Gebrek aan uniforme definities voor cruciale begrippen zoals “hersteltype”, “materiaalsoort” of “werkstatus”.- Beperkte machineleesbaarheid en semantische koppeling tussen plandata, vergunningen en toezichtdata.- Geen verplichting voor nutsmaatschappijen om fotomateriaal en statusupdates in gestandaardiseerd formaat aan te leveren. Hierdoor ontstaan vertragingen, dubbele registraties en interpretatieverschillen die de kwaliteit van toezicht en herstellingen ondermijnen.
+0759: Oplossing
+0760: We maken OSLO Open Data-profiel Nutswerken tot de basis van Digitale Nuts. Dit profiel definieert entiteiten, eigenschappen en relaties voor:1. Werfinformatie – Unieke ID, locatie, GIPOD-ID, uitvoerder, opdrachtgever.2. Materiaal- en herstelgegevens – Type bestrating, funderingsopbouw, herstelmethode.3. Vergunning- en reglementdata – Domeintoelating, signalisatievergunning, afwijkingsaanvragen.4. Toezichtdata – Vaststellingsdatum, toezichter-ID, checklistscores, bevindingen.5. Fotodocumentatie – Metadata (tijd, GPS, richting), bron (stad, nuts, aannemer).6. Bewonerscommunicatie – Datum en type bericht, distributiekanaal, inhoudstype.7. Meetpunten/KPI’s – Automatisch afgeleid uit toezicht- en herstelgegevens.
+0761: Innovatief karakter
+0762: Het OSLO-profiel wordt uitgebreid met elementen die vandaag nog ontbreken in de standaard:- Foto-object: verplicht geotagged, met richting, resolutie en tijdstip in EXIF.- Herstelkwaliteit-score: kwantitatief veld (0–100%) gekoppeld aan materiaaltype.- GIS-polygoon voor inname: niet enkel puntlocaties, maar volledige contouren van sleuven/innames.- Tijdslijn-attribuut: geplande start/einde, werkelijke start/einde, herstelmomenten.- Incidentenlog: afwijkingen, klachten, hinderincidenten, gekoppeld aan GIPOD-ID.- Communicatie-log: vastlegging van bewonersbrieven, digitale meldingen, updates.Door deze velden machineleesbaar op te nemen, kunnen applicaties automatisch:- Herstellingen scoren.- KPI’s genereren.- Afwijkingen signaleren nog voor een toezichter fysiek ter plaatse gaat.
+0763: Impact
+0764: - Uniformiteit: alle Vlaamse gemeenten en nutsmaatschappijen werken met dezelfde definities.- Snellere integratie: koppeling van GIPOD, stadsdataplatforms en nutsdatabases zonder dure maatwerkconversies.- Betere datakwaliteit: door verplichte velden voor foto’s, GPS en materiaalsoorten.- Automatische rapportering: beleidsdashboards en kwartaalrapporten kunnen rechtstreeks uit de OSLO-data worden opgebouwd.- Verhoogde juridische slagkracht: uniforme registratie maakt bewijsvoering in geschillen eenvoudiger.
+0765: Schaalbaarheid
+0766: - Vlaams breed: uitbreidbaar naar alle steden, gemeenten en intercommunales.- Sectoroverschrijdend: bruikbaar voor wegenonderhoud, groenbeheer en bouwtoezicht.- Open source en open standaard: vrij herbruikbaar door leveranciers, waardoor lock-in wordt vermeden.- Internationale compatibiliteit: OSLO is gebaseerd op W3C-standaarden en kan gekoppeld worden aan Europese INSPIRE-richtlijnen.
+0767: Waarom OSLO?
+0768: OSLO (Open Standaarden voor Linkende Organisaties) is de Vlaamse standaard om gegevens tussen overheden en partners eenduidig, herbruikbaar en leesbaar uit te wisselen. Door OSLO toe te passen in ons nieuwe digitale transformatietraject voor de opvolging van nutswerken en herstel van de publieke ruimte:• werken we uniform over stadsdiensten, nutsmaatschappijen en aannemers heen;• verminderen we interpretatieverschillen in termen, statussen en data-uitwisseling;• maken we de toepassing compatibel met bestaande Vlaamse en Europese datastandaarden (bv. GIPOD, INSPIRE);• leggen we de basis voor automatische validatie van gegevens en AI-ondersteunde analyse.
+0769: Hoe passen we OSLO toe in het project Digitale Nuts
+0770: We ontwikkelen een data-architectuur waarbij alle kernobjecten (bv. Werk, Vergunning, Locatie, Vaststelling, Herstelbon, Organisatie) worden gemodelleerd volgens OSLO-applicatieprofielen.• Eigenschappen krijgen vaste codelijsten (bv. status, type werk, materiaal).• Geometrie wordt uitgedrukt in GeoSPARQL zodat GIS-componenten van bij de bron correcte kaartdata kunnen gebruiken.• Metadata wordt voorzien met o.a. dcterms: voor datum, verantwoordelijke en bron, zodat koppelingen met andere platformen (bv. rapportering, dashboards) eenvoudig zijn.• We voorzien een MVP-aanpak waarbij telkens één deelproces (bv. herstelbonnen) OSLO-conform wordt gemaakt en getest met partners.
+0771: Meerwaarde in de City of Things-context
+0772: De OSLO-toepassing maakt het mogelijk om:1. Real-time datadeling te doen met andere steden en intercommunales die gelijkaardige processen hebben.2. Data-gedreven toezicht te integreren met externe bronnen zoals GIPOD, meldingen en sensordata.3. AI-modules te trainen op gestructureerde, semantisch eenduidige data, wat de nauwkeurigheid van beeldherkenning, anomaliedetectie en besluitvoorbereiding sterk verbetert.4. Interoperabiliteit te garanderen, waardoor onze tool modulair kan uitbreiden en als “Zwitsers zakmes” inzetbaar blijft voor andere domeinen van de publieke ruimte.
+0773: Samengevat: OSLO vormt het semantische fundament van onze toekomstige digitale nutsopvolging. Het zorgt dat elk datadeelproces – van terreinobservatie tot financiële afhandeling – sluitend, herbruikbaar en schaalbaar is, binnen Antwerpen én in samenwerking met andere Vlaamse steden en nutsbedrijven. Zo borgen we dat ons “Zwitsers zakmes” niet alleen vandaag, maar ook in de toekomst scherp blijft.
+0774: Figuur 1Figuur: Overzicht huidige OSLO Nutswerken-structuur met voorgestelde uitbreidingen en toepassingen in Digitale Nuts.
+0775: Uitdaging: Toekomstvisie: AI als Versneller voor Vaststellingen in de Publieke Ruimte
+0776: Uitdaging
+0777: Huidige vaststellingstools in de publieke ruimte functioneren hoofdzakelijk als passieve registratiemiddelen. Ze ondersteunen toezichters en administratieve medewerkers beperkt in het proactief plannen, analyseren en optimaliseren van toezicht. De integratie met centrale databronnen zoals GIPOD en stedelijke GIS-lagen is vaak onvolledig, waardoor waardevolle verbanden tussen geplande werken, vergunningen en herstellingen niet tijdig worden gelegd. Dit leidt tot inefficiënte inzet van personeel, gemiste overtredingen en trage terugkoppeling naar burgers en beleidsmakers.
+0778: Oplossing
+0779: De vaststellingen-app van de toekomst evolueert naar een actieve, AI-gedreven assistent die toezichters, administratieve medewerkers en beleidsmakers ondersteunt in elke fase van het proces – van planning tot oplevering.
+0780: De kerncomponenten zijn:
+0781: 1. Geïntegreerde datastroom: Door een permanente koppeling met GIPOD en stedelijke GIS-lagen (materialen, zones, vergunningen) beschikt de app altijd over actuele informatie over geplande en lopende werken. Deze datastroom vormt de basis waarop AI:
+0782: Werken automatisch categoriseert en koppelt aan vergunningen en retributieregels.
+0783: Vergunningloze werken of afwijkingen detecteert nog voor de eerste fysieke controle.
+0784: 2. Slimme inzet van toezichters: Met predictive deployment kan AI op basis van data-analyses, trends, historische gegevens van geplande werken, verkeersdata en evenementenkalenders:
+0785: Controle-routes optimaliseren om reistijd en dubbele verplaatsingen te vermijden.
+0786: Automatisch werkpakketten samenstellen per toezichter, afgestemd op geografische nabijheid en urgentie.
+0787: Pieken in werkdruk voorspellen en personeelsinzet proactief plannen.
+0788: 3. Automatische beeldherkenning en GIS-verrijking – Herkennen van schade, materialen en ontbrekende signalisatie. Op het terrein wordt de smartphonecamera een AI-inspectietool:
+0789: Foto’s en video’s worden automatisch geanalyseerd om schade, foutieve materialen of ontbrekende signalisatie te herkennen.
+0790: AI herkent bestratingstypes en koppelt deze aan herstelvoorschriften in WIS.
+0791: Vaststellingen krijgen automatisch een GIS-positie, waardoor backoffice en andere toezichters direct context zien.
+0792: 4. Realtime beslissingsondersteuning – Direct advies op basis van reglementen, zones en materiaaltypes:
+0793: “Dit werk bevindt zich in een strategische zone – herstel in natuursteen verplicht binnen 10 dagen.”
+0794: Signaleert wanneer een werk in strijd is met geplande evenementen of tijdelijke vergunningen.
+0795: Genereert automatisch PV’s en intekeningen inclusief foto’s, klaar om te verzenden naar nutsbedrijven of de stadsaannemer.
+0796: 5. Proactief kwaliteitsbeheer – AI-analyse van vergunning tot herstel met risicoscores en trenddetectie om:
+0797: Risicoscores toe te kennen aan lopende werken.
+0798: Trends in degradatie of herhaalde schades te voorspellen.
+0799: Rapporten te leveren waarmee beleidsmakers herstellingsbudgetten gerichter kunnen inzetten.
+0800: 6. Integratie met burgerfeedback – Matchen en prioriteren van klachten gekoppeld aan GIPOD-dossiers. Door koppeling met klachten uit KLM2 of meldingen.antwerpen.be kan AI:
+0801: Meldingen automatisch matchen met relevante GIPOD-dossiers.
+0802: Urgente klachten prioriteren via sentimentanalyse en hinder-inschatting.
+0803: Statusupdates automatisch terugkoppelen naar de melder.
+0804: 7. Zelflerend stedelijk controlesysteem – Algoritmes verbeteren doorlopend detectie, voorspelling en beleidsondersteuning. Naarmate de databank groeit, wordt de AI steeds nauwkeuriger:
+0805: Lerende algoritmes verbeteren detectie en voorspellingen.
+0806: Dashboards geven real-time zicht op kwaliteit per aannemer, type werk of zone.
+0807: Beleidskeuzes worden ondersteund met data over waar ingrijpen het meeste impact heeft.
+0808: Innovatief karakter
+0809: Deze aanpak overstijgt klassieke toezichtmethoden door AI in te zetten als actieve partner in plaats van passief hulpmiddel. De combinatie van real-time data-integratie, automatische beeldanalyse, voorspellende modellen en burgerfeedback maakt het mogelijk om toezicht dynamisch en contextueel te organiseren. De zelflerende component zorgt ervoor dat het systeem steeds effectiever wordt naarmate meer data beschikbaar komt.
+0810: Impact
+0811: • Snellere en efficiëntere inzet van toezichters door optimale route- en taakplanning.• Hogere detectiegraad van vergunningloze of afwijkende werken.• Verbeterde herstelkwaliteit door directe koppeling van vaststellingen aan materiaal- en zonevoorschriften.• Kortere doorlooptijd tussen klacht, vaststelling en actie.• Transparantie en verantwoording via real-time dashboards voor alle betrokken partijen.• Strategische inzet van herstelbudgetten op basis van trend- en risicoanalyse.
+0812: Schaalbaarheid
+0813: Door gebruik te maken van gestandaardiseerde koppelingen met GIPOD, stedelijke GIS-platformen en meldingssystemen kan deze AI-aanpak eenvoudig worden uitgerold naar andere steden en gemeenten. De modulaire architectuur maakt het mogelijk om stapsgewijs functies toe te voegen of aan te passen aan lokale behoeften, terwijl de zelflerende algoritmes zich blijven verbeteren door data-uitwisseling op bovenlokaal niveau.
+0814: Implicatie: de subsidieaanvraag moet een publiek-private samenwerking voorzien waarin het intellectueel eigendom gedeeld of gelicenseerd wordt onder duidelijke afspraken. De tool moet herbruikbaar zijn, maar niet exclusief.
+0815: Uitdaging: De Driehoek GIPOD – Steden en Gemeenten – Nutsmaatschappijen
+0816: Uitdaging
+0817: De uitvoering en opvolging van nutswerken in Vlaanderen is afhankelijk van een complexe samenwerking tussen drie kernspelers: de nutsmaatschappijen, de steden en gemeenten, en het centrale GIPOD-platform. In theorie moet GIPOD fungeren als centrale databank voor alle werken en innames in de publieke ruimte. In de praktijk is de datakwaliteit en actualiteit vaak onvoldoende voor effectieve opvolging en controle.Belangrijke knelpunten:
+0818: • Nutsmaatschappijen ontsluiten hun werfdata niet altijd volledig of tijdig in GIPOD.• Data ontbreekt of is verouderd, waardoor toezichters en beleidsmakers niet kunnen vertrouwen op de digitale planning.• Er is geen structurele verplichting om cruciale gegevens – zoals geotagged foto's, plandata of statusupdates – te registreren en te delen.• Steden en gemeenten hebben vaak geen uniforme werkwijze om GIPOD-data te integreren in hun interne processen.• De samenwerking is ad hoc en afhankelijk van goodwill, waardoor kwaliteitsafspraken onvoldoende worden nageleefd.Het gevolg:
+0819: werken worden te laat of onvolledig opgevolgd, herstelkwaliteit is moeilijk te controleren, en burgers ondervinden onnodige hinder.
+0820: Oplossing:
+0821: Een versterkt driehoeksmodel waarin GIPOD fungeert als centrale en verplichte dataknooppunt tussen nutsmaatschappijen en steden/gemeenten. Dit vereist zowel technische als organisatorische maatregelen:• Wettelijke of reglementaire verplichting voor nutsmaatschappijen om werfdata, statusupdates en geotagged foto’s in GIPOD te registreren.• Gestandaardiseerde datavelden conform OSLO-standaarden (bv. materiaaltype, sleufopbouw, datum en tijd van uitvoering, vergunningreferentie).• Realtime synchronisatie tussen GIPOD en gemeentelijke toezicht-apps.• Mogelijkheid voor steden om aanvullende vaststellingen, foto’s en herstelstatus terug te koppelen naar het GIPOD-dossier.• Duidelijke afspraken over horizontale samenwerking (tussen steden/gemeenten onderling) en verticale samenwerking (tussen steden en nutsmaatschappijen via GIPOD).• Ontwikkeling van een GIS-viewer die de actuele inname op kaart toont en verrijkt wordt met visuele vaststellingen door ontsluiting van alle foto’s.
+0822: Innovatief karakter
+0823: Deze aanpak verschuift van vrijblijvende gegevensdeling naar een verplicht, gestandaardiseerd en digitaal geautomatiseerd proces. Door GIPOD als centraal platform in te zetten en de koppelingen met gemeentelijke systemen te automatiseren, ontstaat één gedeelde 'bron van waarheid'. De horizontale samenwerking tussen steden zorgt voor uniforme kwaliteitsnormen, terwijl de verticale koppeling met nutsmaatschappijen via GIPOD de controleerbaarheid van werken versterkt. De inzet van geotagged foto’s en GIS-visualisaties maakt snelle, objectieve controles mogelijk.
+0824: Impact
+0825: • Hogere datakwaliteit en betrouwbaarheid voor alle betrokken partijen.• Snellere en gerichtere controles op basis van actuele en volledige informatie.• Vermindering van hinder voor bewoners door efficiëntere opvolging en kortere doorlooptijden.• Betere naleving van herstelstandaarden door transparantie en bewijsvoering.• Uniformiteit in processen en afspraken, ongeacht de stad of gemeente.
+0826: Schaalbaarheid
+0827: Omdat het model volledig steunt op het centrale GIPOD-platform en OSLO-standaarden, kan het op Vlaams niveau worden ingevoerd. De afspraken en technische koppelingen zijn herbruikbaar voor alle steden en gemeenten, ongeacht hun grootte of interne IT-structuur. Dit maakt het mogelijk om één uniforme, wettelijk afdwingbare aanpak te realiseren die zowel lokale efficiëntie als bovenlokale samenwerking bevordert.
+0828: Uitdaging: DPIA & GDPR-risicoanalyse  bij het verzamelen van gegevens op het openbaar domein.
+0829: Uitdaging:
+0830: De digitale opvolging van nutswerken maakt gebruik van foto’s, locatiegegevens en metadata die rechtstreeks op het openbaar domein worden verzameld. Deze gegevens zijn essentieel voor toezicht, herstelbewijslast en beleidsmonitoring, maar brengen tegelijk risico’s met zich mee. Denk aan herkenbare burgers of voertuigen op foto’s, de herleidbaarheid naar specifieke adressen, of het delen van data met externe partijen zoals nutsbedrijven.
+0831: Onze opdracht is om deze risico’s niet te negeren, maar er van bij de start verstandig en transparant mee om te gaan. Een Data Protection Impact Assessment (DPIA) toont aan dat de privacy-impact van de app en dataplatform gekend, geëvalueerd en beperkt is .
+0832: Verwerkte gegevens
+0833: Fotolog van vaststellingen (potentieel herkenbare personen, voertuigen, huisnummers).
+0834: Locatiegegevens (GPS) van werken en vaststellingen.
+0835: Tijdstempels en metadata (wie, waar, wanneer).
+0836: Contactgegevens aannemers/nutsbedrijven (vergunning, herstelbons).
+0837: Logdata van gebruikers (toezichters, aannemers).
+0838: Doeleinden van verwerking
+0839: Toezicht & controle van nuts- en graafwerken.
+0840: Herstelbewijslast voor retributies, kwaliteitscontroles en geschillen.
+0841: Bewonerscommunicatie (welke werken, waar, wanneer).
+0842: Beleidsmonitoring (KPI’s, kwaliteit, hinder).
+0843: GDPR-risico’s
+0844: Onbedoelde identificatie van burgers via foto’s (gezichten, nummerplaten).
+0845: Herleidbaarheid naar adressen (bv. schadeclaims, koppeling met andere databanken).
+0846: Onrechtmatige toegang door onbevoegde personen (bv. aannemers die data van andere werken bekijken).
+0847: Te lange bewaartermijnen → onnodige opslag van persoonsgegevens.
+0848: Onduidelijke rolverdeling (wie is verwerkingsverantwoordelijke / wie verwerker?).
+0849: Datatransfer naar nutsbedrijven → risico op verder gebruik buiten de afgesproken doeleinden.
+0850: Risicobeoordeling
+0851: Waarschijnlijkheid: gemiddeld tot hoog (door frequente foto-opnames en brede datastroom).
+0852: Impact: hoog (privacy van burgers, mogelijke juridische claims, reputatieschade).
+0853: Mitigatiemaatregelen
+0854: Privacy by design: automatische blur van gezichten en nummerplaten in de app.
+0855: Dataminimalisatie: enkel noodzakelijke metadata opslaan; geen “extra” persoonsgegevens.
+0856: Rolverdeling:
+0857: Stad Antwerpen (en partners): verwerkingsverantwoordelijke.
+0858: Digipolis + leverancier: verwerkers.
+0859: Nutsbedrijven: ontvangers met contractueel beperkt doel.
+0860: Athumi als neutrale datakluis → gecontroleerde toegang, logging & autorisatie.
+0861: Bewaartermijnen:
+0862: Foto’s met persoonsgegevens: max. 5 jaar (juridische bewijslast herstel/retributie).
+0863: Metadata: enkel zolang nodig voor beleids-KPI’s (herziening jaarlijks).
+0864: Toegangsbeheer: rollen & rechten (bv. toezichters enkel eigen dossiers, nutsbedrijven enkel eigen werken).
+0865: DPIA-traject: formele toets voorafgaand aan MVP-uitrol, herzien bij elke nieuwe module (bv. AI-beeldherkenning).  (gegevensbeschermingseffectbeoordeling)
+0866: Innovatief karakter
+0867: Eerste Vlaamse toezicht-app die privacy by design en Athumi-datadiensten combineert.
+0868: Generiek DPIA/GDPR-kader dat ook bruikbaar is voor andere steden en digitale toepassingen rond toezicht.
+0869: Impact: vertrouwen van burgers, nutsbedrijven en bestuur dat het project juridisch sluitend is. Vermindert kans op klachten of sancties.
+0870: Schaalbaarheid: model is herbruikbaar als GDPR-sjabloon voor alle Vlaamse steden die digitale toezichtsystemen inzetten.
+0871: Uitdaging: Van klassieke webstructuur naar taakgerichte digitale omgeving
+0872: WIMP overstijgen – Mobile-first, Context-aware, Actionable interfaces
+0873: Uitdaging
+0874: Traditionele digitale toepassingen voor steden en nutsbeheer zijn vaak opgebouwd volgens het klassieke webmodel met hiërarchische menu’s, vaste pagina’s en statische inhoud. Gebruikers moeten zelf door menu’s navigeren om informatie of formulieren te vinden. Dit is log en inefficiënt, zeker voor medewerkers op het terrein die snel en taakgericht moeten kunnen handelen. Hierdoor gaan kostbare tijd en efficiëntie verloren, en blijft de informatievoorziening vaak achter bij de realiteit op het terrein.
+0875: Oplossing
+0876: Met Digitale Nuts stappen we af van het menu-gedreven model en introduceren we een mobile-first, context-aware en actionable interface. We vertrekken vanuit de concrete taak van de gebruiker en de context waarin die werkt. In plaats van te zoeken in menu’s, krijgt de gebruiker direct de relevante acties, informatie en formulieren te zien, afgestemd op het type werk en de locatie.Belangrijkste kenmerken:• Taakgestuurd – de interface toont enkel wat op dat moment nodig is.• Contextgedreven data-integratie – realtime koppeling van GIPOD-data, stadsdata en terreinobservaties.• Single-page interactie – acties worden direct verwerkt zonder opnieuw laden van pagina’s.• Component-gebaseerd ontwerp – herbruikbare bouwstenen zoals kaartweergave en statusindicator.• Mobile-first – ontworpen voor smartphones en tablets, inclusief offline mogelijkheden.• AI-integratie – beeldherkenning, spraaknotities en slimme suggesties.
+0877: Innovatief karakter
+0878: Deze aanpak overstijgt het klassieke WIMP-model door gebruikers niet langer passief te laten zoeken, maar actief te ondersteunen met directe en contextuele functionaliteit. Door taakgestuurd en contextgedreven te werken, sluiten we naadloos aan op het werkproces van toezichters en veldmedewerkers. De component-gebaseerde opbouw maakt snelle aanpassingen mogelijk, terwijl AI-tools zoals beeldherkenning extra efficiëntie en kwaliteitsborging toevoegen. Dit verhoogt de nauwkeurigheid van vaststellingen en versnelt de administratieve afhandeling.
+0879: Impact
+0880: • Efficiëntere werkprocessen – minder tijd verloren aan zoeken en navigeren.• Hogere kwaliteit van gegevens – vaststellingen worden direct gekoppeld aan de juiste context.• Snellere opvolging – real-time toegang tot actuele data maakt directe actie mogelijk.• Minder administratieve last – handelingen worden in één scherm afgehandeld.• Verbeterde communicatie – alle betrokken partijen werken met dezelfde actuele informatie.
+0881: Schaalbaarheid
+0882: De component-gebaseerde architectuur maakt het eenvoudig om deze aanpak uit te rollen naar andere steden en partners, zonder telkens een volledig nieuw systeem te ontwikkelen. Omdat de toepassing gebruikmaakt van gestandaardiseerde koppelingen met GIPOD, stadsdataplatformen en nutsbedrijven, kan het model op Vlaams niveau worden toegepast. Dit bevordert samenwerking en uitwisseling tussen steden, nutsbedrijven en aannemers.
+0883: Hoe zou de toezicht-app eruit kunnen zien?
+0884: Een veldtoepassing voor toezichters van Stad Antwerpen kan bestaan uit volgende modules / schermen, gegroepeerd rond gebruiksmomenten:
+0885: 1. Startscherm: "Mijn Werven Vandaag"
+0886: Lijst van openstaande toezichttaken op basis van locatie & planning
+0887: Live kaartje met geolocatie
+0888: Filter op type werk: nuts, aanwerken bouw, onderhoud, districtsvraag, etc.
+0889: 2. Vaststelling maken
+0890: Foto toevoegen of nemen
+0891: Notitieveld (met sjablonen voor standaardformuleringen)
+0892: Koppeling aan dossiernummer of GIPOD-ID
+0893: Koppeling aan lijst met controlepunten (herstelkwaliteit, signalisatie, vergunningstatus)
+0894: 3. Documenten & Vergunningen
+0895: Opzoeken van signalisatievergunning
+0896: Domeintoelating of werftoelating opzoeken via adres, naam of dossiercode
+0897: Raadplegen van lastvoorwaarden of bijzonderheden
+0898: Opslaan in de offline cache voor veldgebruik
+0899: 4. Toolbox voor beoordeling
+0900: Checklists voor:
+0901: Herstel in natuursteen / asfalt
+0902: Tijdelijke versus definitieve aanleg
+0903: Domeinvergunningsvoorwaarden
+0904: Quick access tot:
+0905: OSLO-standaardvelden
+0906: Code Nuts checklist
+0907: Eigen bestek (Standaardbestek 250)
+0908: Reglementen
+0909: 5. Synchronisatie & Rapportering
+0910: Offline werken en synchroniseren zodra er verbinding is
+0911: Automatisch dagverslag (gegenereerd uit vaststellingen)
+0912: Export naar PDF of integratie met intern rapportplatform
+0913: Kenmerken van niet-WIMP schermopbouw
+0914: In plaats van vensters, menubalken en pointerinteractie draait het om touch, context en eenvoud:
+0915: Voorbeeld: Vaststelling toevoegen (niet-WIMP)
+0916: Doel: Een toezichter staat bij een werf en moet snel een vaststelling doen, inclusief foto, locatie en opmerkingen.
+0917: Schermflow:
+0918: Home / Werkoverzicht
+0919: Lijst van toegewezen werven als cards met foto, adres, status
+0920: Floating action button (+) rechts onderaan om een nieuwe vaststelling te starten
+0921: Werkdetails (tap op card)
+0922: Kaart bovenaan met werflocatie + nabije werken (GIS-lagen)
+0923: Tabs of horizontale swipes: Info – Foto's – Historiek
+0924: Belangrijkste acties direct zichtbaar: Maak foto, Voeg opmerking toe, Status wijzigen
+0925: Foto maken
+0926: Camera direct open, zonder apart venster of bestandsselectie
+0927: Automatisch geotaggen
+0928: Mogelijkheid om te tekenen/highlighten op de foto (inline annotatie)
+0929: Opmerking toevoegen
+0930: Kort tekstveld (max 200 tekens) direct op het scherm
+0931: Voice-to-text knop voor snelle input
+0932: Opslaan & Verzenden
+0933: Grote Opslaan knop onderaan (duimpositie)
+0934: Feedbackbanner (“Vaststelling verzonden”) en terug naar overzicht
+0935: Belangrijke ontwerpelementen
+0936: Bottom Navigation / Floating Action Buttons i.p.v. klassieke menubalk
+0937: Cards & contextuele acties: elk object (vaststelling, foto) heeft eigen swipe/tap acties
+0938: Progressive disclosure: eerst alleen kerninfo tonen, extra details pas bij swipe of tap
+0939: Inline maps: GIS-view direct geïntegreerd in de flow, zonder apart venster
+0940: Touch-first interacties: swipe voor status, pinch voor zoom, long press voor meer opties
+0941: Offline-first: alles opslaan in lokale queue, later synchroniseren
+0942: Referenties & inspiratie
+0943: Material Design van Google: Card UI + FAB als kernpatronen
+0944: Apple Human Interface Guidelines: Single Task Focus voor iOS apps
+0945: Open-source apps zoals Collector for ArcGIS en Field Maps voor kaart- & veldregistratie
+0946: Uitdaging:  Policy-Implementation Gap in nutswerken
+0947: Uitdaging
+0948: De stad Antwerpen beschikt over duidelijke beleidskaders en reglementen voor het uitvoeren en herstellen van nutswerken, zoals de Code Nuts, het retributiereglement en technische richtlijnen voor sleufopbouw en materiaalgebruik. Het management van de nutsmaatschappijen erkent de principes van goed herstel en is vertrouwd met deze regels.In de praktijk blijkt echter een structurele kloof tussen beleid en uitvoering: de zogeheten policy-implementation gap. De oorzaken zijn veelzijdig:- Onvoldoende kennis op het terrein – arbeiders van (onder)aannemers beschikken vaak niet over de specifieke vakkennis voor kwalitatief herstel. Er wordt regelmatig verwezen naar routines ('dat doen we toch altijd zo') die afwijken van de norm.- Tijdsdruk en contractuele marges – te krappe marges in onderaannemerscontracten leiden tot druk om snel af te werken, wat ten koste gaat van nauwkeurigheid en kwaliteit.- Gebrek aan integrale opvolging – informatie uit GIPOD is vaak onvoldoende verrijkt of actueel om gerichte controles mogelijk te maken.- Versnipperde communicatie – aanvragen, vergunningen en herstellingsopdrachten lopen via verschillende systemen en diensten.- Onvoldoende bewijslast – terreinobservaties worden niet structureel gekoppeld aan het brondossier, waardoor juridische afdwingbaarheid en terugkoppeling bemoeilijkt worden.Het gevolg: te lange uitvoeringsperiodes, gebrekkige herstellingen, hogere herstelkosten en blijvende hinder voor bewoners en weggebruikers.
+0949: Oplossing
+0950: Het project ‘Digitale Nuts’ pakt deze kloof aan via digitale integratie, vakinhoudelijke borging en procesvernieuwing:1. GIPOD+ intake – Nutsbedrijven leveren bij de aanvraag niet alleen plandata, maar ook verplicht:   - Geotagged foto’s vóór, tijdens en na de werken, rechtstreeks aan de NUTS-datazijde.   - Technische parameters (materiaaltype, sleufopbouw, legverband) conform stedelijke normen.   Deze data wordt via GIPOD beschikbaar gesteld aan steden en gemeenten.2. Mobiel toezicht met terugkoppeling – Toezichters registreren vaststellingen op het terrein met foto’s, meetdata en PV’s, gekoppeld aan het GIPOD-dossier. Eventuele afwijkingen worden direct digitaal teruggekoppeld naar het nutsbedrijf.3. Automatische kwaliteitscontrole – GIS-lagen en materiaaldatabanken (WIS) toetsen automatisch of herstelmethodes voldoen aan de stedelijke norm.4. Visuele controle door alle partijen – Doordat ook arbeiders van nutsbedrijven verplicht foto’s uploaden aan de NUTS-datazijde, ontstaat een gedeeld visueel dossier. Steden kunnen dit inzien via de mobiele app.5. Capaciteitsgericht toezicht – Gerichte selectie van controlecases op basis van data.
+0951: Innovatief karakter
+0952: - Eén gedeeld digitaal dossier voor elk grondwerk, centraal in GIPOD.- Verplichte fotolog voor uitvoerders als kwaliteits- en bewijsmiddel.- Realtime integratie van toezichtdata met plandata, GIS-lagen en materiaalnormen.- Standaardisatie van kwaliteitscriteria op Vlaams niveau.
+0953: Impact
+0954: - Beleidsdoelen waarmaken: regels worden niet enkel gekend door het management, maar ook geborgd op het terrein door digitale checks en verplicht fotobewijs.- Kwaliteitsverbetering: minder fouten, minder herhaald openbreken, duurzame bestrating.- Efficiëntie: minder administratieve last, snellere doorlooptijden.- Transparantie: visueel bewijs voor elke stap, gedeeld tussen alle partijen.
+0955: Schaalbaarheid
+0956: Doordat de oplossing aansluit op GIPOD en OSLO-standaarden, kan ze eenvoudig door andere Vlaamse steden en gemeenten worden overgenomen, zonder extra ontwikkelkosten. Dit biedt een Vlaams breed model dat de samenwerking tussen lokale besturen en nutsbedrijven structureel versterkt.
+0957: Uitdaging: Verbeterde Communicatie met Bewoners
+0958: Uitdaging
+0959: Bewoners ervaren hinder door nuts- en andere werken in de publieke ruimte, maar ontvangen vaak beperkte, laattijdige of onvolledige informatie. Huidige communicatiekanalen – zoals meldingen via KLM2 of meldingen.antwerpen.be – zijn vooral reactief en gefragmenteerd. Er is geen geïntegreerde informatiestroom tussen GIPOD, toezichthouders, nutsmaatschappijen en burgers. Hierdoor ontstaan frustraties, onbegrip en klachten, en blijft de terugkoppeling over planning, herstellingen en verantwoordelijken vaak uit. Bovendien zijn updates niet altijd in begrijpelijke taal of contextueel relevant voor de betrokken locatie.
+0960: Oplossing
+0961: Een geïntegreerd communicatie-ecosysteem dat actuele gegevens uit GIPOD, toezicht-apps en nutsmaatschappijen direct koppelt aan bewonerscommunicatie.
+0962: Kerncomponenten:• Koppeling van klachtenkanalen (KLM2, meldingen.antwerpen.be) aan GIPOD-dossiers.• Automatische statusupdates per werk (bv. startdatum, vertraging, hersteltermijn) naar bewoners.• Contextuele communicatie op basis van straat, zone of project.• AI-ondersteunde sentimentanalyse voor prioritering en gepaste toon.• Gebruik van bewonersvriendelijke taal en visuele hulpmiddelen.• Integratie van QR-codes op werfborden en digitale nieuwsbrieven voor real-time updates.
+0963: Innovatief karakter
+0964: Deze aanpak transformeert bewonerscommunicatie van een passief, reactief proces naar een proactief en gepersonaliseerd systeem. Door koppelingen te maken tussen GIPOD en meldingskanalen kunnen burgers automatisch geïnformeerd worden over werken in hun directe omgeving. AI-analyse helpt om urgente meldingen sneller op te volgen en de toon af te stemmen op de situatie. Het gebruik van QR-codes en digitale platforms maakt informatie toegankelijk op het moment dat die nodig is.
+0965: Impact
+0966: • Lagere klachtendruk door transparante en tijdige informatievoorziening.• Kortere responstijd op meldingen door automatische koppeling met actuele dossiers.• Hogere tevredenheid bij bewoners dankzij duidelijke taal en relevante context.• Betere samenwerking tussen stad, nutsmaatschappijen en aannemers via gedeelde informatie.• Minder misverstanden en onnodige opvolging doordat bewoners op de hoogte blijven.
+0967: Schaalbaarheid
+0968: Het communicatie-ecosysteem is gebaseerd op gestandaardiseerde koppelingen met GIPOD en kan daardoor eenvoudig worden uitgerold naar andere steden en gemeenten. De opzet is modulair: elke stad kan zelf bepalen welke kanalen, AI-functies en communicatiemiddelen ze activeert. De uniforme datastandaarden maken bovenlokale samenwerking en gezamenlijke communicatiecampagnes mogelijk.
+0969: Uitdaging: GIS als Sleutel voor Verbeterde Publiekscommunicatie over Werken in de Publieke Ruimte
+0970: Uitdaging
+0971: Informatie over werken in de publieke ruimte is versnipperd over verschillende kanalen: GIPOD, stedelijke projectpagina’s, meldingsplatformen, nieuwsbrieven, werfborden en aparte storingspagina’s van nutsmaatschappijen. Hoewel deze bronnen waardevolle informatie bevatten, ontbreekt een geïntegreerd en actueel overzicht voor de burger. Data is vaak incompleet, verouderd of moeilijk te vinden. Bovendien zijn de huidige kaarttoepassingen beperkt in interactiviteit en relevantie, waardoor bewoners moeite hebben om snel te begrijpen welke werken hen zullen beïnvloeden.
+0972: Oplossing
+0973: Een robuuste GIS-werking vormt het fundament voor een modern en geïntegreerd communicatieplatform. Door alle relevante databronnen – GIPOD, stedelijke projecten, meldingen.antwerpen.be, nutsmaatschappijen, Vlaamse en provinciale platforms – samen te brengen in één centrale GIS-viewer, ontstaat een betrouwbaar en actueel beeld voor zowel burgers als interne medewerkers.Kerncomponenten:• Centrale kaartviewer met alle werken (stad, nuts, derden) inclusief actuele status en contactinformatie.• Realtime synchronisatie met GIPOD en interne stedelijke systemen.• Integratie van foto’s, vergunningen, hersteltermijnen en verantwoordelijken bij elke werkfiche.• Persoonlijke filteropties voor burgers op basis van adres, wijk of type werk.• GIS-ondersteunde selectie van hinderzones voor gerichte Figuur 2  view RADAR stad GentFiguur 2  view RADAR stad Gentbewonersbrieven en digitale updates.• Koppeling van QR-codes op werfborden naar dynamische kaartweergaven.
+0974: Innovatief karakter
+0975: De voorgestelde aanpak gaat verder dan klassieke kaarttoepassingen door GIS te gebruiken als dynamisch communicatie-instrument. De GIS-viewer wordt gevoed met actuele data en verrijkt met contextuele informatie zoals foto’s en herstelrichtlijnen. Burgers zien niet alleen ‘waar’ er gewerkt wordt, maar ook ‘wat’ er gebeurt, ‘wanneer’ en ‘door wie’. De koppeling met QR-codes en meldingsplatformen maakt het mogelijk dat bewoners direct vanop straat toegang hebben tot gedetailleerde informatie over de werken in hun buurt.
+0976: Impact
+0977: • Betere transparantie richting bewoners door volledig en actueel overzicht.• Lagere klachtendruk doordat bewoners proactief geïnformeerd worden.• Snellere interne opvolging doordat toezichters en administratieve medewerkers werken kunnen lokaliseren en controleren vanuit één centrale omgeving.• Meer vertrouwen van burgers in de uitvoering van publieke werken.• Efficiëntere communicatiecampagnes dankzij gerichte selectie van getroffen adressen.
+0978: Schaalbaarheid
+0979: Omdat de GIS-werking gebaseerd is op open standaarden en koppelingen met bestaande platformen zoals GIPOD, kan deze oplossing eenvoudig worden uitgerold naar andere steden en gemeenten. De modulaire opbouw laat toe om lokaal te kiezen welke databronnen en functionaliteiten worden geactiveerd, terwijl de kernarchitectuur uniform blijft. Dit bevordert bovenlokale samenwerking en maakt gezamenlijke communicatie-initiatieven mogelijk.
+0980: Uitdaging: Meetpunten en Evaluatie – Digitale Nuts
+0981: Uitdaging
+0982: Het meten van de kwaliteit en efficiëntie van nutswerken in de publieke ruimte gebeurt vandaag fragmentarisch en zonder uniforme set van indicatoren. Hoewel er in het proefproject WYRE in Merksem al duidelijke afspraken werden gemaakt over dossieropbouw, GIPOD-registratie en bewonerscommunicatie, ontbreekt nog een overkoepelend meetsysteem dat zowel technische uitvoering, communicatie als doorlooptijden in kaart brengt. Hierdoor is het moeilijk om objectief te evalueren of de kwaliteit op het terrein daadwerkelijk verbetert en om te sturen op basis van concrete resultaten.
+0983: Oplossing
+0984: Ontwikkeling van een uniforme, digitale meetmethodiek gekoppeld aan GIPOD en de toezicht-app. Deze meetmethodiek combineert vaste kernindicatoren met evoluerende kwaliteitsparameters, zodat zowel basisprestaties als groei zichtbaar worden. Alle meetpunten worden per kwartaal gerapporteerd en zijn inzichtelijk voor zowel stad, nutsmaatschappijen als aannemers.
+0985: Kernmeetpunten (direct meetbaar):• % dossiers volledig en correct ingediend.• % correcte intekening en timing in GIPOD.• % werven correct gesignaleerd.• % werven met gebuste en opgeladen bewonersbrief.• % herstellingen conform bestek en materiaalvoorschriften.• % dossiers met voor-, tijdens- en na-foto’s in GIPOD.• % herstellingen binnen vergunnings- of reglementaire termijn.
+0986: Evoluerende meetpunten (kwalitatieve groei):• Kwaliteitsscore per aannemer (combinatie van dossierkwaliteit, uitvoering, herstel, communicatie).• Herstelscore per materiaaltype (natuursteen, asfalt, beton).• Aantal herhaalde interventies per locatie.• Respons- en reactietijd tussen melding en start herstel.• GIS-dekking en datavolledigheid (% werven volledig zichtbaar met alle lagen).
+0987: Innovatief karakter
+0988: Door de meetpunten te koppelen aan een digitale toezicht-app en aan GIPOD ontstaat een geautomatiseerd, transparant meetsysteem. Dit vervangt subjectieve beoordelingen door objectieve data en maakt benchmarking tussen nutsmaatschappijen mogelijk. De evoluerende meetpunten stimuleren continue verbetering door trends en terugkerende problemen vroegtijdig te signaleren.
+0989: Impact
+0990: • Structurele verbetering van dossierkwaliteit en uitvoering.• Minder hinder en snellere herstellingen door beter inzicht in doorlooptijden.• Betere samenwerking en afstemming tussen stad, nutsmaatschappijen en aannemers.• Hogere tevredenheid bij bewoners door verbeterde signalisatie en communicatie.• Transparante prestatievergelijking tussen nutsmaatschappijen.
+0991: Schaalbaarheid
+0992: Het meetsysteem is gebaseerd op open standaarden en volledig gekoppeld aan GIPOD, waardoor het eenvoudig uit te rollen is naar andere steden en gemeenten. De modulaire opzet laat toe om meetpunten aan te passen aan lokale prioriteiten zonder de kernstructuur te verliezen. Hierdoor kan het systeem bovenlokaal ingezet worden en bijdragen aan Vlaamse kwaliteitsnormen voor nutswerken in de publieke ruimte.
+0993: Uitdaging: Schaalbaarheid -  Dissiminatieplan
+0994: UitdagingVeel lokale besturen worstelen met de opvolging van nutswerken: versnipperde processen, beperkte datadeling, trage communicatie en kwaliteitsverlies in de publieke ruimte. Kennis over efficiënte opvolging en herstel is zelden gebundeld en nauwelijks overdraagbaar. Hierdoor moeten andere steden het wiel opnieuw uitvinden, met hoge administratieve lasten en onnodige hinder voor burgers.
+0995: OplossingHet project levert een geïntegreerde digitale tool en procesaanpak op, ondersteund door draaiboeken, modelbestekken en procesflows. Deze worden actief gedeeld met andere steden en intercommunales via bestaande netwerken en communicatiekanalen. Naast de software worden ook de methodiek en de juridische afspraken beschikbaar gesteld, zodat lokale besturen snel kunnen instappen.
+0996: Innovatief karakterHet disseminatieplan koppelt technische overdraagbaarheid (herbruikbare softwaremodules, API-koppelingen met GIPOD en GIS) aan bestuurlijke overdraagbaarheid (modeldocumenten, juridische kaders). De tool wordt modulair opgebouwd, zodat steden enkel de relevante onderdelen kunnen overnemen. Deze combinatie van technische en organisatorische overdracht is nieuw in nutsbeheer.
+0997: ImpactAndere lokale besturen kunnen zonder zware ontwikkelingskosten profiteren van een bewezen aanpak, wat leidt tot minder hinder in de publieke ruimte, efficiëntere processen en lagere administratieve lasten. Door schaalvoordelen in onderhoud en kennisopbouw worden ook de kosten op lange termijn gedrukt.
+0998: SchaalbaarheidDe resultaten worden ontsloten via:
+0999: Draaiboek en handleidingen in open formaat, gepubliceerd via de VVSG-kennisbank (https://www.vvsg.be/kennisitem).
+1000: Modelbestek en raamcontractformule beschikbaar via Vlaamse aanbestedingsdatabank (https://www.publicprocurement.be).
+1001: VVSG-sessies en webinars voor kennisdeling met alle Vlaamse steden en gemeenten (https://www.vvsg.be/kalender).
+1002: City of Things-projectendatabank bij VLAIO voor eindresultaten en documentatie (https://www.vlaio.be/nl/projecten/city-of-things).
+1003: Digipolis-netwerk voor technische partnerschappen en hergebruik van softwarecomponenten (https://www.digipolis.be).
+1004: Projectpagina op Antwerpen.be voor publieke communicatie en downloadbare tools (https://www.antwerpen.be).
+1005: Groepsaankoopmodel via VVSG en intercommunales (bv. Fluvius-partnerschap) voor gezamenlijke licentie- en onderhoudskosten
+1006: Zo kan elke gemeente in Vlaanderen de oplossing binnen enkele maanden implementeren, ongeacht schaalgrootte of digitale maturiteit.
+1007: Uitdaging: Eenduidige naamgeving” Digitale nuts”, “Mobiele nuts” of “verbeterde werking Nuts”
+1008: Uitdaging
+1009: Doorheen de ontwikkeling van het project werden verschillende namen gegeven aan het project. Het is van belang de naamgeving te verduidelijken, de verschillen in focus bloot te leggen, en te komen tot één gedragen projectnaam met ondertitel die alle ambities samenvat.
+1010: Analyse van huidige benamingen
+1011: Wat elk van deze namen eigenlijk dekt
+1012: Digitale Nuts → de digitale infrastructuur en tools die we bouwen om toezicht, communicatie, en herstel digitaal te organiseren.
+1013: Mobiele Nuts → de mobiele interface en digitale opvolging van werven op het terrein door toezichters en vaststellers.
+1014: Verbeterde Werking Nuts → de hele reorganisatie, inclusief procesverbetering, retributieregels, samenwerking met nutsmaatschappijen, en capaciteitsopbouw binnen de stad.
+1015: Ze zijn dus onderling verbonden: Mobiele Nuts is een tool binnen het bredere project Digitale Nuts, dat op zijn beurt een digitale component is van de volledige Verbeterde Werking Nuts.
+1016: Oplossing
+1017: Hoofdtitel:“NUTS+ of Nuts 360” – Naar een integraal toezicht op nutswerken in Antwerpen
+1018: “+ of 360°” verwijst naar: toezicht, administratie, herstel, communicatie en beleid.
+1019: Binnen het project kunnen we dan subcomponenten benoemen:
+1020: NUTS360 Digital → alles rond centrale intake, databronnen, GIPOD-koppelingen, OSLO en backend.
+1021: NUTS360 Mobile → mobiele toepassing voor toezichters en interventies.
+1022: NUTS360 Herstel → focus op afrekeningen, bonnen en controle op correct herstel.
+1023: NUTS360 Proefprojecten → specifieke testcases zoals WYRE Merksem.
+1024: Communicatiesuggestie:
+1025: “Het project NUTS+ of NUTS360° verenigt onder één vlag de verschillende deelinitiatieven rond toezicht, herstelling, digitalisering en samenwerking met nutsmaatschappijen. De naam verwijst naar het streven naar een pluskwaliteit in het beheer van nutswerken in Antwerpen. NUTS+ staat voor een slimme, efficiënte en herbruikbare aanpak, zowel digitaal als organisatorisch.”
+1026: *(Variante ODINA -OPENBAAR DOMEIN INNAME NUTS ANTWERPEN kan verder onderzocht worden)
+1027: Uitdaging  Juridische aspecten & Uitrol digitale tool
+1028: UitdagingEen digitaal platform dat door meerdere steden, nutsmaatschappijen en private partijen gebruikt zal worden, moet juridisch robuust en marktneutraal zijn.Aanbestedingsprocedures voor innovatieve software brengen risico’s mee: vendor lock-in, bezwaarprocedures of te beperkte deelname van marktpartijen.Bovendien moet de app schaalbaar zijn voor kleinere gemeenten zonder telkens een zware aanbesteding te moeten doorlopen.
+1029: Oplossing
+1030: Innovatiegericht aanbesteden: selectiecriteria expliciet koppelen aan interoperabiliteit (OSLO), open API’s, overdraagbaarheid van data en code.
+1031: Raamovereenkomst/groepsaankoop voorzien: andere steden en gemeenten kunnen eenvoudig aansluiten zonder aparte aanbesteding.
+1032: Juridische toets vanaf MVP-fase door stadsjuristen en externe specialisten.
+1033: Hybride uitrolmodel: centrale publieke toegang (webtoepassing of appstore) + optionele integratie in commerciële tools (bv. Eaglebe).
+1034: Athumi/GIPOD als neutrale host voor kernkoppelingen → garandeert marktneutraliteit en vertrouwen bij nutsbedrijven.
+1035: Innovatief karakter
+1036: Niet alleen technologische innovatie, maar ook juridische innovatie: de aanbesteding zelf wordt ontworpen om open standaarden en marktbrede deelname te stimuleren.
+1037: Combinatie van publieke uitrol (centrale toegang) en private integratie (API’s) is nieuw in Vlaanderen.
+1038: Impact
+1039: Vermijdt lock-in en garandeert dat de applicatie toekomstbestendig blijft.
+1040: Vergroot de adoptie door kleinere gemeenten (lagere drempel) en nutsmaatschappijen (via neutrale koppelingen).
+1041: Transparantie in de markt verhoogt de kans op hergebruik en verdere innovatie.
+1042: Schaalbaarheid
+1043: Dankzij raamovereenkomsten en API-architectuur kunnen zowel kleine gemeenten als private partners eenvoudig aansluiten.
+1044: Athumi/GIPOD als neutraal distributie- en hostingkanaal maakt Vlaamse opschaling mogelijk.
+1045: Mogelijke onderzochte pistes
+1046: Overzicht van mogelijke juridische en organisatorische uitrolscenario’s
+1047: 1. Centrale publieke app (Windows/Apple/Google store)
+1048: App wordt als standaardapplicatie aangeboden in appstores.
+1049: Beheer en hosting via een publieke instantie (bv. Digipolis of Athumi).
+1050: Voordeel: gebruiksgemak, brede toegankelijkheid, herkenbare distributie.
+1051: Nadeel: updates, security en databeheer moeten centraal en continu geborgd worden.
+1052: 2. Webtoepassing gekoppeld aan GIPOD/Athumi
+1053: Geen aparte installatie, maar toegang via browser.
+1054: Hosting en security onder beheer van GIPOD of Athumi.
+1055: Voordeel: naadloze integratie met Vlaamse data-infrastructuur, schaalbaar.
+1056: Nadeel: minder flexibiliteit voor lokale uitbreidingen.
+1057: 3. Digipolis als ontwikkelaar & verspreider
+1058: Digipolis bouwt en beheert de toepassing, en kan ze via raamovereenkomst aanbieden aan andere steden.
+1059: Voordeel: expertise en ervaring met stedelijke digitale tools.
+1060: Nadeel: Digipolis is juridisch gebonden aan overheidsopdrachten, waardoor verkoop/licenties aan derden zorgvuldig geregeld moeten worden.
+1061: 4. Private partners (bv. Eaglebe, Spotbooking, …)
+1062: Integratie van de app in hun bestaande producten (vergunningenbeheer, signalisatieplanning, …).
+1063: Voordeel: marktverspreiding, schaalvoordelen, bredere adoptie.
+1064: Nadeel: risico op vendor lock-in of commerciële afhankelijkheid.
+1065: 5. Rol van nutsmaatschappijen
+1066: Kunnen de app gebruiken als “operationeel dashboard” voor hun werken.
+1067: Juridisch gevoelige kwestie: ze mogen niet exclusief bevoordeeld worden in de aanbesteding.
+1068: Wel mogelijk via open API’s en open standaarden: nutsbedrijven integreren de data in hun eigen tools.
+1069: 6. Juridisch kader
+1070: Subsidie = verplichting tot toepassing van de wet op overheidsopdrachten.
+1071: Dit betekent:
+1072: Open aanbesteding of onderhandelingsprocedure met voorafgaande bekendmaking.
+1073: Heldere selectiecriteria: OSLO-conformiteit, API-toegang, overdraagbaarheid.
+1074: Raamovereenkomsten of groepsaankopen zijn juridisch mogelijk en helpen om andere steden/stakeholders eenvoudig te laten instappen.
+1075: Nutsbedrijven en private partijen kunnen wel deelnemen als partner in de ontwikkeling (co-creatie, klankbord), maar niet exclusief de distributie in handen krijgen.
+1076: Uitdaging:  Van indruk naar inzicht: objectieve KPI’s voor nutswerken
+1077: UitdagingDe uitdaging is om de kwaliteit, doorlooptijd en hinder van nutswerken niet langer subjectief te beoordelen, maar via uniforme en automatisch meetbare KPI’s rechtstreeks uit de app en gekoppelde datastromen te monitoren
+1078: Oplossing
+1079: 1. Kwaliteit van herstel
+1080: Baseline: in 2024 werd bij >70% van de gecontroleerde nutsherstellingen een fout of tekortkoming vastgesteld (rapport vaststellers).
+1081: Target: tegen einde MVP-fase (M24) <25% fouten → een verbetering van 30%.
+1082: Meetmethode: steekproefcontroles en vaststellingsapp met AI-beeldherkenning, gevalideerd door toezichters.
+1083: 2. Doorlooptijd herstelling
+1084: Baseline: mediane hersteltijd van nutswerken in Antwerpen = ca. 20 werkdagen (KPMG-studie & retributiepiloot).
+1085: Target: reductie met −25% (naar max. 15 werkdagen) binnen 24 maanden.
+1086: Meetmethode: automatische koppeling herstelbon ↔ fotolog ↔ GIPOD-registratie.
+1087: 3. Klachten bewoners
+1088: Baseline: gemiddeld 120 klachten/maand rond nutswerken (KLM-data 2024).
+1089: Target: reductie van −20% binnen 2 jaar door betere communicatie en kortere hinder.
+1090: Meetmethode: monitoring KLM-registraties en bewonersfeedback via QR-codes/app.
+1091: 4. Datacompletude & OSLO-conformiteit
+1092: Baseline: in 2024 zijn <30% van de nutsdossiers volledig en conform geregistreerd in GIPOD.
+1093: Target: +30% OSLO-conformiteit tegen M18; 80% conformiteit bij projectafsluiting.
+1094: Meetmethode: automatische validatie via OSLO-schema’s.
+1095: 5. Efficiëntie toezichters
+1096: Baseline: toezichters besteden ±40% van hun tijd aan administratie (Excel, mails, PV’s).
+1097: Target: reductie naar <20% administratietijd → verdubbeling terreinuren.
+1098: Meetmethode: tijdsregistratie en workflowanalyse voor en na MVP-uitrol.
+1099: 6. Adoptie door nutsbedrijven/steden
+1100: Baseline: 0 nutsbedrijven en 0 andere steden gebruiken de tool in 2025.
+1101: Target: min. 1 nutsmaatschappij en 2 steden actief in MVP; tegen einde project min. 5 steden en 3 nutsbedrijven aangesloten.
+1102: Meetmethode: formele gebruiksovereenkomsten + actieve datasets in GIPOD.
+1103: Automatisch gemeten KPI’s
+1104: 🔹 Kwaliteit & herstel
+1105: % herstellingen correct bij eerste controle– Data: validatie door toezichters + AI-check fotolog.
+1106: Aantal herstellingen dat binnen X dagen opnieuw open moet– Data: koppeling GIPOD + opvolg-vaststellingen.
+1107: % herstel conform Code Nuts (legverband, funderingstype, materiaalkeuze).– Data: fotolog + checklist in app.
+1108: Gemiddelde score “herstelkwaliteit” per nutsbedrijf/aannemer– Data: geautomatiseerde scoringsmodule.
+1109: 🔹 Hinder & doorlooptijd
+1110: Gemiddelde doorlooptijd herstel (dagen)– Data: verschil tussen eerste vaststelling en goedgekeurd herstel.
+1111: % werken met tijdelijke veilige afsluiting (bv. asfaltlap geplaatst)– Data: aannemerupload + fotolog.
+1112: % werken waarbij signalisatie op tijd werd geplaatst– Data: fotolog vóór start + validatie signalisatievergunning.
+1113: Aantal dagen dat een voetpad/graafzone ontoegankelijk blijft– Data: statusupdates + GIS-overlay toegankelijkheidszones.
+1114: 🔹 Data & proces
+1115: % nutsdossiers OSLO-conform aangeleverd– Data: automatische OSLO-validator.
+1116: % GIPOD-dossiers met volledige statusupdates (start, uitvoering, herstel, oplevering).– Data: GIPOD API.
+1117: % herstelbonnen automatisch verrekend– Data: workflow app ↔ financieel systeem.
+1118: Gemiddelde verwerkingstijd tussen vaststelling en facturatie– Data: timestamps in dossierflow.
+1119: 🔹 Toezicht & capaciteit
+1120: Aantal vaststellingen per toezichter per week– Data: logins en registraties in app.
+1121: % terreinuren vs. bureau-uren– Data: activiteit in app + adminlog.
+1122: Gemiddelde responstijd toezichter op melding– Data: verschil timestamp melding ↔ timestamp eerste actie.
+1123: 🔹 Bewoners & communicatie
+1124: % werken met QR-code en digitale info actief– Data: scanlogs + projectstatus.
+1125: Aantal bewonersmeldingen dat automatisch aan juiste werk gekoppeld is– Data: participatiemodule ↔ GIPOD.
+1126: % bewonersmeldingen binnen X dagen beantwoord– Data: workflowmeldingen in app.
+1127: Aantal klachten per 100 werken (KLM-data).– Data: koppeling KLM ↔ GIPOD.
+1128: 🔹 Samenwerking & adoptie
+1129: Aantal nutsbedrijven dat actief data aanlevert via app/API– Data: actieve datasets in GIPOD.
+1130: Aantal gemeenten dat MVP of module X gebruikt– Data: gebruikslogins per bestuur.
+1131: % nutswerken waarbij meerdere actoren (nuts, aannemer, toezichter) actief dezelfde data gebruiken– Data: gebruikersrollen in dossierflow.
+1132: Innovatief karakter
+1133: Digitale keten in één systeem: Voor het eerst worden vergunning, uitvoering, toezicht en herstel digitaal aan elkaar geknoopt.
+1134: Automatische KPI’s: Geen manuele rapportering, maar real-time monitoring via foto’s, GPS, GIPOD-data en AI-beeldanalyse.
+1135: Modulaire schillenaanpak: Innovatief organisatiemodel dat het mogelijk maakt om stapsgewijs in te stappen, risico’s te spreiden en tegelijk schaalbaarheid te garanderen.
+1136: Privacy by design: Integratie van DPIA, automatische blur en Athumi-datadiensten als neutrale toegangspoort – ongezien in Vlaamse toezichttoepassingen.
+1137: Open standaarden als hefboom: Gebruik van OSLO-profielen en open API’s, waardoor het systeem herbruikbaar is voor alle Vlaamse steden en niet gebonden blijft aan één leverancier of stad.
+1138: Impact
+1139: Voor bewoners: minder hinder, beter geïnformeerd, kortere afsluitingen van straten en veiliger gebruik van de publieke ruimte.
+1140: Voor toezichters: efficiënter werken, meer tijd op het terrein en juridisch sluitende vaststellingen, wat hun rol versterkt en hun werkdruk verlaagt.
+1141: Voor nutsbedrijven: transparantie en sneller bijsturen bij fouten → minder conflicten, minder herstelkosten en betere reputatie.
+1142: Voor beleid en politiek: objectieve KPI’s om beslissingen en onderhandelingen met nutsbedrijven te onderbouwen, plus bewijs van gerealiseerde hinderreductie.
+1143: Voor Vlaanderen: schaalbare oplossing die inspeelt op duizenden werken per jaar, met minder hinder, lagere kosten en beter gebruik van publieke middelen.
+1144: Schaalbaarheid
+1145: De gekozen KPI’s zijn vanaf de kernlaag zo ontworpen dat ze automatisch gegenereerd worden uit de applicatie en de gekoppelde databronnen (GIPOD, fotolog, herstelbonnen, KLM). Dat betekent dat geen enkele stad of nutsmaatschappij aparte meetinstrumenten moet ontwikkelen: zodra men de app gebruikt, ontstaan de KPI’s vanzelf.
+1146: Omdat de KPI’s gebaseerd zijn op uniforme OSLO-profielen en realtime dataflows, zijn ze onafhankelijk van lokale werkprocessen en dus direct overdraagbaar naar andere gemeenten. Kleine steden krijgen zo dezelfde kwaliteits- en hinderindicatoren als grote steden, zonder bijkomende investeringen in monitoring.
+1147: Ook nutsmaatschappijen profiteren van schaalbaarheid: dezelfde KPI’s gelden voor alle steden waarin ze actief zijn. Zo ontstaat een Vlaamse benchmark, waarmee prestaties transparant en vergelijkbaar worden.
+1148: Tot slot kunnen KPI’s eenvoudig uitgebreid worden naar andere domeinen (bv. wegenonderhoud of evenementenbeheer), omdat de onderliggende meetmethode steeds dezelfde logica volgt: foto + locatie + tijd + status = objectieve indicator
+1149: Uitdaging:  kwaliteitsbewaking QA Gate
+1150: 🧩 Wat betekent “QA-gate”?
+1151: QA staat voor Quality Assurance — kwaliteitsbewaking.Een QA-gate is letterlijk een “poort” of controlepunt in het projectproces waar het werk pas verder mag als het aan vooraf vastgelegde kwaliteitscriteria voldoet.
+1152: 👉 Je kunt het zien als een veiligheidshek tussen projectfasen.
+1153: Bijvoorbeeld:
+1154: Een ontwikkelteam mag de app niet opleveren aan testgebruikers vóór de QA-gate “functionele testen” is goedgekeurd.
+1155: ⚙️ De logica achter QA-gates
+1156: Elke QA-gate toetst of:
+1157: De deliverables volledig zijn (bv. code, documentatie, testresultaten),
+1158: De kwaliteitseisen gehaald zijn (bv. OSLO-conform, performantie, beveiliging),
+1159: De juiste goedkeuringen verleend zijn (bv. door productboard of security-officer).
+1160: Pas wanneer alle criteria “groen” staan, mag het project naar de volgende fase of laag.
+1161: 📊 Typische QA-gates in een digitaal traject
+1162: 🧠 Waarom QA-gates belangrijk zijn
+1163: Ze verankeren kwaliteit in plaats van die pas op het einde te controleren.
+1164: Ze verdelen verantwoordelijkheid: elke partner weet wanneer hij moet valideren.
+1165: Ze voorkomen “snel doorontwikkelen zonder borging” — cruciaal in VLAIO-contexten.
+1166: Ze maken de audittrail helder: elke deliverable heeft een “gate approval”.
+1167: 🏗️ In Digitale Nuts kun je QA-gates koppelen aan de schillen
+1168: 📋 Samenvattend
+1169: Een QA-gate is een formeel controlepunt dat bepaalt of een deliverable voldoet aan de afgesproken kwaliteitscriteria om door te mogen naar de volgende fase.In Digitale Nuts vormen QA-gates de schakel tussen de technische ontwikkeling (Digipolis), de standaardisatie (Digitaal Vlaanderen) en de governance (VVSG/VRN).Ze waarborgen dat elke laag niet alleen werkt, maar ook overdraagbaar en auditeerbaar is.

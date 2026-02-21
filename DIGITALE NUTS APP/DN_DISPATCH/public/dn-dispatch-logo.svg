@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="DN Dispatch logo">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a9396" />
+      <stop offset="55%" stop-color="#005f73" />
+      <stop offset="100%" stop-color="#0b3a53" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde68a" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="url(#bg)" />
+
+  <path
+    d="M42 90c22-17 42-17 64 0s42 17 64 0 42-17 44-17"
+    fill="none"
+    stroke="#ffffff"
+    stroke-opacity="0.25"
+    stroke-width="9"
+    stroke-linecap="round"
+  />
+  <path
+    d="M42 130c22-17 42-17 64 0s42 17 64 0 42-17 44-17"
+    fill="none"
+    stroke="#ffffff"
+    stroke-opacity="0.18"
+    stroke-width="9"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M128 53c-28.5 0-51.5 23-51.5 51.5 0 37.5 43 89.5 48 95.4a4.7 4.7 0 0 0 7 0c5-5.9 48-57.9 48-95.4C179.5 76 156.5 53 128 53z"
+    fill="#ffffff"
+  />
+  <circle cx="128" cy="104.5" r="18.5" fill="#0b4f59" />
+  <circle cx="128" cy="104.5" r="9.8" fill="url(#accent)" />
+
+  <path d="M182 42l15 6-8 16-14-7z" fill="url(#accent)" />
+</svg>

@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-02-21T15:54:53.332Z",
+  "enabled": true,
+  "maxChecks": 25,
+  "thresholdMeters": 250,
+  "maxReportItems": 120,
+  "candidatesTotal": 25,
+  "checked": 23,
+  "geocodedNow": 0,
+  "suspiciousCount": 0,
+  "maxDeviationMeters": 0,
+  "skippedReason": "",
+  "suspicious": []
+}

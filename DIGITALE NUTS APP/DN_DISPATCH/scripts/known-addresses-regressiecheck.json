@@ -1,0 +1,17 @@
+[
+  { "gipodId": "19223308", "straat": "FRANKRIJKLEI", "huisnr": "21", "postcode": "2000", "district": "Antwerpen" },
+  { "gipodId": "19586569", "straat": "FRANKRIJKLEI", "huisnr": "67", "postcode": "2000", "district": "Antwerpen" },
+  { "gipodId": "19296287", "straat": "KRUIKSTRAAT", "huisnr": "28", "postcode": "2018", "district": "Antwerpen" },
+  { "gipodId": "19501294", "straat": "KASTEELSTRAAT", "huisnr": "10", "postcode": "2000", "district": "Antwerpen" },
+  { "gipodId": "16912682", "straat": "MINDERBROEDERSRUI", "huisnr": "10", "postcode": "2000", "district": "Antwerpen" },
+  { "gipodId": "17693853", "straat": "JUSTITIESTRAAT", "huisnr": "55", "postcode": "2018", "district": "Antwerpen" },
+  { "gipodId": "17470554", "straat": "BROEDERMINSTRAAT", "huisnr": "18", "postcode": "2018", "district": "Antwerpen" },
+  { "gipodId": "18735989", "straat": "Dokter Romain de Velstraat", "huisnr": "24", "postcode": "2100", "district": "Deurne" },
+  { "gipodId": "17511011", "straat": "LYSENSTRAAT", "huisnr": "9", "postcode": "2600", "district": "Berchem" },
+  { "gipodId": "18752190", "straat": "BIST", "huisnr": "28", "postcode": "2180", "district": "Ekeren" },
+  { "gipodId": "17513638", "straat": "DE LEESCORFSTRAAT", "huisnr": "50", "postcode": "2140", "district": "Borgerhout" },
+  { "gipodId": "18790666", "straat": "TRANSVAALSTRAAT", "huisnr": "2", "postcode": "2600", "district": "Berchem" },
+  { "gipodId": "18790665", "straat": "GENERAAL VAN MERLENSTRAAT", "huisnr": "29", "postcode": "2600", "district": "Berchem" },
+  { "gipodId": "18890633", "straat": "JUUL GRIETENSTRAAT", "huisnr": "1", "postcode": "2140", "district": "Borgerhout" },
+  { "gipodId": "18585979", "straat": "PASTORIJSTRAAT", "huisnr": "2", "postcode": "2060", "district": "Antwerpen" }
+]

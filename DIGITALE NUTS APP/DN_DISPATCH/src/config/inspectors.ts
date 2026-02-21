@@ -1,0 +1,60 @@
+import type { Inspector } from "../types";
+
+export const INSPECTORS: Inspector[] = [
+  {
+    id: "I1",
+    initials: "AB",
+    name: "Toezichter AB",
+    color: "#0a9396",
+    primaryPostcodes: ["2000", "2018"],
+    backupPostcodes: ["2060", "2050"],
+  },
+  {
+    id: "I2",
+    initials: "CD",
+    name: "Toezichter CD",
+    color: "#005f73",
+    primaryPostcodes: ["2060", "2140"],
+    backupPostcodes: ["2000", "2100"],
+  },
+  {
+    id: "I3",
+    initials: "EF",
+    name: "Toezichter EF",
+    color: "#ee9b00",
+    primaryPostcodes: ["2100", "2600"],
+    backupPostcodes: ["2140", "2610"],
+  },
+  {
+    id: "I4",
+    initials: "GH",
+    name: "Toezichter GH",
+    color: "#ca6702",
+    primaryPostcodes: ["2610", "2660"],
+    backupPostcodes: ["2600", "2020"],
+  },
+  {
+    id: "I5",
+    initials: "IJ",
+    name: "Toezichter IJ",
+    color: "#bb3e03",
+    primaryPostcodes: ["2020", "2050"],
+    backupPostcodes: ["2000", "2610"],
+  },
+  {
+    id: "I6",
+    initials: "KL",
+    name: "Toezichter KL",
+    color: "#9b2226",
+    primaryPostcodes: ["2170", "2180"],
+    backupPostcodes: ["2030", "2040"],
+  },
+  {
+    id: "I7",
+    initials: "MN",
+    name: "Toezichter MN",
+    color: "#386641",
+    primaryPostcodes: ["2030", "2040"],
+    backupPostcodes: ["2170", "2180"],
+  },
+];
