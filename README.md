@@ -131,20 +131,13 @@ Roadmap detail iteratie 1:
 
 ## Versiebeheer (Git)
 
-Repository: `https://github.com/MIKESPIKE123/Apps.git`
-
-| Tag | Beschrijving |
-|---|---|
-| `v1.4` | Isolatie digitale-nuts-app en opschoning repo root |
-| `v1.5-pre-css` | Backup vóór GRB/Luchtfoto/GIPOD CSS wijzigingen (2026-02-21) |
+Repository: `https://github.com/MIKESPIKE123/Digitale-Nuts-Dispatch.git`
 
 | Branch | Doel |
 |---|---|
 | `main` | Stabiele productie-baseline |
-| `feature/objectbeheer-v2-2` | Hoofdontwikkelbranch |
-| `feature/gipod-css-grb-kaart` | GRB kaartlagen + GIPOD CSS (geïsoleerd) |
 
-Terugkeren naar veilig punt: `git checkout v1.5-pre-css`
+Vorige lokatie (gearchiveerd): `https://github.com/MIKESPIKE123/Apps.git` branch `feature/DIGITALE_NUTS`
 
 ## Volgende uitbreidingen
 
