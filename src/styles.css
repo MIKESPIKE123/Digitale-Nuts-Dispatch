@@ -1,18 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap");
+@import url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font.css");
 
 :root {
-  --bg: #eef3f5;
+  /* GIPOD / Webuniversum Vlaamse overheid kleurenpalet */
+  --bg: #F7F9FC;
   --panel: #ffffff;
-  --panel-alt: #f4f8fb;
-  --text: #0f172a;
-  --muted: #475569;
-  --accent: #0a9396;
-  --accent-strong: #005f73;
-  --warning: #b45309;
-  --danger: #991b1b;
-  --radius: 14px;
-  --shadow: 0 12px 28px rgba(2, 48, 71, 0.09);
-  --border: 1px solid #d8e2ea;
+  --panel-alt: #E8EBEE;
+  --text: #333332;
+  --muted: #666666;
+  --accent: #0055CC;
+  --accent-strong: #003B8E;
+  --warning: #FFC515;
+  --danger: #DB3434;
+  --radius: 3px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --border: 1px solid #CBD2DA;
 }
 
 * {
@@ -27,12 +29,9 @@ body,
 
 body {
   margin: 0;
-  font-family: "Sora", "Segoe UI", sans-serif;
+  font-family: "Flanders Art Sans", "Roboto", "Segoe UI", sans-serif;
   color: var(--text);
-  background:
-    radial-gradient(circle at right top, rgba(10, 147, 150, 0.12), transparent 38%),
-    radial-gradient(circle at 8% 72%, rgba(0, 95, 115, 0.08), transparent 48%),
-    var(--bg);
+  background: var(--bg);
 }
 
 button,
@@ -58,7 +57,7 @@ p {
 
 .top-hero {
   border-radius: var(--radius);
-  background: linear-gradient(135deg, #0a9396 0%, #005f73 56%, #0b3a53 100%);
+  background: linear-gradient(135deg, #0055CC 0%, #003B8E 56%, #002266 100%);
   color: #f8fafc;
   box-shadow: var(--shadow);
   display: grid;
@@ -191,7 +190,7 @@ p {
 .main-nav-item.active {
   border-color: var(--accent);
   background: rgba(10, 147, 150, 0.14);
-  color: #0b4f59;
+  color: var(--accent-strong);
 }
 
 .workspace-grid {
@@ -426,7 +425,7 @@ p {
 }
 
 .layer-dot.selected {
-  background: #0a9396;
+  background: var(--accent);
 }
 
 .map-layer-toggle {
@@ -451,7 +450,7 @@ p {
   font-size: 0.64rem;
   font-weight: 700;
   color: #ffffff;
-  background: #0a9396;
+  background: var(--accent);
 }
 
 .map-search-form {
@@ -471,7 +470,7 @@ p {
 
 .map-search-error {
   margin: 0;
-  color: #991b1b;
+  color: var(--danger);
   font-size: 0.72rem;
 }
 
@@ -498,7 +497,7 @@ p {
 }
 
 .map-pin {
-  border: 4px solid var(--inspector-color, #0a9396);
+  border: 4px solid var(--inspector-color, var(--accent));
   width: 30px;
   height: 30px;
   border-radius: 999px;
@@ -506,7 +505,7 @@ p {
   place-items: center;
   color: #ffffff;
   font-size: 0.68rem;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "Flanders Art Mono", "Flanders Art Mono", "Flanders Art Mono", "IBM Plex Mono", monospace;
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 8px 16px rgba(15, 23, 42, 0.24);
@@ -555,7 +554,7 @@ p {
   display: inline-grid;
   place-items: center;
   border: 2px solid #ffffff;
-  background: #0b4f59;
+  background: var(--accent-strong);
   color: #ffffff;
   border-radius: 999px;
   padding: 0;
@@ -571,9 +570,9 @@ p {
 }
 
 .map-btn {
-  border: 1px solid #0b4f59;
+  border: 1px solid var(--accent-strong);
   background: #f0fbfb;
-  color: #0b4f59;
+  color: var(--accent-strong);
   border-radius: 8px;
   padding: 4px 8px;
   font-size: 0.72rem;
@@ -661,7 +660,7 @@ p {
 
 .priority-hoog {
   background: #fee2e2;
-  color: #991b1b;
+  color: var(--danger);
 }
 
 .insight-zone {
@@ -694,7 +693,7 @@ p {
 .next-action-btn {
   border: none;
   border-radius: 8px;
-  background: #0b4f59;
+  background: var(--accent-strong);
   color: #ffffff;
   font-size: 0.8rem;
   font-weight: 700;
@@ -731,7 +730,7 @@ p {
 }
 
 .timeline-normal {
-  background: #0a9396;
+  background: var(--accent);
 }
 
 .timeline-risk {
@@ -768,7 +767,7 @@ p {
 }
 
 .details-zone a {
-  color: #0b4f59;
+  color: var(--accent-strong);
   text-decoration: none;
   font-weight: 600;
 }
@@ -879,7 +878,7 @@ p {
 .chip.active {
   border-color: var(--accent);
   background: rgba(10, 147, 150, 0.14);
-  color: #0b4f59;
+  color: var(--accent-strong);
   font-weight: 600;
 }
 
@@ -982,7 +981,7 @@ p {
   border: 3px solid;
   display: grid;
   place-items: center;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "Flanders Art Mono", "Flanders Art Mono", "Flanders Art Mono", "IBM Plex Mono", monospace;
   font-weight: 600;
   font-size: 0.82rem;
 }
@@ -998,10 +997,10 @@ p {
 }
 
 .pdf-btn {
-  border: 1px solid #0b4f59;
+  border: 1px solid var(--accent-strong);
   border-radius: 8px;
   background: #f0fbfb;
-  color: #0b4f59;
+  color: var(--accent-strong);
   font-weight: 700;
   font-size: 0.72rem;
   padding: 5px 8px;
@@ -1042,7 +1041,7 @@ p {
 }
 
 .visit-card[data-selected="true"] {
-  outline: 2px solid #0a9396;
+  outline: 2px solid var(--accent);
   outline-offset: 1px;
 }
 
@@ -1079,7 +1078,7 @@ p {
 }
 
 .visit-chip.impact-hoog {
-  color: #991b1b;
+  color: var(--danger);
   background: #fee2e2;
 }
 
@@ -1096,7 +1095,7 @@ p {
 }
 
 .visit-meta-row a {
-  color: #0b4f59;
+  color: var(--accent-strong);
   font-weight: 600;
   text-decoration: none;
 }
@@ -1566,7 +1565,7 @@ p {
 }
 
 .timeline-legend-line.actual {
-  background: #0a9396;
+  background: var(--accent);
 }
 
 .timeline-legend-dot {
@@ -1627,7 +1626,7 @@ p {
 
 .timeline-risk.risk-hoog {
   background: #fee2e2;
-  color: #991b1b;
+  color: var(--danger);
 }
 
 .timeline-track-wrap {
@@ -1667,7 +1666,7 @@ p {
 }
 
 .timeline-bar-actual {
-  background: #0a9396;
+  background: var(--accent);
   z-index: 2;
 }
 
@@ -1677,7 +1676,7 @@ p {
   width: 14px;
   height: 14px;
   border-radius: 999px;
-  background: #0b4f59;
+  background: var(--accent-strong);
   border: 2px solid #ffffff;
   transform: translateX(-50%);
   z-index: 3;
@@ -1775,7 +1774,7 @@ p {
 }
 
 .settings-inspector-head-id {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "Flanders Art Mono", "Flanders Art Mono", "Flanders Art Mono", "IBM Plex Mono", monospace;
 }
 
 .settings-inspector-row {
@@ -1796,7 +1795,7 @@ p {
 }
 
 .settings-inspector-id {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "Flanders Art Mono", "Flanders Art Mono", "Flanders Art Mono", "IBM Plex Mono", monospace;
   font-size: 0.78rem;
   color: #334155;
 }
@@ -1870,7 +1869,7 @@ p {
 .link-btn {
   border: none;
   background: transparent;
-  color: #0b4f59;
+  color: var(--accent-strong);
   font-weight: 700;
   padding: 4px 6px;
 }
@@ -1931,7 +1930,7 @@ p {
   border-radius: 999px;
   border: 1px solid #0b7285;
   background: #ffffff;
-  color: #0b4f59;
+  color: var(--accent-strong);
   font-size: 0.68rem;
   font-weight: 700;
   padding: 2px 8px;
@@ -1946,7 +1945,7 @@ p {
   margin: 0;
   font-size: 0.76rem;
   font-weight: 700;
-  color: #0b4f59;
+  color: var(--accent-strong);
 }
 
 .vaststelling-meta-grid {
