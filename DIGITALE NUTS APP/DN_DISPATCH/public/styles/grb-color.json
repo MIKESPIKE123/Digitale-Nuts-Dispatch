@@ -1,0 +1,23 @@
+{
+  "version": 8,
+  "name": "GRB Kleur (Digitaal Vlaanderen)",
+  "sources": {
+    "grb-wmts": {
+      "type": "raster",
+      "tiles": [
+        "https://geo.api.vlaanderen.be/GRB/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=grb_bsk&STYLE=default&FORMAT=image/png&TILEMATRIXSET=GoogleMapsVL&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}"
+      ],
+      "tileSize": 256,
+      "attribution": "&copy; <a href='https://overheid.vlaanderen.be/informatie-vlaanderen/producten-diensten/grootschalig-referentiebestand-grb' target='_blank'>Digitaal Vlaanderen – GRB</a>",
+      "maxzoom": 21
+    }
+  },
+  "layers": [
+    {
+      "id": "grb-background",
+      "type": "raster",
+      "source": "grb-wmts"
+    }
+  ],
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf"
+}

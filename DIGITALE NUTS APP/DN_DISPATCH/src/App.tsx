@@ -93,6 +93,9 @@ const MAP_STYLE_OPTIONS = [
   { id: "werfcontrast", label: "Werfcontrast", url: "https://tiles.openfreemap.org/styles/liberty" },
   { id: "nacht", label: "Nacht", url: "https://tiles.openfreemap.org/styles/dark" },
   { id: "analyse", label: "Analyse", url: "https://tiles.openfreemap.org/styles/bright" },
+  { id: "grb", label: "GRB Grijs", url: "/styles/grb-gray.json" },
+  { id: "grb-kleur", label: "GRB Kleur", url: "/styles/grb-color.json" },
+  { id: "luchtfoto", label: "Luchtfoto", url: "/styles/luchtfoto-vl.json" },
 ] as const;
 
 type MapStyleId = (typeof MAP_STYLE_OPTIONS)[number]["id"];

@@ -1,0 +1,23 @@
+{
+  "version": 8,
+  "name": "Luchtfoto Vlaanderen (Digitaal Vlaanderen)",
+  "sources": {
+    "luchtfoto-vl": {
+      "type": "raster",
+      "tiles": [
+        "https://geo.api.vlaanderen.be/OMWRGBMRVL/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=omwrgbmrvl&STYLE=default&FORMAT=image/png&TILEMATRIXSET=GoogleMapsVL&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}"
+      ],
+      "tileSize": 256,
+      "attribution": "&copy; <a href='https://overheid.vlaanderen.be/informatie-vlaanderen/producten-diensten/orthofotomozaiek' target='_blank'>Digitaal Vlaanderen – Orthofoto</a>",
+      "maxzoom": 21
+    }
+  },
+  "layers": [
+    {
+      "id": "luchtfoto-background",
+      "type": "raster",
+      "source": "luchtfoto-vl"
+    }
+  ],
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf"
+}
