@@ -1,0 +1,24 @@
+
+> dn-dispatch@0.1.0 dev
+> npm run import:data && vite --host 0.0.0.0 --port 3012
+
+
+> dn-dispatch@0.1.0 import:data
+> node scripts/import-nuts-data.mjs
+
+[dn-dispatch] Input rows: 7753
+[dn-dispatch] Output works: 165
+[dn-dispatch] Status VERGUND: 100
+[dn-dispatch] Status IN EFFECT: 65
+[dn-dispatch] Exact locations: 153
+[dn-dispatch] Geocoded this run: 26
+[dn-dispatch] Output file: C:\Users\5129\OneDrive - digipolis.onmicrosoft.com\Apps\DIGITALE NUTS APP\DN_DISPATCH\src\data\works.generated.json
+[dn-dispatch] Output runtime file: C:\Users\5129\OneDrive - digipolis.onmicrosoft.com\Apps\DIGITALE NUTS APP\DN_DISPATCH\public\data\works.generated.json
+[dn-dispatch] Output CSV: C:\Users\5129\OneDrive - digipolis.onmicrosoft.com\Apps\DIGITALE NUTS APP\DN_DISPATCH\DATA\dispatch_nuts_works.csv
+
+  [32m[1mVITE[22m v6.4.1[39m  [2mready in [0m[1m4110[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m3012[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.68.88.132:[1m3012[22m/[39m
+[2m[32m  ➜[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+[2m11:55:06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx[22m

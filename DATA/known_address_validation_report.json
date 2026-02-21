@@ -1,0 +1,264 @@
+{
+  "generatedAt": "2026-02-21T15:11:17.794Z",
+  "thresholdMeters": 120,
+  "totalKnown": 15,
+  "foundInDataset": 15,
+  "geocodedNow": 4,
+  "okCount": 14,
+  "deviationCount": 0,
+  "missingCount": 0,
+  "items": [
+    {
+      "gipodId": "19223308",
+      "straat": "FRANKRIJKLEI",
+      "huisnr": "21",
+      "postcode": "2000",
+      "district": "Antwerpen",
+      "datasetPoint": {
+        "lat": 51.2174792,
+        "lng": 4.4156403
+      },
+      "geocodePoint": {
+        "lat": 51.2174792,
+        "lng": 4.4156403
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "19586569",
+      "straat": "FRANKRIJKLEI",
+      "huisnr": "67",
+      "postcode": "2000",
+      "district": "Antwerpen",
+      "datasetPoint": {
+        "lat": 51.2150917,
+        "lng": 4.4139436
+      },
+      "geocodePoint": {
+        "lat": 51.2150917,
+        "lng": 4.4139436
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "19296287",
+      "straat": "KRUIKSTRAAT",
+      "huisnr": "28",
+      "postcode": "2018",
+      "district": "Antwerpen",
+      "datasetPoint": {
+        "lat": 51.2087443,
+        "lng": 4.4261632
+      },
+      "geocodePoint": {
+        "lat": 51.2087443,
+        "lng": 4.4261632
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "19501294",
+      "straat": "KASTEELSTRAAT",
+      "huisnr": "10",
+      "postcode": "2000",
+      "district": "Antwerpen",
+      "datasetPoint": {
+        "lat": 51.20803292101311,
+        "lng": 4.3885335274787565
+      },
+      "geocodePoint": {
+        "lat": 51.2075014,
+        "lng": 4.3898143
+      },
+      "distanceMeters": 107,
+      "status": "OK"
+    },
+    {
+      "gipodId": "16912682",
+      "straat": "MINDERBROEDERSRUI",
+      "huisnr": "10",
+      "postcode": "2000",
+      "district": "Antwerpen",
+      "datasetPoint": {
+        "lat": 51.2231929,
+        "lng": 4.403383
+      },
+      "geocodePoint": {
+        "lat": 51.2231929,
+        "lng": 4.403383
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "17693853",
+      "straat": "JUSTITIESTRAAT",
+      "huisnr": "55",
+      "postcode": "2018",
+      "district": "Antwerpen",
+      "datasetPoint": {
+        "lat": 51.2084229,
+        "lng": 4.404861
+      },
+      "geocodePoint": {
+        "lat": 51.2084229,
+        "lng": 4.404861
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "17470554",
+      "straat": "BROEDERMINSTRAAT",
+      "huisnr": "18",
+      "postcode": "2018",
+      "district": "Antwerpen",
+      "datasetPoint": {
+        "lat": 51.2029373,
+        "lng": 4.3928814
+      },
+      "geocodePoint": {
+        "lat": 51.2029373,
+        "lng": 4.3928814
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "18735989",
+      "straat": "Dokter Romain de Velstraat",
+      "huisnr": "24",
+      "postcode": "2100",
+      "district": "Deurne",
+      "datasetPoint": {
+        "lat": 51.2071282,
+        "lng": 4.457682
+      },
+      "geocodePoint": {
+        "lat": 51.2071282,
+        "lng": 4.457682
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "17511011",
+      "straat": "LYSENSTRAAT",
+      "huisnr": "9",
+      "postcode": "2600",
+      "district": "Berchem",
+      "datasetPoint": {
+        "lat": 51.1831006,
+        "lng": 4.4296989
+      },
+      "geocodePoint": {
+        "lat": 51.1831006,
+        "lng": 4.4296989
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "18752190",
+      "straat": "BIST",
+      "huisnr": "28",
+      "postcode": "2180",
+      "district": "Ekeren",
+      "datasetPoint": {
+        "lat": 51.2828693,
+        "lng": 4.436171
+      },
+      "geocodePoint": {
+        "lat": 51.2828693,
+        "lng": 4.436171
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "17513638",
+      "straat": "DE LEESCORFSTRAAT",
+      "huisnr": "50",
+      "postcode": "2140",
+      "district": "Borgerhout",
+      "datasetPoint": {
+        "lat": 51.2018299,
+        "lng": 4.4487992
+      },
+      "geocodePoint": {
+        "lat": 51.2018299,
+        "lng": 4.4487992
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "18790666",
+      "straat": "TRANSVAALSTRAAT",
+      "huisnr": "2",
+      "postcode": "2600",
+      "district": "Berchem",
+      "datasetPoint": {
+        "lat": 51.2027362,
+        "lng": 4.4306415
+      },
+      "geocodePoint": {
+        "lat": 51.2027362,
+        "lng": 4.4306415
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "18790665",
+      "straat": "GENERAAL VAN MERLENSTRAAT",
+      "huisnr": "29",
+      "postcode": "2600",
+      "district": "Berchem",
+      "datasetPoint": {
+        "lat": 51.2030417,
+        "lng": 4.4318281
+      },
+      "geocodePoint": {
+        "lat": 51.2030417,
+        "lng": 4.4318281
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    },
+    {
+      "gipodId": "18890633",
+      "straat": "JUUL GRIETENSTRAAT",
+      "huisnr": "1",
+      "postcode": "2140",
+      "district": "Borgerhout",
+      "datasetPoint": {
+        "lat": 51.211731368134764,
+        "lng": 4.446782490080457
+      },
+      "geocodePoint": null,
+      "distanceMeters": null,
+      "status": "NO_GEOCODE"
+    },
+    {
+      "gipodId": "18585979",
+      "straat": "PASTORIJSTRAAT",
+      "huisnr": "2",
+      "postcode": "2060",
+      "district": "Antwerpen",
+      "datasetPoint": {
+        "lat": 51.2208743,
+        "lng": 4.4324641
+      },
+      "geocodePoint": {
+        "lat": 51.2208743,
+        "lng": 4.4324641
+      },
+      "distanceMeters": 0,
+      "status": "OK"
+    }
+  ]
+}

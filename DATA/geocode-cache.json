@@ -1,0 +1,3581 @@
+{
+  "poststraat|17|2140": {
+    "lat": 51.2200347,
+    "lng": 4.4398806,
+    "provider": "nominatim",
+    "displayName": "17, Poststraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "winkelstap|108|2170": {
+    "lat": 51.2527414,
+    "lng": 4.4636577,
+    "provider": "nominatim",
+    "displayName": "108, Winkelstap, Wildert, Merksemheide, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "boomsesteenweg (2610)|180|2610": null,
+  "boombekelaan|26|2660": {
+    "lat": 51.1796729,
+    "lng": 4.335227,
+    "provider": "nominatim",
+    "displayName": "26, Boombekelaan, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "korte zavelstraat|1|2060": {
+    "lat": 51.2231452,
+    "lng": 4.4256736,
+    "provider": "nominatim",
+    "displayName": "1, Korte Zavelstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "canadalaan|0|2030": {
+    "lat": 51.2536349,
+    "lng": 4.4211143,
+    "provider": "nominatim",
+    "displayName": "Canadalaan, Luchtbal, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+  },
+  "damplein|0|2060": {
+    "lat": 51.2342637,
+    "lng": 4.4248977,
+    "provider": "nominatim",
+    "displayName": "Damplein, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "van cortbeemdelei|198|2100": {
+    "lat": 51.2333813,
+    "lng": 4.4485862,
+    "provider": "nominatim",
+    "displayName": "198, Van Cortbeemdelei, Kronenburg, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "de burletlaan|0|2610": {
+    "lat": 51.1708156,
+    "lng": 4.4301258,
+    "provider": "nominatim",
+    "displayName": "De Burletlaan, Elsdonk, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "dijlestraat|0|2060": {
+    "lat": 51.2316988,
+    "lng": 4.4306797,
+    "provider": "nominatim",
+    "displayName": "Dijlestraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "silsburgstraat|0|2100": {
+    "lat": 51.2062052,
+    "lng": 4.474619,
+    "provider": "nominatim",
+    "displayName": "Silsburgstraat, Boterlaar-Silsburg, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "gebroeders leemansstraat|34|2180": {
+    "lat": 51.2825809,
+    "lng": 4.415571,
+    "provider": "nominatim",
+    "displayName": "34, Gebroeders Leemansstraat, Schoonbroek, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "turnhoutsebaan (2100)|90a|2100": null,
+  "baron sadoinestraat|0|2660": {
+    "lat": 51.1719987,
+    "lng": 4.3376365,
+    "provider": "nominatim",
+    "displayName": "Baron Sadoinestraat, Moretusburg, Hoboken-West, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "emiel vloorsstraat|0|2020": {
+    "lat": 51.1932141,
+    "lng": 4.3742303,
+    "provider": "nominatim",
+    "displayName": "Emiel Vloorsstraat, Kiel, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "pauwenlaan|0|2660": {
+    "lat": 51.1714335,
+    "lng": 4.3590976,
+    "provider": "nominatim",
+    "displayName": "Pauwenlaan, Vogeltjeswijk, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "grasmuslaan|0|2660": {
+    "lat": 51.1717366,
+    "lng": 4.3600707,
+    "provider": "nominatim",
+    "displayName": "Grasmuslaan, Vogeltjeswijk, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "jos de swertsstraat|1|2170": {
+    "lat": 51.2538163,
+    "lng": 4.4602677,
+    "provider": "nominatim",
+    "displayName": "Sint-Jozefkerk, 1, Jos De Swertsstraat, Wildert, Merksemheide, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "van amstelstraat (2100)|163|2100": null,
+  "groot hagelkruis|2|2180": {
+    "lat": 51.2779565,
+    "lng": 4.4178641,
+    "provider": "nominatim",
+    "displayName": "2, Groot Hagelkruis, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "turnhoutsebaan (2140)|15|2140": {
+    "lat": 51.2183898,
+    "lng": 4.4511031,
+    "provider": "nominatim",
+    "displayName": "Turnhoutsebaan, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "frans van hombeeckplein|8|2600": {
+    "lat": 51.1950037,
+    "lng": 4.4177766,
+    "provider": "nominatim",
+    "displayName": "8, Frans Van Hombeeckplein, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "le corbusierlaan|0|2050": {
+    "lat": 51.2292045,
+    "lng": 4.3761569,
+    "provider": "nominatim",
+    "displayName": "Le Corbusierlaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "brouwersvliet|10|2000": {
+    "lat": 51.226916,
+    "lng": 4.4024221,
+    "provider": "nominatim",
+    "displayName": "Brouwersvliet, Schipperskwartier, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "van schoonhovenstraat|32|2060": {
+    "lat": 51.219741,
+    "lng": 4.4219959,
+    "provider": "nominatim",
+    "displayName": "32, Van Schoonhovenstraat, Atheneum, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "cogelsplein|37|2100": {
+    "lat": 51.2204387,
+    "lng": 4.4558179,
+    "provider": "nominatim",
+    "displayName": "35,37, Cogelsplein, Deurne-Dorp - Expo, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "meerlenhoflaan|0|2660": {
+    "lat": 51.1725282,
+    "lng": 4.3575269,
+    "provider": "nominatim",
+    "displayName": "Meerlenhoflaan, Vogeltjeswijk, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "elektronikalaan|0|2610": {
+    "lat": 51.1587283,
+    "lng": 4.3742752,
+    "provider": "nominatim",
+    "displayName": "Elektronikalaan, Terbekehof, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "groenendaallaan|0|2170": {
+    "lat": 51.2436485,
+    "lng": 4.4291933,
+    "provider": "nominatim",
+    "displayName": "Groenendaallaan, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "vuurkruisenlaan|3|2170": {
+    "lat": 51.245268,
+    "lng": 4.4406085,
+    "provider": "nominatim",
+    "displayName": "3, Vuurkruisenlaan, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "paul henri spaaklaan|0|2660": {
+    "lat": 51.1696439,
+    "lng": 4.3478805,
+    "provider": "nominatim",
+    "displayName": "Paul Henri Spaaklaan, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "fotografielaan|30|2610": {
+    "lat": 51.1563972,
+    "lng": 4.3673923,
+    "provider": "nominatim",
+    "displayName": "30, Fotografielaan, Terbekehof, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "lange koepoortstraat|16|2000": {
+    "lat": 51.223222,
+    "lng": 4.402546,
+    "provider": "nominatim",
+    "displayName": "16, Lange Koepoortstraat, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "van kerckhovenstraat|0|2060": {
+    "lat": 51.2260115,
+    "lng": 4.4259751,
+    "provider": "nominatim",
+    "displayName": "Van Kerckhovenstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "groenenborgerlaan|0|2610": {
+    "lat": 51.1777526,
+    "lng": 4.4205928,
+    "provider": "nominatim",
+    "displayName": "Groenenborgerlaan, Middelheim, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "lange herentalsestraat|0|2018": {
+    "lat": 51.2132361,
+    "lng": 4.4178708,
+    "provider": "nominatim",
+    "displayName": "Lange Herentalsestraat, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "zeearendstraat|40|2100": {
+    "lat": 51.2223387,
+    "lng": 4.4865972,
+    "provider": "nominatim",
+    "displayName": "40, Zeearendstraat, Zwarte Arend, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "grotesteenweg|650|2600": {
+    "lat": 51.1778436,
+    "lng": 4.4362928,
+    "provider": "nominatim",
+    "displayName": "Sint-Theresia, 650, Grotesteenweg, De Zepten-Zilverbeek, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "kardelaan|45|2180": {
+    "lat": 51.277616,
+    "lng": 4.4318255,
+    "provider": "nominatim",
+    "displayName": "45, Kardelaan, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "binnensingel|0|2600": {
+    "lat": 51.200437,
+    "lng": 4.4338767,
+    "provider": "nominatim",
+    "displayName": "Binnensingel, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "mechelsesteenweg|0|2018": {
+    "lat": 51.201657,
+    "lng": 4.4129299,
+    "provider": "nominatim",
+    "displayName": "Mechelsesteenweg, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "frans adriaenssensstraat|0|2170": {
+    "lat": 51.2508353,
+    "lng": 4.4430765,
+    "provider": "nominatim",
+    "displayName": "Frans Adriaenssensstraat, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "turnhoutsebaan (2140)|329|2140": null,
+  "lange herentalsestraat|74|2018": {
+    "lat": 51.2139844,
+    "lng": 4.4173998,
+    "provider": "nominatim",
+    "displayName": "74, Lange Herentalsestraat, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "meir|0|2000": {
+    "lat": 51.2180707,
+    "lng": 4.4112657,
+    "provider": "nominatim",
+    "displayName": "Meir, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "corluylei|0|2150": {
+    "lat": 51.1869433,
+    "lng": 4.5027056,
+    "provider": "nominatim",
+    "displayName": "Corluylei, Borsbeek, Antwerpen, Boechout, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "veldstraat (2060)|45|2060": null,
+  "lange van sterbeeckstraat|35|2060": {
+    "lat": 51.2242428,
+    "lng": 4.4256326,
+    "provider": "nominatim",
+    "displayName": "35, Lange Van Sterbeeckstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "pelikaanstraat|74|2018": {
+    "lat": 51.2141468,
+    "lng": 4.4207112,
+    "provider": "nominatim",
+    "displayName": "Pelikaanstraat, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "steenborgerweert|0|2060": {
+    "lat": 51.2368945,
+    "lng": 4.4219269,
+    "provider": "nominatim",
+    "displayName": "Steenborgerweert, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "ruggeveldlaan|22|2100": {
+    "lat": 51.2095468,
+    "lng": 4.4739547,
+    "provider": "nominatim",
+    "displayName": "22, Ruggeveldlaan, Boterlaar-Silsburg, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "bredestraat|2|2000": {
+    "lat": 51.2151962,
+    "lng": 4.4020675,
+    "provider": "nominatim",
+    "displayName": "Ghulden Roose, 2, Bredestraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "saffierstraat|114|2600": {
+    "lat": 51.1952029,
+    "lng": 4.438729,
+    "provider": "nominatim",
+    "displayName": "114, Saffierstraat, Groenenhoek, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "batkinstraat|13|2600": {
+    "lat": 51.1994976,
+    "lng": 4.4287052,
+    "provider": "nominatim",
+    "displayName": "13, Batkinstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "scheldeken|12|2000": {
+    "lat": 51.2181501,
+    "lng": 4.3955335,
+    "provider": "nominatim",
+    "displayName": "12, Scheldeken, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "terlindenhofstraat|0|2170": {
+    "lat": 51.2510841,
+    "lng": 4.4456667,
+    "provider": "nominatim",
+    "displayName": "Terlindenhofstraat, Tuinwijk, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "gaston burssenslaan|0|2050": {
+    "lat": 51.2188372,
+    "lng": 4.3822289,
+    "provider": "nominatim",
+    "displayName": "Gaston Burssenslaan, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "statiestraat (2600)|164|2600": null,
+  "augustijnenstraat|1|2000": {
+    "lat": 51.2169924,
+    "lng": 4.3974278,
+    "provider": "nominatim",
+    "displayName": "1, Augustijnenstraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "klaverbladdreef|0|2610": {
+    "lat": 51.1593946,
+    "lng": 4.3573513,
+    "provider": "nominatim",
+    "displayName": "Klaverbladdreef, Schoonselhof - Fort 7, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "jozef reusenslei|0|2150": {
+    "lat": 51.1982817,
+    "lng": 4.4904809,
+    "provider": "nominatim",
+    "displayName": "Jozef Reusenslei, Rooibos, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "kerkeveldlaan|0|2100": {
+    "lat": 51.2305422,
+    "lng": 4.464154,
+    "provider": "nominatim",
+    "displayName": "Kerkeveldlaan, Kerkeveld-Bosuil, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "edmond cretsstraat|0|2660": {
+    "lat": 51.1729032,
+    "lng": 4.3455703,
+    "provider": "nominatim",
+    "displayName": "Edmond Cretsstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "ruggeveldlaan|471|2100": {
+    "lat": 51.2183653,
+    "lng": 4.4808979,
+    "provider": "nominatim",
+    "displayName": "471, Ruggeveldlaan, Venneborg, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "boeksveldstraat|0|2610": {
+    "lat": 51.1642705,
+    "lng": 4.388861,
+    "provider": "nominatim",
+    "displayName": "Boeksveldstraat, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "vlasmarkt|14|2000": {
+    "lat": 51.2197287,
+    "lng": 4.3969803,
+    "provider": "nominatim",
+    "displayName": "14, Vlasmarkt, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "jules moretuslei|0|2610": {
+    "lat": 51.1725762,
+    "lng": 4.3953895,
+    "provider": "nominatim",
+    "displayName": "Jules Moretuslei, Yperman - Steytelinck, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "mechelseplein|0|2000": {
+    "lat": 51.2137414,
+    "lng": 4.4047095,
+    "provider": "nominatim",
+    "displayName": "Mechelseplein, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "mercatorstraat|86|2018": {
+    "lat": 51.2073725,
+    "lng": 4.4243329,
+    "provider": "nominatim",
+    "displayName": "86, Mercatorstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "antwerpsesteenweg|0|2660": {
+    "lat": 51.1810033,
+    "lng": 4.3680513,
+    "provider": "nominatim",
+    "displayName": "Antwerpsesteenweg, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "van eycklei|41|2018": {
+    "lat": 51.2099283,
+    "lng": 4.4167022,
+    "provider": "nominatim",
+    "displayName": "41,41A, Van Eycklei, Klein-Antwerpen, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "schrijnwerkersstraat|20|2000": {
+    "lat": 51.217718,
+    "lng": 4.4035649,
+    "provider": "nominatim",
+    "displayName": "20, Schrijnwerkersstraat, De Wilde Zee, Meir, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "frankrijklei|0|2000": {
+    "lat": 51.216479,
+    "lng": 4.4141407,
+    "provider": "nominatim",
+    "displayName": "Frankrijklei, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "hooftvunderlei|3|2100": {
+    "lat": 51.2198802,
+    "lng": 4.4601573,
+    "provider": "nominatim",
+    "displayName": "3, Hooftvunderlei, Deurne-Dorp - Expo, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "monnikenhofstraat|0|2040": {
+    "lat": 51.3533713,
+    "lng": 4.3432992,
+    "provider": "nominatim",
+    "displayName": "Monnikenhofstraat, Berendrecht, Berendrecht-Zandvliet-Lillo, Antwerpen, Vlaanderen, 2040, België / Belgique / Belgien"
+  },
+  "frankrijklei|117|2000": {
+    "lat": 51.2121219,
+    "lng": 4.410055,
+    "provider": "nominatim",
+    "displayName": "117, Frankrijklei, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "zonnewijzerstraat|6|2018": {
+    "lat": 51.2014766,
+    "lng": 4.4136898,
+    "provider": "nominatim",
+    "displayName": "6-8, Zonnewijzerstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "merksemsesteenweg|195|2100": {
+    "lat": 51.2314119,
+    "lng": 4.4583904,
+    "provider": "nominatim",
+    "displayName": "Merksemsesteenweg, Conforta, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "duinstraat|0|2060": {
+    "lat": 51.2221651,
+    "lng": 4.4285382,
+    "provider": "nominatim",
+    "displayName": "Duinstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "spillemansstraat|69|2140": {
+    "lat": 51.2024293,
+    "lng": 4.4472675,
+    "provider": "nominatim",
+    "displayName": "69, Spillemansstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "turnhoutsebaan (2140)|215|2140": null,
+  "rené bosiersstraat|3|2140": {
+    "lat": 51.2018589,
+    "lng": 4.4457804,
+    "provider": "nominatim",
+    "displayName": "3, René Bosiersstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "ruimtevaartlaan|25|2100": {
+    "lat": 51.1949339,
+    "lng": 4.4555126,
+    "provider": "nominatim",
+    "displayName": "25, Ruimtevaartlaan, Vliegveld, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "dokter van de perrelei|98|2140": {
+    "lat": 51.207305,
+    "lng": 4.4491514,
+    "provider": "nominatim",
+    "displayName": "98, Dokter Van de Perrelei, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "trompetvogelstraat|0|2170": {
+    "lat": 51.2574796,
+    "lng": 4.4362641,
+    "provider": "nominatim",
+    "displayName": "Trompetvogelstraat, Lambrechtshoeken, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "kleinebeerstraat|0|2018": {
+    "lat": 51.2076683,
+    "lng": 4.4276778,
+    "provider": "nominatim",
+    "displayName": "Kleine Beer Straat, Zurenborg, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "van erstenstraat|55|2100": {
+    "lat": 51.2048435,
+    "lng": 4.453593,
+    "provider": "nominatim",
+    "displayName": "55, Van Erstenstraat, Kriekenhof, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "laar (2140)|24|2140": {
+    "lat": 51.2159074,
+    "lng": 4.4333225,
+    "provider": "nominatim",
+    "displayName": "Laar, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "wilgehoevestraat|0|2180": {
+    "lat": 51.2861212,
+    "lng": 4.4164932,
+    "provider": "nominatim",
+    "displayName": "Wilgehoevestraat, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "grammestraat|0|2660": {
+    "lat": 51.1717071,
+    "lng": 4.3405976,
+    "provider": "nominatim",
+    "displayName": "Grammestraat, Moretusburg, Hoboken-West, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "steytelincklei|0|2610": {
+    "lat": 51.1690912,
+    "lng": 4.3996196,
+    "provider": "nominatim",
+    "displayName": "Steytelincklei, Yperman - Steytelinck, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "twee stierenstraat|30|2060": {
+    "lat": 51.2302603,
+    "lng": 4.4339517,
+    "provider": "nominatim",
+    "displayName": "Twee Stierenstraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "diepestraat|0|2060": {
+    "lat": 51.2240027,
+    "lng": 4.4237478,
+    "provider": "nominatim",
+    "displayName": "Diepestraat, Atheneum, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "solvynsstraat|0|2018": {
+    "lat": 51.206994,
+    "lng": 4.4018977,
+    "provider": "nominatim",
+    "displayName": "Solvynsstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "generaal lemanstraat|46|2600": {
+    "lat": 51.195948,
+    "lng": 4.4112676,
+    "provider": "nominatim",
+    "displayName": "46, Generaal Lemanstraat, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "quinten matsijslei|0|2018": {
+    "lat": 51.2137679,
+    "lng": 4.4163346,
+    "provider": "nominatim",
+    "displayName": "Quinten Matsijslei, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "schoolstraat|1|2060": {
+    "lat": 51.2274132,
+    "lng": 4.5209324,
+    "provider": "nominatim",
+    "displayName": "1,1/1, Schoolstraat, Wijnegem, Antwerpen, Vlaanderen, 2110, België / Belgique / Belgien"
+  },
+  "albert grisarstraat|0|2018": {
+    "lat": 51.200871,
+    "lng": 4.4188385,
+    "provider": "nominatim",
+    "displayName": "Albert Grisarstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "van putlei|0|2018": {
+    "lat": 51.1967011,
+    "lng": 4.4035537,
+    "provider": "nominatim",
+    "displayName": "Van Putlei, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "turnhoutsebaan (2100)|205|2100": null,
+  "hogeweg (2140)|88|2140": null,
+  "diksmuidelaan|24|2600": {
+    "lat": 51.200554,
+    "lng": 4.4394921,
+    "provider": "nominatim",
+    "displayName": "24, Diksmuidelaan, Groenenhoek, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "fotografielaan|0|2610": {
+    "lat": 51.1540158,
+    "lng": 4.3698718,
+    "provider": "nominatim",
+    "displayName": "Fotografielaan, Terbekehof, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "van schoonhovenstraat|36|2060": {
+    "lat": 51.2199476,
+    "lng": 4.4221104,
+    "provider": "nominatim",
+    "displayName": "36, Van Schoonhovenstraat, Atheneum, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "dalkruidlaan|5|2610": {
+    "lat": 51.1716251,
+    "lng": 4.4109027,
+    "provider": "nominatim",
+    "displayName": "5, Dalkruidlaan, Yperman - Steytelinck, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "plantin en moretuslei|42|2018": {
+    "lat": 51.2102625,
+    "lng": 4.4203332,
+    "provider": "nominatim",
+    "displayName": "42, Plantin en Moretuslei, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "schildersstraat|15|2000": {
+    "lat": 51.2093072,
+    "lng": 4.3952357,
+    "provider": "nominatim",
+    "displayName": "15, Schildersstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "grotesteenweg|0|2600": {
+    "lat": 51.1837454,
+    "lng": 4.4306549,
+    "provider": "nominatim",
+    "displayName": "Grotesteenweg, Pulhof, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "sint-jansplein|29|2060": {
+    "lat": 51.224512,
+    "lng": 4.4188844,
+    "provider": "nominatim",
+    "displayName": "29, Sint-Jansplein, Atheneum, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "volhardingstraat|60|2020": {
+    "lat": 51.1898649,
+    "lng": 4.3916794,
+    "provider": "nominatim",
+    "displayName": "60, Volhardingstraat, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "arthur goemaerelei|0|2018": {
+    "lat": 51.1973074,
+    "lng": 4.4024798,
+    "provider": "nominatim",
+    "displayName": "Arthur Goemaerelei, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "lange elzenstraat|140|2018": {
+    "lat": 51.1999644,
+    "lng": 4.3944496,
+    "provider": "nominatim",
+    "displayName": "Lange Elzenstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "lange kievitstraat|0|2018": {
+    "lat": 51.2130738,
+    "lng": 4.4224414,
+    "provider": "nominatim",
+    "displayName": "Lange Kievitstraat, Kievitwijk, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "melkmarkt|19|2000": {
+    "lat": 51.2203328,
+    "lng": 4.4028763,
+    "provider": "nominatim",
+    "displayName": "19, Melkmarkt, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "de lescluzestraat|2|2600": {
+    "lat": 51.1955772,
+    "lng": 4.4115893,
+    "provider": "nominatim",
+    "displayName": "2, De Lescluzestraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "generaal lemanstraat|29|2600": {
+    "lat": 51.1954926,
+    "lng": 4.4109486,
+    "provider": "nominatim",
+    "displayName": "29, Generaal Lemanstraat, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "eikelstraat|0|2600": {
+    "lat": 51.1999301,
+    "lng": 4.4229676,
+    "provider": "nominatim",
+    "displayName": "Eikelstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "desguinlei|0|2018": {
+    "lat": 51.1952138,
+    "lng": 4.3996393,
+    "provider": "nominatim",
+    "displayName": "Desguinlei, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "engelselei|21|2140": {
+    "lat": 51.2131641,
+    "lng": 4.4447277,
+    "provider": "nominatim",
+    "displayName": "21, Engelselei, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "van hersteenstraat|1|2140": {
+    "lat": 51.2023617,
+    "lng": 4.4495192,
+    "provider": "nominatim",
+    "displayName": "1, Van Hersteenstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "gebroeders van der auwerabaan|0|2150": {
+    "lat": 51.1841418,
+    "lng": 4.4969291,
+    "provider": "nominatim",
+    "displayName": "Gebroeders Van der Auwerabaan, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "boterbloemlaan|23|2180": {
+    "lat": 51.2804379,
+    "lng": 4.4453911,
+    "provider": "nominatim",
+    "displayName": "23, Boterbloemlaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "daniël baginierlaan|0|2660": {
+    "lat": 51.174648,
+    "lng": 4.3409812,
+    "provider": "nominatim",
+    "displayName": "Daniël Baginierlaan, Hertogvelden, Hoboken-West, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "lumbeeckstraat|0|2660": {
+    "lat": 51.1759359,
+    "lng": 4.3437793,
+    "provider": "nominatim",
+    "displayName": "Lumbeeckstraat, Hertogvelden, Hoboken-West, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "lodewijk de vochtstraat|0|2180": {
+    "lat": 51.2681959,
+    "lng": 4.4169287,
+    "provider": "nominatim",
+    "displayName": "Lodewijk de Vochtstraat, Rozemaai, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "akker|2|2180": {
+    "lat": 51.2762648,
+    "lng": 4.412628,
+    "provider": "nominatim",
+    "displayName": "2, Akker, Schoonbroek, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "eugeen van mieghemstraat|0|2180": {
+    "lat": 51.2673367,
+    "lng": 4.4158249,
+    "provider": "nominatim",
+    "displayName": "Eugeen Van Mieghemstraat, Rozemaai, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "eendrachtstraat|0|2060": {
+    "lat": 51.2282422,
+    "lng": 4.438127,
+    "provider": "nominatim",
+    "displayName": "Eendrachtstraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "vaartkaai|0|2170": {
+    "lat": 51.2366958,
+    "lng": 4.4318693,
+    "provider": "nominatim",
+    "displayName": "Vaartkaai, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "paul henri spaaklaan|3|2660": {
+    "lat": 51.1696703,
+    "lng": 4.3475949,
+    "provider": "nominatim",
+    "displayName": "3, Paul Henri Spaaklaan, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "waaslandstraat|0|2660": {
+    "lat": 51.1859462,
+    "lng": 4.3630059,
+    "provider": "nominatim",
+    "displayName": "Waaslandstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "oude beurs|0|2000": {
+    "lat": 51.2220654,
+    "lng": 4.4003801,
+    "provider": "nominatim",
+    "displayName": "Oude Beurs, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "lenaart de landrelaan|0|2660": {
+    "lat": 51.1757323,
+    "lng": 4.3415634,
+    "provider": "nominatim",
+    "displayName": "Lenaart de Landrelaan, Hertogvelden, Hoboken-West, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "kapelstraat (2660)|0|2660": null,
+  "sint-bernardsesteenweg|0|2660": {
+    "lat": 51.1713438,
+    "lng": 4.3643241,
+    "provider": "nominatim",
+    "displayName": "Sint-Bernardsesteenweg, Vogeltjeswijk, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "meeuwenlaan|0|2660": {
+    "lat": 51.1710546,
+    "lng": 4.3603268,
+    "provider": "nominatim",
+    "displayName": "Meeuwenlaan, Vogeltjeswijk, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "schijfwerpersstraat|0|2020": {
+    "lat": 51.1841973,
+    "lng": 4.3855877,
+    "provider": "nominatim",
+    "displayName": "Schijfwerpersstraat, Kiel, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "frans adriaenssensstraat|76|2170": {
+    "lat": 51.2533962,
+    "lng": 4.443045,
+    "provider": "nominatim",
+    "displayName": "76, Frans Adriaenssensstraat, Tuinwijk, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "bredabaan|936|2170": {
+    "lat": 51.2621396,
+    "lng": 4.4630983,
+    "provider": "nominatim",
+    "displayName": "936, Bredabaan, Tuinwijk, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "oudstrijderslei|87|2180": {
+    "lat": 51.2940075,
+    "lng": 4.4362612,
+    "provider": "nominatim",
+    "displayName": "87, Oudstrijderslei, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "boomsesteenweg (2610)|467|2610": null,
+  "joris helleputtestraat|0|2140": {
+    "lat": 51.1972877,
+    "lng": 4.4541837,
+    "provider": "nominatim",
+    "displayName": "Joris Helleputtestraat, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "tweemontstraat|431|2100": {
+    "lat": 51.2311452,
+    "lng": 4.4432256,
+    "provider": "nominatim",
+    "displayName": "431, Tweemontstraat, Kronenburg, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "sterrenlaan|0|2610": {
+    "lat": 51.1706636,
+    "lng": 4.4233748,
+    "provider": "nominatim",
+    "displayName": "Sterrenlaan, Elsdonk, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "bist (2610)|0|2610": {
+    "lat": 51.170125,
+    "lng": 4.3950841,
+    "provider": "nominatim",
+    "displayName": "Bist, De Bist, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "oudebaan (2610)|20|2610": {
+    "lat": 51.1594235,
+    "lng": 4.3808842,
+    "provider": "nominatim",
+    "displayName": "Oudebaan, Terbekehof, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "floris primsstraat|0|2020": {
+    "lat": 51.1944826,
+    "lng": 4.3916117,
+    "provider": "nominatim",
+    "displayName": "Floris Primsstraat, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "lakenstraat|0|2000": {
+    "lat": 51.2094151,
+    "lng": 4.3875799,
+    "provider": "nominatim",
+    "displayName": "Lakenstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "tweemontstraat|0|2100": {
+    "lat": 51.2344777,
+    "lng": 4.4555885,
+    "provider": "nominatim",
+    "displayName": "Tweemontstraat, Kronenburg, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "lindenlei|1|2180": {
+    "lat": 51.2786657,
+    "lng": 4.4266107,
+    "provider": "nominatim",
+    "displayName": "1, Lindenlei, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "industrieweg|11|2030": {
+    "lat": 51.2542761,
+    "lng": 4.3510771,
+    "provider": "nominatim",
+    "displayName": "Hoofd kantoor Antwerp Shipyard, 11, Industrieweg, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+  },
+  "wilmingtonstraat|0|2030": {
+    "lat": 51.2925227,
+    "lng": 4.3513722,
+    "provider": "nominatim",
+    "displayName": "Wilmingtonstraat, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+  },
+  "breedveld|0|2150": {
+    "lat": 51.1847427,
+    "lng": 4.4891505,
+    "provider": "nominatim",
+    "displayName": "Breedveld, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "kleine kauwenberg|8|2000": {
+    "lat": 51.2241466,
+    "lng": 4.4120019,
+    "provider": "nominatim",
+    "displayName": "Kleine Kauwenberg, Universiteitsbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "oranjestraat|0|2060": {
+    "lat": 51.2273814,
+    "lng": 4.4201293,
+    "provider": "nominatim",
+    "displayName": "Oranjestraat, Amandus, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "merksemsestraat|0|2060": {
+    "lat": 51.2358227,
+    "lng": 4.4260367,
+    "provider": "nominatim",
+    "displayName": "Merksemsestraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "collegelaan|2a|2140": {
+    "lat": 51.212737,
+    "lng": 4.4485395,
+    "provider": "nominatim",
+    "displayName": "2A, Collegelaan, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "museumstraat|9|2000": {
+    "lat": 51.2100883,
+    "lng": 4.3918372,
+    "provider": "nominatim",
+    "displayName": "9, Museumstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "bouwmeestersstraat|0|2000": {
+    "lat": 51.2076293,
+    "lng": 4.3965306,
+    "provider": "nominatim",
+    "displayName": "Bouwmeestersstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "pandstraat|0|2000": {
+    "lat": 51.2181246,
+    "lng": 4.4011809,
+    "provider": "nominatim",
+    "displayName": "Pandstraat, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "maréestraat|0|2140": {
+    "lat": 51.2125389,
+    "lng": 4.4344226,
+    "provider": "nominatim",
+    "displayName": "Maréestraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "serigiersstraat|0|2020": {
+    "lat": 51.1902795,
+    "lng": 4.3927075,
+    "provider": "nominatim",
+    "displayName": "Serigiersstraat, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "posthofbrug|25|2600": {
+    "lat": 51.1971272,
+    "lng": 4.432603,
+    "provider": "nominatim",
+    "displayName": "Posthofbrug, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "boechoutsesteenweg|0|2150": {
+    "lat": 51.1847494,
+    "lng": 4.4872869,
+    "provider": "nominatim",
+    "displayName": "Boechoutsesteenweg, Borsbeek, Antwerpen, Boechout, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "dokter kochlaan|0|2660": {
+    "lat": 51.1704024,
+    "lng": 4.3699066,
+    "provider": "nominatim",
+    "displayName": "Dokter Kochlaan, Stuivenberg, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "antwerpsesteenweg|73|2660": {
+    "lat": 51.1784296,
+    "lng": 4.3551299,
+    "provider": "nominatim",
+    "displayName": "73, Antwerpsesteenweg, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "krijgsbaan (2660)|100|2660": null,
+  "de damhouderestraat|0|2018": {
+    "lat": 51.2080321,
+    "lng": 4.4045098,
+    "provider": "nominatim",
+    "displayName": "De Damhouderestraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "de lescluzestraat|12|2600": {
+    "lat": 51.1954625,
+    "lng": 4.4120036,
+    "provider": "nominatim",
+    "displayName": "12, De Lescluzestraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "asiadok-oostkaai|29|2030": {
+    "lat": 51.2325806,
+    "lng": 4.4198526,
+    "provider": "nominatim",
+    "displayName": "29, Asiadok-Oostkaai, Nieuwstad-Cadix, Eilandje, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "kattendijkdok-westkaai|0|2000": {
+    "lat": 51.2312186,
+    "lng": 4.4050914,
+    "provider": "nominatim",
+    "displayName": "Kattendijkdok-Westkaai, Nieuwstad-Cadix, Eilandje, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+  },
+  "de keyserlei|0|2018": {
+    "lat": 51.2173156,
+    "lng": 4.419629,
+    "provider": "nominatim",
+    "displayName": "De Keyserlei, Statiekwartier, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "antwerpsesteenweg|45|2660": {
+    "lat": 51.1780421,
+    "lng": 4.3519334,
+    "provider": "nominatim",
+    "displayName": "45, Antwerpsesteenweg, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "ruggeveldlaan|562|2100": {
+    "lat": 51.2218469,
+    "lng": 4.4800337,
+    "provider": "nominatim",
+    "displayName": "562, Ruggeveldlaan, Venneborg, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "langveldstraat|1|2100": {
+    "lat": 51.2076322,
+    "lng": 4.4717395,
+    "provider": "nominatim",
+    "displayName": "1, Langveldstraat, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "luitenant naeyaertplein|0|2140": {
+    "lat": 51.2095493,
+    "lng": 4.4412262,
+    "provider": "nominatim",
+    "displayName": "Luitenant Naeyaertplein, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "doornstraat|323|2610": {
+    "lat": 51.1591037,
+    "lng": 4.4004975,
+    "provider": "nominatim",
+    "displayName": "323, Doornstraat, Slijkhoek - Fort 6 - Drie Eiken, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "bergstraat|8|2000": {
+    "lat": 51.2184893,
+    "lng": 4.3997304,
+    "provider": "nominatim",
+    "displayName": "8, Bergstraat, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "goedetijdstraat|0|2660": {
+    "lat": 51.1699184,
+    "lng": 4.3626484,
+    "provider": "nominatim",
+    "displayName": "Goedetijdstraat, Vogeltjeswijk, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "eduard van benedenstraat|2|2180": {
+    "lat": 51.274086,
+    "lng": 4.4105831,
+    "provider": "nominatim",
+    "displayName": "2, Eduard van Benedenstraat, Rozemaai, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "vuurkruisenstraat|49|2180": {
+    "lat": 51.2751493,
+    "lng": 4.4146964,
+    "provider": "nominatim",
+    "displayName": "Vuurkruisenstraat, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "jan van rijswijcklaan|0|2018": {
+    "lat": 51.1972674,
+    "lng": 4.406634,
+    "provider": "nominatim",
+    "displayName": "Jan Van Rijswijcklaan, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|138|2018": {
+    "lat": 51.2047134,
+    "lng": 4.4159511,
+    "provider": "nominatim",
+    "displayName": "138, Belgiëlei, Klein-Antwerpen, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "krijgslaan|118|2610": {
+    "lat": 51.1631998,
+    "lng": 4.3953313,
+    "provider": "nominatim",
+    "displayName": "118, Krijgslaan, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "herentalsebaan (2150)|299|2150": null,
+  "gaston fabrélaan|0|2610": {
+    "lat": 51.1717072,
+    "lng": 4.3791833,
+    "provider": "nominatim",
+    "displayName": "Gaston Fabrélaan, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "kapelsesteenweg|511|2180": {
+    "lat": 51.2887452,
+    "lng": 4.4449438,
+    "provider": "nominatim",
+    "displayName": "Oh'Green, 517,515,513,511, Kapelsesteenweg, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "sint-rochusstraat (2100)|53|2100": {
+    "lat": 51.204368,
+    "lng": 4.4639988,
+    "provider": "nominatim",
+    "displayName": "Sint-Rochusstraat, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "binnenpad|38|2040": {
+    "lat": 51.3423183,
+    "lng": 4.3100896,
+    "provider": "nominatim",
+    "displayName": "38, Binnenpad, Berendrecht, Berendrecht-Zandvliet-Lillo, Antwerpen, Vlaanderen, 2040, België / Belgique / Belgien"
+  },
+  "borgerhoutsestraat|0|2018": {
+    "lat": 51.2131592,
+    "lng": 4.4277775,
+    "provider": "nominatim",
+    "displayName": "Borgerhoutsestraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "van de weyngaertlei|0|2180": {
+    "lat": 51.2950567,
+    "lng": 4.439749,
+    "provider": "nominatim",
+    "displayName": "Van De Weyngaertlei, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "incl. onderboring  -|80m|2000": null,
+  "kerkendijk|5|2140": {
+    "lat": 51.2129112,
+    "lng": 4.4533653,
+    "provider": "nominatim",
+    "displayName": "5, Kerkendijk, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "berkenveldstraat|18|2610": {
+    "lat": 51.1684472,
+    "lng": 4.3829171,
+    "provider": "nominatim",
+    "displayName": "18, Berkenveldstraat, Koornbloem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "lamorinièrestraat|80|2000": {
+    "lat": 51.2061294,
+    "lng": 4.4222338,
+    "provider": "nominatim",
+    "displayName": "80, Lamorinièrestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "de lescluzestraat|42|2600": {
+    "lat": 51.1950546,
+    "lng": 4.4130344,
+    "provider": "nominatim",
+    "displayName": "42, De Lescluzestraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "incl. onderboring  -|90m|2000": null,
+  "2050, antwerpen, blancefloerlaan: e,g en ov nieuw distributienet in verkaveling (42m)|1|2000": null,
+  "g, ov, initiatief regio|0|2140": null,
+  "g, ov, werken voor derden (lengte: 522m)|8|2660": null,
+  "g, ov, wegeniswerken (lengte: 2987m)|0|2100": null,
+  "g, ov, wegeniswerken (lengte: 1669m)|1|2100": null,
+  "ov, wegeniswerken (lengte: 5898m)|0|2050": null,
+  "g, ov, wegeniswerken (lengte: 1951m)|148|2100": null,
+  "ov, wegeniswerken (lengte: 3155m)|0|2660": null,
+  "riolering , wegeniswerken|40|2018": null,
+  "minderbroedersrui|10|2000": {
+    "lat": 51.2231929,
+    "lng": 4.403383,
+    "provider": "nominatim",
+    "displayName": "10, Minderbroedersrui, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "wegeniswerken|0|2000": null,
+  "r1 - ringpark zuid - antwerpen|0|2018": null,
+  "r1 - ringpark zuid - antwerpen|0|2020": null,
+  "r1 - ringpark zuid - antwerpen|11|2020": null,
+  "2660 hoboken antwerpsesteenweg - werken aan drinkwaterleiding|38|2660": null,
+  "2000 antwerpen - (antwerpen) - augustijnenstraat - 28 - werken aan nutsleiding - 16m.|28|2000": null,
+  "kerkstraat|142|2060": {
+    "lat": 51.219263,
+    "lng": 4.4342402,
+    "provider": "nominatim",
+    "displayName": "142, Kerkstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "justitiestraat|55|2018": {
+    "lat": 51.2084229,
+    "lng": 4.404861,
+    "provider": "nominatim",
+    "displayName": "55, Justitiestraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "nieuwe distributiecabine (lengte: 80m)|1|2660": null,
+  "g, ov, ruggengraat / investeringen (lengte: 1734m)|2|2060": null,
+  "g, hv uitbreiding net|0|2018": null,
+  "g, ov, wegeniswerken (lengte: 1381m)|0|2180": null,
+  "heraanleg openbaar domein, deeltraject a|0|2100": null,
+  "hoek camelialei met bredabaan|783a|2170": null,
+  "hoek begonialei met bredabaan|769a|2170": null,
+  "riolering , wegeniswerken|195|2100": null,
+  "g, ov, initiatief regio (lengte: 2250m)|57|2060": null,
+  "broederminstraat|18|2018": {
+    "lat": 51.2029373,
+    "lng": 4.3928814,
+    "provider": "nominatim",
+    "displayName": "18, Broederminstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "ov, wegeniswerken (lengte: 772m)|150|2100": null,
+  "2018 antwerpen - (antwerpen) - simonsstraat - 21 - werken aan nutsleiding - 34m.|40|2018": null,
+  "ov, lv uitbreiding net (lengte: 191m)|216|2018": null,
+  "2060 antwerpen van schoonhovenstraat - werken aan distributienet|32|2060": null,
+  "verkaveling (lengte: 376m)|0|2150": null,
+  "g, ov, wegeniswerken|0|2000": null,
+  "dokter romain de velstraat|24|2100": {
+    "lat": 51.2071282,
+    "lng": 4.457682,
+    "provider": "nominatim",
+    "displayName": "24, Dokter Romain De Velstraat, Muggenberg-Arena, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "lysenstraat|9|2600": {
+    "lat": 51.1831006,
+    "lng": 4.4296989,
+    "provider": "nominatim",
+    "displayName": "9, Lysenstraat, Pulhof, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "initiatief regio (lengte: 4372m)|0|2660": null,
+  "g, ov, initiatief regio (lengte: 1245m)|0|2150": null,
+  "muggenberglei|86|2100": {
+    "lat": 51.2067023,
+    "lng": 4.4570141,
+    "provider": "nominatim",
+    "displayName": "86, Muggenberglei, Kriekenhof, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "2140 borgerhout xaveriusstraat - werken aan drinkwaterleiding|1a|2140": null,
+  "2200m aanleg wisselverwarming, wisselsturing, fiber, wachtbuizen|73|2660": null,
+  "bist|28|2180": {
+    "lat": 51.2828693,
+    "lng": 4.436171,
+    "provider": "nominatim",
+    "displayName": "28, Bist, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "de leescorfstraat|50|2140": {
+    "lat": 51.2018299,
+    "lng": 4.4487992,
+    "provider": "nominatim",
+    "displayName": "50, De Leescorfstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "2018 antwerpen - (antwerpen) - lange lozanastraat 127 tot om de hoek van schoonbekestraat - werken aan nutsleiding - 123m.|74|2018": null,
+  "heraanleg publieke ruimte droogdokkensite|0|2030": null,
+  "transvaalstraat|2|2600": {
+    "lat": 51.2027362,
+    "lng": 4.4306415,
+    "provider": "nominatim",
+    "displayName": "2, Transvaalstraat, Zurenborg, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "generaal van merlenstraat|29|2600": {
+    "lat": 51.2030417,
+    "lng": 4.4318281,
+    "provider": "nominatim",
+    "displayName": "Winter, 29, Generaal Van Merlenstraat, Zurenborg, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "juul grietenstraat|1|2140": null,
+  "jozef nuytsstraat|33|2140": {
+    "lat": 51.2105789,
+    "lng": 4.450099,
+    "provider": "nominatim",
+    "displayName": "33, Jozef Nuytsstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "juul grietenstraat|2a|2140": null,
+  "groenendaallaan|118|2170": {
+    "lat": 51.2427746,
+    "lng": 4.4320341,
+    "provider": "nominatim",
+    "displayName": "118, Groenendaallaan, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "pastorijstraat|2|2060": {
+    "lat": 51.2208743,
+    "lng": 4.4324641,
+    "provider": "nominatim",
+    "displayName": "2, Pastorijstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "pastorijstraat|19|2060": {
+    "lat": 51.2203056,
+    "lng": 4.4329859,
+    "provider": "nominatim",
+    "displayName": "19, Pastorijstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "lange van bloerstraat|144|2060": {
+    "lat": 51.2202754,
+    "lng": 4.4356142,
+    "provider": "nominatim",
+    "displayName": "144, Lange Van Bloerstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "jaak de braeckeleerstraat|32|2140": {
+    "lat": 51.2152118,
+    "lng": 4.4378277,
+    "provider": "nominatim",
+    "displayName": "32, Jaak De Braeckeleerstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "august van putlei|88|2150": {
+    "lat": 51.1969914,
+    "lng": 4.4749337,
+    "provider": "nominatim",
+    "displayName": "88, August Van Putlei, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "august van putlei|94|2150": {
+    "lat": 51.1969775,
+    "lng": 4.4746783,
+    "provider": "nominatim",
+    "displayName": "94, August Van Putlei, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "august van putlei|188|2150": {
+    "lat": 51.1970909,
+    "lng": 4.4751331,
+    "provider": "nominatim",
+    "displayName": "August Van Putlei, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "groenendaallaan|20|2170": {
+    "lat": 51.2409066,
+    "lng": 4.4363271,
+    "provider": "nominatim",
+    "displayName": "20, Groenendaallaan, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "groenendaallaan|14|2170": {
+    "lat": 51.240798,
+    "lng": 4.4365494,
+    "provider": "nominatim",
+    "displayName": "14, Groenendaallaan, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "2018 antwerpen l.herentalsestraat - werken aan drinkwaterleiding|74|2018": null,
+  "muggenberglei|73|2100": {
+    "lat": 51.2071754,
+    "lng": 4.4575183,
+    "provider": "nominatim",
+    "displayName": "73, Muggenberglei, Muggenberg-Arena, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "drossaardplein|18|2660": {
+    "lat": 51.1829479,
+    "lng": 4.367648,
+    "provider": "nominatim",
+    "displayName": "18, Drossaardplein, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "ov, lv uitbreiding net (lengte: 192m)|6|2060": null,
+  "sterlingerstraat|92|2140": {
+    "lat": 51.2102109,
+    "lng": 4.4385486,
+    "provider": "nominatim",
+    "displayName": "92-94, Sterlingerstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "collegelaan|101|2140": {
+    "lat": 51.2137993,
+    "lng": 4.4538594,
+    "provider": "nominatim",
+    "displayName": "101, Collegelaan, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "collegelaan|90|2140": {
+    "lat": 51.2132407,
+    "lng": 4.4559403,
+    "provider": "nominatim",
+    "displayName": "90, Collegelaan, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "noordersingel|3|2140": {
+    "lat": 51.2245912,
+    "lng": 4.4453904,
+    "provider": "nominatim",
+    "displayName": "Noordersingel, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "hv uitbreiding net (lengte: 196m)|88|2140": null,
+  "g, ov, initiatief regio (lengte: 1217m)|0|2180": null,
+  "reinaartlaan|2|2000": {
+    "lat": 51.2281411,
+    "lng": 4.3842352,
+    "provider": "nominatim",
+    "displayName": "2;4;6, Reinaartlaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "florent pauwelslei|49|2100": {
+    "lat": 51.2078047,
+    "lng": 4.4718429,
+    "provider": "nominatim",
+    "displayName": "49, Florent Pauwelslei, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "vosstraat|168|2140": {
+    "lat": 51.1950252,
+    "lng": 4.4515301,
+    "provider": "nominatim",
+    "displayName": "168, Vosstraat, Vliegveld, Groenenhoek, Borgerhout, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "alfred oststraat|2|2140": {
+    "lat": 51.1949949,
+    "lng": 4.4520165,
+    "provider": "nominatim",
+    "displayName": "2, Alfred Oststraat, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "vosstraat|78|2140": {
+    "lat": 51.1962128,
+    "lng": 4.4519536,
+    "provider": "nominatim",
+    "displayName": "78, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "kardinaal cardijnstraat|1|2140": {
+    "lat": 51.0790132,
+    "lng": 4.3993531,
+    "provider": "nominatim",
+    "displayName": "1, Kardinaal Cardijnstraat, Terhagen, Rumst, Antwerpen, Vlaanderen, 2840, België / Belgique / Belgien"
+  },
+  "vosstraat|34|2140": {
+    "lat": 51.1973853,
+    "lng": 4.452458,
+    "provider": "nominatim",
+    "displayName": "Frituur 't Voske, 34, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "g, ov, wegeniswerken (lengte: 2125m)|0|2170": null,
+  "2610 wilrijk: uitspanningstraat - oudestraat - gallaitlaan - boeksveldplein - eenheidstraat -krijgslaan - schansweg=>  aanleg nutsleidingen en plaatsing van fiber bakken (+/- 1552m)|0|2610": null,
+  "van duyststraat|88|2100": {
+    "lat": 51.2315655,
+    "lng": 4.4469845,
+    "provider": "nominatim",
+    "displayName": "88, Van Duyststraat, Kronenburg, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "sint-lucaslaan|55|2180": {
+    "lat": 51.2724693,
+    "lng": 4.4529415,
+    "provider": "nominatim",
+    "displayName": "55, Sint-Lucaslaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "sint-lucaslaan|59|2180": {
+    "lat": 51.2727981,
+    "lng": 4.4532765,
+    "provider": "nominatim",
+    "displayName": "59, Sint-Lucaslaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "sint-lucaslaan|48|2180": {
+    "lat": 51.2718986,
+    "lng": 4.4515406,
+    "provider": "nominatim",
+    "displayName": "48, Sint-Lucaslaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "sint-lucaslaan|73|2180": {
+    "lat": 51.2733017,
+    "lng": 4.4549564,
+    "provider": "nominatim",
+    "displayName": "73, Sint-Lucaslaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "iepenlaan|11|2180": {
+    "lat": 51.3042995,
+    "lng": 4.555399,
+    "provider": "nominatim",
+    "displayName": "11, Iepenlaan, Sint-Job-in-'t-Goor, Brecht, Antwerpen, Vlaanderen, 2960, België / Belgique / Belgien"
+  },
+  "iepenlaan|13|2180": {
+    "lat": 51.304456,
+    "lng": 4.5551726,
+    "provider": "nominatim",
+    "displayName": "13, Iepenlaan, Sint-Job-in-'t-Goor, Brecht, Antwerpen, Vlaanderen, 2960, België / Belgique / Belgien"
+  },
+  "haringrodestraat|87|2018": {
+    "lat": 51.2010722,
+    "lng": 4.4159578,
+    "provider": "nominatim",
+    "displayName": "87, Haringrodestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "haringrodestraat|34|2018": {
+    "lat": 51.2035896,
+    "lng": 4.4144773,
+    "provider": "nominatim",
+    "displayName": "34, Haringrodestraat, Klein-Antwerpen, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "haringrodestraat|50|2018": {
+    "lat": 51.2025752,
+    "lng": 4.4147166,
+    "provider": "nominatim",
+    "displayName": "50, Haringrodestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "haringrodestraat|29|2018": {
+    "lat": 51.2001679,
+    "lng": 4.4161875,
+    "provider": "nominatim",
+    "displayName": "Haringrodestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "haringrodestraat|43|2018": {
+    "lat": 51.2022147,
+    "lng": 4.4154517,
+    "provider": "nominatim",
+    "displayName": "43, Haringrodestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "van praetstraat thv|24|2660": null,
+  "2060_antwerpen: rotterdamstraat, de coninckplein, van schoonhovenstraat en carnotstraat, 600 meter. aanleg van voedings-, sein- en glasvezelkabels.|36|2060": null,
+  "belgiëlei|127|2018": {
+    "lat": 51.2048336,
+    "lng": 4.417248,
+    "provider": "nominatim",
+    "displayName": "127, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "2100 antwerpen - (deurne) - herentalsebaan - 100 - werken aan nutsleiding - 1591m.|0|2140": null,
+  "2100 antwerpen - (deurne) - collegelaan - 106a - werken aan nutsleiding - 934m.|0|2140": null,
+  "isabellalei|52|2018": {
+    "lat": 51.2046294,
+    "lng": 4.4168304,
+    "provider": "nominatim",
+    "displayName": "52, Isabellalei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|131|2018": {
+    "lat": 51.2068354,
+    "lng": 4.4201005,
+    "provider": "nominatim",
+    "displayName": "Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|153|2018": {
+    "lat": 51.2038195,
+    "lng": 4.4158203,
+    "provider": "nominatim",
+    "displayName": "153, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgielei|103|2018": {
+    "lat": 51.2055024,
+    "lng": 4.4181297,
+    "provider": "nominatim",
+    "displayName": "103, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "oogststraat|239|2600": {
+    "lat": 51.1792315,
+    "lng": 4.4412056,
+    "provider": "nominatim",
+    "displayName": "Colruyt, 239, Oogststraat, De Zepten-Zilverbeek, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "turnhoutsebaan (2100)|34|2100": {
+    "lat": 51.220084,
+    "lng": 4.4647113,
+    "provider": "nominatim",
+    "displayName": "Turnhoutsebaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "kielsevest|74|2018": {
+    "lat": 51.1988664,
+    "lng": 4.3915309,
+    "provider": "nominatim",
+    "displayName": "74, Kielsevest, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "werken voor derden (lengte: 627m)|0|2030": null,
+  "g, ov, wegeniswerken (lengte: 7427m)|0|2050": null,
+  "ov, lv uitbreiding net (lengte: 95m)|0|2060": null,
+  "steynstraat|100|2660": {
+    "lat": 51.1802623,
+    "lng": 4.358154,
+    "provider": "nominatim",
+    "displayName": "100, Steynstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "fotografielaan|42|2610": {
+    "lat": 51.1581921,
+    "lng": 4.3651497,
+    "provider": "nominatim",
+    "displayName": "42, Fotografielaan, Terbekehof, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "2018 antwerpen - (antwerpen) - lamorinièrestraat - 244 - werken aan nutsleiding - 68m.|242|2018": null,
+  "simonsstraat|18|2018": {
+    "lat": 51.2121825,
+    "lng": 4.4209576,
+    "provider": "nominatim",
+    "displayName": "18, Simonsstraat, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "simonsstraat|59|2018": {
+    "lat": 51.2121471,
+    "lng": 4.4212481,
+    "provider": "nominatim",
+    "displayName": "Simonsstraat, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "2610 wilrijk: boekstraat - gallaitlaan - alfons chantrainestraat - standonklaan - oudestraat - oversneslaan - jozef cuyversstraat - boekstraat=>  aanleg nutsleidingen en plaatsing van fiber bakken (+/- 1500m)|0|2610": null,
+  "steenstraat|52|2180": {
+    "lat": 51.2759906,
+    "lng": 4.4175756,
+    "provider": "nominatim",
+    "displayName": "52, Steenstraat, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "ter hoogte van hsnr 218 en ter hoogte van hsnrs 194-206. - werken aan nutsleiding - 224m.|292|2018": null,
+  "2018 antwerpen - (antwerpen) - aanleg mro wyre in lange lozanastraat van huisnr 294 t.e.m. nr 298. - werken aan nutsleiding - 51m.|294|2018": null,
+  "t.h.v. nr 205 en 217b. - werken aan nutsleiding - 69m.|175|2018": null,
+  "2018 antwerpen - (antwerpen) - aanleg wyre mro leiding in lange lozanastraat vanaf om de hoek in jan van rijswijcklaan tot om de hoek in harmoniestraat. doorsteek ter hoogte van nr 294. - werken aan nutsleiding - 267m.|223|2018": null,
+  "nettransitie - digitale connector (lengte: 1040m)|0|2018": null,
+  "rector vermeylenlaan|39|2660": {
+    "lat": 51.1704496,
+    "lng": 4.3682348,
+    "provider": "nominatim",
+    "displayName": "39, Rector Vermeylenlaan, Stuivenberg, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "2660 hoboken: kilstraat - doverstraat - kapelstraat - daniël baginierlaan - jan van canlaan - lenaart de landrelaan - lumbeeckstraat - heiligeputstraat -  => aanleg nutsleidingen en plaatsen van fiber bakken (+/-1900m)|0|2660": null,
+  "2000 antwerpen - (merksem) - nieuwdreef - 206 - werken aan nutsleiding - 621m.|3|2170": null,
+  "2660 hoboken: scheldevrijstraat - grammestraat - maalbootstraat - grotebaan - constantin meunierplein - vooruitgangstraat=> aanleg nutsleidingen en plaatsen van fiber bakken (+/-887m)|0|2660": null,
+  "nettransitie - digitale connector (lengte: 284m)|1|2170": null,
+  "ov, lv uitbreiding net (lengte: 145m)|1|2180": null,
+  "g, ov, regio – energietransitie (lengte: 472m)|0|2610": null,
+  "ov, lv uitbreiding net (lengte: 181m)|1|2180": null,
+  "2100 deurne van reyenstraat - werken aan drinkwaterleiding|1|2100": null,
+  "mutsaardstraat|20|2000": {
+    "lat": 51.223906,
+    "lng": 4.4054412,
+    "provider": "nominatim",
+    "displayName": "20, Mutsaardstraat, Universiteitsbuurt, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "2018 antwerpen doornelei - werken aan drinkwaterleiding|2|2018": null,
+  "ov, regio – energietransitie (lengte: 189m)|0|2018": null,
+  "2100 antwerpen - plankenbergstraat - plaatsen leidingen - 22m|92|2100": null,
+  "lv uitbreiding net (lengte: 93m)|317|2180": null,
+  "lv uitbreiding net (lengte: 88m)|0|2020": null,
+  "de marbaixstraat|10|2060": {
+    "lat": 51.2275078,
+    "lng": 4.4377708,
+    "provider": "nominatim",
+    "displayName": "10, De Marbaixstraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "sterlingerstraat|40|2140": {
+    "lat": 51.2106484,
+    "lng": 4.4360078,
+    "provider": "nominatim",
+    "displayName": "40, Sterlingerstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "juul grietensstraat|39|2140": {
+    "lat": 51.2107505,
+    "lng": 4.4504065,
+    "provider": "nominatim",
+    "displayName": "39, Juul Grietensstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "lange lozanastraat|158|2018": {
+    "lat": 51.2021587,
+    "lng": 4.4057353,
+    "provider": "nominatim",
+    "displayName": "Lange Lozanastraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "ov, lv uitbreiding net|0|2018": null,
+  "sterlingerstraat|62|2140": {
+    "lat": 51.2104983,
+    "lng": 4.4371359,
+    "provider": "nominatim",
+    "displayName": "62, Sterlingerstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "n106|221|2610": {
+    "lat": 51.1626782,
+    "lng": 4.3992144,
+    "provider": "nominatim",
+    "displayName": "221, Doornstraat, Slijkhoek - Fort 6 - Drie Eiken, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "initiatief regio (lengte: 359m)|0|2660": null,
+  "predikerinnenstraat|2|2000": {
+    "lat": 51.2240612,
+    "lng": 4.4043188,
+    "provider": "nominatim",
+    "displayName": "2, Predikerinnenstraat, Universiteitsbuurt, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "predikerinnenstraat|7|2000": {
+    "lat": 51.2240053,
+    "lng": 4.404625,
+    "provider": "nominatim",
+    "displayName": "7, Predikerinnenstraat, Universiteitsbuurt, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "justitiestraat|6|2018": {
+    "lat": 51.2095872,
+    "lng": 4.4069899,
+    "provider": "nominatim",
+    "displayName": "6, Justitiestraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "hv uitbreiding net (lengte: 14m)|28|2030": null,
+  "diepestraat|159a|2060": {
+    "lat": 51.2240027,
+    "lng": 4.4237478,
+    "provider": "nominatim",
+    "displayName": "Diepestraat, Atheneum, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "lv uitbreiding net (lengte: 31m)|0|2660": null,
+  "luxemburgstraat|56|2020": {
+    "lat": 51.1884479,
+    "lng": 4.3837562,
+    "provider": "nominatim",
+    "displayName": "Luxemburgstraat, Kiel, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "betogingstraat|43|2140": {
+    "lat": 51.209319,
+    "lng": 4.4340635,
+    "provider": "nominatim",
+    "displayName": "43, Betogingstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "n148 - sint bernardsesteenweg , fietspad thv karel cuypersstraat , 2 m2 verzakte klinkers ophalen - antwerpen|0|2660": null,
+  "rijnkaai|100|2000": {
+    "lat": 51.2296312,
+    "lng": 4.4015158,
+    "provider": "nominatim",
+    "displayName": "Hangar 26-27, 100, Rijnkaai, Nieuwstad-Cadix, Eilandje, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "duinsteeg|7|2060": {
+    "lat": 51.2220573,
+    "lng": 4.4308748,
+    "provider": "nominatim",
+    "displayName": "7, Duinsteeg, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "gallifortlei|127|2100": {
+    "lat": 51.2227345,
+    "lng": 4.463013,
+    "provider": "nominatim",
+    "displayName": "127, Gallifortlei, Deurne-Dorp - Expo, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "gemeente overgenomen (ondergronds) (lengte: 116m)|0|2180": null,
+  "schildersstraat|55|2000": {
+    "lat": 51.2082633,
+    "lng": 4.3972403,
+    "provider": "nominatim",
+    "displayName": "55, Schildersstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "boekenberglei|209|2100": {
+    "lat": 51.1967913,
+    "lng": 4.459907,
+    "provider": "nominatim",
+    "displayName": "209, Boekenberglei, Boekenberg-Unitas, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "coppenolstraat|7|2000": {
+    "lat": 51.2219251,
+    "lng": 4.403874,
+    "provider": "nominatim",
+    "displayName": "7, Coppenolstraat, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "venneborglaan|99|2100": {
+    "lat": 51.2231147,
+    "lng": 4.4735228,
+    "provider": "nominatim",
+    "displayName": "99, Venneborglaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "kapelsesteenweg|335|2180": {
+    "lat": 51.2798271,
+    "lng": 4.4527541,
+    "provider": "nominatim",
+    "displayName": "335, Kapelsesteenweg, Vriesdonk, Brasschaat, Antwerpen, Vlaanderen, 2930, België / Belgique / Belgien"
+  },
+  "lange nieuwstraat|150|2000": {
+    "lat": 51.2196907,
+    "lng": 4.4143852,
+    "provider": "nominatim",
+    "displayName": "150, Lange Nieuwstraat, Meir, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "sloepenweg|25|2000": null,
+  "vleminckveld|68|2000": {
+    "lat": 51.2137932,
+    "lng": 4.403848,
+    "provider": "nominatim",
+    "displayName": "68, Vleminckveld, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "sint-paulusplaats|23|2000": {
+    "lat": 51.2247837,
+    "lng": 4.4007928,
+    "provider": "nominatim",
+    "displayName": "23, Sint-Paulusplaats, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "sint-jozefstraat|9|2018": {
+    "lat": 51.2071209,
+    "lng": 4.4110801,
+    "provider": "nominatim",
+    "displayName": "9, Sint-Jozefstraat, Klein-Antwerpen, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "ferdinand verbieststraat|59|2030": {
+    "lat": 51.2730166,
+    "lng": 4.4149462,
+    "provider": "nominatim",
+    "displayName": "59, Ferdinand Verbieststraat, Rozemaai, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "boterlaarbaan|263|2100": {
+    "lat": 51.2091676,
+    "lng": 4.4710447,
+    "provider": "nominatim",
+    "displayName": "263, Boterlaarbaan, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "vaderlandstraat|59|2610": {
+    "lat": 51.170254,
+    "lng": 4.4054568,
+    "provider": "nominatim",
+    "displayName": "59, Vaderlandstraat, Yperman - Steytelinck, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "willem tellstraat|3|2000": {
+    "lat": 51.2148275,
+    "lng": 4.4073884,
+    "provider": "nominatim",
+    "displayName": "3, Willem Tellstraat, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "mechelsesteenweg|175|2018": {
+    "lat": 51.204194,
+    "lng": 4.4114499,
+    "provider": "nominatim",
+    "displayName": "175, Mechelsesteenweg, Klein-Antwerpen, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|137|2018": {
+    "lat": 51.2044104,
+    "lng": 4.416633,
+    "provider": "nominatim",
+    "displayName": "137, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "asterlaan|14|2180": {
+    "lat": 51.2829196,
+    "lng": 4.4378943,
+    "provider": "nominatim",
+    "displayName": "14, Asterlaan, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "sint-paulusplaats|21b|2000": {
+    "lat": 51.2251453,
+    "lng": 4.4013584,
+    "provider": "nominatim",
+    "displayName": "Sint-Paulusplaats, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "sint-paulusplaats|22|2000": {
+    "lat": 51.2246999,
+    "lng": 4.4007783,
+    "provider": "nominatim",
+    "displayName": "22, Sint-Paulusplaats, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "kleine kraaiwijk|14|2000": {
+    "lat": 51.2244359,
+    "lng": 4.4006452,
+    "provider": "nominatim",
+    "displayName": "14, Kleine Kraaiwijk, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "gijzelaarsstraat|46|2000": {
+    "lat": 51.206626,
+    "lng": 4.3884008,
+    "provider": "nominatim",
+    "displayName": "46-50, Gijzelaarsstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "korte klarenstraat|13|2000": {
+    "lat": 51.2191452,
+    "lng": 4.4079878,
+    "provider": "nominatim",
+    "displayName": "13, Korte Klarenstraat, Meir, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "kotterstraat|10|2030": {
+    "lat": 51.2436963,
+    "lng": 4.4183514,
+    "provider": "nominatim",
+    "displayName": "Kotterstraat, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+  },
+  "vosstraat|72|2140": {
+    "lat": 51.1963914,
+    "lng": 4.4520522,
+    "provider": "nominatim",
+    "displayName": "72, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "vosstraat|56|2140": {
+    "lat": 51.1968214,
+    "lng": 4.4521938,
+    "provider": "nominatim",
+    "displayName": "56, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "vosstraat|46|2140": {
+    "lat": 51.1971163,
+    "lng": 4.4522986,
+    "provider": "nominatim",
+    "displayName": "46, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "vosstraat|44|2140": {
+    "lat": 51.1971655,
+    "lng": 4.4523306,
+    "provider": "nominatim",
+    "displayName": "44, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "oudebareellei|3|2170": {
+    "lat": 51.2477831,
+    "lng": 4.4538725,
+    "provider": "nominatim",
+    "displayName": "3,3A, Oudebareellei, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "sint-lambertusstraat|50|2600": {
+    "lat": 51.1982837,
+    "lng": 4.4204735,
+    "provider": "nominatim",
+    "displayName": "50-56, Sint-Lambertusstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "willem van laarstraat|78|2600": {
+    "lat": 51.1946217,
+    "lng": 4.4223196,
+    "provider": "nominatim",
+    "displayName": "78, Willem Van Laarstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "antwerpsesteenweg|22|2660": {
+    "lat": 51.1777151,
+    "lng": 4.3525086,
+    "provider": "nominatim",
+    "displayName": "22, Antwerpsesteenweg, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "collegelaan|85|2140": {
+    "lat": 51.2137449,
+    "lng": 4.4527881,
+    "provider": "nominatim",
+    "displayName": "85, Collegelaan, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "belgiëlei|129a|2018": {
+    "lat": 51.204732,
+    "lng": 4.4170948,
+    "provider": "nominatim",
+    "displayName": "129A, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|129|2018": {
+    "lat": 51.2047957,
+    "lng": 4.41714,
+    "provider": "nominatim",
+    "displayName": "129, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|129b|2018": {
+    "lat": 51.2079509,
+    "lng": 4.4212695,
+    "provider": "nominatim",
+    "displayName": "Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|121|2018": {
+    "lat": 51.204931,
+    "lng": 4.417404,
+    "provider": "nominatim",
+    "displayName": "121-123, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "de francqueslei|130|2100": {
+    "lat": 51.2291406,
+    "lng": 4.4515463,
+    "provider": "nominatim",
+    "displayName": "128,130, De Francqueslei, Ten Eekhove-Lakbors, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "pastoor van de wouwerstraat|17|2600": {
+    "lat": 51.1785245,
+    "lng": 4.4329225,
+    "provider": "nominatim",
+    "displayName": "17, Pastoor Van de Wouwerstraat, De Zepten-Zilverbeek, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "hoogpadlaan|56|2180": {
+    "lat": 51.2744332,
+    "lng": 4.4515307,
+    "provider": "nominatim",
+    "displayName": "56, Hoogpadlaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "sleutelstraat|5|2000": {
+    "lat": 51.2162989,
+    "lng": 4.3997263,
+    "provider": "nominatim",
+    "displayName": "5, Sleutelstraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "sleutelstraat|1|2000": {
+    "lat": 51.2163172,
+    "lng": 4.3994886,
+    "provider": "nominatim",
+    "displayName": "1,1A, Sleutelstraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "belgiëlei|145|2018": {
+    "lat": 51.2040939,
+    "lng": 4.4162224,
+    "provider": "nominatim",
+    "displayName": "145, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "miraeusstraat|10|2018": {
+    "lat": 51.206471,
+    "lng": 4.4005597,
+    "provider": "nominatim",
+    "displayName": "10, Miraeusstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "van den nestlei|18|2018": {
+    "lat": 51.2098754,
+    "lng": 4.4248689,
+    "provider": "nominatim",
+    "displayName": "18, Van den Nestlei, Zurenborg, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|143|2018": {
+    "lat": 51.2041356,
+    "lng": 4.4164921,
+    "provider": "nominatim",
+    "displayName": "143, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|141|2018": {
+    "lat": 51.2042941,
+    "lng": 4.4164947,
+    "provider": "nominatim",
+    "displayName": "141, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "n177|288|2020": {
+    "lat": 51.1851396,
+    "lng": 4.3910375,
+    "provider": "nominatim",
+    "displayName": "288, Jan Van Rijswijcklaan, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "viséstraat|104|2060": {
+    "lat": 51.2278324,
+    "lng": 4.4303859,
+    "provider": "nominatim",
+    "displayName": "104, Viséstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "maatsstraat|43|2060": {
+    "lat": 51.2258102,
+    "lng": 4.4376513,
+    "provider": "nominatim",
+    "displayName": "43, Maatsstraat, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "drossaardstraat|29|2140": {
+    "lat": 51.2193329,
+    "lng": 4.4391669,
+    "provider": "nominatim",
+    "displayName": "29, Drossaardstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "vosstraat|74|2140": {
+    "lat": 51.1963325,
+    "lng": 4.452047,
+    "provider": "nominatim",
+    "displayName": "74, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "vosstraat|68|2140": {
+    "lat": 51.1964952,
+    "lng": 4.4520582,
+    "provider": "nominatim",
+    "displayName": "68, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "vosstraat|62|2140": {
+    "lat": 51.1966372,
+    "lng": 4.4521247,
+    "provider": "nominatim",
+    "displayName": "62, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "vosstraat|42|2140": {
+    "lat": 51.1972161,
+    "lng": 4.4523176,
+    "provider": "nominatim",
+    "displayName": "42, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "grotesteenweg|347|2600": {
+    "lat": 51.1863456,
+    "lng": 4.4284498,
+    "provider": "nominatim",
+    "displayName": "347, Grotesteenweg, Pulhof, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "belgiëlei|139|2018": {
+    "lat": 51.2043261,
+    "lng": 4.416611,
+    "provider": "nominatim",
+    "displayName": "139, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "cuylitsstraat|76|2018": {
+    "lat": 51.2043606,
+    "lng": 4.3906287,
+    "provider": "nominatim",
+    "displayName": "76, Cuylitsstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "beukenlaan|4|2020": {
+    "lat": 51.1859363,
+    "lng": 4.4046671,
+    "provider": "nominatim",
+    "displayName": "4, Beukenlaan, Middelheim, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "vuurkruisenplein|20|2020": {
+    "lat": 51.1769384,
+    "lng": 4.4176554,
+    "provider": "nominatim",
+    "displayName": "20, Vuurkruisenplein, Oosterveld, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "ernest claesstraat|10|2050": {
+    "lat": 51.0917249,
+    "lng": 4.4884876,
+    "provider": "nominatim",
+    "displayName": "10, Ernest Claesstraat, Duffel, Mechelen, Antwerpen, Vlaanderen, 2570, België / Belgique / Belgien"
+  },
+  "blancefloerlaan|2|2050": {
+    "lat": 51.220809,
+    "lng": 4.3856356,
+    "provider": "nominatim",
+    "displayName": "2, Blancefloerlaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "meeuwenhoflei|23|2100": {
+    "lat": 51.2280302,
+    "lng": 4.452759,
+    "provider": "nominatim",
+    "displayName": "Meeuwenhoflei, Ten Eekhove-Lakbors, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "ruggeveldlaan|3|2100": {
+    "lat": 51.2285121,
+    "lng": 4.4795797,
+    "provider": "nominatim",
+    "displayName": "734,736,734/3, Ruggeveldlaan, Ertbrugge (Deurne), Ertbrugge, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "jozef reusenslei|184|2150": {
+    "lat": 51.1990131,
+    "lng": 4.4905598,
+    "provider": "nominatim",
+    "displayName": "184, Jozef Reusenslei, Rooibos, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "n1 - merksem 040a4 -  driekleur aansluiten\r\nherslijpen lussen:   paal 2- lus r1-3 op 0m \r\n                                 paal 4 - lus 10 cm  verschuiven \r\n+ ck assistentie - antwerpen|0|2170": null,
+  "krokusstraat|18|2170": {
+    "lat": 51.2487431,
+    "lng": 4.4369845,
+    "provider": "nominatim",
+    "displayName": "18, Krokusstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "laaglandlaan|46|2170": {
+    "lat": 51.2529121,
+    "lng": 4.4470586,
+    "provider": "nominatim",
+    "displayName": "46, Laaglandlaan, Tuinwijk, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "laaglandlaan|237|2170": {
+    "lat": 51.2570114,
+    "lng": 4.4459791,
+    "provider": "nominatim",
+    "displayName": "237, Laaglandlaan, Tuinwijk, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "jan breydelstraat|29|2600": {
+    "lat": 51.1934937,
+    "lng": 4.4160231,
+    "provider": "nominatim",
+    "displayName": "29, Jan Breydelstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "grotesteenweg|473|2600": {
+    "lat": 51.1825774,
+    "lng": 4.4307092,
+    "provider": "nominatim",
+    "displayName": "473, Grotesteenweg, Pulhof, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "italiëlei|203|2000": {
+    "lat": 51.222204,
+    "lng": 4.416904,
+    "provider": "nominatim",
+    "displayName": "203,203B, Italiëlei, Atheneum, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "belgiëlei|111|2018": {
+    "lat": 51.2052925,
+    "lng": 4.4178642,
+    "provider": "nominatim",
+    "displayName": "111, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|149|2018": {
+    "lat": 51.2039552,
+    "lng": 4.4160062,
+    "provider": "nominatim",
+    "displayName": "149, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "lodewijk de raetstraat|37|2020": {
+    "lat": 51.1899173,
+    "lng": 4.3706666,
+    "provider": "nominatim",
+    "displayName": "37, Lodewijk De Raetstraat, Kiel, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "duinstraat|107|2060": {
+    "lat": 51.222684,
+    "lng": 4.4313308,
+    "provider": "nominatim",
+    "displayName": "107, Duinstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "gemeentestraat|37|2060": {
+    "lat": 51.2192567,
+    "lng": 4.4204322,
+    "provider": "nominatim",
+    "displayName": "37, Gemeentestraat, Statiekwartier, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "bisschoppenhoflaan|432|2100": {
+    "lat": 51.2340895,
+    "lng": 4.4689939,
+    "provider": "nominatim",
+    "displayName": "432,434,434A,434E, Bisschoppenhoflaan, Kruininge-Bremweide (Deurne), Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "te boelaarlei|86|2140": {
+    "lat": 51.2081826,
+    "lng": 4.4516505,
+    "provider": "nominatim",
+    "displayName": "86, Te Boelaarlei, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "sint-mattheusstraat|39|2140": {
+    "lat": 51.2147509,
+    "lng": 4.4410135,
+    "provider": "nominatim",
+    "displayName": "39, Sint-Mattheusstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "molenstraat_ek|38|2180": null,
+  "boekstraat|57|2610": {
+    "lat": 51.1679677,
+    "lng": 4.3908734,
+    "provider": "nominatim",
+    "displayName": "57, Boekstraat, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "melgesdreef|30|2170": {
+    "lat": 51.2556139,
+    "lng": 4.4593689,
+    "provider": "nominatim",
+    "displayName": "30, Melgesdreef, Merksemheide, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "bredabaan|417|2170": {
+    "lat": 51.2435956,
+    "lng": 4.4442713,
+    "provider": "nominatim",
+    "displayName": "417, Bredabaan, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "neerland|3|2550": {
+    "lat": 51.121268,
+    "lng": 4.4953108,
+    "provider": "nominatim",
+    "displayName": "3, Neerland, Lint, Antwerpen, Vlaanderen, 2547, België / Belgique / Belgien"
+  },
+  "boomsesteenweg|672|2610": {
+    "lat": 51.1594097,
+    "lng": 4.3825948,
+    "provider": "nominatim",
+    "displayName": "FloorHouse, 672, Boomsesteenweg, Terbekehof, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "frankrijklei|21|2000": {
+    "lat": 51.2174792,
+    "lng": 4.4156403,
+    "displayName": "21,21A, Frankrijklei, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "frankrijklei|67|2000": {
+    "lat": 51.2150917,
+    "lng": 4.4139436,
+    "displayName": "67;69, Frankrijklei, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "kruikstraat|28|2018": {
+    "lat": 51.2087443,
+    "lng": 4.4261632,
+    "displayName": "28, Kruikstraat, Zurenborg, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "kasteelstraat|10|2000": {
+    "lat": 51.2075014,
+    "lng": 4.3898143,
+    "displayName": "10, Kasteelstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "2000 - antwerpen - vleminckstraat 3 - koppelput gas|3|2000": null,
+  "2000 antwerpen - (antwerpen) - kattendijkdok-westkaai - 12 - werken aan nutsleiding - 265m.|0|2000": null,
+  "2030 antwerpen - havanasite - argentiniëlaan - ekersesteenweg aanleg warmtenet staal/pur/pe\r\ndn300/500 lengte 1650m\r\ndn200/355 lengte 850m\r\ndn100/225 lengte 250m\r\ntotaal: 2750m|0|2180": null,
+  "boomsesteenweg|655|2610": {
+    "lat": 51.1746533,
+    "lng": 4.387808,
+    "provider": "nominatim",
+    "displayName": "Boomsesteenweg, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "moderniseren distributiecabine (lengte: 85m)|15|2660": null,
+  "van eycklei|42|2018": {
+    "lat": 51.2097998,
+    "lng": 4.4167621,
+    "provider": "nominatim",
+    "displayName": "42, Van Eycklei, Klein-Antwerpen, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "2018 antwerpen - lange lozanastraat - plaatsen leidingen  - 10m|0|2018": null,
+  "godtsstraat|21|2140": {
+    "lat": 51.2122812,
+    "lng": 4.4411928,
+    "provider": "nominatim",
+    "displayName": "21, Godtsstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "2170 merksem bredabaan - werken aan drinkwaterleiding|936|2170": null,
+  "kapelsesteenweg|617|2180": {
+    "lat": 51.2948014,
+    "lng": 4.4420093,
+    "provider": "nominatim",
+    "displayName": "617, Kapelsesteenweg, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "kapelsesteenweg|621|2180": {
+    "lat": 51.2950782,
+    "lng": 4.4417263,
+    "provider": "nominatim",
+    "displayName": "621, Kapelsesteenweg, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "leo vermandellei|617a|2180": {
+    "lat": 51.2941428,
+    "lng": 4.439951,
+    "provider": "nominatim",
+    "displayName": "Leo Vermandellei, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "leo vermandellei|2|2180": {
+    "lat": 51.2950271,
+    "lng": 4.4415587,
+    "provider": "nominatim",
+    "displayName": "2, Leo Vermandellei, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "fotografielaan|46|2610": {
+    "lat": 51.1584746,
+    "lng": 4.3644037,
+    "provider": "nominatim",
+    "displayName": "44-46,46A, Fotografielaan, Terbekehof, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "vlaanderenstraat|4|2000": {
+    "lat": 51.2166235,
+    "lng": 4.3943094,
+    "provider": "nominatim",
+    "displayName": "4, Vlaanderenstraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "haringrodestraat|88|2018": {
+    "lat": 51.2033025,
+    "lng": 4.4147411,
+    "provider": "nominatim",
+    "displayName": "Haringrodestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|119|2018": {
+    "lat": 51.2050021,
+    "lng": 4.4174742,
+    "provider": "nominatim",
+    "displayName": "119, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|117|2018": {
+    "lat": 51.2050855,
+    "lng": 4.4175914,
+    "provider": "nominatim",
+    "displayName": "Militaire centrale Antwerpen. Provincie- en Plaatscommando Antwerpen, 117, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "kommershoek|9|2040": {
+    "lat": 51.3518287,
+    "lng": 4.3202235,
+    "provider": "nominatim",
+    "displayName": "9, Kommershoek, Berendrecht, Berendrecht-Zandvliet-Lillo, Antwerpen, Vlaanderen, 2040, België / Belgique / Belgien"
+  },
+  "raapakker|25|2040": {
+    "lat": 51.3470231,
+    "lng": 4.3280179,
+    "provider": "nominatim",
+    "displayName": "25, Raapakker, Viswater, Berendrecht, Berendrecht-Zandvliet-Lillo, Antwerpen, Vlaanderen, 2040, België / Belgique / Belgien"
+  },
+  "isabelle valaeysstraat|6|2050": {
+    "lat": 51.2166744,
+    "lng": 4.3629671,
+    "provider": "nominatim",
+    "displayName": "6, Isabelle Valaeysstraat, Regatta, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "lange kongostraat|58|2060": {
+    "lat": 51.2229959,
+    "lng": 4.4391264,
+    "provider": "nominatim",
+    "displayName": "58, Lange Kongostraat, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "samberstraat|9|2060": {
+    "lat": 51.2327189,
+    "lng": 4.4272377,
+    "provider": "nominatim",
+    "displayName": "9, Samberstraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "vosstraat|52|2140": {
+    "lat": 51.1969396,
+    "lng": 4.4522664,
+    "provider": "nominatim",
+    "displayName": "52, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "vosstraat|40|2140": {
+    "lat": 51.1972521,
+    "lng": 4.4523826,
+    "provider": "nominatim",
+    "displayName": "40, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "dokter van de perrelei|41a|2140": {
+    "lat": 51.209393,
+    "lng": 4.4489671,
+    "provider": "nominatim",
+    "displayName": "41A, Dokter Van de Perrelei, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "dokter van de perrelei|17|2140": {
+    "lat": 51.2103232,
+    "lng": 4.4484536,
+    "provider": "nominatim",
+    "displayName": "17, Dokter Van de Perrelei, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "jozef nuytsstraat|34|2140": {
+    "lat": 51.2102088,
+    "lng": 4.4500853,
+    "provider": "nominatim",
+    "displayName": "34, Jozef Nuytsstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "jozef nuytsstraat|10|2140": {
+    "lat": 51.2099374,
+    "lng": 4.4491446,
+    "provider": "nominatim",
+    "displayName": "10, Jozef Nuytsstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "jozef nuytsstraat|20|2140": {
+    "lat": 51.2100478,
+    "lng": 4.4495436,
+    "provider": "nominatim",
+    "displayName": "20, Jozef Nuytsstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "louis janssensstraat|41|2150": {
+    "lat": 51.1956062,
+    "lng": 4.4920026,
+    "provider": "nominatim",
+    "displayName": "41, Louis Janssensstraat, Rooibos, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "herentalsebaan_bb|163|2150": null,
+  "runcvoort|14|2170": {
+    "lat": 51.2477028,
+    "lng": 4.4373843,
+    "provider": "nominatim",
+    "displayName": "14, Runcvoort, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "sint-bartholomeusstraat|44|2170": {
+    "lat": 51.2424491,
+    "lng": 4.4440039,
+    "provider": "nominatim",
+    "displayName": "44, Sint-Bartholomeusstraat, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "ijsvogelstraat|34|2170": {
+    "lat": 51.2593759,
+    "lng": 4.436327,
+    "provider": "nominatim",
+    "displayName": "34, IJsvogelstraat, ’T Laar, Lambrechtshoeken, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "ijsvogelstraat|40|2170": {
+    "lat": 51.2593682,
+    "lng": 4.4360686,
+    "provider": "nominatim",
+    "displayName": "40, IJsvogelstraat, ’T Laar, Lambrechtshoeken, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "van praetlei|31|2170": {
+    "lat": 51.2498653,
+    "lng": 4.4564437,
+    "provider": "nominatim",
+    "displayName": "31, Van Praetlei, Wildert, Merksemheide, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "beenhouwerstraat|12|2180": {
+    "lat": 51.276117,
+    "lng": 4.4169018,
+    "provider": "nominatim",
+    "displayName": "12, Beenhouwerstraat, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "dianalaan|15|2600": {
+    "lat": 51.1998464,
+    "lng": 4.4437391,
+    "provider": "nominatim",
+    "displayName": "15, Dianalaan, Groenenhoek, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "marie-josélaan|33|2600": {
+    "lat": 51.187193,
+    "lng": 4.4248805,
+    "provider": "nominatim",
+    "displayName": "33, Marie-Josélaan, Pulhof, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "statiestraat_be|9|2600": {
+    "lat": 51.1976809,
+    "lng": 4.4246316,
+    "provider": "nominatim",
+    "displayName": "Statiestraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "neerland|33|2610": {
+    "lat": 51.1512429,
+    "lng": 4.3992623,
+    "provider": "nominatim",
+    "displayName": "33, Neerland, Slijkhoek - Fort 6 - Drie Eiken, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "boekstraat|53|2610": {
+    "lat": 51.1679618,
+    "lng": 4.3910149,
+    "provider": "nominatim",
+    "displayName": "53, Boekstraat, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "moretusstraat|107|2660": {
+    "lat": 51.1722685,
+    "lng": 4.3495846,
+    "provider": "nominatim",
+    "displayName": "107, Moretusstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "aartselaarstraat|217|2660": {
+    "lat": 51.1774121,
+    "lng": 4.3655073,
+    "provider": "nominatim",
+    "displayName": "217, Aartselaarstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "krugerstraat_ho|22|2660": null,
+  "kasteelstraat|36|2000": {
+    "lat": 51.2066137,
+    "lng": 4.3916429,
+    "provider": "nominatim",
+    "displayName": "36, Kasteelstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "scheldestraat|80|2000": {
+    "lat": 51.2108147,
+    "lng": 4.3961914,
+    "provider": "nominatim",
+    "displayName": "80, Scheldestraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "teichmannstraat|8|2018": {
+    "lat": 51.2063465,
+    "lng": 4.407684,
+    "provider": "nominatim",
+    "displayName": "8, Teichmannstraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "politeshofstraat|24|2018": {
+    "lat": 51.1983276,
+    "lng": 4.3938983,
+    "provider": "nominatim",
+    "displayName": "24, Politeshofstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "hertsdeinstraat|12|2018": {
+    "lat": 51.2034867,
+    "lng": 4.3990211,
+    "provider": "nominatim",
+    "displayName": "12, Hertsdeinstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "baltimorestraat|52|2030": {
+    "lat": 51.2600411,
+    "lng": 4.4247822,
+    "provider": "nominatim",
+    "displayName": "52, Baltimorestraat, Luchtbal, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+  },
+  "somméstraat|75|2060": {
+    "lat": 51.2223976,
+    "lng": 4.440118,
+    "provider": "nominatim",
+    "displayName": "75, Somméstraat, Borgerhout, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "carnotstraat|45|2060": {
+    "lat": 51.218863,
+    "lng": 4.4239569,
+    "provider": "nominatim",
+    "displayName": "45, Carnotstraat, Atheneum, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "karel palmsstraat|30|2100": {
+    "lat": 51.2255119,
+    "lng": 4.4566469,
+    "provider": "nominatim",
+    "displayName": "30, Karel Palmsstraat, Conforta, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "waasdonk|47|2100": {
+    "lat": 51.1921394,
+    "lng": 4.4704016,
+    "provider": "nominatim",
+    "displayName": "47, Waasdonk, Drakenhof-Langbaanvelden, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "kroonstraat|11|2140": {
+    "lat": 51.2158065,
+    "lng": 4.4302776,
+    "provider": "nominatim",
+    "displayName": "11, Kroonstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "fonteinstraat|116|2140": {
+    "lat": 51.2102477,
+    "lng": 4.4408908,
+    "provider": "nominatim",
+    "displayName": "116, Fonteinstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "jozef nuytsstraat|22|2140": {
+    "lat": 51.2100726,
+    "lng": 4.4496208,
+    "provider": "nominatim",
+    "displayName": "22, Jozef Nuytsstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "jozef nuytsstraat|4|2140": {
+    "lat": 51.20989,
+    "lng": 4.4488948,
+    "provider": "nominatim",
+    "displayName": "4, Jozef Nuytsstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "steenstraat|90|2180": {
+    "lat": 51.2747887,
+    "lng": 4.4176246,
+    "provider": "nominatim",
+    "displayName": "90, Steenstraat, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "akker|94|2180": {
+    "lat": 51.2787536,
+    "lng": 4.4103212,
+    "provider": "nominatim",
+    "displayName": "94, Akker, Schoonbroek, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "plasstraat|36|2180": {
+    "lat": 51.3037719,
+    "lng": 4.4120987,
+    "provider": "nominatim",
+    "displayName": "36, Plasstraat, Leugenberg, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "sneeuwbesstraat|3|2180": {
+    "lat": 51.2870599,
+    "lng": 4.4293517,
+    "provider": "nominatim",
+    "displayName": "3, Sneeuwbesstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "langemarkstraat|88|2600": {
+    "lat": 51.1927743,
+    "lng": 4.4456949,
+    "provider": "nominatim",
+    "displayName": "88, Langemarkstraat, Groenenhoek, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "grotesteenweg|349|2600": {
+    "lat": 51.186305,
+    "lng": 4.428554,
+    "provider": "nominatim",
+    "displayName": "349, Grotesteenweg, Pulhof, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "waterfordstraat|15|2600": {
+    "lat": 51.2007934,
+    "lng": 4.425723,
+    "provider": "nominatim",
+    "displayName": "15, Waterfordstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "statiestraat_be|87|2600": {
+    "lat": 51.1983397,
+    "lng": 4.426898,
+    "provider": "nominatim",
+    "displayName": "87, Statiestraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "laarstraat|1|2610": {
+    "lat": 51.1743591,
+    "lng": 4.3940508,
+    "provider": "nominatim",
+    "displayName": "1, Laarstraat, Hoogte, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "jozef kenneslei|2|2610": {
+    "lat": 51.1741695,
+    "lng": 4.393569,
+    "provider": "nominatim",
+    "displayName": "2, Jozef Kenneslei, Hoogte, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "kruishofstraat|341|2610": {
+    "lat": 51.1799549,
+    "lng": 4.390479,
+    "provider": "nominatim",
+    "displayName": "341, Kruishofstraat, Hoogte, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "frans de cortlaan|3|2610": {
+    "lat": 51.177262,
+    "lng": 4.3930116,
+    "provider": "nominatim",
+    "displayName": "3, Frans De Cortlaan, Hoogte, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "elststraat|47|2660": {
+    "lat": 51.1749293,
+    "lng": 4.3532831,
+    "provider": "nominatim",
+    "displayName": "47, Elststraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "verenigde natieslaan|159|2660": {
+    "lat": 51.1596637,
+    "lng": 4.347086,
+    "provider": "nominatim",
+    "displayName": "159, Verenigde Natieslaan, Nachtegalenhof, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "edmond cretsstraat|15|2660": {
+    "lat": 51.1738604,
+    "lng": 4.3453548,
+    "provider": "nominatim",
+    "displayName": "15, Edmond Cretsstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "edmond cretsstraat|32|2660": {
+    "lat": 51.1731754,
+    "lng": 4.3453206,
+    "provider": "nominatim",
+    "displayName": "32, Edmond Cretsstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "kasteelpleinstraat|43|2000": {
+    "lat": 51.2105025,
+    "lng": 4.4021445,
+    "provider": "nominatim",
+    "displayName": "43A, Kasteelpleinstraat, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "kasteelpleinstraat 43 a|43|2000": {
+    "lat": 51.2106556,
+    "lng": 4.4015842,
+    "provider": "nominatim",
+    "displayName": "Kasteelpleinstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "lange riddersstraat|65|2000": {
+    "lat": 51.2156042,
+    "lng": 4.3965121,
+    "provider": "nominatim",
+    "displayName": "65-67, Lange Riddersstraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "belgiëlei|147|2018": {
+    "lat": 51.2040222,
+    "lng": 4.4161029,
+    "provider": "nominatim",
+    "displayName": "147, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "seringenlaan|2|2020": {
+    "lat": 51.1081262,
+    "lng": 4.3895814,
+    "provider": "nominatim",
+    "displayName": "2, Seringenlaan, Predikherenvelden, Reet, Rumst, Antwerpen, Vlaanderen, 2840, België / Belgique / Belgien"
+  },
+  "brooklynstraat|22|2030": {
+    "lat": 51.2585073,
+    "lng": 4.4241348,
+    "provider": "nominatim",
+    "displayName": "Brooklynstraat, Luchtbal, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+  },
+  "galgenweellaan|71|2050": {
+    "lat": 51.2177788,
+    "lng": 4.3778831,
+    "provider": "nominatim",
+    "displayName": "71, Galgenweellaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "oudesteenweg|93|2060": {
+    "lat": 51.2270247,
+    "lng": 4.4212997,
+    "provider": "nominatim",
+    "displayName": "93, Oudesteenweg, Amandus, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "merksemsestraat|30|2060": {
+    "lat": 51.2355896,
+    "lng": 4.4261292,
+    "provider": "nominatim",
+    "displayName": "30, Merksemsestraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "waterbaan|24|2100": {
+    "lat": 51.2075313,
+    "lng": 4.4631689,
+    "provider": "nominatim",
+    "displayName": "24,26, Waterbaan, Muggenberg-Arena, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "schoggestraat|29|2100": {
+    "lat": 51.201813,
+    "lng": 4.4722019,
+    "provider": "nominatim",
+    "displayName": "Schoggestraat, Eksterlaar, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "seraphin de grootestraat|44|2100": {
+    "lat": 51.2200268,
+    "lng": 4.4786249,
+    "provider": "nominatim",
+    "displayName": "44, Seraphin de Grootestraat, Venneborg, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "jozef nuytsstraat|32|2140": {
+    "lat": 51.2101977,
+    "lng": 4.4500002,
+    "provider": "nominatim",
+    "displayName": "32, Jozef Nuytsstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "jozef nuytsstraat|28|2140": {
+    "lat": 51.210162,
+    "lng": 4.4498385,
+    "provider": "nominatim",
+    "displayName": "28, Jozef Nuytsstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "karel de preterlei|38|2140": {
+    "lat": 51.2047441,
+    "lng": 4.4494716,
+    "provider": "nominatim",
+    "displayName": "38, Karel De Preterlei, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "jan de laetstraat|23|2140": {
+    "lat": 51.2176936,
+    "lng": 4.4437483,
+    "provider": "nominatim",
+    "displayName": "23, Jan De Laetstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "eigenheerdstraat|44|2170": {
+    "lat": 51.2379629,
+    "lng": 4.4422661,
+    "provider": "nominatim",
+    "displayName": "44, Eigenheerdstraat, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "statiestraat_be|78|2600": {
+    "lat": 51.1985631,
+    "lng": 4.4265679,
+    "provider": "nominatim",
+    "displayName": "78, Statiestraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "fort vi-straat|126|2610": {
+    "lat": 51.1630171,
+    "lng": 4.4003973,
+    "provider": "nominatim",
+    "displayName": "126, Fort VI-straat, Slijkhoek - Fort 6 - Drie Eiken, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "aartselaarstraat|166|2660": {
+    "lat": 51.1765814,
+    "lng": 4.3639658,
+    "provider": "nominatim",
+    "displayName": "166, Aartselaarstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "pauwenlaan|28|2660": {
+    "lat": 51.1713603,
+    "lng": 4.3588733,
+    "provider": "nominatim",
+    "displayName": "28, Pauwenlaan, Vogeltjeswijk, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "jules pauwelsstraat|59|2660": {
+    "lat": 51.1858013,
+    "lng": 4.3586322,
+    "provider": "nominatim",
+    "displayName": "59, Jules Pauwelsstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "fodderiestraat|37|2660": {
+    "lat": 51.1812199,
+    "lng": 4.3473994,
+    "provider": "nominatim",
+    "displayName": "37, Fodderiestraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "orteliuskaai|2|2000": {
+    "lat": 51.225557,
+    "lng": 4.400303,
+    "provider": "nominatim",
+    "displayName": "2, Orteliuskaai, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "antoon van dyckstraat|76|2018": {
+    "lat": 51.2078158,
+    "lng": 4.416156,
+    "provider": "nominatim",
+    "displayName": "76-80, Antoon van Dyckstraat, Klein-Antwerpen, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "isabella brantstraat|58|2018": {
+    "lat": 51.2050719,
+    "lng": 4.4048453,
+    "provider": "nominatim",
+    "displayName": "58, Isabella Brantstraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "camille huysmanslaan|38|2020": {
+    "lat": 51.1916814,
+    "lng": 4.3959618,
+    "provider": "nominatim",
+    "displayName": "38, Camille Huysmanslaan, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "wittestraat|122|2020": {
+    "lat": 51.1871589,
+    "lng": 4.3834228,
+    "provider": "nominatim",
+    "displayName": "122, Wittestraat, Kiel, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "paul van ostaijenlaan|34|2050": {
+    "lat": 51.2195436,
+    "lng": 4.3838186,
+    "provider": "nominatim",
+    "displayName": "34, Paul van Ostaijenlaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "oranjestraat|12|2060": {
+    "lat": 51.2271717,
+    "lng": 4.4189624,
+    "provider": "nominatim",
+    "displayName": "12, Oranjestraat, Amandus, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "sint-jobstraat|26|2060": {
+    "lat": 51.2292361,
+    "lng": 4.4227743,
+    "provider": "nominatim",
+    "displayName": "26, Sint-Jobstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "wetstraat|96|2060": {
+    "lat": 51.2189331,
+    "lng": 4.4295769,
+    "provider": "nominatim",
+    "displayName": "96, Wetstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "klappeistraat|36|2060": {
+    "lat": 51.2203771,
+    "lng": 4.4296245,
+    "provider": "nominatim",
+    "displayName": "36, Klappeistraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "gabriël vervoortstraat|2|2100": {
+    "lat": 51.2073438,
+    "lng": 4.4595207,
+    "provider": "nominatim",
+    "displayName": "2, Gabriël Vervoortstraat, Muggenberg-Arena, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "kroonstraat|13|2140": {
+    "lat": 51.215765,
+    "lng": 4.4302987,
+    "provider": "nominatim",
+    "displayName": "13, Kroonstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "vosstraat|84|2140": {
+    "lat": 51.1959022,
+    "lng": 4.4518678,
+    "provider": "nominatim",
+    "displayName": "84, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "vosstraat|76|2140": {
+    "lat": 51.1962843,
+    "lng": 4.4520178,
+    "provider": "nominatim",
+    "displayName": "76, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "jakob smitsstraat|29|2140": {
+    "lat": 51.1979441,
+    "lng": 4.4512181,
+    "provider": "nominatim",
+    "displayName": "29, Jakob Smitsstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "schanslaan|45|2150": {
+    "lat": 51.1938223,
+    "lng": 4.4922814,
+    "provider": "nominatim",
+    "displayName": "45, Schanslaan, Rooibos, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "bermbeekstraat|12|2170": {
+    "lat": 51.2410303,
+    "lng": 4.432386,
+    "provider": "nominatim",
+    "displayName": "12, Bermbeekstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "bermbeekstraat|11|2170": {
+    "lat": 51.2409492,
+    "lng": 4.4328864,
+    "provider": "nominatim",
+    "displayName": "11, Bermbeekstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "bermbeekstraat|8|2170": {
+    "lat": 51.2409429,
+    "lng": 4.4324896,
+    "provider": "nominatim",
+    "displayName": "8, Bermbeekstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "ferdinandusdijkstraat|32|2170": {
+    "lat": 51.2407039,
+    "lng": 4.433082,
+    "provider": "nominatim",
+    "displayName": "32, Ferdinandusdijkstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "roederdelft|3|2170": {
+    "lat": 51.2406777,
+    "lng": 4.4326067,
+    "provider": "nominatim",
+    "displayName": "3, Roederdelft, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "moretusstraat|142|2660": {
+    "lat": 51.1712048,
+    "lng": 4.3494676,
+    "provider": "nominatim",
+    "displayName": "142, Moretusstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "grotesteenweg|81|2600": {
+    "lat": 51.1961782,
+    "lng": 4.4175813,
+    "provider": "nominatim",
+    "displayName": "81, Grotesteenweg, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "krijgslaan|70|2610": {
+    "lat": 51.1634531,
+    "lng": 4.3976625,
+    "provider": "nominatim",
+    "displayName": "70, Krijgslaan, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "zonnedauwstraat|20|2610": {
+    "lat": 51.1801363,
+    "lng": 4.3833003,
+    "provider": "nominatim",
+    "displayName": "20, Zonnedauwstraat, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "nieuwdreef|132|2170": {
+    "lat": 51.2474623,
+    "lng": 4.4390882,
+    "provider": "nominatim",
+    "displayName": "132, Nieuwdreef, Oud-Merksem, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "huikstraat|4|2000": {
+    "lat": 51.2250557,
+    "lng": 4.4043544,
+    "provider": "nominatim",
+    "displayName": "4, Huikstraat, Schipperskwartier, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "batkinstraat|34|2600": {
+    "lat": 51.1998982,
+    "lng": 4.4279331,
+    "provider": "nominatim",
+    "displayName": "34, Batkinstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "louizastraat|18|2000": {
+    "lat": 51.2111739,
+    "lng": 4.4048664,
+    "provider": "nominatim",
+    "displayName": "18, Louizastraat, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "leo vermandellei|5|2180": {
+    "lat": 51.2945278,
+    "lng": 4.441179,
+    "provider": "nominatim",
+    "displayName": "5, Leo Vermandellei, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "tulpstraat|63|2060": {
+    "lat": 51.2270487,
+    "lng": 4.4271315,
+    "provider": "nominatim",
+    "displayName": "63, Tulpstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "bogaardestraat|56|2000": {
+    "lat": 51.2143076,
+    "lng": 4.3998588,
+    "provider": "nominatim",
+    "displayName": "56-58, Bogaardestraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "leerwijk|12|2180": {
+    "lat": 51.2800455,
+    "lng": 4.409605,
+    "provider": "nominatim",
+    "displayName": "12, Leerwijk, Schoonbroek, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "saturnusstraat|9|2600": {
+    "lat": 51.2020059,
+    "lng": 4.4429775,
+    "provider": "nominatim",
+    "displayName": "9, Saturnusstraat, Groenenhoek, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "columbiastraat|22|2030": {
+    "lat": 51.2486563,
+    "lng": 4.4239028,
+    "provider": "nominatim",
+    "displayName": "22, Columbiastraat, Luchtbal, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+  },
+  "keyserstraatje|1|2040": {
+    "lat": 51.3562929,
+    "lng": 4.3376161,
+    "provider": "nominatim",
+    "displayName": "1, Keyserstraatje, Berendrecht, Berendrecht-Zandvliet-Lillo, Antwerpen, Vlaanderen, 2040, België / Belgique / Belgien"
+  },
+  "hagelandstraat|26|2660": {
+    "lat": 51.1850574,
+    "lng": 4.3650544,
+    "provider": "nominatim",
+    "displayName": "26, Hagelandstraat, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "maria-theresialei ts|4|2000": null,
+  "unescolaan|21|2610": {
+    "lat": 51.161806,
+    "lng": 4.3932096,
+    "provider": "nominatim",
+    "displayName": "Unescolaan, Tuinen van Eden, Neerland, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "roederdelft|13|2170": {
+    "lat": 51.2406082,
+    "lng": 4.4322293,
+    "provider": "nominatim",
+    "displayName": "13, Roederdelft, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "veltwijcklaan|170|2180": {
+    "lat": 51.2799235,
+    "lng": 4.4288374,
+    "provider": "nominatim",
+    "displayName": "170, Veltwijcklaan, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "klein hagelkruis|34|2180": {
+    "lat": 51.2755626,
+    "lng": 4.41361,
+    "provider": "nominatim",
+    "displayName": "34, Klein Hagelkruis, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "statiestraat_be|161|2600": {
+    "lat": 51.1993611,
+    "lng": 4.4298078,
+    "provider": "nominatim",
+    "displayName": "161, Statiestraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "borsbeeksebrug|4|2600": {
+    "lat": 51.1995789,
+    "lng": 4.4382974,
+    "provider": "nominatim",
+    "displayName": "1,2,3,4,5,6, Borsbeeksebrug, Groenenhoek, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "arthur sterckstraat|14|2600": {
+    "lat": 51.198545,
+    "lng": 4.428948,
+    "provider": "nominatim",
+    "displayName": "14, Arthur Sterckstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "grotesteenweg|369|2600": {
+    "lat": 51.1856825,
+    "lng": 4.4291095,
+    "provider": "nominatim",
+    "displayName": "369, Grotesteenweg, Pulhof, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "grotesteenweg|339|2600": {
+    "lat": 51.1865666,
+    "lng": 4.4282231,
+    "provider": "nominatim",
+    "displayName": "339, Grotesteenweg, Pulhof, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "zwaluwenlaan|59|2610": {
+    "lat": 51.1726857,
+    "lng": 4.4239148,
+    "provider": "nominatim",
+    "displayName": "59, Zwaluwenlaan, Elsdonk, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "zwaluwenlaan|61|2610": {
+    "lat": 51.172669,
+    "lng": 4.4240599,
+    "provider": "nominatim",
+    "displayName": "61, Zwaluwenlaan, Elsdonk, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "gebroeders de wachterstraat|21|2610": {
+    "lat": 51.176748,
+    "lng": 4.381546,
+    "provider": "nominatim",
+    "displayName": "Gebroeders De Wachterstraat, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "aartselaarstraat|45|2660": {
+    "lat": 51.1762012,
+    "lng": 4.3593167,
+    "provider": "nominatim",
+    "displayName": "45, Aartselaarstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "drossaardplein|20|2660": {
+    "lat": 51.1827998,
+    "lng": 4.3675648,
+    "provider": "nominatim",
+    "displayName": "20, Drossaardplein, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "antwerpsesteenweg|85|2660": {
+    "lat": 51.1785173,
+    "lng": 4.3558234,
+    "provider": "nominatim",
+    "displayName": "85, Antwerpsesteenweg, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "krijgsbaan_ho|39|2660": null,
+  "coöperatielaan|21|2660": {
+    "lat": 51.17687,
+    "lng": 4.3690749,
+    "provider": "nominatim",
+    "displayName": "21, Coöperatielaan, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "theodoor van rijswijckplaats|8|2000": {
+    "lat": 51.2165287,
+    "lng": 4.3995698,
+    "provider": "nominatim",
+    "displayName": "8, Theodoor Van Rijswijckplaats, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "nationalestraat|39|2000": {
+    "lat": 51.2163734,
+    "lng": 4.3994856,
+    "provider": "nominatim",
+    "displayName": "39-41, Nationalestraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "van schoonbekestraat|146|2018": {
+    "lat": 51.1998801,
+    "lng": 4.4038045,
+    "provider": "nominatim",
+    "displayName": "146, Van Schoonbekestraat, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "antoon van dyckstraat|80|2018": {
+    "lat": 51.2078158,
+    "lng": 4.416156,
+    "provider": "nominatim",
+    "displayName": "76-80, Antoon van Dyckstraat, Klein-Antwerpen, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "ryckmansstraat|3|2020": {
+    "lat": 51.1897419,
+    "lng": 4.3936886,
+    "provider": "nominatim",
+    "displayName": "3, Ryckmansstraat, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "groenendaallaan|394|2030": {
+    "lat": 51.2457755,
+    "lng": 4.4173203,
+    "provider": "nominatim",
+    "displayName": "Kinepolis Antwerpen, 394, Groenendaallaan, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+  },
+  "amand de lattinlaan|63|2050": {
+    "lat": 51.219198,
+    "lng": 4.3622499,
+    "provider": "nominatim",
+    "displayName": "Amand De Lattinlaan, Regatta, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "klipstraat|31|2060": {
+    "lat": 51.2249457,
+    "lng": 4.4230425,
+    "provider": "nominatim",
+    "displayName": "31, Klipstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "merksemsesteenweg|92|2100": {
+    "lat": 51.2310913,
+    "lng": 4.4589059,
+    "provider": "nominatim",
+    "displayName": "92, Merksemsesteenweg, Kerkeveld-Bosuil, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "dokter van de perrelei|27|2140": {
+    "lat": 51.2098515,
+    "lng": 4.4486972,
+    "provider": "nominatim",
+    "displayName": "27, Dokter Van de Perrelei, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "dokter van de perrelei|31|2140": {
+    "lat": 51.2097167,
+    "lng": 4.4487379,
+    "provider": "nominatim",
+    "displayName": "31, Dokter Van de Perrelei, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "bermbeekstraat|17|2170": {
+    "lat": 51.2410897,
+    "lng": 4.4327599,
+    "provider": "nominatim",
+    "displayName": "17, Bermbeekstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "bermbeekstraat|15|2170": {
+    "lat": 51.2410416,
+    "lng": 4.4327953,
+    "provider": "nominatim",
+    "displayName": "15, Bermbeekstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "bredabaan|600|2170": {
+    "lat": 51.2466665,
+    "lng": 4.4494133,
+    "provider": "nominatim",
+    "displayName": "600, Bredabaan, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "bermbeekstraat|19|2170": {
+    "lat": 51.2411928,
+    "lng": 4.4326861,
+    "provider": "nominatim",
+    "displayName": "19, Bermbeekstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "veltwijcklaan|250|2180": {
+    "lat": 51.2816754,
+    "lng": 4.4392699,
+    "provider": "nominatim",
+    "displayName": "250, Veltwijcklaan, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "borsbeeksebrug|3|2600": {
+    "lat": 51.1995789,
+    "lng": 4.4382974,
+    "provider": "nominatim",
+    "displayName": "1,2,3,4,5,6, Borsbeeksebrug, Groenenhoek, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "borsbeeksebrug|2|2600": {
+    "lat": 51.1995789,
+    "lng": 4.4382974,
+    "provider": "nominatim",
+    "displayName": "1,2,3,4,5,6, Borsbeeksebrug, Groenenhoek, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "borsbeeksebrug|1|2600": {
+    "lat": 51.1995789,
+    "lng": 4.4382974,
+    "provider": "nominatim",
+    "displayName": "1,2,3,4,5,6, Borsbeeksebrug, Groenenhoek, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "belpairestraat|85|2600": {
+    "lat": 51.1989174,
+    "lng": 4.4196022,
+    "provider": "nominatim",
+    "displayName": "85, Belpairestraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "hof ter schriecklaan|66|2600": {
+    "lat": 51.1877049,
+    "lng": 4.4209018,
+    "provider": "nominatim",
+    "displayName": "66, Hof ter Schriecklaan, Pulhof, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "koornbloemstraat|129|2610": {
+    "lat": 51.1695555,
+    "lng": 4.3802504,
+    "provider": "nominatim",
+    "displayName": "129, Koornbloemstraat, Koornbloem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "jordaenskaai|27|2000": {
+    "lat": 51.2247814,
+    "lng": 4.3994192,
+    "provider": "nominatim",
+    "displayName": "Jordaenskaai, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "markgravelei|157|2018": {
+    "lat": 51.1963893,
+    "lng": 4.4074158,
+    "provider": "nominatim",
+    "displayName": "157, Markgravelei, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "ombouw tractiestation naar mobiele container|0|2018": null,
+  "g, ov, lv uitbreiding net (lengte: 1734m)|0|2018": null,
+  "2018 antwerpen jozef de bomstraat - werken aan drinkwaterleiding|4|2018": null,
+  "monnikenhofstraat|82|2040": {
+    "lat": 51.3455615,
+    "lng": 4.3210178,
+    "provider": "nominatim",
+    "displayName": "82, Monnikenhofstraat, Berendrecht, Berendrecht-Zandvliet-Lillo, Antwerpen, Vlaanderen, 2040, België / Belgique / Belgien"
+  },
+  "victor dela montagnestraat|36|2050": {
+    "lat": 51.2226513,
+    "lng": 4.3791652,
+    "provider": "nominatim",
+    "displayName": "Victor dela Montagnestraat, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "halewijnlaan|49|2050": {
+    "lat": 51.2241691,
+    "lng": 4.378697,
+    "provider": "nominatim",
+    "displayName": "49, Halewijnlaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "gemeente overgenomen (ondergronds) (lengte: 198m)|0|2050": null,
+  "bredastraat|151|2060": {
+    "lat": 51.2379983,
+    "lng": 4.4235168,
+    "provider": "nominatim",
+    "displayName": "Noesen NV / Noesim NV, 151, Bredastraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "isidoor opsomerstraat|28|2100": {
+    "lat": 51.2100432,
+    "lng": 4.4667615,
+    "provider": "nominatim",
+    "displayName": "28, Isidoor Opsomerstraat, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "sergeyselsstraat|42|2140": {
+    "lat": 51.2120342,
+    "lng": 4.4328525,
+    "provider": "nominatim",
+    "displayName": "42, Sergeyselsstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "initiatief regio (lengte: 215m)|0|2150": null,
+  "jaak de boeckstraat|20|2170": {
+    "lat": 51.2460236,
+    "lng": 4.4461034,
+    "provider": "nominatim",
+    "displayName": "20, Jaak De Boeckstraat, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "2018 generaal lemanstraat - werken aan drinkwaterleiding|29|2600": null,
+  "moderniseren distributiecabine (lengte: 17m)|0|2600": null,
+  "gemeente overgenomen (verledding) (lengte: 166m)|0|2610": null,
+  "lv uitbreiding net (lengte: 46m)|0|2660": null,
+  "lv uitbreiding net|0|2000": null,
+  "initiatief regio (lengte: 121m)|0|2020": null,
+  "plankenbergstraat|104|2100": {
+    "lat": 51.2211389,
+    "lng": 4.4671294,
+    "provider": "nominatim",
+    "displayName": "104, Plankenbergstraat, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "plankenbergstraat|72|2100": {
+    "lat": 51.2211944,
+    "lng": 4.4654613,
+    "provider": "nominatim",
+    "displayName": "72, Plankenbergstraat, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "bredabaan|783a|2170": {
+    "lat": 51.2516277,
+    "lng": 4.4571859,
+    "provider": "nominatim",
+    "displayName": "783A, Bredabaan, Wildert, Merksemheide, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "bredabaan|751|2170": {
+    "lat": 51.2505257,
+    "lng": 4.4562075,
+    "provider": "nominatim",
+    "displayName": "751, Bredabaan, Wildert, Merksemheide, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "krijgslaan|80|2610": {
+    "lat": 51.1634126,
+    "lng": 4.3973078,
+    "provider": "nominatim",
+    "displayName": "80, Krijgslaan, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "doornstraat|246|2610": {
+    "lat": 51.1629999,
+    "lng": 4.3984138,
+    "provider": "nominatim",
+    "displayName": "246, Doornstraat, Neerland, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "doornstraat|208|2610": {
+    "lat": 51.1639893,
+    "lng": 4.3979737,
+    "provider": "nominatim",
+    "displayName": "208, Doornstraat, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "doornstraat|181|2610": {
+    "lat": 51.1641578,
+    "lng": 4.3986531,
+    "provider": "nominatim",
+    "displayName": "181, Doornstraat, Slijkhoek - Fort 6 - Drie Eiken, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "kerkeveldstraat|2|2610": {
+    "lat": 51.1652328,
+    "lng": 4.3976152,
+    "provider": "nominatim",
+    "displayName": "2, Kerkeveldstraat, Slijkhoek - Fort 6 - Drie Eiken, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "eiermarkt|20|2000": {
+    "lat": 51.2193514,
+    "lng": 4.4032857,
+    "provider": "nominatim",
+    "displayName": "Eiermarkt, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "welvaartstraat|4|2000": {
+    "lat": 51.2105368,
+    "lng": 4.3987557,
+    "provider": "nominatim",
+    "displayName": "4, Welvaartstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "vrijheidstraat|11|2000": {
+    "lat": 51.2109711,
+    "lng": 4.4003987,
+    "provider": "nominatim",
+    "displayName": "11, Vrijheidstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "welvaartstraat|6|2000": {
+    "lat": 51.2105008,
+    "lng": 4.3988118,
+    "provider": "nominatim",
+    "displayName": "6, Welvaartstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "vrijheidstraat|59|2000": {
+    "lat": 51.2104332,
+    "lng": 4.3981838,
+    "provider": "nominatim",
+    "displayName": "59, Vrijheidstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "vrijheidstraat|57|2000": {
+    "lat": 51.2104396,
+    "lng": 4.3982573,
+    "provider": "nominatim",
+    "displayName": "57, Vrijheidstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "vrijheidstraat|51|2000": {
+    "lat": 51.2104962,
+    "lng": 4.3984844,
+    "provider": "nominatim",
+    "displayName": "51, Vrijheidstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "beddenstraat|13|2000": {
+    "lat": 51.2188448,
+    "lng": 4.4034182,
+    "provider": "nominatim",
+    "displayName": "Beddenstraat, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "oudaan|4|2000": {
+    "lat": 51.2156353,
+    "lng": 4.4024582,
+    "provider": "nominatim",
+    "displayName": "4, Oudaan, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "brederodestraat|23|2018": {
+    "lat": 51.2062533,
+    "lng": 4.396867,
+    "provider": "nominatim",
+    "displayName": "23, Brederodestraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "wittestraat|101|2020": {
+    "lat": 51.1877422,
+    "lng": 4.3846644,
+    "provider": "nominatim",
+    "displayName": "101, Wittestraat, Kiel, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "hof van tichelen|43|2020": {
+    "lat": 51.1817975,
+    "lng": 4.3864,
+    "provider": "nominatim",
+    "displayName": "GRB data is incorrect (as of Nov. 2023), 43-44, Hof Van Tichelen, Kiel, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+  },
+  "julius de geyterstraat|71|2020": {
+    "lat": 51.1849943,
+    "lng": 4.3778016,
+    "provider": "nominatim",
+    "displayName": "71, Julius De Geyterstraat, Zwaantjes, Kiel, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "lode zielenslaan|12|2050": {
+    "lat": 51.2218637,
+    "lng": 4.3845559,
+    "provider": "nominatim",
+    "displayName": "12, Lode Zielenslaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "ov, gemeente overgenomen (ondergronds) (lengte: 1927m)|0|2050": null,
+  "isabelle valaeysstraat|1|2050": {
+    "lat": 51.2166505,
+    "lng": 4.3630842,
+    "provider": "nominatim",
+    "displayName": "Isabelle Valaeysstraat, Regatta, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "isabelle valaeysstraat|3|2050": {
+    "lat": 51.2166505,
+    "lng": 4.3630842,
+    "provider": "nominatim",
+    "displayName": "Isabelle Valaeysstraat, Regatta, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+  },
+  "vliegenstraat|28|2060": {
+    "lat": 51.2253754,
+    "lng": 4.4212137,
+    "provider": "nominatim",
+    "displayName": "28, Vliegenstraat, Amandus, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "carnotstraat|138|2060": {
+    "lat": 51.2173063,
+    "lng": 4.4280094,
+    "provider": "nominatim",
+    "displayName": "138, Carnotstraat, Kievitwijk, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "everaertsstraat|74|2060": {
+    "lat": 51.2271452,
+    "lng": 4.425231,
+    "provider": "nominatim",
+    "displayName": "74, Everaertsstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "zeilstraat|30|2060": {
+    "lat": 51.2246156,
+    "lng": 4.4379786,
+    "provider": "nominatim",
+    "displayName": "30, Zeilstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "eikblokstraat|49|2100": {
+    "lat": 51.2227264,
+    "lng": 4.4641239,
+    "provider": "nominatim",
+    "displayName": "49, Eikblokstraat, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "eikblokstraat|47|2100": {
+    "lat": 51.2226978,
+    "lng": 4.4641834,
+    "provider": "nominatim",
+    "displayName": "47, Eikblokstraat, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "eikblokstraat|43|2100": {
+    "lat": 51.2226374,
+    "lng": 4.4642923,
+    "provider": "nominatim",
+    "displayName": "43, Eikblokstraat, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "merksemsesteenweg|90|2100": {
+    "lat": 51.2310295,
+    "lng": 4.4589229,
+    "provider": "nominatim",
+    "displayName": "90, Merksemsesteenweg, Kerkeveld-Bosuil, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "eikblokstraat|55|2100": {
+    "lat": 51.2228302,
+    "lng": 4.4639736,
+    "provider": "nominatim",
+    "displayName": "55, Eikblokstraat, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "van dornestraat|100|2100": {
+    "lat": 51.230789,
+    "lng": 4.4518922,
+    "provider": "nominatim",
+    "displayName": "100, Van Dornestraat, Ten Eekhove-Lakbors, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "van notenstraat|98|2100": {
+    "lat": 51.1985426,
+    "lng": 4.4576258,
+    "provider": "nominatim",
+    "displayName": "98, Van Notenstraat, Vliegveld, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "drakenhoflaan|21|2100": {
+    "lat": 51.1970855,
+    "lng": 4.4585593,
+    "provider": "nominatim",
+    "displayName": "21, Drakenhoflaan, Vliegveld, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "zonstraat|82|2140": {
+    "lat": 51.2140469,
+    "lng": 4.4325341,
+    "provider": "nominatim",
+    "displayName": "82, Zonstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "sint-janstraat|17|2140": {
+    "lat": 51.2149969,
+    "lng": 4.4425021,
+    "provider": "nominatim",
+    "displayName": "17, Sint-Janstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "kortrijkstraat|2|2140": {
+    "lat": 51.2200043,
+    "lng": 4.4392091,
+    "provider": "nominatim",
+    "displayName": "2, Kortrijkstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "rosekapellestraat|19|2150": {
+    "lat": 51.1979745,
+    "lng": 4.4873288,
+    "provider": "nominatim",
+    "displayName": "19, Rosekapellestraat, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "august van putlei|3|2150": {
+    "lat": 51.196241,
+    "lng": 4.4797665,
+    "provider": "nominatim",
+    "displayName": "3, August Van Putlei, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "august van putlei|45|2150": {
+    "lat": 51.1966207,
+    "lng": 4.4777812,
+    "provider": "nominatim",
+    "displayName": "45, August Van Putlei, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
+  },
+  "bermbeekstraat|13|2170": {
+    "lat": 51.2409919,
+    "lng": 4.4328324,
+    "provider": "nominatim",
+    "displayName": "13, Bermbeekstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "bermbeekstraat|7|2170": {
+    "lat": 51.2408473,
+    "lng": 4.4329466,
+    "provider": "nominatim",
+    "displayName": "7, Bermbeekstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "bermbeekstraat|4|2170": {
+    "lat": 51.2408354,
+    "lng": 4.4325376,
+    "provider": "nominatim",
+    "displayName": "4, Bermbeekstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "roederdelft|9003|2170": {
+    "lat": 51.2404305,
+    "lng": 4.4312926,
+    "provider": "nominatim",
+    "displayName": "Roederdelft, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "van praetlei|103|2170": {
+    "lat": 51.2510587,
+    "lng": 4.4592502,
+    "provider": "nominatim",
+    "displayName": "103, Van Praetlei, Wildert, Merksemheide, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "kapelsesteenweg|517|2180": {
+    "lat": 51.2887452,
+    "lng": 4.4449438,
+    "provider": "nominatim",
+    "displayName": "Oh'Green, 517,515,513,511, Kapelsesteenweg, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2930, België / Belgique / Belgien"
+  },
+  "bist|185|2180": {
+    "lat": 51.2897614,
+    "lng": 4.4450027,
+    "provider": "nominatim",
+    "displayName": "185, Bist, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "woningenstraat|25|2600": {
+    "lat": 51.1933477,
+    "lng": 4.4397493,
+    "provider": "nominatim",
+    "displayName": "25, Woningenstraat, Oude Groenenhoek, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "leemputstraat|19|2600": {
+    "lat": 51.2007179,
+    "lng": 4.4322096,
+    "provider": "nominatim",
+    "displayName": "19, Leemputstraat, Zurenborg, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "2600 antwerpen - berchemstadionstraat 78 - trenching in open sleuf tot bestaande manhole eurofiber - totale sleuflengte: 38m in dallen - 1x db7 eurofiber.|0|2600": null,
+  "2600 antwerpen : roderveldlaan - trenching + buiskoppeling + klant aansluiting.\r\naanleg nutsleiding|30|2600": null,
+  "flor alpaertsstraat|83|2600": {
+    "lat": 51.1830947,
+    "lng": 4.4425454,
+    "provider": "nominatim",
+    "displayName": "83, Flor Alpaertsstraat, De Zepten-Zilverbeek, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+  },
+  "doornstraat|156|2610": {
+    "lat": 51.1654264,
+    "lng": 4.3968109,
+    "provider": "nominatim",
+    "displayName": "156, Doornstraat, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "den brem|17|2610": {
+    "lat": 51.1721746,
+    "lng": 4.3763764,
+    "provider": "nominatim",
+    "displayName": "17, Den Brem, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "berkenveldstraat|46|2610": {
+    "lat": 51.16957,
+    "lng": 4.3821418,
+    "provider": "nominatim",
+    "displayName": "46, Berkenveldstraat, Koornbloem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "oudestraat_wi|162|2610": null,
+  "moretusstraat|140|2660": {
+    "lat": 51.1712761,
+    "lng": 4.349458,
+    "provider": "nominatim",
+    "displayName": "140, Moretusstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "leopoldlei_ho|10|2660": null
+}

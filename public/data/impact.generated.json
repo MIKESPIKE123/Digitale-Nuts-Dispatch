@@ -1,0 +1,485 @@
+{
+  "generatedAt": "2026-02-21T15:54:55.341Z",
+  "source": {
+    "project": "DIGITALE NUTS - DN_DISPATCH",
+    "method": "Open API verrijking op postcodecentroid (Antwerpen Open Geoportaal)",
+    "layers": {
+      "populationDensityWijk": "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek9/MapServer/867",
+      "shortageGreenBuurt": "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek12/MapServer/89",
+      "shortageServiceWijk": "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek12/MapServer/94",
+      "flaneerzone": "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek8/MapServer/845",
+      "parkingTariffZone": "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek3/MapServer/212"
+    }
+  },
+  "summary": {
+    "totalProfiles": 22,
+    "fallbackProfiles": 7,
+    "profilesWithDensity": 13,
+    "minDensity": 2,
+    "maxDensity": 13574
+  },
+  "profiles": [
+    {
+      "areaId": "2000",
+      "areaLabel": "Postcode 2000",
+      "district": "Antwerpen",
+      "worksCount": 616,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "ANT09",
+      "sourceAreaLabel": "HISTORISCH CENTRUM",
+      "populationDensity": 9653,
+      "vulnerableShare": 0,
+      "servicePressure": 1,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": true,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2018",
+      "areaLabel": "Postcode 2018",
+      "district": "Antwerpen",
+      "worksCount": 481,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "ANT06",
+      "sourceAreaLabel": "HARINGRODE",
+      "populationDensity": 13574,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2020",
+      "areaLabel": "Postcode 2020",
+      "district": "Antwerpen",
+      "worksCount": 105,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "ANT16",
+      "sourceAreaLabel": "PETROLEUM - ZUID",
+      "populationDensity": 5,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2030",
+      "areaLabel": "Postcode 2030",
+      "district": "Antwerpen",
+      "worksCount": 35,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "ANT08",
+      "sourceAreaLabel": "HAVEN ANTWERPEN",
+      "populationDensity": 2,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2040",
+      "areaLabel": "Postcode 2040",
+      "district": "Berendrecht-Zandvliet-Lillo",
+      "worksCount": 57,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "BEZ01",
+      "sourceAreaLabel": "HAVEN BEZALI",
+      "populationDensity": null,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2050",
+      "areaLabel": "Postcode 2050",
+      "district": "Antwerpen",
+      "worksCount": 133,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "ANT11",
+      "sourceAreaLabel": "LINKEROEVER",
+      "populationDensity": 1630,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2060",
+      "areaLabel": "Postcode 2060",
+      "district": "Antwerpen",
+      "worksCount": 248,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "ANT04",
+      "sourceAreaLabel": "DAM",
+      "populationDensity": 4430,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2100",
+      "areaLabel": "Postcode 2100",
+      "district": "Deurne",
+      "worksCount": 598,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "DEU05",
+      "sourceAreaLabel": "DEURNE ZUID WEST",
+      "populationDensity": 10366,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2110",
+      "areaLabel": "Postcode 2110",
+      "district": "Wijnegem Merksemsebaan Ov",
+      "worksCount": 1,
+      "asOfDate": null,
+      "sourceAreaId": null,
+      "sourceAreaLabel": null,
+      "populationDensity": null,
+      "vulnerableShare": null,
+      "servicePressure": null,
+      "mobilitySensitivity": null,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2140",
+      "areaLabel": "Postcode 2140",
+      "district": "Borgerhout",
+      "worksCount": 332,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "BOR01",
+      "sourceAreaLabel": "BORGERHOUT EXTRA MUROS",
+      "populationDensity": 8927,
+      "vulnerableShare": 0,
+      "servicePressure": 1,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": true,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2150",
+      "areaLabel": "Postcode 2150",
+      "district": "Borsbeek",
+      "worksCount": 84,
+      "asOfDate": null,
+      "sourceAreaId": null,
+      "sourceAreaLabel": null,
+      "populationDensity": null,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2170",
+      "areaLabel": "Postcode 2170",
+      "district": "Merksem",
+      "worksCount": 325,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "MER03",
+      "sourceAreaLabel": "NIEUWDREEF",
+      "populationDensity": 8249,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2180",
+      "areaLabel": "Postcode 2180",
+      "district": "Ekeren",
+      "worksCount": 266,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "EKE02",
+      "sourceAreaLabel": "EKEREN CENTRUM",
+      "populationDensity": 4348,
+      "vulnerableShare": 0,
+      "servicePressure": 1,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": true,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2470",
+      "areaLabel": "Postcode 2470",
+      "district": "Retie",
+      "worksCount": 1,
+      "asOfDate": null,
+      "sourceAreaId": null,
+      "sourceAreaLabel": null,
+      "populationDensity": null,
+      "vulnerableShare": null,
+      "servicePressure": null,
+      "mobilitySensitivity": null,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2550",
+      "areaLabel": "Postcode 2550",
+      "district": "Kontich",
+      "worksCount": 1,
+      "asOfDate": null,
+      "sourceAreaId": null,
+      "sourceAreaLabel": null,
+      "populationDensity": null,
+      "vulnerableShare": null,
+      "servicePressure": null,
+      "mobilitySensitivity": null,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2600",
+      "areaLabel": "Postcode 2600",
+      "district": "Berchem",
+      "worksCount": 359,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "BER01",
+      "sourceAreaLabel": "GROENENHOEK",
+      "populationDensity": 8792,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2610",
+      "areaLabel": "Postcode 2610",
+      "district": "Wilrijk",
+      "worksCount": 664,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "WIL04",
+      "sourceAreaLabel": "WILRIJK CENTRUM",
+      "populationDensity": 3710,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2620",
+      "areaLabel": "Postcode 2620",
+      "district": "Hemiksem Arendweg Ov",
+      "worksCount": 1,
+      "asOfDate": null,
+      "sourceAreaId": null,
+      "sourceAreaLabel": null,
+      "populationDensity": null,
+      "vulnerableShare": null,
+      "servicePressure": null,
+      "mobilitySensitivity": null,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2640",
+      "areaLabel": "Postcode 2640",
+      "district": "Mortsel Jozef Hermanslei Ov",
+      "worksCount": 1,
+      "asOfDate": null,
+      "sourceAreaId": null,
+      "sourceAreaLabel": null,
+      "populationDensity": null,
+      "vulnerableShare": null,
+      "servicePressure": null,
+      "mobilitySensitivity": null,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2660",
+      "areaLabel": "Postcode 2660",
+      "district": "Hoboken",
+      "worksCount": 599,
+      "asOfDate": "2018-01-01",
+      "sourceAreaId": "HOB03",
+      "sourceAreaLabel": "HOBOKEN - WEST",
+      "populationDensity": 993,
+      "vulnerableShare": 0,
+      "servicePressure": 0,
+      "mobilitySensitivity": 0,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2900",
+      "areaLabel": "Postcode 2900",
+      "district": "Schoten",
+      "worksCount": 3,
+      "asOfDate": null,
+      "sourceAreaId": null,
+      "sourceAreaLabel": null,
+      "populationDensity": null,
+      "vulnerableShare": null,
+      "servicePressure": null,
+      "mobilitySensitivity": null,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    },
+    {
+      "areaId": "2930",
+      "areaLabel": "Postcode 2930",
+      "district": "Brasschaat Kapelsesteenweg E",
+      "worksCount": 1,
+      "asOfDate": null,
+      "sourceAreaId": null,
+      "sourceAreaLabel": null,
+      "populationDensity": null,
+      "vulnerableShare": null,
+      "servicePressure": null,
+      "mobilitySensitivity": null,
+      "indicators": {
+        "inShortageGreenZone": false,
+        "inShortageServiceZone": false,
+        "inFlaneerzone": false,
+        "parkingTariffColor": null,
+        "parkingZoneCode": null,
+        "parkingZoneName": null
+      }
+    }
+  ]
+}
