@@ -1,8 +1,6 @@
-# Repo opgeschoond: Digitale Nuts App en DN_DISPATCH worden getrackt
+# Branch feature/DIGITALE_NUTS: enkel DN_DISPATCH wordt getrackt
 *
 !/.gitignore
-!/digitale-nuts-app/
-!/digitale-nuts-app/**
 !/DIGITALE\ NUTS\ APP/
 !/DIGITALE\ NUTS\ APP/DN_DISPATCH/
 !/DIGITALE\ NUTS\ APP/DN_DISPATCH/**
