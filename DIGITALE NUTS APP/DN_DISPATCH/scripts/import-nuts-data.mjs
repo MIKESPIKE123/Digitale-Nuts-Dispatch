@@ -16,7 +16,7 @@ const LOCATION_QA_REPORT_FILE = path.join(DATA_DIR, "dispatch_location_qa_report
 const GEOCODE_CACHE_FILE = path.join(DATA_DIR, "geocode-cache.json");
 const GEOCODE_DELAY_MS = 1100;
 const DEFAULT_CENTER = { lat: 51.2194, lng: 4.4025 };
-const ADDRESS_ALIGN_DEFAULT_THRESHOLD_METERS = 90;
+const ADDRESS_ALIGN_DEFAULT_THRESHOLD_METERS = 25;
 const ADDRESS_ALIGN_DEFAULT_MAX_GEOCODES_PER_RUN = 120;
 const ADDRESS_ALIGN_DEFAULT_MAX_REPORT_ITEMS = 200;
 const LOCATION_QA_DEFAULT_MAX_CHECKS = 25;
@@ -97,6 +97,17 @@ const MANUAL_GIPOD_OVERRIDES = {
     },
     locationSource: "exact",
   },
+  "19579833": {
+    straat: "WIPSTRAAT",
+    huisnr: "44",
+    postcode: "2018",
+    district: "Antwerpen",
+    location: {
+      lat: 51.2113085,
+      lng: 4.4237056,
+    },
+    locationSource: "exact",
+  },
 };
 
 function normalize(value) {
@@ -141,6 +152,21 @@ function normalizeHouseNumber(value) {
 
   const fallback = primaryPart.match(/\d+/);
   return fallback ? fallback[0] : primaryPart;
+}
+
+function canonicalizeStreetForGeocode(value) {
+  const cleaned = normalize(value)
+    .replace(/\(.*?\)/g, " ")
+    .replace(/->/g, " ")
+    .replace(/\b(ter hoogte van|thv)\b/gi, " ")
+    .replace(/[;,]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return cleaned
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase();
 }
 
 function sleep(ms) {
@@ -442,6 +468,46 @@ function parseDescriptionAddress(description) {
   };
 }
 
+function looksLikeNoisyStreet(value) {
+  const cleaned = normalize(value);
+  if (!cleaned) {
+    return true;
+  }
+
+  const lowered = cleaned.toLowerCase();
+  const noisyKeywords = [
+    "werken",
+    "lengte",
+    "initiatief",
+    "ringpark",
+    "uitbreiding net",
+    "distributienet",
+    "nutsleiding",
+    "verkaveling",
+    "wegeniswerken",
+    "ruggengraat",
+    "regio",
+    "drinkwaterleiding",
+    "aanleg",
+    "ter hoogte van",
+  ];
+
+  if (noisyKeywords.some((keyword) => lowered.includes(keyword))) {
+    return true;
+  }
+
+  if (/^\d{4}\b/.test(cleaned)) {
+    return true;
+  }
+
+  const dashCount = (cleaned.match(/\s-\s/g) ?? []).length;
+  if (dashCount >= 2) {
+    return true;
+  }
+
+  return false;
+}
+
 function resolveExportLocation(locationWkt, postcode) {
   const point = parseLambertPoint(locationWkt);
   if (point) {
@@ -617,24 +683,32 @@ function buildWorkFromExportRow(row, index, permitIndex) {
   const gipodCategory = normalizeGipodCategory(row["Categorie"]);
   const parsedAddress = parseDescriptionAddress(row["Beschrijving"]);
   const permitEntry = permitIndex.get(gipodId);
-
-  const postcode = parsedAddress.postcode || permitEntry?.postcode || "";
-  if (!postcode) {
-    return null;
-  }
-
-  const locationResult = resolveExportLocation(row["Locatie"], postcode);
   const permitFields = resolvePermitFields(permitEntry, gipodCategory);
   const nutsBedrijf =
     canonicalizeNutsBedrijf(row["Beheerder"]) || canonicalizeNutsBedrijf(permitEntry?.nutsBedrijf);
 
-  const straat = parsedAddress.straat || permitEntry?.straat || "";
-  const huisnr = parsedAddress.huisnr || permitEntry?.huisnr || "";
-  const district =
-    parsedAddress.district ||
-    permitEntry?.district ||
-    POSTCODE_DISTRICTS[postcode] ||
-    "Onbekend";
+  const usePermitAddressFallback =
+    Boolean(permitEntry) &&
+    (looksLikeNoisyStreet(parsedAddress.straat) || !normalize(parsedAddress.huisnr));
+
+  const postcode = usePermitAddressFallback
+    ? permitEntry?.postcode || parsedAddress.postcode || ""
+    : parsedAddress.postcode || permitEntry?.postcode || "";
+  if (!postcode) {
+    return null;
+  }
+
+  const straat = usePermitAddressFallback
+    ? permitEntry?.straat || parsedAddress.straat || ""
+    : parsedAddress.straat || permitEntry?.straat || "";
+  const huisnr = usePermitAddressFallback
+    ? permitEntry?.huisnr || parsedAddress.huisnr || ""
+    : parsedAddress.huisnr || permitEntry?.huisnr || "";
+  const district = usePermitAddressFallback
+    ? permitEntry?.district || parsedAddress.district || POSTCODE_DISTRICTS[postcode] || "Onbekend"
+    : parsedAddress.district || permitEntry?.district || POSTCODE_DISTRICTS[postcode] || "Onbekend";
+
+  const locationResult = resolveExportLocation(row["Locatie"], postcode);
 
   const workRecord = {
     id: `gipod-${gipodId}-${index + 1}`,
@@ -748,11 +822,19 @@ function readPositiveNumberEnv(name, fallback) {
 
 function toAddressQuery(record) {
   const house = normalizeHouseNumber(record.huisnr);
-  const main = house ? `${record.straat} ${house}` : record.straat;
-  return `${main}, ${record.postcode} Antwerpen, Belgium`;
+  const street = canonicalizeStreetForGeocode(record.straat) || normalize(record.straat);
+  const main = house ? `${street} ${house}` : street;
+  const district = normalize(record.district) || "Antwerpen";
+  return `${main}, ${record.postcode} ${district}, Belgium`;
 }
 
 function toAddressKey(record) {
+  const house = normalizeHouseNumber(record.huisnr);
+  const street = canonicalizeStreetForGeocode(record.straat);
+  return `${street}|${house}|${record.postcode}`.toLowerCase();
+}
+
+function toLegacyAddressKey(record) {
   const house = normalizeHouseNumber(record.huisnr);
   return `${record.straat}|${house}|${record.postcode}`.toLowerCase();
 }
@@ -819,6 +901,111 @@ function isAddressAlignCandidate(record) {
   return normalizeHouseNumber(record.huisnr).length > 0;
 }
 
+function getAddressAlignStatusRank(sourceStatus) {
+  const cleaned = normalizeSourceStatus(sourceStatus);
+  if (cleaned.includes("in uitvoering") || cleaned.includes("lopende")) {
+    return 4;
+  }
+  if (cleaned.includes("concreet gepland") || cleaned.includes("gepland")) {
+    return 3;
+  }
+  if (cleaned.includes("niet uitgevoerd")) {
+    return 2;
+  }
+  if (cleaned.includes("uitgevoerd") || cleaned.includes("afgelopen")) {
+    return 1;
+  }
+  return 0;
+}
+
+function getAddressAlignPermitRank(permitStatus) {
+  const cleaned = normalize(permitStatus).toUpperCase();
+  if (cleaned === "AFGELEVERD") {
+    return 3;
+  }
+  if (cleaned === "IN_VOORBEREIDING" || cleaned === "ONBEKEND_MAAR_VERWACHT") {
+    return 2;
+  }
+  if (cleaned === "NIET_VEREIST") {
+    return 1;
+  }
+  return 0;
+}
+
+function getAddressAlignCategoryRank(gipodCategorie) {
+  const cleaned = normalize(gipodCategorie).toLowerCase();
+  if (cleaned === "categorie 1") {
+    return 3;
+  }
+  if (cleaned === "categorie 2") {
+    return 2;
+  }
+  if (cleaned === "dringend") {
+    return 2;
+  }
+  if (cleaned === "categorie 3") {
+    return 1;
+  }
+  return 0;
+}
+
+function isSignalisatiePriorityRecord(record) {
+  if (normalize(record.sourceDataset) === "weekrapport_fallback") {
+    return true;
+  }
+
+  if (normalize(record.permitRefKey) || normalize(record.permitReferenceId)) {
+    return true;
+  }
+
+  const permitStatus = normalize(record.permitStatus).toUpperCase();
+  return (
+    permitStatus === "AFGELEVERD" ||
+    permitStatus === "IN_VOORBEREIDING" ||
+    permitStatus === "GEWEIGERD_OF_STOPGEZET"
+  );
+}
+
+function getDateSortKey(value) {
+  const normalized = normalize(value);
+  return /^\d{4}-\d{2}-\d{2}$/.test(normalized) ? normalized : "9999-99-99";
+}
+
+function getAddressAlignPriorityScore(record) {
+  const dispatchRank = normalize(record.status) === "IN EFFECT" ? 3 : 1;
+  const sourceRank = getAddressAlignStatusRank(record.sourceStatus);
+  const permitRank = getAddressAlignPermitRank(record.permitStatus);
+  const categoryRank = getAddressAlignCategoryRank(record.gipodCategorie);
+  const signalisatiePriority = isSignalisatiePriorityRecord(record) ? 1 : 0;
+
+  return (
+    signalisatiePriority * 10000 +
+    dispatchRank * 1000 +
+    sourceRank * 100 +
+    permitRank * 20 +
+    categoryRank * 5
+  );
+}
+
+function compareAddressAlignPriority(a, b) {
+  const scoreDiff = getAddressAlignPriorityScore(b) - getAddressAlignPriorityScore(a);
+  if (scoreDiff !== 0) {
+    return scoreDiff;
+  }
+
+  const endDateDiff = getDateSortKey(a.endDate).localeCompare(getDateSortKey(b.endDate));
+  if (endDateDiff !== 0) {
+    return endDateDiff;
+  }
+
+  const startDateDiff = getDateSortKey(a.startDate).localeCompare(getDateSortKey(b.startDate));
+  if (startDateDiff !== 0) {
+    return startDateDiff;
+  }
+
+  return normalize(a.id).localeCompare(normalize(b.id), "nl", { numeric: true });
+}
+
 async function alignExportLocationsWithAddress(records, { skipGeocode }) {
   const enabled = process.env.DN_ADDRESS_ALIGN_ENABLED !== "0";
   const thresholdMeters = readPositiveNumberEnv(
@@ -862,12 +1049,45 @@ async function alignExportLocationsWithAddress(records, { skipGeocode }) {
   const cache = loadGeocodeCache();
   const aligned = [];
   const output = [];
-  const candidatesTotal = records.filter(isAddressAlignCandidate).length;
+  const candidates = records.filter(isAddressAlignCandidate);
+  const candidatesTotal = candidates.length;
   let checked = 0;
   let alignedCount = 0;
   let geocodedNow = 0;
   let budgetExhausted = false;
   let maxDeviationMeters = 0;
+
+  if (!skipGeocode) {
+    const representativeByKey = new Map();
+
+    for (const record of candidates) {
+      const key = toAddressKey(record);
+      const legacyKey = toLegacyAddressKey(record);
+      if (cache[key] !== undefined || cache[legacyKey] !== undefined) {
+        continue;
+      }
+
+      const previous = representativeByKey.get(key);
+      if (!previous || compareAddressAlignPriority(record, previous) < 0) {
+        representativeByKey.set(key, record);
+      }
+    }
+
+    const prioritized = [...representativeByKey.values()].sort(compareAddressAlignPriority);
+    const geocodeTargets = prioritized.slice(0, maxGeocodesPerRun);
+    budgetExhausted = prioritized.length > geocodeTargets.length;
+
+    for (const target of geocodeTargets) {
+      const key = toAddressKey(target);
+      const legacyKey = toLegacyAddressKey(target);
+      const query = toAddressQuery(target);
+      const result = await geocodeAddress(query);
+      cache[key] = result ?? null;
+      cache[legacyKey] = result ?? null;
+      geocodedNow += 1;
+      await sleep(GEOCODE_DELAY_MS);
+    }
+  }
 
   for (const record of records) {
     if (!isAddressAlignCandidate(record)) {
@@ -876,26 +1096,15 @@ async function alignExportLocationsWithAddress(records, { skipGeocode }) {
     }
 
     const key = toAddressKey(record);
+    const legacyKey = toLegacyAddressKey(record);
     let cached = cache[key];
+    if (cached === undefined) {
+      cached = cache[legacyKey];
+    }
 
     if (cached === undefined) {
-      if (skipGeocode) {
-        output.push(record);
-        continue;
-      }
-
-      if (geocodedNow >= maxGeocodesPerRun) {
-        budgetExhausted = true;
-        output.push(record);
-        continue;
-      }
-
-      const query = toAddressQuery(record);
-      const result = await geocodeAddress(query);
-      cache[key] = result ?? null;
-      cached = cache[key];
-      geocodedNow += 1;
-      await sleep(GEOCODE_DELAY_MS);
+      output.push(record);
+      continue;
     }
 
     if (!cached || !Number.isFinite(cached.lat) || !Number.isFinite(cached.lng)) {
@@ -1036,8 +1245,12 @@ async function runLocationQa(records, { skipGeocode }) {
 
   for (const candidate of candidates) {
     const key = toAddressKey(candidate);
+    const legacyKey = toLegacyAddressKey(candidate);
     const query = toAddressQuery(candidate);
     let cached = cache[key];
+    if (cached === undefined) {
+      cached = cache[legacyKey];
+    }
 
     if (cached === undefined) {
       if (skipGeocode) {
@@ -1045,6 +1258,7 @@ async function runLocationQa(records, { skipGeocode }) {
       }
       const result = await geocodeAddress(query);
       cache[key] = result ?? null;
+      cache[legacyKey] = result ?? null;
       cached = cache[key];
       geocodedNow += 1;
       await sleep(GEOCODE_DELAY_MS);

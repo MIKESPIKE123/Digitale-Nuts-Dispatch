@@ -9,6 +9,8 @@ import type {
 } from "../types";
 
 export const SETTINGS_STORAGE_KEY = "dn_dispatch_settings_v1";
+export const SETTINGS_BACKUP_STORAGE_KEY = "dn_dispatch_settings_backup_v1";
+export const SETTINGS_PREVIOUS_STORAGE_KEY = "dn_dispatch_settings_previous_v1";
 export const MIN_SYNC_INTERVAL_MINUTES = 15;
 export const MAX_SYNC_INTERVAL_MINUTES = 720;
 export const DEFAULT_SYNC_INTERVAL_MINUTES = 60;
@@ -564,21 +566,82 @@ export function sanitizeDispatchSettings(raw: unknown): DispatchSettings {
   };
 }
 
+function parseStoredDispatchSettings(raw: string | null): DispatchSettings | null {
+  if (!raw) {
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") {
+      return null;
+    }
+    return sanitizeDispatchSettings(parsed);
+  } catch {
+    return null;
+  }
+}
+
+function serializeDispatchSettings(settings: DispatchSettings): string {
+  return JSON.stringify(sanitizeDispatchSettings(settings));
+}
+
+function safeStorageGet(storage: Storage, key: string): string | null {
+  try {
+    return storage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function safeStorageSet(storage: Storage, key: string, value: string): void {
+  try {
+    storage.setItem(key, value);
+  } catch {
+    // ignore storage quota/permission failures
+  }
+}
+
 export function loadDispatchSettings(): DispatchSettings {
   if (typeof window === "undefined") {
     return createDefaultDispatchSettings();
   }
 
-  try {
-    const raw = window.localStorage.getItem(SETTINGS_STORAGE_KEY);
-    if (!raw) {
-      return createDefaultDispatchSettings();
-    }
-    const parsed = JSON.parse(raw);
-    return sanitizeDispatchSettings(parsed);
-  } catch {
-    return createDefaultDispatchSettings();
+  const storage = window.localStorage;
+  const primary = parseStoredDispatchSettings(
+    safeStorageGet(storage, SETTINGS_STORAGE_KEY)
+  );
+
+  if (primary) {
+    const serialized = serializeDispatchSettings(primary);
+    safeStorageSet(storage, SETTINGS_STORAGE_KEY, serialized);
+    safeStorageSet(storage, SETTINGS_BACKUP_STORAGE_KEY, serialized);
+    return primary;
   }
+
+  const backup = parseStoredDispatchSettings(
+    safeStorageGet(storage, SETTINGS_BACKUP_STORAGE_KEY)
+  );
+
+  if (backup) {
+    const serialized = serializeDispatchSettings(backup);
+    safeStorageSet(storage, SETTINGS_STORAGE_KEY, serialized);
+    safeStorageSet(storage, SETTINGS_BACKUP_STORAGE_KEY, serialized);
+    return backup;
+  }
+
+  const previous = parseStoredDispatchSettings(
+    safeStorageGet(storage, SETTINGS_PREVIOUS_STORAGE_KEY)
+  );
+
+  if (previous) {
+    const serialized = serializeDispatchSettings(previous);
+    safeStorageSet(storage, SETTINGS_STORAGE_KEY, serialized);
+    safeStorageSet(storage, SETTINGS_BACKUP_STORAGE_KEY, serialized);
+    return previous;
+  }
+
+  return createDefaultDispatchSettings();
 }
 
 export function saveDispatchSettings(settings: DispatchSettings): void {
@@ -586,10 +649,20 @@ export function saveDispatchSettings(settings: DispatchSettings): void {
     return;
   }
 
-  window.localStorage.setItem(
-    SETTINGS_STORAGE_KEY,
-    JSON.stringify(sanitizeDispatchSettings(settings))
-  );
+  const storage = window.localStorage;
+  const nextSerialized = serializeDispatchSettings(settings);
+  const currentSerialized = safeStorageGet(storage, SETTINGS_STORAGE_KEY);
+  const currentSettings = parseStoredDispatchSettings(currentSerialized);
+
+  if (currentSettings) {
+    const normalizedCurrent = serializeDispatchSettings(currentSettings);
+    if (normalizedCurrent !== nextSerialized) {
+      safeStorageSet(storage, SETTINGS_PREVIOUS_STORAGE_KEY, normalizedCurrent);
+    }
+  }
+
+  safeStorageSet(storage, SETTINGS_STORAGE_KEY, nextSerialized);
+  safeStorageSet(storage, SETTINGS_BACKUP_STORAGE_KEY, nextSerialized);
 }
 
 export function applyInspectorOverrides(

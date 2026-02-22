@@ -12,13 +12,19 @@ import {
 import { buildVisitDecision } from "../lib/decisionEngine";
 import { formatNlDate } from "../lib/dateUtils";
 import type { ImpactProfile } from "../lib/impactScoring";
-import type { InspectorAssignmentRole, PlannedVisit, WorkRecord } from "../types";
+import type {
+  GIPODPermitStatus,
+  InspectorAssignmentRole,
+  PlannedVisit,
+  WorkRecord,
+} from "../types";
 
 const POSTCODE_BOUNDARY_SOURCE_URL = "/data/postcode-boundaries.geojson";
 const SELECTED_VISIT_FOCUS_OFFSET_Y = 96;
 
 type MapPanelProps = {
   works: WorkRecord[];
+  contextWorks: WorkRecord[];
   visits: PlannedVisit[];
   selectedVisitId: string | null;
   onSelectVisit: (visitId: string | null) => void;
@@ -47,6 +53,18 @@ type MapBounds = {
   east: number;
   west: number;
 };
+
+type ContextColorMode = "gipod-phase" | "permit-status";
+type ContextProjectSource = "GIPOD" | "SIGNALISATIE";
+
+type ContextProjectMarker = {
+  work: WorkRecord;
+  sources: ContextProjectSource[];
+  color: string;
+  distanceLevel: 0 | 1 | 2;
+};
+
+const UNKNOWN_PERMIT_STATUS_LABEL: GIPODPermitStatus = "ONBEKEND";
 
 function getCenter(visits: PlannedVisit[], selectedVisitId: string | null): [number, number] {
   const selectedVisit = selectedVisitId
@@ -132,6 +150,91 @@ function buildGipodUrl(gipodId: string): string | null {
     return null;
   }
   return `https://gipod.vlaanderen.be/inname/${clean}`;
+}
+
+function isGipodSourceWork(work: WorkRecord): boolean {
+  return work.sourceDataset === "gipod_export" || (work.gipodId ?? "").trim().length > 0;
+}
+
+function isSignalisatieSourceWork(work: WorkRecord): boolean {
+  if (work.sourceDataset === "weekrapport_fallback") {
+    return true;
+  }
+
+  if ((work.permitRefKey ?? "").trim() || (work.permitReferenceId ?? "").trim()) {
+    return true;
+  }
+
+  return (
+    (work.permitStatus ?? UNKNOWN_PERMIT_STATUS_LABEL) === "AFGELEVERD" ||
+    (work.permitStatus ?? UNKNOWN_PERMIT_STATUS_LABEL) === "IN_VOORBEREIDING" ||
+    (work.permitStatus ?? UNKNOWN_PERMIT_STATUS_LABEL) === "GEWEIGERD_OF_STOPGEZET"
+  );
+}
+
+function getGipodPhaseVisual(sourceStatusRaw?: string): {
+  color: string;
+  distanceLevel: 0 | 1 | 2;
+} {
+  const sourceStatus = normalizeText(sourceStatusRaw ?? "");
+
+  if (sourceStatus.includes("in uitvoering") || sourceStatus.includes("lopende")) {
+    return { color: "#0f766e", distanceLevel: 0 };
+  }
+
+  if (sourceStatus.includes("concreet gepland") || sourceStatus.includes("gepland")) {
+    return { color: "#2563eb", distanceLevel: 1 };
+  }
+
+  if (sourceStatus.includes("uitgevoerd") || sourceStatus.includes("afgelopen")) {
+    return { color: "#7c3aed", distanceLevel: 2 };
+  }
+
+  if (sourceStatus.includes("niet uitgevoerd")) {
+    return { color: "#94a3b8", distanceLevel: 2 };
+  }
+
+  return { color: "#64748b", distanceLevel: 2 };
+}
+
+function getPermitVisual(permitStatus?: GIPODPermitStatus): {
+  color: string;
+  distanceLevel: 0 | 1 | 2;
+} {
+  const status = permitStatus ?? UNKNOWN_PERMIT_STATUS_LABEL;
+
+  if (status === "AFGELEVERD") {
+    return { color: "#0f766e", distanceLevel: 0 };
+  }
+
+  if (status === "IN_VOORBEREIDING") {
+    return { color: "#2563eb", distanceLevel: 1 };
+  }
+
+  if (status === "NIET_VEREIST") {
+    return { color: "#0284c7", distanceLevel: 1 };
+  }
+
+  if (status === "GEWEIGERD_OF_STOPGEZET") {
+    return { color: "#b91c1c", distanceLevel: 2 };
+  }
+
+  if (status === "ONBEKEND_MAAR_VERWACHT") {
+    return { color: "#d97706", distanceLevel: 2 };
+  }
+
+  return { color: "#94a3b8", distanceLevel: 2 };
+}
+
+function getContextMarkerVisual(
+  work: WorkRecord,
+  mode: ContextColorMode
+): { color: string; distanceLevel: 0 | 1 | 2 } {
+  if (mode === "permit-status") {
+    return getPermitVisual(work.permitStatus);
+  }
+
+  return getGipodPhaseVisual(work.sourceStatus);
 }
 
 async function searchWithNominatim(
@@ -272,6 +375,7 @@ function formatInspectorRole(role?: InspectorAssignmentRole): string {
 
 export function MapPanel({
   works,
+  contextWorks,
   visits,
   selectedVisitId,
   onSelectVisit,
@@ -289,6 +393,10 @@ export function MapPanel({
     : undefined;
 
   const [showPostcodeBoundaries, setShowPostcodeBoundaries] = useState(false);
+  const [showDispatchLayer, setShowDispatchLayer] = useState(true);
+  const [showGipodLayer, setShowGipodLayer] = useState(false);
+  const [showSignalisatieLayer, setShowSignalisatieLayer] = useState(false);
+  const [contextColorMode, setContextColorMode] = useState<ContextColorMode>("gipod-phase");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [searchLoading, setSearchLoading] = useState(false);
@@ -301,6 +409,7 @@ export function MapPanel({
   const [legendCollapsed, setLegendCollapsed] = useState(true);
   const [isVisitPopupOpen, setIsVisitPopupOpen] = useState(false);
   const [visibleBounds, setVisibleBounds] = useState<MapBounds | null>(null);
+  const [selectedContextWorkId, setSelectedContextWorkId] = useState<string | null>(null);
   const searchAbortRef = useRef<AbortController | null>(null);
   const searchCacheRef = useRef<Map<string, SearchResult[]>>(new Map());
 
@@ -354,6 +463,82 @@ export function MapPanel({
     );
   }, [selectedVisitId, visibleBounds, visits]);
 
+  const contextProjects = useMemo<ContextProjectMarker[]>(() => {
+    if (!showGipodLayer && !showSignalisatieLayer) {
+      return [];
+    }
+
+    const byWorkId = new Map<string, { work: WorkRecord; sourceSet: Set<ContextProjectSource> }>();
+
+    for (const work of contextWorks) {
+      const sourceSet = new Set<ContextProjectSource>();
+
+      if (showGipodLayer && isGipodSourceWork(work)) {
+        sourceSet.add("GIPOD");
+      }
+      if (showSignalisatieLayer && isSignalisatieSourceWork(work)) {
+        sourceSet.add("SIGNALISATIE");
+      }
+
+      if (sourceSet.size === 0) {
+        continue;
+      }
+
+      const existing = byWorkId.get(work.id);
+      if (existing) {
+        sourceSet.forEach((source) => existing.sourceSet.add(source));
+        continue;
+      }
+
+      byWorkId.set(work.id, {
+        work,
+        sourceSet,
+      });
+    }
+
+    return [...byWorkId.values()]
+      .map(({ work, sourceSet }) => {
+        const visual = getContextMarkerVisual(work, contextColorMode);
+        return {
+          work,
+          sources: [...sourceSet],
+          color: visual.color,
+          distanceLevel: visual.distanceLevel,
+        };
+      })
+      .sort((a, b) => {
+        if (a.work.startDate !== b.work.startDate) {
+          return a.work.startDate.localeCompare(b.work.startDate);
+        }
+        return a.work.dossierId.localeCompare(b.work.dossierId);
+      });
+  }, [contextColorMode, contextWorks, showGipodLayer, showSignalisatieLayer]);
+
+  const visibleContextProjects = useMemo(() => {
+    if (!visibleBounds) {
+      return contextProjects;
+    }
+
+    return contextProjects.filter(
+      (project) =>
+        project.work.id === selectedContextWorkId || isWithinBounds(project.work, visibleBounds)
+    );
+  }, [contextProjects, selectedContextWorkId, visibleBounds]);
+
+  const selectedContextProject = useMemo(
+    () =>
+      selectedContextWorkId
+        ? contextProjects.find((project) => project.work.id === selectedContextWorkId) ?? null
+        : null,
+    [contextProjects, selectedContextWorkId]
+  );
+
+  const toggleContextLayers = useCallback(() => {
+    const nextEnabled = !(showGipodLayer || showSignalisatieLayer);
+    setShowGipodLayer(nextEnabled);
+    setShowSignalisatieLayer(nextEnabled);
+  }, [showGipodLayer, showSignalisatieLayer]);
+
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
@@ -384,6 +569,22 @@ export function MapPanel({
   useEffect(() => {
     setIsVisitPopupOpen(Boolean(selectedVisitId));
   }, [selectedVisitId]);
+
+  useEffect(() => {
+    if (selectedVisitId) {
+      setSelectedContextWorkId(null);
+    }
+  }, [selectedVisitId]);
+
+  useEffect(() => {
+    if (!selectedContextWorkId) {
+      return;
+    }
+
+    if (!contextProjects.some((project) => project.work.id === selectedContextWorkId)) {
+      setSelectedContextWorkId(null);
+    }
+  }, [contextProjects, selectedContextWorkId]);
 
   useEffect(() => {
     return () => {
@@ -618,6 +819,9 @@ export function MapPanel({
                   <p className="map-overlay-line">
                     <span className="layer-dot selected" /> Geselecteerde werf
                   </p>
+                  <p className="map-overlay-line">
+                    <span className="layer-dot context-dark" /> Niet-toegewezen projectpin
+                  </p>
                   {routeEnabled ? (
                     <>
                       <p className="map-overlay-title map-overlay-subtitle">Nummers in bolletjes</p>
@@ -646,6 +850,63 @@ export function MapPanel({
                     />
                     Postcoderanden
                   </label>
+                  <p className="map-overlay-title map-overlay-subtitle">Kaartlagen</p>
+                  <button type="button" className="map-btn" onClick={toggleContextLayers}>
+                    {showGipodLayer || showSignalisatieLayer
+                      ? "Verberg niet-toegewezen projecten"
+                      : "Toon niet-toegewezen projecten"}
+                  </button>
+                  <label className="map-layer-toggle">
+                    <input
+                      type="checkbox"
+                      checked={showDispatchLayer}
+                      onChange={(event) => {
+                        setShowDispatchLayer(event.target.checked);
+                        if (!event.target.checked) {
+                          setIsVisitPopupOpen(false);
+                        }
+                      }}
+                    />
+                    DISPATCH
+                  </label>
+                  <label className="map-layer-toggle">
+                    <input
+                      type="checkbox"
+                      checked={showGipodLayer}
+                      onChange={(event) => setShowGipodLayer(event.target.checked)}
+                    />
+                    GIPOD
+                  </label>
+                  <label className="map-layer-toggle">
+                    <input
+                      type="checkbox"
+                      checked={showSignalisatieLayer}
+                      onChange={(event) => setShowSignalisatieLayer(event.target.checked)}
+                    />
+                    SIGNALISATIE
+                  </label>
+                  {showGipodLayer || showSignalisatieLayer ? (
+                    <>
+                      <label className="map-layer-toggle map-layer-mode-select">
+                        Kleurcode
+                        <select
+                          value={contextColorMode}
+                          onChange={(event) =>
+                            setContextColorMode(event.target.value as ContextColorMode)
+                          }
+                        >
+                          <option value="gipod-phase">GIPOD fase</option>
+                          <option value="permit-status">Vergunningsstatus</option>
+                        </select>
+                      </label>
+                      <p className="map-overlay-line">
+                        <span className="layer-dot context-dark" /> Donker = dicht bij uitvoering
+                      </p>
+                      <p className="map-overlay-line">
+                        <span className="layer-dot context-light" /> Licht = verder van uitvoering
+                      </p>
+                    </>
+                  ) : null}
                 </>
               ) : (
                 <p className="map-overlay-line map-overlay-collapsed-note">Legenda ingeklapt</p>
@@ -684,8 +945,13 @@ export function MapPanel({
 
           <div className="map-overlay map-overlay-right">
             <p>
-              {visibleVisits.length}/{visits.length} actiepunten in kaartbeeld
+              {showDispatchLayer
+                ? `${visibleVisits.length}/${visits.length} dispatchpunten in kaartbeeld`
+                : "Dispatchlaag uitgeschakeld"}
             </p>
+            {showGipodLayer || showSignalisatieLayer ? (
+              <p>{visibleContextProjects.length}/{contextProjects.length} niet-toegewezen projecten</p>
+            ) : null}
             <button type="button" className="map-btn" onClick={handleCenterMap}>
               Centreer
             </button>
@@ -713,7 +979,7 @@ export function MapPanel({
             </Source>
           ) : null}
 
-          {routeEnabled
+          {routeEnabled && showDispatchLayer
             ? Object.entries(routesByInspector).map(([inspectorId, routeVisits]) => {
                 if (routeVisits.length < 2) {
                   return null;
@@ -752,42 +1018,82 @@ export function MapPanel({
               })
             : null}
 
-          {visibleVisits.map((visit) => {
-            const isSelected = visit.id === selectedVisitId;
-            const mandatoryClass = visit.mandatory ? "mandatory" : "cadence";
-            const statusClass =
-              visit.work.status === "VERGUND" ? "status-vergund" : "status-effect";
-            const locationClass =
-              visit.work.locationSource === "exact" ? "loc-exact" : "loc-approx";
-            const order = routeOrderByVisitId[visit.id];
+          {showDispatchLayer
+            ? visibleVisits.map((visit) => {
+                const isSelected = visit.id === selectedVisitId;
+                const mandatoryClass = visit.mandatory ? "mandatory" : "cadence";
+                const statusClass =
+                  visit.work.status === "VERGUND" ? "status-vergund" : "status-effect";
+                const locationClass =
+                  visit.work.locationSource === "exact" ? "loc-exact" : "loc-approx";
+                const order = routeOrderByVisitId[visit.id];
+
+                return (
+                  <Marker
+                    key={visit.id}
+                    longitude={visit.work.location.lng}
+                    latitude={visit.work.location.lat}
+                    anchor="center"
+                  >
+                    <button
+                      type="button"
+                      className={`map-pin ${mandatoryClass} ${statusClass} ${locationClass} ${
+                        isSelected ? "selected" : ""
+                      }`}
+                      onClick={() => {
+                        setSelectedContextWorkId(null);
+                        setIsVisitPopupOpen(true);
+                        onSelectVisit(visit.id);
+                      }}
+                      title={`${visit.work.dossierId} - ${visit.inspectorName}`}
+                      style={{ "--inspector-color": visit.inspectorColor } as CSSProperties}
+                    >
+                      <span>{routeEnabled && order ? order : visit.inspectorInitials}</span>
+                    </button>
+                  </Marker>
+                );
+              })
+            : null}
+
+          {visibleContextProjects.map((project) => {
+            const isSelected = project.work.id === selectedContextWorkId;
+            const contextPinOpacity =
+              project.distanceLevel === 0 ? 1 : project.distanceLevel === 1 ? 0.8 : 0.62;
 
             return (
               <Marker
-                key={visit.id}
-                longitude={visit.work.location.lng}
-                latitude={visit.work.location.lat}
-                anchor="center"
+                key={`context-${project.work.id}`}
+                longitude={project.work.location.lng}
+                latitude={project.work.location.lat}
+                anchor="bottom"
               >
                 <button
                   type="button"
-                  className={`map-pin ${mandatoryClass} ${statusClass} ${locationClass} ${
-                    isSelected ? "selected" : ""
-                  }`}
+                  className={`map-context-pin distance-${project.distanceLevel} ${
+                    project.sources.length > 1 ? "multi-source" : ""
+                  } ${isSelected ? "selected" : ""}`}
                   onClick={() => {
-                    setIsVisitPopupOpen(true);
-                    onSelectVisit(visit.id);
+                    setIsVisitPopupOpen(false);
+                    onSelectVisit(null);
+                    setSearchMarker(null);
+                    setSelectedContextWorkId(project.work.id);
                   }}
-                  title={`${visit.work.dossierId} - ${visit.inspectorName}`}
-                  style={{ "--inspector-color": visit.inspectorColor } as CSSProperties}
+                  style={
+                    {
+                      "--context-pin-color": project.color,
+                      "--context-pin-opacity": String(contextPinOpacity),
+                    } as CSSProperties
+                  }
+                  title={`${project.work.straat} ${project.work.huisnr}, ${project.work.postcode} - ${project.sources.join(" + ")}`}
                 >
-                  <span>{routeEnabled && order ? order : visit.inspectorInitials}</span>
+                  <span />
                 </button>
               </Marker>
             );
           })}
 
           {searchMarker ? (
-            <Marker longitude={searchMarker.lng} latitude={searchMarker.lat} anchor="bottom">
+            <Marker longitude={searchMarker.lng} latitude={searchMarker.lat} anchor="center">
               <button
                 type="button"
                 className="map-search-marker"
@@ -800,7 +1106,7 @@ export function MapPanel({
             </Marker>
           ) : null}
 
-          {selectedVisit && decision && isVisitPopupOpen ? (
+          {showDispatchLayer && selectedVisit && decision && isVisitPopupOpen ? (
             <Popup
               longitude={selectedVisit.work.location.lng}
               latitude={selectedVisit.work.location.lat}
@@ -930,6 +1236,78 @@ export function MapPanel({
                     )}
                   </p>
                 </section>
+              </div>
+            </Popup>
+          ) : null}
+
+          {selectedContextProject ? (
+            <Popup
+              longitude={selectedContextProject.work.location.lng}
+              latitude={selectedContextProject.work.location.lat}
+              className="dispatch-context-popup"
+              anchor="bottom"
+              closeButton
+              closeOnClick={false}
+              onClose={() => setSelectedContextWorkId(null)}
+              offset={16}
+              maxWidth="340px"
+            >
+              <div className="context-project-popup">
+                <p className="zone-title">Niet-toegewezen project</p>
+                <p className="context-project-title">
+                  {selectedContextProject.work.straat} {selectedContextProject.work.huisnr},{" "}
+                  {selectedContextProject.work.postcode} {selectedContextProject.work.district}
+                </p>
+                <div className="context-tags">
+                  {selectedContextProject.sources.map((source) => (
+                    <span key={`${selectedContextProject.work.id}-${source}`}>{source}</span>
+                  ))}
+                  <span>
+                    Kleur op{" "}
+                    {contextColorMode === "gipod-phase"
+                      ? "GIPOD fase"
+                      : "Vergunningsstatus"}
+                  </span>
+                </div>
+                <p>
+                  GIPOD fase: {selectedContextProject.work.sourceStatus || "-"}
+                </p>
+                <p>
+                  Vergunningstatus:{" "}
+                  {selectedContextProject.work.permitStatus || UNKNOWN_PERMIT_STATUS_LABEL}
+                </p>
+                <div className="context-project-links">
+                  {buildGipodUrl(selectedContextProject.work.gipodId) ? (
+                    <a
+                      href={buildGipodUrl(selectedContextProject.work.gipodId) ?? "#"}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      GIPOD link
+                    </a>
+                  ) : (
+                    <span>Geen GIPOD link</span>
+                  )}
+                  {buildASignUrl(
+                    selectedContextProject.work.permitRefKey,
+                    selectedContextProject.work.permitReferenceId
+                  ) ? (
+                    <a
+                      href={
+                        buildASignUrl(
+                          selectedContextProject.work.permitRefKey,
+                          selectedContextProject.work.permitReferenceId
+                        ) ?? "#"
+                      }
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Signalisatievergunning link
+                    </a>
+                  ) : (
+                    <span>Geen signalisatievergunning link</span>
+                  )}
+                </div>
               </div>
             </Popup>
           ) : null}

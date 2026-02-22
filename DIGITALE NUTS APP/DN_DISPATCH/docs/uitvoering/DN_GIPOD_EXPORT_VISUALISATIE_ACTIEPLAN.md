@@ -147,6 +147,102 @@ Bron: `export_20260221132439.xlsx`
 - `https://parkeerverbod.antwerpen.be/admin/sgw/requests/{Ref-key}`.
 5. Datamodel/import uitgebreid met `permitRefKey` zodat link niet meer foutief op basis van GIPOD-id of GW-nummer gelegd wordt.
 
+### 0.12 Kaartlaag niet-toegewezen projecten + bronlagen (2026-02-22)
+
+1. Nieuwe aparte kaartlaag toegevoegd voor gelokaliseerde projecten die niet in de dispatchronde van de gekozen dag zijn toegewezen.
+2. Kaartlagen zijn nu apart schakelbaar in de kaartlegende:
+- `DISPATCH` (bestaande dispatchpins),
+- `GIPOD` (contextlaag),
+- `SIGNALISATIE` (contextlaag).
+3. Nieuwe snelle knop toegevoegd in de legende:
+- `Toon/Verberg niet-toegewezen projecten` (activeert/deactiveert GIPOD + SIGNALISATIE tegelijk).
+4. Nieuwe kleurmodus voor contextpins:
+- `Kleurcode op GIPOD fase`, of
+- `Kleurcode op vergunningsstatus`.
+5. Kleurintensiteit volgt operationele logica:
+- donker = dichter bij effectieve uitvoering,
+- lichter = verder van effectieve uitvoering.
+6. Contextpins gebruiken een afwijkend symbool (kleine gekleurde pin) zodat ze visueel duidelijk verschillen van dispatchpins.
+7. Kleine popup toegevoegd op contextpins met minimaal:
+- straat + huisnummer + postcode,
+- GIPOD-fase en vergunningstatus,
+- klikbare `GIPOD link`,
+- klikbare `Signalisatievergunning link` (indien aanwezig).
+8. Bestaande filters (`GIPOD fase`, `Categorie GW`, `Vergunningstatus`, district, postcode, status) werken ook door op deze contextlaag omdat de laag op dezelfde gefilterde contextdataset draait.
+
+### 0.13 Correctie pin-afwijking niet-toegewezen project (2026-02-22)
+
+1. Concrete case `WIPSTRAAT 44, 2018 Antwerpen` (`GIPOD 19579833`) gecontroleerd.
+2. Oorzaak bevestigd als databron-afwijking (niet alleen UI):
+- export-POINT lag ca. 108 meter van adres-geocode.
+3. Gerichte tijdelijke import-override toegevoegd in `scripts/import-nuts-data.mjs`:
+- `gipodId=19579833` met gecorrigeerde locatiecoordinaten.
+4. Dataset heropgebouwd met `npm run import:data` (cache-only geocode-modus actief via `DN_SKIP_GEOCODE=1` tijdens run).
+5. Contextpins gebruiken na herbouw de gecorrigeerde locatie.
+6. Belangrijk: dit past in hetzelfde tijdelijke correctiepatroon als eerdere afwijkingscases (`19223308`, `19586569`, `19296287`) tot API/brondata dit structureel oplost.
+
+### 0.14 Prioritering geocodebudget op actieve dossiers (2026-02-22)
+
+1. Address-alignment gebruikte eerder geocodebudget op invoervolgorde.
+2. Nieuwe prioritering toegevoegd in `scripts/import-nuts-data.mjs`:
+- `IN EFFECT` krijgt voorrang op `VERGUND`,
+- `In uitvoering`/`Lopende` krijgt voorrang binnen bronstatus,
+- daarna `Concreet gepland`, vervolgens minder urgente statussen,
+- vergunningstatus en categorie worden als extra prioriteitssignaal meegenomen.
+3. Geocodebudget wordt nu eerst toegewezen aan unieke adreskeys met hoogste prioriteit; pas daarna wordt uitlijning op de volledige dataset toegepast.
+4. Effect:
+- hogere kans dat operationeel relevante pins (lopende uitvoering) snel op juiste plek staan,
+- minder risico dat budget op minder urgente adressen opgaat.
+
+### 0.15 Verhoogde align-run uitgevoerd (2026-02-22)
+
+1. Import opnieuw uitgevoerd met verhoogd geocodebudget:
+- `DN_ADDRESS_ALIGN_MAX_GEOCODES_PER_RUN=500`.
+2. Resultaat van deze run:
+- `Address alignment checked=2388/4282`,
+- `aligned(>=90m)=2351`,
+- `geocoded=500`.
+3. QA-resultaat:
+- `Location QA checked=23/25`,
+- `suspicious(>=250m)=0`.
+4. Conclusie:
+- aanzienlijk meer adressen zijn nu uitgelijnd in een enkele run,
+- er blijft nog budgetgedreven restwerk mogelijk in volgende runs.
+
+### 0.16 Parser/normalisatie verbeterd voor signalisatie-adressen (2026-02-22)
+
+1. Oorzaak van resterende verschuivingen bevestigd:
+- veel signalisatiegerelateerde records hadden ruis in `straat` (beschrijvingstekst i.p.v. echt straatveld),
+- daardoor faalde geocode en bleef bronlocatie staan.
+2. Importscript aangepast:
+- sterkere straatnormalisatie voor geocode-query en cache-key,
+- fallback op legacy-cache-key behouden,
+- permit-adres krijgt voorrang wanneer export-adres als ruis wordt gedetecteerd.
+3. Prioritering address alignment behoudt focus op operationeel relevante dossiers en signalisatiecontext.
+4. Resultaat na nieuwe run:
+- `Address alignment checked=4035/4282`, `aligned(>=90m)=3958`,
+- signalisatielaag-cases met geocodecache stegen naar `299/310`,
+- resterend zonder geocodecache: `11` dossiers (te behandelen via bronopschoning of manuele override).
+
+### 0.17 Align-drempel verlaagd naar 25m (2026-02-22)
+
+1. Praktijkcontrole op case `GIPOD 18567321` bevestigde dat 90m nog te tolerant was voor adresnauwkeurigheid.
+2. Standaard `ADDRESS_ALIGN_DEFAULT_THRESHOLD_METERS` in importscripten verlaagd van `90` naar `25`.
+3. Nieuwe standaardrun (cache-only) gaf:
+- `checked=4152/4282`,
+- `aligned(>=25m)=4143`,
+- `geocoded=0` (hergebruik cache).
+4. Effect: punten volgen nu strikter de adreslocatie in zowel `GIPOD` als `SIGNALISATIE` contextlagen.
+
+### 0.18 Zoekmarker visual offset gecorrigeerd (2026-02-22)
+
+1. In kaartzoeker stond de blauwe zoekmarker technisch op `anchor=bottom` terwijl het symbool zelf geen pinpunt had.
+2. Gevolg: visuele schijnverschuiving t.o.v. projectpins (ook bij correcte coordinaten).
+3. Oplossing in `src/components/MapPanel.tsx`:
+- zoekmarker gewijzigd naar `anchor=\"center\"`.
+4. Effect:
+- blauwe zoekmarker valt nu visueel op exact dezelfde coordinate als de onderliggende projectpunten.
+
 ## 1. Uitgangspunten die we vastleggen
 
 1. Bronbestand komt uit `DN_DISPATCH/DATA` met patroon `Export_*.xlsx` (case-insensitive, dus `export_*.xlsx` telt ook).

@@ -428,6 +428,14 @@ p {
   background: var(--accent);
 }
 
+.layer-dot.context-dark {
+  background: #0f766e;
+}
+
+.layer-dot.context-light {
+  background: #cbd5e1;
+}
+
 .map-layer-toggle {
   display: flex;
   align-items: center;
@@ -435,6 +443,22 @@ p {
   margin-top: 2px;
   font-size: 0.72rem;
   color: #1e293b;
+}
+
+.map-layer-mode-select {
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.map-layer-mode-select select {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.72rem;
+  padding: 3px 6px;
+  min-width: 148px;
 }
 
 .map-overlay-collapsed-note {
@@ -546,6 +570,60 @@ p {
     0 0 0 3px rgba(15, 118, 110, 0.72),
     0 10px 18px rgba(2, 48, 71, 0.3);
   transform: scale(1.1);
+}
+
+.map-context-pin {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ffffff;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: var(--context-pin-color, #64748b);
+  opacity: var(--context-pin-opacity, 0.82);
+  box-shadow: 0 6px 12px rgba(15, 23, 42, 0.22);
+  cursor: pointer;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+
+.map-context-pin > span {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #ffffff;
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
+.map-context-pin.multi-source {
+  box-shadow:
+    0 0 0 2px rgba(15, 23, 42, 0.22),
+    0 6px 12px rgba(15, 23, 42, 0.22);
+}
+
+.map-context-pin.distance-0 {
+  opacity: 1;
+}
+
+.map-context-pin.distance-1 {
+  opacity: 0.8;
+}
+
+.map-context-pin.distance-2 {
+  opacity: 0.62;
+}
+
+.map-context-pin:hover {
+  transform: rotate(-45deg) translateY(-1px);
+  box-shadow: 0 8px 14px rgba(2, 48, 71, 0.28);
+}
+
+.map-context-pin.selected {
+  box-shadow:
+    0 0 0 3px rgba(15, 118, 110, 0.5),
+    0 10px 18px rgba(2, 48, 71, 0.32);
 }
 
 .map-search-marker {
@@ -773,6 +851,40 @@ p {
 }
 
 .details-zone a:hover {
+  text-decoration: underline;
+}
+
+.context-project-popup {
+  display: grid;
+  gap: 7px;
+  min-width: 250px;
+  font-size: 0.77rem;
+  color: #334155;
+}
+
+.context-project-title {
+  margin: 0;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.context-project-links {
+  display: grid;
+  gap: 4px;
+}
+
+.context-project-links a,
+.context-project-links span {
+  font-size: 0.75rem;
+}
+
+.context-project-links a {
+  color: var(--accent-strong);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.context-project-links a:hover {
   text-decoration: underline;
 }
 

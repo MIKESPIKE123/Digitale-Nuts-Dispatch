@@ -1,13 +1,47 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
+  SETTINGS_BACKUP_STORAGE_KEY,
+  SETTINGS_PREVIOUS_STORAGE_KEY,
+  SETTINGS_STORAGE_KEY,
   createDefaultDispatchSettings,
   getAbsentInspectorIds,
   getConfiguredInspectors,
   getInactiveInspectorIds,
   isInspectorAbsentOnDate,
   isInspectorDeployableOnDate,
+  loadDispatchSettings,
+  saveDispatchSettings,
   sanitizeDispatchSettings,
 } from "./appSettings";
+
+function createLocalStorageMock(seed: Record<string, string> = {}): Storage {
+  const store = new Map<string, string>(Object.entries(seed));
+
+  return {
+    get length() {
+      return store.size;
+    },
+    clear() {
+      store.clear();
+    },
+    getItem(key: string) {
+      return store.has(key) ? store.get(key)! : null;
+    },
+    key(index: number) {
+      return Array.from(store.keys())[index] ?? null;
+    },
+    removeItem(key: string) {
+      store.delete(key);
+    },
+    setItem(key: string, value: string) {
+      store.set(key, value);
+    },
+  };
+}
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
 
 describe("appSettings - afwezigheidsplanning", () => {
   it("heeft standaard geen afwezige toezichters", () => {
@@ -128,5 +162,91 @@ describe("appSettings - afwezigheidsplanning", () => {
       fixedDailyLoad: 1.5,
       experienceFactor: 1.2,
     });
+  });
+});
+
+describe("appSettings - automatische restore", () => {
+  it("schrijft bij save ook backup en previous snapshot", () => {
+    const previousState = sanitizeDispatchSettings({
+      inspectorOverrides: {
+        I1: {
+          initials: "OLD",
+        },
+      },
+    });
+    const previousSerialized = JSON.stringify(previousState);
+    const storage = createLocalStorageMock({
+      [SETTINGS_STORAGE_KEY]: previousSerialized,
+    });
+
+    vi.stubGlobal("window", { localStorage: storage });
+
+    const nextState = sanitizeDispatchSettings({
+      inspectorOverrides: {
+        I1: {
+          initials: "CVL",
+        },
+      },
+      customInspectors: [
+        {
+          id: "I8",
+          initials: "RES",
+          name: "Reserve Test",
+          color: "#264653",
+          primaryPostcodes: ["2000"],
+          backupPostcodes: ["2018"],
+          isReserve: true,
+        },
+      ],
+    });
+
+    saveDispatchSettings(nextState);
+
+    expect(storage.getItem(SETTINGS_PREVIOUS_STORAGE_KEY)).toBe(previousSerialized);
+    expect(storage.getItem(SETTINGS_STORAGE_KEY)).toBe(
+      storage.getItem(SETTINGS_BACKUP_STORAGE_KEY)
+    );
+    const persisted = sanitizeDispatchSettings(
+      JSON.parse(storage.getItem(SETTINGS_STORAGE_KEY) ?? "{}")
+    );
+    expect(persisted.inspectorOverrides.I1?.initials).toBe("CVL");
+    expect(
+      persisted.customInspectors.some((inspector) => inspector.id === "I8")
+    ).toBe(true);
+  });
+
+  it("herstelt automatisch uit backup wanneer primary ontbreekt of corrupt is", () => {
+    const backupState = sanitizeDispatchSettings({
+      inspectorOverrides: {
+        I1: {
+          initials: "REC",
+        },
+      },
+      customInspectors: [
+        {
+          id: "I9",
+          initials: "TMP",
+          name: "Herstel Toezichter",
+          color: "#457b9d",
+          primaryPostcodes: ["2600"],
+          backupPostcodes: ["2000"],
+          isReserve: true,
+        },
+      ],
+    });
+    const backupSerialized = JSON.stringify(backupState);
+    const storage = createLocalStorageMock({
+      [SETTINGS_STORAGE_KEY]: "{invalid-json",
+      [SETTINGS_BACKUP_STORAGE_KEY]: backupSerialized,
+    });
+    vi.stubGlobal("window", { localStorage: storage });
+
+    const restored = loadDispatchSettings();
+
+    expect(restored.inspectorOverrides.I1?.initials).toBe("REC");
+    expect(
+      restored.customInspectors.some((inspector) => inspector.id === "I9")
+    ).toBe(true);
+    expect(storage.getItem(SETTINGS_STORAGE_KEY)).toBe(backupSerialized);
   });
 });

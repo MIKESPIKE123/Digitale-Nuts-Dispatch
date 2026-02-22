@@ -868,7 +868,7 @@ export default function App() {
   const [sessionCandidateInspectorId, setSessionCandidateInspectorId] = useState("");
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
   const [dossierSearch, setDossierSearch] = useState("");
-  const [selectedMapStyle, setSelectedMapStyle] = useState<MapStyleId>("clean");
+  const [selectedMapStyle, setSelectedMapStyle] = useState<MapStyleId>("grb");
   const [routeEnabled, setRouteEnabled] = useState(true);
   const [integrations, setIntegrations] = useState<IntegrationState>({
     nuts: true,
@@ -1550,6 +1550,27 @@ export default function App() {
     selectedStatuses,
     works,
   ]);
+
+  const assignedWorkIds = useMemo(
+    () =>
+      new Set(
+        Object.values(dispatch.visitsByInspector)
+          .flat()
+          .map((visit) => visit.work.id)
+      ),
+    [dispatch.visitsByInspector]
+  );
+
+  const nonDispatchContextWorks = useMemo(
+    () =>
+      contextWorks.filter(
+        (work) =>
+          !assignedWorkIds.has(work.id) &&
+          Number.isFinite(work.location.lat) &&
+          Number.isFinite(work.location.lng)
+      ),
+    [assignedWorkIds, contextWorks]
+  );
 
   const utilityCompanyOptions = useMemo(
     () =>
@@ -2693,6 +2714,7 @@ export default function App() {
           <Suspense fallback={<div className="filter-group">Kaart laden...</div>}>
             <MapPanel
               works={works}
+              contextWorks={nonDispatchContextWorks}
               visits={mapVisits}
               selectedVisitId={selectedVisitId}
               onSelectVisit={setSelectedVisitId}
