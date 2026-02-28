@@ -1,7 +1,8 @@
 # DN_DISPATCH Docs - Structuur en Leeswijzer
 
-Laatste update: 2026-02-21  
+Laatste update: 2026-02-27  
 Doel: snelle oriëntatie, consistente naamgeving en duidelijke leesvolgorde voor projectsturing.
+Huidige release in app-hoofdbalk: `v1.6` (build `0.1.0`).
 
 ## 1. Wat is hernoemd
 
@@ -49,10 +50,12 @@ Deze bestandsnamen zijn gestandaardiseerd:
 | `docs/uitvoering/DN_RAPPORTEN_V1_STARTVERSIE.md` | Ingevulde v1-startversie met voorgestelde antwoorden en direct planbare rapport-backlog. |
 | `docs/uitvoering/PLATFORMUITBREIDING_UITVOERINGSPLAN_PX01_PX02_PX08.md` | Concreet 6-weken uitvoeringsplan (doel, acties, owner, timing) voor PX-01, PX-02, PX-08. |
 | `docs/uitvoering/EXECUTIEBOARD.md` | Dagelijkse status van sprintstories, PX-modules en topprioriteiten. |
+| `docs/uitvoering/DN_GIPOD_NOTIFICATIE_INBOX_WERKPAD.md` | Diepteanalyse en gefaseerd implementatiepad voor GIPOD notificatie-inbox in DN Governance/Dispatch. |
 | `docs/uitvoering/SPRINT_PITCH_READY_V1_BACKLOG.md` | User stories, acceptatiecriteria en demo-output voor pitch sprint. |
 | `docs/uitvoering/DEMO_SCRIPT_DAG_IN_HET_LEVEN.md` | 9-minuten klikscript inclusief fallback bij sync/internetproblemen. |
 | `docs/uitvoering/ITERATIE1_OPTIMALISATIEPLAN_STABILITEIT_SNELHEID.md` | Technische optimalisaties op performance, sync en kwaliteitspipeline. |
-| `docs/uitvoering/DN_TOEWIJZING_TOEZICHTERS_RICHTLIJNEN.md` | Richtlijnen voor inzettermijn, reserveplanning, backupvolgorde en dispatchlogica. |
+| `docs/uitvoering/DN_TOEWIJZING_TOEZICHTERS_RICHTLIJNEN.md` | Richtlijnen voor inzettermijn, reserveplanning, backupvolgorde, manuele override, toewijzingsarchief, popupstart vaststelling en action-card contextlinks. |
+| `docs/uitvoering/PX04_GIPOD_BETA_ONBOARDING_CHECKLIST.md` | Praktische checklist voor API-toegang, GIPOD-vragenlijst, NIS-filterkeuze en gefaseerde PX-04 uitrol op beta. |
 
 ### C. DN Vaststelling architectuur en implementatie
 
@@ -96,6 +99,25 @@ Deze bestandsnamen zijn gestandaardiseerd:
 | `docs/ANDROID_APP_EVALUATIE.md` | Evaluatie Android-app via Capacitor: kostenstructuur, hardware-vergelijking en dual-platform strategie. |
 | `docs/ANALYSE_GRB_LUCHTFOTO_GIPOD_CSS.md` | Analyse GRB/Luchtfoto Vlaanderen als kaartlagen en GIPOD CSS-stijl als ontwerp-referentie. |
 
+### G. Governance workspace en docs-herorganisatie
+
+| Bestand | Samenvatting |
+|---|---|
+| `docs/governance.ini` | Referentiestructuur van de governance-workspace (template uit zip, niet de fysieke docs-boom). |
+| `docs/governance/DOCS_HERORGANISATIE_EVALUATIE_EN_MAPPING.md` | Evaluatie of herorganisatie zinvol is, met mapping van huidige docs naar doelstructuur en gefaseerde aanpak zonder big-bang migratie. |
+| `docs/governance/digitale-nuts-workspace.zip` | Bron-zip met template-structuur voor governance/architectuur/OSLO/regielaag/integratie/ADR. |
+| `docs/governance/00_governance/nis2.md` | Baseline voor NIS2-controls, eigenaarschap en opvolging in Schil 1. |
+| `docs/governance/00_governance/avg_logging.md` | Baseline voor AVG-conforme auditlogging, bewaartermijnen en toegangsafbakening. |
+| `docs/governance/00_governance/vendor_exit.md` | Baseline voor vendor-exit, dataportabiliteit en lock-in reductie. |
+
+### H. Architecture Decision Records (ADR)
+
+| Bestand | Samenvatting |
+|---|---|
+| `docs/architectuur-beslissingen/ADR-001-hybride-model.md` | Formele keuze voor gelaagd hybride model als kernarchitectuur. |
+| `docs/architectuur-beslissingen/ADR-002-oslo-first.md` | Formele keuze voor OSLO-first semantiek en versieerbare contractdiscipline. |
+| `docs/architectuur-beslissingen/ADR-003-ai-buiten-saas.md` | Formele keuze om AI buiten Schil 1-kern te houden (modulair + HITL). |
+
 ## 4. Versiebeheer en Backup (Git)
 
 **Repository:** `https://github.com/MIKESPIKE123/Apps.git`
@@ -104,7 +126,9 @@ Deze bestandsnamen zijn gestandaardiseerd:
 
 | Tag | Datum | Beschrijving |
 |---|---|---|
-| `v1.4` | — | Isolatie digitale-nuts-app en opschoning repo root |
+| `v1.4` | 2026-02-09 | Isolatie digitale-nuts-app en opschoning repo root |
+| `v1.5` | 2026-02-21 | Release met GRB/Luchtfoto-analyse, mobile evaluaties en versiebeheerupdates |
+| `v1.6` | 2026-02-27 | Release met toewijzingsarchief, inspecteurinstellingen import/export, kaartpopup-start van vaststelling en extra action-card contextlinks |
 | `v1.5-pre-css` | 2026-02-21 | **Backup vóór GRB/Luchtfoto/GIPOD CSS wijzigingen.** Volledig werkende staat van dispatch, vaststelling, impact scoring en alle modules. |
 
 ### Branches
@@ -112,7 +136,7 @@ Deze bestandsnamen zijn gestandaardiseerd:
 | Branch | Doel | Status |
 |---|---|---|
 | `main` | Stabiele productie-baseline | Beschermd |
-| `feature/objectbeheer-v2-2` | Hoofdontwikkelbranch (v1.5 functionaliteit) | Actief, up-to-date met remote |
+| `feature/objectbeheer-v2-2` | Hoofdontwikkelbranch (v1.6 functionaliteit) | Actief, up-to-date met remote |
 | `feature/gipod-css-grb-kaart` | GRB kaartlagen, Luchtfoto Vlaanderen, GIPOD CSS-stijl | Actief — wijzigingen geïsoleerd |
 
 ### Terugkeren naar een veilig punt
@@ -144,6 +168,20 @@ git checkout feature/gipod-css-grb-kaart
 3. Houd tactische status enkel in `docs/uitvoering/EXECUTIEBOARD.md`; vermijd dubbele statustabellen.
 4. Gebruik dit bestand als centrale index; voeg nieuwe docs ook hier toe.
 5. Vermeld bij elke significante wijziging de bijhorende Git-tag en branch in het relevante document.
+
+## 6. Back-up toezichters (import/export)
+
+Gebruik in de app `Instellingen > Back-up toezichters (import/export)`:
+
+1. `Exporteer toezichters (.json)` maakt een bestand met alle toezichterconfiguratie:
+   - custom toezichters (`I8`, `I9`, ...),
+   - overrides op standaardtoezichters,
+   - afwezigheidsplanning,
+   - dispatchcapaciteit (globaal + per toezichter).
+2. Beheer dit JSON-bestand extern (bijv. in OneDrive/Git).
+3. `Importeer toezichters (.json)` zet die configuratie terug in de app.
+
+Dit is bedoeld om verschillen tussen lokale instanties (bv. `localhost:3012` en `localhost:3016`) gecontroleerd te kunnen synchroniseren.
 
 
 

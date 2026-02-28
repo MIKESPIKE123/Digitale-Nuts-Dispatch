@@ -1,0 +1,47 @@
+{
+  "project": "Digitale Nuts - DN_DISPATCH",
+  "lastUpdated": "2026-02-28",
+  "stories": [
+    {
+      "id": "DN-GOV-001",
+      "title": "Governance basisdocs toevoegen (NIS2, AVG logging, vendor-exit)",
+      "done": true,
+      "size": "S",
+      "risk": "low",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Bestanden bestaan: docs/governance/00_governance/nis2.md, avg_logging.md, vendor_exit.md",
+        "Elk document bevat minimaal: Datum, Status, Doel, Context, Beslissing, Impact, Volgende stappen",
+        "docs/README.md bevat verwijzingen naar deze drie governance basisdocs"
+      ]
+    },
+    {
+      "id": "DN-GOV-002",
+      "title": "ADR indexdocument toevoegen voor snelle navigatie",
+      "done": true,
+      "size": "S",
+      "risk": "low",
+      "dependencies": [
+        "DN-GOV-001"
+      ],
+      "acceptanceCriteria": [
+        "Bestand docs/architectuur-beslissingen/README.md bestaat",
+        "README bevat links naar ADR-001, ADR-002, ADR-003"
+      ]
+    },
+    {
+      "id": "DN-GOV-003",
+      "title": "Governance source mapping uitbreiden met nieuwe basisdocs",
+      "done": true,
+      "size": "M",
+      "risk": "medium",
+      "dependencies": [
+        "DN-GOV-001"
+      ],
+      "acceptanceCriteria": [
+        "Nieuwe governance basisdocs zijn opgenomen in de bronindex",
+        "Bronlinks openen in de bestaande governance document viewer"
+      ]
+    }
+  ]
+}
