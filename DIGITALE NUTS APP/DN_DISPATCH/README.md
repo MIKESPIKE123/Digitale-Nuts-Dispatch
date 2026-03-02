@@ -17,11 +17,17 @@ npm install
 npm run dev
 ```
 
-App URL: `http://localhost:3012`
+App URL (default): `http://localhost:3012`
+Alternatieve poort: `OPEN DN DISPATCH - LAATSTE VERSIE.cmd 3017`
+
+Poortgedrag:
+- `3012` en `3017` draaien exact dezelfde app; het verschil is alleen welke lokale serverinstantie je open hebt.
+- De dev-server staat nu op `strictPort`, dus een bezette poort schuift niet meer stil door naar een andere poort.
 
 Of gebruik het opstartbestand:
 
 - `OPEN DN DISPATCH - LAATSTE VERSIE.cmd`
+- Dit bestand sluit eerst automatisch oude lokale dev-instanties op poorten `3012/3016/3017` (plus gekozen poort) af en start daarna 1 verse instantie.
 
 ## Kwaliteitschecks
 
@@ -86,6 +92,18 @@ Dit draait:
 - Die voorkeurtoezichter blijft prioritair voor latere toewijzingen.
 - Projectkaarten zijn klikbaar en tonen een marker met locatieteken op de kaart.
 - In elk projectkaartje staat de einddatum (`Loopt t.e.m.`).
+
+## Recente aanvullingen (v1.6 - 2026-02-27)
+
+- Toewijzingsarchief met snapshots per dispatchdatum, export (`.json`) en lokale reset in `DN Data & Sync`.
+- Import/export van inspecteurinstellingen in `Instellingen` (inspecteurs, overrides, afwezigheden, dispatchcapaciteit).
+- Vaststelling rechtstreeks openen vanuit kaartpopup:
+  - `Open bestaand verslag`
+  - `Nieuw verslag`
+- Extra dossiercontext in action cards:
+  - klikbare ReferentieID/A-SIGN en GIPOD-links,
+  - toewijzingsrol (`Dedicated/Backup/Reserve`),
+  - duidelijke manuele override-context.
 
 ## Configuratie
 

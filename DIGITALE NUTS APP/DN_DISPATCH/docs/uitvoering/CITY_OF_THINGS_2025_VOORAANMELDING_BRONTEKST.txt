@@ -1,0 +1,1377 @@
+DIGITALE NUTS - LONG VERSION
+DEEL 1  VOORAanmelding shortlist projecten (DEF)
+Oproep City of Things 2025
+Implementatie van data-gebaseerde innovatieve oplossingen
+voor gedeelde maatschappelijke uitdagingen
+Contactgegevens:
+Stad Antwerpen  Stadsontwikkeling/Publieke ruimte
+Michel Gerits michel.gerits@antwerpen.be 0475 37 16 99
+Grote Markt 1 – 2000 Antwerpen
+Stad Antwerpen  CDO
+Annik Schouteden annik.schouteden@antwerpen.be 0485 49 73 19
+Grote Markt 1 – 2000 Antwerpen
+Kruis aan op welke van volgende domeinen je projectidee inspeelt:
+​​☐​        Smart Economy (incl. smart ports)
+​​☒​Smart Government
+​​☐​Smart People
+​​☐​Smart Living
+​​☐​Smart Mobility
+​​☒​Smart Environment
+Welke maatschappelijke uitdaging zou je willen aanpakken?
+In heel Vlaanderen staan steden, gemeenten en nutsbedrijven voor dezelfde structurele uitdaging: het ontbreken van uniforme, actuele en controleerbare data over nutswerken in de publieke ruimte. Dat tekort aan betrouwbare informatie leidt tot:
+kwaliteitsproblemen bij het herstel van straten;
+langere hinderperiodes voor bewoners en ondernemers;
+een inefficiënte inzet van toezichtcapaciteit;
+slecht geïnformeerde beleidsmakers en stadsgebruikers;
+…
+Het uitgebreide aantal actoren, het gebrek aan overzicht en de onduidelijke communicatie onderling, liggen aan de basis van deze uitdaging. Jaarlijks vinden er bijvoorbeeld in Antwerpen alleen al meer dan 30.000 graafwerken plaats voor energie, telecom, water en andere nutsvoorzieningen. Deze werken veroorzaken niet alleen fysieke schade aan de infrastructuur, maar ook versnipperde communicatie, beperkte toezichtmogelijkheden en frustratie bij bewoners bezoekers en bedrijven.
+De maatschappelijke uitdaging is niet alleen lokaal, maar Vlaams breed. Het Vlaams Regeerakkoord legt de nadruk op vereenvoudiging en digitalisering van graafwerken via GIPOD, zodat nutswerken efficiënter gecoördineerd en opgevolgd worden. Vandaag blijft die data echter vaak onvolledig en versnipperd, waardoor kwaliteitsproblemen en hinder langer aanslepen.
+Het Vlaams Regeerakkoord1 erkent dit probleem en schuift daarom digitale transitie en artificiële intelligentie naar voren als speerpunten om productiviteit en maatschappelijke vooruitgang te versterken. Zonder een uniforme, digitale opvolging van nutswerken blijven die ambities echter dode letter.
+Daarnaast benadrukt Vlaanderen dat oplossingen schaalbaar en samenwerkingsgericht moeten zijn, zodat niet elk bestuur apart digitale tools ontwikkelt. Ook de rol van Athumi als spil voor veilige en interoperabele datadeling toont aan dat er nood is aan een centrale partner om data-uitwisseling structureel en betrouwbaar te organiseren.
+Kortom: er is een duidelijke beleidsmatige erkenning dat de huidige werking rond nutswerken tekortschiet. Het gebrek aan actuele, uniforme en gedeelde data maakt dat de kwaliteit van onze publieke ruimte, de efficiëntie van toezicht en het vertrouwen van burgers structureel onder druk staan.
+Hoewel de principes van goed herstel juridisch zijn vastgelegd, blijft er in de praktijk een grote kloof bestaan tussen beleid en uitvoering. Onze toezichters merken ook op dat arbeiders op het terrein vaak niet vertrouwd zijn met de herstelrichtlijnen. Antwoorden als ‘een fundering in voetpaden, dat hoeft toch niet?’ of ‘zo doen wij dat nooit’ leiden tot verzakkingen, losliggende stenen en slordige legpatronen.
+Een belangrijke oorzaak van deze kloof is dat de bestaande data-uitwisseling via GIPOD2 onvoldoende volledig en actueel is. Hierdoor wordt het moeilijk om proactieve, gerichte controles te plannen en afspraken met nutsmaatschappijen strikt op te volgen. Ook de nutsmaatschappijen staan voor dezelfde uitdaging in de opvolging van de werken en de aannemers.
+De lokale overheden en nutsmaatschappijen delen heel wat van deze uitdagingen, ook de  communicatie naar bewoners en ondernemers.
+Het gewenste antwoord op deze maatschappelijke uitdaging is helder voor het beleid en de betrokken actoren: het waarborgen van een kwalitatieve opvolging van nutswerken en hun impact op de publieke ruimte zodat hinder beperkt wordt en de leefbaarheid in de stad toeneemt. Denk aan het vermijden van dagenlang afgesloten voetpaden zonder voortgang, gebrekkige communicatie naar bewoners  en ondernemers of herstellingen die snel opnieuw verzakken. Dit vraagt om een combinatie van beter toezicht, efficiëntere communicatie naar stadsgebruikers en beleidsmakers, duidelijke werkafspraken en moderne digitale ondersteuning voor alle betrokken partijen. Wat betreft de ondersteuning voor de terreinmedewerkers moet er specifiek voldoende aandacht gaan naar gebruiksvriendelijkheid en digitaal inclusief ontwerp.
+Stad Antwerpen en de partners willen inzetten op een schaalbare, slimme en gedragen aanpak die voor kwaliteitsvolle stuurcijfers zorgt, de administratieve druk verlaagt, de terreinwerking versterkt en de hinder voor burgers en bedrijven tot een minimum beperkt.
+Breder bekeken is de uitdaging om met dit project een katalysator te vormen voor alle steden, gemeenten en nutsbedrijven om meer datagedreven en professioneel (samen) te werken.
+De investering in dit project, zal een financieel terugverdieneffect hebben bij de steden en gemeenten én bij de nutsbedrijven en aannemers.  Het financieel terugverdieneffect schuilt in drie concrete domeinen: (1) lagere toezicht- en administratieve kosten doordat toezichters meer werken kunnen opvolgen binnen dezelfde capaciteit, (2) hogere en correctere inning van herstel- en retributiekosten door uniforme en gedocumenteerde vaststellingen, en (3) vermeden herstel- en hinderkosten bij nutsbedrijven en aannemers dankzij voorspelbare planning en kwaliteitsbenchmarking. De piloot in Antwerpen met 1.900 digitale vaststellingen toonde reeds aan dat foutieve herstellingen sneller konden worden gedetecteerd en verhaald. Jaarlijks gaat het in Vlaanderen om honderdduizenden nutswerken: zelfs een efficiëntiewinst van 10% levert een besparing van miljoenen euro’s per jaar op, gespreid over steden, nutsbedrijven en aannemers.
+Ook voor VLAIO is er een financieel terugverdieneffect te verwachten. VLAIO voorziet immers middelen voor “de Hinderpremie en sluitingspremie bij hinder openbare werken”. We kunnen lagere premies verwachten omdat de hinder beperkter in de tijd zal zijn dankzij de goede opvolging van de werken.
+Wat is er – voor zover je weet – al geprobeerd om een oplossing te vinden voor deze maatschappelijke uitdaging?
+In Antwerpen zijn de afgelopen jaren verschillende initiatieven genomen om de kwaliteit van nutswerken en het toezicht erop te verbeteren. Enkele belangrijke stappen waren:
+Regelgeving en basisregistratie: De invoering van de Code Nuts legde kwaliteitsnormen vast voor uitvoering en herstel, terwijl het gebruik van GIPOD de eerste stap zette naar een centrale registratie van werken.
+Digitale opvolging en GIS-integratie: Diverse steden, waaronder Antwerpen, hebben GIS-viewers en interne opvolgingstools ontwikkeld. Deze tonen potentieel voor betere terreinopvolging, maar zijn vaak lokaal opgezet en niet schaalbaar. De koppeling met bestaande Vlaamse databronnen zoals GIPOD verloopt eerder traag.
+Praktijktesten en proefprojecten: In 2024 voerde Stad Antwerpen een proefproject uit waarbij meer dan 1.900 vaststellingen van nutswerken digitaal werden geregistreerd, inclusief fotologs en rapportage naar nutsmaatschappijen. Dit verbeterde de kwaliteit van herstellingen aantoonbaar, maar integratie met GIPOD en uniforme data-ontsluiting bleef nog achterwege.
+Eigen systemen bij nutsbedrijven: Nutsbedrijven en hun aannemers beschikken vaak over eigen portalen en fotoregistraties, maar deze zijn niet uniform ontsloten richting gemeenten, waardoor samenwerking gefragmenteerd blijft.
+Mobiel Nuts (fase 1): ontwikkeling van een mobiele toezichtstoepassing, stopgezet wegens gebrek aan ontwikkelingscapaciteit.
+Aanvraagportaal gekoppeld aan GIPOD: bedoeld om bijkomende gegevens op te vragen, maar stuitte op weerstand van nutsmaatschappijen omdat data manueel moest worden ingevoerd.
+Procesanalyse intake–herstel–afrekening: volledig in kaart gebracht, maar nog niet digitaal opvolgbaar.
+Retributiereglement inname en berekening: ingevoerd maar juridisch betwist en complex in  uitvoering.
+QR-codes in communicatie aan de bewoners en bedrijven gekoppeld aan www.parkeerverbod.info: stopgezet om veiligheidsredenen.
+Onderzoek en strategische aanbevelingen
+Het KPMG-onderzoek naar de knelpunten in de huidige nutswerking bevestigde de vastgestelde problemen en formuleerde vijf grote actiepunten: het verbeteren van data-uitwisseling, het uniformeren van kwaliteitsnormen, het versterken van toezicht en handhaving, het vereenvoudigen van processen, en het stimuleren van samenwerking tussen gemeenten en nutsbedrijven.
+Conclusie:
+Hoewel er veelbelovende onderdelen bestaan – van regelgeving en GIS-tools tot proefprojecten en procesanalyses – blijven ze versnipperd, lokaal ontwikkeld en onvoldoende gekoppeld aan een uniforme Vlaamse standaard. Zonder integratie, schaalbaarheid en gedeelde data blijft de structurele verbetering van de nutswerking beperkt.
+Waarop zijn deze initiatieven – voor zover je weet – vastgelopen? Waarom zijn die niet (op grote schaal) geïmplementeerd?
+Hoewel afzonderlijke initiatieven veelbelovend waren, zijn ze tot nu toe niet op grote schaal geïmplementeerd door een combinatie van technologische, organisatorische en samenwerkingsproblemen.
+Geen geïntegreerd technologisch landschap: De bestaande tools en platforms werken los van elkaar, sluiten onvoldoende aan op de werkprocessen op het terrein en vereisen veel manuele tussenstappen. Hierdoor gaat de efficiëntiewinst grotendeels verloren.
+Versnipperde en onvolledige data-uitwisseling: De informatie-uitwisseling met nutsmaatschappijen is niet uniform, vaak onvolledig of verouderd. Elke nutsmaatschappij hanteert haar eigen registratiesysteem, zonder structurele koppeling aan GIPOD. Er bestaat geen breed gedragen uniforme datastandaard; het gebruik van OSLO blijft beperkt.
+Lokale oplossingen zonder schaalbaarheid: Verschillende steden en gemeenten hebben eigen, vaak waardevolle oplossingen ontwikkeld, maar deze zijn niet herbruikbaar voor anderen door het ontbreken van standaardisatie en gedeelde architectuur.
+Onvoldoende ontsluiting en real-time opvolging: Correcte data vanuit nutsbedrijven wordt onvoldoende ontsloten, waardoor real-time controle en gerichte terreinopvolging nauwelijks mogelijk zijn.
+Capaciteitsdruk en ontbrekende samenwerkingsstructuren: Door capaciteitsbeperkingen bij Digipolis werd het Antwerpse programma begin 2025 tijdelijk ‘on hold’ gezet, ondanks een sterke business governance. Structurele samenwerking met strategische partners zoals Athumi of een nutsmaatschappij is nog niet opgestart.
+Te brede scope zonder prioritering: Projecten zijn vaak te omvangrijk om in één keer te realiseren. Er ontbreekt een duidelijke fasering en prioriteitenstelling, waardoor onderdelen blijven steken in concept- of testfase.
+Beschrijf het project. Wat denk je dat er nodig is om dit maatschappelijk probleem wel duurzaam en op basis van data aan te pakken? Geef een indicatie van de werkpakketten, deliverables, timing en budget die hiervoor nodig zouden zijn.
+Projectbeschrijving
+Het project Digitale Nuts ontwikkelt een geïntegreerd digitaal ecosysteem dat toezichters, administraties en nutsmaatschappijen verbindt via één gemeenschappelijke werkomgeving. De kern is een mobiele terreinapplicatie – een “digitaal zakmes” – waarmee toezichters in real time toegang hebben tot GIPOD-data, eigen vaststellingen, communicatiekanalen en automatische rapportering.
+Het doel is om een sluitende digitale keten te creëren tussen nutsbedrijven, GIPOD en steden/gemeenten, zodat gestandaardiseerde, actuele en controleerbare data over nutswerken gedeeld en gebruikt kunnen worden voor kwaliteitsopvolging, procesverbetering en communicatie naar bewoners en bedrijven. Voor de communicatie onderzoekt het project een generiek, GDPR-conforme oplossing waarin burgers zich éénmalig registreren en toestemming geven om verwittigd te worden bij hinder in hun straat, ongeacht van welke nutsmaatschappij of gemeente zelf. Zo wordt de communicatie eenduidiger en betrouwbaarder, met respect voor de rechten van de burger.
+Om de eerder geschetste impasse te doorbreken stellen we een gefaseerde, modulaire aanpak voor, gebaseerd op een schillenmodel. Daarbij starten we met een haalbare kernlaag (MVP1) en bouwen we stapsgewijs verder naar een volledig geïntegreerd, schaalbaar systeem dat werkt voor alle Vlaamse gemeenten. Deze aanpak neemt het risico van een te brede scope weg, verlaagt de instapdrempel voor nutsbedrijven en gemeenten en maakt een sneller leertraject mogelijk. Elk van de eerde opgesomde problemen – versnippering, verouderde data, juridische weerstand en capaciteitsdruk – wordt zo stapsgewijs aangepakt in behapbare bouwblokken. Dit maakt het project haalbaar binnen de City of Things-context en tegelijk schaalbaar naar Vlaanderen.
+Schade aan de publieke ruimte zal altijd gemaakt worden, maar door uniforme afspraken en datastandaarden (via o.a. GIPOD) kan de afstemming tussen alle betrokkenen structureel verbeterd worden. Zo ontstaat er een win-win-win: nutsbedrijven kunnen hun beheer uitvoeren met minder foutgevoelige informatie-uitwisseling, steden kunnen de staat van de publieke ruimte beter monitoren en bijsturen en burgers en bedrijven ondervinden minder hinder en genieten van de voordelen van een goed onderhouden publieke ruimte.
+Gefaseerde opbouw (schillenmodel)
+De ontwikkeling verloopt modulair, zodat snelle eerste resultaten worden geboekt en tegelijk een schaalbare architectuur ontstaat die inzetbaar is in andere steden.
+De voordelen van het schillenmodel zijn :
+Geen alles-of-niets aanpak: als je alles tegelijk wil digitaliseren (vergunningen, herstelbonnen, bewonerscommunicatie, beeldherkenning, retributie), bots je op te veel afhankelijkheden en te hoge complexiteit. Door te starten met een kernlaag (vaststellingen-app + basis GIPOD-koppeling) lever je meteen tastbare waarde en bewijs je het nut van de tool.
+Lagere drempel voor nutsbedrijven en steden: Nutsbedrijven hoeven niet vanaf dag één hun interne processen open te breken. Gemeenten kunnen instappen in het MVP zonder meteen alle modules te moeten implementeren. Dat verlaagt de weerstand en verhoogt de kans op engagement.
+Beheersbaar juridisch en technisch traject: Elke laag heeft zijn eigen aanbesteding. Zo vermijd je vertraging door te brede aanbestedingspakketten. Technische koppelingen (bv. GIPOD, KLM3, WIS4) worden gefaseerd ingebouwd en getest, zodat bugs en juridische knelpunten sneller zichtbaar en oplosbaar zijn.
+Versnelde leer- en verbetercyclus: Een MVP met beperkte scope laat toe om feedback van toezichters en nutsmaatschappijen in te bouwen voor de uitbreiding. Fouten of weerstand worden in een vroeg stadium opgespoord en bijgestuurd.
+Schaalbaarheid en overdraagbaarheid: Het modulair ontwerp is makkelijker herbruikbaar in andere Vlaamse steden. Kleine besturen kunnen starten met de kernlaag en later opschalen. Grote steden kunnen sneller de geavanceerde lagen integreren waarbij de schaalkeuze telkens invloed heeft op de inspanningen, de noodzakelijke organisatorische en procesmatige aanpassingen én de kostprijs.
+Duurzame verankering: Door de gelaagde aanpak sluit elke module apart aan bij bestaande Vlaamse standaarden (OSLO, GIPOD-API). Dat garandeert dat het systeem niet lokaal verankerd blijft maar generiek toepasbaar wordt.
+Werkpakketten en deliverables
+De gelaagde opbouw van het project resulteert in drie hoofdwerkpakketten (lagen). Onderstaande tabel koppelt de werkpakketten rechtstreeks aan hun activiteiten en deliverables.
+Laag
+Activiteiten en werkpakketten (WP)
+Deliverables / Resultaten
+Laag 1 – Kern
+mobiele tool om op het terrein vaststellingen te kunnen doen d.m.v. van locatiebepaling, koppeling van foto’s, aanvullende beschrijving en commentaar en van daaruit data doorsturen naar centrale databank
+Platform (Gebruikersinterface én API integratie) voor nutsmaatschappijen en aannemers voor herstelregistratie en statusupdates.
+Uitbreiding Gisview functionaliteit
+koppeling interne data met OSLO-profiel
+verrijking van de fotodatabase met referentiegegevens
+Meetbare KPI’s bepalen en calculatiemodule om resultaten (kwaliteit) te kunnen berekenen
+Backoffice module gemeentelijke administratieve tools
+Portaal voor nuts en stadsaannemer
+Werkende mobile first MVP-app met Integratie GIPOD-API (categoriedetectie, GIS-overlays) en geotagged fotolog
+Uniform OSLO-datamodel Beleidsafspraken (SLA’s, datastandaarden, afsprakenkaders
+KPI-calculatiemodule voor kwaliteitcontrole
+Handleidingen en opleidingen eerste gebruikers
+Laag 2 – Functionele uitbreiding
+Automatische validatie t.o.v. Code nuts bv integratie Vergunning
+BI-rapportering en dashboard met kwaliteits-KPI’s, hersteltermijnen en retributieoverzicht
+Koppeling met KLM (klachten), A-sign (signalisatie) en WIS (materialen)
+AI-beeldherkenning herstelcontrole
+Geïntegreerde bewonerscommunicatie
+AI-module (beeldherkenning pilotfase)
+Rapportering & BI-dashboard voor kwaliteitsopvolging en retributie
+Validatieflow Code Nuts ifv vergunningen en retributieoverzicht
+Geïntegreerde en verbeterde communicatiemodule naar bewoner en handelaars
+Laag 3 – Geavanceerde functionaliteiten
+Predictieve planning
+Geautomatiseerde retributieberekening
+Volledige Vlaamse data-uitwisseling
+Samenwerkingsmodel rond hergebruik
+Predictieve planningstool
+Retributieberekeningsmodule
+afsprakenkaders voor uniforme werking en KPI’s voor nutsbedrijven/gemeente
+Samenwerkingsmodel overdraagbaarheid, inclusief disseminatie- en opleidingsmateriaal voor kwaliteitsvolle implementatie bij andere gebruikers (steden, nutsmaatschappijen, …)
+Inzoomen op enkele deliverables
+Objectieve KPI’s voor nutswerken: Het project maakt de kwaliteit, doorlooptijd en hinder van nutswerken voor het eerst objectief en automatisch meetbaar. Via de app worden foto’s, GPS-data, herstelbonnen, GIPOD-updates en klachtenregistraties samengebracht tot uniforme KPI’s. Zo volgen we o.a. het % correcte herstellingen, de mediane hersteltijd, het aantal klachten door bewoners en bedrijven, de OSLO-conformiteit van dossiers en de efficiëntie van nutsmaatschappijen. Alle indicatoren worden real-time gegenereerd, zonder manuele rapportage. Dit maakt het mogelijk om prestaties van nutsbedrijven en gemeenten transparant te vergelijken en vormt de basis voor een Vlaamse benchmark en meer datagedreven lokaal en Vlaams Beleid.
+Samenwerkingsmodel om de oplossing overdraagbaar te maken naar andere steden en gemeenten en modaliteiten rond updates.
+De kern van het project (laag 1)  focust op het realiseren van uniforme, actuele data-uitwisseling. Dit is noodzakelijk om de structurele samenwerking tussen lokale besturen en nutsbedrijven te verbeteren. Hierbij wordt bewust een evenwicht gezocht: enkel stabiele, procesrelevante data (zoals locatie, timing en status van werken) worden via GIPOD gestandaardiseerd. Dit vermijdt dat steden of nutsbedrijven onnodig complexe of concurrentiegevoelige data moeten vrijgeven, terwijl de essentiële informatie voor planning en opvolging wél gedeeld wordt.
+Indicatieve timing (nog verder te verfijnen)
+We benutten niet de volledige subsidieperiode van 3 jaar. Dit is een bewuste keuze: de urgentie op het terrein vraagt snelle implementatie en testresultaten, terwijl projecten van deze omvang vaak vertraging oplopen. Door een kortere kernplanning te hanteren, houden we ruimte vrij voor eventuele vertraging én voor bredere uitrol en verfijnde testing binnen de voorziene termijn.
+2026 Q2 – 2027 Q2: Ontwikkeling MVP (laag 1) en eerste veldtesten
+2027 Q2 – 2028 Q1: Uitbreiding naar laag 2-functionaliteiten
+2028 Q1 – 2028 Q3: Integratie laag 3 en ter beschikking stellen van de oplossing aan andere steden/gemeenten die geen deel uitmaken van dit project
+Indicatief budget
+Voor dit project voorzien we een indicatief totaalbudget van 2,4 miljoen euro, opgesplitst tussen programmacoördinatie en business-werk (1,0 miljoen euro) en de technische analyse en implementatie van de drie lagen (1,4 miljoen euro).
+Programma coördinatie, stakeholder management, business werk – 1 mio euro
+Wie? business partners (steden, nutsbedrijven, Athumi, …) en mogelijk externe projectleiding
+Wat?
+Personeelsinzet en consultancy (projectmanagement, business analyse, veldwerk)
+Ontwikkelen van gebruikersreizen voor de verschillende betrokken spelers
+Data-definiëring
+Onderzoek naar efficiëntiewinsten dankzij inzet van beeldmateriaal en AI.
+Communicatie & opleiding
+Coördinatie van de test- en evaluatiefases in meerdere steden
+Juridisch kader
+Samenwerkingsmodel en – modaliteiten vastleggen rond hergebruik van de oplossing en toekomstige aanpassingen
+Technische analyse en implementatie van de respectievelijk lagen
+Laag 1: 750k euro  - Laag 2: 400k euro - Laag 3: 250k euro – totaal: 1,4 mio euro
+Wie? Digipolis Antwerpen, Athumi en externe ontwikkelaar/leverancier
+Wat?
+Personeelsinzet en consultancy (projectmanagement, technische analyse)
+Technische data-definiëring, - opzet en integraties
+Onderzoek naar efficiëntiewinsten dankzij inzet van beeldmateriaal en AI.
+Ontwikkeling van standaarden en oplossingen, inclusief test- en evaluatiesessies
+Aandachtspunten:
+Athumi zal maximaal 15% van het totale budget toegekend krijgen.
+Budgetverdeling over stad Antwerpen, andere steden en partners wordt uitgewerkt in de volgende fase.
+Welke partners heb je al gesproken en is er engagement om betrokken te worden bij het project? Dit kunnen andere lokale besturen zijn, intercommunales, provincies, entiteiten van de Vlaamse overheid, enzovoort.
+Stad Antwerpen stelt in haar bestuursakkoord de kwaliteit en leefbaarheid van de publieke ruimte centraal:
+“De publieke ruimte is de plek die we met zijn allen delen. De kwaliteit van ons openbaar domein is van uitzonderlijk groot belang”
+“Aannemers van nutswerken worden verplicht om inbreuken meteen definitief te herstellen om de straat ook tijdens de werken proper en veilig te houden. We zetten verder in op de verbetering van de coördinatie en communicatie van nutswerken op het grondgebied van de stad …”
+Dit project beantwoordt aan deze doelstellingen door nutswerken systematisch digitaal op te volgen, de hinder voor bewoners, bezoekers en handelaars te beperken en de samenwerking met nutsbedrijven en districten te structureren.
+Digipolis Antwerpen is de partner voor de digitale ontwikkeling.
+Stad Vilvoorde stapt mee in het verhaal vanuit hun eigen zoektocht naar een gedragen terreinoplossing en vernieuwde nutswerking.  Het bestuursakkoord van de stad geeft aan dat werken door aannemers van nutsbedrijven beter moeten worden opgevolgd en dat boetes worden gebruikt als stok achter de deur. Ook stelt de stad dat een werfopvolger aangesteld moet worden die actief moet optreden indien het openbaar domein niet in de oorspronkelijke staat wordt achtergelaten door aannemers en nutsmaatschappijen.
+Nutsmaatschappij of intercommunale5: praktijkpartner voor datakoppeling en testopvolging op terrein. In een overleg met verantwoordelijken uit de hoofdzetel en uit het regiokantoor Antwerpen, geeft Fluvius aan de problematiek te herkennen en achter de voorgestelde oplossing te staan. In verdere gesprekken verfijnen we de samenwerking met hen in dit dossier.
+Er is ook een gesprek met Wyre opgestart.
+Athumi (Vlaamse Datadelingsautoriteit): bevestigde haar rol als partner vanuit hun rol in het bestaande ecosysteem met de nutssector. Hun inbreng verzekert de schaalbaarheid naar andere steden en gemeenten, de standaarden en API’s en eventuele decretale verankering voor ontsluiting van GIPOD-gegevens.
+De Vlaamse Regering ziet digitalisering en innovatie als een van de vier strategische speerpunten van haar economisch beleid. Binnen dit kader wordt Athumi expliciet aangeduid als spilorganisatie voor de ontwikkeling van datakluizen, digitale identiteit en veilige datadeling. Athumi garandeert dat nieuwe toepassingen niet lokaal verankerd blijven, maar aansluiten bij Vlaamse en Europese standaarden voor openheid en interoperabiliteit.
+Voor het project digitale nuts is de rol van Athumi cruciaal:
+Verzekeren dat de data-uitwisseling tussen steden, nutsmaatschappijen en Vlaamse platformen (zoals GIPOD) gebeurt volgens OSLO-standaarden en met respect voor GDPR en data-soevereiniteit.
+Zorgen voor een repliceerbare en schaalbare oplossing naar andere Vlaamse steden en gemeenten.
+Voldoen aan de Vlaamse beleidslijn dat innovatieprojecten structureel bijdragen tot interoperabiliteit en gedeelde digitale infrastructuur.
+De inzet op digitalisering en innovatie is niet alleen een technologische meerwaarde, maar ook een structureel beleidsantwoord dat steden en nutsmaatschappijen helpt om de kloof tussen beleid en uitvoering duurzaam te dichten.
+Agentschap Wegen & Verkeer (AVW): potentieel partner i.v.m. gewestwegen (GIS-koppeling en uitzonderingen);
+Vlaamse stedennetwerken (kennisnetwerk, VVSG, VVSG Smart Region Hub): voor kennisdeling en schaalvergroting. Gesprekken over hun mogelijke rol worden gevoerd.
+Welke eindresultaten heeft het project voor ogen? Wat is de beoogde meerwaarde voor de partners binnen én buiten het project? Hoe kunnen de resultaten verduurzaamd worden na afloop van het project?
+Meerwaarde in termen van deliverables: zie boven
+Meerwaarde op het vlak van impact
+Betere communicatie
+Duidelijke communicatie naar bewoners en handelaars via digitale kanalen;
+Vermindering van hinder voor bewoners en ondernemers;
+Betere inzet van toezicht en handhaving.
+Betere data
+Alle werken lopen via één efficiënte, digitale workflow van intake tot nazorg van nutswerken;
+OSLO-conform datamodel als Vlaamse standaard;
+Uniforme en actuele data-uitwisseling in Vlaanderen;
+Een werkbare, schaalbare terreinapplicatie voor toezichters met realtime GIPOD-data;
+Een gedeeld dataplatform met slimme filters voor herstel, toezicht en retributie.
+Beter herstel
+Hogere kwaliteit en kortere doorlooptijd van herstellingen;
+Bewezen daling van hersteltermijnen, klachten en foutieve innames.
+Betere afspraken
+Afsprakenkaders en datastandaarden met nutsmaatschappijen;
+Brede herbruikbaarheid van de oplossing voor andere steden en voor andere domeinen in de publieke ruimte.
+Innovatief karakter
+Digitale keten in één systeem: Voor het eerst worden vergunning, uitvoering, toezicht en herstel digitaal aan elkaar geknoopt.
+Automatische KPI’s: Geen manuele rapportering, maar real-time monitoring via foto’s, GPS, GIPOD-data en AI-beeldanalyse.
+Modulaire schillenaanpak: Innovatief organisatiemodel dat het mogelijk maakt om stapsgewijs in te stappen, risico’s te spreiden en tegelijk schaalbaarheid te garanderen.
+Privacy by design: Integratie van DPIA, automatische blur en Athumi-datadiensten als neutrale toegangspoort – ongezien in Vlaamse toezichttoepassingen.
+Open standaarden als hefboom: Gebruik van OSLO-profielen en open API’s, waardoor het systeem herbruikbaar is voor alle Vlaamse steden en niet gebonden blijft aan één leverancier of stad.
+Verduurzaming na afloop van het project
+Het project Digitale Nuts overstijgt de context van de deelnemende steden en nutsbedrijven. De uitdagingen die wij signaleren – hinder door nutswerken, gebrek aan afstemming, en de kloof tussen beleid en uitvoering – komen in alle Vlaamse steden en gemeenten voor. De aanpak die we ontwikkelen is daarom expliciet ontworpen om transfereerbaar te zijn binnen Vlaanderen. We onderzoeken met Athumi en eventueel andere Vlaamse partners naar een model om het eindresultaat van dit project duurzaam te verankeren zodat ook andere Vlaamse steden en gemeenten en nutsbedrijven de ontwikkelde oplossing kunnen gebruiken.
+Vlaamse partners als hefboom
+Athumi (Vlaamse datadelingsautoriteit): garandeert dat de datadeling niet lokaal verankerd blijft, maar aansluit bij Vlaamse standaarden voor interoperabiliteit, API’s en datakluizen. Hun betrokkenheid verzekert dat de oplossing ook voor andere lokale besturen toepasbaar wordt.
+GIPOD: vormt de centrale motor voor de planning van grondwerken en is al een Vlaamse standaard. Door onze oplossing rechtstreeks hierop te enten, creëren we een generiek platform dat inzetbaar is voor álle steden en gemeenten.
+VVSG en Kenniscentrum Vlaamse Steden: krijgen een rol in kennisdeling, afstemming en verspreiding van de resultaten naar andere lokale besturen. Zij fungeren als multiplicator om de methodiek breed ingang te doen vinden.
+Digitaal Vlaanderen als sparring partner om tot een oplossing te komen voor de duurzame verankering.
+Brede maatschappelijke relevantie
+De maatschappelijke uitdaging (jaarlijks honderdduizenden nutswerken in Vlaanderen) is Vlaams breed erkend en wordt bevestigd in recente audits, persartikels en klachtenstromen bij andere steden.
+Door de koppeling met Vlaamse beleidsdoelen zoals Minder Hinder, energietransitie en OSLO-standaarden wordt het project ingebed in de Vlaamse beleidskaders en krijgt het vanzelf een bovenlokale reikwijdte.
+Mechanismen voor opschaling en transfereerbaarheid
+Technische schaalbaarheid: de architectuur bouwt op GIPOD als backbone, waardoor elk lokaal bestuur dat vandaag al GIPOD gebruikt, kan aansluiten.
+Governance schaalbaarheid: de opzet met steden, nutsbedrijven en Vlaamse actoren maakt dat dit project niet enkel een stedelijke toepassing is, maar een testbed voor een Vlaams model.
+Disseminatie en implementatie: de resultaten (digitale tool, modelbestek, draaiboek en businessmodel) worden gedeeld via VVSG en raamcontracten, zodat andere steden en gemeenten zonder zware instapkosten kunnen intekenen.
+Antwerpen fungeert als living lab waar de werking getest wordt.
+De verdere uitrol is voorzien via samenwerking met Vilvoorde die reeds hun interesse hebben bevestigd en mogelijk andere steden die nog aansluiten.
+De verankering gebeurt door de koppeling met Vlaamse standaarden en door het voorzien van instrumenten (bv. via raamcontracten) zodat niet-partners eenvoudig kunnen instappen. De concretisering hiervan moet nog uitgewerkt worden.
+BIJLAGE Feedback Digitale Nuts  uit juryverslag
+“Het project vertrekt vanuit een duidelijke maatschappelijke nood en bouwt voort op eerdere ervaringen. Hoewel het niet uitzonderlijk innovatief is, wordt er sterk ingezet op datagedreven werken, wat positief is. De impact werd al deels gekwantificeerd, wat de maturiteit van het voorstel onderstreept. De koppeling van data en het vergemakkelijken van de lokale opvolging van werken via een applicatie zijn relevante ambities binnen de scope van de oproep. De betrokkenheid van burgers en ondernemingen versterkt de maatschappelijke relevantie.
+Wat betreft de rol van lokale besturen is het beeld gemengd. Enerzijds nemen Antwerpen en Vilvoorde een actieve rol op, anderzijds lijkt de capaciteitsopbouw bij andere besturen mogelijk beperkt. Het project lijkt eerder een initiatief vóór dan dóór lokale besturen. Verdere verduidelijking over de rol van andere besturen en hoe kennisdeling zal plaatsvinden is wenselijk. Een expliciete verwijzing naar de beleidscontext van alle betrokken besturen ontbreekt nog. Er zijn wel linken met Binnenlands Bestuur en Omgeving, maar bijkomende koppelingen met Vlaamse beleidsniveaus, zoals mobiliteit, kunnen het dossier versterken.
+De gelaagde opbouw van het project biedt potentieel voor opschaling, wat een sterke troef is. De rol van Athumi in dit kader is positief. Toch blijft het onduidelijk hoe het businessmodel en de technische koppeling van de mobiele app eruit zullen zien, en hoe laagdrempelig deze zal zijn voor andere besturen. Een formele betrokkenheid van bijkomende besturen – al is het als volger – zou het draagvlak versterken.
+Het project wil duidelijk komen tot een interoperabele oplossing, maar een aantal vragen blijven zoals hoe de app in andere besturen gekoppeld zal kunnen worden, eventueel aan verschillende legacy back-ends? Zal de datadoorstroming overal op dezelfde manier gaan en hoe wordt hiermee omgegaan? Dit kan meer gedetailleerd worden.
+Tot slot is het positief dat er al acties en deliverables zijn uitgewerkt binnen de verschillende lagen. De keuze om niet met werkpakketten maar met lagen te werken sluit aan bij de eigenheid van het project. De timing is voorlopig nog high-level, maar realistisch dankzij een ingebouwde buffer. Gezien de omvang van het budget is meer detail nodig om een goed oordeel te kunnen vellen. De rolverdeling tussen de partners, en in het bijzonder het aandeel van Athumi (15%), ligt in lijn met de verwachtingen binnen deze oproep. “
+ANALYSE VAN HET JURYVERSLAG
+Elementen die zeker aangevuld moeten worden in de definitieve aanvraag
+Rol van lokale besturen
+Hoe worden andere lokale besturen (naast Antwerpen en Vilvoorde) actief betrokken?
+Op welke manier wordt capaciteitsopbouw bij andere besturen gestimuleerd?
+Op welke manier wordt capaciteitsopbouw bij andere besturen gestimuleerd?"
+Hiermee wordt bedoeld:Hoe zorgt het project ervoor dat andere steden en gemeenten (dus niet alleen Antwerpen en Vilvoorde) sterker worden in het opvolgen, beheren en digitaliseren van nutswerken?Het gaat dus om het vergroten van de kennis, vaardigheden, middelen en digitale infrastructuur bij andere lokale besturen, zodat zij zelfstandig en duurzaam met het systeem kunnen werken.
+Voorbeelden van capaciteitsopbouw:
+Opleidingen en workshops voor medewerkers van andere besturen.
+Handleidingen, draaiboeken en best practices delen.
+Pilootprojecten waarbij andere besturen actief kunnen testen en leren.
+Netwerkvorming via VVSG of kenniscentra, zodat besturen ervaringen kunnen uitwisselen.
+Technische ondersteuning bij de implementatie van de digitale tool.
+Budget voorzien voor actieve en volgende besturen om deel te nemen aan het project.
+Waarom is dit belangrijk?
+Zonder capaciteitsopbouw blijft de oplossing beperkt tot de trekkende steden. Door andere besturen te ondersteunen, wordt het project schaalbaar en duurzaam voor heel Vlaanderen.
+Is het project een initiatief vóór of dóór lokale besturen? Maak dit expliciet.
+Geef aan hoe kennisdeling en samenwerking met andere besturen concreet zal plaatsvinden.
+Beleidscontext
+Voeg een expliciete verwijzing toe naar de beleidscontext van alle betrokken besturen.
+Werk bijkomende koppelingen uit met relevante Vlaamse beleidsniveaus, zoals mobiliteit, om het dossier te versterken. [city_of_th...challenges]
+Businessmodel en technische koppeling
+Geef meer detail over het businessmodel van de mobiele app.
+Licht toe hoe de technische koppeling van de app met verschillende (legacy) back-ends bij andere besturen zal verlopen.
+Beschrijf hoe de datadoorstroming overal op dezelfde manier gegarandeerd wordt en hoe eventuele verschillen worden aangepakt. [city_of_th...challenges]
+Formele betrokkenheid van bijkomende besturen
+Werk uit hoe bijkomende besturen formeel kunnen aansluiten, bijvoorbeeld als volger.
+Geef aan hoe dit het draagvlak van het project versterkt. [city_of_th...challenges]
+Acties en deliverables per laag
+Geef meer detail over de acties en deliverables binnen de verschillende lagen van het project.
+Zorg voor een duidelijke koppeling tussen werkpakketten, timing en resultaten. [city_of_th...challenges]
+Timing en budget
+Werk de timing verder uit, zodat deze minder high-level en meer concreet is.
+Geef meer detail over de budgetverdeling en de rolverdeling tussen partners, met bijzondere aandacht voor het aandeel van Athumi (15%).
+BIJLAGE Oproep Partners en volgers.
+Beste collega
+Steden, gemeenten en nutsbedrijven in heel Vlaanderen staan voor dezelfde uitdaging: het gebrek aan uniforme, actuele en controleerbare data over nutswerken in de publieke ruimte. Dit leidt tot inefficiënties, kwaliteitsproblemen en onnodige hinder voor burgers en bedrijven.
+Daarom slaan stad Antwerpen, stad Vilvoorde, Athumi en de nutsmaatschappijen de handen in elkaar voor het project Digitale Nuts, dat ingediend zal worden bij de oproep City of Things 2025.
+Wat is Digitale Nuts?
+Digitale Nuts ontwikkelt een geïntegreerd digitaal ecosysteem dat toezichters, administraties en nutsmaatschappijen verbindt via één mobiele werkomgeving – een “digitaal zakmes” voor de publieke ruimte. Via een terreinapplicatie krijgen toezichters real-time toegang tot uitgebreide GIPOD-data, eigen vaststellingen, communicatiekanalen en automatische rapportering. Het doel is een sluitende digitale keten tussen nutsbedrijven, GIPOD en lokale besturen, met als resultaat betere kwaliteitsopvolging, efficiëntere processen en duidelijke communicatie naar bewoners.
+We zoeken steden en gemeenten die willen aansluiten:
+Als actieve partner: je denkt mee vanuit je lokale context, test mee in je stad/gemeente.
+Als volger: je blijft op de hoogte via halfjaarlijkse updates en krijgt toegang tot de resultaten en inzichten.
+Waarom meedoen?
+Een gedeeld Vlaams probleem vraagt om een gedeelde oplossing
+Elke Vlaamse stad of gemeente heeft te maken met nutswerken, hinder, slechte afwerking, versnipperde data en gebrekkige afstemming. Digitale Nuts pakt deze structurele problemen aan met een oplossing die specifiek ontworpen is om breed inzetbaar te zijn. Je hoeft dus niet zelf het wiel opnieuw uit te vinden.
+Lage instapdrempel, hoge impact
+Dankzij de modulaire aanpak (startend met een MVP) kunnen steden en gemeenten stapsgewijs instappen, zonder grote investeringen of complexe implementaties. De koppeling met bestaande systemen zoals GIPOD maakt het technisch haalbaar en juridisch verdedigbaar.
+Directe meerwaarde voor je werking
+Met de mobiele applicatie krijgen toezichters en administraties real-time toegang tot relevante data, automatische rapportering en gestroomlijnde communicatie. Dit verhoogt de efficiëntie, verbetert de kwaliteit van de opvolging en verkleint de kans op fouten.
+Betere communicatie naar burgers
+Het project onderzoekt een generiek, GDPR-conform model waarbij burgers zich éénmalig registreren om hinderinfo te ontvangen, ongeacht de nutsmaatschappij of gemeente. Dit maakt communicatie duidelijker, betrouwbaarder en burgergericht.
+Je bouwt mee aan een Vlaams model
+Door nu aan te sluiten, werk je mee aan een Vlaamse standaard. Je test mee in je eigen context en helpt mee richting geven aan een oplossing die later via VVSG en raamcontracten breed uitgerold kan worden en inzet op de effectieve verbetering van de manier waarop werken worden uitgevoerd op het terrein.
+Interesse om aan te sluiten?Laat het ons weten vóór 20 oktober 2025. Je geeft dan aan geïnteresseerd te zijn in het project (als partner of volger), maar we vragen op dit moment nog geen definitief engagement.
+Neem gerust contact op voor meer informatie over het project. Je kan hiervoor terecht bij:
+Michel Gerits (afdeling publiek ruimte, stad Antwerpen)
+Michel.gerits@antwerpen.be
+0475/371699
+Op aanvraag bezorgen we je onze vooraanmelding bij City of Things, op basis waarvan we werden geselecteerd voor de tweede ronde.
+BIJLAGE Verwachtingen Partners en Volgers
+Alvast bedankt voor de interesse en je gerichte vraag.
+We beschreven de taakverdeling van een deelnemende en volgende partij als volgt.  Let wel dat dit een draft is die nog kan wijzigen. Geef gerust aan waar dat niet zou passen, enig maatwerk blijft mogelijk.
+1. Actieve Deelnemer (…) – Intentieverklaring
+DoelStad [_X_] treedt toe als actieve deelnemer in het project “Digitale Nuts” met het oog op het werken aan minder hinder en sneller en beter herstel van nutswerken door één OSLO-conforme dataketen tussen stad, nutsbedrijven en GIPOD.
+Engagementen van Stad [ _X_]
+Governance: we duiden een project-sponsor, product-owner lokaal, pilootleider toezicht en architectuurcontact aan; we nemen deel aan stuurgroep (maandelijks) en productboard (tweewekelijks).
+Piloot: we stellen een pilotgebied en 2–4 toezichters ter beschikking en voeren minimaal 12 weken veldproeven uit met de toezichtersapp, GIPOD-koppeling en KPI-registratie.
+Data & privacy: we ondertekenen het dataconvenant, voeren een DPIA uit en respecteren IAM- en security-afspraken.
+Koppelingen: we leveren toegang tot relevante bronsystemen (klachten/signalisatie/vergunningen) en GIS-lagen voor de pilot.
+KPI-sturing: we werken mee aan nulmeting en evaluatie, met focus op doorlooptijd (mediaan/P90), first-time-right en volledigheid van vaststellingen.
+Opschaling: bij positieve evaluatie onderzoeken we aanbesteding via raamcontract/groepsaankoop, met lokale addenda waar nodig.
+Engagementen van de Aanvrager (Stad Antwerpen)
+Productie van artefacts: OSLO-profiel, OpenAPI-specificaties, dataconvenant, modelbestek(ken), SLA-sjablonen en implementatiedraaiboek.
+Ontwikkeling & support: beschikbaar stellen van toezichtersapp (pilot), portaaltoegang en dashboards, incl. onboarding en training.
+Begeleiding: coördinatie van governance, productboard, architectuurboard en klankbordgroep; ondersteuning bij DPIA en security.
+Evaluatie: maandelijkse rapportage, pilotrapport met KPI-analyse en verbeterplan.
+TermijnDeze intentieverklaring geldt vanaf ondertekening tot de beslissingsmijlpaal “opschaling/aanbesteding” (verwacht binnen 12–18 maanden na projectstart).
+Niet-bindend karakter voor eindafnameDe intentie tot instap via raamcontract is geen afnameverplichting; de definitieve beslissing volgt na de pilot-evaluatie en interne procedures van Stad [___].
+Financiele afspraken volgens handleiding Vlaio:
+Deelnemer: in deze rol wordt budget voorzien voor een actieve bijdrage aan het project, zoals deskresearch, werkpakketten trekken en uitvoeren, implementatie en opschaling voorbereiden, onderaannemers aanstellen en aansturen, kerngroepen/stuurgroepen/klankbordgroepen mee organiseren en actieve deelname, interne kennisopbouw en -borging, ..., een living lab-omgeving voorzien enzovoort. Het beschikbaar budget is kleiner dan dat van de coördinator maar voldoende om dit soort taken te dekken.
+2. Volger – Taakafspraak
+Doel[Gemeente/Stad X] sluit aan als volger bij “Digitale Nuts” om te leren, te toetsen en opschaling voor te bereiden.
+Engagement van [Gemeente/Stad X]
+Deelname aan klankbordgroep en demo-dagen (≥ 80%).
+Review van hoofd-deliverables (OSLO-profiel, OpenAPI, modelbestek, dataconvenant) met schriftelijke feedback.
+Optioneel: aanleveren geanonimiseerde KPI-basis voor benchmark.
+Engagement van de Aanvrager ( Stad Antwerpen)
+Tijdige beschikbaarstelling van concept-deliverables.
+Toegang verlenen tot documentatieportaal, demo-omgevingen en infosessies.
+Opname van feedback in product- en architectuurboard (transparant).
+TermijnGeldig tot einde project + 3 maanden ifv verspreiding en eventuele instap via raamcontract.
+Financiële afspraken volgens handleiding Vlaio:
+Volger: lokale besturen in deze rol kunnen aanspraak maken op een beperkt budget om het project van nabij te volgen en bijvoorbeeld mee lokale werksessies te organiseren, input en feedback te leveren, terugkoppeling naar lokaal beleid en belanghebbenden te doen,… Deze besturen kunnen ook bijdragen door mee te communiceren over het project en bijvoorbeeld oproepen of leerlessen (lokaal) te verspreiden.
+Bevestig je gerust de aard van je engagement. 😊
+Uiteraard zijn we steeds bereid meer info te verschaffen.
+ONDERSTAANDE UITDAGINGEN NIET OPNEMEN IN DE VOORAANMELDING.  Wel relevant voor verdere uitwerking.
+Onderzochte uitdagingen:
+In het voortraject van dit project werden reeds verschillende challenges vastgesteld. De volgende uitdagingen bij de aanmelding van het project geven een overzicht van de onderzochte en gedefinieerde deelonderzoeken. Ze verduidelijken de uitdaging waarvoor een oplossing wordt gezochte en geven een antwoord op de voorgestelde oplossing. Ze dienen als voorbereiding voor de opmaak van het volledig aanvraagdossier.
+Uitdaging: Nutswerken zijn een Vlaams breed probleem
+Uitdaging
+De problematiek van gebrekkige herstellingen, slechte signalisatie, onvoldoende communicatie en onvoldoende digitale opvolging door nutswerken speelt niet alleen in Antwerpen, maar is een breder Vlaams probleem.Recente signalen uit de pers:- Vlaams parlementslid pleit voor afdwingbaar systeem bij slordige nutswerken, met nadruk op gevolgen voor uitvoerders - 748 inbreuken op nutswerken in Antwerpen in drie weken – slordige bestrating en signalisatie - Klachten over slechte communicatie en signalisatie bij werken in Vlaamse gemeenten
+stad-keurt-plan-goed-om-hinder-door-nutswerken-aan-te-pakken
+Oplossing
+Met het project “Digitale Nuts” ontwikkelen we een gestandaardiseerde, Vlaamse aanpak die:1. Centrale datastroom creëert tussen nutsmaatschappijen, GIPOD en gemeenten.2. Uniforme toezichtmethodiek oplevert, zodat inspecties en rapportering overal op dezelfde manier gebeuren.3. Bewonerscommunicatie verbetert door automatische koppeling van actuele werkinfo aan GIS-viewers, werfborden en digitale meldingskanalen.4. Kwaliteits- en herstelvoorschriften digitaal ontsluit voor aannemers en toezichters.5. Meetpunten en KPI’s gebruikt die bovenlokaal vergelijkbaar zijn, waardoor prestaties van nutsmaatschappijen transparant worden.
+Innovatief karakter
+- Vlaams breed schaalbaar: één oplossing, meerdere lokale implementaties.- Datagedreven toezicht: realtime koppeling van GIPOD met vaststellingen en fotodocumentatie.- Uniforme normering: zelfde meetpunten, zelfde interpretatie, overal in Vlaanderen.- AI-ondersteunde kwaliteitscontrole: automatische detectie van fouten of afwijkingen in herstelkwaliteit.- Samenwerking boven concurrentie: steden en gemeenten delen kennis en data via hetzelfde platform.
+Impact
+- Voor burgers: minder hinder, sneller herstel, duidelijkere communicatie.- Voor lokale besturen: betere grip op de uitvoering van werken, minder administratieve last.- Voor Vlaanderen: efficiëntere samenwerking tussen publieke en private partijen, minder verspilling van middelen, hogere kwaliteit van het openbaar domein.- Voor nutsmaatschappijen: duidelijke, voorspelbare randvoorwaarden, minder interpretatieverschillen, hogere tevredenheid bij klanten en overheden.
+Schaalbaarheid
+Het project wordt vanaf dag één opgezet als herbruikbaar Vlaams sjabloon, met:- Modulaire componenten (GIS-viewer, mobiele toezicht-app, bewonerscommunicatiemodule, rapporteringstool).- Open standaarden (OSLO, GIPOD-API’s).- Governance-model dat samenwerking tussen lokale besturen en nutsmaatschappijen structureel verankert.- Duidelijke afspraken over eigenaarschap van data en doorontwikkeling.
+Bijlage: Persartikels – Vlaams brede problematiek
+Datum
+Medium
+Titel
+Link
+2025-05-23
+HLN
+Vlaams parlementslid Brecht Warnez wil strengere aanpak voor rommelige nutswerken
+https://www.hln.be/wingene/vlaams-par-le-ments-lid-brecht-war-nez-cd-v-wil-stren-ge-re-aan-pak-voor-rommelige-nutswerken~a6908933/
+2023-12-13
+GVA
+748 inbreuken in drie weken: nieuw toezichtteam stelt vast hoe slecht werken worden uitgevoerd
+https://www.gva.be/regio/antwerpen/regio-antwerpen/antwerpen/748-inbreuken-in-drie-weken-nieuw-team-dat-nutsbedrijven-controleert-in-antwerpen-stelt-vast-hoe-slecht-werken-worden-uitgevoerd/36805336.html
+2025-05-23
+Nieuwsblad
+Klachten over slechte communicatie en signalisatie bij nutswerken in Vlaamse gemeenten
+https://app.nieuwsblad.be/cnt/dmf20250523_96646680
+2025-05-19
+KW
+Verzakkingen in Passendale worden hersteld… pas na herhaald aandringen
+https://kw.be/nieuws/verkeer-en-mobiliteit/wegenwerken/verzakkingen-in-passendale-worden-hersteld-maar-pas-na-herhaaldelijk-aandringen-er-is-een-grote-nood-in-onze-regio/
+2024-07-20
+HLN
+Bijna 11 miljard euro nodig om infrastructuur in Vlaanderen op peil te houden
+https://www.hln.be/binnenland/bijna-11-miljard-euro-nodig-om-infrastructuur-in-vlaanderen-op-peil-te-houden~a6372f5d/
+Uitdaging: Weerstand nutsbedrijven
+Uitdaging
+Nutsbedrijven hebben historisch een sterke operationele autonomie en zijn gewend om Vlaanderenbreed met één uniforme interne aanpak te werken. Lokale afwijkingen of nieuwe processen (bv. digitale datakoppeling) botsen daardoor op logge technische structuren en trage besluitvorming.
+Bij commerciële spelers (vooral telecomdistributeurs) speelt bovendien het risico op een concurrentieel nadeel: open en tijdige ontsluiting van werk- of aansluitdata wordt gezien als strategische bedrijfsinformatie.
+Het gevolg: beperkte of vertraagde datadeling, waardoor steden onvoldoende zicht krijgen op geplande of uitgevoerde werken..
+Oplossing
+Koppeling met domeinvergunning: de verplichting tot het aanvragen van een domeintoelating voor werken kan rechtstreeks verbonden worden aan data-aanlevering in OSLO-standaard. Zonder correcte dataset → geen vergunning.
+Rol van Athumi: als neutrale actor kan Athumi instaan voor veilige datakluizen en gecontroleerde toegang, zodat nutsbedrijven hun data niet “commercieel open” hoeven te zetten, maar toch voldoen aan beleids- en vergunningseisen.
+Gefaseerd proeftraject: starten met één nutsmaatschappij (bv. WYRE-pilot) om voordelen aan te tonen en vertrouwen te winnen → daarna verbreden naar de sector.
+Beleidsniveau: Vlaamse randvoorwaarden in decreet of Code Nuts versterken, zodat steden een eenduidige juridische basis hebben.
+Innovatief karakter
+Niet alleen technische innovatie, maar ook juridische en governance-innovatie: koppeling van data-ontsluiting aan vergunningverlening is een nieuwe hefboom.
+Gebruik van Athumi-datadiensten als neutraal kanaal maakt datadeling veilig en controleerbaar.
+Impact
+Transparantie in planning en uitvoering van nutswerken.
+Minder laattijdige herstellingen en minder hinder voor burgers.
+Steden en gemeenten krijgen juridisch afdwingbare tools om correcte data te eisen.
+Schaalbaarheid
+Het model is herbruikbaar voor heel Vlaanderen, aangezien domeinvergunningen overal verplicht zijn.
+Athumi biedt een centrale infrastructuur die alle gemeenten kunnen gebruiken.
+Uitdaging: Gefaseerde, modulaire aanpak – schillenmodel als sleutel tot haalbaarheid.
+Uitdaging
+De nood is groot, de vraag is groot: we hebben een totaaloplossing nodig die zowel de opvolging, kwaliteitscontrole als communicatie rond nutswerken digitaliseert.De volledige scope omvat:
+GIPOD-koppelingen & realtime GIS-viewer
+AI-ondersteunde terreinapp
+Integratie van vergunningen, signalisatie en herstelbonnen
+Koppeling naar meldings- en klachtenplatformen
+Rapportering, monitoring & KPI-dashboards
+Bewonerscommunicatie en hinderinfo
+Alles in één keer ontwikkelen binnen één City of Things-project is te zwaar en verhoogt het risico op vertraging of niet-haalbaarheid. Het is noodzakelijk de ambitie te behouden, maar via een gefaseerde en modulaire opbouw.
+Oplossing
+Met een modulaire, gefaseerde aanpak (schillenmodel) vermijden we deze valkuil.
+We starten met een kernlaag (MVP) die onmiddellijk tastbare waarde oplevert: mobiele vaststellingen-app, basis GIPOD-koppeling, fotolog en kern-KPI’s.
+Daarna volgen uitbreidingslagen (vergunningintegratie, AI-controle, bewonerscommunicatie) en ten slotte innovatieve lagen (predictive deployment, retributie, volledige Vlaamse data-uitwisseling).
+Elke laag heeft een eigen scope, werkpakket, planning en budget, maar wordt vanaf dag één ontworpen om naadloos in het geheel te passen.
+Kernlaag (laag 1) – absoluut noodzakelijk voor de start:
+Mobile-first vaststellingen-app
+Basis GIPOD-koppeling voor werkzones en plandata
+Kern-GIS-viewer met geotagged foto’s
+Basisrapportering & KPI’s (veiligheid, signalisatie, hersteltijd)
+Uitbreidingslaag (laag 2) – na eerste succes:
+Integratie met vergunningendatabases
+AI-beeldherkenning voor materiaal en schade
+Automatische validatie tegen Code Nuts & OSLO-profiel
+Bewonersbrief-generator & infobordenmodule
+Innovatielaag (laag 3) – opschaling en optimalisatie:
+Predictive deployment voor toezichters
+Geautomatiseerde retributie- en facturatiemodules
+Regionale/Vlaamse data-uitwisseling met andere steden
+Elke laag heeft zijn eigen scope, deliverables, budget en planning, maar is vanaf dag één ontworpen om in het geheel te passen.
+Innovatief karakter
+Modulair & schaalbaar: elke laag kan apart gefinancierd, getest en uitgerold worden.
+Snelle eerste waarde: laag 1 levert al meetbare verbeteringen (kortere doorlooptijd, hogere datakwaliteit).
+Toekomstgericht: architectuur houdt rekening met AI-evolutie en nieuwe OSLO-standaarden.
+Flexibele instap: nutsbedrijven en gemeenten kunnen beginnen met de kernlaag en later opschalen, wat de drempel verlaagt en adoptie versnelt.
+Herbruikbaar in Vlaanderen: geen Antwerpen specifiek ontwerp, maar generiek toepasbaar.
+Marktgericht aanbesteden: elke module kan apart aanbesteed worden met selectiecriteria rond openheid en interoperabiliteit, wat de markt stimuleert en vendor lock-in voorkomt.
+Impact
+Operationeel: directe reductie van fouten en manueel werk in kernprocessen.
+Personeel: minder druk op toezichters door betere voorbereiding en live contextinfo.
+Samenwerking: nutsbedrijven hoeven niet vanaf dag één hun hele interne structuur open te breken, maar kunnen stap voor stap aansluiten.
+Burger: meer transparantie over werken en herstellingen.
+Vlaams niveau: mogelijkheid tot brede adoptie via gestandaardiseerde data-uitwisseling.
+Schaalbaarheid
+Ontwikkelbaar met bestaande bouwblokken (OSLO, GIPOD-API, bestaande GIS-componenten, standaard mobiele frameworks).
+Opschalingsmodel: kleine gemeenten kunnen starten met de kernlaag, grotere steden kunnen meteen meerdere lagen implementeren.
+Eenvoudige uitrol naar andere steden via parametrisatie van lokale regels en materialen.
+Gefaseerde modules zijn beter inpasbaar in meerjarenbegrotingen en aanbestedingsprocedures, en laten toe om kennis en ervaring stelselmatig te borgen.
+Private partners kunnen laag 3-innovaties cofinancieren.
+Kostenverdeling:
+Stad Antwerpen: kernlaag + integratie
+VLAIO-subsidie: innovatiecomponenten + Vlaamse herbruikbaarheid
+Nutsbedrijven: bijdrage in foto-upload, datakwaliteit en communicatie
+Verdere uitwerking schillenmodel
+Kernlaag (Laag 1) – “run first”
+Mobiele vaststellingen-app (field)
+Doel: snel vaststellen, foto’s/geo, status & basis-PV onsite.
+Functies: offline queue, geotagged foto’s, inline annotatie, statuszetten, miniGIS.
+Interfaces: Auth, GIPODread, Mediastore, Notificaties.
+PO: Stad (business); SM: Digipolis.
+Bron: nood aan centrale mobiele registratie & PV’s.
+Backoffice workflow & toewijzing
+Doel: triëren, batchtoewijzing, opvolging SH/NSH, statuslogica.
+Functies: filteren (cat 3), toewijzen toezichters, statustriggers, historiek.
+Interfaces: GIPOD sync, Mail/Notificaties, SAANportaal.
+Bron: epics “selectie 10% SH”, “status triggert acties”.
+GIPODkoppeling & synchronisatie
+Doel: instroom/updates CAT 13 (status, planning, geometrie), deduplicatie.
+Functies: initiële instroom, statuswebhooks/polling, historiek.
+Interfaces: GIPOD API, GIS, Backoffice.
+Bron: “cat.3 doorstromen, dubbels, statusovergangen”.
+GISkern (kaart & lagenbeheer)
+Doel: één kaartstack: GIPOD, SGW/signalisatie, WISmaterialen, strategische zones, beheer door derden.
+Functies: lagenbeheer, maatvoering, intekening m², routehulp.
+Interfaces: Field app, Backoffice, Validatieengine.
+Bron: gelaagde checks (WIS, sperzones, beheer derden, SIK/gewestwegen).
+Rapportering & KPI’s (MVP)
+Doel: dashboards veiligheid/signalisatie/hersteltijd, directeursrapport.
+Functies: kernKPI’s, periodieke exports.
+Interfaces: DWH/BIapp, PDFgenerator.
+Bron: bestaande BItraject & nood aan periodieke rapporten.
+Uitbreidingslaag (Laag 2) – “close the loop”
+Vergunningenhub (ASign & domeintoelating)
+Doel: eenduidige koppeling signalisatie/domeinvergunning ↔ grondwerk.
+Functies: lookup, status, referenties in case, QRkoppeling.
+Interfaces: ASign, GIPOD, Backoffice.
+Bron: huidige versnippering tussen domein- en signalisatievergunning.
+Validatieengine Code Nuts + OSLO
+Doel: automatische check op regels & datamodellen.
+Functies: rulesets (materiaal, timing, zones), OSLOmapping, explainreport.
+Interfaces: GIS, GIPODdata, Backoffice.
+Bron: “automatische validatie tegen Code Nuts & OSLO”, PLCkwaliteitstoets.
+AIbeeldherkenning (materiaal/schade)
+Doel: versnellen en objectiveren van vaststellingen.
+Functies: detectie materiaaltype, schadeklasse, kwaliteitsflags.
+Interfaces: Mediastore, Backoffice, Validatieengine.
+Bron: voorzien in uitbreidingslaag voor materiaal/schade.
+Communicatie-suite (bewonersbrief & infoborden)
+Doel: consistente bewonerscommunicatie, digitaal & druk.
+Functies: sjablonen, QR/URL, distributielog, koppeling naar hinder op kaart.
+Interfaces: ASign, GIPOD, PublicatieAPI.
+Bron: “bewonersbrief-generator & infobordenmodule”, hinder op kaart.
+Externe portalen
+SAANportaal (stadsaannemer, NSH): opname, status, foto’s, notificaties.
+Nutsportaal: stadsstatus, beantwoorden mails/attachments, notificaties.
+Bron: aparte epics voor beide portalen.
+Klachten/Meldingenconnector
+Doel: klachten/meldingen over nuts in één flow trekken.
+Functies: import, verrijking, terugkoppeling naar burger.
+Interfaces: KLM2, Backoffice, Communicatie.
+Bron: “Mijn Melding → KLM2 → mail” stroomlijn.
+Innovatielaag (Laag 3) – “optimize & scale”
+Predictive deployment & planning
+Doel: slimme routes, selectie 10% SHcontroles, risicohotspots.
+Functies: AIadvies, planningsconflicten, bundeling nabijgelegen werven.
+Interfaces: GIS, Backoffice, Field app.
+Bron: selectie & bundeling in epics; innovatielaag “predictive deployment”.
+Retributie & facturatiekernel
+Doel: automatische inname/herstelretributies, bulk of per grondwerk, vrijstellingen en toeslagen.
+Functies: m²berekening, tarieven, collegebesluitdata, exports naar financieel systeem (bv. SAP HANA).
+Interfaces: GIS, Backoffice, Fin/SAP.
+Bron: epics retributie inname/herstel, proefprojecten en standaardantwoorden.
+Regionale/Vlaamse datauitwisseling
+Doel: schaalbaar delen/ontvangen (andere steden, Digitaal Vlaanderen).
+Functies: open API’s, OSLOconforme payloads, datacatalogus.
+Interfaces: Publieke APIgateway.
+Bron: “Vlaamse datauitwisseling” als innovatiedoel.
+Crosscutting (voor alle lagen)
+Identiteit & Rollen/Rechten
+IAM, rolprofielen (toezichter, SPOC, SAAN, nuts), audittrail (GDPR).
+PLCexpert GDPR en Security betrokken.
+Media & Documentservices
+Centrale opslag foto/video, PV/rapportPDF generator, emailservice.
+Nodig voor PV’s met fotolog.
+Notificatie & sjabloonservice
+Statusmails/bundeling, beheerbare sjablonen, meerkanaals (mail, evt. push).
+Past bij “mail vanuit systeem, bundeling combinaties”.
+Datawarehouse & BIapp
+Curatie laag 13 KPI’s, directeursrapporten, historiek.
+Aandacht : Aansluiting op bestaand BItraject binnen stad antwerpen
+Uitdaging:  Stakeholder Engagement & Governance, rollen en verantwoordelijkheden
+In deze bijlage worden de rollen van de verschillende partners beschreven
+Generiek worden de rollen ingevuld vanuit hun specifieke kernopdrachten
+Stad Antwerpen: Trekker
+Digipolis:
+Stad Vilvoorde en andere steden: testbed en spiegelgroepen.
+VVSG:
+Athumi: datakluis en veilige uitwisseling.
+Nutsbedrijven: verplicht data ontsluiten via GIPOD en deelnemen aan proefprojecten (bv. WYRE).
+Andere steden: testbed en spiegelgroepen.
+Rol van de Afdeling Publieke Ruimte – Stadsontwikkeling
+De afdeling Publieke Ruimte binnen Stadsontwikkeling is de motor achter het terreinwerk en het inhoudelijk beleid rond de kwalitatieve inrichting en het beheer van de publieke ruimte in Antwerpen. Binnen het project “Digitale Nuts” neemt deze afdeling een cruciale, trekkende rol op, zowel in de beleidsvoorbereiding als in de operationele praktijktoetsing van digitale oplossingen.
+1. Eigenaarschap over het nutsproces op het terrein
+De afdeling is:
+proceseigenaar van het volledige nutsdossier, van aanvraag tot herstel.
+verantwoordelijk voor de opvolging van graafwerken door nutsmaatschappijen op het terrein.
+het aanspreekpunt voor:
+klachten van burgers,
+controle op herstelkwaliteit,
+sanctionering via het retributiereglement bij vastgestelde tekortkomingen.
+Impliceert: Het digitale systeem moet de werking van onze toezichters, administratie en vaststellers versterken. Onze input bepaalt welke informatie nodig is, hoe die geregistreerd moet worden, en welke workflows in de tool ingebakken moeten worden.
+2. Beleidsmatige bewaking en inhoudelijke aansturing
+Als afdeling binnen Stadsontwikkeling bewaken we:
+de beleidskaders rond herstelkwaliteit, herinrichtingsnormen, en reglementaire voorwaarden (bv. Code Nuts).
+de afstemming met stadsbrede doelstellingen zoals de robuuste stad, vergroening, energietransitie en bewonerscomfort.
+de correcte implementatie van het retributiereglement inname en herstel, inclusief de voorwaarden voor tijdelijke of definitieve herstellingen, materiaalgebruik, enz.
+Impliceert: We zorgen dat het digitale project aansluit bij bestaande reglementen en beleidsdoelstellingen, en formuleren inhoudelijke vereisten voor hergebruik in bestekken en werkprocessen.
+3. Ontwerper en gebruiker van de digitale oplossing
+De afdeling is:
+producteigenaar van de oplossing: we bepalen mee de prioriteiten, valideren de MVP’s en bewaken het eindresultaat.
+klant en tester van het systeem: toezichters, administratie en SPOC’s zijn eindgebruikers van de digitale flows.
+impliceert: Onze afdeling levert de praktijkkennis aan die cruciaal is voor de ontwikkeling van een bruikbare tool – inclusief kennis van sleufopbouw, asfalt- en natuursteenherstel, communicatie met nutsmaatschappijen en opvolging van meldingen.
+4. Verbindende rol tussen veld, beleid en techniek
+We verbinden:
+de noden van het terrein (bv. mobiele registratietool, werklijsten, fotovaststellingen),
+met de technische ontwikkeling (samen met Digipolis en externe ontwikkelaars),
+én met de beleidscontext en regelgeving (bv. hoe herstelverplichtingen geïnterpreteerd worden).
+Impliceert: De afdeling speelt een brugfunctie tussen alle partners, en zorgt ervoor dat de tool niet enkel technisch werkt, maar ook juridisch sluitend, praktisch bruikbaar én beleidsmatig relevant is.
+Samengevat: onze rol in het project
+Aspect
+Rol Afdeling Publieke Ruimte
+Terreinbeheer
+Coördinatie en opvolging van nutswerken en herstel
+Beleidsbewaking
+Vertaling reglementen (bv. Code Nuts, retributie) naar tools
+Inhoudelijke aansturing
+Prioritering van MVP’s, gebruikerseisen, validatie
+Praktische proceskennis
+Input over herstelmaterialen, werktypes, toezichtsvormen
+Brug tussen stad en techniek
+Afstemming met Digipolis, externe partners, nutsbedrijven
+Rol van Digipolis Antwerpen
+1. Trekker en ontwikkelingspartner binnen digitale projecten van Stad Antwerpen
+Digipolis is de structurele digitale partner van Stad Antwerpen en is verantwoordelijk voor de ontwikkeling, ondersteuning en integratie van digitale oplossingen binnen het stedelijk landschap.
+In dit project:
+Treedt Digipolis op als trekker voor de digitale realisatie van de verbeterde nutswerking.
+Coördineert zij het digitale luik van het project, gaande van technische analyse en architectuur tot opvolging van ontwikkeling, testen en oplevering.
+Stelt zij experten ter beschikking voor data, beveiliging, gebruikerservaring en integraties (bv. met GIPOD, WIS, A-sign, SAP Hana, KLM).
+2. Begeleider van het volledige PLC 2.0-traject
+De digitale werking in Antwerpen verloopt volgens het vernieuwde PLC 2.0-model (Project Life Cycle). Digipolis heeft hier een dubbele rol:
+a. Operationeel:
+Account expert van Digipolis begeleidt de projectopdracht vanaf het vooronderzoek tot aan oplevering.
+Stelt vragen die helpen de businessbehoefte te verfijnen en bewaakt de aansluiting met de bredere digitale strategie.
+Bereidt samen met de stad de documenten voor de klankbordgroep (KBG) voor.
+b. Technisch & strategisch:
+Business architecten en analisten vanuit Digipolis vertalen de proceswensen naar functionele digitale flows.
+Digipolis bewaakt de kwaliteit van de digitale oplossing (OTOBOS: op tijd, op budget, op scope).
+Zorgt dat de oplossing duurzaam, herbruikbaar en onderhoudbaar is.
+3. Gemandateerd engagement vanuit het College via de CDO
+De Chief Digital Officer (CDO) kreeg van de bevoegde schepen expliciet de opdracht om het City of Things-dossier actief te ondersteunen. In praktijk betekent dit:
+Digipolis/accountteam engageert zich om de digitale roadmap en MVP’s te helpen structureren.
+De CDO stelt experten en begeleiding ter beschikking voor:
+Data (Pascal Vyncke / Steven Penneman)
+GIS (Jeffry Van Waeyenberghe)
+UX & inclusie (David Sprengers)
+Security en GDPR (DPO-office - Lisa Hendrickx / Chloë Dierckx)
+Er is ondersteuning voorzien bij de subsidieaanvraag, zowel inhoudelijk als procesmatig.
+4. Co-creatie met private ontwikkelaar
+Digipolis zal:
+Meewerken aan het opstellen van het programma van eisen voor de externe ontwikkelpartner (die de tool uitrolt als SaaS).
+De aansluiting met bestaande stedelijke systemen (bv. Monitor SW, A-sign) technisch coördineren.
+Meebouwen aan de teststrategie, beveiliging, hosting of integratie afhankelijk van het gekozen model (in-house, hybride, of uitbesteed).
+5. Ondersteuner van de opschaling naar andere steden en toepassingen
+Digipolis bewaakt bij elke ontwikkeling:
+Herbruikbaarheid van modules (via API’s of open standaarden).
+Gebruik van OSLO-datamodellen en semantische interoperabiliteit.
+De mogelijkheid tot centrale koppeling met GIPOD, Athumi en Vlaamse oplossingen zoals Spotbooking.
+Samengevat: hun engagement in het project
+Aspect
+Rol Digipolis/CDO
+Projectstructuur & PLC 2.0
+Begeleiding van A tot Z via account experts en klankbordgroep
+Digitale realisatie
+Coördinatie technische uitwerking, analyse, architectuur, testing
+Strategische steun (CDO)
+Mandaat voor begeleiding City of Things-dossier
+Koppeling met bestaande systemen
+Integratie met GIPOD, A-sign, SAP Hana, KLM, WIS
+Toekomstige opschaling
+Sturing op OSLO, herbruik, API's, open architectuur
+Marktbevraging externe partner
+Opmaken functionele vereisten en ondersteuning contractvorming
+Rol van GIPOD/Athumi
+Het project “DIgitale Nuts” is gebouwd op een digitale datastructuur waarin interoperabiliteit, toegankelijkheid en betrouwbare brondata cruciaal zijn. Binnen deze architectuur nemen GIPOD (beheer door Digitaal Vlaanderen) en Athumi (de Vlaamse datadelingsautoriteit) een kernpositie in als fundament van de dataflow en coördinatie tussen nutsmaatschappijen, steden en aannemers.
+1. GIPOD als centrale planningsbron
+GIPOD is het centrale Vlaamse platform waar alle geplande grondwerken worden geregistreerd.Het systeem fungeert als:
+bronbestand voor alle meldingen van categorie 1, 2 en 3 grondwerken;
+referentie voor de locatie, tijdstip, uitvoerder en werkstatus van ingrepen in de ondergrond;
+distributiekanaal naar de toepassingen van de stad, aannemers en andere steden.
+In het project:
+Worden GIPOD-data geautomatiseerd gepolld en gesynchroniseerd met de stedelijke toepassing “Mobiel Nuts”.
+Worden categorie 3-werken (die nu vaak onder de radar blijven) automatisch opgehaald correct gegeo-reffereerd en gefilterd op relevantie
+Gebruiken we GIPOD-data als trigger voor meldingen, controleopdrachten en herstelverantwoordelijkheid.
+Implicatie: Zonder GIPOD is er geen betrouwbare, uniforme datastroom. GIPOD is de “motor” die meldingen initieert, opvolging triggert en herstellingen traceerbaar maakt.
+2. Athumi als veilige datadelingsschakel
+Athumi biedt het Vlaamse framework voor vertrouwelijke en gecontroleerde datadeling tussen overheden, burgers en private actoren (bv. nutsbedrijven, aannemers).
+In dit project:
+Wordt Athumi ingeschakeld om gegevensuitwisseling tussen de stad en nutsbedrijven GDPR-conform en technisch robuust te organiseren.
+Kunnen via Athumi Connectors automatisch dataflows worden opgezet tussen GIPOD, de stedelijke backend en de frontends van nutsbedrijven (bv. rapporten, herstelopvolging).
+Kan Athumi helpen bij het beheer van toegangsrechten, identiteiten en logging voor derden die toegang hebben tot het portaal (bv. stadsaannemer, nutsaannemers).
+Implicatie: Athumi maakt het mogelijk om schaalbaar én privacy-proof de gegevensdeling met meerdere actoren uit te rollen. Dit is essentieel voor de toekomstbestendigheid van de tool.
+3. backbone voor slimme dataservices
+GIPOD/Athumi vormt de technische backbone waarop slimme toepassingen en beslissingsondersteuning gebouwd worden:
+Automatische detectie van conflicten in werkplanning;
+Verificatie van volledigheid van dossiers (bv. ontbrekende vergunningen of herstelvoorwaarden);
+Triggers voor herstelbonnen, bewonerscommunicatie of herinschatting van sleufherstellingen (bv. via GIS en WIS).
+In combinatie met het OSLO-datamodel ontstaat zo een open, uitbreidbare digitale infrastructuur die ook in andere steden, toepassingen of beheertools gebruikt kan worden.
+Samengevat: hun rol in het project
+Aspect
+Rol van GIPOD/Athumi
+Data-intake
+GIPOD als centrale plannings- en meldingsbron
+Real-time synchronisatie
+Polling en up-to-date werkstatus via GIPOD
+Veilige datadeling
+authenticatie, logging en dataverkeer
+Hergebruik en schaalbaarheid
+Interoperabiliteit via OSLO, gekoppeld aan GIPOD
+Toekomstgericht ecosysteem
+Integratie met externe spelers zoals Spotbooking, Eaglebee, etc.
+Rol van VVSG en Kenniscentrum Vlaamse Steden
+1. Netwerkregisseur en verbinder van lokale besturen
+Rol: VVSG en KVS kunnen optreden als facilitator tussen de Stad Antwerpen en andere geïnteresseerde steden of intergemeentelijke samenwerkingenConcreet:
+Organiseren van interbestuurlijke overlegmomenten.
+Cureren van een lerend netwerk rond “slimme nutsopvolging” of “beheer van ondergrond”.
+Opvolgen van vragen en drempels van kleinere steden/gemeenten rond implementatie of schaalbaarheid.
+Vraag aan VVSG/KVS:“Willen jullie het netwerk van lokale besturen activeren en mee begeleiden in een lerend traject rond nutsbeheer en ondergrondkwaliteit, gelinkt aan de digitale nutsoplossing die wij ontwikkelen?”
+2. Behoeftenverkenning en klankbordrol
+Rol: VVSG en/of KVS kunnen zorgen voor de inventarisatie van de noden en verwachtingen bij andere steden en gemeenten.Concreet:
+Uitsturen van een korte bevraging of scan.
+Verzamelen van use cases of knelpunten rond nutsopvolging.
+Valideren van de schaalbaarheid van de Antwerpse aanpak.
+Vraag aan VVSG/KVS:“Zouden jullie een korte bevraging of workshop kunnen opzetten bij lokale besturen over hun uitdagingen rond nutswerken, toezicht, herstel en datakoppelingen (bv. GIPOD) — als input voor de generieke uitrol van onze tool?”
+3. Strategische toets op herbruikbaarheid en beleidsimpact
+Rol: VVSG/KVS helpen om de generieke componenten van de Antwerpse tool af te toetsen op Vlaamse schaal.Concreet:
+Mee bepalen van de functionele vereisten die relevant zijn voor álle steden/gemeenten.
+Toetsen of de voorgestelde API’s, rapporten, of OSLO-modellen herbruikbaar zijn binnen bestaande VVSG-instrumenten of andere tools.
+Adviseren over juridische, organisatorische of financiële knelpunten bij uitrol.
+Vraag aan VVSG/KVS:“Kunnen jullie mee instaan voor de toetsing van de Vlaamse toepasbaarheid en beleidsimpact van de digitale oplossing, in functie van herbruikbaarheid binnen VVSG-instrumenten of aanbevelingen?”
+4. Versterking van de beleidskloof (policy–implementation gap)
+Rol: VVSG kan via haar contacten met de Vlaamse administratie en sectororganisaties de terugkoppeling maken naar Vlaamse beleidslijnen (bv. Code voor Infrastructuurwerken, decreet lokaal bestuur, Digitaal Vlaanderen-strategie).
+Vraag aan VVSG: “Willen jullie mee zoeken naar manieren om het beleid op Vlaams niveau (bv. standaardisatie, herstelaanpak, randvoorwaarden voor nutsmaatschappijen) beter te verbinden met de lokale uitvoering, o.a. via input in dit project?”
+Samenvattende vraagstelling
+Actor
+Potentiële rol
+Te stellen vraag
+VVSG
+Netwerkregisseur, strategisch klankbord, beleidsvertaler, lobby en coördinatie tussen steden.
+Zie vraag 1, 2, 3, 4 hierboven
+KVS
+Lerend netwerk, kennisdeler, verspreider van good practices
+“Willen jullie dit project mee opvolgen als ‘lerend dossier’ en good practice verspreiden via eigen kanalen?”
+Rol en opdracht van de nutsbedrijven
+De nutsbedrijven (gas, elektriciteit, telecom, water, warmte, verlichting) zijn sleutelactoren in het publieke domein. Zij voeren ingrepen uit die ingrijpen op de ondergrond én bepalen mede de kwaliteit van de publieke ruimte. Binnen het project Verbeterde Werking Nuts krijgen ze een meer structurele rol toebedeeld — als verantwoordelijke mede-uitvoerder van een gedeelde stedelijke opdracht.
+1. Opdracht: kwaliteitsvol, transparant en gecoördineerd werken
+De nutsbedrijven worden niet langer enkel gezien als passieve aanvragers, maar als actieve partners met gedeelde verantwoordelijkheden. Ze krijgen de opdracht om:
+Hun geplande werken correct en tijdig aan te leveren via GIPOD.
+Hun uitvoering af te stemmen op de stedelijke regels rond herstel, communicatie en vergunning.
+Zorg te dragen voor correcte herstelling van het wegdek conform het stedelijke herstelreglement en de Code Nuts.
+Constructief te reageren op meldingen, vaststellingen en herstelopdrachten binnen de gestelde termijnen.
+Deze opdracht geldt zowel voor individuele nutsmaatschappijen als voor de verenigde nutsactoren via overlegorganen zoals COATT.
+2. Rol in het wegwerken van de policy–implementation gap
+De beleidsdoelstelling is duidelijk: minder hinder, snellere afhandeling, beter herstel. In de praktijk blijft de uitvoering echter steken door:
+onderaannemers zonder kennis van stedelijke normen,
+gebrekkige herstellingen (geen chape, verkeerde stenen),
+onvolledige communicatie of afwezigheid in GIPOD.
+Het project biedt de nutsbedrijven een kader om deze kloof te helpen dichten:
+Middel
+Bijdrage nutsbedrijven
+Duidelijke randvoorwaarden
+Werken conform stedelijke Code Nuts, herstelvoorwaarden en vergunningsbeleid.
+Feedback via vaststellingen
+Corrigeren van gebreken via digitale terugkoppeling, leertrajecten en structurele opvolging.
+Pilootprojecten
+Deelname aan proefprojecten (bv. WYRE in Merksem) met meetbare afspraken en verhoogd toezicht.
+Gebruik van portalen en rapportering
+Meewerken aan digitale logging, upload van foto’s, planningen en herstelstatus.
+Door deze engagementen expliciet te maken, krijgen nutsbedrijven mee de verantwoordelijkheid voor kwaliteitsvol beheer van de publieke ruimte.
+3. Verplichting tot datadeling via GIPOD
+Voor een succesvolle digitalisering is het essentieel dat nutsbedrijven:
+alle werken correct registreren in GIPOD (minstens conform de Vlaamse verplichting bij categorie 3),
+hun data verrijken met gedetailleerde statusinformatie, intekening en materialen,
+deze data actueel houden, zodat ze bruikbaar zijn voor toezicht, communicatie en rapportering.
+Hoewel het GIPOD-decreet al een juridische basis legt, voorziet dit project in aanvullende digitale tools en procesafspraken die de nutsbedrijven ertoe aanzetten (en in sommige gevallen verplichten) om hun datakwaliteit te verhogen.
+Samengevat: rol en verantwoordelijkheden nutsbedrijven
+Domein
+Verantwoordelijkheid nutsbedrijf
+Datadeling
+Correcte en tijdige registratie in GIPOD (categorie 1-3)
+Herstel
+Uitvoering conform stedelijke normen, met logging en verantwoording
+Coördinatie
+Afstemming met andere nuts via synergie, infolevering aan stad
+Toezicht en opvolging
+Reageren op vaststellingen en correctieve acties uitvoeren
+Proefprojecten
+Constructieve deelname aan piloottrajecten, leerbereidheid tonen
+Voorstel voor communicatie naar nutsbedrijven (COATT of individueel)
+“De stad Antwerpen beschouwt de nutsbedrijven als volwaardige partners in het streven naar een robuuste en kwalitatieve publieke ruimte. Via dit project willen we samen met jullie de overstap maken van administratief dossierbeheer naar actief kwaliteitsbeheer op het terrein. Jullie engagement in GIPOD, herstel en communicatie is hierbij cruciaal.”
+Rol van meedenkende steden
+Meedenkende steden zijn lokale besturen die reeds ervaring hebben met:
+het gebruik van GIPOD in hun werkprocessen,
+de uitrol van nutsreglementen of herstellingsverplichtingen,
+eerdere City of Things (COT)-trajecten,
+of het verbeteren van het beheer van hun publieke ruimte.
+Ze kunnen vanuit die ervaring als praktijkklankbord, implementatiepartner en beleidsversneller worden ingeschakeld in het traject.
+1. Rol als realiteitstoets en klankbord
+Opdracht:
+Feedback geven op de MVP’s in ontwikkeling.
+Aangeven waar processen realistisch zijn in kleinere steden of bij minder capaciteit.
+Suggesties doen voor “lichte versies” van modules (bv. manuele opvolging i.p.v. automatische bonkoppeling).
+Concreet:
+"Wat heb jij als stad écht nodig om toezicht te houden op nutswerken, en waar loopt het vandaag vast?"
+2. Testpartners in lokale piloten
+Opdracht:
+Eén deelproces testen (bv. herstelopvolging in de binnenstad).
+Data verzamelen over sleufkwaliteit, toezichtstijd, klachtenafhandeling.
+Rapporteren over ervaringen met de tool in hun eigen context.
+Concreet:
+“Leveren de meldingen vanuit GIPOD effectief bruikbare input op voor je toezichters?”“Hoeveel tijd spaar je uit via automatische notificaties of herstelbonnen?”
+3. Begeleiders van inhoudelijke standaardisering
+Opdracht:
+Meeschrijven aan OSLO-uitbreidingen of lokale afspraken.
+Feedback geven op datamodellen (bv. WIS-materialen, hersteltypes, statusflows).
+Co-creatie van sjablonen voor brieven, workflows en vergunningvoorwaarden.
+Concreet:
+“Welke types herstel komen bij jullie het vaakst voor en hoe kunnen we die standaardiseren in het systeem?”
+4. Politieke en bestuurlijke steunversterking
+Opdracht:
+Uitzetten van politieke steun (via eigen schepen, VVSG-werkgroep, intergemeentelijke samenwerkingen).
+Aankaarten van structurele knelpunten bij nutsmaatschappijen (via eigen overlegstructuren of COATT).
+Concreet:
+“Zou jouw bestuur dit mee kunnen verdedigen op een VVSG-platform of in overleg met Fluvius/Proximus?”
+5. Delen van good practices en documentatie
+Opdracht:
+Voorbeelden aanleveren van goed werkende praktijken of eerdere COT-projecten.
+Ter beschikking stellen van bestaande tools, contractmodellen of visualisaties.
+Concreet:
+“Welke tool gebruik jij nu voor herstellingsopvolging, en wat werkt daar goed aan?”“Heb je een bewonersbrief of GIPOD-dashboard dat je met ons kan delen?”
+Samengevatte rolverdeling van meedenkende steden
+Rol
+Specifieke opdracht
+Realiteitstoets
+MVP’s testen en feedback geven op uitvoerbaarheid
+Lokale piloot
+Proefluik draaien binnen eigen bestuur of district
+Standaardco-auteur
+Meewerken aan OSLO, herstelregels, wOrkflows
+Politieke versterker
+Draagvlak creëren via VVSG, overleg met nuts of COATT
+Kennisdelers
+Delen van tools, processen, klachtenflows, en bewonerscommunicatie
+Communicatief voorstel
+“Dit project mikt niet op een stadseiland, maar op een gedeeld stedelijk ecosysteem. We nodigen andere steden uit om als meedenkende partner hun stem, ervaring en cases in te brengen. Zo zorgen we samen voor een aanpak die zowel in Antwerpen als in andere steden kan landen.”
+Uitdaging: bepalen van use cases.
+Top 10 use cases uit het voorstel
+Vaststellingen op de werf (toezichters)
+Toezichters registreren via smartphone of tablet een vaststelling met foto, GPS-locatie en timestamp.
+Automatische blur van gezichten en nummerplaten (privacy by design).
+Controle van signalisatievergunningen (toezichters/stad)
+Check of tijdelijke verkeersmaatregelen (parkeerverbod, omleiding) conform de vergunning zijn geplaatst.
+Herstelcontrole (toezichters/stadsaannemer)
+Fotolog en checklists om te valideren of de sleuf correct werd dichtgelegd (fundering, chape cement, natuursteen, asfalt).
+Koppeling met GIPOD (nutsbedrijven & stad)
+Alle werken automatisch zichtbaar in de app (waar, wanneer, welke nutsmaatschappij).
+Toezichters zien realtime overlap met andere werken.
+Bewonerscommunicatie (bewoners)
+Pushmeldingen of QR-code op werfbord: info over aard, duur en hinder van de werken.
+Link naar klachtenplatform (bv. KLM2 of meldingen.antwerpen.be).
+Rapportering voor retributies (stad/beleidsmedewerkers)
+Automatische bundeling van vaststellingen en herstellingskosten in een dossier voor facturatie of retributie.
+Kwaliteitsdashboards (beleidsmedewerkers)
+KPI’s over doorlooptijd, herstelnauwkeurigheid, klachtenafhandeling → bruikbaar voor beleidsrapportering en monitoring van nutsbedrijven.
+Samenwerking nutsbedrijven (nutsmaatschappijen)
+Inzage in hun eigen werken en herstelbonnen.
+Mogelijkheid om tijdelijke maatregelen (bv. asfaltlap) in de app te registreren.
+Juridisch bewijs (juridische dienst/stadsaannemer)
+Vaststellingen (foto + metadata) dienen als rechtsgeldig bewijs bij betwisting met nutsbedrijven of aannemers.
+AI-beeldherkenning (toezichters/beleidsmedewerkers)
+Automatische detectie van fouten in herstelling of ontbrekende signalisatie op foto’s.
+Waarschuwingsfunctie voor toezichters (“mogelijke fout gespot”).
+Out-of-the-box nieuwe toepassingsgebieden
+Slimme hinderindex voor bewoners
+Automatisch berekende hinderindex (geluid, duur, overlap met andere werken, locatiegevoeligheid) → geeft bewoners een realistisch beeld van hinder in hun buurt.
+Integratie met circulair materiaalbeheer
+App registreert welke materialen vrijkomen bij graafwerken (bv. kasseien, natuursteen) → koppeling met stedelijke stock en hergebruik.
+Klimaat/energie-koppeling
+Automatische detectie of werken kansen bieden voor coördinatie met warmtenetten of laadpalen.
+AI-gestuurde preventieplanning
+Voorspelt waar herhaalde klachten of herstelproblemen zullen optreden (bv. wijken met slechte ondergrond of veel overlappende werken).
+Gamification voor toezichters
+Leerrapport per toezichter: wie registreert snelst en volledigst, wie mist minder controles → kan motiverend werken.
+Participatie via bewoners-app
+Bewoners kunnen hun eigen meldingen (foto’s van hinder, ontbrekende signalisatie) uploaden → die automatisch gematcht worden met GIPOD-werken in de buurt.
+Integratie met drones of bodycams
+Extra vaststellingskanalen voor grote werven of moeilijk bereikbare zones.
+Realtime koppeling politie/brandweer
+App signaleert open sleuven of gevaarlijke situaties ook aan nood- en hulpdiensten.
+Wie gebruikt de app en wat is hun meerwaarde?
+Persona 1 De stadstoezichter
+Naam: Hendrik, toezichter nutswerken bij de stad.Context: Hendrik is dagelijks op pad in de stad. Hij controleert werken van nutsmaatschappijen, volgt herstelbonnen op en moet snel schakelen bij klachten van bewoners. Tot nu toe werkte hij vooral met papieren notities en losse foto’s op zijn gsm.
+Hoe de app Hendrik helpt
+Snelle vaststellingen: Hendrik opent de app, maakt een foto van een sleuf in de straat. Automatisch worden locatie en tijd geregistreerd, gezichten en nummerplaten geblurd.
+Vergunningen bij de hand: Op hetzelfde scherm ziet hij meteen of er een signalisatievergunning is aangevraagd voor die plek. Geen papieren bundel meer nodig.
+Herstelcontrole: Wanneer de aannemer het werk heeft dichtgelegd, checkt Hendrik via een eenvoudige checklist (fundering, chape, natuursteen/asfalt) of alles correct gebeurde.
+Juridisch bewijs: Elke vaststelling wordt meteen veilig opgeslagen, zodat de juridische dienst het kan gebruiken bij eventuele betwistingen.
+Alle dossiers in één zakcomputer: Geen dikke mappen of losse mails meer, alles digitaal en actueel.
+Slimme assistent: AI markeert mogelijke fouten zodat Hendrik gericht en sneller kan controleren.
+Vergunning bij de hand: Hij hoeft nooit meer te zoeken in GIPOD of Excel-lijsten: de app toont meteen of de aannemer een geldige domeinvergunning heeft.
+Directe opvolging herstel: Hij tikt aan “herstel correct uitgevoerd” → dit wordt automatisch doorgestuurd naar de administratie voor verrekening.
+Samenwerking met collega’s: Als hij ziek is, kan een collega zijn openstaande vaststellingen eenvoudig overnemen.
+Resultaat voor Hendrik
+Minder werkdruk: Hij kan meer werven per dag controleren, zonder stress dat iets vergeten raakt.
+Sterkere positie: Hij kan aannemers en nutsbedrijven sneller aanspreken, mét harde bewijzen.
+Efficiëntie voor de stad: Zijn vaststellingen stromen automatisch door naar administratie, juridische dienst en facturatie → geen dubbel werk meer.
+Trots: Hendrik ziet eindelijk dat zijn werk impact heeft: fouten verdwijnen sneller, burgers klagen minder, en hij wordt erkend als cruciale schakel.
+Persona S2 – De Bewoner
+Naam: Fatima, bewoonster in een smalle binnenstraat in Antwerpen.Context: Voor haar deur zijn vaak graafwerken. Ze heeft een kleine garage en voelt zich machteloos als er plots werfhekken staan of sleuven openliggen. Tot nu toe moest ze bellen naar het contactcentrum en kreeg ze vaak geen concreet antwoord.
+Hoe de app Fatima helpt
+Transparantie: Op een QR-code op het werfbord scant ze met haar gsm de info. Ze ziet meteen: wie voert de werken uit, waarom, en tot wanneer.
+Hindercommunicatie: Ze krijgt een pushmelding dat de straat de volgende dag tijdelijk niet bereikbaar zal zijn voor een levering.
+Participatie: Als ze merkt dat er geen signalisatie is geplaatst bij een open sleuf, maakt ze zelf een melding via de app. Die melding wordt automatisch gekoppeld aan het juiste GIPOD-dossier.
+Feedbackloop: Binnen 24 uur krijgt ze een melding terug: “Uw signaal is opgevolgd, signalisatie geplaatst door aannemer.”
+Resultaat voor Fatima
+Ze voelt zich geïnformeerd en gehoord, in plaats van gefrustreerd en machteloos.
+Ze ervaart minder hinder omdat ze zich kan voorbereiden op afsluitingen.
+Ze ziet dat de stad en nutsbedrijven haar melding serieus nemen en opvolgen → vertrouwen groeit.
+Persona S3 De nutsmaatschappij
+Naam: Thomas, projectcoördinator bij een grote nutsmaatschappij (bv. telecomoperator).Context: Thomas plant jaarlijks honderden graafwerken. Hij krijgt vaak klachten van de stad over herstelkwaliteit of hinder, maar heeft weinig overzicht. Zijn aannemers voeren de werken uit, en Thomas moet vertrouwen op hun rapportage.
+Hoe de app Thomas helpt
+Realtime overzicht: In de app ziet hij welke van zijn werken vandaag openliggen, welke in uitvoering zijn en waar de toezichters al een vaststelling hebben gemaakt.
+Eigen herstelregistratie: Zijn aannemer kan via de app aanduiden dat een tijdelijke asfaltlaag is aangebracht. Foto en GPS worden automatisch toegevoegd → bewijs dat het werk veilig is achtergelaten.
+Snellere terugkoppeling: Als er een fout wordt vastgesteld, krijgt Thomas meteen een notificatie. Hij kan sneller ingrijpen, zonder weken later een factuur of klacht te ontvangen.
+Transparantie naar de stad: Doordat alle data uniform en OSLO-conform gedeeld wordt, hoeft hij geen aparte Excelrapporten meer te maken voor de stad.
+Bewijsvoering: Als een betwisting ontstaat (bv. schade was er al voor de werken), kan hij in de app aantonen dat de aannemer correct gewerkt heeft.
+Resultaat voor Thomas
+Minder discussies en juridische conflicten met de stad, dankzij gedeeld en objectief bewijsmateriaal.
+Efficiënter projectbeheer: hij hoeft minder tijd te steken in nazorg en klachtenafhandeling.
+Sterkere reputatie: door transparant te werken toont zijn nutsmaatschappij dat ze kwaliteit en hinderbeperking ernstig nemen.
+Kostenbeheersing: minder onverwachte retributies en boetes, omdat fouten sneller worden rechtgezet.
+Persona S4 – De Beleidsmedewerker
+Naam: Sarah, beleidsmedewerker Publieke Ruimte bij de stad.Context: Sarah moet de schepen en gemeenteraad regelmatig rapporteren over de kwaliteit van nutswerken, de klachten van bewoners en de voortgang van projecten. Vandaag moet ze data sprokkelen uit losse Excelbestanden, mails en klachtenregistraties. Haar rapporten zijn vaak achterhaald en moeilijk te vergelijken.
+Hoe de app Sarah helpt
+KPI-dashboards: Sarah krijgt realtime inzicht in doorlooptijd van herstellingen, kwaliteit per nutsbedrijf en aantal openstaande klachten.
+Vergelijking tussen wijken: Ze kan zien welke districten het meeste hinder ondervinden en waar de samenwerking met nutsbedrijven vlot loopt.
+Trendanalyses: De app geeft inzicht in structurele problemen, bv. “operator X scoort slecht in natuursteenherstel” of “de meeste vertragingen zijn in de binnenstad”.
+Beleidscommunicatie: Ze kan in één klik een export maken voor de schepen: heldere grafieken, juridisch correcte cijfers en concrete aanbevelingen.
+Ondersteuning bij onderhandelingen: Bij overleg met nutsbedrijven of in COATT kan Sarah met objectieve data aantonen waar verbeteringen nodig zijn.
+Resultaat voor Sarah
+Minder tijdverlies aan data verzamelen → meer tijd voor beleidsadvies.
+Sterker dossier: objectieve data maakt haar rapporten betrouwbaar en overtuigend, zowel intern als extern.
+Politieke meerwaarde: de schepen kan bewoners en pers geruststellen met concrete cijfers en verbeteracties.
+Strategische hefboom: Sarah kan betere afspraken afdwingen met nutsmaatschappijen, omdat ze beschikt over harde cijfers i.p.v. klachten anekdotisch te moeten brengen.
+Persona S5 – De Stadsaannemer
+Naam: Karim, ploegbaas bij een aannemer die regelmatig in opdracht van de stad herstelwerken uitvoert.Context: Karim en zijn team worden vaak opgeroepen om straten opnieuw te herstellen na nutswerken. Hij krijgt zijn opdrachten via mail of telefoon, en moet soms ter plaatse uitzoeken wat er exact verwacht wordt. Discussies met nutsmaatschappijen of toezichters komen geregeld voor.
+Hoe de app Karim helpt
+Heldere opdrachten: Wanneer Karim een opdracht krijgt, ziet hij in de app meteen de exacte locatie, foto’s van de schade, en welke materialen moeten worden gebruikt (bv. natuursteen, asfalt).
+Geen misverstanden: De foto’s van de toezichter vóór de herstelling zijn beschikbaar → duidelijk bewijs van de situatie.
+Terugrapportage: Karim kan na uitvoering een foto toevoegen die automatisch aan het dossier wordt gekoppeld, inclusief tijd en locatie.
+Snelle goedkeuring: De toezichter ziet zijn herstelrapport meteen in de app en kan goedkeuren of bijkomende opmerkingen geven.
+Betalingszekerheid: Omdat alles geregistreerd is, verloopt de afrekening transparant en zonder betwistingen.
+Resultaat voor Karim
+Efficiënter werk: minder tijdverlies door heen-en-weer bellen of onduidelijke info.
+Minder frustratie: hij hoeft niet telkens te bewijzen dat zijn team correct heeft gewerkt – de app levert dat bewijs.
+Betere relatie met de stad: opdrachten en betalingen verlopen vlotter, zonder eindeloze discussie.
+Professioneel imago: door transparant te werken, toont zijn bedrijf betrouwbaarheid en vakmanschap.
+Uitdaging: Toepassing van OSLO als fundament in het project digitale Nuts
+Uitdaging
+De opvolging van nutswerken in Vlaanderen wordt momenteel belemmerd door:- Versnipperde datamodellen tussen steden, nutsmaatschappijen en GIPOD.- Gebrek aan uniforme definities voor cruciale begrippen zoals “hersteltype”, “materiaalsoort” of “werkstatus”.- Beperkte machineleesbaarheid en semantische koppeling tussen plandata, vergunningen en toezichtdata.- Geen verplichting voor nutsmaatschappijen om fotomateriaal en statusupdates in gestandaardiseerd formaat aan te leveren. Hierdoor ontstaan vertragingen, dubbele registraties en interpretatieverschillen die de kwaliteit van toezicht en herstellingen ondermijnen.
+Oplossing
+We maken OSLO Open Data-profiel Nutswerken tot de basis van Digitale Nuts. Dit profiel definieert entiteiten, eigenschappen en relaties voor:1. Werfinformatie – Unieke ID, locatie, GIPOD-ID, uitvoerder, opdrachtgever.2. Materiaal- en herstelgegevens – Type bestrating, funderingsopbouw, herstelmethode.3. Vergunning- en reglementdata – Domeintoelating, signalisatievergunning, afwijkingsaanvragen.4. Toezichtdata – Vaststellingsdatum, toezichter-ID, checklistscores, bevindingen.5. Fotodocumentatie – Metadata (tijd, GPS, richting), bron (stad, nuts, aannemer).6. Bewonerscommunicatie – Datum en type bericht, distributiekanaal, inhoudstype.7. Meetpunten/KPI’s – Automatisch afgeleid uit toezicht- en herstelgegevens.
+Innovatief karakter
+Het OSLO-profiel wordt uitgebreid met elementen die vandaag nog ontbreken in de standaard:- Foto-object: verplicht geotagged, met richting, resolutie en tijdstip in EXIF.- Herstelkwaliteit-score: kwantitatief veld (0–100%) gekoppeld aan materiaaltype.- GIS-polygoon voor inname: niet enkel puntlocaties, maar volledige contouren van sleuven/innames.- Tijdslijn-attribuut: geplande start/einde, werkelijke start/einde, herstelmomenten.- Incidentenlog: afwijkingen, klachten, hinderincidenten, gekoppeld aan GIPOD-ID.- Communicatie-log: vastlegging van bewonersbrieven, digitale meldingen, updates.Door deze velden machineleesbaar op te nemen, kunnen applicaties automatisch:- Herstellingen scoren.- KPI’s genereren.- Afwijkingen signaleren nog voor een toezichter fysiek ter plaatse gaat.
+Impact
+- Uniformiteit: alle Vlaamse gemeenten en nutsmaatschappijen werken met dezelfde definities.- Snellere integratie: koppeling van GIPOD, stadsdataplatforms en nutsdatabases zonder dure maatwerkconversies.- Betere datakwaliteit: door verplichte velden voor foto’s, GPS en materiaalsoorten.- Automatische rapportering: beleidsdashboards en kwartaalrapporten kunnen rechtstreeks uit de OSLO-data worden opgebouwd.- Verhoogde juridische slagkracht: uniforme registratie maakt bewijsvoering in geschillen eenvoudiger.
+Schaalbaarheid
+- Vlaams breed: uitbreidbaar naar alle steden, gemeenten en intercommunales.- Sectoroverschrijdend: bruikbaar voor wegenonderhoud, groenbeheer en bouwtoezicht.- Open source en open standaard: vrij herbruikbaar door leveranciers, waardoor lock-in wordt vermeden.- Internationale compatibiliteit: OSLO is gebaseerd op W3C-standaarden en kan gekoppeld worden aan Europese INSPIRE-richtlijnen.
+Waarom OSLO?
+OSLO (Open Standaarden voor Linkende Organisaties) is de Vlaamse standaard om gegevens tussen overheden en partners eenduidig, herbruikbaar en leesbaar uit te wisselen. Door OSLO toe te passen in ons nieuwe digitale transformatietraject voor de opvolging van nutswerken en herstel van de publieke ruimte:• werken we uniform over stadsdiensten, nutsmaatschappijen en aannemers heen;• verminderen we interpretatieverschillen in termen, statussen en data-uitwisseling;• maken we de toepassing compatibel met bestaande Vlaamse en Europese datastandaarden (bv. GIPOD, INSPIRE);• leggen we de basis voor automatische validatie van gegevens en AI-ondersteunde analyse.
+Hoe passen we OSLO toe in het project Digitale Nuts
+We ontwikkelen een data-architectuur waarbij alle kernobjecten (bv. Werk, Vergunning, Locatie, Vaststelling, Herstelbon, Organisatie) worden gemodelleerd volgens OSLO-applicatieprofielen.• Eigenschappen krijgen vaste codelijsten (bv. status, type werk, materiaal).• Geometrie wordt uitgedrukt in GeoSPARQL zodat GIS-componenten van bij de bron correcte kaartdata kunnen gebruiken.• Metadata wordt voorzien met o.a. dcterms: voor datum, verantwoordelijke en bron, zodat koppelingen met andere platformen (bv. rapportering, dashboards) eenvoudig zijn.• We voorzien een MVP-aanpak waarbij telkens één deelproces (bv. herstelbonnen) OSLO-conform wordt gemaakt en getest met partners.
+Meerwaarde in de City of Things-context
+De OSLO-toepassing maakt het mogelijk om:1. Real-time datadeling te doen met andere steden en intercommunales die gelijkaardige processen hebben.2. Data-gedreven toezicht te integreren met externe bronnen zoals GIPOD, meldingen en sensordata.3. AI-modules te trainen op gestructureerde, semantisch eenduidige data, wat de nauwkeurigheid van beeldherkenning, anomaliedetectie en besluitvoorbereiding sterk verbetert.4. Interoperabiliteit te garanderen, waardoor onze tool modulair kan uitbreiden en als “Zwitsers zakmes” inzetbaar blijft voor andere domeinen van de publieke ruimte.
+Samengevat: OSLO vormt het semantische fundament van onze toekomstige digitale nutsopvolging. Het zorgt dat elk datadeelproces – van terreinobservatie tot financiële afhandeling – sluitend, herbruikbaar en schaalbaar is, binnen Antwerpen én in samenwerking met andere Vlaamse steden en nutsbedrijven. Zo borgen we dat ons “Zwitsers zakmes” niet alleen vandaag, maar ook in de toekomst scherp blijft.
+Figuur 1Figuur: Overzicht huidige OSLO Nutswerken-structuur met voorgestelde uitbreidingen en toepassingen in Digitale Nuts.
+Uitdaging: Toekomstvisie: AI als Versneller voor Vaststellingen in de Publieke Ruimte
+Uitdaging
+Huidige vaststellingstools in de publieke ruimte functioneren hoofdzakelijk als passieve registratiemiddelen. Ze ondersteunen toezichters en administratieve medewerkers beperkt in het proactief plannen, analyseren en optimaliseren van toezicht. De integratie met centrale databronnen zoals GIPOD en stedelijke GIS-lagen is vaak onvolledig, waardoor waardevolle verbanden tussen geplande werken, vergunningen en herstellingen niet tijdig worden gelegd. Dit leidt tot inefficiënte inzet van personeel, gemiste overtredingen en trage terugkoppeling naar burgers en beleidsmakers.
+Oplossing
+De vaststellingen-app van de toekomst evolueert naar een actieve, AI-gedreven assistent die toezichters, administratieve medewerkers en beleidsmakers ondersteunt in elke fase van het proces – van planning tot oplevering.
+De kerncomponenten zijn:
+1. Geïntegreerde datastroom: Door een permanente koppeling met GIPOD en stedelijke GIS-lagen (materialen, zones, vergunningen) beschikt de app altijd over actuele informatie over geplande en lopende werken. Deze datastroom vormt de basis waarop AI:
+Werken automatisch categoriseert en koppelt aan vergunningen en retributieregels.
+Vergunningloze werken of afwijkingen detecteert nog voor de eerste fysieke controle.
+2. Slimme inzet van toezichters: Met predictive deployment kan AI op basis van data-analyses, trends, historische gegevens van geplande werken, verkeersdata en evenementenkalenders:
+Controle-routes optimaliseren om reistijd en dubbele verplaatsingen te vermijden.
+Automatisch werkpakketten samenstellen per toezichter, afgestemd op geografische nabijheid en urgentie.
+Pieken in werkdruk voorspellen en personeelsinzet proactief plannen.
+3. Automatische beeldherkenning en GIS-verrijking – Herkennen van schade, materialen en ontbrekende signalisatie. Op het terrein wordt de smartphonecamera een AI-inspectietool:
+Foto’s en video’s worden automatisch geanalyseerd om schade, foutieve materialen of ontbrekende signalisatie te herkennen.
+AI herkent bestratingstypes en koppelt deze aan herstelvoorschriften in WIS.
+Vaststellingen krijgen automatisch een GIS-positie, waardoor backoffice en andere toezichters direct context zien.
+4. Realtime beslissingsondersteuning – Direct advies op basis van reglementen, zones en materiaaltypes:
+“Dit werk bevindt zich in een strategische zone – herstel in natuursteen verplicht binnen 10 dagen.”
+Signaleert wanneer een werk in strijd is met geplande evenementen of tijdelijke vergunningen.
+Genereert automatisch PV’s en intekeningen inclusief foto’s, klaar om te verzenden naar nutsbedrijven of de stadsaannemer.
+5. Proactief kwaliteitsbeheer – AI-analyse van vergunning tot herstel met risicoscores en trenddetectie om:
+Risicoscores toe te kennen aan lopende werken.
+Trends in degradatie of herhaalde schades te voorspellen.
+Rapporten te leveren waarmee beleidsmakers herstellingsbudgetten gerichter kunnen inzetten.
+6. Integratie met burgerfeedback – Matchen en prioriteren van klachten gekoppeld aan GIPOD-dossiers. Door koppeling met klachten uit KLM2 of meldingen.antwerpen.be kan AI:
+Meldingen automatisch matchen met relevante GIPOD-dossiers.
+Urgente klachten prioriteren via sentimentanalyse en hinder-inschatting.
+Statusupdates automatisch terugkoppelen naar de melder.
+7. Zelflerend stedelijk controlesysteem – Algoritmes verbeteren doorlopend detectie, voorspelling en beleidsondersteuning. Naarmate de databank groeit, wordt de AI steeds nauwkeuriger:
+Lerende algoritmes verbeteren detectie en voorspellingen.
+Dashboards geven real-time zicht op kwaliteit per aannemer, type werk of zone.
+Beleidskeuzes worden ondersteund met data over waar ingrijpen het meeste impact heeft.
+Innovatief karakter
+Deze aanpak overstijgt klassieke toezichtmethoden door AI in te zetten als actieve partner in plaats van passief hulpmiddel. De combinatie van real-time data-integratie, automatische beeldanalyse, voorspellende modellen en burgerfeedback maakt het mogelijk om toezicht dynamisch en contextueel te organiseren. De zelflerende component zorgt ervoor dat het systeem steeds effectiever wordt naarmate meer data beschikbaar komt.
+Impact
+• Snellere en efficiëntere inzet van toezichters door optimale route- en taakplanning.• Hogere detectiegraad van vergunningloze of afwijkende werken.• Verbeterde herstelkwaliteit door directe koppeling van vaststellingen aan materiaal- en zonevoorschriften.• Kortere doorlooptijd tussen klacht, vaststelling en actie.• Transparantie en verantwoording via real-time dashboards voor alle betrokken partijen.• Strategische inzet van herstelbudgetten op basis van trend- en risicoanalyse.
+Schaalbaarheid
+Door gebruik te maken van gestandaardiseerde koppelingen met GIPOD, stedelijke GIS-platformen en meldingssystemen kan deze AI-aanpak eenvoudig worden uitgerold naar andere steden en gemeenten. De modulaire architectuur maakt het mogelijk om stapsgewijs functies toe te voegen of aan te passen aan lokale behoeften, terwijl de zelflerende algoritmes zich blijven verbeteren door data-uitwisseling op bovenlokaal niveau.
+Implicatie: de subsidieaanvraag moet een publiek-private samenwerking voorzien waarin het intellectueel eigendom gedeeld of gelicenseerd wordt onder duidelijke afspraken. De tool moet herbruikbaar zijn, maar niet exclusief.
+Uitdaging: De Driehoek GIPOD – Steden en Gemeenten – Nutsmaatschappijen
+Uitdaging
+De uitvoering en opvolging van nutswerken in Vlaanderen is afhankelijk van een complexe samenwerking tussen drie kernspelers: de nutsmaatschappijen, de steden en gemeenten, en het centrale GIPOD-platform. In theorie moet GIPOD fungeren als centrale databank voor alle werken en innames in de publieke ruimte. In de praktijk is de datakwaliteit en actualiteit vaak onvoldoende voor effectieve opvolging en controle.Belangrijke knelpunten:
+• Nutsmaatschappijen ontsluiten hun werfdata niet altijd volledig of tijdig in GIPOD.• Data ontbreekt of is verouderd, waardoor toezichters en beleidsmakers niet kunnen vertrouwen op de digitale planning.• Er is geen structurele verplichting om cruciale gegevens – zoals geotagged foto's, plandata of statusupdates – te registreren en te delen.• Steden en gemeenten hebben vaak geen uniforme werkwijze om GIPOD-data te integreren in hun interne processen.• De samenwerking is ad hoc en afhankelijk van goodwill, waardoor kwaliteitsafspraken onvoldoende worden nageleefd.Het gevolg:
+werken worden te laat of onvolledig opgevolgd, herstelkwaliteit is moeilijk te controleren, en burgers ondervinden onnodige hinder.
+Oplossing:
+Een versterkt driehoeksmodel waarin GIPOD fungeert als centrale en verplichte dataknooppunt tussen nutsmaatschappijen en steden/gemeenten. Dit vereist zowel technische als organisatorische maatregelen:• Wettelijke of reglementaire verplichting voor nutsmaatschappijen om werfdata, statusupdates en geotagged foto’s in GIPOD te registreren.• Gestandaardiseerde datavelden conform OSLO-standaarden (bv. materiaaltype, sleufopbouw, datum en tijd van uitvoering, vergunningreferentie).• Realtime synchronisatie tussen GIPOD en gemeentelijke toezicht-apps.• Mogelijkheid voor steden om aanvullende vaststellingen, foto’s en herstelstatus terug te koppelen naar het GIPOD-dossier.• Duidelijke afspraken over horizontale samenwerking (tussen steden/gemeenten onderling) en verticale samenwerking (tussen steden en nutsmaatschappijen via GIPOD).• Ontwikkeling van een GIS-viewer die de actuele inname op kaart toont en verrijkt wordt met visuele vaststellingen door ontsluiting van alle foto’s.
+Innovatief karakter
+Deze aanpak verschuift van vrijblijvende gegevensdeling naar een verplicht, gestandaardiseerd en digitaal geautomatiseerd proces. Door GIPOD als centraal platform in te zetten en de koppelingen met gemeentelijke systemen te automatiseren, ontstaat één gedeelde 'bron van waarheid'. De horizontale samenwerking tussen steden zorgt voor uniforme kwaliteitsnormen, terwijl de verticale koppeling met nutsmaatschappijen via GIPOD de controleerbaarheid van werken versterkt. De inzet van geotagged foto’s en GIS-visualisaties maakt snelle, objectieve controles mogelijk.
+Impact
+• Hogere datakwaliteit en betrouwbaarheid voor alle betrokken partijen.• Snellere en gerichtere controles op basis van actuele en volledige informatie.• Vermindering van hinder voor bewoners door efficiëntere opvolging en kortere doorlooptijden.• Betere naleving van herstelstandaarden door transparantie en bewijsvoering.• Uniformiteit in processen en afspraken, ongeacht de stad of gemeente.
+Schaalbaarheid
+Omdat het model volledig steunt op het centrale GIPOD-platform en OSLO-standaarden, kan het op Vlaams niveau worden ingevoerd. De afspraken en technische koppelingen zijn herbruikbaar voor alle steden en gemeenten, ongeacht hun grootte of interne IT-structuur. Dit maakt het mogelijk om één uniforme, wettelijk afdwingbare aanpak te realiseren die zowel lokale efficiëntie als bovenlokale samenwerking bevordert.
+Uitdaging: DPIA & GDPR-risicoanalyse  bij het verzamelen van gegevens op het openbaar domein.
+Uitdaging:
+De digitale opvolging van nutswerken maakt gebruik van foto’s, locatiegegevens en metadata die rechtstreeks op het openbaar domein worden verzameld. Deze gegevens zijn essentieel voor toezicht, herstelbewijslast en beleidsmonitoring, maar brengen tegelijk risico’s met zich mee. Denk aan herkenbare burgers of voertuigen op foto’s, de herleidbaarheid naar specifieke adressen, of het delen van data met externe partijen zoals nutsbedrijven.
+Onze opdracht is om deze risico’s niet te negeren, maar er van bij de start verstandig en transparant mee om te gaan. Een Data Protection Impact Assessment (DPIA) toont aan dat de privacy-impact van de app en dataplatform gekend, geëvalueerd en beperkt is .
+Verwerkte gegevens
+Fotolog van vaststellingen (potentieel herkenbare personen, voertuigen, huisnummers).
+Locatiegegevens (GPS) van werken en vaststellingen.
+Tijdstempels en metadata (wie, waar, wanneer).
+Contactgegevens aannemers/nutsbedrijven (vergunning, herstelbons).
+Logdata van gebruikers (toezichters, aannemers).
+Doeleinden van verwerking
+Toezicht & controle van nuts- en graafwerken.
+Herstelbewijslast voor retributies, kwaliteitscontroles en geschillen.
+Bewonerscommunicatie (welke werken, waar, wanneer).
+Beleidsmonitoring (KPI’s, kwaliteit, hinder).
+GDPR-risico’s
+Onbedoelde identificatie van burgers via foto’s (gezichten, nummerplaten).
+Herleidbaarheid naar adressen (bv. schadeclaims, koppeling met andere databanken).
+Onrechtmatige toegang door onbevoegde personen (bv. aannemers die data van andere werken bekijken).
+Te lange bewaartermijnen → onnodige opslag van persoonsgegevens.
+Onduidelijke rolverdeling (wie is verwerkingsverantwoordelijke / wie verwerker?).
+Datatransfer naar nutsbedrijven → risico op verder gebruik buiten de afgesproken doeleinden.
+Risicobeoordeling
+Waarschijnlijkheid: gemiddeld tot hoog (door frequente foto-opnames en brede datastroom).
+Impact: hoog (privacy van burgers, mogelijke juridische claims, reputatieschade).
+Mitigatiemaatregelen
+Privacy by design: automatische blur van gezichten en nummerplaten in de app.
+Dataminimalisatie: enkel noodzakelijke metadata opslaan; geen “extra” persoonsgegevens.
+Rolverdeling:
+Stad Antwerpen (en partners): verwerkingsverantwoordelijke.
+Digipolis + leverancier: verwerkers.
+Nutsbedrijven: ontvangers met contractueel beperkt doel.
+Athumi als neutrale datakluis → gecontroleerde toegang, logging & autorisatie.
+Bewaartermijnen:
+Foto’s met persoonsgegevens: max. 5 jaar (juridische bewijslast herstel/retributie).
+Metadata: enkel zolang nodig voor beleids-KPI’s (herziening jaarlijks).
+Toegangsbeheer: rollen & rechten (bv. toezichters enkel eigen dossiers, nutsbedrijven enkel eigen werken).
+DPIA-traject: formele toets voorafgaand aan MVP-uitrol, herzien bij elke nieuwe module (bv. AI-beeldherkenning).  (gegevensbeschermingseffectbeoordeling)
+Innovatief karakter
+Eerste Vlaamse toezicht-app die privacy by design en Athumi-datadiensten combineert.
+Generiek DPIA/GDPR-kader dat ook bruikbaar is voor andere steden en digitale toepassingen rond toezicht.
+Impact: vertrouwen van burgers, nutsbedrijven en bestuur dat het project juridisch sluitend is. Vermindert kans op klachten of sancties.
+Schaalbaarheid: model is herbruikbaar als GDPR-sjabloon voor alle Vlaamse steden die digitale toezichtsystemen inzetten.
+Uitdaging: Van klassieke webstructuur naar taakgerichte digitale omgeving
+WIMP overstijgen – Mobile-first, Context-aware, Actionable interfaces
+Uitdaging
+Traditionele digitale toepassingen voor steden en nutsbeheer zijn vaak opgebouwd volgens het klassieke webmodel met hiërarchische menu’s, vaste pagina’s en statische inhoud. Gebruikers moeten zelf door menu’s navigeren om informatie of formulieren te vinden. Dit is log en inefficiënt, zeker voor medewerkers op het terrein die snel en taakgericht moeten kunnen handelen. Hierdoor gaan kostbare tijd en efficiëntie verloren, en blijft de informatievoorziening vaak achter bij de realiteit op het terrein.
+Oplossing
+Met Digitale Nuts stappen we af van het menu-gedreven model en introduceren we een mobile-first, context-aware en actionable interface. We vertrekken vanuit de concrete taak van de gebruiker en de context waarin die werkt. In plaats van te zoeken in menu’s, krijgt de gebruiker direct de relevante acties, informatie en formulieren te zien, afgestemd op het type werk en de locatie.Belangrijkste kenmerken:• Taakgestuurd – de interface toont enkel wat op dat moment nodig is.• Contextgedreven data-integratie – realtime koppeling van GIPOD-data, stadsdata en terreinobservaties.• Single-page interactie – acties worden direct verwerkt zonder opnieuw laden van pagina’s.• Component-gebaseerd ontwerp – herbruikbare bouwstenen zoals kaartweergave en statusindicator.• Mobile-first – ontworpen voor smartphones en tablets, inclusief offline mogelijkheden.• AI-integratie – beeldherkenning, spraaknotities en slimme suggesties.
+Innovatief karakter
+Deze aanpak overstijgt het klassieke WIMP-model door gebruikers niet langer passief te laten zoeken, maar actief te ondersteunen met directe en contextuele functionaliteit. Door taakgestuurd en contextgedreven te werken, sluiten we naadloos aan op het werkproces van toezichters en veldmedewerkers. De component-gebaseerde opbouw maakt snelle aanpassingen mogelijk, terwijl AI-tools zoals beeldherkenning extra efficiëntie en kwaliteitsborging toevoegen. Dit verhoogt de nauwkeurigheid van vaststellingen en versnelt de administratieve afhandeling.
+Impact
+• Efficiëntere werkprocessen – minder tijd verloren aan zoeken en navigeren.• Hogere kwaliteit van gegevens – vaststellingen worden direct gekoppeld aan de juiste context.• Snellere opvolging – real-time toegang tot actuele data maakt directe actie mogelijk.• Minder administratieve last – handelingen worden in één scherm afgehandeld.• Verbeterde communicatie – alle betrokken partijen werken met dezelfde actuele informatie.
+Schaalbaarheid
+De component-gebaseerde architectuur maakt het eenvoudig om deze aanpak uit te rollen naar andere steden en partners, zonder telkens een volledig nieuw systeem te ontwikkelen. Omdat de toepassing gebruikmaakt van gestandaardiseerde koppelingen met GIPOD, stadsdataplatformen en nutsbedrijven, kan het model op Vlaams niveau worden toegepast. Dit bevordert samenwerking en uitwisseling tussen steden, nutsbedrijven en aannemers.
+Hoe zou de toezicht-app eruit kunnen zien?
+Een veldtoepassing voor toezichters van Stad Antwerpen kan bestaan uit volgende modules / schermen, gegroepeerd rond gebruiksmomenten:
+1. Startscherm: "Mijn Werven Vandaag"
+Lijst van openstaande toezichttaken op basis van locatie & planning
+Live kaartje met geolocatie
+Filter op type werk: nuts, aanwerken bouw, onderhoud, districtsvraag, etc.
+2. Vaststelling maken
+Foto toevoegen of nemen
+Notitieveld (met sjablonen voor standaardformuleringen)
+Koppeling aan dossiernummer of GIPOD-ID
+Koppeling aan lijst met controlepunten (herstelkwaliteit, signalisatie, vergunningstatus)
+3. Documenten & Vergunningen
+Opzoeken van signalisatievergunning
+Domeintoelating of werftoelating opzoeken via adres, naam of dossiercode
+Raadplegen van lastvoorwaarden of bijzonderheden
+Opslaan in de offline cache voor veldgebruik
+4. Toolbox voor beoordeling
+Checklists voor:
+Herstel in natuursteen / asfalt
+Tijdelijke versus definitieve aanleg
+Domeinvergunningsvoorwaarden
+Quick access tot:
+OSLO-standaardvelden
+Code Nuts checklist
+Eigen bestek (Standaardbestek 250)
+Reglementen
+5. Synchronisatie & Rapportering
+Offline werken en synchroniseren zodra er verbinding is
+Automatisch dagverslag (gegenereerd uit vaststellingen)
+Export naar PDF of integratie met intern rapportplatform
+Kenmerken van niet-WIMP schermopbouw
+In plaats van vensters, menubalken en pointerinteractie draait het om touch, context en eenvoud:
+WIMP-aanpak (oud)
+Moderne mobiele-first aanpak (niet-WIMP)
+Meerdere vensters naast elkaar
+Eén taak per scherm, focus op actie
+Menu’s met lange lijstopties
+Contextuele knoppen/acties in de flow
+Iconen als losse toegang tot functies
+Acties direct op object (bv. swipe op foto → markeer als hersteld)
+Pointer nodig voor selectie
+Directe touch-interactie: tik, swipe, pinch
+Scrollbare lijsten en tabbladen
+Cards, modals, bottom sheets, floating action buttons
+Statisch navigatiemenu
+Dynamisch, afhankelijk van de stap in het proces
+Voorbeeld: Vaststelling toevoegen (niet-WIMP)
+Doel: Een toezichter staat bij een werf en moet snel een vaststelling doen, inclusief foto, locatie en opmerkingen.
+Schermflow:
+Home / Werkoverzicht
+Lijst van toegewezen werven als cards met foto, adres, status
+Floating action button (+) rechts onderaan om een nieuwe vaststelling te starten
+Werkdetails (tap op card)
+Kaart bovenaan met werflocatie + nabije werken (GIS-lagen)
+Tabs of horizontale swipes: Info – Foto's – Historiek
+Belangrijkste acties direct zichtbaar: Maak foto, Voeg opmerking toe, Status wijzigen
+Foto maken
+Camera direct open, zonder apart venster of bestandsselectie
+Automatisch geotaggen
+Mogelijkheid om te tekenen/highlighten op de foto (inline annotatie)
+Opmerking toevoegen
+Kort tekstveld (max 200 tekens) direct op het scherm
+Voice-to-text knop voor snelle input
+Opslaan & Verzenden
+Grote Opslaan knop onderaan (duimpositie)
+Feedbackbanner (“Vaststelling verzonden”) en terug naar overzicht
+Belangrijke ontwerpelementen
+Bottom Navigation / Floating Action Buttons i.p.v. klassieke menubalk
+Cards & contextuele acties: elk object (vaststelling, foto) heeft eigen swipe/tap acties
+Progressive disclosure: eerst alleen kerninfo tonen, extra details pas bij swipe of tap
+Inline maps: GIS-view direct geïntegreerd in de flow, zonder apart venster
+Touch-first interacties: swipe voor status, pinch voor zoom, long press voor meer opties
+Offline-first: alles opslaan in lokale queue, later synchroniseren
+Referenties & inspiratie
+Material Design van Google: Card UI + FAB als kernpatronen
+Apple Human Interface Guidelines: Single Task Focus voor iOS apps
+Open-source apps zoals Collector for ArcGIS en Field Maps voor kaart- & veldregistratie
+Uitdaging:  Policy-Implementation Gap in nutswerken
+Uitdaging
+De stad Antwerpen beschikt over duidelijke beleidskaders en reglementen voor het uitvoeren en herstellen van nutswerken, zoals de Code Nuts, het retributiereglement en technische richtlijnen voor sleufopbouw en materiaalgebruik. Het management van de nutsmaatschappijen erkent de principes van goed herstel en is vertrouwd met deze regels.In de praktijk blijkt echter een structurele kloof tussen beleid en uitvoering: de zogeheten policy-implementation gap. De oorzaken zijn veelzijdig:- Onvoldoende kennis op het terrein – arbeiders van (onder)aannemers beschikken vaak niet over de specifieke vakkennis voor kwalitatief herstel. Er wordt regelmatig verwezen naar routines ('dat doen we toch altijd zo') die afwijken van de norm.- Tijdsdruk en contractuele marges – te krappe marges in onderaannemerscontracten leiden tot druk om snel af te werken, wat ten koste gaat van nauwkeurigheid en kwaliteit.- Gebrek aan integrale opvolging – informatie uit GIPOD is vaak onvoldoende verrijkt of actueel om gerichte controles mogelijk te maken.- Versnipperde communicatie – aanvragen, vergunningen en herstellingsopdrachten lopen via verschillende systemen en diensten.- Onvoldoende bewijslast – terreinobservaties worden niet structureel gekoppeld aan het brondossier, waardoor juridische afdwingbaarheid en terugkoppeling bemoeilijkt worden.Het gevolg: te lange uitvoeringsperiodes, gebrekkige herstellingen, hogere herstelkosten en blijvende hinder voor bewoners en weggebruikers.
+Oplossing
+Het project ‘Digitale Nuts’ pakt deze kloof aan via digitale integratie, vakinhoudelijke borging en procesvernieuwing:1. GIPOD+ intake – Nutsbedrijven leveren bij de aanvraag niet alleen plandata, maar ook verplicht:   - Geotagged foto’s vóór, tijdens en na de werken, rechtstreeks aan de NUTS-datazijde.   - Technische parameters (materiaaltype, sleufopbouw, legverband) conform stedelijke normen.   Deze data wordt via GIPOD beschikbaar gesteld aan steden en gemeenten.2. Mobiel toezicht met terugkoppeling – Toezichters registreren vaststellingen op het terrein met foto’s, meetdata en PV’s, gekoppeld aan het GIPOD-dossier. Eventuele afwijkingen worden direct digitaal teruggekoppeld naar het nutsbedrijf.3. Automatische kwaliteitscontrole – GIS-lagen en materiaaldatabanken (WIS) toetsen automatisch of herstelmethodes voldoen aan de stedelijke norm.4. Visuele controle door alle partijen – Doordat ook arbeiders van nutsbedrijven verplicht foto’s uploaden aan de NUTS-datazijde, ontstaat een gedeeld visueel dossier. Steden kunnen dit inzien via de mobiele app.5. Capaciteitsgericht toezicht – Gerichte selectie van controlecases op basis van data.
+Innovatief karakter
+- Eén gedeeld digitaal dossier voor elk grondwerk, centraal in GIPOD.- Verplichte fotolog voor uitvoerders als kwaliteits- en bewijsmiddel.- Realtime integratie van toezichtdata met plandata, GIS-lagen en materiaalnormen.- Standaardisatie van kwaliteitscriteria op Vlaams niveau.
+Impact
+- Beleidsdoelen waarmaken: regels worden niet enkel gekend door het management, maar ook geborgd op het terrein door digitale checks en verplicht fotobewijs.- Kwaliteitsverbetering: minder fouten, minder herhaald openbreken, duurzame bestrating.- Efficiëntie: minder administratieve last, snellere doorlooptijden.- Transparantie: visueel bewijs voor elke stap, gedeeld tussen alle partijen.
+Schaalbaarheid
+Doordat de oplossing aansluit op GIPOD en OSLO-standaarden, kan ze eenvoudig door andere Vlaamse steden en gemeenten worden overgenomen, zonder extra ontwikkelkosten. Dit biedt een Vlaams breed model dat de samenwerking tussen lokale besturen en nutsbedrijven structureel versterkt.
+Uitdaging: Verbeterde Communicatie met Bewoners
+Uitdaging
+Bewoners ervaren hinder door nuts- en andere werken in de publieke ruimte, maar ontvangen vaak beperkte, laattijdige of onvolledige informatie. Huidige communicatiekanalen – zoals meldingen via KLM2 of meldingen.antwerpen.be – zijn vooral reactief en gefragmenteerd. Er is geen geïntegreerde informatiestroom tussen GIPOD, toezichthouders, nutsmaatschappijen en burgers. Hierdoor ontstaan frustraties, onbegrip en klachten, en blijft de terugkoppeling over planning, herstellingen en verantwoordelijken vaak uit. Bovendien zijn updates niet altijd in begrijpelijke taal of contextueel relevant voor de betrokken locatie.
+Oplossing
+Een geïntegreerd communicatie-ecosysteem dat actuele gegevens uit GIPOD, toezicht-apps en nutsmaatschappijen direct koppelt aan bewonerscommunicatie.
+Kerncomponenten:• Koppeling van klachtenkanalen (KLM2, meldingen.antwerpen.be) aan GIPOD-dossiers.• Automatische statusupdates per werk (bv. startdatum, vertraging, hersteltermijn) naar bewoners.• Contextuele communicatie op basis van straat, zone of project.• AI-ondersteunde sentimentanalyse voor prioritering en gepaste toon.• Gebruik van bewonersvriendelijke taal en visuele hulpmiddelen.• Integratie van QR-codes op werfborden en digitale nieuwsbrieven voor real-time updates.
+Innovatief karakter
+Deze aanpak transformeert bewonerscommunicatie van een passief, reactief proces naar een proactief en gepersonaliseerd systeem. Door koppelingen te maken tussen GIPOD en meldingskanalen kunnen burgers automatisch geïnformeerd worden over werken in hun directe omgeving. AI-analyse helpt om urgente meldingen sneller op te volgen en de toon af te stemmen op de situatie. Het gebruik van QR-codes en digitale platforms maakt informatie toegankelijk op het moment dat die nodig is.
+Impact
+• Lagere klachtendruk door transparante en tijdige informatievoorziening.• Kortere responstijd op meldingen door automatische koppeling met actuele dossiers.• Hogere tevredenheid bij bewoners dankzij duidelijke taal en relevante context.• Betere samenwerking tussen stad, nutsmaatschappijen en aannemers via gedeelde informatie.• Minder misverstanden en onnodige opvolging doordat bewoners op de hoogte blijven.
+Schaalbaarheid
+Het communicatie-ecosysteem is gebaseerd op gestandaardiseerde koppelingen met GIPOD en kan daardoor eenvoudig worden uitgerold naar andere steden en gemeenten. De opzet is modulair: elke stad kan zelf bepalen welke kanalen, AI-functies en communicatiemiddelen ze activeert. De uniforme datastandaarden maken bovenlokale samenwerking en gezamenlijke communicatiecampagnes mogelijk.
+Uitdaging: GIS als Sleutel voor Verbeterde Publiekscommunicatie over Werken in de Publieke Ruimte
+Uitdaging
+Informatie over werken in de publieke ruimte is versnipperd over verschillende kanalen: GIPOD, stedelijke projectpagina’s, meldingsplatformen, nieuwsbrieven, werfborden en aparte storingspagina’s van nutsmaatschappijen. Hoewel deze bronnen waardevolle informatie bevatten, ontbreekt een geïntegreerd en actueel overzicht voor de burger. Data is vaak incompleet, verouderd of moeilijk te vinden. Bovendien zijn de huidige kaarttoepassingen beperkt in interactiviteit en relevantie, waardoor bewoners moeite hebben om snel te begrijpen welke werken hen zullen beïnvloeden.
+Oplossing
+Een robuuste GIS-werking vormt het fundament voor een modern en geïntegreerd communicatieplatform. Door alle relevante databronnen – GIPOD, stedelijke projecten, meldingen.antwerpen.be, nutsmaatschappijen, Vlaamse en provinciale platforms – samen te brengen in één centrale GIS-viewer, ontstaat een betrouwbaar en actueel beeld voor zowel burgers als interne medewerkers.Kerncomponenten:• Centrale kaartviewer met alle werken (stad, nuts, derden) inclusief actuele status en contactinformatie.• Realtime synchronisatie met GIPOD en interne stedelijke systemen.• Integratie van foto’s, vergunningen, hersteltermijnen en verantwoordelijken bij elke werkfiche.• Persoonlijke filteropties voor burgers op basis van adres, wijk of type werk.• GIS-ondersteunde selectie van hinderzones voor gerichte Figuur 2  view RADAR stad GentFiguur 2  view RADAR stad Gentbewonersbrieven en digitale updates.• Koppeling van QR-codes op werfborden naar dynamische kaartweergaven.
+Figuur 2  view RADAR stad Gent
+Figuur 2  view RADAR stad Gent
+Innovatief karakter
+De voorgestelde aanpak gaat verder dan klassieke kaarttoepassingen door GIS te gebruiken als dynamisch communicatie-instrument. De GIS-viewer wordt gevoed met actuele data en verrijkt met contextuele informatie zoals foto’s en herstelrichtlijnen. Burgers zien niet alleen ‘waar’ er gewerkt wordt, maar ook ‘wat’ er gebeurt, ‘wanneer’ en ‘door wie’. De koppeling met QR-codes en meldingsplatformen maakt het mogelijk dat bewoners direct vanop straat toegang hebben tot gedetailleerde informatie over de werken in hun buurt.
+Impact
+• Betere transparantie richting bewoners door volledig en actueel overzicht.• Lagere klachtendruk doordat bewoners proactief geïnformeerd worden.• Snellere interne opvolging doordat toezichters en administratieve medewerkers werken kunnen lokaliseren en controleren vanuit één centrale omgeving.• Meer vertrouwen van burgers in de uitvoering van publieke werken.• Efficiëntere communicatiecampagnes dankzij gerichte selectie van getroffen adressen.
+Schaalbaarheid
+Omdat de GIS-werking gebaseerd is op open standaarden en koppelingen met bestaande platformen zoals GIPOD, kan deze oplossing eenvoudig worden uitgerold naar andere steden en gemeenten. De modulaire opbouw laat toe om lokaal te kiezen welke databronnen en functionaliteiten worden geactiveerd, terwijl de kernarchitectuur uniform blijft. Dit bevordert bovenlokale samenwerking en maakt gezamenlijke communicatie-initiatieven mogelijk.
+Uitdaging: Meetpunten en Evaluatie – Digitale Nuts
+Uitdaging
+Het meten van de kwaliteit en efficiëntie van nutswerken in de publieke ruimte gebeurt vandaag fragmentarisch en zonder uniforme set van indicatoren. Hoewel er in het proefproject WYRE in Merksem al duidelijke afspraken werden gemaakt over dossieropbouw, GIPOD-registratie en bewonerscommunicatie, ontbreekt nog een overkoepelend meetsysteem dat zowel technische uitvoering, communicatie als doorlooptijden in kaart brengt. Hierdoor is het moeilijk om objectief te evalueren of de kwaliteit op het terrein daadwerkelijk verbetert en om te sturen op basis van concrete resultaten.
+Oplossing
+Ontwikkeling van een uniforme, digitale meetmethodiek gekoppeld aan GIPOD en de toezicht-app. Deze meetmethodiek combineert vaste kernindicatoren met evoluerende kwaliteitsparameters, zodat zowel basisprestaties als groei zichtbaar worden. Alle meetpunten worden per kwartaal gerapporteerd en zijn inzichtelijk voor zowel stad, nutsmaatschappijen als aannemers.
+Kernmeetpunten (direct meetbaar):• % dossiers volledig en correct ingediend.• % correcte intekening en timing in GIPOD.• % werven correct gesignaleerd.• % werven met gebuste en opgeladen bewonersbrief.• % herstellingen conform bestek en materiaalvoorschriften.• % dossiers met voor-, tijdens- en na-foto’s in GIPOD.• % herstellingen binnen vergunnings- of reglementaire termijn.
+Evoluerende meetpunten (kwalitatieve groei):• Kwaliteitsscore per aannemer (combinatie van dossierkwaliteit, uitvoering, herstel, communicatie).• Herstelscore per materiaaltype (natuursteen, asfalt, beton).• Aantal herhaalde interventies per locatie.• Respons- en reactietijd tussen melding en start herstel.• GIS-dekking en datavolledigheid (% werven volledig zichtbaar met alle lagen).
+Innovatief karakter
+Door de meetpunten te koppelen aan een digitale toezicht-app en aan GIPOD ontstaat een geautomatiseerd, transparant meetsysteem. Dit vervangt subjectieve beoordelingen door objectieve data en maakt benchmarking tussen nutsmaatschappijen mogelijk. De evoluerende meetpunten stimuleren continue verbetering door trends en terugkerende problemen vroegtijdig te signaleren.
+Impact
+• Structurele verbetering van dossierkwaliteit en uitvoering.• Minder hinder en snellere herstellingen door beter inzicht in doorlooptijden.• Betere samenwerking en afstemming tussen stad, nutsmaatschappijen en aannemers.• Hogere tevredenheid bij bewoners door verbeterde signalisatie en communicatie.• Transparante prestatievergelijking tussen nutsmaatschappijen.
+Schaalbaarheid
+Het meetsysteem is gebaseerd op open standaarden en volledig gekoppeld aan GIPOD, waardoor het eenvoudig uit te rollen is naar andere steden en gemeenten. De modulaire opzet laat toe om meetpunten aan te passen aan lokale prioriteiten zonder de kernstructuur te verliezen. Hierdoor kan het systeem bovenlokaal ingezet worden en bijdragen aan Vlaamse kwaliteitsnormen voor nutswerken in de publieke ruimte.
+Uitdaging: Schaalbaarheid -  Dissiminatieplan
+UitdagingVeel lokale besturen worstelen met de opvolging van nutswerken: versnipperde processen, beperkte datadeling, trage communicatie en kwaliteitsverlies in de publieke ruimte. Kennis over efficiënte opvolging en herstel is zelden gebundeld en nauwelijks overdraagbaar. Hierdoor moeten andere steden het wiel opnieuw uitvinden, met hoge administratieve lasten en onnodige hinder voor burgers.
+OplossingHet project levert een geïntegreerde digitale tool en procesaanpak op, ondersteund door draaiboeken, modelbestekken en procesflows. Deze worden actief gedeeld met andere steden en intercommunales via bestaande netwerken en communicatiekanalen. Naast de software worden ook de methodiek en de juridische afspraken beschikbaar gesteld, zodat lokale besturen snel kunnen instappen.
+Innovatief karakterHet disseminatieplan koppelt technische overdraagbaarheid (herbruikbare softwaremodules, API-koppelingen met GIPOD en GIS) aan bestuurlijke overdraagbaarheid (modeldocumenten, juridische kaders). De tool wordt modulair opgebouwd, zodat steden enkel de relevante onderdelen kunnen overnemen. Deze combinatie van technische en organisatorische overdracht is nieuw in nutsbeheer.
+ImpactAndere lokale besturen kunnen zonder zware ontwikkelingskosten profiteren van een bewezen aanpak, wat leidt tot minder hinder in de publieke ruimte, efficiëntere processen en lagere administratieve lasten. Door schaalvoordelen in onderhoud en kennisopbouw worden ook de kosten op lange termijn gedrukt.
+SchaalbaarheidDe resultaten worden ontsloten via:
+Draaiboek en handleidingen in open formaat, gepubliceerd via de VVSG-kennisbank (https://www.vvsg.be/kennisitem).
+Modelbestek en raamcontractformule beschikbaar via Vlaamse aanbestedingsdatabank (https://www.publicprocurement.be).
+VVSG-sessies en webinars voor kennisdeling met alle Vlaamse steden en gemeenten (https://www.vvsg.be/kalender).
+City of Things-projectendatabank bij VLAIO voor eindresultaten en documentatie (https://www.vlaio.be/nl/projecten/city-of-things).
+Digipolis-netwerk voor technische partnerschappen en hergebruik van softwarecomponenten (https://www.digipolis.be).
+Projectpagina op Antwerpen.be voor publieke communicatie en downloadbare tools (https://www.antwerpen.be).
+Groepsaankoopmodel via VVSG en intercommunales (bv. Fluvius-partnerschap) voor gezamenlijke licentie- en onderhoudskosten
+Zo kan elke gemeente in Vlaanderen de oplossing binnen enkele maanden implementeren, ongeacht schaalgrootte of digitale maturiteit.
+Uitdaging: Eenduidige naamgeving” Digitale nuts”, “Mobiele nuts” of “verbeterde werking Nuts”
+Uitdaging
+Doorheen de ontwikkeling van het project werden verschillende namen gegeven aan het project. Het is van belang de naamgeving te verduidelijken, de verschillen in focus bloot te leggen, en te komen tot één gedragen projectnaam met ondertitel die alle ambities samenvat.
+Analyse van huidige benamingen
+Huidige naam
+Impliciete focus
+Risico of beperking
+Digitale Nuts
+Brede digitalisering nutsproces
+Te abstract – onduidelijk wat er precies verandert
+Mobiele Nuts
+Operationele opvolging op terrein
+Te eng – focust op toezicht/toepassing
+Verbeterde Werking Nuts
+Structurele hervorming van het proces
+Functioneel juist, maar weinig wervend
+Wat elk van deze namen eigenlijk dekt
+Digitale Nuts → de digitale infrastructuur en tools die we bouwen om toezicht, communicatie, en herstel digitaal te organiseren.
+Mobiele Nuts → de mobiele interface en digitale opvolging van werven op het terrein door toezichters en vaststellers.
+Verbeterde Werking Nuts → de hele reorganisatie, inclusief procesverbetering, retributieregels, samenwerking met nutsmaatschappijen, en capaciteitsopbouw binnen de stad.
+Ze zijn dus onderling verbonden: Mobiele Nuts is een tool binnen het bredere project Digitale Nuts, dat op zijn beurt een digitale component is van de volledige Verbeterde Werking Nuts.
+Oplossing
+Hoofdtitel:“NUTS+ of Nuts 360” – Naar een integraal toezicht op nutswerken in Antwerpen
+“+ of 360°” verwijst naar: toezicht, administratie, herstel, communicatie en beleid.
+Binnen het project kunnen we dan subcomponenten benoemen:
+NUTS360 Digital → alles rond centrale intake, databronnen, GIPOD-koppelingen, OSLO en backend.
+NUTS360 Mobile → mobiele toepassing voor toezichters en interventies.
+NUTS360 Herstel → focus op afrekeningen, bonnen en controle op correct herstel.
+NUTS360 Proefprojecten → specifieke testcases zoals WYRE Merksem.
+Communicatiesuggestie:
+“Het project NUTS+ of NUTS360° verenigt onder één vlag de verschillende deelinitiatieven rond toezicht, herstelling, digitalisering en samenwerking met nutsmaatschappijen. De naam verwijst naar het streven naar een pluskwaliteit in het beheer van nutswerken in Antwerpen. NUTS+ staat voor een slimme, efficiënte en herbruikbare aanpak, zowel digitaal als organisatorisch.”
+*(Variante ODINA -OPENBAAR DOMEIN INNAME NUTS ANTWERPEN kan verder onderzocht worden)
+Uitdaging  Juridische aspecten & Uitrol digitale tool
+UitdagingEen digitaal platform dat door meerdere steden, nutsmaatschappijen en private partijen gebruikt zal worden, moet juridisch robuust en marktneutraal zijn.Aanbestedingsprocedures voor innovatieve software brengen risico’s mee: vendor lock-in, bezwaarprocedures of te beperkte deelname van marktpartijen.Bovendien moet de app schaalbaar zijn voor kleinere gemeenten zonder telkens een zware aanbesteding te moeten doorlopen.
+Oplossing
+Innovatiegericht aanbesteden: selectiecriteria expliciet koppelen aan interoperabiliteit (OSLO), open API’s, overdraagbaarheid van data en code.
+Raamovereenkomst/groepsaankoop voorzien: andere steden en gemeenten kunnen eenvoudig aansluiten zonder aparte aanbesteding.
+Juridische toets vanaf MVP-fase door stadsjuristen en externe specialisten.
+Hybride uitrolmodel: centrale publieke toegang (webtoepassing of appstore) + optionele integratie in commerciële tools (bv. Eaglebe).
+Athumi/GIPOD als neutrale host voor kernkoppelingen → garandeert marktneutraliteit en vertrouwen bij nutsbedrijven.
+Innovatief karakter
+Niet alleen technologische innovatie, maar ook juridische innovatie: de aanbesteding zelf wordt ontworpen om open standaarden en marktbrede deelname te stimuleren.
+Combinatie van publieke uitrol (centrale toegang) en private integratie (API’s) is nieuw in Vlaanderen.
+Impact
+Vermijdt lock-in en garandeert dat de applicatie toekomstbestendig blijft.
+Vergroot de adoptie door kleinere gemeenten (lagere drempel) en nutsmaatschappijen (via neutrale koppelingen).
+Transparantie in de markt verhoogt de kans op hergebruik en verdere innovatie.
+Schaalbaarheid
+Dankzij raamovereenkomsten en API-architectuur kunnen zowel kleine gemeenten als private partners eenvoudig aansluiten.
+Athumi/GIPOD als neutraal distributie- en hostingkanaal maakt Vlaamse opschaling mogelijk.
+Mogelijke onderzochte pistes
+Overzicht van mogelijke juridische en organisatorische uitrolscenario’s
+1. Centrale publieke app (Windows/Apple/Google store)
+App wordt als standaardapplicatie aangeboden in appstores.
+Beheer en hosting via een publieke instantie (bv. Digipolis of Athumi).
+Voordeel: gebruiksgemak, brede toegankelijkheid, herkenbare distributie.
+Nadeel: updates, security en databeheer moeten centraal en continu geborgd worden.
+2. Webtoepassing gekoppeld aan GIPOD/Athumi
+Geen aparte installatie, maar toegang via browser.
+Hosting en security onder beheer van GIPOD of Athumi.
+Voordeel: naadloze integratie met Vlaamse data-infrastructuur, schaalbaar.
+Nadeel: minder flexibiliteit voor lokale uitbreidingen.
+3. Digipolis als ontwikkelaar & verspreider
+Digipolis bouwt en beheert de toepassing, en kan ze via raamovereenkomst aanbieden aan andere steden.
+Voordeel: expertise en ervaring met stedelijke digitale tools.
+Nadeel: Digipolis is juridisch gebonden aan overheidsopdrachten, waardoor verkoop/licenties aan derden zorgvuldig geregeld moeten worden.
+4. Private partners (bv. Eaglebe, Spotbooking, …)
+Integratie van de app in hun bestaande producten (vergunningenbeheer, signalisatieplanning, …).
+Voordeel: marktverspreiding, schaalvoordelen, bredere adoptie.
+Nadeel: risico op vendor lock-in of commerciële afhankelijkheid.
+5. Rol van nutsmaatschappijen
+Kunnen de app gebruiken als “operationeel dashboard” voor hun werken.
+Juridisch gevoelige kwestie: ze mogen niet exclusief bevoordeeld worden in de aanbesteding.
+Wel mogelijk via open API’s en open standaarden: nutsbedrijven integreren de data in hun eigen tools.
+6. Juridisch kader
+Subsidie = verplichting tot toepassing van de wet op overheidsopdrachten.
+Dit betekent:
+Open aanbesteding of onderhandelingsprocedure met voorafgaande bekendmaking.
+Heldere selectiecriteria: OSLO-conformiteit, API-toegang, overdraagbaarheid.
+Raamovereenkomsten of groepsaankopen zijn juridisch mogelijk en helpen om andere steden/stakeholders eenvoudig te laten instappen.
+Nutsbedrijven en private partijen kunnen wel deelnemen als partner in de ontwikkeling (co-creatie, klankbord), maar niet exclusief de distributie in handen krijgen.
+Uitdaging:  Van indruk naar inzicht: objectieve KPI’s voor nutswerken
+UitdagingDe uitdaging is om de kwaliteit, doorlooptijd en hinder van nutswerken niet langer subjectief te beoordelen, maar via uniforme en automatisch meetbare KPI’s rechtstreeks uit de app en gekoppelde datastromen te monitoren
+Oplossing
+1. Kwaliteit van herstel
+Baseline: in 2024 werd bij >70% van de gecontroleerde nutsherstellingen een fout of tekortkoming vastgesteld (rapport vaststellers).
+Target: tegen einde MVP-fase (M24) <25% fouten → een verbetering van 30%.
+Meetmethode: steekproefcontroles en vaststellingsapp met AI-beeldherkenning, gevalideerd door toezichters.
+2. Doorlooptijd herstelling
+Baseline: mediane hersteltijd van nutswerken in Antwerpen = ca. 20 werkdagen (KPMG-studie & retributiepiloot).
+Target: reductie met −25% (naar max. 15 werkdagen) binnen 24 maanden.
+Meetmethode: automatische koppeling herstelbon ↔ fotolog ↔ GIPOD-registratie.
+3. Klachten bewoners
+Baseline: gemiddeld 120 klachten/maand rond nutswerken (KLM-data 2024).
+Target: reductie van −20% binnen 2 jaar door betere communicatie en kortere hinder.
+Meetmethode: monitoring KLM-registraties en bewonersfeedback via QR-codes/app.
+4. Datacompletude & OSLO-conformiteit
+Baseline: in 2024 zijn <30% van de nutsdossiers volledig en conform geregistreerd in GIPOD.
+Target: +30% OSLO-conformiteit tegen M18; 80% conformiteit bij projectafsluiting.
+Meetmethode: automatische validatie via OSLO-schema’s.
+5. Efficiëntie toezichters
+Baseline: toezichters besteden ±40% van hun tijd aan administratie (Excel, mails, PV’s).
+Target: reductie naar <20% administratietijd → verdubbeling terreinuren.
+Meetmethode: tijdsregistratie en workflowanalyse voor en na MVP-uitrol.
+6. Adoptie door nutsbedrijven/steden
+Baseline: 0 nutsbedrijven en 0 andere steden gebruiken de tool in 2025.
+Target: min. 1 nutsmaatschappij en 2 steden actief in MVP; tegen einde project min. 5 steden en 3 nutsbedrijven aangesloten.
+Meetmethode: formele gebruiksovereenkomsten + actieve datasets in GIPOD.
+Automatisch gemeten KPI’s
+🔹 Kwaliteit & herstel
+% herstellingen correct bij eerste controle– Data: validatie door toezichters + AI-check fotolog.
+Aantal herstellingen dat binnen X dagen opnieuw open moet– Data: koppeling GIPOD + opvolg-vaststellingen.
+% herstel conform Code Nuts (legverband, funderingstype, materiaalkeuze).– Data: fotolog + checklist in app.
+Gemiddelde score “herstelkwaliteit” per nutsbedrijf/aannemer– Data: geautomatiseerde scoringsmodule.
+🔹 Hinder & doorlooptijd
+Gemiddelde doorlooptijd herstel (dagen)– Data: verschil tussen eerste vaststelling en goedgekeurd herstel.
+% werken met tijdelijke veilige afsluiting (bv. asfaltlap geplaatst)– Data: aannemerupload + fotolog.
+% werken waarbij signalisatie op tijd werd geplaatst– Data: fotolog vóór start + validatie signalisatievergunning.
+Aantal dagen dat een voetpad/graafzone ontoegankelijk blijft– Data: statusupdates + GIS-overlay toegankelijkheidszones.
+🔹 Data & proces
+% nutsdossiers OSLO-conform aangeleverd– Data: automatische OSLO-validator.
+% GIPOD-dossiers met volledige statusupdates (start, uitvoering, herstel, oplevering).– Data: GIPOD API.
+% herstelbonnen automatisch verrekend– Data: workflow app ↔ financieel systeem.
+Gemiddelde verwerkingstijd tussen vaststelling en facturatie– Data: timestamps in dossierflow.
+🔹 Toezicht & capaciteit
+Aantal vaststellingen per toezichter per week– Data: logins en registraties in app.
+% terreinuren vs. bureau-uren– Data: activiteit in app + adminlog.
+Gemiddelde responstijd toezichter op melding– Data: verschil timestamp melding ↔ timestamp eerste actie.
+🔹 Bewoners & communicatie
+% werken met QR-code en digitale info actief– Data: scanlogs + projectstatus.
+Aantal bewonersmeldingen dat automatisch aan juiste werk gekoppeld is– Data: participatiemodule ↔ GIPOD.
+% bewonersmeldingen binnen X dagen beantwoord– Data: workflowmeldingen in app.
+Aantal klachten per 100 werken (KLM-data).– Data: koppeling KLM ↔ GIPOD.
+🔹 Samenwerking & adoptie
+Aantal nutsbedrijven dat actief data aanlevert via app/API– Data: actieve datasets in GIPOD.
+Aantal gemeenten dat MVP of module X gebruikt– Data: gebruikslogins per bestuur.
+% nutswerken waarbij meerdere actoren (nuts, aannemer, toezichter) actief dezelfde data gebruiken– Data: gebruikersrollen in dossierflow.
+Innovatief karakter
+Digitale keten in één systeem: Voor het eerst worden vergunning, uitvoering, toezicht en herstel digitaal aan elkaar geknoopt.
+Automatische KPI’s: Geen manuele rapportering, maar real-time monitoring via foto’s, GPS, GIPOD-data en AI-beeldanalyse.
+Modulaire schillenaanpak: Innovatief organisatiemodel dat het mogelijk maakt om stapsgewijs in te stappen, risico’s te spreiden en tegelijk schaalbaarheid te garanderen.
+Privacy by design: Integratie van DPIA, automatische blur en Athumi-datadiensten als neutrale toegangspoort – ongezien in Vlaamse toezichttoepassingen.
+Open standaarden als hefboom: Gebruik van OSLO-profielen en open API’s, waardoor het systeem herbruikbaar is voor alle Vlaamse steden en niet gebonden blijft aan één leverancier of stad.
+Impact
+Voor bewoners: minder hinder, beter geïnformeerd, kortere afsluitingen van straten en veiliger gebruik van de publieke ruimte.
+Voor toezichters: efficiënter werken, meer tijd op het terrein en juridisch sluitende vaststellingen, wat hun rol versterkt en hun werkdruk verlaagt.
+Voor nutsbedrijven: transparantie en sneller bijsturen bij fouten → minder conflicten, minder herstelkosten en betere reputatie.
+Voor beleid en politiek: objectieve KPI’s om beslissingen en onderhandelingen met nutsbedrijven te onderbouwen, plus bewijs van gerealiseerde hinderreductie.
+Voor Vlaanderen: schaalbare oplossing die inspeelt op duizenden werken per jaar, met minder hinder, lagere kosten en beter gebruik van publieke middelen.
+Schaalbaarheid
+De gekozen KPI’s zijn vanaf de kernlaag zo ontworpen dat ze automatisch gegenereerd worden uit de applicatie en de gekoppelde databronnen (GIPOD, fotolog, herstelbonnen, KLM). Dat betekent dat geen enkele stad of nutsmaatschappij aparte meetinstrumenten moet ontwikkelen: zodra men de app gebruikt, ontstaan de KPI’s vanzelf.
+Omdat de KPI’s gebaseerd zijn op uniforme OSLO-profielen en realtime dataflows, zijn ze onafhankelijk van lokale werkprocessen en dus direct overdraagbaar naar andere gemeenten. Kleine steden krijgen zo dezelfde kwaliteits- en hinderindicatoren als grote steden, zonder bijkomende investeringen in monitoring.
+Ook nutsmaatschappijen profiteren van schaalbaarheid: dezelfde KPI’s gelden voor alle steden waarin ze actief zijn. Zo ontstaat een Vlaamse benchmark, waarmee prestaties transparant en vergelijkbaar worden.
+Tot slot kunnen KPI’s eenvoudig uitgebreid worden naar andere domeinen (bv. wegenonderhoud of evenementenbeheer), omdat de onderliggende meetmethode steeds dezelfde logica volgt: foto + locatie + tijd + status = objectieve indicator
+Uitdaging:  kwaliteitsbewaking QA Gate
+🧩 Wat betekent “QA-gate”?
+QA staat voor Quality Assurance — kwaliteitsbewaking.Een QA-gate is letterlijk een “poort” of controlepunt in het projectproces waar het werk pas verder mag als het aan vooraf vastgelegde kwaliteitscriteria voldoet.
+👉 Je kunt het zien als een veiligheidshek tussen projectfasen.
+Bijvoorbeeld:
+Een ontwikkelteam mag de app niet opleveren aan testgebruikers vóór de QA-gate “functionele testen” is goedgekeurd.
+⚙️ De logica achter QA-gates
+Elke QA-gate toetst of:
+De deliverables volledig zijn (bv. code, documentatie, testresultaten),
+De kwaliteitseisen gehaald zijn (bv. OSLO-conform, performantie, beveiliging),
+De juiste goedkeuringen verleend zijn (bv. door productboard of security-officer).
+Pas wanneer alle criteria “groen” staan, mag het project naar de volgende fase of laag.
+📊 Typische QA-gates in een digitaal traject
+Fase
+QA-gate
+Controleert op
+Verantwoordelijke
+Ontwerp
+Functioneel ontwerp goedgekeurd
+Volledigheid user stories, aansluiting op OSLO-profiel, juridische toetsing
+Productboard + Digitaal Vlaanderen
+Ontwikkeling
+Code review & unit tests
+Codekwaliteit, beveiliging, versiebeheer, documentatie
+Digipolis (lead dev)
+Integratie
+API-integratietest geslaagd
+Dataconsistentie tussen app, GIPOD, Athumi, lokale systemen
+Digipolis + Digitaal Vlaanderen
+Acceptatie
+Gebruikerstest en veldproef
+Functioneel gedrag, stabiliteit, UX
+Projectkernteam (toezichters)
+Release
+Go-live readiness check
+Backupplan, incidentenbeheer, DPIA, SLA’s
+Stuurgroep + programmabegeleiding
+Opschaling
+Herbruikbaarheidscheck
+Documentatie, licenties, standaardisatie, training beschikbaar
+VVSG / VRN
+🧠 Waarom QA-gates belangrijk zijn
+Ze verankeren kwaliteit in plaats van die pas op het einde te controleren.
+Ze verdelen verantwoordelijkheid: elke partner weet wanneer hij moet valideren.
+Ze voorkomen “snel doorontwikkelen zonder borging” — cruciaal in VLAIO-contexten.
+Ze maken de audittrail helder: elke deliverable heeft een “gate approval”.
+🏗️ In Digitale Nuts kun je QA-gates koppelen aan de schillen
+Schil
+QA-gate focus
+Voorbeeld
+Laag 1 – Kern (MVP)
+Functionele volledigheid & OSLO-validatie
+“Is de mobiele app stabiel en OSLO-conform?”
+Laag 2 – Uitbreiding
+Integratie en interoperabiliteit
+“Zijn koppelingen met KLM, A-Sign en WIS foutloos?”
+Laag 3 – Opschaling
+Governance & overdraagbaarheid
+“Zijn modeldocumenten, TCO en handleidingen beschikbaar?”
+📋 Samenvattend
+Een QA-gate is een formeel controlepunt dat bepaalt of een deliverable voldoet aan de afgesproken kwaliteitscriteria om door te mogen naar de volgende fase.In Digitale Nuts vormen QA-gates de schakel tussen de technische ontwikkeling (Digipolis), de standaardisatie (Digitaal Vlaanderen) en de governance (VVSG/VRN).Ze waarborgen dat elke laag niet alleen werkt, maar ook overdraagbaar en auditeerbaar is.

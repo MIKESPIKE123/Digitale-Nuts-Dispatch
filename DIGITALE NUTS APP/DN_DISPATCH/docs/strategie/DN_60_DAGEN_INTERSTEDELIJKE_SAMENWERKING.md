@@ -12,6 +12,10 @@ Interstedelijke consensus bouwen rond:
 - MVP-architectuur
 - Governance
 
+Termijnkader:
+- Formele start van dit 60-dagen traject: 2026-03-20.
+- Tot en met 2026-03-19: pre-fase (vibe coding + structuurversterking), zonder formele termijncommit.
+
 AI wordt in dit traject niet centraal gepositioneerd.
 De focus ligt op data, interoperabiliteit en schaalbaarheid.
 

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ChangeEvent } from "react";
 import {
   MAX_DAILY_LIMIT,
   MAX_EXPERIENCE_FACTOR,
@@ -10,6 +10,8 @@ import {
   MAX_SYNC_INTERVAL_MINUTES,
   MIN_VISIT_WEIGHT,
   MIN_SYNC_INTERVAL_MINUTES,
+  exportInspectorSettings,
+  importInspectorSettings,
   parseHolidayText,
 } from "../lib/appSettings";
 import type { DispatchSettings, Inspector, InspectorAbsenceRange } from "../types";
@@ -210,6 +212,32 @@ function createNextInspectorId(drafts: InspectorDraft[]): string {
   return `I${highest + 1}`;
 }
 
+function downloadJsonFile(content: string, fileName: string): void {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  const blob = new Blob([content], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+function buildInspectorExportFileName(): string {
+  const now = new Date();
+  const year = `${now.getFullYear()}`;
+  const month = `${now.getMonth() + 1}`.padStart(2, "0");
+  const day = `${now.getDate()}`.padStart(2, "0");
+  const hour = `${now.getHours()}`.padStart(2, "0");
+  const minute = `${now.getMinutes()}`.padStart(2, "0");
+  return `dn_toezichters_${year}${month}${day}_${hour}${minute}.json`;
+}
+
 export function SettingsModal({
   isOpen,
   inspectors,
@@ -405,6 +433,33 @@ export function SettingsModal({
     setInspectorDrafts((previous) =>
       previous.filter((draft) => draft.draftKey !== draftKey)
     );
+  };
+
+  const handleExportInspectors = () => {
+    const serialized = exportInspectorSettings(settings);
+    downloadJsonFile(serialized, buildInspectorExportFileName());
+    setErrorMessage("");
+  };
+
+  const handleImportInspectors = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) {
+      return;
+    }
+
+    try {
+      const content = await file.text();
+      const nextSettings = importInspectorSettings(content, settings);
+      setErrorMessage("");
+      onSave(nextSettings);
+    } catch (error) {
+      const message =
+        error instanceof Error && error.message
+          ? error.message
+          : "Onbekende fout tijdens import.";
+      setErrorMessage(`Import mislukt: ${message}`);
+    }
   };
 
   const handleSave = () => {
@@ -713,6 +768,28 @@ export function SettingsModal({
             Sluiten
           </button>
         </div>
+
+        <section className="settings-section">
+          <p className="settings-section-title">Back-up toezichters (import/export)</p>
+          <div className="settings-transfer-actions">
+            <button type="button" className="ghost-btn" onClick={handleExportInspectors}>
+              Exporteer toezichters (.json)
+            </button>
+            <label className="ghost-btn settings-file-button">
+              Importeer toezichters (.json)
+              <input
+                type="file"
+                accept=".json,application/json"
+                onChange={handleImportInspectors}
+              />
+            </label>
+          </div>
+          <p className="muted-note">
+            Dit bestand kan je buiten de app beheren. Import overschrijft enkel
+            toezichterconfiguratie: toewijzing, reserve/backup, inzettermijn, afwezigheid en
+            dispatchcapaciteit.
+          </p>
+        </section>
 
         <section className="settings-section">
           <p className="settings-section-title">Vakantiedagen</p>

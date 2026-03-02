@@ -35,7 +35,11 @@ Dit document vertaalt de bestaande analyses naar een uitvoerbaar startplan voor 
 
 ## 4. 60-dagen uitvoeringsplan (gekoppeld aan interstedelijk plan)
 
-### Dag 1-20: Verkenning en baseline
+Termijnkader:
+1. formele startdatum: 2026-03-20 (subsidie-afspraak);
+2. pre-fase tot en met 2026-03-19: vibe coding en structuurversterking.
+
+### Dag 1-20 (2026-03-20 t.e.m. 2026-04-08): Verkenning en baseline
 
 Doel:
 1. app en samenwerking op dezelfde baseline krijgen.
@@ -51,7 +55,7 @@ Output:
 2. lijst structurele blokkers met owner en datum;
 3. akkoord over MVP-scope zonder AI-uitbreiding.
 
-### Dag 21-40: Conceptuele afstemming en standaardisatie
+### Dag 21-40 (2026-04-09 t.e.m. 2026-04-28): Conceptuele afstemming en standaardisatie
 
 Doel:
 1. van losse verbeteringen naar herhaalbaar model.
@@ -67,7 +71,7 @@ Output:
 2. interstedelijk bespreekbare datataal;
 3. aantoonbare verbetering op kwaliteit en doorlooptijd.
 
-### Dag 41-60: Formalisering en schaalvoorbereiding
+### Dag 41-60 (2026-04-29 t.e.m. 2026-05-18): Formalisering en schaalvoorbereiding
 
 Doel:
 1. consolidatie omzetten naar bestuurbaar groeipad.

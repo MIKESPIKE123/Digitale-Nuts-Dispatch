@@ -1,12 +1,16 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
+  INSPECTOR_SETTINGS_EXPORT_FORMAT,
+  INSPECTOR_SETTINGS_EXPORT_VERSION,
   SETTINGS_BACKUP_STORAGE_KEY,
   SETTINGS_PREVIOUS_STORAGE_KEY,
   SETTINGS_STORAGE_KEY,
   createDefaultDispatchSettings,
+  exportInspectorSettings,
   getAbsentInspectorIds,
   getConfiguredInspectors,
   getInactiveInspectorIds,
+  importInspectorSettings,
   isInspectorAbsentOnDate,
   isInspectorDeployableOnDate,
   loadDispatchSettings,
@@ -248,5 +252,110 @@ describe("appSettings - automatische restore", () => {
       restored.customInspectors.some((inspector) => inspector.id === "I9")
     ).toBe(true);
     expect(storage.getItem(SETTINGS_STORAGE_KEY)).toBe(backupSerialized);
+  });
+});
+
+describe("appSettings - inspector import/export", () => {
+  it("exporteert inspectorsettings in versieformaat", () => {
+    const settings = sanitizeDispatchSettings({
+      customInspectors: [
+        {
+          id: "I8",
+          initials: "RSV",
+          name: "Reserve Noord",
+          color: "#264653",
+          primaryPostcodes: ["2000"],
+          backupPostcodes: ["2018"],
+          isReserve: true,
+        },
+      ],
+      inspectorOverrides: {
+        I1: {
+          initials: "CVL",
+        },
+      },
+    });
+
+    const raw = exportInspectorSettings(settings);
+    const parsed = JSON.parse(raw) as {
+      format: string;
+      version: number;
+      settings: {
+        customInspectors: Array<{ id: string }>;
+      };
+    };
+
+    expect(parsed.format).toBe(INSPECTOR_SETTINGS_EXPORT_FORMAT);
+    expect(parsed.version).toBe(INSPECTOR_SETTINGS_EXPORT_VERSION);
+    expect(parsed.settings.customInspectors.some((inspector) => inspector.id === "I8")).toBe(true);
+  });
+
+  it("importeert inspectorsettings en behoudt niet-gerelateerde app-instellingen", () => {
+    const base = sanitizeDispatchSettings({
+      holidays: ["2026-01-01"],
+      autoSyncEnabled: false,
+      autoSyncIntervalMinutes: 120,
+      inspectorOverrides: {
+        I1: {
+          initials: "OLD",
+        },
+      },
+    });
+
+    const importRaw = JSON.stringify({
+      format: INSPECTOR_SETTINGS_EXPORT_FORMAT,
+      version: INSPECTOR_SETTINGS_EXPORT_VERSION,
+      exportedAt: "2026-02-22T10:00:00.000Z",
+      settings: {
+        customInspectors: [
+          {
+            id: "I9",
+            initials: "TMP",
+            name: "Reserve Test",
+            color: "#457b9d",
+            primaryPostcodes: ["2600"],
+            backupPostcodes: ["2000"],
+            isReserve: true,
+          },
+        ],
+        inspectorOverrides: {
+          I1: {
+            initials: "CVL",
+          },
+        },
+        inspectorAbsences: {
+          I1: [{ startDate: "2026-07-10", endDate: "2026-07-12" }],
+        },
+        dispatchCapacity: {
+          softDailyLimit: 4,
+          hardDailyLimit: 6,
+          standardVisitWeight: 1,
+          complexVisitWeight: 1.5,
+          inspectorOverrides: {
+            I1: {
+              fixedDailyLoad: 1,
+            },
+          },
+        },
+      },
+    });
+
+    const imported = importInspectorSettings(importRaw, base);
+
+    expect(imported.autoSyncEnabled).toBe(false);
+    expect(imported.autoSyncIntervalMinutes).toBe(120);
+    expect(imported.holidays).toEqual(["2026-01-01"]);
+    expect(imported.inspectorOverrides.I1?.initials).toBe("CVL");
+    expect(imported.customInspectors.some((inspector) => inspector.id === "I9")).toBe(true);
+    expect(imported.inspectorAbsences.I1).toEqual([
+      { startDate: "2026-07-10", endDate: "2026-07-12" },
+    ]);
+    expect(imported.dispatchCapacity.softDailyLimit).toBe(4);
+  });
+
+  it("geeft een duidelijke fout bij onleesbare import-json", () => {
+    expect(() => importInspectorSettings("{invalid", createDefaultDispatchSettings())).toThrow(
+      "JSON kon niet gelezen worden."
+    );
   });
 });

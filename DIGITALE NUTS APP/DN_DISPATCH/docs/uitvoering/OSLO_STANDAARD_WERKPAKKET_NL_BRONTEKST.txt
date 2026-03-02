@@ -1,0 +1,125 @@
+OSLO Traject
+WAT
+Via dit initiatief willen de verschillende belanghebbenden de verschillende gegevensstromen semantisch modelleren en de structuur van de gegevens voor een onderwerp standaardiseren.
+Het doel is om de gegevens toegankelijk te maken als Linked Open Data en standaardinterfaces (API's) te definiëren om de samenwerking en de integratie van de verschillende diensten en instrumenten te vereenvoudigen. Het doel is om de gegevens gemakkelijk herbruikbaar te maken voor alle belanghebbenden.
+WAAROM
+Een semantische standaard maakt het delen en uitwisselen van gegevens tussen verschillende belanghebbenden gemakkelijker. Elke belanghebbende kan de gegevens van de ander rechtstreeks gebruiken en interpreteren. Dit stimuleert de uitwisseling en het hergebruik van gegevens en verlaagt de kosten van de uitwisseling.
+In het semantische web worden gegevens op een andere manier verspreid zodat de AI-gestuurde machines en de digitale poortwachters van de toekomst, zoals Siri, Alexa, Cortana, Google Assistant, ChatGPT, enz. de gegevens kunnen gebruiken en interpreteren. De semantische standaard zorgt voor machine-leesbare gegevens.
+Het openstellen van semantische gegevens brengt innovatie op gang en zal bedrijven in staat stellen intelligentere producten en diensten te ontwikkelen. Door gegevens te koppelen, krijgen we ook rijkere gegevens. Verrijkte gegevens waaruit meer kennis kan worden gehaald.
+OLSO TRAJECTEN & DIENSTVERLENING
+Op basis van de nood binnen het traject zal in samenspraak met projectmanager en projectconsortium nagegaan worden welk type dienstverlening het meest van toepassing is op het traject.
+In de voorbije jaren bouwde het OSLO team een expertise uit in het doorlopen van standaardisatietrajecten, maar werden daarnaast ook andere dienstverleningen zoals een OSLO assessment, de ondersteuning bij implementatiemodellen ed. opgenomen. Om meer zicht te krijgen op de verschillende soorten trajecten en bijhorende services kan je terecht op https://data.vlaanderen.be/cms/oslo-services.html
+MIJLPALEN EN BUDGETTERING OSLO
+Op basis van de nood in het traject, zal samen met de stakeholders verder bepaald worden welke van volgende mijlpalen moet doorlopen worden in hettraject.
+Deze zijn afhankelijk van de scope van het traject, het doel dat vanuit de stakeholders voor ogen wordt gehouden en de inzichten die op de startende kennismakingsworkshop worden geconcludeerd met de stakeholders.
+Doorloop OSLO Traject
+High level activiteit
+Taakbeschrijving
+Deliverable
+Profiel
+Budget incl. BTW
+Desk-research
+Opstellen overzicht informatienoden op basis van analyse  beschikbare documentatie  en  bestaande standaarden
+Vergroten van kennis en inzichten
+Semantisch expert
+€ 8.100,00
+Business workshop
+Organiseren van business workshop met stakeholders om de informatienoden te valideren en verder uit te breiden met voorafgaande kerngroep.
+Use cases en scope afbakening, versterkt door de inzichten uit desk-research
+Eerste versie sneuvelmodel
+Semantisch expert
+€ 8.100,00
+Thematische workshop
+Organiseren en faciliteren van eerste thematische workshops met de werkgroep samengesteld uit domein-experten en verwerking van feedback. De werkgroepen worden vooraf afgetoetst met de kerngroep.
+Iteratie op sneuvelmodel met identificatie van belangrijkste concepten en hun definities
+Semantisch expert
+€ 8.100,00
+Thematische workshop
+Organiseren en faciliteren van tweede thematische workshops met de werkgroep samengesteld uit domein-experten en verwerking van feedback. De werkgroepen worden vooraf afgetoetst met de kerngroep.
+Iteratie op model met aanvulling van extra objecten en attributen
+Semantisch expert
+€ 8.100,00
+Thematische workshop
+Organiseren en faciliteren van derde thematische workshops met de werkgroep samengesteld uit domein-experten en verwerking van feedback. De werkgroepen worden vooraf afgetoetst met de kerngroep.
+Iteratie op model met aanvulling van extra objecten en attributen
+Semantisch expert
+€ 8.100,00
+Thematische workshop
+Organiseren en faciliteren van vierde thematische workshops met de werkgroep samengesteld uit domein-experten en verwerking van feedback. De werkgroepen worden vooraf afgetoetst met de kerngroep.
+Finalisatie van het theoretisch model met aanvulling van relaties en kardinaliteiten
+Semantisch expert
+€ 8.100,00
+Publiceren specificatie
+Publicatie van draft specificaties op data.vlaanderen.be en integratie in OSLO stelsel van vocabularia
+Herbruikbare documentatie voor het informatiemodel en publicatie op data.vlaanderen.be:
+RDF vocabularium
+HTML documentatie voor het vocabularium met termen en definities
+UML diagram
+HTML documentatie voor het UML diagram
+SHACL validatieregels
+JSON-LD context bestand
+Semantisch expert / Technisch expert
+€ 6.750,00
+Publieke review
+Capteren, analyseren en verwerken van input en feedback op de kandidaatstandaard vanuit het brede publiek.
+Verwerkte feedback uit publieke reviewperiode met afsluitend webinar
+Semantisch expert / Technisch expert
+€ 6.750,00
+Erkenning datastandaard
+Ondersteuning op vlak van proces en methode in aanloop naar de validatie door het Stuurorgaan bij doorloop volledig OSLO traject en ontwikkeling van een datastandaard
+Toelichting op WG Datastandaarden en opstellen nota voor het Stuurorgaan
+Project manager
+€ 2.500,00
+Projectondersteuning
+Projectmanagement en coördinatie vanuit het OSLO team om een vlotte doorloop van het project te garanderen
+Project manager
+€ 6.500,00
+Totaal
+€ 71.100,00
+SUCCESCRITERIA
+Dit proces zal als een succes worden beschouwd wanneer de resultaten op ruime schaal worden gebruikt en toegepast. In eerste instantie binnen de Belgische overheden, maar ook daarbuiten. In het bijzonder lijsten we de volgende criteria op:
+Er is maximale coördinatie met alle belanghebbenden - die vertegenwoordigd zijn in ten minste één van de workshopsessies
+De workshops resulteren in een stabiele kandidaat-standaard die een consensus van alle deelnemers vertegenwoordigt wanneer sprake van een volledig OSLO traject.
+De specificatie wordt aanvaard door de workshop datastandaarden en het bestuur wanneer sprake van een volledig OSLO traject.
+De specificatie wordt uitgevoerd en ten minste de framework data worden semantisch gepubliceerd wanneer sprake van een volledig OSLO traject.
+DELIVERABLES
+Afhankelijk van de nood in het traject en de te doorlopen stappen in het specifieke traject, kunnen volgende deliverables verwacht worden:
+De nodige inzichten en kennis obv desk research om het traject en de bijhorende modeleringsnood correct kunnen aan te pakken
+Op basis van de workshops:
+Opstellen van een overzicht van de informatiebehoeften op basis van een analyse van de beschikbare documentatie en de bestaande normen.
+Organisatie van een bedrijfsworkshop met belanghebbenden om de informatiebehoeften te valideren en verder uit te breiden.
+Organiseren en faciliteren van 4 workshops bestaande uit domeinexperts en verwerken van hun feedback.
+Opstellen van herbruikbare documentatie voor het informatiemodel en publicatie op data.vlaanderen.be:
+RDF vocabularium
+HTML documentatie voor het vocabularium met termen en definities
+UML diagram
+HTML documentatie voor het UML diagram
+SHACL validatieregels
+JSON-LD context bestand
+Het begeleid doorlopen van het publieke reviewproces ter erkenning van de standaard
+Integratie van de standaard in het standaardenregister
+de noodzakelijke coördinatie, communicatie en ondersteuning bij het doorlopen van de samen met de opdrachtgever gedefinieerde OSLO stappen door een ervaren project manager
+Rollen en verantwoordelijkheden
+Onderstaande tabel geeft een overzicht van de actoren die deelnemen aan het proces en hun verantwoordelijkheden. Elk van deze actoren heeft een equivalent in het ISA proces voor het vastleggen van semantische afspraken.
+Actor (OSLO)
+Verantwoordelijkheden
+Thematische Werkgroep(en)
+Deze verzameling van experts met kennis van bestaande data modellen en implementaties is verantwoordelijk voor de ontwikkeling van het domeinmodel.
+Editors van thematische werkgroepen
+Zijn verantwoordelijk voor het faciliteren van de werkgroepen en de technische uitwerking van het domeinmodel in de vorm van diagrammen en specificaties.
+Werkgroep
+‘datastandaarden OSLO’
+De werkgroep heeft een permanent karakter en is verantwoordelijk voor de centrale coördinatie en opvolging van de werkzaamheden met betrekking tot de standaardisatie van informatie. Onder de werkzaamheden vallen de standaardisatie van: betekenis van de informatie (semantisch), de syntax van de informatie (grammatica), de technische standaarden voor de uitwisseling van de informatie en de metadata (‘data over data’). Daarnaast bewaakt de werkgroep de onderlinge consistentie (stelselwerking) bij de erkenning van nieuwe standaarden, doet zij aan monitoring van internationale standaarden die impact hebben op overheden in Vlaanderen en staat zij in voor de monitoring van het generiek ontwikkel- en wijzigingsproces. De werkgroep datastandaarden komt op regelmatige basis samen om de lopende thematische werkgroepen te beoordelen.
+Product owners
+Product owners zijn verantwoordelijk voor het beheer van een standaard na zijn ontwikkeling. Concreet zorgen zij voor de monitoring van problemen of vragen die gesteld worden met betrekking tot de standaard, roepen zij de werkgroep bij elkaar in functie van de gestelde vragen en staan zij in voor de doorontwikkeling van standaarden in het kader van nieuwe use cases of wijzigingen in onderliggende standaarden (afhankelijkheden).
+Het stuurorgaan Vlaams Informatie- en ICT-beleid
+Bekrachtigt de standaarden na beoordeling van de documentatie van het gevolgde proces en bewaakt de strategie en prioriteiten van het Vlaamse Informatie- en ICT-beleid
+Vlaamse Regering
+De Vlaamse Regering voorziet in bindende afspraken  cfr. art 7 van het decreet van 23 december 2016  houdende de oprichting van het stuurorgaan Vlaams Informatie- en ICT-beleid met betrekking tot standaarden en bijhorende specificaties.
+Project Management OSLO
+Verantwoordelijk voor het organiseren van werkgroepen en het uitnodigen van experts, alsook de communicatie met diverse belanghebbenden.
+Tooling
+Tooling voor conformiteit
+Deze tooling omvat een methodologie voor het uitvoeren van conformiteitstests, een centraal beschikbare infrastructuur voor het uitvoeren van deze tests en ook het raadplegen van de resultaten.
+Tooling voor partners
+Deze tooling omvat een testbed dat partners moet toelaten om met datastandaarden aan de slag te gaan en ondersteuning biedt om de datastandaarden op een vlotte en correcte manier te implementeren in oplossingen en toepassingen.

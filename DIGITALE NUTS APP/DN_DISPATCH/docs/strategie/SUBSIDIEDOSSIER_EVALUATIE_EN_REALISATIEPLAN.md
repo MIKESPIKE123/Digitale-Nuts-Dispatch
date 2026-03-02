@@ -138,9 +138,10 @@ Het project wordt pas schaalbaar als API's, OSLO-mapping, onboardingkit en uitro
 
 ## 9. Concreet stappenplan naar "zo volledig mogelijke app"
 
-Uitgangspunt: start vanaf 2026-03 en werk in oplopende complexiteit, met snelle terreinwaarde in elke fase.
+Uitgangspunt: formele termijnstart op 2026-03-20 (subsidie-afspraak) en werk daarna in oplopende complexiteit, met snelle terreinwaarde in elke fase.
+Tot en met 2026-03-19 blijft de focus op vibe coding en structuurversterking zonder formele termijncommit.
 
-### Fase 1 - Fundament dataketen en identity (2026-03 t.e.m. 2026-04)
+### Fase 1 - Fundament dataketen en identity (2026-03-20 t.e.m. 2026-05)
 Doel:
 - Centrale backend opzetten als source of truth
 - Entra SSO + RBAC
@@ -158,7 +159,7 @@ Quick wins:
 - Geen dataverlies meer tussen toestellen
 - Volledige traceerbaarheid per toezichter
 
-### Fase 2 - Productiekoppelingen en OSLO-contracten (2026-04 t.e.m. 2026-06)
+### Fase 2 - Productiekoppelingen en OSLO-contracten (2026-05 t.e.m. 2026-07)
 Doel:
 - Echte GIPOD/A-SIGN ketenkoppelingen
 - OSLO mapping en contractvalidatie
@@ -176,7 +177,7 @@ Quick wins:
 - Realtime statusupdates per dossier
 - Minder manuele contextcontrole op terrein
 
-### Fase 3 - Evidentie, validatie en KPI-engine (2026-06 t.e.m. 2026-08)
+### Fase 3 - Evidentie, validatie en KPI-engine (2026-07 t.e.m. 2026-09)
 Doel:
 - Volledige foto/GPS-bewijsketen
 - Code Nuts rule engine
@@ -194,7 +195,7 @@ Quick wins:
 - "KPI 2.3 % met geolocatie en foto" direct meetbaar
 - Snelle objectieve feedback naar aannemers
 
-### Fase 4 - Portaal en feedbacklus stad-nuts-burger (2026-08 t.e.m. 2026-10)
+### Fase 4 - Portaal en feedbacklus stad-nuts-burger (2026-09 t.e.m. 2026-11)
 Doel:
 - Extern portaal voor nuts/aannemers
 - Klachtenkoppeling en bewonersstatus
@@ -212,7 +213,7 @@ Quick wins:
 - Gesloten feedbackloop op vaststellingen
 - Duidelijkere communicatie naar bewoners
 
-### Fase 5 - AI pilot + predictieve planning (2026-10 t.e.m. 2026-12)
+### Fase 5 - AI pilot + predictieve planning (2026-11 t.e.m. 2027-01)
 Doel:
 - Auditeerbare AI-assistent op fotoherstelkwaliteit
 - Predictieve planning op historische data
@@ -229,7 +230,7 @@ Quick wins:
 - Snellere triage van herstelfoto's
 - Betere inzet van toezichtcapaciteit
 
-### Fase 6 - Opschaling en governancepakket (2027-01 t.e.m. 2027-02)
+### Fase 6 - Opschaling en governancepakket (2027-01 t.e.m. 2027-03)
 Doel:
 - Van project naar schaalbaar product
 - Formele overdraagbaarheid en beheer
@@ -384,6 +385,14 @@ Resultaat: de app is dan tegelijk toonbaar, geloofwaardig en technisch klaar om 
 
 Uitwerking sprintniveau:
 - Zie `docs/uitvoering/SPRINT_PITCH_READY_V1_BACKLOG.md` voor user stories, acceptatiecriteria, schatting en demo-checklist.
+
+## 14. Rollenmodel en eigenaarschap (aanvulling)
+Voor de concrete verdeling tussen business architectuur, technische uitvoering, governance en externe ondersteuning:
+- Zie `docs/strategie/REGIELAAG_GOVERNANCE_INTEGRATIES_ROLLENMODEL.md`.
+- Voor de directe invulling op 8 weken (sprints, staffing, poortmomenten):  
+  `docs/strategie/DN_8_WEKEN_STAFFING_SPRINTPLAN_SCHIL1.md`.
+- Voor expliciete Schil 1 scope-afbakening (must-have vs niet nu):  
+  `docs/strategie/DN_SCHIL1_SCOPE_MUST_HAVE_VS_NIET_NU.md`.
 
 
 

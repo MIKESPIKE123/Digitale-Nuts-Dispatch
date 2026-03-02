@@ -1,6 +1,6 @@
 # DN_DISPATCH Docs - Structuur en Leeswijzer
 
-Laatste update: 2026-02-27  
+Laatste update: 2026-03-01  
 Doel: snelle oriëntatie, consistente naamgeving en duidelijke leesvolgorde voor projectsturing.
 Huidige release in app-hoofdbalk: `v1.6` (build `0.1.0`).
 
@@ -37,6 +37,7 @@ Deze bestandsnamen zijn gestandaardiseerd:
 | `docs/strategie/DN_HERIJKING_TOV_SUBSIDIEDOSSIER.md` | Strategische herijking van subsidieverhaal naar huidige realiteit en keuzes. |
 | `docs/strategie/DN_HERIJKING_EN_AI_TRANSFORMATIE.md` | Architectuuranalyse + AI-opportuniteiten van quick win tot transformatief. |
 | `docs/strategie/SUBSIDIEDOSSIER_EVALUATIE_EN_REALISATIEPLAN.md` | Groot evaluatiedocument met faseplan naar volledige productarchitectuur. |
+| `docs/strategie/DN_TERREINAPP_TRANSITIE_EN_GAP_ANALYSE_COT2025.md` | Gap-analyse van desktop naar offline-first terreinapp, met COT-challenges, quick wins en gefaseerd transitiepad. |
 
 ### B. Uitvoering, sprint en demonstratie
 
@@ -51,6 +52,12 @@ Deze bestandsnamen zijn gestandaardiseerd:
 | `docs/uitvoering/PLATFORMUITBREIDING_UITVOERINGSPLAN_PX01_PX02_PX08.md` | Concreet 6-weken uitvoeringsplan (doel, acties, owner, timing) voor PX-01, PX-02, PX-08. |
 | `docs/uitvoering/EXECUTIEBOARD.md` | Dagelijkse status van sprintstories, PX-modules en topprioriteiten. |
 | `docs/uitvoering/DN_GIPOD_NOTIFICATIE_INBOX_WERKPAD.md` | Diepteanalyse en gefaseerd implementatiepad voor GIPOD notificatie-inbox in DN Governance/Dispatch. |
+| `docs/uitvoering/DN_GIPOD_NOTIFICATIE_INBOX_STORIES.md` | Backlog met uitvoerbare stories `DN-GIPOD-NOTIF-001..005` en `DN-GIPOD-OPS-001..003` inclusief scope en acceptatiecriteria. |
+| `docs/uitvoering/DN_GIPOD_BETA_REAL_TENANT_VALIDATIEPLAN.md` | Uitvoerplan voor echte beta-tenant validatie met scenario's, smoke-command en go/no-go criteria. |
+| `docs/uitvoering/DN_GIPOD_OPERATIONELE_ACCEPTATIE_7_DAGEN.md` | Dagelijks acceptatieraamwerk (7 dagen) met KPI's, issueboard en eindevaluatie. |
+| `docs/uitvoering/DN_RELEASE_GATE_V1_7_CHECKLIST.md` | Formele releasepoort v1.7 (kwaliteit, security/governance, operatie, cutover/rollback). |
+| `docs/uitvoering/DN_OSLO_WERKPAKKET_HOMOLOGATIE_ANALYSE.md` | Analyse van het OSLO werkpakket (NL) naast de huidige DN-werking, met geïntegreerd homologatiepad en budgetkader. |
+| `docs/uitvoering/evidence/README.md` | Bewijsmap voor smoke-rapporten en validatie-artifacts zonder temp-bestanden. |
 | `docs/uitvoering/SPRINT_PITCH_READY_V1_BACKLOG.md` | User stories, acceptatiecriteria en demo-output voor pitch sprint. |
 | `docs/uitvoering/DEMO_SCRIPT_DAG_IN_HET_LEVEN.md` | 9-minuten klikscript inclusief fallback bij sync/internetproblemen. |
 | `docs/uitvoering/ITERATIE1_OPTIMALISATIEPLAN_STABILITEIT_SNELHEID.md` | Technische optimalisaties op performance, sync en kwaliteitspipeline. |
@@ -70,6 +77,7 @@ Deze bestandsnamen zijn gestandaardiseerd:
 | `docs/techniek/DN_OSLO_COMPONENTEN_REGISTER.md` | Werkregister van appcomponenten en veldmapping naar OSLO-kandidaten voor latere standaardisatie. |
 | `docs/techniek/DN_CODETABELLEN_INPASSING_ANALYSE.md` | Analyse van voorgestelde codetabellen versus huidige code, met gefaseerde invoerstrategie. |
 | `docs/techniek/DN_VASTSTELLING_PDF_RAPPORTSTIJL_ANALYSE.md` | BONU-stijl analyse en vertaling naar huidige PDF-export v1. |
+| `docs/techniek/DN_GIPOD_NOTIFICATIE_INBOX_TECHNISCH_ONTWERP.md` | Technisch ontwerp voor GIPOD notificatie-inbox: contracts, gateways, flow, errorhandling en implementatiefases. |
 
 ### D. Impactprioritering en opleiding
 

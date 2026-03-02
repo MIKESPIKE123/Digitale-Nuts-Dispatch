@@ -182,3 +182,32 @@ Toevoegen:
    - mitigatie: fase 0 als expliciete go/no-go poort.
 3. Te veel ruis in notificaties:
    - mitigatie: type/categorie allowlist voor MVP.
+
+## 11. Support runbook (NOTIF-005)
+
+### 11.1 Polling en refresh
+
+1. Standaard pollinginterval: 60 seconden.
+2. Handmatige refresh blijft altijd mogelijk via knop in Governance en Dispatch.
+3. Polling draait alleen in de views `DN Governance` en `DN Dispatch`.
+
+### 11.2 429 backoff gedrag
+
+1. Bij `HTTP 429` verhoogt DN automatisch het poll-interval met exponentiële backoff.
+2. Maximaal backoff-interval: 15 minuten.
+3. Bij succesvolle poll reset backoff naar het basisinterval.
+
+### 11.3 Diagnostiekvelden in UI
+
+1. `Laatste laadmoment`
+2. `Laatste poging`
+3. `Laatste statuscode`
+4. `Huidig poll-interval`
+5. `429-streak`
+
+### 11.4 Eerstelijns troubleshooting
+
+1. Controleer of statuscode `429`, `401` of `403` zichtbaar is in de notificatiezone.
+2. Bij `429`: wacht op backoff-interval en herprobeer daarna handmatig.
+3. Bij `401/403`: verifieer token/scope (`gipod_notifications`) en omgevingsvariabelen.
+4. Als notificaties leeg blijven maar geen foutstatus: activeer mock-notificaties om UI-flow te verifiëren.

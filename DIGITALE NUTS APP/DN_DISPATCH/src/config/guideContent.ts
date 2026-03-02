@@ -37,10 +37,10 @@ export type GuideRoleQuickGuideItem = {
   commonMistakes: [string, string, string, string, string];
 };
 
-export const GUIDE_LAST_UPDATED = "20/02/2026";
+export const GUIDE_LAST_UPDATED = "27/02/2026";
 
 export const GUIDE_INTRO =
-  "Deze handleiding helpt je snel opstarten in DN Dispatch. Gebruik ze als quick guide voor dagelijkse planning, reserve-inzet en KPI-opvolging.";
+  "Deze handleiding helpt je snel opstarten in DN Dispatch. Gebruik ze als quick guide voor dagelijkse planning, reserve-inzet, toewijzingsarchief en vaststellingsopvolging vanuit kaartcontext.";
 
 export const GUIDE_QUICK_STEPS: GuideStep[] = [
   {
@@ -76,12 +76,12 @@ export const GUIDE_QUICK_STEPS: GuideStep[] = [
   {
     title: "7. Werk vanuit de popup",
     description:
-      "De infokaart bij de pin toont prioriteit, inzichten en links naar ReferentieID/GIPOD.",
+      "De infokaart bij de pin toont context en laat je meteen kiezen tussen 'Open bestaand verslag' of 'Nieuw verslag'.",
   },
   {
     title: "8. Rond je dag af",
     description:
-      "Exporteer per toezichter een PDF en noteer niet-toegewezen dossiers voor opvolging.",
+      "Exporteer PDF's en het toewijzingsarchief, en noteer niet-toegewezen dossiers voor opvolging.",
   },
 ];
 
@@ -107,9 +107,29 @@ export const GUIDE_FAQ: GuideFaqItem[] = [
       "Klik opnieuw op de action card of op 'Centreer'. Bij postcode-locatie is de positie een benadering, niet het exacte adres.",
   },
   {
+    question: "Hoe start ik een vaststelling rechtstreeks vanuit de kaart?",
+    answer:
+      "Open de popup van een geselecteerd bezoek en gebruik 'Open bestaand verslag' of 'Nieuw verslag'. Zo ga je zonder extra navigatie naar DN Vaststelling.",
+  },
+  {
     question: "Hoe weet ik of de data recent is?",
     answer:
       "In de linker kolom zie je 'Laatste sync' en 'Laatste data-refresh'. Die waarden tonen je actuele status.",
+  },
+  {
+    question: "Waar vind ik het toewijzingsarchief?",
+    answer:
+      "Ga naar 'DN Data & Sync'. Daar zie je snapshots per dispatchdatum, dekkingsgraad t.o.v. vaststellingen en acties voor export of reset.",
+  },
+  {
+    question: "Wat doet export/import van toezichters precies?",
+    answer:
+      "Die zet inspecteurconfiguratie, afwezigheden en dispatchcapaciteit over tussen instanties. Feestdagen en auto-sync instellingen blijven lokaal behouden.",
+  },
+  {
+    question: "Welke extra context staat nu op action cards?",
+    answer:
+      "Per dossier zie je klikbare ReferentieID/GIPOD-links, vergunningstatus, GIPOD-bronstatus, toewijzingsrol en manuele override-context.",
   },
   {
     question: "Waar pas ik inspecteurs, postcodes en feestdagen aan?",
@@ -195,6 +215,7 @@ export const GUIDE_TIPS = [
   "Werk elke ochtend eerst een synchronisatie uit.",
   "Gebruik de kaartzoeker om snel straten te verifiëren met het team.",
   "Controleer bij drukke dagen expliciet de lijst met niet-toegewezen dossiers.",
+  "Exporteer het toewijzingsarchief wekelijks voor opvolging buiten de app.",
   "Houd deze handleiding up-to-date bij elke functionele release van DN Dispatch.",
 ];
 
@@ -391,14 +412,14 @@ export const GUIDE_ROLE_QUICK_GUIDES: GuideRoleQuickGuideItem[] = [
       "Zet status-, district- en impactfilters bewust voor de dagcontext.",
       "Check niet-toegewezen dossiers en herverdeel waar nodig.",
       "Gebruik kaart + action cards om conflicten of clustering snel te zien.",
-      "Volg op het einde van de dag de queue- en handoverstatus op.",
+      "Volg op het einde van de dag queue/handover op en exporteer het toewijzingsarchief.",
     ],
     commonMistakes: [
       "Verouderde datum laten staan bij opstart.",
       "Te veel filters tegelijk aanzetten waardoor relevante dossiers verdwijnen.",
       "Niet-toegewezen lijst niet expliciet nalopen.",
-      "Alleen op kaart kijken zonder action cards te valideren.",
-      "Geen terugkoppeling geven op failed sync of ontbrekende handover.",
+      "Kaartpopup niet gebruiken voor directe vaststellingsactie (bestaand/nieuw verslag).",
+      "Geen terugkoppeling geven op failed sync, ontbrekende handover of ontbrekende archiefexport.",
     ],
   },
   {

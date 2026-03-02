@@ -3,6 +3,7 @@
 Datum: 2026-02-20  
 Status: Voorstel v1 (concreet uitvoerbaar)  
 Scope: `DN_DISPATCH` + `DN Vaststelling` + `DN Rapporten`
+Termijnkader: formele uitvoering start op 2026-03-20; tot en met 2026-03-19 pre-fase (vibe coding + structuur).
 
 ## 1. Waarom dit nu belangrijk is
 
@@ -82,7 +83,7 @@ Gebruik deze knooppunten als testfundament (in volgorde):
 
 ## 5. Concreet testactieplan (6 weken)
 
-## Week 1 (2026-02-23 t.e.m. 2026-02-27)
+## Week 1 (2026-03-23 t.e.m. 2026-03-27)
 
 1. Testinventaris finaliseren per dominator `T01..T04`.
 2. Definieer test-ID conventie:
@@ -97,7 +98,7 @@ Definition of Done week 1:
 1. Testmatrix gepubliceerd.
 2. Elk risico-item heeft minstens 1 test-ID.
 
-## Week 2 (2026-03-02 t.e.m. 2026-03-06)
+## Week 2 (2026-03-30 t.e.m. 2026-04-03)
 
 1. Versterk `T01` contracttests:
 - negatieve payloads;
@@ -108,7 +109,7 @@ Definition of Done week 1:
 Definition of Done week 2:
 1. Contracttests blokkeren merge bij schema-breuk.
 
-## Week 3 (2026-03-09 t.e.m. 2026-03-13)
+## Week 3 (2026-04-06 t.e.m. 2026-04-10)
 
 1. Versterk `T02` dispatch:
 - capaciteit 5/6 grenzen;
@@ -119,7 +120,7 @@ Definition of Done week 2:
 Definition of Done week 3:
 1. Dispatch- en KPI-berekeningen hebben vaste regressiebasis.
 
-## Week 4 (2026-03-16 t.e.m. 2026-03-20)
+## Week 4 (2026-04-13 t.e.m. 2026-04-17)
 
 1. Versterk `T03` vaststelling:
 - validatiepoortjes;
@@ -130,7 +131,7 @@ Definition of Done week 3:
 Definition of Done week 4:
 1. Kernflow vaststelling is fouttolerant aantoonbaar getest.
 
-## Week 5 (2026-03-23 t.e.m. 2026-03-27)
+## Week 5 (2026-04-20 t.e.m. 2026-04-24)
 
 1. Bouw `T04` rapporttests:
 - dagrapport en weekrapport dataconsistentie;
@@ -140,7 +141,7 @@ Definition of Done week 4:
 Definition of Done week 5:
 1. Rapporten zijn testbaar, reproduceerbaar en contractvast.
 
-## Week 6 (2026-03-30 t.e.m. 2026-04-03)
+## Week 6 (2026-04-27 t.e.m. 2026-05-01)
 
 1. Voeg `T05` E2E smoke test toe op kernflow:
 - dispatch selectie;

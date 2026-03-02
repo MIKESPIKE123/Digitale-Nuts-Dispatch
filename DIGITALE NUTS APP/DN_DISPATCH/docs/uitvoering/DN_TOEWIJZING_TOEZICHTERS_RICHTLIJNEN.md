@@ -1,7 +1,7 @@
 # DN Toewijzing Toezichters - Richtlijnen
 
-Datum: 2026-02-21  
-Status: Actief (v1.2)  
+Datum: 2026-02-27  
+Status: Actief (v1.6)  
 Doel: heldere afspraken over inzet, reserveplanning en automatische dispatchregels.
 
 ## 1. Basisprincipes
@@ -132,3 +132,166 @@ Per toezichter kunnen optioneel ingesteld worden:
 2. Startload per toezichter = `vaste load`.
 3. Bezoekload wordt gewogen met standaard/complex weight en ervaringsfactor.
 4. Dispatch gebruikt soft/hard limiet op deze gewogen dagload i.p.v. enkel tellen van aantal bezoeken.
+
+## 11. Back-up en herstel van toezichters (nieuw in v1.3)
+
+Doel: geen verlies van toezichterconfiguratie tussen verschillende localhost-instanties of toestellen.
+
+### 11.1 Beschikbare workflow in de app
+
+1. Open `Instellingen`.
+2. Gebruik `Exporteer toezichters (.json)`.
+3. Bewaar bestand extern (OneDrive/Git/teamshare).
+4. Gebruik in andere instantie `Importeer toezichters (.json)`.
+
+### 11.2 Wat wordt geëxporteerd
+
+1. `customInspectors` (I8, I9, ...).
+2. `inspectorOverrides` (naam, initialen, primaire/backup-wijken, reservevlag, inzettermijn).
+3. `inspectorAbsences` (afwezigheidsranges).
+4. `dispatchCapacity` (globale + per-toezichter capaciteitsoverrides).
+
+### 11.3 Wat niet wordt overschreven door import
+
+1. Vakantiekalender (`holidays`).
+2. Auto-sync vlag en interval.
+
+### 11.4 Uitgevoerde taken op 2026-02-22
+
+1. Centrale import/exportfuncties toegevoegd in `src/lib/appSettings.ts`.
+2. UI-acties toegevoegd in `Instellingen` voor JSON export/import.
+3. Contracttests toegevoegd voor exportformaat, importmerge en foutafhandeling.
+
+### 11.5 Verduidelijking importbestand en mergegedrag (v1.6)
+
+1. Exportbestand bevat metadata:
+   - `format = dn_dispatch_inspectors`
+   - `version = 1`
+   - `exportedAt` (ISO timestamp)
+2. De import accepteert zowel:
+   - dit expliciete exportformaat (`format/version/settings`), als
+   - een rechtstreeks JSON-object met dezelfde settingsvelden.
+3. Import werkt als merge op huidige instellingen:
+   - inspecteurconfiguratie en capaciteitsblokken worden vervangen door importinhoud,
+   - niet meegegeven velden blijven op huidige waarden staan.
+4. Aanbevolen workflow:
+   - eerst exporteren als back-up,
+   - dan importeren,
+   - daarna direct een dispatchdatum openen en labels `[R]`, `(afw)` en `(niet actief)` controleren.
+
+## 12. Manuele dispatcher override per dossier (beschikbaar sinds v1.4, actief in v1.5)
+
+Doel: dispatcher kan operationeel bijsturen zonder de globale instellingen te wijzigen.
+
+### 12.1 Gedrag in de UI
+
+1. In `Action cards per toezichter` staat per kaart een veld `Manuele toewijzing`.
+2. Keuze `Automatisch` = terug naar standaard dispatchlogica.
+3. Keuze van een toezichter forceert voorkeursinzet voor dat dossier.
+4. `Reset` verwijdert de manuele override onmiddellijk.
+
+### 12.2 Regels in dispatch
+
+1. Manuele override heeft voorrang op sticky continuity.
+2. Afwezigheid en niet-inzetbaar (buiten actieve termijn) blijven harde blokkeringen.
+3. Als gekozen toezichter niet inzetbaar is, valt dispatch terug op backup/reserve-pool.
+
+### 12.3 Persistente opslag
+
+1. Overrides worden lokaal bewaard onder `dn_dispatch_manual_inspector_override_v1`.
+2. Bij herladen van de app blijven overrides actief zolang de lokale storage behouden blijft.
+3. Validatie op inspector-ID gebeurt bij laden/saven zodat foutieve IDs automatisch wegvallen.
+
+### 12.4 Uitgevoerde taken op 2026-02-22
+
+1. Nieuwe manuele override state + storage toegevoegd in `src/App.tsx`.
+2. Action card UI uitgebreid in `src/components/InspectorBoard.tsx`.
+3. Styling en responsive gedrag toegevoegd in `src/styles.css`.
+
+## 13. Toewijzingsarchief en opvolging (nieuw in v1.5)
+
+Doel: historiek tonen van wie welk project kreeg toegewezen en dit kunnen vergelijken met gemaakte vaststellingen.
+
+### 13.1 Wat wordt bijgehouden
+
+1. Snapshot per dispatchdatum met:
+   - toegewezen bezoeken per toezichter,
+   - unieke toegewezen werken,
+   - aantal manuele overrides,
+   - unassigned werken.
+2. Snapshot wordt lokaal bewaard in `dn_dispatch_assignment_history_v1`.
+
+### 13.2 Overzicht in de app
+
+1. Scherm `DN Data & Sync` bevat nu:
+   - tabel `Toewijzingsarchief` (toegewezen vs vaststellingen per toezichter),
+   - tabel `Recente snapshots`.
+2. De vergelijking gebruikt:
+   - toewijzing op dispatchdatum,
+   - vaststellingsrecords met dezelfde geplande bezoekdatum en workId.
+
+### 13.3 Export en beheer
+
+1. Knop `Exporteer archief (.json)` voor externe analyse.
+2. Knop `Wis lokaal archief` voor reset van lokale historiek.
+
+### 13.4 Uitgevoerde taken op 2026-02-22
+
+1. Nieuwe historiekmodule toegevoegd in `src/lib/assignmentHistory.ts`.
+2. Basis tests toegevoegd in `src/lib/assignmentHistory.test.ts`.
+3. UI-overzichten toegevoegd in `src/App.tsx` (view `Data & Sync`).
+
+### 13.5 Verduidelijking snapshots (v1.6)
+
+1. Een snapshot wordt automatisch geactualiseerd bij:
+   - wijziging van dispatchresultaat,
+   - wijziging van manuele toewijzing,
+   - wijziging van geselecteerde dispatchdatum.
+2. Per dispatchdatum wordt 1 actuele snapshot bijgehouden (upsert).
+3. Lokale historiek wordt begrensd op 180 snapshots (`MAX_ASSIGNMENT_HISTORY_ITEMS`).
+4. Vergelijking met vaststellingen gebeurt op combinatie:
+   - `workId`
+   - geplande bezoekdatum (`dispatchDate`).
+5. Gebruik `Exporteer archief (.json)` als periodieke back-up (week- of maandritme).
+
+## 14. Vaststelling openen vanuit kaartpopup (nieuw in v1.6)
+
+Doel: vanuit kaartcontext zonder extra klikpaden naar het juiste vaststellingsscherm gaan.
+
+### 14.1 Beschikbare acties in popup
+
+1. `Open bestaand verslag`:
+   - opent het bestaande record van dat dossier (indien aanwezig),
+   - knop is disabled zolang er nog geen bestaand verslag is.
+2. `Nieuw verslag`:
+   - start een nieuwe draft op basis van de geselecteerde dispatchvisit.
+
+### 14.2 Gedrag en guardrails
+
+1. De popupactie werkt alleen binnen de actieve dispatchcontext van de huidige toezichter.
+2. Als er geen bestaande vaststelling is, toont de app een duidelijke melding.
+3. De start van een nieuw verslag gebruikt contextprefill (o.a. BONU/GW/GIPOD/adres).
+
+## 15. Extra toewijzingscontext en links in action cards (v1.6)
+
+Doel: dispatcher sneller laten beslissen zonder extra schermwissels.
+
+### 15.1 Nieuwe context in Inspector Board
+
+1. Klikbare `ReferentieID` (A-SIGN) indien link beschikbaar.
+2. Klikbare `GIPOD`-referentie indien link beschikbaar.
+3. Extra metaregels op kaartniveau:
+   - GIPOD bronstatus + categorie,
+   - vergunningstatus,
+   - toewijzingsrol (`Dedicated`, `Backup`, `Reserve`),
+   - operationele timing (`Start voorzien` of `In uitvoering sinds`, plus `Loopt t.e.m.`).
+4. Duidelijke toewijzingscontext:
+   - `Voorkeurtoezichter`,
+   - `Tijdelijke herverdeling`,
+   - of expliciete `Manuele override`.
+
+### 15.2 Operationele afspraak
+
+1. Gebruik action card-context als eerste beslislaag.
+2. Gebruik kaartpopup als tweede controlelaag voor dossier- en vaststellingsactie.
+3. Houd manuele overrides beperkt tot echte afwijkingen; reset zodra normale verdeling terug mogelijk is.

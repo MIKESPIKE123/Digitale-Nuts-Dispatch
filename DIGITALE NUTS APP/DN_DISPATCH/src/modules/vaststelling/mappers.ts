@@ -38,6 +38,34 @@ export function mapVisitToDNVaststellingContext(
   };
 }
 
+export function buildFreeDNVaststellingContext(params: {
+  latitude: number;
+  longitude: number;
+  dispatchDate: string;
+  session: ActiveInspectorSession;
+}): DNVaststellingImmutableContext {
+  const freeId = `FREE-${createId()}`;
+  return {
+    workId: freeId,
+    dossierId: freeId,
+    bonuNummer: "",
+    referentieId: "",
+    gipodId: "",
+    straat: "Vrije vaststelling (GPS)",
+    huisnr: "-",
+    postcode: "-",
+    district: "-",
+    nutsBedrijf: "",
+    locationSource: "exact",
+    latitude: params.latitude,
+    longitude: params.longitude,
+    plannedVisitDate: params.dispatchDate,
+    visitType: "TUSSEN",
+    assignedInspectorId: params.session.inspectorId,
+    assignedInspectorName: params.session.inspectorName,
+  };
+}
+
 export function buildImmutableFingerprint(context: DNVaststellingImmutableContext): string {
   return [
     context.workId,

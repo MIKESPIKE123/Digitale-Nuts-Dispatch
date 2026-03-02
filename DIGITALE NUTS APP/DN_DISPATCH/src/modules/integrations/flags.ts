@@ -33,6 +33,7 @@ export interface IntegrationFlags {
   useMockGipod: boolean;
   useMockASign: boolean;
   useMockKlm: boolean;
+  useMockNotifications: boolean;
 }
 
 export const INTEGRATION_FLAGS: IntegrationFlags = Object.freeze({
@@ -40,4 +41,5 @@ export const INTEGRATION_FLAGS: IntegrationFlags = Object.freeze({
   useMockGipod: toBoolean(env.VITE_USE_MOCK_GIPOD, false),
   useMockASign: toBoolean(env.VITE_USE_MOCK_ASIGN, false),
   useMockKlm: toBoolean(env.VITE_USE_MOCK_KLM, false),
+  useMockNotifications: toBoolean(env.VITE_USE_MOCK_NOTIFICATIONS, false),
 });

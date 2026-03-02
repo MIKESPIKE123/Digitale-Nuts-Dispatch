@@ -82,3 +82,77 @@ export interface ComplaintsGateway {
   readonly mode: IntegrationMode;
   getComplaintSummary(workId: string): Promise<ComplaintSummary>;
 }
+
+export interface NotificationTaxonomyEntry {
+  id: string;
+  label: string;
+  description?: string;
+  source: IntegrationMode;
+  updatedAt: string;
+}
+
+export interface NotificationRecord {
+  notificationId: string;
+  createdOn: string;
+  expiresOn: string | null;
+  statusId: string;
+  statusLabel: string;
+  notificationTypeId: string;
+  notificationTypeLabel: string;
+  notificationCategoryId: string;
+  notificationCategoryLabel: string;
+  triggerOrganizationName: string | null;
+  gipodId: string | null;
+  resourceUrl: string | null;
+  isActionRequired: boolean;
+  data: Record<string, string>;
+  source: IntegrationMode;
+}
+
+export interface NotificationSearchQuery {
+  statusIds?: string[];
+  statusLabels?: string[];
+  notificationTypeIds?: string[];
+  notificationTypeLabels?: string[];
+  notificationCategoryIds?: string[];
+  notificationCategoryLabels?: string[];
+  createdOnStart?: string;
+  createdOnEnd?: string;
+  limit?: number;
+  offset?: number;
+}
+
+export interface NotificationSearchResult {
+  items: NotificationRecord[];
+  totalItems: number | null;
+  hasNextPage: boolean;
+}
+
+export interface NotificationStatusUpdateCommand {
+  notificationId: string;
+  statusId: string;
+  comment?: string;
+  actorId?: string;
+}
+
+export interface NotificationStatusUpdateResult {
+  ok: boolean;
+  statusCode: number;
+  statusId?: string;
+  updatedAt?: string;
+  error?: string;
+  source: IntegrationMode;
+}
+
+export interface NotificationsGateway {
+  readonly name: string;
+  readonly mode: IntegrationMode;
+  getNotificationTypes(): Promise<NotificationTaxonomyEntry[]>;
+  getNotificationCategories(): Promise<NotificationTaxonomyEntry[]>;
+  getNotificationStatuses(): Promise<NotificationTaxonomyEntry[]>;
+  searchNotifications(query: NotificationSearchQuery): Promise<NotificationSearchResult>;
+  getNotificationDetail(notificationId: string): Promise<NotificationRecord | null>;
+  updateNotificationStatus(
+    command: NotificationStatusUpdateCommand
+  ): Promise<NotificationStatusUpdateResult>;
+}

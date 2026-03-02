@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "import:data": "node scripts/import-nuts-data.mjs",
+    "gipod:smoke": "node scripts/gipod-beta-smoke.mjs",
     "qa:known-addresses": "node scripts/validate-known-addresses.mjs",
     "import:impact": "node scripts/import-impact-data.mjs",
     "impact:evaluate": "node scripts/evaluate-impact-priority.mjs",
@@ -13,14 +14,15 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "quality": "npm run typecheck && npm run test",
-    "dev": "npm run import:data && npm run import:impact && vite --host 0.0.0.0 --port 3012",
+    "dev": "npm run import:data && npm run import:impact && vite --host 0.0.0.0 --strictPort --port 3012",
     "build": "npm run import:data && npm run import:impact && tsc -b && vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 3012"
+    "preview": "vite preview --host 0.0.0.0 --strictPort --port 3012"
   },
   "dependencies": {
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.4",
     "maplibre-gl": "^5.9.0",
+    "proj4": "^2.20.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-map-gl": "^8.1.0"

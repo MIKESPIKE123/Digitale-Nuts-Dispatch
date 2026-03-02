@@ -67,6 +67,7 @@ Optioneel:
 6. `GIPOD_LASTMODIFIED_START` (ISO datetime)
 7. `GIPOD_LASTMODIFIED_END` (ISO datetime)
 8. `GIPOD_TIMEOUT_MS` (default `30000`)
+9. `GIPOD_SMOKE_REPORT_PATH` (optioneel, schrijft JSON bewijsrapport naar projectmap)
 
 Voorbeeld in PowerShell:
 
@@ -74,6 +75,7 @@ Voorbeeld in PowerShell:
 $env:GIPOD_BEARER_TOKEN = "<token-van-athumi>"
 $env:GIPOD_NIS_CODES = "11002"
 $env:GIPOD_API_VERSION = "auto"
+$env:GIPOD_SMOKE_REPORT_PATH = "docs/uitvoering/evidence/gipod_beta_smoke_20260228.json"
 npm run gipod:smoke
 ```
 
@@ -83,6 +85,12 @@ npm run gipod:smoke
 2. In `auto` probeert het script eerst v2 en valt alleen terug op v1 bij endpoint-versiefouten (`404/410`).
 3. Als `GIPOD_ENDPOINT_PATH` gezet is, wordt die altijd gebruikt (deterministische smoke runs).
 4. Na sunset-datums geeft het script extra waarschuwing bij v1-gebruik.
+
+### 5.3 Next execution docs
+
+1. Real-tenant validatieplan: `docs/uitvoering/DN_GIPOD_BETA_REAL_TENANT_VALIDATIEPLAN.md`
+2. Operationele acceptatie (7 dagen): `docs/uitvoering/DN_GIPOD_OPERATIONELE_ACCEPTATIE_7_DAGEN.md`
+3. Release gate v1.7: `docs/uitvoering/DN_RELEASE_GATE_V1_7_CHECKLIST.md`
 
 ## 6. Open data versus API-toegang
 

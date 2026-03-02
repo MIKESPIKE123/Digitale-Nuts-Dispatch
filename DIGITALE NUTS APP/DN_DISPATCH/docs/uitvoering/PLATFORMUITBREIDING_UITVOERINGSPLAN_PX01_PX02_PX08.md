@@ -3,6 +3,7 @@
 Datum: 2026-02-20  
 Status: Actief werkdocument (uitvoering)  
 Scope: consolidatie en snelle operationele winst zonder full AI
+Termijnkader: formele planning start op 2026-03-20; tot en met 2026-03-19 pre-fase (vibe coding + structuur).
 
 ## 1. Doel
 
@@ -86,6 +87,9 @@ Definition of Done:
 3. dashboard reageert correct op filters/sessiecontext.
 
 ## 4. Timing (6 weken)
+Weekritme:
+1. W1 start op 2026-03-23 (na formele start op 2026-03-20).
+2. W6 eindigt op 2026-05-01.
 
 ### Week 1-2
 1. PX-01 afronden op validatie + sync + regressietest.

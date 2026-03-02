@@ -1,3 +1,6 @@
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+
 const DEFAULT_BASE_URL = "https://gipod.api.beta-vlaanderen.be";
 const DEFAULT_ENDPOINT_V1 = "/api/v1/public-domain-occupancies";
 const DEFAULT_ENDPOINT_V2 = "/api/v2/public-domain-occupancies";
@@ -156,6 +159,9 @@ async function main() {
   const lastModifiedStart = normalizeText(process.env.GIPOD_LASTMODIFIED_START);
   const lastModifiedEnd = normalizeText(process.env.GIPOD_LASTMODIFIED_END);
   const endpointCandidates = resolveEndpointCandidates(endpointOverride, apiVersionMode);
+  const reportPath = normalizeText(process.env.GIPOD_SMOKE_REPORT_PATH);
+  const attempts = [];
+  let sunsetWarningActive = false;
 
   const parsedNis = parseNisCodes(process.env.GIPOD_NIS_CODES || process.env.GIPOD_NISCODE);
   const nisCodes = parsedNis.valid;
@@ -177,6 +183,7 @@ async function main() {
       `[gipod-smoke] Let op: v1 endpoint mogelijk sunset-risico op ${todayIso}. ` +
         "Gebruik bij voorkeur GIPOD_API_VERSION=v2 of zet expliciet GIPOD_ENDPOINT_PATH."
     );
+    sunsetWarningActive = true;
   }
 
   let usedUrl = null;
@@ -199,6 +206,11 @@ async function main() {
     try {
       const candidateResponse = await fetchWithTimeout(candidateUrl, token, timeoutMs);
       const candidateRawBody = await candidateResponse.text();
+      attempts.push({
+        endpointPath,
+        statusCode: candidateResponse.status,
+        ok: candidateResponse.ok,
+      });
 
       if (candidateResponse.ok) {
         usedUrl = candidateUrl;
@@ -227,6 +239,12 @@ async function main() {
         `GIPOD antwoordde met ${candidateResponse.status} ${candidateResponse.statusText} op ${endpointPath}. Body: ${preview || "-"}`
       );
     } catch (error) {
+      attempts.push({
+        endpointPath,
+        statusCode: null,
+        ok: false,
+        error: error instanceof Error ? error.message : "Onbekende fout",
+      });
       const canRetryWithFallback =
         !endpointOverride && apiVersionMode === "auto" && index < endpointCandidates.length - 1;
 
@@ -281,6 +299,37 @@ async function main() {
   console.log(`[gipod-smoke] Volgende pagina: ${nextPage ? "ja" : "nee"}`);
 
   const sample = members.slice(0, 5).map(mapMemberSummary);
+
+  const report = {
+    executedAt: new Date().toISOString(),
+    baseUrl,
+    endpointMode: endpointOverride ? "custom" : apiVersionMode,
+    usedEndpointPath,
+    usedEndpointUrl: `${usedUrl.origin}${usedUrl.pathname}`,
+    filters: {
+      nisCodes,
+      limit,
+      offset,
+      lastModifiedStart: lastModifiedStart || null,
+      lastModifiedEnd: lastModifiedEnd || null,
+    },
+    summary: {
+      totalItems,
+      pageItems: members.length,
+      hasNextPage: Boolean(nextPage),
+      sunsetWarningActive,
+    },
+    attempts,
+    sample,
+  };
+
+  if (reportPath) {
+    const absoluteReportPath = path.resolve(reportPath);
+    await mkdir(path.dirname(absoluteReportPath), { recursive: true });
+    await writeFile(absoluteReportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
+    console.log(`[gipod-smoke] Report opgeslagen: ${absoluteReportPath}`);
+  }
+
   if (sample.length === 0) {
     console.log("[gipod-smoke] Geen items in huidige pagina.");
     return;

@@ -42,6 +42,122 @@
         "Nieuwe governance basisdocs zijn opgenomen in de bronindex",
         "Bronlinks openen in de bestaande governance document viewer"
       ]
+    },
+    {
+      "id": "DN-GIPOD-NOTIF-001",
+      "title": "Notifications gateway contract en factory scaffold",
+      "done": true,
+      "size": "S",
+      "risk": "low",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "NotificationsGateway contract bestaat in src/modules/integrations/contracts.ts",
+        "ApiNotificationsGateway en MockNotificationsGateway bestaan en compileren",
+        "Factory exposeert getNotificationsGateway()"
+      ]
+    },
+    {
+      "id": "DN-GIPOD-NOTIF-002",
+      "title": "Taxonomie synchronisatie en mapping voor notificaties",
+      "done": true,
+      "size": "M",
+      "risk": "medium",
+      "dependencies": [
+        "DN-GIPOD-NOTIF-001"
+      ],
+      "acceptanceCriteria": [
+        "Taxonomie-methodes zijn beschikbaar in NotificationsGateway",
+        "Type/categorie/status zijn bruikbaar als labels en filters"
+      ]
+    },
+    {
+      "id": "DN-GIPOD-NOTIF-003",
+      "title": "Governance Inbox MVP voor GIPOD notificaties",
+      "done": true,
+      "size": "M",
+      "risk": "medium",
+      "dependencies": [
+        "DN-GIPOD-NOTIF-001",
+        "DN-GIPOD-NOTIF-002"
+      ],
+      "acceptanceCriteria": [
+        "Governance-view toont notificatielijst met kernmetadata",
+        "Statusupdate-actie is beschikbaar in UI"
+      ]
+    },
+    {
+      "id": "DN-GIPOD-NOTIF-004",
+      "title": "Dispatch actieblok voor urgente notificaties",
+      "done": true,
+      "size": "M",
+      "risk": "medium",
+      "dependencies": [
+        "DN-GIPOD-NOTIF-003"
+      ],
+      "acceptanceCriteria": [
+        "Dispatch toont topprioritaire task/warning notificaties",
+        "Klikbare contextlink naar relevant werk/dossier"
+      ]
+    },
+    {
+      "id": "DN-GIPOD-NOTIF-005",
+      "title": "Notificatie hardening (polling, 429-backoff, observability)",
+      "done": true,
+      "size": "M",
+      "risk": "high",
+      "dependencies": [
+        "DN-GIPOD-NOTIF-003",
+        "DN-GIPOD-NOTIF-004"
+      ],
+      "acceptanceCriteria": [
+        "Polling met handmatige refresh is implementeerd",
+        "429 backoff voorkomt retry-storm",
+        "Diagnose/runbooksectie bestaat voor support"
+      ]
+    },
+    {
+      "id": "DN-GIPOD-OPS-001",
+      "title": "PX04 beta real-tenant validatiepakket",
+      "done": true,
+      "size": "S",
+      "risk": "medium",
+      "dependencies": [
+        "DN-GIPOD-NOTIF-005"
+      ],
+      "acceptanceCriteria": [
+        "Real-tenant validatieplan bestaat met scenario's en go/no-go",
+        "Smoke-script ondersteunt evidence-output naar projectmap",
+        "PX04-checklist verwijst naar uitvoeringsdocs en evidenceflow"
+      ]
+    },
+    {
+      "id": "DN-GIPOD-OPS-002",
+      "title": "Operationele acceptatiepakket 7 dagen",
+      "done": true,
+      "size": "S",
+      "risk": "medium",
+      "dependencies": [
+        "DN-GIPOD-OPS-001"
+      ],
+      "acceptanceCriteria": [
+        "Acceptatiedocument bevat dagritme, KPI's en issueboardmodel",
+        "Eindevaluatie en GO/NO-GO format zijn opgenomen"
+      ]
+    },
+    {
+      "id": "DN-GIPOD-OPS-003",
+      "title": "Release gate v1.7 dossier",
+      "done": true,
+      "size": "S",
+      "risk": "medium",
+      "dependencies": [
+        "DN-GIPOD-OPS-002"
+      ],
+      "acceptanceCriteria": [
+        "Release gate checklist bestaat met kwaliteit/security/operatie",
+        "Cutover en rollback stappen zijn beschreven",
+        "Docs-index bevat verwijzingen naar alle nieuwe uitvoeringsdocs"
+      ]
     }
   ]
 }

@@ -118,6 +118,21 @@ Bron: `export_20260221132439.xlsx`
 - `GIPOD 19586569` (`Frankrijklei 67`),
 - `GIPOD 19296287` (`Kruikstraat 28`).
 
+### 0.9 Parserfix straatnaam bij "Initiatief Regio" (2026-02-22)
+
+1. Root cause: sommige GIPOD-beschrijvingen hebben structuur:
+- `2060 ANTWERPEN VAN KERCKHOVENSTRAAT E, Initiatief Regio (...)`
+- oude parser las enkel deel na de komma als adres, waardoor `straat` op `Initiatief Regio...` terechtkwam.
+2. Oplossing in `scripts/import-nuts-data.mjs`:
+- `parseDescriptionAddress` gebruikt nu extra heuristiek:
+  - als deel na de komma ruis is, wordt straat afgeleid uit het deel vóór de komma;
+  - extra patroon toegevoegd voor adressen met postcode op het einde.
+3. Gevolg:
+- context-popup toont nu opnieuw echte straatnamen voor deze gevallen,
+- bevestigd op o.a. `GIPOD 16860287` (`VAN KERCKHOVENSTRAAT E, 2060 Antwerpen`).
+4. Resterende opmerking:
+- als bronregel echt geen straatsegment bevat, blijft fallback nodig (weekrapport/API of reverse geocode).
+
 ### 0.9 Kaartzoeker anomalie (lokaal vs extern) gefixt (2026-02-21)
 
 1. Oorzaak: kaartzoeker nam bij lokale match onmiddellijk het dossierpunt en deed geen externe geocode-prioritering.
@@ -242,6 +257,24 @@ Bron: `export_20260221132439.xlsx`
 - zoekmarker gewijzigd naar `anchor=\"center\"`.
 4. Effect:
 - blauwe zoekmarker valt nu visueel op exact dezelfde coordinate als de onderliggende projectpunten.
+
+### 0.19 Structurele Lambert72-correctie (2026-02-23)
+
+1. Nieuwe root cause bevestigd op de importketen:
+- de vorige handmatige Lambert72-omzetting gebruikte een inconsistente datumtransformatie (BD72/WGS84), met systematische zuidverschuiving op veel records.
+2. Oplossing in `scripts/import-nuts-data.mjs`:
+- handmatige formule vervangen door `proj4` met expliciete `EPSG:31370 -> EPSG:4326` definitie,
+- conversie nu via officiële projectiedefinitie en datumtransformatie.
+3. Volledige dataset opnieuw opgebouwd met `npm run import:data`.
+4. Resultaat na run:
+- `Output works: 4912`,
+- `Location QA suspicious(>=250m): 0`,
+- `Location QA max deviation: 122m`.
+5. Validatie:
+- controle op Antwerpen-boundingbox geeft `0` outliers voor de gegenereerde dispatchdataset,
+- `npm run qa:known-addresses` uitgevoerd (`afwijking=0`, `missing=0`).
+6. Gevolg:
+- GIPOD-, SIGNALISATIE- en DISPATCH-lagen gebruiken opnieuw consistente kaartcoördinaten uit dezelfde gecorrigeerde importpipeline.
 
 ## 1. Uitgangspunten die we vastleggen
 

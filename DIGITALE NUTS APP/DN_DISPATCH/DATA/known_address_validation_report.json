@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-02-21T15:11:17.794Z",
+  "generatedAt": "2026-02-23T14:59:41.980Z",
   "thresholdMeters": 120,
   "totalKnown": 15,
   "foundInDataset": 15,
-  "geocodedNow": 4,
+  "geocodedNow": 0,
   "okCount": 14,
   "deviationCount": 0,
   "missingCount": 0,
@@ -66,14 +66,14 @@
       "postcode": "2000",
       "district": "Antwerpen",
       "datasetPoint": {
-        "lat": 51.20803292101311,
-        "lng": 4.3885335274787565
+        "lat": 51.2075014,
+        "lng": 4.3898143
       },
       "geocodePoint": {
         "lat": 51.2075014,
         "lng": 4.3898143
       },
-      "distanceMeters": 107,
+      "distanceMeters": 0,
       "status": "OK"
     },
     {
@@ -236,8 +236,8 @@
       "postcode": "2140",
       "district": "Borgerhout",
       "datasetPoint": {
-        "lat": 51.211731368134764,
-        "lng": 4.446782490080457
+        "lat": 51.21092846919647,
+        "lng": 4.446326472811185
       },
       "geocodePoint": null,
       "distanceMeters": null,

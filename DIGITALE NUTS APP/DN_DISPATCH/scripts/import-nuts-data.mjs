@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import XLSX from "xlsx";
+import proj4 from "proj4";
 
 const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, "DATA");
@@ -19,9 +20,18 @@ const DEFAULT_CENTER = { lat: 51.2194, lng: 4.4025 };
 const ADDRESS_ALIGN_DEFAULT_THRESHOLD_METERS = 25;
 const ADDRESS_ALIGN_DEFAULT_MAX_GEOCODES_PER_RUN = 120;
 const ADDRESS_ALIGN_DEFAULT_MAX_REPORT_ITEMS = 200;
+const ADDRESS_ALIGN_POSTCODE_MAX_DISTANCE_METERS = 3000;
 const LOCATION_QA_DEFAULT_MAX_CHECKS = 25;
 const LOCATION_QA_DEFAULT_THRESHOLD_METERS = 250;
 const LOCATION_QA_DEFAULT_MAX_REPORT_ITEMS = 120;
+const EPSG_31370 = "EPSG:31370";
+const EPSG_4326 = "EPSG:4326";
+
+// Officiële Lambert72-definitie met BD72 -> WGS84 transformatieparameters.
+proj4.defs(
+  EPSG_31370,
+  "+proj=lcc +lat_0=90 +lon_0=4.367486666666666 +lat_1=51.16666723333333 +lat_2=49.8333339 +x_0=150000.013 +y_0=5400088.438 +ellps=intl +towgs84=106.868628,-52.297783,103.723893,0.33657,-0.456955,1.84218,-1.2747 +units=m +no_defs +type=crs"
+);
 
 const POSTCODE_CENTROIDS = {
   "2000": { lat: 51.2211, lng: 4.3997 },
@@ -105,6 +115,19 @@ const MANUAL_GIPOD_OVERRIDES = {
     location: {
       lat: 51.2113085,
       lng: 4.4237056,
+    },
+    locationSource: "exact",
+  },
+  // Venusstraat Antwerpen: Lambert-bron wijst ~13km te ver zuid, Nominatim
+  // retourneert foutief de Venusstraat in Schoten (2900) i.p.v. Antwerpen (2000).
+  "13038867": {
+    straat: "VENUSSTRAAT",
+    huisnr: "1",
+    postcode: "2000",
+    district: "Antwerpen",
+    location: {
+      lat: 51.2171,
+      lng: 4.4018,
     },
     locationSource: "exact",
   },
@@ -398,38 +421,8 @@ function parseLambertPoint(value) {
 }
 
 function lambert72ToWgs84(x, y) {
-  const x0 = 150000.01256;
-  const y0 = 5400088.4378;
-  const n = 0.7716421928;
-  const F = 1.81329763;
-  const a = 6378388;
-  const b = 6356911.946;
-  const e = Math.sqrt((a * a - b * b) / (a * a));
-  // EPSG:31370 centrale meridiaan (4.367486666666666°) in radialen.
-  // De vorige waarde schoof punten structureel ~800m westwaarts.
-  const lon0 = (4.367486666666666 * Math.PI) / 180;
-
-  const xx = x - x0;
-  const yy = y0 - y;
-  const r = Math.sqrt(xx * xx + yy * yy);
-  const t = Math.atan2(xx, yy);
-  const lon = lon0 + t / n;
-  const p = Math.pow(r / (a * F), 1 / n);
-
-  let lat = Math.PI / 2 - 2 * Math.atan(p);
-  for (let i = 0; i < 5; i += 1) {
-    lat =
-      Math.PI / 2 -
-      2 *
-        Math.atan(
-          p * Math.pow((1 - e * Math.sin(lat)) / (1 + e * Math.sin(lat)), e / 2)
-        );
-  }
-
-  return {
-    lat: (lat * 180) / Math.PI,
-    lng: (lon * 180) / Math.PI,
-  };
+  const [lng, lat] = proj4(EPSG_31370, EPSG_4326, [x, y]);
+  return { lat, lng };
 }
 
 function parseDescriptionAddress(description) {
@@ -443,8 +436,55 @@ function parseDescriptionAddress(description) {
     };
   }
 
+  const parseStreetAndHouse = (value) => {
+    const addressPart = normalize(value);
+    if (!addressPart) {
+      return { straat: "", huisnr: "" };
+    }
+    const streetAndHouse = addressPart.match(/^(.*?)(?:\s+([0-9][0-9A-Za-z\-\/]*))?$/);
+    return {
+      straat: normalize(streetAndHouse?.[1] ?? addressPart),
+      huisnr: normalizeHouseNumber(streetAndHouse?.[2] ?? ""),
+    };
+  };
+
+  const deriveStreetFromMunicipalityChunk = (municipalityChunk) => {
+    const chunk = normalize(municipalityChunk).replace(/\s+/g, " ").trim();
+    if (!chunk) {
+      return { straat: "", huisnr: "" };
+    }
+
+    // Veel GIPOD-rijen gebruiken: "2060 ANTWERPEN VAN ... , Initiatief Regio (...)"
+    // waarbij straat in het deel vóór de komma zit i.p.v. erna.
+    const tokens = chunk.split(" ").filter(Boolean);
+    if (tokens.length <= 1) {
+      return { straat: "", huisnr: "" };
+    }
+
+    const withoutMunicipality = tokens.slice(1).join(" ");
+    if (!withoutMunicipality) {
+      return { straat: "", huisnr: "" };
+    }
+
+    return parseStreetAndHouse(withoutMunicipality);
+  };
+
   const match = cleaned.match(/^(\d{4})\s+([^,]+),\s*(.+)$/i);
   if (!match) {
+    const trailingPostcodePattern = cleaned.match(/^(.*?),\s*(\d{4})\s+(.+)$/i);
+    if (trailingPostcodePattern) {
+      const postcode = normalize(trailingPostcodePattern[2]);
+      const municipality = titleCase(trailingPostcodePattern[3]);
+      const parsed = parseStreetAndHouse(trailingPostcodePattern[1]);
+
+      return {
+        postcode,
+        district: POSTCODE_DISTRICTS[postcode] ?? municipality,
+        straat: parsed.straat,
+        huisnr: parsed.huisnr,
+      };
+    }
+
     return {
       postcode: "",
       district: "",
@@ -454,11 +494,20 @@ function parseDescriptionAddress(description) {
   }
 
   const postcode = normalize(match[1]);
-  const municipality = titleCase(match[2]);
-  const addressPart = normalize(match[3]);
-  const streetAndHouse = addressPart.match(/^(.*?)(?:\s+([0-9][0-9A-Za-z\-\/]*))?$/);
-  const straat = normalize(streetAndHouse?.[1] ?? addressPart);
-  const huisnr = normalizeHouseNumber(streetAndHouse?.[2] ?? "");
+  const municipalityChunk = normalize(match[2]);
+  const municipality = titleCase(municipalityChunk);
+  const parsedFromRight = parseStreetAndHouse(match[3]);
+  const parsedFromLeftChunk = deriveStreetFromMunicipalityChunk(municipalityChunk);
+
+  const shouldUseLeftChunk =
+    (looksLikeNoisyStreet(parsedFromRight.straat) || !normalize(parsedFromRight.huisnr)) &&
+    normalize(parsedFromLeftChunk.straat).length > 0 &&
+    !looksLikeNoisyStreet(parsedFromLeftChunk.straat);
+
+  const straat = shouldUseLeftChunk ? parsedFromLeftChunk.straat : parsedFromRight.straat;
+  const huisnr = shouldUseLeftChunk
+    ? parsedFromLeftChunk.huisnr || parsedFromRight.huisnr
+    : parsedFromRight.huisnr;
 
   return {
     postcode,
@@ -1110,6 +1159,21 @@ async function alignExportLocationsWithAddress(records, { skipGeocode }) {
     if (!cached || !Number.isFinite(cached.lat) || !Number.isFinite(cached.lng)) {
       output.push(record);
       continue;
+    }
+
+    // Postcode proximity validation: reject Nominatim results that fall too far
+    // from the declared postcode centroid (e.g. Venusstraat Antwerpen → Schoten).
+    const postcodeCentroid = POSTCODE_CENTROIDS[record.postcode];
+    if (postcodeCentroid) {
+      const distanceToPostcode = haversineDistanceMeters(postcodeCentroid, {
+        lat: cached.lat,
+        lng: cached.lng,
+      });
+      if (distanceToPostcode > ADDRESS_ALIGN_POSTCODE_MAX_DISTANCE_METERS) {
+        // Geocode result is in a different area than the declared postcode — skip.
+        output.push(record);
+        continue;
+      }
     }
 
     const distanceMeters = haversineDistanceMeters(record.location, {

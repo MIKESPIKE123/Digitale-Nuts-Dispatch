@@ -158,9 +158,10 @@ Doel:
 1. 1 gedeelde bron van waarheid tussen stad en nuts.
 
 Scope MVP:
-1. inkomende status sync (read);
+1. inkomende status sync (read) via `public-domain-occupancies` op beta;
 2. uitgaande update queue (write waar toegelaten);
 3. idempotente events + auditlog.
+4. fase 1 expliciet zonder signalisatiestromen; die volgen in volgende schil-1 stap.
 
 User stories:
 1. Als toezichter wil ik actuele GIPOD-status zien zodat ik geen verouderde context gebruik.
@@ -178,6 +179,11 @@ Kan zonder externe API:
 Acceptatiecriteria:
 1. statusmapping is expliciet gedocumenteerd;
 2. dubbele events leiden niet tot dubbele records.
+
+Operationele notitie 2026-02-27:
+1. gekozen omgeving: `beta`;
+2. gekozen scope nu: alleen `public-domain-occupancies`;
+3. NIS-filter vereist volledige gemeentecode (5 cijfers), geen shorthand zoals `NIS 2`.
 
 ### PX-05 - Partnerportaal Nuts en Aannemers
 Doel:

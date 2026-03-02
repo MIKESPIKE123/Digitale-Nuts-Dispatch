@@ -11,6 +11,8 @@ import type {
 export const SETTINGS_STORAGE_KEY = "dn_dispatch_settings_v1";
 export const SETTINGS_BACKUP_STORAGE_KEY = "dn_dispatch_settings_backup_v1";
 export const SETTINGS_PREVIOUS_STORAGE_KEY = "dn_dispatch_settings_previous_v1";
+export const INSPECTOR_SETTINGS_EXPORT_FORMAT = "dn_dispatch_inspectors";
+export const INSPECTOR_SETTINGS_EXPORT_VERSION = 1;
 export const MIN_SYNC_INTERVAL_MINUTES = 15;
 export const MAX_SYNC_INTERVAL_MINUTES = 720;
 export const DEFAULT_SYNC_INTERVAL_MINUTES = 60;
@@ -42,6 +44,18 @@ const CUSTOM_INSPECTOR_COLOR_PALETTE = [
   "#6d597a",
 ];
 
+export type InspectorSettingsExportPayload = {
+  format: typeof INSPECTOR_SETTINGS_EXPORT_FORMAT;
+  version: typeof INSPECTOR_SETTINGS_EXPORT_VERSION;
+  exportedAt: string;
+  settings: {
+    customInspectors: DispatchSettings["customInspectors"];
+    inspectorOverrides: DispatchSettings["inspectorOverrides"];
+    inspectorAbsences: DispatchSettings["inspectorAbsences"];
+    dispatchCapacity: DispatchSettings["dispatchCapacity"];
+  };
+};
+
 function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }
@@ -53,6 +67,10 @@ function roundNumber(value: number, digits = 2): number {
 
 function normalizeText(value: unknown): string {
   return `${value ?? ""}`.trim();
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
 function isIsoDate(value: string): boolean {
@@ -663,6 +681,64 @@ export function saveDispatchSettings(settings: DispatchSettings): void {
 
   safeStorageSet(storage, SETTINGS_STORAGE_KEY, nextSerialized);
   safeStorageSet(storage, SETTINGS_BACKUP_STORAGE_KEY, nextSerialized);
+}
+
+export function exportInspectorSettings(settings: DispatchSettings): string {
+  const sanitized = sanitizeDispatchSettings(settings);
+  const payload: InspectorSettingsExportPayload = {
+    format: INSPECTOR_SETTINGS_EXPORT_FORMAT,
+    version: INSPECTOR_SETTINGS_EXPORT_VERSION,
+    exportedAt: new Date().toISOString(),
+    settings: {
+      customInspectors: sanitized.customInspectors,
+      inspectorOverrides: sanitized.inspectorOverrides,
+      inspectorAbsences: sanitized.inspectorAbsences,
+      dispatchCapacity: sanitized.dispatchCapacity,
+    },
+  };
+
+  return JSON.stringify(payload, null, 2);
+}
+
+export function importInspectorSettings(
+  rawJson: string,
+  currentSettings: DispatchSettings
+): DispatchSettings {
+  const base = sanitizeDispatchSettings(currentSettings);
+  let parsed: unknown;
+
+  try {
+    parsed = JSON.parse(rawJson);
+  } catch {
+    throw new Error("JSON kon niet gelezen worden.");
+  }
+
+  if (!isRecord(parsed)) {
+    throw new Error("Importbestand heeft geen geldig JSON-object.");
+  }
+
+  let source: Record<string, unknown> = parsed;
+  const format = normalizeText(parsed.format);
+  const version = parsed.version;
+  const embeddedSettings = parsed.settings;
+
+  if (
+    format === INSPECTOR_SETTINGS_EXPORT_FORMAT &&
+    version === INSPECTOR_SETTINGS_EXPORT_VERSION
+  ) {
+    if (!isRecord(embeddedSettings)) {
+      throw new Error("Importbestand mist veld 'settings'.");
+    }
+    source = embeddedSettings;
+  }
+
+  return sanitizeDispatchSettings({
+    ...base,
+    customInspectors: source.customInspectors ?? base.customInspectors,
+    inspectorOverrides: source.inspectorOverrides ?? base.inspectorOverrides,
+    inspectorAbsences: source.inspectorAbsences ?? base.inspectorAbsences,
+    dispatchCapacity: source.dispatchCapacity ?? base.dispatchCapacity,
+  });
 }
 
 export function applyInspectorOverrides(

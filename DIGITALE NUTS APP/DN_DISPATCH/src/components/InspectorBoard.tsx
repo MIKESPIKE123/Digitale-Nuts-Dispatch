@@ -7,6 +7,7 @@ type InspectorBoardProps = {
   visitsByInspector: Record<string, PlannedVisit[]>;
   followUpsByInspector: Record<string, FollowUpTask[]>;
   preferredInspectorByWorkId: Record<string, string>;
+  manualInspectorByWorkId: Record<string, string>;
   visibleInspectorIds: Set<string>;
   absentInspectorIds: Set<string>;
   inactiveInspectorIds: Set<string>;
@@ -14,6 +15,8 @@ type InspectorBoardProps = {
   impactByVisitId: Record<string, { level: ImpactLevel | null; score: number | null }>;
   selectedVisitId: string | null;
   onSelectVisit: (visitId: string | null) => void;
+  onManualAssignWork: (workId: string, inspectorId: string) => void;
+  onClearManualAssignWork: (workId: string) => void;
   onExportInspectorPdf: (inspectorId: string) => void;
 };
 
@@ -47,11 +50,22 @@ function isExternalLink(url: string | null): url is string {
   return Boolean(url);
 }
 
+function assignmentRoleLabel(role: PlannedVisit["inspectorAssignmentRole"]): string {
+  if (role === "DEDICATED") {
+    return "Dedicated";
+  }
+  if (role === "BACKUP") {
+    return "Backup";
+  }
+  return "Reserve";
+}
+
 export function InspectorBoard({
   inspectors,
   visitsByInspector,
   followUpsByInspector,
   preferredInspectorByWorkId,
+  manualInspectorByWorkId,
   visibleInspectorIds,
   absentInspectorIds,
   inactiveInspectorIds,
@@ -59,6 +73,8 @@ export function InspectorBoard({
   impactByVisitId,
   selectedVisitId,
   onSelectVisit,
+  onManualAssignWork,
+  onClearManualAssignWork,
   onExportInspectorPdf,
 }: InspectorBoardProps) {
   const visibleInspectors = inspectors.filter((inspector) =>
@@ -109,79 +125,130 @@ export function InspectorBoard({
               {visits.length === 0 ? (
                 <p className="muted">Geen terreinacties voor deze datum.</p>
               ) : (
-                visits.map((visit) => (
-                  (() => {
+                visits.map((visit) => {
                     const aSignUrl = buildASignUrl(visit.work.referentieId);
                     const gipodUrl = buildGipodUrl(visit.work.gipodId);
                     const impact = impactByVisitId[visit.id];
+                    const manualInspectorId = manualInspectorByWorkId[visit.work.id] ?? "";
+                    const manualInspector = manualInspectorId
+                      ? inspectors.find((item) => item.id === manualInspectorId)
+                      : undefined;
                     return (
-                  <button
-                    key={visit.id}
-                    type="button"
-                    className={`visit-card ${visit.mandatory ? "mandatory" : "cadence"}`}
-                    onClick={() => onSelectVisit(visit.id)}
-                    aria-pressed={selectedVisitId === visit.id}
-                    data-selected={selectedVisitId === visit.id}
-                  >
-                    <div className="visit-topline">
-                      <strong>{visit.work.dossierId}</strong>
-                      <div className="visit-topline-chips">
-                        <span className="visit-chip">{visitTypeLabel(visit.visitType)}</span>
-                        {impact?.level ? (
-                          <span className={`visit-chip impact-${impact.level.toLowerCase()}`}>
-                            Impact {impact.level} ({impact.score ?? "-"})
-                          </span>
-                        ) : null}
-                      </div>
-                    </div>
-                    <p>
-                      {visit.work.straat} {visit.work.huisnr} ({visit.work.postcode})
-                    </p>
-                    <div className="visit-meta-row">
-                      <span>ReferentieID:</span>
-                      {isExternalLink(aSignUrl) ? (
-                        <a href={aSignUrl} target="_blank" rel="noreferrer">
-                          {visit.work.referentieId || "-"}
-                        </a>
-                      ) : (
-                        <span>{visit.work.referentieId || "-"}</span>
-                      )}
-                    </div>
-                    <div className="visit-meta-row">
-                      <span>GIPOD:</span>
-                      {isExternalLink(gipodUrl) ? (
-                        <a href={gipodUrl} target="_blank" rel="noreferrer">
-                          {visit.work.gipodId || "-"}
-                        </a>
-                      ) : (
-                        <span>{visit.work.gipodId || "-"}</span>
-                      )}
-                    </div>
-                    <p className="visit-meta">
-                      {visit.work.status} | {visit.work.nutsBedrijf}
-                    </p>
-                    <p className="visit-meta">
-                      GIPOD: {visit.work.sourceStatus || "-"} | {visit.work.gipodCategorie || "-"}
-                    </p>
-                    <p className="visit-meta">
-                      Vergunning: {visit.work.permitStatus || "ONBEKEND"}
-                    </p>
-                    {visit.work.status === "VERGUND" ? (
-                      <p className="visit-meta">Start voorzien: {formatNlDate(visit.work.startDate)}</p>
-                    ) : (
-                      <p className="visit-meta">In uitvoering sinds: {formatNlDate(visit.work.startDate)}</p>
-                    )}
-                    <p className="visit-meta">Loopt t.e.m.: {formatNlDate(visit.work.endDate)}</p>
-                    <p className="visit-meta">
-                      {preferredInspectorByWorkId[visit.work.id] === inspector.id
-                        ? "Voorkeurtoezichter"
-                        : "Tijdelijke herverdeling"}
-                    </p>
-                  </button>
+                      <article key={visit.id} className="visit-card-shell">
+                        <button
+                          type="button"
+                          className={`visit-card ${visit.mandatory ? "mandatory" : "cadence"}`}
+                          onClick={() => onSelectVisit(visit.id)}
+                          aria-pressed={selectedVisitId === visit.id}
+                          data-selected={selectedVisitId === visit.id}
+                        >
+                          <div className="visit-topline">
+                            <strong>{visit.work.dossierId}</strong>
+                            <div className="visit-topline-chips">
+                              <span className="visit-chip">{visitTypeLabel(visit.visitType)}</span>
+                              {impact?.level ? (
+                                <span className={`visit-chip impact-${impact.level.toLowerCase()}`}>
+                                  Impact {impact.level} ({impact.score ?? "-"})
+                                </span>
+                              ) : null}
+                            </div>
+                          </div>
+                          <p>
+                            {visit.work.straat} {visit.work.huisnr} ({visit.work.postcode})
+                          </p>
+                          <div className="visit-meta-row">
+                            <span>ReferentieID:</span>
+                            {isExternalLink(aSignUrl) ? (
+                              <a href={aSignUrl} target="_blank" rel="noreferrer">
+                                {visit.work.referentieId || "-"}
+                              </a>
+                            ) : (
+                              <span>{visit.work.referentieId || "-"}</span>
+                            )}
+                          </div>
+                          <div className="visit-meta-row">
+                            <span>GIPOD:</span>
+                            {isExternalLink(gipodUrl) ? (
+                              <a href={gipodUrl} target="_blank" rel="noreferrer">
+                                {visit.work.gipodId || "-"}
+                              </a>
+                            ) : (
+                              <span>{visit.work.gipodId || "-"}</span>
+                            )}
+                          </div>
+                          <p className="visit-meta">
+                            {visit.work.status} | {visit.work.nutsBedrijf}
+                          </p>
+                          <p className="visit-meta">
+                            GIPOD: {visit.work.sourceStatus || "-"} | {visit.work.gipodCategorie || "-"}
+                          </p>
+                          <p className="visit-meta">
+                            Vergunning: {visit.work.permitStatus || "ONBEKEND"}
+                          </p>
+                          <p className="visit-meta">
+                            Toewijzing: {assignmentRoleLabel(visit.inspectorAssignmentRole)}
+                          </p>
+                          {visit.work.status === "VERGUND" ? (
+                            <p className="visit-meta">
+                              Start voorzien: {formatNlDate(visit.work.startDate)}
+                            </p>
+                          ) : (
+                            <p className="visit-meta">
+                              In uitvoering sinds: {formatNlDate(visit.work.startDate)}
+                            </p>
+                          )}
+                          <p className="visit-meta">Loopt t.e.m.: {formatNlDate(visit.work.endDate)}</p>
+                          <p className="visit-meta">
+                            {manualInspectorId
+                              ? `Manuele override: ${manualInspector?.initials ?? manualInspectorId}`
+                              : preferredInspectorByWorkId[visit.work.id] === inspector.id
+                                ? "Voorkeurtoezichter"
+                                : "Tijdelijke herverdeling"}
+                          </p>
+                        </button>
+                        <div
+                          className={`visit-manual-row ${manualInspectorId ? "has-override" : ""}`}
+                          aria-label="Manuele toewijzing voor fiche hierboven"
+                        >
+                          <p className="visit-manual-context">↳ Geldt enkel voor de fiche hierboven</p>
+                          <label htmlFor={`manual-assign-${visit.id}`}>
+                            Manuele toewijzing voor deze fiche
+                          </label>
+                          <select
+                            id={`manual-assign-${visit.id}`}
+                            value={manualInspectorId}
+                            onChange={(event) => {
+                              const nextInspectorId = event.target.value.trim();
+                              if (!nextInspectorId) {
+                                onClearManualAssignWork(visit.work.id);
+                                return;
+                              }
+                              onManualAssignWork(visit.work.id, nextInspectorId);
+                            }}
+                          >
+                            <option value="">Automatisch (volgens planning)</option>
+                            {inspectors.map((candidateInspector) => (
+                              <option key={`${visit.id}-${candidateInspector.id}`} value={candidateInspector.id}>
+                                {candidateInspector.initials} -{" "}
+                                {candidateInspector.name || `Toezichter ${candidateInspector.initials}`}
+                              </option>
+                            ))}
+                          </select>
+                          {manualInspectorId ? (
+                            <button
+                              type="button"
+                              className="chip visit-manual-reset"
+                              onClick={() => onClearManualAssignWork(visit.work.id)}
+                            >
+                              Reset
+                            </button>
+                          ) : null}
+                        </div>
+                      </article>
                     );
-                  })()
-                ))
-              )}
+                  })
+                )
+              }
             </div>
 
             <div className="followup-block">

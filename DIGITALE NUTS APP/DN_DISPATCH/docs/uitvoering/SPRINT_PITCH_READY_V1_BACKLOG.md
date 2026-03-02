@@ -4,6 +4,7 @@ Datum: 2026-02-17
 Project: `DN_DISPATCH` + `DN Vaststelling`  
 Sprintduur: 2 weken (10 werkdagen)  
 Sprintdoel: app toonbaar en overtuigend maken voor projectteam-pitch, met stabiele demo-flow, KPI-paneel v1 en API-ready architectuur (mock-first).
+Termijnkader: formele planning start op 2026-03-20; tot en met 2026-03-19 blijft dit document bruikbaar als pre-fase backlog voor vibe coding en structuur.
 
 ## 1. Sprintdoel en outcome
 Einde sprint willen we 5 zaken live kunnen tonen:
@@ -26,6 +27,30 @@ Out of scope:
 - SSO implementatie.
 - Productieklare AI-modules.
 - Juridische retributiemotor.
+
+## 2.1 Schil-1 scope labels (MH/NN)
+Bron: `docs/strategie/DN_SCHIL1_SCOPE_MUST_HAVE_VS_NIET_NU.md`.
+
+| Story | ScopeTag | ScopeRef | Opmerking |
+|---|---|---|---|
+| `PRV1-US-001` | `MH` | `MH-01` | Kernflow is nodig voor centrale ketenvalidatie. |
+| `PRV1-US-002` | `NN` | - | Pitch-optimalisatie, geen Schil-1 must-have. |
+| `PRV1-US-003` | `NN` | - | KPI-waardevol, maar niet hard blokkerend voor Schil 1. |
+| `PRV1-US-004` | `NN` | - | Transparantieverbetering, niet blokkerend voor Schil 1. |
+| `PRV1-US-005` | `MH` | `MH-02` | Contractlaag is kernvoorwaarde. |
+| `PRV1-US-006` | `MH` | `MH-05` | Enabler voor gecontroleerde integratie-opbouw. |
+| `PRV1-US-007` | `MH` | `MH-07` | Contracttests zijn releasevoorwaarde. |
+| `PRV1-US-008` | `NN` | - | Demo-focus, niet blokkerend voor Schil-1 fundament. |
+| `PRV1-US-009` | `NN` | - | Pitch-asset, geen architectuurblokker. |
+| `PRV1-US-010` | `NN` | - | Opleiding nuttig, maar niet blokkerend in deze fase. |
+| `PRV1-US-011` | `NN` | - | Communicatie-output, geen funderingsvereiste. |
+
+Open gaten t.o.v. Schil-1 must-have:
+1. `MH-03` Entra login + basis RBAC (niet als aparte PRV-story opgenomen).
+2. `MH-04` Audittrail op kritieke acties (niet als aparte PRV-story opgenomen).
+3. `MH-06` Idempotency + retry als formele releasevoorwaarde (deels aanwezig, nog formaliseren).
+4. `MH-08` Release runbook + incidentflow v1.
+5. `MH-09` Scope- en poortdiscipline als expliciete sprintgate.
 
 ## 3. Teamcapaciteit (richtinschatting)
 - Product owner/business: 20-30 uur
@@ -182,20 +207,26 @@ Acceptatiecriteria:
 
 ## 5. Prioriteit en volgorde
 
-Must-have (week 1):
+Must-have (Schil-1 `MH`):
 1. `PRV1-US-001`
-2. `PRV1-US-003`
-3. `PRV1-US-005`
-4. `PRV1-US-006`
-5. `PRV1-US-008`
+2. `PRV1-US-005`
+3. `PRV1-US-006`
+4. `PRV1-US-007`
 
-Should-have (week 2):
+Should-have (`NN`, enkel bij resterende capaciteit):
 1. `PRV1-US-002`
-2. `PRV1-US-004`
-3. `PRV1-US-007`
-4. `PRV1-US-009`
-5. `PRV1-US-010`
-6. `PRV1-US-011`
+2. `PRV1-US-003`
+3. `PRV1-US-004`
+4. `PRV1-US-008`
+5. `PRV1-US-009`
+6. `PRV1-US-010`
+7. `PRV1-US-011`
+
+Aanvullend verplicht vanuit Schil-1 scope, buiten deze PRV-lijst:
+1. `MH-03` Entra + RBAC.
+2. `MH-04` Audittrail.
+3. `MH-08` Runbook + incidentflow.
+4. `MH-09` Scope- en poortdiscipline.
 
 ## 6. Technische implementatie-aanpak (zonder externe API)
 

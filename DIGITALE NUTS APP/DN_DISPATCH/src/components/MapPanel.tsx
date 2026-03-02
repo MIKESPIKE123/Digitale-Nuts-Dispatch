@@ -28,6 +28,11 @@ type MapPanelProps = {
   visits: PlannedVisit[];
   selectedVisitId: string | null;
   onSelectVisit: (visitId: string | null) => void;
+  workIdsWithVaststelling: Set<string>;
+  onOpenVaststellingFromPopup: (
+    visitId: string,
+    mode: "new" | "existing"
+  ) => void;
   mapStyleUrl: string;
   routesByInspector: Record<string, PlannedVisit[]>;
   routeOrderByVisitId: Record<string, number>;
@@ -87,6 +92,49 @@ function getCenter(visits: PlannedVisit[], selectedVisitId: string | null): [num
   );
 
   return [sum.lng / visits.length, sum.lat / visits.length];
+}
+
+function getVisitFitBounds(visits: PlannedVisit[]): [[number, number], [number, number]] | null {
+  if (visits.length === 0) {
+    return null;
+  }
+
+  let west = visits[0].work.location.lng;
+  let east = visits[0].work.location.lng;
+  let south = visits[0].work.location.lat;
+  let north = visits[0].work.location.lat;
+
+  for (const visit of visits) {
+    const { lat, lng } = visit.work.location;
+    if (lng < west) {
+      west = lng;
+    }
+    if (lng > east) {
+      east = lng;
+    }
+    if (lat < south) {
+      south = lat;
+    }
+    if (lat > north) {
+      north = lat;
+    }
+  }
+
+  // Prevent zero-size bounds when all points share the same coordinates.
+  const paddingDegrees = 0.0015;
+  if (Math.abs(east - west) < 0.000001) {
+    west -= paddingDegrees;
+    east += paddingDegrees;
+  }
+  if (Math.abs(north - south) < 0.000001) {
+    south -= paddingDegrees;
+    north += paddingDegrees;
+  }
+
+  return [
+    [west, south],
+    [east, north],
+  ];
 }
 
 function normalizeText(value: string): string {
@@ -379,6 +427,8 @@ export function MapPanel({
   visits,
   selectedVisitId,
   onSelectVisit,
+  workIdsWithVaststelling,
+  onOpenVaststellingFromPopup,
   mapStyleUrl,
   routesByInspector,
   routeOrderByVisitId,
@@ -391,6 +441,10 @@ export function MapPanel({
   const selectedVisit = selectedVisitId
     ? visits.find((visit) => visit.id === selectedVisitId)
     : undefined;
+
+  // Track previous selectedVisitId so we only flyTo on actual selection changes,
+  // not when filter changes cause center to recalculate.
+  const prevSelectedVisitIdRef = useRef<string | null | undefined>(undefined);
 
   const [showPostcodeBoundaries, setShowPostcodeBoundaries] = useState(false);
   const [showDispatchLayer, setShowDispatchLayer] = useState(true);
@@ -433,6 +487,13 @@ export function MapPanel({
       impactProfileByPostcode[selectedVisit.work.postcode]
     );
   }, [impactProfileByPostcode, routeOrderByVisitId, selectedDate, selectedVisit, visits]);
+
+  const selectedVisitHasVaststelling = useMemo(() => {
+    if (!selectedVisit) {
+      return false;
+    }
+    return workIdsWithVaststelling.has(selectedVisit.work.id);
+  }, [selectedVisit, workIdsWithVaststelling]);
 
   const syncVisibleBounds = useCallback(() => {
     const map = mapRef.current?.getMap();
@@ -598,6 +659,17 @@ export function MapPanel({
       return;
     }
 
+    const isInitial = prevSelectedVisitIdRef.current === undefined;
+    const visitIdChanged = prevSelectedVisitIdRef.current !== selectedVisitId;
+    prevSelectedVisitIdRef.current = selectedVisitId;
+
+    // Only flyTo on initial mount or when the user explicitly selects / deselects
+    // a visit. Filter changes (GIPOD phase, status, impact …) recalculate center
+    // but should NOT cause the map to jump.
+    if (!isInitial && !visitIdChanged) {
+      return;
+    }
+
     if (selectedVisit) {
       map.flyTo({
         center,
@@ -615,7 +687,7 @@ export function MapPanel({
       zoom: Math.max(map.getZoom(), 11.6),
       essential: true,
     });
-  }, [center, selectedVisit]);
+  }, [center, selectedVisit, selectedVisitId]);
 
   useEffect(() => {
     syncVisibleBounds();
@@ -626,21 +698,46 @@ export function MapPanel({
     if (!map) {
       return;
     }
-    if (selectedVisit) {
+
+    if (visits.length === 0) {
       map.flyTo({
         center,
         duration: 600,
-        zoom: Math.max(map.getZoom(), 13.5),
+        zoom: Math.max(map.getZoom(), 11.6),
+        essential: true,
+      });
+      return;
+    }
+
+    if (visits.length === 1) {
+      const [singleVisit] = visits;
+      map.flyTo({
+        center: [singleVisit.work.location.lng, singleVisit.work.location.lat],
+        duration: 600,
+        zoom: Math.max(map.getZoom(), 13.8),
         offset: [0, SELECTED_VISIT_FOCUS_OFFSET_Y],
         essential: true,
       });
       return;
     }
 
-    map.flyTo({
-      center,
-      duration: 600,
-      zoom: Math.max(map.getZoom(), 11.6),
+    const bounds = getVisitFitBounds(visits);
+    if (!bounds) {
+      return;
+    }
+
+    const isCompactViewport =
+      typeof window !== "undefined" && window.matchMedia("(max-width: 1220px)").matches;
+
+    map.getMap().fitBounds(bounds, {
+      padding: {
+        top: 72,
+        right: 36,
+        bottom: 72,
+        left: isCompactViewport ? 24 : 320,
+      },
+      duration: 700,
+      maxZoom: 14.8,
       essential: true,
     });
   };
@@ -671,6 +768,34 @@ export function MapPanel({
       label: result.label,
     });
   };
+
+  const handleVisitPinClick = useCallback(
+    (visitId: string) => {
+      setSelectedContextWorkId(null);
+      setSearchMarker(null);
+
+      if (selectedVisitId === visitId) {
+        setIsVisitPopupOpen((previous) => !previous);
+        onSelectVisit(visitId);
+        return;
+      }
+
+      setIsVisitPopupOpen(true);
+      onSelectVisit(visitId);
+    },
+    [onSelectVisit, selectedVisitId]
+  );
+
+  const handleContextPinClick = useCallback(
+    (workId: string) => {
+      setIsVisitPopupOpen(false);
+      onSelectVisit(null);
+      setSearchMarker(null);
+
+      setSelectedContextWorkId((previous) => (previous === workId ? null : workId));
+    },
+    [onSelectVisit]
+  );
 
   const handleStreetSearch = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -795,151 +920,153 @@ export function MapPanel({
           <NavigationControl position="top-right" visualizePitch={false} />
 
           <div className="map-top-overlays">
-            <div className={`map-overlay map-overlay-left ${legendCollapsed ? "collapsed" : ""}`}>
-              <div className="map-overlay-head">
-                <p className="map-overlay-title">LEGENDE</p>
-                <button
-                  type="button"
-                  className="map-overlay-toggle"
-                  onClick={() => setLegendCollapsed((previous) => !previous)}
-                  aria-expanded={!legendCollapsed}
-                >
-                  {legendCollapsed ? "Open" : "Inklap"}
-                </button>
+            <div className="map-overlay-stack">
+              <div className="map-overlay map-overlay-search">
+                <form className="map-search-form" onSubmit={handleStreetSearch}>
+                  <input
+                    type="text"
+                    placeholder="Zoek straat op kaart"
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                  />
+                  <button type="submit" className="map-btn" disabled={searchLoading}>
+                    {searchLoading ? "Zoeken..." : "Zoek"}
+                  </button>
+                </form>
+                {searchError ? <p className="map-search-error">{searchError}</p> : null}
+                {searchResults.length > 0 ? (
+                  <div className="map-search-results">
+                    {searchResults.map((result) => (
+                      <button
+                        key={result.key}
+                        type="button"
+                        className="map-search-result-btn"
+                        onClick={() => handleFocusSearchResult(result)}
+                      >
+                        {result.label} {result.source === "nominatim" ? "• extern" : "• lokaal"}
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
               </div>
 
-              {!legendCollapsed ? (
-                <>
-                  <p className="map-overlay-line">
-                    <span className="layer-dot mandatory" /> Verplicht (start/einde)
-                  </p>
-                  <p className="map-overlay-line">
-                    <span className="layer-dot cadence" /> Cadans (max 1 dag overslaan)
-                  </p>
-                  <p className="map-overlay-line">
-                    <span className="layer-dot selected" /> Geselecteerde werf
-                  </p>
-                  <p className="map-overlay-line">
-                    <span className="layer-dot context-dark" /> Niet-toegewezen projectpin
-                  </p>
-                  {routeEnabled ? (
-                    <>
-                      <p className="map-overlay-title map-overlay-subtitle">Nummers in bolletjes</p>
-                      <p className="map-overlay-line">
-                        <span className="legend-route-number">1</span> 1e bezoek op route
-                      </p>
-                      <p className="map-overlay-line">
-                        <span className="legend-route-number">2</span> 2e bezoek op route
-                      </p>
-                      <p className="map-overlay-line">
-                        <span className="legend-route-number">3</span> 3e bezoek op route
-                      </p>
-                      <p className="map-overlay-line">
-                        <span className="legend-route-number">4</span> 4e bezoek op route
-                      </p>
-                      <p className="map-overlay-line">
-                        <span className="legend-route-number">5</span> 5e bezoek op route
-                      </p>
-                    </>
-                  ) : null}
-                  <label className="map-layer-toggle">
-                    <input
-                      type="checkbox"
-                      checked={showPostcodeBoundaries}
-                      onChange={(event) => setShowPostcodeBoundaries(event.target.checked)}
-                    />
-                    Postcoderanden
-                  </label>
-                  <p className="map-overlay-title map-overlay-subtitle">Kaartlagen</p>
-                  <button type="button" className="map-btn" onClick={toggleContextLayers}>
-                    {showGipodLayer || showSignalisatieLayer
-                      ? "Verberg niet-toegewezen projecten"
-                      : "Toon niet-toegewezen projecten"}
+              <div className={`map-overlay map-overlay-left ${legendCollapsed ? "collapsed" : ""}`}>
+                <div className="map-overlay-head">
+                  <p className="map-overlay-title">LEGENDE</p>
+                  <button
+                    type="button"
+                    className="map-overlay-toggle"
+                    onClick={() => setLegendCollapsed((previous) => !previous)}
+                    aria-expanded={!legendCollapsed}
+                  >
+                    {legendCollapsed ? "Open" : "Inklap"}
                   </button>
-                  <label className="map-layer-toggle">
-                    <input
-                      type="checkbox"
-                      checked={showDispatchLayer}
-                      onChange={(event) => {
-                        setShowDispatchLayer(event.target.checked);
-                        if (!event.target.checked) {
-                          setIsVisitPopupOpen(false);
-                        }
-                      }}
-                    />
-                    DISPATCH
-                  </label>
-                  <label className="map-layer-toggle">
-                    <input
-                      type="checkbox"
-                      checked={showGipodLayer}
-                      onChange={(event) => setShowGipodLayer(event.target.checked)}
-                    />
-                    GIPOD
-                  </label>
-                  <label className="map-layer-toggle">
-                    <input
-                      type="checkbox"
-                      checked={showSignalisatieLayer}
-                      onChange={(event) => setShowSignalisatieLayer(event.target.checked)}
-                    />
-                    SIGNALISATIE
-                  </label>
-                  {showGipodLayer || showSignalisatieLayer ? (
-                    <>
-                      <label className="map-layer-toggle map-layer-mode-select">
-                        Kleurcode
-                        <select
-                          value={contextColorMode}
-                          onChange={(event) =>
-                            setContextColorMode(event.target.value as ContextColorMode)
-                          }
-                        >
-                          <option value="gipod-phase">GIPOD fase</option>
-                          <option value="permit-status">Vergunningsstatus</option>
-                        </select>
-                      </label>
-                      <p className="map-overlay-line">
-                        <span className="layer-dot context-dark" /> Donker = dicht bij uitvoering
-                      </p>
-                      <p className="map-overlay-line">
-                        <span className="layer-dot context-light" /> Licht = verder van uitvoering
-                      </p>
-                    </>
-                  ) : null}
-                </>
-              ) : (
-                <p className="map-overlay-line map-overlay-collapsed-note">Legenda ingeklapt</p>
-              )}
-            </div>
-
-            <div className="map-overlay map-overlay-search">
-              <form className="map-search-form" onSubmit={handleStreetSearch}>
-                <input
-                  type="text"
-                  placeholder="Zoek straat op kaart"
-                  value={searchQuery}
-                  onChange={(event) => setSearchQuery(event.target.value)}
-                />
-                <button type="submit" className="map-btn" disabled={searchLoading}>
-                  {searchLoading ? "Zoeken..." : "Zoek"}
-                </button>
-              </form>
-              {searchError ? <p className="map-search-error">{searchError}</p> : null}
-              {searchResults.length > 0 ? (
-                <div className="map-search-results">
-                  {searchResults.map((result) => (
-                    <button
-                      key={result.key}
-                      type="button"
-                      className="map-search-result-btn"
-                      onClick={() => handleFocusSearchResult(result)}
-                    >
-                      {result.label} {result.source === "nominatim" ? "• extern" : "• lokaal"}
-                    </button>
-                  ))}
                 </div>
-              ) : null}
+
+                {!legendCollapsed ? (
+                  <>
+                    <p className="map-overlay-line">
+                      <span className="layer-dot mandatory" /> Verplicht (start/einde)
+                    </p>
+                    <p className="map-overlay-line">
+                      <span className="layer-dot cadence" /> Cadans (max 1 dag overslaan)
+                    </p>
+                    <p className="map-overlay-line">
+                      <span className="layer-dot selected" /> Geselecteerde werf
+                    </p>
+                    <p className="map-overlay-line">
+                      <span className="layer-dot context-dark" /> Niet-toegewezen projectpin
+                    </p>
+                    {routeEnabled ? (
+                      <>
+                        <p className="map-overlay-title map-overlay-subtitle">Nummers in bolletjes</p>
+                        <p className="map-overlay-line">
+                          <span className="legend-route-number">1</span> 1e bezoek op route
+                        </p>
+                        <p className="map-overlay-line">
+                          <span className="legend-route-number">2</span> 2e bezoek op route
+                        </p>
+                        <p className="map-overlay-line">
+                          <span className="legend-route-number">3</span> 3e bezoek op route
+                        </p>
+                        <p className="map-overlay-line">
+                          <span className="legend-route-number">4</span> 4e bezoek op route
+                        </p>
+                        <p className="map-overlay-line">
+                          <span className="legend-route-number">5</span> 5e bezoek op route
+                        </p>
+                      </>
+                    ) : null}
+                    <label className="map-layer-toggle">
+                      <input
+                        type="checkbox"
+                        checked={showPostcodeBoundaries}
+                        onChange={(event) => setShowPostcodeBoundaries(event.target.checked)}
+                      />
+                      Postcoderanden
+                    </label>
+                    <p className="map-overlay-title map-overlay-subtitle">Kaartlagen</p>
+                    <button type="button" className="map-btn" onClick={toggleContextLayers}>
+                      {showGipodLayer || showSignalisatieLayer
+                        ? "Verberg niet-toegewezen projecten"
+                        : "Toon niet-toegewezen projecten"}
+                    </button>
+                    <label className="map-layer-toggle">
+                      <input
+                        type="checkbox"
+                        checked={showDispatchLayer}
+                        onChange={(event) => {
+                          setShowDispatchLayer(event.target.checked);
+                          if (!event.target.checked) {
+                            setIsVisitPopupOpen(false);
+                          }
+                        }}
+                      />
+                      DISPATCH
+                    </label>
+                    <label className="map-layer-toggle">
+                      <input
+                        type="checkbox"
+                        checked={showGipodLayer}
+                        onChange={(event) => setShowGipodLayer(event.target.checked)}
+                      />
+                      GIPOD
+                    </label>
+                    <label className="map-layer-toggle">
+                      <input
+                        type="checkbox"
+                        checked={showSignalisatieLayer}
+                        onChange={(event) => setShowSignalisatieLayer(event.target.checked)}
+                      />
+                      SIGNALISATIE
+                    </label>
+                    {showGipodLayer || showSignalisatieLayer ? (
+                      <>
+                        <label className="map-layer-toggle map-layer-mode-select">
+                          Kleurcode
+                          <select
+                            value={contextColorMode}
+                            onChange={(event) =>
+                              setContextColorMode(event.target.value as ContextColorMode)
+                            }
+                          >
+                            <option value="gipod-phase">GIPOD fase</option>
+                            <option value="permit-status">Vergunningsstatus</option>
+                          </select>
+                        </label>
+                        <p className="map-overlay-line">
+                          <span className="layer-dot context-dark" /> Donker = dicht bij uitvoering
+                        </p>
+                        <p className="map-overlay-line">
+                          <span className="layer-dot context-light" /> Licht = verder van uitvoering
+                        </p>
+                      </>
+                    ) : null}
+                  </>
+                ) : (
+                  <p className="map-overlay-line map-overlay-collapsed-note">Legenda ingeklapt</p>
+                )}
+              </div>
             </div>
           </div>
 
@@ -1040,11 +1167,7 @@ export function MapPanel({
                       className={`map-pin ${mandatoryClass} ${statusClass} ${locationClass} ${
                         isSelected ? "selected" : ""
                       }`}
-                      onClick={() => {
-                        setSelectedContextWorkId(null);
-                        setIsVisitPopupOpen(true);
-                        onSelectVisit(visit.id);
-                      }}
+                      onClick={() => handleVisitPinClick(visit.id)}
                       title={`${visit.work.dossierId} - ${visit.inspectorName}`}
                       style={{ "--inspector-color": visit.inspectorColor } as CSSProperties}
                     >
@@ -1072,12 +1195,7 @@ export function MapPanel({
                   className={`map-context-pin distance-${project.distanceLevel} ${
                     project.sources.length > 1 ? "multi-source" : ""
                   } ${isSelected ? "selected" : ""}`}
-                  onClick={() => {
-                    setIsVisitPopupOpen(false);
-                    onSelectVisit(null);
-                    setSearchMarker(null);
-                    setSelectedContextWorkId(project.work.id);
-                  }}
+                  onClick={() => handleContextPinClick(project.work.id)}
                   style={
                     {
                       "--context-pin-color": project.color,
@@ -1235,6 +1353,35 @@ export function MapPanel({
                       selectedVisit.work.permitReferenceId || "-"
                     )}
                   </p>
+                </section>
+                <section className="popup-actions-zone">
+                  <p className="zone-title">Vaststelling</p>
+                  <div className="popup-action-row">
+                    <button
+                      type="button"
+                      className="secondary-btn"
+                      onClick={() =>
+                        onOpenVaststellingFromPopup(selectedVisit.id, "existing")
+                      }
+                      disabled={!selectedVisitHasVaststelling}
+                    >
+                      Open bestaand verslag
+                    </button>
+                    <button
+                      type="button"
+                      className="ghost-btn"
+                      onClick={() =>
+                        onOpenVaststellingFromPopup(selectedVisit.id, "new")
+                      }
+                    >
+                      Nieuw verslag
+                    </button>
+                  </div>
+                  {!selectedVisitHasVaststelling ? (
+                    <p className="muted-note">
+                      Nog geen bestaand vaststellingsverslag voor dit dossier.
+                    </p>
+                  ) : null}
                 </section>
               </div>
             </Popup>

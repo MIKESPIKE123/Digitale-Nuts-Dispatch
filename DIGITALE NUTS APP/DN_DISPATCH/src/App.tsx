@@ -29,6 +29,8 @@ import governanceScopeRaw from "../docs/strategie/DN_SCHIL1_SCOPE_MUST_HAVE_VS_N
 import governance60DaysProjectLeadRaw from "../docs/strategie/PROJECTLEIDER_STARTPLAN_60_DAGEN_CONSOLIDATIE_AI_READY.md?raw";
 import governanceIntercityRaw from "../docs/strategie/DN_60_DAGEN_INTERSTEDELIJKE_SAMENWERKING.md?raw";
 import governanceExecutionBoardRaw from "../docs/uitvoering/EXECUTIEBOARD.md?raw";
+import governanceOsloWorkpackageAnalysisRaw from "../docs/uitvoering/DN_OSLO_WERKPAKKET_HOMOLOGATIE_ANALYSE.md?raw";
+import governanceOsloWorkpackageBrontekstRaw from "../docs/uitvoering/OSLO_STANDAARD_WERKPAKKET_NL_BRONTEKST.txt?raw";
 import governanceIpadEvaluationRaw from "../docs/IPAD_APP_EVALUATIE.md?raw";
 import governanceAndroidEvaluationRaw from "../docs/ANDROID_APP_EVALUATIE.md?raw";
 import governanceNis2Raw from "../docs/governance/00_governance/nis2.md?raw";
@@ -63,7 +65,21 @@ import {
 import { exportInspectorPdf } from "./lib/pdfExport";
 import { buildRouteIndexMap, computeRouteProposal } from "./lib/routes";
 import { computeImpactScore, type ImpactLevel, type ImpactProfile } from "./lib/impactScoring";
-import { getWorksGateway } from "./modules/integrations/factory";
+import { getNotificationsGateway, getWorksGateway } from "./modules/integrations/factory";
+import type {
+  NotificationRecord,
+  NotificationTaxonomyEntry,
+} from "./modules/integrations/contracts";
+import {
+  applyNotificationStatusUpdate,
+  buildNotificationStatusDraftMap,
+  buildNotificationStatusLookup,
+  sortNotificationsByCreatedOnDesc,
+} from "./modules/integrations/notificationsViewModel";
+import {
+  buildDispatchUrgentNotificationItems,
+  type DispatchNotificationContextItem,
+} from "./modules/integrations/notificationsDispatchModel";
 import { buildDashboardKpis } from "./modules/kpi/dashboardKpiEngine";
 import {
   KPI_DEFINITION_BACKLOG,
@@ -92,7 +108,14 @@ import {
   saveActiveInspectorSession,
 } from "./modules/vaststelling/storage";
 import { VaststellingView } from "./modules/vaststelling/VaststellingView";
-import type { DispatchSettings, GIPODPermitStatus, WorkRecord, WorkStatus } from "./types";
+import type {
+  DispatchSettings,
+  FollowUpTask,
+  GIPODPermitStatus,
+  PlannedVisit,
+  WorkRecord,
+  WorkStatus,
+} from "./types";
 
 const FALLBACK_WORKS = worksFallbackRaw as WorkRecord[];
 const DATA_URL = "/data/works.generated.json";
@@ -111,6 +134,8 @@ const APP_BUILD_VERSION = "0.1.0";
 const RIGHT_PANEL_DEFAULT_WIDTH = 420;
 const RIGHT_PANEL_MIN_WIDTH = 300;
 const RIGHT_PANEL_MAX_WIDTH = 760;
+const NOTIFICATION_POLL_BASE_INTERVAL_MS = 60 * 1000;
+const NOTIFICATION_POLL_MAX_BACKOFF_MS = 15 * 60 * 1000;
 
 const MAP_STYLE_OPTIONS = [
   { id: "clean", label: "Clean", url: "https://tiles.openfreemap.org/styles/positron" },
@@ -207,6 +232,13 @@ type GovernanceBudgetLine = {
   label: string;
   value: number;
   note: string;
+};
+
+type GovernanceOsloWorkpackageLine = {
+  id: string;
+  activity: string;
+  deliverable: string;
+  budget: number;
 };
 
 type GovernancePartnerBudgetLine = {
@@ -474,6 +506,134 @@ const GOVERNANCE_STRATEGIC_STAGES: GovernanceStage[] = [
     status: "planned",
     focus: ["OSLO publicatie", "Opschalingspakket", "Eindrapport en Vlaamse uitrol"],
     source: "DETAIL_PLANNING_Digitale_nuts.pdf",
+  },
+];
+
+const TERRAIN_MAIN_NAV_KEYS: MainViewKey[] = [
+  "dispatch",
+  "vaststelling",
+  "dossiers",
+  "data-sync",
+];
+const TERRAIN_MAIN_NAV_KEY_SET = new Set<MainViewKey>(TERRAIN_MAIN_NAV_KEYS);
+
+const GOVERNANCE_OSLO_HOMOLOGATION_STAGES: GovernanceStage[] = [
+  {
+    id: "oslo-prep",
+    title: "Voortraject en scope-alignment",
+    period: "2026-03-01 t.e.m. 2026-03-19",
+    summary: "Bronanalyse, scopegrenzen en integratiebesluit voor OSLO-spoor binnen Schil 1.",
+    status: "active",
+    focus: ["Broninventaris", "Scope 'must-have vs niet nu'", "Poortvoorstel homologatie"],
+    source: "DN_OSLO_WERKPAKKET_HOMOLOGATIE_ANALYSE.md",
+  },
+  {
+    id: "oslo-desk-business",
+    title: "Desk-research en business workshop",
+    period: "2026-03-20 t.e.m. 2026-04-17",
+    summary: "Informatiebehoeften, use-cases en eerste conceptmodel afstemmen met stakeholders.",
+    status: "planned",
+    focus: ["Desk-research", "Business workshop", "Eerste modelversie"],
+    source: "DN_OSLO_WERKPAKKET_HOMOLOGATIE_ANALYSE.md",
+  },
+  {
+    id: "oslo-thematic-1-2",
+    title: "Thematische workshops 1-2",
+    period: "2026-04-20 t.e.m. 2026-05-29",
+    summary: "Concepten, definities, objecten en attributen iteratief valideren.",
+    status: "planned",
+    focus: ["Workshop 1", "Workshop 2", "Model v0.8"],
+    source: "DN_OSLO_WERKPAKKET_HOMOLOGATIE_ANALYSE.md",
+  },
+  {
+    id: "oslo-thematic-3-4",
+    title: "Thematische workshops 3-4",
+    period: "2026-06-01 t.e.m. 2026-07-10",
+    summary: "Relaties, kardinaliteiten en kandidaatstandaard finaliseren.",
+    status: "planned",
+    focus: ["Workshop 3", "Workshop 4", "Kandidaatmodel v1.0"],
+    source: "DN_OSLO_WERKPAKKET_HOMOLOGATIE_ANALYSE.md",
+  },
+  {
+    id: "oslo-publication",
+    title: "Draft publicatie en tooling",
+    period: "2026-07-13 t.e.m. 2026-08-21",
+    summary: "RDF/UML/SHACL/JSON-LD opleveren met basisconformiteit.",
+    status: "planned",
+    focus: ["RDF vocabularium", "SHACL regels", "JSON-LD context"],
+    source: "DN_OSLO_WERKPAKKET_HOMOLOGATIE_ANALYSE.md",
+  },
+  {
+    id: "oslo-review-recognition",
+    title: "Publieke review en erkenningsvoorbereiding",
+    period: "2026-08-24 t.e.m. 2026-10-16",
+    summary: "Feedback verwerken en erkenningsdossier voorbereiden voor WG/Stuurorgaan.",
+    status: "planned",
+    focus: ["Publieke review", "Feedbacklog", "Erkenningsnota"],
+    source: "DN_OSLO_WERKPAKKET_HOMOLOGATIE_ANALYSE.md",
+  },
+];
+
+const GOVERNANCE_OSLO_WORKPACKAGE_BUDGET_LINES: GovernanceOsloWorkpackageLine[] = [
+  {
+    id: "oslo-budget-desk",
+    activity: "Desk-research",
+    deliverable: "Overzicht informatienoden en standaarden",
+    budget: 8100,
+  },
+  {
+    id: "oslo-budget-business",
+    activity: "Business workshop",
+    deliverable: "Use-cases, scope-afbakening en eerste model",
+    budget: 8100,
+  },
+  {
+    id: "oslo-budget-w1",
+    activity: "Thematische workshop 1",
+    deliverable: "Kernconcepten en definities",
+    budget: 8100,
+  },
+  {
+    id: "oslo-budget-w2",
+    activity: "Thematische workshop 2",
+    deliverable: "Aanvulling objecten en attributen",
+    budget: 8100,
+  },
+  {
+    id: "oslo-budget-w3",
+    activity: "Thematische workshop 3",
+    deliverable: "Modeliteratie op relaties en attributen",
+    budget: 8100,
+  },
+  {
+    id: "oslo-budget-w4",
+    activity: "Thematische workshop 4",
+    deliverable: "Finalisatie model met kardinaliteiten",
+    budget: 8100,
+  },
+  {
+    id: "oslo-budget-publicatie",
+    activity: "Publicatie specificatie",
+    deliverable: "RDF/UML/HTML/SHACL/JSON-LD publicatie",
+    budget: 6750,
+  },
+  {
+    id: "oslo-budget-review",
+    activity: "Publieke review",
+    deliverable: "Verwerkte feedback en afsluitende review",
+    budget: 6750,
+  },
+  {
+    id: "oslo-budget-erkenning",
+    activity: "Erkenning datastandaard",
+    deliverable: "Nota en toelichting richting Stuurorgaan",
+    budget: 2500,
+  },
+  {
+    id: "oslo-budget-pm",
+    activity: "Projectondersteuning",
+    deliverable: "Coordinatie en opvolging traject",
+    budget: 6500,
   },
 ];
 
@@ -830,6 +990,20 @@ const GOVERNANCE_DOC_REFERENCES: GovernanceDocReference[] = [
   },
   {
     kind: "md",
+    fileName: "DN_OSLO_WERKPAKKET_HOMOLOGATIE_ANALYSE.md",
+    filePath: "docs/uitvoering/DN_OSLO_WERKPAKKET_HOMOLOGATIE_ANALYSE.md",
+    title: "DN OSLO Werkpakket NL - Analyse en Integratieplan",
+    content: governanceOsloWorkpackageAnalysisRaw,
+  },
+  {
+    kind: "md",
+    fileName: "OSLO_STANDAARD_WERKPAKKET_NL_BRONTEKST.txt",
+    filePath: "docs/uitvoering/OSLO_STANDAARD_WERKPAKKET_NL_BRONTEKST.txt",
+    title: "OSLO Standaard Werkpakket NL - Brontekstextract",
+    content: governanceOsloWorkpackageBrontekstRaw,
+  },
+  {
+    kind: "md",
     fileName: "IPAD_APP_EVALUATIE.md",
     filePath: "docs/IPAD_APP_EVALUATIE.md",
     title: "Evaluatie iPad App",
@@ -959,6 +1133,54 @@ const GOVERNANCE_MS_VISUAL_LANES: GovernanceVisualLane[] = [
         startIso: "2026-07-13",
         endIso: "2027-01-08",
         tone: "ontwikkeling",
+      },
+    ],
+  },
+  {
+    id: "lane-oslo-homologatie",
+    label: "OSLO homologatiepad",
+    blocks: [
+      {
+        id: "oslo-prep-lane",
+        label: "Voortraject en scope-alignment",
+        startIso: "2026-03-01",
+        endIso: "2026-03-19",
+        tone: "analyse",
+      },
+      {
+        id: "oslo-desk-business-lane",
+        label: "Desk-research + business workshop",
+        startIso: "2026-03-20",
+        endIso: "2026-04-17",
+        tone: "analyse",
+      },
+      {
+        id: "oslo-workshops-1-2-lane",
+        label: "Thematische workshops 1-2",
+        startIso: "2026-04-20",
+        endIso: "2026-05-29",
+        tone: "governance",
+      },
+      {
+        id: "oslo-workshops-3-4-lane",
+        label: "Thematische workshops 3-4",
+        startIso: "2026-06-01",
+        endIso: "2026-07-10",
+        tone: "governance",
+      },
+      {
+        id: "oslo-publicatie-lane",
+        label: "Draft publicatie + tooling",
+        startIso: "2026-07-13",
+        endIso: "2026-08-21",
+        tone: "ontwikkeling",
+      },
+      {
+        id: "oslo-review-lane",
+        label: "Publieke review + erkenningsvoorbereiding",
+        startIso: "2026-08-24",
+        endIso: "2026-10-16",
+        tone: "rapport",
       },
     ],
   },
@@ -1779,6 +2001,23 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
 }
 
+function extractHttpStatusCode(error: unknown): number | null {
+  if (error && typeof error === "object" && "statusCode" in error) {
+    const value = Number((error as { statusCode?: unknown }).statusCode);
+    if (Number.isFinite(value)) {
+      return value;
+    }
+  }
+
+  const message = error instanceof Error ? error.message : `${error ?? ""}`;
+  const match = message.match(/\bHTTP\s+(\d{3})\b/i);
+  if (!match) {
+    return null;
+  }
+  const parsed = Number(match[1]);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
 function sanitizeManualInspectorMap(
   value: unknown,
   inspectorIds: string[]
@@ -1906,6 +2145,9 @@ export default function App() {
   const [leftPanelCollapsed, setLeftPanelCollapsed] = useState(() =>
     typeof window !== "undefined" ? window.matchMedia("(max-width: 1220px)").matches : false
   );
+  const [dispatchMapFirstMode, setDispatchMapFirstMode] = useState(() =>
+    typeof window !== "undefined" ? window.matchMedia("(max-width: 1220px)").matches : false
+  );
   const [rightPanelCollapsed, setRightPanelCollapsed] = useState(false);
   const [rightPanelWidth, setRightPanelWidth] = useState(RIGHT_PANEL_DEFAULT_WIDTH);
   const [syncRunning, setSyncRunning] = useState(false);
@@ -1913,6 +2155,9 @@ export default function App() {
   const [syncError, setSyncError] = useState<string | null>(null);
   const [lastSyncAt, setLastSyncAt] = useState<string | null>(null);
   const [lastDataRefreshAt, setLastDataRefreshAt] = useState<string | null>(null);
+  const [isOnline, setIsOnline] = useState(() =>
+    typeof navigator !== "undefined" ? navigator.onLine : true
+  );
   const [dataLoading, setDataLoading] = useState(true);
   const [vaststellingRecordsSnapshot, setVaststellingRecordsSnapshot] = useState<
     DNVaststellingRecord[]
@@ -1935,6 +2180,32 @@ export default function App() {
   const [governanceContactDraft, setGovernanceContactDraft] = useState<GovernanceContactDraft>(
     () => DEFAULT_GOVERNANCE_CONTACT_DRAFT
   );
+  const [governanceNotifications, setGovernanceNotifications] = useState<NotificationRecord[]>(
+    []
+  );
+  const [governanceNotificationStatuses, setGovernanceNotificationStatuses] = useState<
+    NotificationTaxonomyEntry[]
+  >([]);
+  const [governanceNotificationStatusDraftById, setGovernanceNotificationStatusDraftById] =
+    useState<Record<string, string>>({});
+  const [governanceNotificationsLoading, setGovernanceNotificationsLoading] = useState(false);
+  const [governanceNotificationsError, setGovernanceNotificationsError] = useState<string | null>(
+    null
+  );
+  const [governanceNotificationUpdatingId, setGovernanceNotificationUpdatingId] = useState<
+    string | null
+  >(null);
+  const [governanceNotificationsLastLoadedAt, setGovernanceNotificationsLastLoadedAt] = useState<
+    string | null
+  >(null);
+  const [governanceNotificationsLastAttemptAt, setGovernanceNotificationsLastAttemptAt] =
+    useState<string | null>(null);
+  const [governanceNotificationsLastStatusCode, setGovernanceNotificationsLastStatusCode] =
+    useState<number | null>(null);
+  const [governanceNotificationsPollIntervalMs, setGovernanceNotificationsPollIntervalMs] =
+    useState<number>(NOTIFICATION_POLL_BASE_INTERVAL_MS);
+  const [governanceNotificationsRateLimitStreak, setGovernanceNotificationsRateLimitStreak] =
+    useState(0);
   const [assignmentHistory, setAssignmentHistory] = useState<AssignmentSnapshot[]>(
     () => loadAssignmentHistory()
   );
@@ -1950,7 +2221,9 @@ export default function App() {
   );
 
   const syncLockRef = useRef(false);
+  const notificationsRefreshLockRef = useRef(false);
   const workspaceRef = useRef<HTMLElement | null>(null);
+  const notificationsGateway = useMemo(() => getNotificationsGateway(), []);
   const holidays = useMemo(
     () => (settings.holidays.length > 0 ? settings.holidays : HOLIDAYS),
     [settings.holidays]
@@ -2044,6 +2317,10 @@ export default function App() {
       openGovernanceDocName ? GOVERNANCE_DOC_REFERENCE_BY_NAME.get(openGovernanceDocName) ?? null : null,
     [openGovernanceDocName]
   );
+  const governanceNotificationStatusLookup = useMemo(
+    () => buildNotificationStatusLookup(governanceNotificationStatuses),
+    [governanceNotificationStatuses]
+  );
 
   const refreshVaststellingSnapshots = useCallback(async () => {
     const [records, queue] = await Promise.all([
@@ -2087,6 +2364,22 @@ export default function App() {
       cancelled = true;
     };
   }, [inspectors]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
 
   useEffect(() => {
     if (!terrainMode || !activeInspectorSession) {
@@ -2193,8 +2486,11 @@ export default function App() {
       setIsCompactWorkspace(matches);
       setLeftPanelCollapsed(matches);
       if (matches) {
-        setRightPanelCollapsed(false);
+        setRightPanelCollapsed(true);
+        setDispatchMapFirstMode(true);
+        return;
       }
+      setRightPanelCollapsed(false);
     };
 
     syncLayout(mediaQuery.matches);
@@ -2471,9 +2767,63 @@ export default function App() {
     () => Object.values(dispatch.visitsByInspector).flat(),
     [dispatch.visitsByInspector]
   );
+  const dispatchUrgentNotificationItems = useMemo(
+    () =>
+      buildDispatchUrgentNotificationItems(governanceNotifications, works, 6),
+    [governanceNotifications, works]
+  );
   const selectedDispatchVisit = useMemo(
     () => allDispatchVisits.find((visit) => visit.id === selectedVisitId) ?? null,
     [allDispatchVisits, selectedVisitId]
+  );
+  const terrainInspectorVisits = useMemo(() => {
+    if (!activeInspectorSession) {
+      return [] as PlannedVisit[];
+    }
+    return dispatch.visitsByInspector[activeInspectorSession.inspectorId] ?? [];
+  }, [activeInspectorSession, dispatch.visitsByInspector]);
+  const terrainInspectorFollowUps = useMemo(() => {
+    if (!activeInspectorSession) {
+      return [] as FollowUpTask[];
+    }
+    return dispatch.followUpsByInspector[activeInspectorSession.inspectorId] ?? [];
+  }, [activeInspectorSession, dispatch.followUpsByInspector]);
+  const terrainPrimaryVisit = useMemo(() => {
+    if (!activeInspectorSession) {
+      return null;
+    }
+    if (
+      selectedDispatchVisit &&
+      selectedDispatchVisit.inspectorId === activeInspectorSession.inspectorId
+    ) {
+      return selectedDispatchVisit;
+    }
+    return terrainInspectorVisits[0] ?? null;
+  }, [activeInspectorSession, selectedDispatchVisit, terrainInspectorVisits]);
+  const terrainPrimaryVisitHasRecord = useMemo(() => {
+    if (!terrainPrimaryVisit) {
+      return false;
+    }
+    return vaststellingRecordsSnapshot.some(
+      (record) =>
+        record.immutableContext.workId === terrainPrimaryVisit.work.id &&
+        record.inspectorSession.inspectorId === terrainPrimaryVisit.inspectorId
+    );
+  }, [terrainPrimaryVisit, vaststellingRecordsSnapshot]);
+  const terrainSyncQueueStats = useMemo(
+    () => ({
+      queued: vaststellingSyncQueueSnapshot.filter((item) => item.status === "queued").length,
+      failed: vaststellingSyncQueueSnapshot.filter((item) => item.status === "failed").length,
+      synced: vaststellingSyncQueueSnapshot.filter((item) => item.status === "synced").length,
+    }),
+    [vaststellingSyncQueueSnapshot]
+  );
+  const terrainMainNavItems = useMemo(
+    () =>
+      terrainMode
+        ? MAIN_NAV_ITEMS.filter((item) => TERRAIN_MAIN_NAV_KEY_SET.has(item.key))
+        : MAIN_NAV_ITEMS,
+    [terrainMode]
   );
   const workIdsWithVaststelling = useMemo(
     () =>
@@ -2895,6 +3245,16 @@ export default function App() {
     [activeView, normalizeMainView]
   );
 
+  useEffect(() => {
+    if (!terrainMode) {
+      return;
+    }
+    if (TERRAIN_MAIN_NAV_KEY_SET.has(effectiveActiveView)) {
+      return;
+    }
+    setActiveView("dispatch");
+  }, [effectiveActiveView, terrainMode]);
+
   const activePitchStep = useMemo(
     () => (pitchModeActive ? GUIDE_PITCH_PRESENTATION[pitchStepIndex] ?? null : null),
     [pitchModeActive, pitchStepIndex]
@@ -3085,6 +3445,33 @@ export default function App() {
     );
   }, []);
 
+  const handleOpenTerrainVaststelling = useCallback(
+    (mode: VaststellingLaunchMode) => {
+      if (!terrainPrimaryVisit) {
+        setActiveView("dispatch");
+        setSyncMessage(
+          "Geen toegewezen werf gevonden voor de actieve toezichter. Open eerst Mijn werk."
+        );
+        return;
+      }
+
+      handleOpenVaststellingFromPopup(terrainPrimaryVisit.id, mode);
+    },
+    [handleOpenVaststellingFromPopup, terrainPrimaryVisit]
+  );
+
+  const handleTerrainMeldingAction = useCallback(() => {
+    if (terrainPrimaryVisit) {
+      setDossierSearch(terrainPrimaryVisit.work.dossierId);
+    }
+    setActiveView("dossiers");
+  }, [terrainPrimaryVisit]);
+
+  const handleTerrainSyncAction = useCallback(() => {
+    setActiveView("data-sync");
+    void runSync("manual");
+  }, [runSync]);
+
   const handleExportAssignmentHistory = useCallback(() => {
     const payload = {
       format: "dn_dispatch_assignment_history",
@@ -3112,6 +3499,214 @@ export default function App() {
     setAssignmentHistory([]);
     setSyncMessage("Lokaal toewijzingsarchief gewist.");
   }, []);
+
+  const refreshGovernanceNotifications = useCallback(
+    async (reason: "view" | "manual" | "poll" = "manual") => {
+      if (notificationsRefreshLockRef.current) {
+        return;
+      }
+      notificationsRefreshLockRef.current = true;
+      let didSucceed = false;
+
+      setGovernanceNotificationsLoading(true);
+      setGovernanceNotificationsError(null);
+      setGovernanceNotificationsLastAttemptAt(new Date().toISOString());
+
+      try {
+        const [statuses, result] = await Promise.all([
+          notificationsGateway.getNotificationStatuses(),
+          notificationsGateway.searchNotifications({ limit: 25, offset: 0 }),
+        ]);
+
+        const sortedItems = sortNotificationsByCreatedOnDesc(result.items);
+        setGovernanceNotificationStatuses(statuses);
+        setGovernanceNotifications(sortedItems);
+        setGovernanceNotificationStatusDraftById((previous) =>
+          buildNotificationStatusDraftMap(sortedItems, previous)
+        );
+        setGovernanceNotificationsLastLoadedAt(new Date().toISOString());
+        setGovernanceNotificationsLastStatusCode(200);
+        setGovernanceNotificationsRateLimitStreak(0);
+        setGovernanceNotificationsPollIntervalMs(NOTIFICATION_POLL_BASE_INTERVAL_MS);
+        didSucceed = true;
+      } catch (error) {
+        const statusCode = extractHttpStatusCode(error);
+        setGovernanceNotificationsLastStatusCode(statusCode);
+
+        if (statusCode === 429) {
+          setGovernanceNotificationsRateLimitStreak((previous) => {
+            const nextStreak = previous + 1;
+            const nextInterval = Math.min(
+              NOTIFICATION_POLL_MAX_BACKOFF_MS,
+              NOTIFICATION_POLL_BASE_INTERVAL_MS * 2 ** Math.min(nextStreak, 4)
+            );
+            setGovernanceNotificationsPollIntervalMs(nextInterval);
+            setGovernanceNotificationsError(
+              `GIPOD rate limit (429). Polling vertraagd naar ${Math.round(
+                nextInterval / 1000
+              )}s (streak ${nextStreak}).`
+            );
+            return nextStreak;
+          });
+        } else {
+          const message =
+            error instanceof Error
+              ? error.message
+              : "Notificaties konden niet geladen worden.";
+          setGovernanceNotificationsRateLimitStreak(0);
+          setGovernanceNotificationsPollIntervalMs(
+            NOTIFICATION_POLL_BASE_INTERVAL_MS
+          );
+          setGovernanceNotificationsError(message);
+        }
+      } finally {
+        if (reason === "manual") {
+          setSyncMessage(
+            didSucceed
+              ? "Notificatie-inbox vernieuwd."
+              : "Notificatie-inbox refresh met fout afgerond."
+          );
+        }
+        notificationsRefreshLockRef.current = false;
+        setGovernanceNotificationsLoading(false);
+      }
+    },
+    [notificationsGateway]
+  );
+
+  const handleGovernanceNotificationStatusDraftChange = useCallback(
+    (notificationId: string, statusId: string) => {
+      setGovernanceNotificationStatusDraftById((previous) => ({
+        ...previous,
+        [notificationId]: statusId,
+      }));
+    },
+    []
+  );
+
+  const handleGovernanceNotificationStatusUpdate = useCallback(
+    async (notificationId: string) => {
+      const draftStatusId =
+        governanceNotificationStatusDraftById[notificationId]?.trim() ?? "";
+      if (!draftStatusId) {
+        setGovernanceNotificationsError(
+          "Kies eerst een status voor je de notificatie bijwerkt."
+        );
+        return;
+      }
+
+      setGovernanceNotificationUpdatingId(notificationId);
+      setGovernanceNotificationsError(null);
+
+      try {
+        const result = await notificationsGateway.updateNotificationStatus({
+          notificationId,
+          statusId: draftStatusId,
+          comment: "Statusupdate via DN Governance Inbox",
+        });
+
+        if (!result.ok) {
+          setGovernanceNotificationsError(
+            result.error || `Statusupdate mislukt (${result.statusCode}).`
+          );
+          return;
+        }
+
+        const resolvedStatusId =
+          (result.statusId ?? draftStatusId).trim() || draftStatusId;
+        setGovernanceNotifications((previous) =>
+          applyNotificationStatusUpdate(
+            previous,
+            notificationId,
+            resolvedStatusId,
+            governanceNotificationStatusLookup
+          )
+        );
+        setGovernanceNotificationStatusDraftById((previous) => ({
+          ...previous,
+          [notificationId]: resolvedStatusId,
+        }));
+        setSyncMessage(`Notificatie ${notificationId} werd bijgewerkt.`);
+      } catch (error) {
+        const message =
+          error instanceof Error
+            ? error.message
+            : "Onbekende fout bij statusupdate.";
+        setGovernanceNotificationsError(message);
+      } finally {
+        setGovernanceNotificationUpdatingId(null);
+      }
+    },
+    [
+      governanceNotificationStatusDraftById,
+      governanceNotificationStatusLookup,
+      notificationsGateway,
+    ]
+  );
+
+  useEffect(() => {
+    if (
+      effectiveActiveView !== "governance" &&
+      effectiveActiveView !== "dispatch"
+    ) {
+      return;
+    }
+    void refreshGovernanceNotifications("view");
+  }, [effectiveActiveView, refreshGovernanceNotifications]);
+
+  useEffect(() => {
+    if (
+      effectiveActiveView !== "governance" &&
+      effectiveActiveView !== "dispatch"
+    ) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      void refreshGovernanceNotifications("poll");
+    }, governanceNotificationsPollIntervalMs);
+
+    return () => window.clearInterval(timer);
+  }, [
+    effectiveActiveView,
+    governanceNotificationsPollIntervalMs,
+    refreshGovernanceNotifications,
+  ]);
+
+  const handleOpenDispatchNotificationDossier = useCallback(
+    (item: DispatchNotificationContextItem) => {
+      setDossierSearch(item.contextSearchTerm);
+      setActiveView("dossiers");
+      setSyncMessage(`Context geopend voor notificatie ${item.notification.notificationId}.`);
+    },
+    []
+  );
+
+  const handleFocusDispatchNotification = useCallback(
+    (item: DispatchNotificationContextItem) => {
+      const linkedWorkId = item.linkedWork?.id;
+      if (linkedWorkId) {
+        const matchingVisit = allDispatchVisits.find((visit) => visit.work.id === linkedWorkId);
+        if (matchingVisit) {
+          setTerrainMode(false);
+          setSelectedInspectors([]);
+          setSelectedVisitId(matchingVisit.id);
+          setActiveView("dispatch");
+          setSyncMessage(
+            `Dispatchfocus gezet op ${matchingVisit.work.dossierId} voor notificatie ${item.notification.notificationId}.`
+          );
+          return;
+        }
+      }
+
+      setDossierSearch(item.contextSearchTerm);
+      setActiveView("dossiers");
+      setSyncMessage(
+        `Geen actief dispatchbezoek gevonden; dossierzoekcontext gezet voor ${item.notification.notificationId}.`
+      );
+    },
+    [allDispatchVisits]
+  );
 
   const handleGovernanceContactDraftChange = useCallback(
     (field: keyof GovernanceContactDraft, value: string) => {
@@ -3633,6 +4228,10 @@ export default function App() {
     const totalProjectBudget = GOVERNANCE_BUDGET_LINES[0]?.value ?? 0;
     const nfsBudget = GOVERNANCE_BUDGET_LINES[1]?.value ?? 0;
     const otherContributionBudget = GOVERNANCE_BUDGET_LINES[2]?.value ?? 0;
+    const osloHomologationBudgetTotal = GOVERNANCE_OSLO_WORKPACKAGE_BUDGET_LINES.reduce(
+      (total, line) => total + line.budget,
+      0
+    );
     const athumiBudget =
       GOVERNANCE_PARTNER_BUDGET_LINES.find((line) => line.partner === "Athumi")?.total ?? 0;
     const athumiShare = totalProjectBudget > 0 ? athumiBudget / totalProjectBudget : 0;
@@ -3729,6 +4328,69 @@ export default function App() {
               </article>
             ))}
           </div>
+
+          <h4>OSLO homologatiepad (werkpakket NL)</h4>
+          <p className="view-subtitle">
+            Inpasbaar op de lopende Schil 1 doorlooptijd met expliciete fasen, deliverables en reviewpoorten.
+          </p>
+          <div className="governance-stage-grid">
+            {GOVERNANCE_OSLO_HOMOLOGATION_STAGES.map((stage) => (
+              <article key={stage.id} className="governance-stage-card">
+                <div className="governance-stage-head">
+                  <strong>{stage.title}</strong>
+                  <span className={`governance-status governance-status-${stage.status}`}>
+                    {GOVERNANCE_STATUS_LABEL[stage.status]}
+                  </span>
+                </div>
+                <p className="muted-note">{stage.period}</p>
+                <p>{stage.summary}</p>
+                <ul className="governance-focus-list">
+                  {stage.focus.map((item) => (
+                    <li key={`${stage.id}-${item}`}>{item}</li>
+                  ))}
+                </ul>
+                {renderGovernanceSourceLine(stage.source)}
+              </article>
+            ))}
+          </div>
+
+          <div className="table-scroll">
+            <table className="dossier-table">
+              <thead>
+                <tr>
+                  <th>Werkpakketactiviteit</th>
+                  <th>Deliverable</th>
+                  <th>Budget</th>
+                </tr>
+              </thead>
+              <tbody>
+                {GOVERNANCE_OSLO_WORKPACKAGE_BUDGET_LINES.map((line) => (
+                  <tr key={line.id}>
+                    <td>{line.activity}</td>
+                    <td>{line.deliverable}</td>
+                    <td>{formatCurrency(line.budget)}</td>
+                  </tr>
+                ))}
+                <tr className="table-totals-row">
+                  <td>
+                    <strong>Totaal OSLO-werkpakket (indicatief)</strong>
+                  </td>
+                  <td>Desk-research, workshops, publicatie, review, erkenning en PM</td>
+                  <td>
+                    <strong>{formatCurrency(osloHomologationBudgetTotal)}</strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          {renderGovernanceSourceLine(
+            "DN_OSLO_WERKPAKKET_HOMOLOGATIE_ANALYSE.md",
+            "Analyse en integratiepad"
+          )}
+          {renderGovernanceSourceLine(
+            "OSLO_STANDAARD_WERKPAKKET_NL_BRONTEKST.txt",
+            "Bronextract OSLO-werkpakket"
+          )}
         </section>
 
         <section className="view-card">
@@ -3815,7 +4477,162 @@ export default function App() {
         </section>
 
         <section className="view-card">
-          <h3>6. Projectorganisatie en contactpersonen</h3>
+          <h3>6. GIPOD Notificatie-Inbox (MVP)</h3>
+          <p className="view-subtitle">
+            Operationele notificaties uit GIPOD met statusopvolging in de Governance-tab.
+          </p>
+          <div className="governance-notification-toolbar">
+            <button
+              type="button"
+              className="secondary-btn"
+              onClick={() => {
+                void refreshGovernanceNotifications("manual");
+              }}
+              disabled={governanceNotificationsLoading}
+            >
+              {governanceNotificationsLoading ? "Inbox laden..." : "Vernieuw inbox"}
+            </button>
+            <span className="muted-note">
+              Laatste laadmoment: {formatDateTime(governanceNotificationsLastLoadedAt)}
+            </span>
+            <span className="muted-note">
+              Poll: {Math.round(governanceNotificationsPollIntervalMs / 1000)}s | Laatste poging:{" "}
+              {formatDateTime(governanceNotificationsLastAttemptAt)} | Status:{" "}
+              {governanceNotificationsLastStatusCode ?? "-"} | 429-streak:{" "}
+              {governanceNotificationsRateLimitStreak}
+            </span>
+          </div>
+          {governanceNotificationsError ? (
+            <p className="warning-inline">{governanceNotificationsError}</p>
+          ) : null}
+          {governanceNotifications.length === 0 && !governanceNotificationsLoading ? (
+            <p className="muted-note">
+              Geen notificaties gevonden. Controleer gateway-configuratie of activeer mock-notificaties.
+            </p>
+          ) : (
+            <div className="table-scroll">
+              <table className="dossier-table">
+                <thead>
+                  <tr>
+                    <th>Notificatie</th>
+                    <th>Aangemaakt</th>
+                    <th>Vervalt</th>
+                    <th>Status</th>
+                    <th>Type/Categorie</th>
+                    <th>Trigger</th>
+                    <th>Context</th>
+                    <th>Actie</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {governanceNotifications.map((item) => {
+                    const draftStatusId =
+                      governanceNotificationStatusDraftById[item.notificationId] ??
+                      item.statusId;
+                    const hasDraftStatusInTaxonomy = governanceNotificationStatuses.some(
+                      (status) => status.id === draftStatusId
+                    );
+                    const isUpdating =
+                      governanceNotificationUpdatingId === item.notificationId;
+                    const canUpdate =
+                      Boolean(draftStatusId) &&
+                      draftStatusId !== item.statusId &&
+                      !governanceNotificationsLoading &&
+                      !isUpdating;
+
+                    return (
+                      <tr key={item.notificationId}>
+                        <td>
+                          <strong>{item.notificationId}</strong>
+                          <p className="governance-source">
+                            {item.isActionRequired ? "Actie vereist" : "Ter info"}
+                          </p>
+                        </td>
+                        <td>{formatDateTime(item.createdOn)}</td>
+                        <td>{item.expiresOn ? formatDateTime(item.expiresOn) : "-"}</td>
+                        <td>
+                          <span
+                            className={`governance-status ${
+                              item.isActionRequired
+                                ? "governance-status-active"
+                                : "governance-status-done"
+                            }`}
+                          >
+                            {item.statusLabel}
+                          </span>
+                        </td>
+                        <td>
+                          <div className="governance-notification-meta">
+                            <span>{item.notificationTypeLabel}</span>
+                            <span className="muted-note">{item.notificationCategoryLabel}</span>
+                          </div>
+                        </td>
+                        <td>{item.triggerOrganizationName || "-"}</td>
+                        <td>
+                          <div className="governance-notification-meta">
+                            <span>GIPOD: {item.gipodId || "-"}</span>
+                            {item.resourceUrl ? (
+                              <a href={item.resourceUrl} target="_blank" rel="noreferrer">
+                                Open bron
+                              </a>
+                            ) : (
+                              <span className="muted-note">Geen bronlink</span>
+                            )}
+                          </div>
+                        </td>
+                        <td>
+                          <div className="governance-notification-actions">
+                            <select
+                              value={draftStatusId}
+                              onChange={(event) =>
+                                handleGovernanceNotificationStatusDraftChange(
+                                  item.notificationId,
+                                  event.target.value
+                                )
+                              }
+                              disabled={governanceNotificationsLoading || isUpdating}
+                            >
+                              {!hasDraftStatusInTaxonomy ? (
+                                <option value={draftStatusId}>
+                                  {governanceNotificationStatusLookup[draftStatusId] ??
+                                    item.statusLabel}
+                                </option>
+                              ) : null}
+                              {governanceNotificationStatuses.length === 0 ? (
+                                <option value={item.statusId}>{item.statusLabel}</option>
+                              ) : (
+                                governanceNotificationStatuses.map((status) => (
+                                  <option key={status.id} value={status.id}>
+                                    {status.label}
+                                  </option>
+                                ))
+                              )}
+                            </select>
+                            <button
+                              type="button"
+                              className="ghost-btn"
+                              disabled={!canUpdate}
+                              onClick={() => {
+                                void handleGovernanceNotificationStatusUpdate(
+                                  item.notificationId
+                                );
+                              }}
+                            >
+                              {isUpdating ? "Opslaan..." : "Status opslaan"}
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+
+        <section className="view-card">
+          <h3>7. Projectorganisatie en contactpersonen</h3>
           <p className="view-subtitle">
             Beheer hier de contactmatrix per rol, organisatie en communicatiegroep (bv. partnersteden,
             volgende steden, deelnemende organisaties).
@@ -3936,7 +4753,7 @@ export default function App() {
         </section>
 
         <section className="view-card">
-          <h3>7. Schil 1 scopebewaking: must-have vs niet nu</h3>
+          <h3>8. Schil 1 scopebewaking: must-have vs niet nu</h3>
           <div className="governance-scope-grid">
             <article className="governance-scope-card governance-scope-card-mh">
               <h4>Must-have (MH)</h4>
@@ -3958,7 +4775,7 @@ export default function App() {
         </section>
 
         <section className="view-card">
-          <h3>8. Budgetplanning en financiering</h3>
+          <h3>9. Budgetplanning en financiering</h3>
           <div className="view-grid view-grid-4 governance-budget-grid">
             {GOVERNANCE_BUDGET_LINES.map((line) => (
               <article key={line.label} className="governance-budget-card">
@@ -4033,7 +4850,7 @@ export default function App() {
         </section>
 
         <section className="view-card">
-          <h3>9. Grafische planning (MS-overzicht, grote blokken)</h3>
+          <h3>10. Grafische planning (MS-overzicht, grote blokken)</h3>
           <p className="view-subtitle">
             Visuele tijdsbalk op basis van de subsidieplanning, bewust beperkt tot de grote blokken.
           </p>
@@ -4102,7 +4919,7 @@ export default function App() {
         </section>
 
         <section className="view-card">
-          <h3>10. Externe run-rate scenario's mobiele uitrol</h3>
+          <h3>11. Externe run-rate scenario's mobiele uitrol</h3>
           <div className="table-scroll">
             <table className="dossier-table">
               <thead>
@@ -4130,7 +4947,7 @@ export default function App() {
         </section>
 
         <section className="view-card">
-          <h3>11. Governance basisdocumenten</h3>
+          <h3>12. Governance basisdocumenten</h3>
           {renderGovernanceSourceLine("nis2.md", "NIS2 baseline")}
           {renderGovernanceSourceLine("avg_logging.md", "AVG logging baseline")}
           {renderGovernanceSourceLine("vendor_exit.md", "Vendor-exit baseline")}
@@ -4142,57 +4959,79 @@ export default function App() {
   const activeMainNavItem =
     MAIN_NAV_ITEMS.find((item) => item.key === effectiveActiveView) ?? MAIN_NAV_ITEMS[0];
   const requiresInspectorSession = !activeInspectorSession && effectiveActiveView !== "governance";
+  const isDispatchMapFirstActive =
+    effectiveActiveView === "dispatch" && isCompactWorkspace && dispatchMapFirstMode;
 
   return (
-    <div className="app-shell">
-      <header className="top-hero compact">
+    <div className={`app-shell ${isDispatchMapFirstActive ? "dispatch-map-first" : ""}`}>
+      <header className={`top-hero compact ${isDispatchMapFirstActive ? "top-hero-map-first" : ""}`}>
         <div className="hero-brand">
           <img src="/dn-dispatch-logo.svg" alt="DN Dispatch logo" className="hero-logo" />
           <div>
             <p className="eyebrow">Digitale Nuts</p>
-            <p className="hero-version">
-              Release {APP_RELEASE_VERSION} | Build {APP_BUILD_VERSION} | Port {runtimePort}
-            </p>
-            <h1>{activeMainNavItem.label}</h1>
-            <p className="subtitle">
-              {effectiveActiveView === "governance"
-                ? "Volledige projectdoorloop met planning, governancepoorten, overlegcadans en budgetmonitoring."
-                : "Alleen projecten met actie op de gekozen datum. Klik op een fiche om de exacte locatie op de kaart te markeren."}
-            </p>
-            <p className="subtitle">
-              {effectiveActiveView === "governance"
-                ? "Termijnbasis: formele planningstart op 2026-03-20 (subsidieafspraak)."
-                : `Actieve toezichter: ${
-                    activeInspectorSession
-                      ? `${activeInspectorSession.inspectorName} (${activeInspectorSession.inspectorInitials})`
-                      : "niet ingesteld"
-                  }`}
-            </p>
+            {!isDispatchMapFirstActive ? (
+              <>
+                <p className="hero-version">
+                  Release {APP_RELEASE_VERSION} | Build {APP_BUILD_VERSION} | Port {runtimePort}
+                </p>
+                <h1>{activeMainNavItem.label}</h1>
+                <p className="subtitle">
+                  {effectiveActiveView === "governance"
+                    ? "Volledige projectdoorloop met planning, governancepoorten, overlegcadans en budgetmonitoring."
+                    : terrainMode
+                      ? "Terreinmodus v1 actief: iPad-first navigatie met focus op Mijn werk, Vaststelling, Foto, Melding en Sync."
+                      : "Alleen projecten met actie op de gekozen datum. Klik op een fiche om de exacte locatie op de kaart te markeren."}
+                </p>
+                <p className="subtitle">
+                  {effectiveActiveView === "governance"
+                    ? "Termijnbasis: formele planningstart op 2026-03-20 (subsidieafspraak)."
+                    : `Actieve toezichter: ${
+                        activeInspectorSession
+                          ? `${activeInspectorSession.inspectorName} (${activeInspectorSession.inspectorInitials})`
+                          : "niet ingesteld"
+                      }`}
+                </p>
+              </>
+            ) : (
+              <h1>Dispatch kaart</h1>
+            )}
           </div>
         </div>
 
-        <div className="stats-row compact">
-          <article>
-            <span className="stat-label">Actiewerven</span>
-            <strong>{mapVisits.length}</strong>
-          </article>
-          <article>
-            <span className="stat-label">Verplicht</span>
-            <strong>{dispatch.totals.mandatoryVisits}</strong>
-          </article>
-          <article>
-            <span className="stat-label">Follow-up</span>
-            <strong>{filteredFollowUpCount}</strong>
-          </article>
-          <article>
-            <span className="stat-label">Niet toegewezen</span>
-            <strong>{dispatch.unassigned.length}</strong>
-          </article>
-        </div>
+        {!isDispatchMapFirstActive ? (
+          <div className="stats-row compact">
+            <article>
+              <span className="stat-label">Actiewerven</span>
+              <strong>{mapVisits.length}</strong>
+            </article>
+            <article>
+              <span className="stat-label">Verplicht</span>
+              <strong>{dispatch.totals.mandatoryVisits}</strong>
+            </article>
+            <article>
+              <span className="stat-label">Follow-up</span>
+              <strong>{filteredFollowUpCount}</strong>
+            </article>
+            <article>
+              <span className="stat-label">Niet toegewezen</span>
+              <strong>{dispatch.unassigned.length}</strong>
+            </article>
+          </div>
+        ) : null}
+        {effectiveActiveView === "dispatch" && isCompactWorkspace ? (
+          <button
+            type="button"
+            className="chip dispatch-map-first-toggle"
+            onClick={() => setDispatchMapFirstMode((previous) => !previous)}
+          >
+            {isDispatchMapFirstActive ? "Toon menu + filters" : "Kaart op volledig scherm"}
+          </button>
+        ) : null}
       </header>
 
+      {!isDispatchMapFirstActive ? (
       <nav className="main-nav">
-        {MAIN_NAV_ITEMS.map((item) => (
+        {terrainMainNavItems.map((item) => (
           <button
             key={item.key}
             type="button"
@@ -4205,16 +5044,128 @@ export default function App() {
           </button>
         ))}
       </nav>
+      ) : null}
+
+      {effectiveActiveView !== "governance" && !isDispatchMapFirstActive ? (
+        <section
+          className={`terrain-mode-hub ${
+            terrainMode ? "terrain-mode-hub-terrain" : "terrain-mode-hub-desktop"
+          }`}
+        >
+          <div className="terrain-mode-head">
+            <div>
+              <p className="terrain-mode-title">
+                {terrainMode ? "Terreinmodus v1" : "Desktopmodus met snelle switch"}
+              </p>
+              <p className="terrain-mode-subtitle">
+                {terrainMode
+                  ? "Alleen de kernacties voor toezichters op terrein, met offline/sync opvolging."
+                  : "Je zit in desktopmodus. Schakel hier direct terug naar terreinmodus zonder te zoeken."}
+              </p>
+            </div>
+            <label className="toggle-inline terrain-mode-switch">
+              <input
+                type="checkbox"
+                checked={terrainMode}
+                onChange={(event) => setTerrainMode(event.target.checked)}
+              />
+              Terreinmodus actief
+            </label>
+          </div>
+
+          <div className="terrain-action-grid">
+            <button
+              type="button"
+              className="terrain-action-btn"
+              onClick={() => setActiveView("dispatch")}
+            >
+              <strong>Mijn werk</strong>
+              <span>{terrainInspectorVisits.length} acties vandaag</span>
+            </button>
+            <button
+              type="button"
+              className="terrain-action-btn"
+              onClick={() => handleOpenTerrainVaststelling("new")}
+            >
+              <strong>Vaststelling</strong>
+              <span>{terrainPrimaryVisit ? "Nieuwe registratie" : "Geen actieve werf"}</span>
+            </button>
+            <button
+              type="button"
+              className="terrain-action-btn"
+              onClick={() =>
+                handleOpenTerrainVaststelling(
+                  terrainPrimaryVisitHasRecord ? "existing" : "new"
+                )
+              }
+            >
+              <strong>Foto</strong>
+              <span>{terrainPrimaryVisitHasRecord ? "Voeg foto toe aan verslag" : "Start met foto op nieuwe fiche"}</span>
+            </button>
+            <button
+              type="button"
+              className="terrain-action-btn"
+              onClick={handleTerrainMeldingAction}
+            >
+              <strong>Melding</strong>
+              <span>{terrainInspectorFollowUps.length} follow-up acties</span>
+            </button>
+            <button
+              type="button"
+              className="terrain-action-btn terrain-action-btn-sync"
+              onClick={handleTerrainSyncAction}
+              disabled={syncRunning}
+            >
+              <strong>{syncRunning ? "Synchronisatie bezig..." : "Sync"}</strong>
+              <span>Wachtrij: {terrainSyncQueueStats.queued} | Fouten: {terrainSyncQueueStats.failed}</span>
+            </button>
+          </div>
+
+          <div className="terrain-status-row">
+            <span
+              className={`terrain-status-pill ${
+                isOnline ? "terrain-status-online" : "terrain-status-offline"
+              }`}
+            >
+              {isOnline ? "Online" : "Offline"}
+            </span>
+            <span className="terrain-status-pill">Laatste sync: {formatDateTime(lastSyncAt)}</span>
+            <span className="terrain-status-pill">
+              Laatste data-refresh: {formatDateTime(lastDataRefreshAt)}
+            </span>
+            <span className="terrain-status-pill">
+              Gesynct items lokaal: {terrainSyncQueueStats.synced}
+            </span>
+          </div>
+        </section>
+      ) : null}
 
       {effectiveActiveView === "dispatch" ? (
       <main
         ref={workspaceRef}
-        className={`workspace-grid ${rightPanelCollapsed ? "right-panel-collapsed" : ""}`}
+        className={`workspace-grid ${
+          isDispatchMapFirstActive ? "workspace-map-first" : "workspace-standard"
+        } ${rightPanelCollapsed ? "right-panel-collapsed" : ""}`}
         style={
           { "--right-panel-width": `${rightPanelCollapsed ? 0 : rightPanelWidth}px` } as CSSProperties
         }
       >
-        <aside className={`side-panel left-panel ${leftPanelCollapsed ? "collapsed" : ""}`}>
+        {isDispatchMapFirstActive && isCompactWorkspace && !leftPanelCollapsed ? (
+          <button
+            type="button"
+            className="left-panel-backdrop"
+            aria-label="Sluit instellingenpaneel"
+            onClick={() => setLeftPanelCollapsed(true)}
+          />
+        ) : null}
+
+        <aside
+          className={`side-panel left-panel ${
+            isCompactWorkspace && isDispatchMapFirstActive ? "compact-drawer" : ""
+          } ${
+            leftPanelCollapsed ? "collapsed" : ""
+          }`}
+        >
           <div className="panel-collapse-head">
             <p className="group-title">Instellingen</p>
             {isCompactWorkspace ? (
@@ -4596,10 +5547,52 @@ export default function App() {
             </div>
             <p className="muted-note">{activeIntegrationCount} bron(nen) actief in deze view.</p>
           </section>
+
+          <section className="filter-group">
+            <p className="group-title">Terrein acties</p>
+            <div className="quick-actions">
+              <button
+                type="button"
+                className="secondary-btn"
+                onClick={() => {
+                  setActiveView("vaststelling");
+                  if (isCompactWorkspace) {
+                    setLeftPanelCollapsed(true);
+                  }
+                }}
+              >
+                Vaststelling
+              </button>
+              <button
+                type="button"
+                className="secondary-btn"
+                onClick={() => {
+                  handleTerrainMeldingAction();
+                  if (isCompactWorkspace) {
+                    setLeftPanelCollapsed(true);
+                  }
+                }}
+              >
+                Melding
+              </button>
+            </div>
+            <p className="muted-note">
+              Snelle switch vanuit kaart naar terreinacties.
+            </p>
+          </section>
           </div>
         </aside>
 
         <section className="map-panel">
+          {isDispatchMapFirstActive && isCompactWorkspace && leftPanelCollapsed ? (
+            <button
+              type="button"
+              className="map-left-panel-open-btn"
+              onClick={() => setLeftPanelCollapsed(false)}
+            >
+              Instellingen + acties
+            </button>
+          ) : null}
           {rightPanelCollapsed ? (
             <button
               type="button"
@@ -4660,6 +5653,87 @@ export default function App() {
                   </p>
                 </div>
               ) : null}
+
+              <section className="filter-group dispatch-urgent-panel">
+                <div className="group-head-row">
+                  <p className="group-title">Urgente GIPOD notificaties</p>
+                  <button
+                    type="button"
+                    className="chip"
+                    onClick={() => {
+                      void refreshGovernanceNotifications("manual");
+                    }}
+                    disabled={governanceNotificationsLoading}
+                  >
+                    {governanceNotificationsLoading ? "Laden..." : "Vernieuw"}
+                  </button>
+                </div>
+                <p className="muted-note">
+                  Topprioriteit uit Task/Warning voor snelle dispatch-opvolging.
+                </p>
+                <p className="muted-note">
+                  Poll {Math.round(governanceNotificationsPollIntervalMs / 1000)}s | status{" "}
+                  {governanceNotificationsLastStatusCode ?? "-"} | 429-streak{" "}
+                  {governanceNotificationsRateLimitStreak}
+                </p>
+                {governanceNotificationsError ? (
+                  <p className="warning-inline">{governanceNotificationsError}</p>
+                ) : null}
+                {dispatchUrgentNotificationItems.length === 0 &&
+                !governanceNotificationsLoading ? (
+                  <p className="muted-note">Geen urgente notificaties in de huidige feed.</p>
+                ) : (
+                  <div className="dispatch-urgent-list">
+                    {dispatchUrgentNotificationItems.map((item) => (
+                      <article
+                        key={`dispatch-notif-${item.notification.notificationId}`}
+                        className="dispatch-urgent-item"
+                      >
+                        <div className="dispatch-urgent-head">
+                          <strong>{item.notification.notificationId}</strong>
+                          <span className="visit-chip">
+                            {item.notification.notificationCategoryLabel}
+                          </span>
+                        </div>
+                        <p className="muted-note">
+                          {item.notification.notificationTypeLabel} |{" "}
+                          {formatDateTime(item.notification.createdOn)}
+                        </p>
+                        <p className="dispatch-urgent-context">
+                          {item.linkedWork
+                            ? `${item.linkedWork.dossierId} - ${item.linkedWork.straat} ${item.linkedWork.huisnr}`
+                            : `Context: ${item.contextSearchTerm}`}
+                        </p>
+                        <div className="quick-actions">
+                          <button
+                            type="button"
+                            className="chip"
+                            onClick={() => handleFocusDispatchNotification(item)}
+                          >
+                            Focus dispatch
+                          </button>
+                          <button
+                            type="button"
+                            className="chip"
+                            onClick={() => handleOpenDispatchNotificationDossier(item)}
+                          >
+                            Open dossier
+                          </button>
+                          {item.notification.resourceUrl ? (
+                            <a
+                              href={item.notification.resourceUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              Open bron
+                            </a>
+                          ) : null}
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                )}
+              </section>
 
               <Suspense fallback={<div className="filter-group">Action cards laden...</div>}>
                 <InspectorBoard

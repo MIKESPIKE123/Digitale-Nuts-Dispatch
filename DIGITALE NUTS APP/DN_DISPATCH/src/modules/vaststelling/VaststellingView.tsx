@@ -9,7 +9,11 @@ import type {
   DNVaststellingSyncItem,
 } from "./contracts";
 import { updateDNVaststellingMutablePayload } from "./immutability";
-import { createDNVaststellingDraft, mapVisitToDNVaststellingContext } from "./mappers";
+import {
+  buildFreeDNVaststellingContext,
+  createDNVaststellingDraft,
+  mapVisitToDNVaststellingContext,
+} from "./mappers";
 import { parseArchisnapperCSV, type Field, type Option, type ParsedSchema, type Section } from "./schema";
 import {
   loadDNVaststellingRecords,
@@ -32,6 +36,12 @@ import {
 } from "./photoEvidence";
 import csvText from "./data/archisnapper.csv?raw";
 
+type VaststellingLaunchIntent = {
+  requestId: number;
+  visitId: string;
+  mode: "new" | "existing";
+};
+
 type VaststellingViewProps = {
   inspectors: Inspector[];
   selectedDate: string;
@@ -42,6 +52,8 @@ type VaststellingViewProps = {
   activeSession: ActiveInspectorSession | null;
   onSwitchSession: (inspectorId: string) => void;
   onDemoReset: () => void;
+  launchIntent?: VaststellingLaunchIntent | null;
+  onHandledLaunchIntent?: (requestId: number) => void;
 };
 
 const RESPONSIBLE_PARTIES = [
@@ -95,6 +107,7 @@ const MAX_PHOTO_EXPORT_BYTES = 1_800_000;
 const MAX_PHOTO_WIDTH = 1440;
 const MAX_PHOTO_HEIGHT = 1080;
 const PHOTO_JPEG_QUALITIES = [0.82, 0.72, 0.62, 0.52] as const;
+const FREE_DRAFT_GPS_TIMEOUT_MS = 12_000;
 
 const CORE_CANONICAL_FIELD_KEYS = new Set([
   "district",
@@ -735,6 +748,90 @@ function buildSeededFormDataFromVisit(
   return next;
 }
 
+function buildSeededFormDataFromFreeGps(
+  schema: ReturnType<typeof parseArchisnapperCSV>,
+  gps: string,
+  inspectorName: string
+): Record<string, DNVaststellingFieldValue> {
+  const next: Record<string, DNVaststellingFieldValue> = {};
+
+  for (const section of schema.sections) {
+    const normalizedSection = normalizeForMatch(section.title);
+    for (const field of section.items) {
+      const normalizedLabel = normalizeForMatch(field.label);
+      if (normalizedLabel.includes("gps code")) {
+        next[field.key] = gps;
+        continue;
+      }
+      if (normalizedSection.includes("inspecteurs") && normalizedLabel === "naam") {
+        next[field.key] = inspectorName;
+      }
+    }
+  }
+
+  if (schema.index.fieldsByKey.locPrecisionM) {
+    next.locPrecisionM = "5";
+  }
+
+  if (schema.index.fieldsByKey.tags) {
+    next.tags = ["VRIJ"];
+  }
+
+  return next;
+}
+
+function formatGpsCoordinates(latitude: number, longitude: number): string {
+  return `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+}
+
+function resolveDeviceLocationError(error: unknown): string {
+  const details =
+    typeof error === "object" && error !== null
+      ? (error as { code?: number; message?: string })
+      : {};
+
+  if (details.code === 1) {
+    return "GPS-toegang geweigerd. Sta locatie toe op de iPad en probeer opnieuw.";
+  }
+
+  if (details.code === 2) {
+    return "GPS-locatie is momenteel niet beschikbaar. Controleer signaal of netwerk.";
+  }
+
+  if (details.code === 3) {
+    return "GPS-timeout. Probeer opnieuw met betere ontvangst.";
+  }
+
+  if (details.message && details.message.trim().length > 0) {
+    return `GPS-locatie kon niet worden opgehaald: ${details.message}`;
+  }
+
+  return "GPS-locatie kon niet worden opgehaald.";
+}
+
+function requestDeviceLocation(): Promise<{ latitude: number; longitude: number }> {
+  return new Promise((resolve, reject) => {
+    if (typeof navigator === "undefined" || !navigator.geolocation) {
+      reject(new Error("Geolocatie is niet beschikbaar op dit toestel."));
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) =>
+        resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        }),
+      (error) => reject(error),
+      {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: FREE_DRAFT_GPS_TIMEOUT_MS,
+      }
+    );
+  });
+}
+
 export function VaststellingView({
   inspectors,
   selectedDate,
@@ -745,18 +842,22 @@ export function VaststellingView({
   activeSession,
   onSwitchSession,
   onDemoReset,
+  launchIntent,
+  onHandledLaunchIntent,
 }: VaststellingViewProps) {
   const schema = useMemo(
     () => withV2CoreFields(parseArchisnapperCSV(csvText), utilityCompanyOptions),
     [utilityCompanyOptions]
   );
   const [records, setRecords] = useState<DNVaststellingRecord[]>([]);
+  const [recordsInitialized, setRecordsInitialized] = useState(false);
   const [activeRecordId, setActiveRecordId] = useState<string | null>(null);
   const [syncQueue, setSyncQueue] = useState<DNVaststellingSyncItem[]>([]);
   const [syncRunning, setSyncRunning] = useState(false);
   const [syncMessage, setSyncMessage] = useState("");
   const [sessionSelectId, setSessionSelectId] = useState("");
   const [validationTouched, setValidationTouched] = useState(false);
+  const [freeDraftGpsPending, setFreeDraftGpsPending] = useState(false);
   const [expandedSectionIds, setExpandedSectionIds] = useState<Record<string, boolean>>({});
   const [syncEndpoint, setSyncEndpoint] = useState("");
   const [autoSyncOnOnline, setAutoSyncOnOnline] = useState(true);
@@ -780,6 +881,7 @@ export function VaststellingView({
       setSyncEndpoint(loadedSettings.endpoint);
       setAutoSyncOnOnline(loadedSettings.autoSyncOnOnline);
       setRequestTimeoutMs(loadedSettings.requestTimeoutMs);
+      setRecordsInitialized(true);
       if (loadedRecords[0]) {
         setActiveRecordId(loadedRecords[0].id);
       }
@@ -929,6 +1031,64 @@ export function VaststellingView({
     [activeSession, onSelectVisit, persistRecords, schema, selectedDate]
   );
 
+  const startFreeDraftWithGps = useCallback(
+    (latitude: number, longitude: number) => {
+      if (!activeSession) {
+        setSyncMessage("Geen actieve toezichter. Activeer eerst een sessie.");
+        return;
+      }
+
+      const context = buildFreeDNVaststellingContext({
+        latitude,
+        longitude,
+        dispatchDate: selectedDate,
+        session: activeSession,
+      });
+      const draft = createDNVaststellingDraft({ session: activeSession, context });
+      const gps = formatGpsCoordinates(latitude, longitude);
+      const seededFormData = buildSeededFormDataFromFreeGps(schema, gps, activeSession.inspectorName);
+      const seededChecklistScore = calculateChecklistScore(seededFormData);
+      const seededDraft = updateDNVaststellingMutablePayload(draft, {
+        formData: seededFormData,
+        metaLocation: "Vrije vaststelling (GPS iPad)",
+        gps,
+        notes: `Vrije vaststelling gestart via GPS op ${new Date().toLocaleString("nl-BE")}`,
+        nokCount: countNokFindings(seededFormData),
+        checklistScore: seededChecklistScore.score,
+        checklistScoreDetails: seededChecklistScore,
+      });
+
+      persistRecords((previous) => [seededDraft, ...previous]);
+      setActiveRecordId(seededDraft.id);
+      setValidationTouched(false);
+      onSelectVisit(null);
+      setSyncMessage(`Vrije vaststelling gestart met GPS ${gps}.`);
+    },
+    [activeSession, onSelectVisit, persistRecords, schema, selectedDate]
+  );
+
+  const handleStartFreeDraft = useCallback(async () => {
+    if (!activeSession) {
+      setSyncMessage("Geen actieve toezichter. Activeer eerst een sessie.");
+      return;
+    }
+
+    if (freeDraftGpsPending) {
+      return;
+    }
+
+    setFreeDraftGpsPending(true);
+    setSyncMessage("GPS-locatie ophalen...");
+    try {
+      const location = await requestDeviceLocation();
+      startFreeDraftWithGps(location.latitude, location.longitude);
+    } catch (error) {
+      setSyncMessage(resolveDeviceLocationError(error));
+    } finally {
+      setFreeDraftGpsPending(false);
+    }
+  }, [activeSession, freeDraftGpsPending, startFreeDraftWithGps]);
+
   const handleUseContext = useCallback(
     (visit: PlannedVisit) => {
       onSelectVisit(visit.id);
@@ -979,6 +1139,65 @@ export function VaststellingView({
     },
     [activeSession, handleStartDraft, onSelectVisit, records, schema, updateRecord]
   );
+
+  useEffect(() => {
+    if (!launchIntent || !activeSession) {
+      return;
+    }
+
+    if (launchIntent.mode === "existing" && !recordsInitialized) {
+      return;
+    }
+
+    const targetVisit =
+      myVisits.find((visit) => visit.id === launchIntent.visitId) ??
+      (selectedVisit && selectedVisit.id === launchIntent.visitId ? selectedVisit : null);
+
+    if (!targetVisit) {
+      setSyncMessage("Popupcontext niet gevonden in de huidige dispatchlijst.");
+      onHandledLaunchIntent?.(launchIntent.requestId);
+      return;
+    }
+
+    if (targetVisit.inspectorId !== activeSession.inspectorId) {
+      return;
+    }
+
+    onSelectVisit(targetVisit.id);
+    onHandledLaunchIntent?.(launchIntent.requestId);
+
+    if (launchIntent.mode === "existing") {
+      const existingRecord = records.find(
+        (record) => record.immutableContext.workId === targetVisit.work.id
+      );
+
+      if (!existingRecord) {
+        setSyncMessage(
+          `Nog geen bestaand vaststellingsverslag voor dossier ${targetVisit.work.dossierId}.`
+        );
+        return;
+      }
+
+      setActiveRecordId(existingRecord.id);
+      setValidationTouched(false);
+      setSyncMessage(
+        `Bestaand vaststellingsverslag geopend voor dossier ${targetVisit.work.dossierId}.`
+      );
+      return;
+    }
+
+    handleStartDraft(targetVisit);
+  }, [
+    activeSession,
+    handleStartDraft,
+    launchIntent,
+    myVisits,
+    onHandledLaunchIntent,
+    onSelectVisit,
+    records,
+    recordsInitialized,
+    selectedVisit,
+  ]);
 
   const updateActiveRecordPayload = useCallback(
     (patch: Record<string, unknown>) => {
@@ -1321,6 +1540,19 @@ export function VaststellingView({
 
       <section className="view-card">
         <h3>Mijn lijst vandaag ({myVisits.length})</h3>
+        <div className="quick-actions">
+          <button
+            type="button"
+            className="secondary-btn"
+            onClick={() => void handleStartFreeDraft()}
+            disabled={!activeSession || freeDraftGpsPending}
+          >
+            {freeDraftGpsPending ? "GPS wordt opgehaald..." : "Start vrije vaststelling (GPS iPad)"}
+          </button>
+        </div>
+        <p className="muted-note">
+          Gebruik dit voor een terreinvaststelling zonder vooraf gekozen dossiercontext.
+        </p>
         {myVisits.length === 0 ? (
           <p className="muted-note">Geen toegewezen bezoeken in huidige filtercontext.</p>
         ) : (
@@ -1390,6 +1622,14 @@ export function VaststellingView({
                 disabled={!effectiveVisit}
               >
                 Start van geselecteerde context
+              </button>
+              <button
+                type="button"
+                className="secondary-btn"
+                onClick={() => void handleStartFreeDraft()}
+                disabled={!activeSession || freeDraftGpsPending}
+              >
+                {freeDraftGpsPending ? "GPS wordt opgehaald..." : "Start vrije vaststelling (GPS iPad)"}
               </button>
             </div>
           </>

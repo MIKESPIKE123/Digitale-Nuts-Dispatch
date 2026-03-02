@@ -15434,10 +15434,10 @@
     "displayName": "55, Jan Breydelstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
   },
   "venusstraat|1|2000": {
-    "lat": 51.2431779,
-    "lng": 4.4646197,
-    "provider": "nominatim",
-    "displayName": "1, Venusstraat, Deuzeld, Schoten, Antwerpen, Vlaanderen, 2900, België / Belgique / Belgien"
+    "lat": 51.2171,
+    "lng": 4.4018,
+    "provider": "manual-override",
+    "displayName": "1, Venusstraat, Antwerpen, Vlaanderen, 2000, België"
   },
   "kielsbroek|0|2020": {
     "lat": 51.199076,
@@ -17573,5 +17573,117 @@
     "lng": 4.3882375,
     "provider": "nominatim",
     "displayName": "43, Vorstenhuislaan, Neerland, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "- - op 3 plaatsen gevelkabel ondergronds brengen. vanaf nr 175 tot nr|187|2018": null,
+  "- (antwerpen) - op 3 plaatsen gevelkabel ondergronds brengen. vanaf nr 175 tot nr|187|2018": null,
+  "wilrijk - doornstraat|323|2610": null,
+  "gallaitlaan|1|2610": {
+    "lat": 51.1664515,
+    "lng": 4.391148,
+    "provider": "nominatim",
+    "displayName": "1, Gallaitlaan, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "guldenberg|0|2000": {
+    "lat": 51.2245908,
+    "lng": 4.3997259,
+    "provider": "nominatim",
+    "displayName": "Guldenberg, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+  },
+  "herentalsebaan|0|2100": {
+    "lat": 51.2060875,
+    "lng": 4.4694082,
+    "provider": "nominatim",
+    "displayName": "Herentalsebaan, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "herentalsebaan (2100)|0|2100": {
+    "lat": 51.2060875,
+    "lng": 4.4694082,
+    "provider": "nominatim",
+    "displayName": "Herentalsebaan, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "bredabaan|966|2170": {
+    "lat": 51.2643964,
+    "lng": 4.4628549,
+    "provider": "nominatim",
+    "displayName": "966, Bredabaan, Tuinwijk, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "balansstraat|0|2018": {
+    "lat": 51.2022604,
+    "lng": 4.393588,
+    "provider": "nominatim",
+    "displayName": "Balansstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "korte zavelstraat|0|2060": {
+    "lat": 51.2230303,
+    "lng": 4.4259891,
+    "provider": "nominatim",
+    "displayName": "Korte Zavelstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+  },
+  "antwerpsesteenweg|457|2660": {
+    "lat": 51.1810033,
+    "lng": 4.3680513,
+    "provider": "nominatim",
+    "displayName": "Antwerpsesteenweg, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+  },
+  "maarschalk montgomeryplein|0|2140": {
+    "lat": 51.2115153,
+    "lng": 4.438251,
+    "provider": "nominatim",
+    "displayName": "Maarschalk Montgomeryplein, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+  },
+  "plankenbergstraat|27|2100": {
+    "lat": 51.2215309,
+    "lng": 4.4637548,
+    "provider": "nominatim",
+    "displayName": "27, Plankenbergstraat, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "kasterveldenstraat|10|2170": {
+    "lat": 51.2524221,
+    "lng": 4.45544,
+    "provider": "nominatim",
+    "displayName": "10,10/1, Kasterveldenstraat, Merksemheide, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "glasgowstraat|37|2030": null,
+  "nijverheidslei|0|2180": {
+    "lat": 51.2916017,
+    "lng": 4.4382881,
+    "provider": "nominatim",
+    "displayName": "Nijverheidslei, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+  },
+  "belgielei|0|2018": {
+    "lat": 51.2079509,
+    "lng": 4.4212695,
+    "provider": "nominatim",
+    "displayName": "Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "belgiëlei|0|2018": {
+    "lat": 51.2079509,
+    "lng": 4.4212695,
+    "provider": "nominatim",
+    "displayName": "Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+  },
+  "olmenbrug|0|2170": {
+    "lat": 51.2474404,
+    "lng": 4.4303353,
+    "provider": "nominatim",
+    "displayName": "Olmenbrug, Rietschoorvelden, Lambrechtshoeken, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+  },
+  "fredegandus van rielstraat|0|2100": {
+    "lat": 51.209449,
+    "lng": 4.4762083,
+    "provider": "nominatim",
+    "displayName": "Fredegandus Van Rielstraat, Boterlaar-Silsburg, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+  },
+  "paviljoenlaan|1|2610": {
+    "lat": 51.1544149,
+    "lng": 4.390643,
+    "provider": "nominatim",
+    "displayName": "1, Paviljoenlaan, Neerland, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+  },
+  "pretoriastraat|60|2600": {
+    "lat": 51.2041711,
+    "lng": 4.4355297,
+    "provider": "nominatim",
+    "displayName": "60, Pretoriastraat, Zurenborg (Berchem), Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
   }
 }

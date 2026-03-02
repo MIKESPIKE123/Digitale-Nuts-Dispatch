@@ -37,6 +37,7 @@ const MAX_FIXED_DAILY_LOAD = 12;
 const MIN_EXPERIENCE_FACTOR = 0.5;
 const MAX_EXPERIENCE_FACTOR = 1.5;
 const PREFERRED_INSPECTOR_SCORE_BONUS = 340;
+const MAX_CATEGORY3_ASSIGNMENT_SHARE = 0.15;
 
 type Candidate = {
   work: WorkRecord;
@@ -164,6 +165,49 @@ function isComplexWorkForLoad(work: WorkRecord): boolean {
     category.includes("categorie 2") ||
     category.includes("dringend")
   );
+}
+
+function isCategory3Work(work: WorkRecord): boolean {
+  const category = (work.gipodCategorie ?? "").trim().toLowerCase();
+  return category === "categorie 3" || category === "cat 3" || category === "categorie3";
+}
+
+function isSignalisatiePriorityWork(work: WorkRecord): boolean {
+  if ((work.sourceDataset ?? "").trim().toLowerCase() === "weekrapport_fallback") {
+    return true;
+  }
+
+  if ((work.permitRefKey ?? "").trim() || (work.permitReferenceId ?? "").trim()) {
+    return true;
+  }
+
+  const permitStatus = (work.permitStatus ?? "").trim().toUpperCase();
+  return (
+    permitStatus === "AFGELEVERD" ||
+    permitStatus === "IN_VOORBEREIDING" ||
+    permitStatus === "GEWEIGERD_OF_STOPGEZET"
+  );
+}
+
+function getStrategicProjectPriority(work: WorkRecord): number {
+  if (isCategory3Work(work)) {
+    return 0;
+  }
+
+  if (isSignalisatiePriorityWork(work)) {
+    return 2;
+  }
+
+  return 1;
+}
+
+function canAssignCategory3Visit(
+  assignedCategory3Visits: number,
+  assignedNonCategory3Visits: number
+): boolean {
+  const projectedCategory3Visits = assignedCategory3Visits + 1;
+  const projectedTotalVisits = assignedCategory3Visits + assignedNonCategory3Visits + 1;
+  return projectedCategory3Visits / projectedTotalVisits <= MAX_CATEGORY3_ASSIGNMENT_SHARE;
 }
 
 function haversineKm(
@@ -386,6 +430,12 @@ function buildCandidates(
   }
 
   candidates.sort((a, b) => {
+    const strategicPriorityDiff =
+      getStrategicProjectPriority(b.work) - getStrategicProjectPriority(a.work);
+    if (strategicPriorityDiff !== 0) {
+      return strategicPriorityDiff;
+    }
+
     if (a.priority !== b.priority) {
       return b.priority - a.priority;
     }
@@ -493,6 +543,21 @@ function pickInspector(
   }
 
   return best;
+}
+
+function createUnassignedVisit(candidate: Candidate, date: string): PlannedVisit {
+  return {
+    id: `${candidate.work.id}-${date}-${candidate.visitType}-unassigned`,
+    work: candidate.work,
+    visitType: candidate.visitType,
+    mandatory: candidate.mandatory,
+    priority: candidate.priority,
+    inspectorId: "UNASSIGNED",
+    inspectorInitials: "--",
+    inspectorName: "Niet toegewezen",
+    inspectorColor: "#6b7280",
+    score: -1,
+  };
 }
 
 function pickInspectorForFollowUp(
@@ -621,8 +686,19 @@ export function buildDispatchPlan(options: DispatchOptions): DispatchPlan {
 
   if (workday) {
     const candidates = buildCandidates(selectedDate, filteredWorks, holidaySet);
+    let assignedCategory3Visits = 0;
+    let assignedNonCategory3Visits = 0;
 
     for (const candidate of candidates) {
+      const category3Candidate = isCategory3Work(candidate.work);
+      if (
+        category3Candidate &&
+        !canAssignCategory3Visit(assignedCategory3Visits, assignedNonCategory3Visits)
+      ) {
+        unassigned.push(createUnassignedVisit(candidate, options.date));
+        continue;
+      }
+
       const preferredInspectorId = preferredInspectorByWorkId[candidate.work.id];
       const pools = buildInspectorPools(candidate, activeInspectors);
       const assignmentOrder: Array<{ pool: Inspector[]; allowOverflow: boolean }> = [
@@ -683,18 +759,7 @@ export function buildDispatchPlan(options: DispatchOptions): DispatchPlan {
       }
 
       if (!pick) {
-        unassigned.push({
-          id: `${candidate.work.id}-${options.date}-${candidate.visitType}-unassigned`,
-          work: candidate.work,
-          visitType: candidate.visitType,
-          mandatory: candidate.mandatory,
-          priority: candidate.priority,
-          inspectorId: "UNASSIGNED",
-          inspectorInitials: "--",
-          inspectorName: "Niet toegewezen",
-          inspectorColor: "#6b7280",
-          score: -1,
-        });
+        unassigned.push(createUnassignedVisit(candidate, options.date));
         continue;
       }
 
@@ -745,6 +810,11 @@ export function buildDispatchPlan(options: DispatchOptions): DispatchPlan {
         inspectorColor: pick.inspector.color,
         score: Math.round(pick.score * 10) / 10,
       });
+      if (category3Candidate) {
+        assignedCategory3Visits += 1;
+      } else {
+        assignedNonCategory3Visits += 1;
+      }
     }
   }
 

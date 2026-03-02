@@ -1,16 +1,19 @@
 import { ApiComplaintsGateway } from "./api/ApiComplaintsGateway";
 import { ApiInspectionsGateway } from "./api/ApiInspectionsGateway";
+import { ApiNotificationsGateway } from "./api/ApiNotificationsGateway";
 import { ApiPermitsGateway } from "./api/ApiPermitsGateway";
 import { ApiWorksGateway } from "./api/ApiWorksGateway";
 import type {
   ComplaintsGateway,
   InspectionsGateway,
+  NotificationsGateway,
   PermitsGateway,
   WorksGateway,
 } from "./contracts";
 import { INTEGRATION_FLAGS } from "./flags";
 import { MockComplaintsGateway } from "./mock/MockComplaintsGateway";
 import { MockInspectionsGateway } from "./mock/MockInspectionsGateway";
+import { MockNotificationsGateway } from "./mock/MockNotificationsGateway";
 import { MockPermitsGateway } from "./mock/MockPermitsGateway";
 import { MockWorksGateway } from "./mock/MockWorksGateway";
 
@@ -18,6 +21,7 @@ let worksGatewaySingleton: WorksGateway | null = null;
 let inspectionsGatewaySingleton: InspectionsGateway | null = null;
 let permitsGatewaySingleton: PermitsGateway | null = null;
 let complaintsGatewaySingleton: ComplaintsGateway | null = null;
+let notificationsGatewaySingleton: NotificationsGateway | null = null;
 
 function buildWorksGateway(): WorksGateway {
   return INTEGRATION_FLAGS.useMockWorks ? new MockWorksGateway() : new ApiWorksGateway();
@@ -37,6 +41,12 @@ function buildComplaintsGateway(): ComplaintsGateway {
   return INTEGRATION_FLAGS.useMockKlm
     ? new MockComplaintsGateway()
     : new ApiComplaintsGateway();
+}
+
+function buildNotificationsGateway(): NotificationsGateway {
+  return INTEGRATION_FLAGS.useMockNotifications
+    ? new MockNotificationsGateway()
+    : new ApiNotificationsGateway();
 }
 
 export function getWorksGateway(): WorksGateway {
@@ -67,9 +77,17 @@ export function getComplaintsGateway(): ComplaintsGateway {
   return complaintsGatewaySingleton;
 }
 
+export function getNotificationsGateway(): NotificationsGateway {
+  if (!notificationsGatewaySingleton) {
+    notificationsGatewaySingleton = buildNotificationsGateway();
+  }
+  return notificationsGatewaySingleton;
+}
+
 export function resetIntegrationGatewayCache(): void {
   worksGatewaySingleton = null;
   inspectionsGatewaySingleton = null;
   permitsGatewaySingleton = null;
   complaintsGatewaySingleton = null;
+  notificationsGatewaySingleton = null;
 }

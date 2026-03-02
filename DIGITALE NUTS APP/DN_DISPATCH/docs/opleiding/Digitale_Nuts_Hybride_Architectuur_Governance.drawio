@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.0">
+  <diagram name="Digitale Nuts Hybride Architectuur Governance" id="872NxriWanTRIWcago8w">
+    <mxGraphModel dx="1426" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-2" parent="1" style="text;html=1;fontSize=20;fontStyle=1;" value="DIGITALE NUTS – HYBRIDE ARCHITECTUUR 2026–2030&#xa;SaaS-light + Stedelijke Regielaag + Flexibele Field UI" vertex="1">
+          <mxGeometry height="60" width="900" x="350" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Gebruikers&#xa;- Toezichters&#xa;- Projectleiders&#xa;- Financiële cel&#xa;- Nutsmaatschappijen&#xa;- Beleid &amp; Directie&#xa;- Andere steden" vertex="1">
+          <mxGeometry height="150" width="350" x="100" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Field UI (Capacitor / Web-first)&#xa;- Vaststellingen&#xa;- Foto + annotatie&#xa;- Offline opslag&#xa;- Inspectieflow" vertex="1">
+          <mxGeometry height="180" width="350" x="100" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="Office UI (Web)&#xa;- Dossierbeheer&#xa;- KPI-dashboard&#xa;- Rapportering&#xa;- Besluitvorming" vertex="1">
+          <mxGeometry height="160" width="350" x="100" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" value="STEDELIJKE REGIELAAG (Strategisch Hart)&#xa;&#xa;1. OSLO Datamodel (JSON-LD / SHACL)&#xa;2. Proces- &amp; Validatielogica&#xa;3. Financiële Motor (Retributie / KPI)&#xa;4. AI &amp; Analyse&#xa;5. Multi-tenant Core" vertex="1">
+          <mxGeometry height="360" width="600" x="520" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="SaaS-light Uitvoeringslaag&#xa;- Workflow engine&#xa;- Ticketing&#xa;- Authenticatie&#xa;- Basisrapportage&#xa;&#xa;⚠ Geen kernlogica" vertex="1">
+          <mxGeometry height="250" width="350" x="1200" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="DATA-INTEGRATIE&#xa;- GIPOD&#xa;- MONA/MSW&#xa;- Fluvius&#xa;- Water-Link&#xa;- GRB&#xa;- Gemeentewegenregister&#xa;- Financieel systeem Stad" vertex="1">
+          <mxGeometry height="180" width="900" x="370" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" value="GOVERNANCE &amp; COMPLIANCE&#xa;&#xa;- NIS2 Compliance&#xa;- AVG / GDPR Logging&#xa;- Audittrail&#xa;- Role-Based Access&#xa;- API Governance&#xa;- Versionering Datamodel&#xa;- Security Monitoring&#xa;- Vendor Exit Strategie" vertex="1">
+          <mxGeometry height="780" width="300" x="1600" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-10" edge="1" parent="1" source="vPUkRhlUM9vCeXZJCAbR-3" target="vPUkRhlUM9vCeXZJCAbR-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-11" edge="1" parent="1" source="vPUkRhlUM9vCeXZJCAbR-4" target="vPUkRhlUM9vCeXZJCAbR-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-12" edge="1" parent="1" source="vPUkRhlUM9vCeXZJCAbR-5" target="vPUkRhlUM9vCeXZJCAbR-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-13" edge="1" parent="1" source="vPUkRhlUM9vCeXZJCAbR-6" target="vPUkRhlUM9vCeXZJCAbR-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vPUkRhlUM9vCeXZJCAbR-14" edge="1" parent="1" source="vPUkRhlUM9vCeXZJCAbR-6" target="vPUkRhlUM9vCeXZJCAbR-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
