@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ChangeEvent } from "react";
+import { useEffect, useMemo, useState, type ChangeEvent, type CSSProperties } from "react";
 import {
   MAX_DAILY_LIMIT,
   MAX_EXPERIENCE_FACTOR,
@@ -22,6 +22,8 @@ type SettingsModalProps = {
   settings: DispatchSettings;
   onClose: () => void;
   onSave: (nextSettings: DispatchSettings) => void;
+  dockedToMapWorkspace?: boolean;
+  dockLeftInsetPx?: number;
 };
 
 type InspectorDraft = {
@@ -244,6 +246,8 @@ export function SettingsModal({
   settings,
   onClose,
   onSave,
+  dockedToMapWorkspace = false,
+  dockLeftInsetPx = 0,
 }: SettingsModalProps) {
   const [holidayText, setHolidayText] = useState("");
   const [autoSyncEnabled, setAutoSyncEnabled] = useState(true);
@@ -364,6 +368,12 @@ export function SettingsModal({
   if (!isOpen) {
     return null;
   }
+
+  const dockInset = Math.max(0, Math.round(dockLeftInsetPx));
+  const backdropStyle =
+    dockedToMapWorkspace && dockInset > 0
+      ? ({ "--settings-dock-left": `${dockInset}px` } as CSSProperties)
+      : undefined;
 
   const handleInspectorChange = (
     draftKey: string,
@@ -754,9 +764,16 @@ export function SettingsModal({
   };
 
   return (
-    <div className="settings-modal-backdrop" role="presentation" onClick={onClose}>
+    <div
+      className={`settings-modal-backdrop ${
+        dockedToMapWorkspace ? "settings-modal-backdrop-docked" : ""
+      }`}
+      style={backdropStyle}
+      role="presentation"
+      onClick={onClose}
+    >
       <div
-        className="settings-modal"
+        className={`settings-modal ${dockedToMapWorkspace ? "settings-modal-docked" : ""}`}
         role="dialog"
         aria-modal="true"
         aria-label="Instellingen"

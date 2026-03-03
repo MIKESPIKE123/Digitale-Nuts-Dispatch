@@ -200,6 +200,47 @@ p {
   color: var(--accent-strong);
 }
 
+.ipad-terrain-nav {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 0 2px;
+}
+
+.ipad-terrain-nav.floating {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 58px);
+  left: 8px;
+  z-index: 1201;
+  width: min(88vw, 360px);
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid #dbe5ee;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(2px);
+}
+
+.ipad-terrain-tab-btn {
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.1;
+  padding: 5px 8px;
+  min-height: 30px;
+  white-space: nowrap;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.ipad-terrain-tab-btn.active {
+  border-color: #0284c7;
+  background: #e0f2fe;
+  color: #0c4a6e;
+}
+
 .dispatch-map-first-toggle {
   justify-self: end;
   align-self: center;
@@ -207,23 +248,35 @@ p {
 }
 
 .top-hero-map-first {
-  padding: 8px 10px;
-  grid-template-columns: minmax(0, 1fr) auto;
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 8px);
+  left: 8px;
+  z-index: 1201;
+  width: min(88vw, 360px);
+  min-height: 48px;
+  padding: 6px 10px;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.top-hero-map-first .hero-brand {
+  gap: 0;
 }
 
 .top-hero-map-first .hero-logo {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
+  display: none;
 }
 
 .top-hero-map-first .eyebrow {
-  font-size: 0.65rem;
+  font-size: 0.58rem;
+  line-height: 1;
 }
 
 .top-hero-map-first h1 {
-  margin-top: 2px;
-  font-size: 1rem;
+  margin-top: 1px;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
 }
 
 .terrain-mode-hub {
@@ -420,25 +473,17 @@ p {
   position: relative;
 }
 
-.map-left-panel-open-btn {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 3;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #0f172a;
-  padding: 6px 9px;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
 .map-right-panel-open-btn {
   position: absolute;
   top: 10px;
   right: 10px;
   z-index: 3;
+}
+
+.sync-compact-btn {
+  padding: 5px 8px;
+  font-size: 0.72rem;
+  line-height: 1.12;
 }
 
 .left-panel-backdrop {
@@ -553,6 +598,20 @@ p {
   padding: 8px;
   display: grid;
   gap: 6px;
+}
+
+.map-overlay-quick-actions {
+  width: 100%;
+  padding: 6px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.map-quick-btn {
+  padding: 6px 4px;
+  font-size: 0.68rem;
+  text-align: center;
 }
 
 .map-overlay-title {
@@ -835,6 +894,88 @@ p {
 .map-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.app-shell.dispatch-map-first {
+  height: 100dvh;
+  min-height: 100dvh;
+  grid-template-rows: 1fr;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.app-shell.dispatch-map-first .workspace-grid.workspace-map-first {
+  min-height: 100dvh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 0;
+}
+
+.app-shell.dispatch-map-first .map-panel {
+  position: fixed;
+  inset: 0;
+  min-height: 100dvh;
+}
+
+.app-shell.dispatch-map-first .map-shell {
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+  min-height: 100dvh;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.app-shell.dispatch-map-first .map-top-overlays {
+  top: calc(env(safe-area-inset-top, 0px) + 68px);
+  left: 8px;
+}
+
+.app-shell.dispatch-map-first .map-overlay-right {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 8px);
+  right: 8px;
+}
+
+.app-shell.dispatch-map-first .maplibregl-ctrl-top-right {
+  top: calc(env(safe-area-inset-top, 0px) + 56px);
+  right: 8px;
+}
+
+.app-shell.dispatch-map-first .maplibregl-ctrl-group button {
+  width: 40px;
+  height: 40px;
+}
+
+.app-shell.dispatch-map-first.terrain-ipad-tabs .map-top-overlays {
+  top: calc(env(safe-area-inset-top, 0px) + 108px);
+}
+
+.app-shell.dispatch-map-first.terrain-ipad-tabs .maplibregl-ctrl-top-right {
+  top: calc(env(safe-area-inset-top, 0px) + 96px);
+}
+
+.app-shell.vaststelling-ipad {
+  height: 100dvh;
+  min-height: 100dvh;
+  grid-template-rows: 1fr;
+  gap: 0;
+  padding: 8px;
+}
+
+.app-shell.vaststelling-ipad .view-shell.vaststelling-shell-ipad {
+  margin-top: calc(env(safe-area-inset-top, 0px) + 60px);
+  height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 74px);
+  border: 1px solid #d7e0ea;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f8fbff 0%, #f5f8fc 100%);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+}
+
+.app-shell.vaststelling-ipad.terrain-ipad-tabs .view-shell.vaststelling-shell-ipad {
+  margin-top: calc(env(safe-area-inset-top, 0px) + 104px);
+  height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 118px);
 }
 
 .popup-grid {
@@ -1436,6 +1577,12 @@ p {
 .visit-chip.impact-hoog {
   color: var(--danger);
   background: #fee2e2;
+}
+
+.visit-chip-warning {
+  color: #9a3412;
+  background: #ffedd5;
+  border: 1px solid #fdba74;
 }
 
 .visit-meta {
@@ -2543,11 +2690,15 @@ p {
 .settings-modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 1302;
   background: rgba(15, 23, 42, 0.35);
   display: grid;
   place-items: center;
   padding: 16px;
+}
+
+.settings-modal-backdrop-docked {
+  padding: 10px 10px 10px calc(var(--settings-dock-left, 0px) + 10px);
 }
 
 .settings-modal {
@@ -2561,6 +2712,11 @@ p {
   padding: 14px;
   display: grid;
   gap: 12px;
+}
+
+.settings-modal-docked {
+  width: min(920px, 100%);
+  max-height: calc(100dvh - 20px);
 }
 
 .md-viewer-modal {
@@ -3000,6 +3156,219 @@ p {
   object-fit: cover;
 }
 
+.vaststelling-shell-ipad .view-card {
+  border-radius: 12px;
+  border-color: #d1dceb;
+  background: #ffffff;
+  padding: 12px;
+  gap: 10px;
+}
+
+.vaststelling-shell-ipad .view-subtitle {
+  font-size: 0.86rem;
+}
+
+.vaststelling-shell-ipad .quick-actions {
+  gap: 10px;
+}
+
+.vaststelling-shell-ipad .quick-actions .secondary-btn {
+  flex: 1 1 180px;
+  min-height: 44px;
+  font-size: 0.84rem;
+}
+
+.vaststelling-kpi-strip {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.vaststelling-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.vaststelling-kpi-strip.ipad .vaststelling-kpi-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.vaststelling-kpi-card {
+  border: 1px solid #d3deeb;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 9px 10px;
+  display: grid;
+  gap: 4px;
+  min-height: 76px;
+  align-content: start;
+}
+
+.vaststelling-kpi-card.attention {
+  border-color: #fdba74;
+  background: #fff7ed;
+}
+
+.vaststelling-kpi-label {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #334155;
+}
+
+.vaststelling-kpi-card strong {
+  font-size: 1.22rem;
+  color: #0f172a;
+}
+
+.vaststelling-visit-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 8px;
+}
+
+.vaststelling-visit-card {
+  border: 1px solid #d5e1ee;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 10px;
+  display: grid;
+  gap: 7px;
+}
+
+.vaststelling-visit-card.active {
+  border-color: #38bdf8;
+  box-shadow: inset 0 0 0 1px rgba(14, 116, 144, 0.35);
+  background: #f0f9ff;
+}
+
+.vaststelling-visit-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.vaststelling-action-rail {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.vaststelling-action-rail.ipad {
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.vaststelling-action-btn {
+  width: 100%;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 10px;
+}
+
+.vaststelling-action-picto {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  flex: 0 0 auto;
+}
+
+.vaststelling-nok-overview {
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  background: #fffbeb;
+  padding: 9px;
+  display: grid;
+  gap: 8px;
+}
+
+.vaststelling-nok-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 8px;
+}
+
+.vaststelling-nok-item {
+  border: 1px solid #fcd34d;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 8px;
+  display: grid;
+  gap: 3px;
+}
+
+.vaststelling-nok-item.missing {
+  border-color: #fca5a5;
+  background: #fff1f2;
+}
+
+.vaststelling-nok-item p {
+  margin: 0;
+  font-size: 0.74rem;
+  color: #334155;
+}
+
+.dnv-section-toggle-attention {
+  color: #9a3412;
+}
+
+.dnv-section-body-ipad {
+  gap: 10px;
+}
+
+.dnv-field-attention {
+  border-color: #fdba74;
+  background: #fff7ed;
+}
+
+.vaststelling-shell-ipad .dnv-input,
+.vaststelling-shell-ipad .dnv-multi-item,
+.vaststelling-shell-ipad .dnv-label,
+.vaststelling-shell-ipad .dnv-responsible-row,
+.vaststelling-shell-ipad .muted-note {
+  font-size: 0.82rem;
+}
+
+.vaststelling-shell-ipad .dnv-input {
+  padding: 10px 11px;
+}
+
+.vaststelling-shell-ipad .dnv-textarea {
+  min-height: 96px;
+}
+
+.vaststelling-sync-center-ipad .vaststelling-sync-details {
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
+  background: #f8fafc;
+  padding: 8px;
+}
+
+.vaststelling-sync-center-ipad .vaststelling-sync-details summary {
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.vaststelling-sync-center-ipad .vaststelling-sync-details .dnv-sync-settings {
+  margin-top: 8px;
+}
+
 @media (max-width: 1500px) {
   .workspace-grid {
     grid-template-columns: 270px minmax(0, 1fr) var(--right-panel-width, 380px);
@@ -3074,16 +3443,16 @@ p {
   }
 
   .app-shell.dispatch-map-first {
-    grid-template-rows: auto 1fr;
-    gap: 8px;
+    grid-template-rows: 1fr;
+    gap: 0;
   }
 
   .app-shell.dispatch-map-first .workspace-grid.workspace-map-first {
-    grid-template-rows: minmax(0, 1fr);
+    grid-template-rows: 1fr;
   }
 
   .app-shell.dispatch-map-first .map-panel {
-    min-height: calc(100vh - 112px);
+    min-height: 100dvh;
   }
 
   .workspace-grid.workspace-standard {
@@ -3132,6 +3501,10 @@ p {
     transform: translateX(0);
     transition: transform 180ms ease;
     overflow: auto;
+  }
+
+  .app-shell.dispatch-map-first .left-panel.compact-drawer {
+    top: calc(env(safe-area-inset-top, 0px) + 64px);
   }
 
   .left-panel.compact-drawer.collapsed {
@@ -3251,6 +3624,16 @@ p {
 
   .terrain-action-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ipad-terrain-nav {
+    gap: 4px;
+  }
+
+  .ipad-terrain-tab-btn {
+    font-size: 0.62rem;
+    padding: 4px 7px;
+    min-height: 28px;
   }
 
   .terrain-action-btn {

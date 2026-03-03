@@ -54,6 +54,7 @@ type VaststellingViewProps = {
   onDemoReset: () => void;
   launchIntent?: VaststellingLaunchIntent | null;
   onHandledLaunchIntent?: (requestId: number) => void;
+  compactIpadMode?: boolean;
 };
 
 const RESPONSIBLE_PARTIES = [
@@ -844,6 +845,7 @@ export function VaststellingView({
   onDemoReset,
   launchIntent,
   onHandledLaunchIntent,
+  compactIpadMode = false,
 }: VaststellingViewProps) {
   const schema = useMemo(
     () => withV2CoreFields(parseArchisnapperCSV(csvText), utilityCompanyOptions),
@@ -982,6 +984,114 @@ export function VaststellingView({
     const synced = syncQueue.filter((item) => item.status === "synced").length;
     return { queued, failed, synced };
   }, [syncQueue]);
+
+  const activeChecklistScore = useMemo(() => {
+    if (!activeRecord) {
+      return 0;
+    }
+    if (typeof activeRecord.mutablePayload.checklistScore === "number") {
+      return Math.round(activeRecord.mutablePayload.checklistScore);
+    }
+    return calculateChecklistScore(activeFormData).score;
+  }, [activeFormData, activeRecord]);
+
+  const activeNokCount = useMemo(() => {
+    if (!activeRecord) {
+      return 0;
+    }
+    if (typeof activeRecord.mutablePayload.nokCount === "number") {
+      return activeRecord.mutablePayload.nokCount;
+    }
+    return countNokFindings(activeFormData);
+  }, [activeFormData, activeRecord]);
+
+  const nokOverviewItems = useMemo(() => {
+    if (!activeRecord) {
+      return [] as Array<{
+        key: string;
+        label: string;
+        valueLabel: string;
+        responsibleKey: string;
+        responsibleValue: string;
+        missingResponsible: boolean;
+      }>;
+    }
+
+    const items: Array<{
+      key: string;
+      label: string;
+      valueLabel: string;
+      responsibleKey: string;
+      responsibleValue: string;
+      missingResponsible: boolean;
+    }> = [];
+
+    for (const section of schema.sections) {
+      for (const field of section.items) {
+        const value = activeFormData[field.key];
+        if (typeof value === "string" && isNokValue(value)) {
+          const responsibleKey = `${field.key}__responsible`;
+          const responsibleValue =
+            typeof activeFormData[responsibleKey] === "string"
+              ? activeFormData[responsibleKey]
+              : "";
+          items.push({
+            key: `${field.key}-single`,
+            label: field.label,
+            valueLabel: value,
+            responsibleKey,
+            responsibleValue,
+            missingResponsible: responsibleValue.trim().length === 0,
+          });
+          continue;
+        }
+
+        if (!Array.isArray(value)) {
+          continue;
+        }
+
+        value
+          .filter((entry) => isNokValue(entry))
+          .forEach((entry) => {
+            const responsibleKey = `${field.key}__responsible__${entry}`;
+            const responsibleValue =
+              typeof activeFormData[responsibleKey] === "string"
+                ? activeFormData[responsibleKey]
+                : "";
+            items.push({
+              key: `${field.key}-${entry}`,
+              label: field.label,
+              valueLabel: entry,
+              responsibleKey,
+              responsibleValue,
+              missingResponsible: responsibleValue.trim().length === 0,
+            });
+          });
+      }
+    }
+
+    return items;
+  }, [activeFormData, activeRecord, schema.sections]);
+
+  const sectionAttentionMap = useMemo(() => {
+    const attentionBySection: Record<string, boolean> = {};
+    const nokKeys = new Set(
+      nokOverviewItems.map((item) => item.responsibleKey.split("__responsible")[0]).filter(Boolean)
+    );
+
+    for (const section of schema.sections) {
+      const hasValidationIssue = section.items.some((field) => issueInputKeys.has(field.key));
+      const hasNok = section.items.some((field) => nokKeys.has(field.key));
+      attentionBySection[section.id] = hasValidationIssue || hasNok;
+    }
+
+    return attentionBySection;
+  }, [issueInputKeys, nokOverviewItems, schema.sections]);
+
+  const missingResponsibleCount = useMemo(
+    () => nokOverviewItems.filter((item) => item.missingResponsible).length,
+    [nokOverviewItems]
+  );
 
   const updateRecord = useCallback(
     (recordId: string, updater: (record: DNVaststellingRecord) => DNVaststellingRecord) => {
@@ -1503,13 +1613,17 @@ export function VaststellingView({
   };
 
   return (
-    <main className="view-shell">
-      <section className="view-card">
-        <h2>DN Vaststelling</h2>
-        <p className="view-subtitle">
-          Terreinmodus met verplichte toezichter-sessie, schema-gedreven inspectievelden en sync-wachtrij.
-        </p>
-      </section>
+    <main
+      className={`view-shell vaststelling-shell ${compactIpadMode ? "vaststelling-shell-ipad" : ""}`}
+    >
+      {!compactIpadMode ? (
+        <section className="view-card">
+          <h2>DN Vaststelling</h2>
+          <p className="view-subtitle">
+            Terreinmodus met verplichte toezichter-sessie, schema-gedreven inspectievelden en sync-wachtrij.
+          </p>
+        </section>
+      ) : null}
 
       <section className="view-card">
         <h3>Actieve sessie</h3>
@@ -1538,6 +1652,45 @@ export function VaststellingView({
         )}
       </section>
 
+      <section className={`view-card vaststelling-kpi-strip ${compactIpadMode ? "ipad" : ""}`}>
+        <div className="vaststelling-kpi-grid">
+          <article className="vaststelling-kpi-card">
+            <p className="vaststelling-kpi-label">Actieve context</p>
+            <strong>{effectiveVisit ? effectiveVisit.work.dossierId : "-"}</strong>
+          </article>
+          <article className="vaststelling-kpi-card">
+            <p className="vaststelling-kpi-label">Checklistscore</p>
+            <strong>{activeRecord ? `${activeChecklistScore}/100` : "-"}</strong>
+          </article>
+          <article className={`vaststelling-kpi-card ${activeNokCount > 0 ? "attention" : ""}`}>
+            <p className="vaststelling-kpi-label">NOK bevindingen</p>
+            <strong>{activeRecord ? activeNokCount : 0}</strong>
+          </article>
+          <article className="vaststelling-kpi-card">
+            <p className="vaststelling-kpi-label">Wachtrij</p>
+            <strong>{queueStats.queued}</strong>
+          </article>
+          <article
+            className={`vaststelling-kpi-card ${
+              queueStats.failed > 0 || missingResponsibleCount > 0
+                ? "attention"
+                : ""
+            }`}
+          >
+            <p className="vaststelling-kpi-label">Aandachtspunten</p>
+            <strong>
+              {(validation?.issues.length ?? 0) +
+                queueStats.failed +
+                missingResponsibleCount}
+            </strong>
+          </article>
+          <article className="vaststelling-kpi-card">
+            <p className="vaststelling-kpi-label">Rapportstatus</p>
+            <strong>{activeRecord ? statusLabel(activeRecord.completionState) : "Geen draft"}</strong>
+          </article>
+        </div>
+      </section>
+
       <section className="view-card">
         <h3>Mijn lijst vandaag ({myVisits.length})</h3>
         <div className="quick-actions">
@@ -1555,6 +1708,42 @@ export function VaststellingView({
         </p>
         {myVisits.length === 0 ? (
           <p className="muted-note">Geen toegewezen bezoeken in huidige filtercontext.</p>
+        ) : compactIpadMode ? (
+          <div className="vaststelling-visit-cards">
+            {myVisits.slice(0, 16).map((visit) => (
+              <article
+                key={visit.id}
+                className={`vaststelling-visit-card ${
+                  selectedVisit?.id === visit.id ? "active" : ""
+                }`}
+              >
+                <div className="vaststelling-visit-head">
+                  <strong>{visit.work.dossierId}</strong>
+                  <span className="visit-chip">BONU {visit.work.bonuNummer || "-"}</span>
+                </div>
+                <p className="muted-note">
+                  {formatAddressFromVisit(visit)} | {visit.visitType}
+                </p>
+                <p className="muted-note">Nutsmaatschappij: {visit.work.nutsBedrijf || "-"}</p>
+                <div className="quick-actions">
+                  <button
+                    type="button"
+                    className="secondary-btn"
+                    onClick={() => handleUseContext(visit)}
+                  >
+                    Context
+                  </button>
+                  <button
+                    type="button"
+                    className="secondary-btn"
+                    onClick={() => handleStartDraft(visit)}
+                  >
+                    Start
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
         ) : (
           <div className="table-scroll">
             <table className="dossier-table">
@@ -1660,10 +1849,7 @@ export function VaststellingView({
               </p>
               <p>
                 <strong>Checklistscore:</strong>{" "}
-                {typeof activeRecord.mutablePayload.checklistScore === "number"
-                  ? Math.round(activeRecord.mutablePayload.checklistScore)
-                  : calculateChecklistScore(activeFormData).score}
-                /100
+                {activeChecklistScore}/100
               </p>
             </div>
 
@@ -1696,15 +1882,75 @@ export function VaststellingView({
               </label>
             </div>
 
+            <section className={`vaststelling-action-rail ${compactIpadMode ? "ipad" : ""}`}>
+              <button type="button" className="secondary-btn vaststelling-action-btn" onClick={markRecordAsValid}>
+                <span className="vaststelling-action-picto">V</span>
+                <span>Markeer valid</span>
+              </button>
+              <button type="button" className="secondary-btn vaststelling-action-btn" onClick={queueRecordForSync}>
+                <span className="vaststelling-action-picto">Q</span>
+                <span>Zet in wachtrij</span>
+              </button>
+              <button
+                type="button"
+                className="secondary-btn vaststelling-action-btn"
+                onClick={() => void handleSyncNow()}
+                disabled={syncRunning}
+              >
+                <span className="vaststelling-action-picto">S</span>
+                <span>{syncRunning ? "Sync bezig..." : "Sync nu"}</span>
+              </button>
+              <button type="button" className="secondary-btn vaststelling-action-btn" onClick={handleExportPdf}>
+                <span className="vaststelling-action-picto">PDF</span>
+                <span>Rapport</span>
+              </button>
+            </section>
+
+            <section className="vaststelling-nok-overview">
+              <div className="group-head-row">
+                <p className="group-title">Niet OK overzicht</p>
+                <span className={`visit-chip ${nokOverviewItems.length > 0 ? "visit-chip-warning" : ""}`}>
+                  {nokOverviewItems.length} NOK
+                </span>
+              </div>
+              {nokOverviewItems.length === 0 ? (
+                <p className="muted-note">Geen NOK vastgesteld in de huidige checklist.</p>
+              ) : (
+                <div className="vaststelling-nok-list">
+                  {nokOverviewItems.map((item) => (
+                    <article
+                      key={item.key}
+                      className={`vaststelling-nok-item ${item.missingResponsible ? "missing" : ""}`}
+                    >
+                      <strong>{item.label}</strong>
+                      <p>NOK: {item.valueLabel}</p>
+                      <p>
+                        Verantwoordelijke:{" "}
+                        {item.responsibleValue.trim().length > 0 ? (
+                          <strong>{item.responsibleValue}</strong>
+                        ) : (
+                          <span className="warning-inline">Nog niet ingevuld</span>
+                        )}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              )}
+            </section>
+
             <div className="roadmap-list">
               {schema.sections.map((section) => {
-                const isExpanded = expandedSectionIds[section.id] ?? section.id === schema.sections[0]?.id;
+                const sectionNeedsAttention = sectionAttentionMap[section.id] ?? false;
+                const isExpanded =
+                  expandedSectionIds[section.id] ??
+                  (section.id === DN_V2_CORE_SECTION_ID ||
+                    (compactIpadMode && sectionNeedsAttention));
 
                 return (
                   <article key={section.id} className="roadmap-item">
                     <button
                       type="button"
-                      className="dnv-section-toggle"
+                      className={`dnv-section-toggle ${sectionNeedsAttention ? "dnv-section-toggle-attention" : ""}`}
                       onClick={() =>
                         setExpandedSectionIds((previous) => ({
                           ...previous,
@@ -1716,7 +1962,7 @@ export function VaststellingView({
                     </button>
 
                     {isExpanded ? (
-                      <div className="dnv-section-body">
+                      <div className={`dnv-section-body ${compactIpadMode ? "dnv-section-body-ipad" : ""}`}>
                         {section.items.map((field) => {
                           const value = activeFormData[field.key];
                           const photoEvidence = isPhotoFieldKey(field.key)
@@ -1725,9 +1971,18 @@ export function VaststellingView({
                           const showResponsible =
                             (typeof value === "string" && isNokValue(value)) ||
                             (Array.isArray(value) && value.some((entry) => isNokValue(entry)));
+                          const hasIssue = validationTouched && issueInputKeys.has(field.key);
+                          const hasNokSignal =
+                            (typeof value === "string" && isNokValue(value)) ||
+                            (Array.isArray(value) && value.some((entry) => isNokValue(entry)));
 
                           return (
-                            <div key={field.key} className="dnv-field">
+                            <div
+                              key={field.key}
+                              className={`dnv-field ${
+                                hasIssue || hasNokSignal ? "dnv-field-attention" : ""
+                              }`}
+                            >
                               <label className="dnv-label">
                                 {field.label} {field.required ? <span className="dnv-required">*</span> : null}
                               </label>
@@ -1736,9 +1991,7 @@ export function VaststellingView({
                               {field.type === "textarea" ? (
                                 <textarea
                                   className={`dnv-input dnv-textarea ${
-                                    validationTouched && issueInputKeys.has(field.key)
-                                      ? "dnv-input-danger"
-                                      : ""
+                                    hasIssue ? "dnv-input-danger" : ""
                                   }`}
                                   value={typeof value === "string" ? value : ""}
                                   onChange={(event) => handleSetFieldValue(field.key, event.target.value)}
@@ -1746,9 +1999,7 @@ export function VaststellingView({
                               ) : field.type === "select" ? (
                                 <select
                                   className={`dnv-input ${
-                                    validationTouched && issueInputKeys.has(field.key)
-                                      ? "dnv-input-danger"
-                                      : ""
+                                    hasIssue ? "dnv-input-danger" : ""
                                   }`}
                                   value={typeof value === "string" ? value : ""}
                                   onChange={(event) => handleSetFieldValue(field.key, event.target.value)}
@@ -1798,9 +2049,7 @@ export function VaststellingView({
                                 <>
                                   <input
                                     className={`dnv-input ${
-                                      validationTouched && issueInputKeys.has(field.key)
-                                        ? "dnv-input-danger"
-                                        : ""
+                                      hasIssue ? "dnv-input-danger" : ""
                                     }`}
                                     value={summarizePhotoValue(typeof value === "string" ? value : "")}
                                     readOnly
@@ -1822,33 +2071,37 @@ export function VaststellingView({
                                         }}
                                       />
                                     </label>
-                                    <button
-                                      type="button"
-                                      className="secondary-btn"
-                                      onClick={() => {
-                                        const existing =
-                                          typeof value === "string" ? value : "";
-                                        const manualUrl = window.prompt(
-                                          "Plak foto-URL (optioneel geavanceerd):",
-                                          existing
-                                        );
-                                        if (manualUrl === null) {
-                                          return;
-                                        }
-                                        handleSetFieldValue(field.key, manualUrl.trim());
-                                      }}
-                                    >
-                                      Plak URL
-                                    </button>
-                                    <button
-                                      type="button"
-                                      className="secondary-btn"
-                                      onClick={() =>
-                                        handleAttachMockPhoto(field.key as DNVaststellingPhotoFieldKey)
-                                      }
-                                    >
-                                      Voeg mock foto toe
-                                    </button>
+                                    {!compactIpadMode ? (
+                                      <>
+                                        <button
+                                          type="button"
+                                          className="secondary-btn"
+                                          onClick={() => {
+                                            const existing =
+                                              typeof value === "string" ? value : "";
+                                            const manualUrl = window.prompt(
+                                              "Plak foto-URL (optioneel geavanceerd):",
+                                              existing
+                                            );
+                                            if (manualUrl === null) {
+                                              return;
+                                            }
+                                            handleSetFieldValue(field.key, manualUrl.trim());
+                                          }}
+                                        >
+                                          Plak URL
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="secondary-btn"
+                                          onClick={() =>
+                                            handleAttachMockPhoto(field.key as DNVaststellingPhotoFieldKey)
+                                          }
+                                        >
+                                          Voeg mock foto toe
+                                        </button>
+                                      </>
+                                    ) : null}
                                     <button
                                       type="button"
                                       className="secondary-btn"
@@ -2016,107 +2269,213 @@ export function VaststellingView({
         )}
       </section>
 
-      <section className="view-card">
+      <section className={`view-card ${compactIpadMode ? "vaststelling-sync-center-ipad" : ""}`}>
         <h3>Sync Center</h3>
         <div className="quick-actions">
           <span className="visit-chip">Queued: {queueStats.queued}</span>
-          <span className="visit-chip">Failed: {queueStats.failed}</span>
+          <span className={`visit-chip ${queueStats.failed > 0 ? "visit-chip-warning" : ""}`}>
+            Failed: {queueStats.failed}
+          </span>
           <span className="visit-chip">Synced: {queueStats.synced}</span>
+          {compactIpadMode ? (
+            <span className={`visit-chip ${missingResponsibleCount > 0 ? "visit-chip-warning" : ""}`}>
+              NOK zonder verantwoordelijke: {missingResponsibleCount}
+            </span>
+          ) : null}
           <button type="button" className="secondary-btn" onClick={onDemoReset}>
             Demo reset
           </button>
         </div>
-        <div className="dnv-sync-settings">
-          <label>
-            Endpoint
-            <input
-              className="dnv-input"
-              value={syncEndpoint}
-              onChange={(event) => setSyncEndpoint(event.target.value)}
-              onBlur={() =>
-                saveSyncSettings({
-                  endpoint: syncEndpoint,
-                  autoSyncOnOnline,
-                  requestTimeoutMs,
-                })
-              }
-            />
-          </label>
-          <label className="toggle-inline">
-            <input
-              type="checkbox"
-              checked={autoSyncOnOnline}
-              onChange={(event) => {
-                const next = event.target.checked;
-                saveSyncSettings({
-                  endpoint: syncEndpoint,
-                  autoSyncOnOnline: next,
-                  requestTimeoutMs,
-                });
-              }}
-            />
-            Auto sync bij online
-          </label>
-          <label>
-            Timeout (ms)
-            <input
-              type="number"
-              min={1000}
-              step={500}
-              className="dnv-input"
-              value={requestTimeoutMs}
-              onChange={(event) => setRequestTimeoutMs(Number(event.target.value) || 15000)}
-              onBlur={() =>
-                saveSyncSettings({
-                  endpoint: syncEndpoint,
-                  autoSyncOnOnline,
-                  requestTimeoutMs: Math.max(1000, requestTimeoutMs),
-                })
-              }
-            />
-          </label>
-          <button
-            type="button"
-            className="secondary-btn"
-            onClick={() => void handleSyncNow()}
-            disabled={syncRunning}
-          >
-            {syncRunning ? "Synchronisatie bezig..." : "Synchroniseer nu"}
-          </button>
-        </div>
         {syncMessage ? <p className="muted-note">{syncMessage}</p> : null}
 
-        {syncQueue.length === 0 ? (
-          <p className="muted-note">Geen sync-items in wachtrij.</p>
+        {compactIpadMode ? (
+          <details className="vaststelling-sync-details">
+            <summary>Geavanceerde sync-instellingen</summary>
+            <div className="dnv-sync-settings">
+              <label>
+                Endpoint
+                <input
+                  className="dnv-input"
+                  value={syncEndpoint}
+                  onChange={(event) => setSyncEndpoint(event.target.value)}
+                  onBlur={() =>
+                    saveSyncSettings({
+                      endpoint: syncEndpoint,
+                      autoSyncOnOnline,
+                      requestTimeoutMs,
+                    })
+                  }
+                />
+              </label>
+              <label className="toggle-inline">
+                <input
+                  type="checkbox"
+                  checked={autoSyncOnOnline}
+                  onChange={(event) => {
+                    const next = event.target.checked;
+                    saveSyncSettings({
+                      endpoint: syncEndpoint,
+                      autoSyncOnOnline: next,
+                      requestTimeoutMs,
+                    });
+                  }}
+                />
+                Auto sync bij online
+              </label>
+              <label>
+                Timeout (ms)
+                <input
+                  type="number"
+                  min={1000}
+                  step={500}
+                  className="dnv-input"
+                  value={requestTimeoutMs}
+                  onChange={(event) => setRequestTimeoutMs(Number(event.target.value) || 15000)}
+                  onBlur={() =>
+                    saveSyncSettings({
+                      endpoint: syncEndpoint,
+                      autoSyncOnOnline,
+                      requestTimeoutMs: Math.max(1000, requestTimeoutMs),
+                    })
+                  }
+                />
+              </label>
+              <button
+                type="button"
+                className="secondary-btn"
+                onClick={() => void handleSyncNow()}
+                disabled={syncRunning}
+              >
+                {syncRunning ? "Synchronisatie bezig..." : "Synchroniseer nu"}
+              </button>
+            </div>
+            {syncQueue.length === 0 ? (
+              <p className="muted-note">Geen sync-items in wachtrij.</p>
+            ) : (
+              <div className="table-scroll">
+                <table className="dossier-table">
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>Status</th>
+                      <th>Server</th>
+                      <th>Mapped status</th>
+                      <th>Pogingen</th>
+                      <th>Laatste fout</th>
+                      <th>Laatste poging</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {syncQueue.slice(0, 50).map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.type}</td>
+                        <td>{item.status}</td>
+                        <td>{item.serverOutcome ?? "-"}</td>
+                        <td>{item.serverMappedStatus ?? "-"}</td>
+                        <td>{item.attempts}</td>
+                        <td>{item.lastError || "-"}</td>
+                        <td>{item.lastAttemptAt ? new Date(item.lastAttemptAt).toLocaleString("nl-BE") : "-"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </details>
         ) : (
-          <div className="table-scroll">
-            <table className="dossier-table">
-              <thead>
-                <tr>
-                  <th>Type</th>
-                  <th>Status</th>
-                  <th>Server</th>
-                  <th>Mapped status</th>
-                  <th>Pogingen</th>
-                  <th>Laatste fout</th>
-                  <th>Laatste poging</th>
-                </tr>
-              </thead>
-              <tbody>
-                {syncQueue.slice(0, 50).map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.type}</td>
-                    <td>{item.status}</td>
-                    <td>{item.serverOutcome ?? "-"}</td>
-                    <td>{item.serverMappedStatus ?? "-"}</td>
-                    <td>{item.attempts}</td>
-                    <td>{item.lastError || "-"}</td>
-                    <td>{item.lastAttemptAt ? new Date(item.lastAttemptAt).toLocaleString("nl-BE") : "-"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <>
+            <div className="dnv-sync-settings">
+              <label>
+                Endpoint
+                <input
+                  className="dnv-input"
+                  value={syncEndpoint}
+                  onChange={(event) => setSyncEndpoint(event.target.value)}
+                  onBlur={() =>
+                    saveSyncSettings({
+                      endpoint: syncEndpoint,
+                      autoSyncOnOnline,
+                      requestTimeoutMs,
+                    })
+                  }
+                />
+              </label>
+              <label className="toggle-inline">
+                <input
+                  type="checkbox"
+                  checked={autoSyncOnOnline}
+                  onChange={(event) => {
+                    const next = event.target.checked;
+                    saveSyncSettings({
+                      endpoint: syncEndpoint,
+                      autoSyncOnOnline: next,
+                      requestTimeoutMs,
+                    });
+                  }}
+                />
+                Auto sync bij online
+              </label>
+              <label>
+                Timeout (ms)
+                <input
+                  type="number"
+                  min={1000}
+                  step={500}
+                  className="dnv-input"
+                  value={requestTimeoutMs}
+                  onChange={(event) => setRequestTimeoutMs(Number(event.target.value) || 15000)}
+                  onBlur={() =>
+                    saveSyncSettings({
+                      endpoint: syncEndpoint,
+                      autoSyncOnOnline,
+                      requestTimeoutMs: Math.max(1000, requestTimeoutMs),
+                    })
+                  }
+                />
+              </label>
+              <button
+                type="button"
+                className="secondary-btn"
+                onClick={() => void handleSyncNow()}
+                disabled={syncRunning}
+              >
+                {syncRunning ? "Synchronisatie bezig..." : "Synchroniseer nu"}
+              </button>
+            </div>
+
+            {syncQueue.length === 0 ? (
+              <p className="muted-note">Geen sync-items in wachtrij.</p>
+            ) : (
+              <div className="table-scroll">
+                <table className="dossier-table">
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>Status</th>
+                      <th>Server</th>
+                      <th>Mapped status</th>
+                      <th>Pogingen</th>
+                      <th>Laatste fout</th>
+                      <th>Laatste poging</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {syncQueue.slice(0, 50).map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.type}</td>
+                        <td>{item.status}</td>
+                        <td>{item.serverOutcome ?? "-"}</td>
+                        <td>{item.serverMappedStatus ?? "-"}</td>
+                        <td>{item.attempts}</td>
+                        <td>{item.lastError || "-"}</td>
+                        <td>{item.lastAttemptAt ? new Date(item.lastAttemptAt).toLocaleString("nl-BE") : "-"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </>
         )}
       </section>
 

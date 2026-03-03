@@ -517,6 +517,16 @@ const TERRAIN_MAIN_NAV_KEYS: MainViewKey[] = [
 ];
 const TERRAIN_MAIN_NAV_KEY_SET = new Set<MainViewKey>(TERRAIN_MAIN_NAV_KEYS);
 
+const IPAD_TERRAIN_TAB_ITEMS: Array<{ key: MainViewKey; label: string }> = [
+  { key: "dispatch", label: "DN Dispatch" },
+  { key: "vaststelling", label: "DN Vaststelling" },
+  { key: "dossiers", label: "DN Dossiers" },
+  { key: "data-sync", label: "DN Data & Sync" },
+];
+const IPAD_TERRAIN_TAB_KEY_SET = new Set<MainViewKey>(
+  IPAD_TERRAIN_TAB_ITEMS.map((item) => item.key)
+);
+
 const GOVERNANCE_OSLO_HOMOLOGATION_STAGES: GovernanceStage[] = [
   {
     id: "oslo-prep",
@@ -2145,9 +2155,7 @@ export default function App() {
   const [leftPanelCollapsed, setLeftPanelCollapsed] = useState(() =>
     typeof window !== "undefined" ? window.matchMedia("(max-width: 1220px)").matches : false
   );
-  const [dispatchMapFirstMode, setDispatchMapFirstMode] = useState(() =>
-    typeof window !== "undefined" ? window.matchMedia("(max-width: 1220px)").matches : false
-  );
+  const [leftPanelOpenWidthPx, setLeftPanelOpenWidthPx] = useState(0);
   const [rightPanelCollapsed, setRightPanelCollapsed] = useState(false);
   const [rightPanelWidth, setRightPanelWidth] = useState(RIGHT_PANEL_DEFAULT_WIDTH);
   const [syncRunning, setSyncRunning] = useState(false);
@@ -2223,6 +2231,7 @@ export default function App() {
   const syncLockRef = useRef(false);
   const notificationsRefreshLockRef = useRef(false);
   const workspaceRef = useRef<HTMLElement | null>(null);
+  const leftPanelRef = useRef<HTMLElement | null>(null);
   const notificationsGateway = useMemo(() => getNotificationsGateway(), []);
   const holidays = useMemo(
     () => (settings.holidays.length > 0 ? settings.holidays : HOLIDAYS),
@@ -2487,7 +2496,6 @@ export default function App() {
       setLeftPanelCollapsed(matches);
       if (matches) {
         setRightPanelCollapsed(true);
-        setDispatchMapFirstMode(true);
         return;
       }
       setRightPanelCollapsed(false);
@@ -4959,17 +4967,57 @@ export default function App() {
   const activeMainNavItem =
     MAIN_NAV_ITEMS.find((item) => item.key === effectiveActiveView) ?? MAIN_NAV_ITEMS[0];
   const requiresInspectorSession = !activeInspectorSession && effectiveActiveView !== "governance";
-  const isDispatchMapFirstActive =
-    effectiveActiveView === "dispatch" && isCompactWorkspace && dispatchMapFirstMode;
+  const isDispatchMapFirstActive = effectiveActiveView === "dispatch" && isCompactWorkspace;
+  const isVaststellingIpadActive = effectiveActiveView === "vaststelling" && isCompactWorkspace;
+  const isCompactImmersiveMode = isDispatchMapFirstActive || isVaststellingIpadActive;
+  const isIpadTerrainTabView =
+    isCompactWorkspace && IPAD_TERRAIN_TAB_KEY_SET.has(effectiveActiveView);
+  const isIpadTerrainTabsFloating = isIpadTerrainTabView && isCompactImmersiveMode;
+
+  useEffect(() => {
+    if (!isDispatchMapFirstActive || leftPanelCollapsed) {
+      setLeftPanelOpenWidthPx(0);
+      return;
+    }
+
+    const panel = leftPanelRef.current;
+    if (!panel) {
+      return;
+    }
+
+    const measurePanelWidth = () => {
+      const nextWidth = Math.max(0, Math.round(panel.getBoundingClientRect().width));
+      setLeftPanelOpenWidthPx((previous) => (previous === nextWidth ? previous : nextWidth));
+    };
+
+    measurePanelWidth();
+
+    if (typeof ResizeObserver === "function") {
+      const observer = new ResizeObserver(() => {
+        measurePanelWidth();
+      });
+      observer.observe(panel);
+      return () => observer.disconnect();
+    }
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", measurePanelWidth);
+      return () => window.removeEventListener("resize", measurePanelWidth);
+    }
+  }, [isDispatchMapFirstActive, leftPanelCollapsed]);
 
   return (
-    <div className={`app-shell ${isDispatchMapFirstActive ? "dispatch-map-first" : ""}`}>
-      <header className={`top-hero compact ${isDispatchMapFirstActive ? "top-hero-map-first" : ""}`}>
+    <div
+      className={`app-shell ${isDispatchMapFirstActive ? "dispatch-map-first" : ""} ${
+        isVaststellingIpadActive ? "vaststelling-ipad" : ""
+      } ${isIpadTerrainTabView ? "terrain-ipad-tabs" : ""}`}
+    >
+      <header className={`top-hero compact ${isCompactImmersiveMode ? "top-hero-map-first" : ""}`}>
         <div className="hero-brand">
           <img src="/dn-dispatch-logo.svg" alt="DN Dispatch logo" className="hero-logo" />
           <div>
             <p className="eyebrow">Digitale Nuts</p>
-            {!isDispatchMapFirstActive ? (
+            {!isCompactImmersiveMode ? (
               <>
                 <p className="hero-version">
                   Release {APP_RELEASE_VERSION} | Build {APP_BUILD_VERSION} | Port {runtimePort}
@@ -4985,7 +5033,7 @@ export default function App() {
                 <p className="subtitle">
                   {effectiveActiveView === "governance"
                     ? "Termijnbasis: formele planningstart op 2026-03-20 (subsidieafspraak)."
-                    : `Actieve toezichter: ${
+                  : `Actieve toezichter: ${
                         activeInspectorSession
                           ? `${activeInspectorSession.inspectorName} (${activeInspectorSession.inspectorInitials})`
                           : "niet ingesteld"
@@ -4993,12 +5041,12 @@ export default function App() {
                 </p>
               </>
             ) : (
-              <h1>Dispatch kaart</h1>
+              <h1>{isVaststellingIpadActive ? "DN VASTSTELLING" : "DN DISPATCH"}</h1>
             )}
           </div>
         </div>
 
-        {!isDispatchMapFirstActive ? (
+        {!isCompactImmersiveMode ? (
           <div className="stats-row compact">
             <article>
               <span className="stat-label">Actiewerven</span>
@@ -5018,18 +5066,24 @@ export default function App() {
             </article>
           </div>
         ) : null}
-        {effectiveActiveView === "dispatch" && isCompactWorkspace ? (
-          <button
-            type="button"
-            className="chip dispatch-map-first-toggle"
-            onClick={() => setDispatchMapFirstMode((previous) => !previous)}
-          >
-            {isDispatchMapFirstActive ? "Toon menu + filters" : "Kaart op volledig scherm"}
-          </button>
-        ) : null}
       </header>
 
-      {!isDispatchMapFirstActive ? (
+      {isIpadTerrainTabView ? (
+      <nav className={`ipad-terrain-nav ${isIpadTerrainTabsFloating ? "floating" : ""}`}>
+        {IPAD_TERRAIN_TAB_ITEMS.map((item) => (
+          <button
+            key={item.key}
+            type="button"
+            className={`ipad-terrain-tab-btn ${effectiveActiveView === item.key ? "active" : ""}`}
+            onClick={() => setActiveView(item.key)}
+          >
+            {item.label}
+          </button>
+        ))}
+      </nav>
+      ) : null}
+
+      {!isCompactImmersiveMode && !isIpadTerrainTabView ? (
       <nav className="main-nav">
         {terrainMainNavItems.map((item) => (
           <button
@@ -5046,7 +5100,7 @@ export default function App() {
       </nav>
       ) : null}
 
-      {effectiveActiveView !== "governance" && !isDispatchMapFirstActive ? (
+      {effectiveActiveView !== "governance" && !isCompactImmersiveMode && !isIpadTerrainTabView ? (
         <section
           className={`terrain-mode-hub ${
             terrainMode ? "terrain-mode-hub-terrain" : "terrain-mode-hub-desktop"
@@ -5160,6 +5214,7 @@ export default function App() {
         ) : null}
 
         <aside
+          ref={leftPanelRef}
           className={`side-panel left-panel ${
             isCompactWorkspace && isDispatchMapFirstActive ? "compact-drawer" : ""
           } ${
@@ -5584,16 +5639,7 @@ export default function App() {
         </aside>
 
         <section className="map-panel">
-          {isDispatchMapFirstActive && isCompactWorkspace && leftPanelCollapsed ? (
-            <button
-              type="button"
-              className="map-left-panel-open-btn"
-              onClick={() => setLeftPanelCollapsed(false)}
-            >
-              Instellingen + acties
-            </button>
-          ) : null}
-          {rightPanelCollapsed ? (
+          {rightPanelCollapsed && !isDispatchMapFirstActive ? (
             <button
               type="button"
               className="map-right-panel-open-btn"
@@ -5627,6 +5673,11 @@ export default function App() {
               routeEnabled={routeEnabled}
               selectedDate={selectedDate}
               impactProfileByPostcode={impactProfileByPostcode}
+              compactControlsEnabled={isDispatchMapFirstActive}
+              onOpenCompactMenu={() => setLeftPanelCollapsed(false)}
+              leftInsetPx={
+                isDispatchMapFirstActive && !leftPanelCollapsed ? leftPanelOpenWidthPx : 0
+              }
             />
           </Suspense>
         </section>
@@ -5913,6 +5964,7 @@ export default function App() {
           onDemoReset={() => void resetDemoState()}
           launchIntent={vaststellingLaunchIntent}
           onHandledLaunchIntent={handleVaststellingLaunchIntentHandled}
+          compactIpadMode={isVaststellingIpadActive}
         />
       ) : effectiveActiveView === "data-sync" ? (
         <main className="view-shell">
@@ -5920,14 +5972,18 @@ export default function App() {
             <h2>Data & Sync</h2>
             <p className="view-subtitle">Monitoring van databronnen en synchronisatie.</p>
             <div className="quick-actions">
-              <button
-                type="button"
-                className="secondary-btn"
-                onClick={() => void runSync("manual")}
-                disabled={syncRunning}
-              >
-                {syncRunning ? "Synchronisatie bezig..." : "Synchroniseer nu"}
-              </button>
+            <button
+              type="button"
+              className={`secondary-btn ${isDispatchMapFirstActive ? "sync-compact-btn" : ""}`}
+              onClick={() => void runSync("manual")}
+              disabled={syncRunning}
+            >
+              {syncRunning
+                ? "Synchronisatie bezig..."
+                : isDispatchMapFirstActive
+                  ? "Sync nu"
+                  : "Synchroniseer nu"}
+            </button>
               <button type="button" className="secondary-btn" onClick={() => void resetDemoState()}>
                 Demo reset
               </button>
@@ -6378,6 +6434,8 @@ export default function App() {
           settings={settings}
           onClose={() => setShowSettings(false)}
           onSave={handleSaveSettings}
+          dockedToMapWorkspace={isDispatchMapFirstActive && !leftPanelCollapsed}
+          dockLeftInsetPx={leftPanelOpenWidthPx}
         />
       </Suspense>
     </div>
