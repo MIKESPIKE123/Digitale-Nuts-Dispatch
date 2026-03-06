@@ -11,6 +11,7 @@ import {
 } from "react";
 import {
   GUIDE_DEMO_SCRIPT_DAG_IN_HET_LEVEN,
+  GUIDE_DISPATCH_FILTER_FAQ,
   GUIDE_FAQ,
   GUIDE_INTRO,
   GUIDE_LAST_UPDATED,
@@ -47,7 +48,10 @@ import {
   sanitizeDispatchSettings,
 } from "./lib/appSettings";
 import { addDays, formatIsoDate, parseIsoDate } from "./lib/dateUtils";
-import { buildDispatchPlan, getNextWorkday } from "./lib/dispatch";
+import {
+  buildDispatchPlan,
+  getNextWorkday,
+} from "./lib/dispatch";
 import {
   buildAssignmentSnapshot,
   getAssignmentSnapshotByDate,
@@ -63,6 +67,13 @@ import {
   saveContinuityInspectorMap,
 } from "./lib/inspectorContinuity";
 import { exportInspectorPdf } from "./lib/pdfExport";
+import {
+  BASE_OPERATIONAL_STATUSES,
+  buildOperationalWorkFilterOptions,
+  filterWorks,
+  type WorkFilterOptions,
+  WORK_STATUS_FILTER_VALUES,
+} from "./lib/workFiltering";
 import { buildRouteIndexMap, computeRouteProposal } from "./lib/routes";
 import { computeImpactScore, type ImpactLevel, type ImpactProfile } from "./lib/impactScoring";
 import { getNotificationsGateway, getWorksGateway } from "./modules/integrations/factory";
@@ -121,10 +132,8 @@ const FALLBACK_WORKS = worksFallbackRaw as WorkRecord[];
 const DATA_URL = "/data/works.generated.json";
 const IMPACT_DATA_URL = "/data/impact.generated.json";
 const SYNC_ENDPOINT = "/api/sync-dispatch-data";
-const STATUS_VALUES: WorkStatus[] = ["VERGUND", "IN EFFECT"];
 const IMPACT_LEVEL_VALUES: ImpactLevel[] = ["LAAG", "MIDDEL", "HOOG"];
 const DEFAULT_GIPOD_SOURCE_STATUS = "In uitvoering";
-const UNKNOWN_GIPOD_CATEGORY = "Onbekend";
 const UNKNOWN_PERMIT_STATUS: GIPODPermitStatus = "ONBEKEND";
 const DEVICE_KEY = "dn_dispatch_device_id_v1";
 const MANUAL_INSPECTOR_OVERRIDE_STORAGE_KEY = "dn_dispatch_manual_inspector_override_v1";
@@ -136,6 +145,7 @@ const RIGHT_PANEL_MIN_WIDTH = 300;
 const RIGHT_PANEL_MAX_WIDTH = 760;
 const NOTIFICATION_POLL_BASE_INTERVAL_MS = 60 * 1000;
 const NOTIFICATION_POLL_MAX_BACKOFF_MS = 15 * 60 * 1000;
+const DISPATCH_WEEKLY_FAIRNESS_WEIGHT = 18;
 
 const MAP_STYLE_OPTIONS = [
   { id: "clean", label: "Clean", url: "https://tiles.openfreemap.org/styles/positron" },
@@ -148,6 +158,7 @@ const MAP_STYLE_OPTIONS = [
 ] as const;
 
 type MapStyleId = (typeof MAP_STYLE_OPTIONS)[number]["id"];
+type MapContextColorMode = "gipod-phase" | "permit-status";
 
 type IntegrationState = {
   nuts: boolean;
@@ -2110,6 +2121,66 @@ function mapEquals(
   return true;
 }
 
+function numberMapEquals(
+  a: Record<string, number>,
+  b: Record<string, number>
+): boolean {
+  const aKeys = Object.keys(a);
+  const bKeys = Object.keys(b);
+  if (aKeys.length !== bKeys.length) {
+    return false;
+  }
+
+  for (const key of aKeys) {
+    if ((a[key] ?? 0) !== (b[key] ?? 0)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function getIsoWeekStart(isoDate: string): string {
+  const date = parseIsoDate(isoDate);
+  const weekday = date.getDay();
+  const dayOffset = weekday === 0 ? -6 : 1 - weekday;
+  return formatIsoDate(addDays(date, dayOffset));
+}
+
+function buildWeeklyAssignedVisitsByInspector(
+  history: AssignmentSnapshot[],
+  selectedDate: string,
+  inspectorIds: string[]
+): Record<string, number> {
+  const weekStart = getIsoWeekStart(selectedDate);
+  const result: Record<string, number> = {};
+
+  for (const inspectorId of inspectorIds) {
+    result[inspectorId] = 0;
+  }
+
+  for (const snapshot of history) {
+    if (snapshot.dispatchDate < weekStart || snapshot.dispatchDate >= selectedDate) {
+      continue;
+    }
+
+    for (const summary of snapshot.inspectorSummaries) {
+      if (!(summary.inspectorId in result)) {
+        continue;
+      }
+
+      const assignedVisits = Number(summary.assignedVisits);
+      if (!Number.isFinite(assignedVisits) || assignedVisits <= 0) {
+        continue;
+      }
+
+      result[summary.inspectorId] += Math.round(assignedVisits);
+    }
+  }
+
+  return result;
+}
+
 export default function App() {
   const runtimePort =
     typeof window !== "undefined" ? window.location.port || "80" : "n/a";
@@ -2122,7 +2193,9 @@ export default function App() {
   const [selectedDate, setSelectedDate] = useState(() =>
     getNextWorkday(formatIsoDate(new Date()), HOLIDAYS)
   );
-  const [selectedStatuses, setSelectedStatuses] = useState<WorkStatus[]>([...STATUS_VALUES]);
+  const [selectedStatuses, setSelectedStatuses] = useState<WorkStatus[]>([
+    ...BASE_OPERATIONAL_STATUSES,
+  ]);
   const [selectedImpactLevels, setSelectedImpactLevels] = useState<ImpactLevel[]>([
     ...IMPACT_LEVEL_VALUES,
   ]);
@@ -2140,8 +2213,14 @@ export default function App() {
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
   const [dossierSearch, setDossierSearch] = useState("");
   const [selectedMapStyle, setSelectedMapStyle] = useState<MapStyleId>("grb");
+  const [showPostcodeBoundaries, setShowPostcodeBoundaries] = useState(false);
+  const [showDispatchLayer, setShowDispatchLayer] = useState(true);
+  const [showGipodLayer, setShowGipodLayer] = useState(false);
+  const [showSignalisatieLayer, setShowSignalisatieLayer] = useState(false);
+  const [showActiveOnDateLayer, setShowActiveOnDateLayer] = useState(false);
+  const [contextColorMode, setContextColorMode] = useState<MapContextColorMode>("gipod-phase");
   const [routeEnabled, setRouteEnabled] = useState(true);
-  const [integrations, setIntegrations] = useState<IntegrationState>({
+  const [integrations] = useState<IntegrationState>({
     nuts: true,
     aSign: false,
     gipod: false,
@@ -2149,6 +2228,7 @@ export default function App() {
   });
 
   const [showSettings, setShowSettings] = useState(false);
+  const [syncPanelCollapsed, setSyncPanelCollapsed] = useState(false);
   const [isCompactWorkspace, setIsCompactWorkspace] = useState(() =>
     typeof window !== "undefined" ? window.matchMedia("(max-width: 1220px)").matches : false
   );
@@ -2232,6 +2312,7 @@ export default function App() {
   const notificationsRefreshLockRef = useRef(false);
   const workspaceRef = useRef<HTMLElement | null>(null);
   const leftPanelRef = useRef<HTMLElement | null>(null);
+  const weeklyAssignedVisitsCacheRef = useRef<Record<string, number>>({});
   const notificationsGateway = useMemo(() => getNotificationsGateway(), []);
   const holidays = useMemo(
     () => (settings.holidays.length > 0 ? settings.holidays : HOLIDAYS),
@@ -2242,6 +2323,20 @@ export default function App() {
     () => inspectors.map((inspector) => inspector.id),
     [inspectors]
   );
+  const weeklyAssignedVisitsByInspector = useMemo(() => {
+    const next = buildWeeklyAssignedVisitsByInspector(
+      assignmentHistory,
+      selectedDate,
+      inspectorIds
+    );
+    const cached = weeklyAssignedVisitsCacheRef.current;
+    if (numberMapEquals(cached, next)) {
+      return cached;
+    }
+
+    weeklyAssignedVisitsCacheRef.current = next;
+    return next;
+  }, [assignmentHistory, inspectorIds, selectedDate]);
   const absentInspectorIds = useMemo(
     () => getAbsentInspectorIds(settings, selectedDate, inspectorIds),
     [inspectorIds, selectedDate, settings]
@@ -2276,13 +2371,6 @@ export default function App() {
   );
   const [stickyInspectorByWorkId, setStickyInspectorByWorkId] = useState<Record<string, string>>(
     () => loadContinuityInspectorMap(INSPECTORS.map((inspector) => inspector.id))
-  );
-  const preferredInspectorInputByWorkId = useMemo(
-    () => ({
-      ...stickyInspectorByWorkId,
-      ...manualInspectorByWorkId,
-    }),
-    [manualInspectorByWorkId, stickyInspectorByWorkId]
   );
   const inspectorById = useMemo(
     () => new Map(inspectors.map((inspector) => [inspector.id, inspector])),
@@ -2421,6 +2509,48 @@ export default function App() {
       setSelectedVisitId(null);
     },
     [inspectors, terrainMode]
+  );
+
+  const handleToggleInspectorFilter = useCallback((inspectorId: string) => {
+    if (terrainMode) {
+      setTerrainMode(false);
+      setSelectedInspectors([inspectorId]);
+      return;
+    }
+
+    setSelectedInspectors((previous) => toggleArrayItem(previous, inspectorId));
+  }, [terrainMode]);
+
+  const handleClearInspectorFilter = useCallback(() => {
+    setTerrainMode(false);
+    setSelectedInspectors([]);
+  }, []);
+
+  const handleSelectAllInspectors = useCallback(() => {
+    setTerrainMode(false);
+    setSelectedInspectors(inspectors.map((inspector) => inspector.id));
+  }, [inspectors]);
+
+  const handleTerrainModeToggle = useCallback(
+    (nextValue: boolean) => {
+      setTerrainMode(nextValue);
+
+      if (nextValue) {
+        if (activeInspectorSession) {
+          setSelectedInspectors([activeInspectorSession.inspectorId]);
+        }
+        return;
+      }
+
+      if (
+        activeInspectorSession &&
+        selectedInspectors.length === 1 &&
+        selectedInspectors[0] === activeInspectorSession.inspectorId
+      ) {
+        setSelectedInspectors([]);
+      }
+    },
+    [activeInspectorSession, selectedInspectors]
   );
 
   const deactivateInspectorSession = useCallback(() => {
@@ -2715,9 +2845,12 @@ export default function App() {
         permitStatuses: selectedPermitStatuses,
         districts: selectedDistricts,
         postcodes: selectedPostcodes,
-        stickyInspectorByWorkId: preferredInspectorInputByWorkId,
+        stickyInspectorByWorkId,
+        manualInspectorByWorkId,
         unavailableInspectorIds: [...new Set([...absentInspectorIds, ...inactiveInspectorIds])],
         dispatchCapacity: settings.dispatchCapacity,
+        weeklyAssignedVisitsByInspector,
+        weeklyFairnessWeight: DISPATCH_WEEKLY_FAIRNESS_WEIGHT,
       }),
     [
       absentInspectorIds,
@@ -2732,7 +2865,9 @@ export default function App() {
       selectedSourceStatuses,
       selectedStatuses,
       settings.dispatchCapacity,
-      preferredInspectorInputByWorkId,
+      weeklyAssignedVisitsByInspector,
+      stickyInspectorByWorkId,
+      manualInspectorByWorkId,
       works,
     ]
   );
@@ -2766,7 +2901,13 @@ export default function App() {
     saveContinuityInspectorMap(nextMap, inspectorIds);
   }, [dispatch.visitsByInspector, inspectorIds, stickyInspectorByWorkId]);
 
-  const effectiveInspectorFilter = useMemo(() => selectedInspectors, [selectedInspectors]);
+  const effectiveInspectorFilter = useMemo(
+    () =>
+      terrainMode && activeInspectorSession
+        ? [activeInspectorSession.inspectorId]
+        : selectedInspectors,
+    [activeInspectorSession, selectedInspectors, terrainMode]
+  );
   const visibleInspectorIds = useMemo(
     () => new Set(effectiveInspectorFilter),
     [effectiveInspectorFilter]
@@ -2882,6 +3023,38 @@ export default function App() {
     );
   }, [dispatch.visitsByInspector, impactByVisitId, selectedImpactLevels, visibleInspectorIds]);
 
+  const dispatchInspectorDebugRows = useMemo(() => {
+    const selectedInspectorSet = new Set(effectiveInspectorFilter);
+
+    return inspectors
+      .map((inspector) => {
+        const assignedVisits = dispatch.visitsByInspector[inspector.id]?.length ?? 0;
+        const visibleVisits = filteredVisitsByInspector[inspector.id]?.length ?? 0;
+
+        return {
+          inspectorId: inspector.id,
+          initials: inspector.initials,
+          assignedVisits,
+          visibleVisits,
+          inInspectorFilter: selectedInspectorSet.has(inspector.id),
+        };
+      })
+      .filter(
+        (row) =>
+          row.assignedVisits > 0 || row.visibleVisits > 0 || row.inInspectorFilter
+      );
+  }, [
+    dispatch.visitsByInspector,
+    effectiveInspectorFilter,
+    filteredVisitsByInspector,
+    inspectors,
+  ]);
+
+  const dispatchCandidateCount = useMemo(
+    () => dispatch.totals.plannedVisits + dispatch.unassigned.length,
+    [dispatch.totals.plannedVisits, dispatch.unassigned.length]
+  );
+
   const mapVisits = useMemo(
     () => Object.values(filteredVisitsByInspector).flat(),
     [filteredVisitsByInspector]
@@ -2988,38 +3161,39 @@ export default function App() {
   const selectedStyleUrl =
     MAP_STYLE_OPTIONS.find((style) => style.id === selectedMapStyle)?.url ??
     MAP_STYLE_OPTIONS[0].url;
+  const mapStyleSelectOptions = useMemo(
+    () => MAP_STYLE_OPTIONS.map((style) => ({ id: style.id, label: style.label })),
+    []
+  );
+  const handleMapStyleChange = useCallback((nextStyleId: string) => {
+    if (MAP_STYLE_OPTIONS.some((style) => style.id === nextStyleId)) {
+      setSelectedMapStyle(nextStyleId as MapStyleId);
+    }
+  }, []);
+
+  const activeWorkFilters = useMemo<WorkFilterOptions>(
+    () =>
+      buildOperationalWorkFilterOptions({
+        statuses: selectedStatuses,
+        sourceStatuses: selectedSourceStatuses,
+        gipodCategories: selectedGipodCategories,
+        permitStatuses: selectedPermitStatuses,
+        districts: selectedDistricts,
+        postcodes: selectedPostcodes,
+      }),
+    [
+      selectedDistricts,
+      selectedGipodCategories,
+      selectedPermitStatuses,
+      selectedPostcodes,
+      selectedSourceStatuses,
+      selectedStatuses,
+    ]
+  );
 
   const dossierRows = useMemo(() => {
     const query = dossierSearch.trim().toLowerCase();
-    const statusFilter = new Set(selectedStatuses);
-    const sourceStatusFilter = new Set(selectedSourceStatuses);
-    const categoryFilter = new Set(selectedGipodCategories);
-    const permitStatusFilter = new Set(selectedPermitStatuses);
-
-    const filtered = works.filter((work) => {
-      if (!statusFilter.has(work.status)) {
-        return false;
-      }
-
-      if (
-        sourceStatusFilter.size > 0 &&
-        !sourceStatusFilter.has((work.sourceStatus ?? "").trim())
-      ) {
-        return false;
-      }
-      if (
-        categoryFilter.size > 0 &&
-        !categoryFilter.has((work.gipodCategorie ?? UNKNOWN_GIPOD_CATEGORY).trim())
-      ) {
-        return false;
-      }
-      if (
-        permitStatusFilter.size > 0 &&
-        !permitStatusFilter.has((work.permitStatus ?? UNKNOWN_PERMIT_STATUS).trim() as GIPODPermitStatus)
-      ) {
-        return false;
-      }
-
+    const filtered = filterWorks(works, activeWorkFilters).filter((work) => {
       if (!query) {
         return true;
       }
@@ -3042,81 +3216,55 @@ export default function App() {
       });
   }, [
     dossierSearch,
-    selectedGipodCategories,
-    selectedPermitStatuses,
-    selectedSourceStatuses,
-    selectedStatuses,
+    activeWorkFilters,
     works,
   ]);
 
   const contextWorks = useMemo(() => {
-    const statusFilter = new Set(selectedStatuses);
-    const sourceStatusFilter = new Set(selectedSourceStatuses);
-    const categoryFilter = new Set(selectedGipodCategories);
-    const permitStatusFilter = new Set(selectedPermitStatuses);
-    const districtFilter = new Set(selectedDistricts);
-    const postcodeFilter = new Set(selectedPostcodes);
+    return filterWorks(works, activeWorkFilters);
+  }, [activeWorkFilters, works]);
 
-    return works.filter((work) => {
-      if (!statusFilter.has(work.status)) {
-        return false;
-      }
-      if (
-        sourceStatusFilter.size > 0 &&
-        !sourceStatusFilter.has((work.sourceStatus ?? "").trim())
-      ) {
-        return false;
-      }
-      if (
-        categoryFilter.size > 0 &&
-        !categoryFilter.has((work.gipodCategorie ?? UNKNOWN_GIPOD_CATEGORY).trim())
-      ) {
-        return false;
-      }
-      if (
-        permitStatusFilter.size > 0 &&
-        !permitStatusFilter.has((work.permitStatus ?? UNKNOWN_PERMIT_STATUS).trim() as GIPODPermitStatus)
-      ) {
-        return false;
-      }
-      if (districtFilter.size > 0 && !districtFilter.has(work.district)) {
-        return false;
-      }
-      if (postcodeFilter.size > 0 && !postcodeFilter.has(work.postcode)) {
-        return false;
-      }
-      return true;
-    });
-  }, [
-    selectedDistricts,
-    selectedGipodCategories,
-    selectedPermitStatuses,
-    selectedPostcodes,
-    selectedSourceStatuses,
-    selectedStatuses,
-    works,
-  ]);
-
-  const assignedWorkIds = useMemo(
+  const activeContextWorksOnDateCount = useMemo(
     () =>
-      new Set(
-        Object.values(dispatch.visitsByInspector)
-          .flat()
-          .map((visit) => visit.work.id)
-      ),
-    [dispatch.visitsByInspector]
+      contextWorks.filter(
+        (work) => selectedDate >= work.startDate && selectedDate <= work.endDate
+      ).length,
+    [contextWorks, selectedDate]
+  );
+
+  const mapAssignedWorkIds = useMemo(
+    () => new Set(mapVisits.map((visit) => visit.work.id)),
+    [mapVisits]
   );
 
   const nonDispatchContextWorks = useMemo(
     () =>
       contextWorks.filter(
         (work) =>
-          !assignedWorkIds.has(work.id) &&
+          !mapAssignedWorkIds.has(work.id) &&
           Number.isFinite(work.location.lat) &&
           Number.isFinite(work.location.lng)
       ),
-    [assignedWorkIds, contextWorks]
+    [contextWorks, mapAssignedWorkIds]
   );
+  const activeBacklogWorksOnDate = useMemo(
+    () =>
+      contextWorks.filter(
+        (work) =>
+          selectedDate >= work.startDate &&
+          selectedDate <= work.endDate &&
+          !mapAssignedWorkIds.has(work.id) &&
+          Number.isFinite(work.location.lat) &&
+          Number.isFinite(work.location.lng)
+      ),
+    [contextWorks, mapAssignedWorkIds, selectedDate]
+  );
+  const visibleMapPointCount = useMemo(() => {
+    if (!showActiveOnDateLayer) {
+      return mapVisits.length;
+    }
+    return mapVisits.length + activeBacklogWorksOnDate.length;
+  }, [activeBacklogWorksOnDate.length, mapVisits.length, showActiveOnDateLayer]);
 
   const utilityCompanyOptions = useMemo(
     () =>
@@ -4030,6 +4178,26 @@ export default function App() {
           <summary>Q&A</summary>
           <div className="guide-grid guide-grid-unified">
             {GUIDE_FAQ.map((item) => (
+              <article key={item.question} className="roadmap-item guide-card">
+                <strong>{item.question}</strong>
+                <p>{item.answer}</p>
+              </article>
+            ))}
+          </div>
+        </details>
+      </section>
+
+      <section className="view-card guide-chapter">
+        <details className="guide-chapter-details">
+          <summary>Q&A — Dispatch Filters & Toezichtertoewijzing</summary>
+          <p className="muted-note">
+            Hoe worden nutswerken gefilterd en aan toezichters toegewezen? Hieronder vind je de volledige logica uitgelegd per vraag.
+          </p>
+          <p className="muted-note">
+            Bronbestanden: src/lib/dispatch.ts · src/config/inspectors.ts · src/lib/appSettings.ts · src/lib/inspectorContinuity.ts · src/lib/impactScoring.ts · README.md
+          </p>
+          <div className="guide-grid guide-grid-unified">
+            {GUIDE_DISPATCH_FILTER_FAQ.map((item) => (
               <article key={item.question} className="roadmap-item guide-card">
                 <strong>{item.question}</strong>
                 <p>{item.answer}</p>
@@ -5121,7 +5289,7 @@ export default function App() {
               <input
                 type="checkbox"
                 checked={terrainMode}
-                onChange={(event) => setTerrainMode(event.target.checked)}
+                onChange={(event) => handleTerrainModeToggle(event.target.checked)}
               />
               Terreinmodus actief
             </label>
@@ -5239,40 +5407,55 @@ export default function App() {
           <section className="filter-group">
             <div className="group-head-row">
               <p className="group-title">Synchronisatie</p>
-              <button type="button" className="chip" onClick={() => setShowSettings(true)}>
-                Instellingen
-              </button>
+              <div className="sync-head-actions">
+                <button
+                  type="button"
+                  className="chip"
+                  onClick={() => setSyncPanelCollapsed((previous) => !previous)}
+                >
+                  {syncPanelCollapsed ? "Openen" : "Inklappen"}
+                </button>
+                <button type="button" className="chip" onClick={() => setShowSettings(true)}>
+                  Instellingen
+                </button>
+              </div>
             </div>
-            <button
-              type="button"
-              className="secondary-btn"
-              onClick={() => void runSync("manual")}
-              disabled={syncRunning}
-            >
-              {syncRunning ? "Synchronisatie bezig..." : "Synchroniseer nu"}
-            </button>
-            <label className="toggle-inline">
-              <input
-                type="checkbox"
-                checked={settings.autoSyncEnabled}
-                onChange={(event) => {
-                  const nextSettings = sanitizeDispatchSettings({
-                    ...settings,
-                    autoSyncEnabled: event.target.checked,
-                  });
-                  setSettings(nextSettings);
-                  saveDispatchSettings(nextSettings);
-                }}
-              />
-              Automatisch elke {settings.autoSyncIntervalMinutes} min
-            </label>
-            <p className="muted-note">Laatste sync: {formatDateTime(lastSyncAt)}</p>
-            <p className="muted-note">Laatste data-refresh: {formatDateTime(lastDataRefreshAt)}</p>
-            {dataLoading ? <p className="muted-note">Data laden...</p> : null}
-            {syncMessage && syncMessage !== syncError ? (
-              <p className="muted-note">{syncMessage}</p>
-            ) : null}
-            {syncError ? <p className="warning-inline">{syncError}</p> : null}
+            {!syncPanelCollapsed ? (
+              <>
+                <button
+                  type="button"
+                  className="secondary-btn"
+                  onClick={() => void runSync("manual")}
+                  disabled={syncRunning}
+                >
+                  {syncRunning ? "Synchronisatie bezig..." : "Synchroniseer nu"}
+                </button>
+                <label className="toggle-inline">
+                  <input
+                    type="checkbox"
+                    checked={settings.autoSyncEnabled}
+                    onChange={(event) => {
+                      const nextSettings = sanitizeDispatchSettings({
+                        ...settings,
+                        autoSyncEnabled: event.target.checked,
+                      });
+                      setSettings(nextSettings);
+                      saveDispatchSettings(nextSettings);
+                    }}
+                  />
+                  Automatisch elke {settings.autoSyncIntervalMinutes} min
+                </label>
+                <p className="muted-note">Laatste sync: {formatDateTime(lastSyncAt)}</p>
+                <p className="muted-note">Laatste data-refresh: {formatDateTime(lastDataRefreshAt)}</p>
+                {dataLoading ? <p className="muted-note">Data laden...</p> : null}
+                {syncMessage && syncMessage !== syncError ? (
+                  <p className="muted-note">{syncMessage}</p>
+                ) : null}
+                {syncError ? <p className="warning-inline">{syncError}</p> : null}
+              </>
+            ) : (
+              <p className="muted-note">Laatste sync: {formatDateTime(lastSyncAt)}</p>
+            )}
           </section>
 
           <section className="filter-group">
@@ -5309,19 +5492,8 @@ export default function App() {
           </section>
 
           <section className="filter-group">
-            <p className="group-title">Basemap stijl</p>
-            <div className="chip-wrap">
-              {MAP_STYLE_OPTIONS.map((style) => (
-                <button
-                  key={style.id}
-                  type="button"
-                  className={selectedMapStyle === style.id ? "chip active" : "chip"}
-                  onClick={() => setSelectedMapStyle(style.id)}
-                >
-                  {style.label}
-                </button>
-              ))}
-            </div>
+            <p className="group-title">Kaart</p>
+            <p className="muted-note">Basemap kies je via dropdown rechtsboven op de kaart.</p>
             <label className="toggle-inline">
               <input
                 type="checkbox"
@@ -5335,7 +5507,7 @@ export default function App() {
           <section className="filter-group">
             <p className="group-title">Statusfilter</p>
             <div className="chip-wrap">
-              {STATUS_VALUES.map((status) => (
+              {WORK_STATUS_FILTER_VALUES.map((status) => (
                 <button
                   key={status}
                   type="button"
@@ -5352,6 +5524,63 @@ export default function App() {
                 </button>
               ))}
             </div>
+          </section>
+
+          <section className="filter-group">
+            <p className="group-title">Kaartlagen</p>
+            <div className="toggle-list">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={showDispatchLayer}
+                  onChange={(event) => setShowDispatchLayer(event.target.checked)}
+                />
+                Dispatchpunten
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={showGipodLayer}
+                  onChange={(event) => setShowGipodLayer(event.target.checked)}
+                />
+                GIPOD context
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={showSignalisatieLayer}
+                  onChange={(event) => setShowSignalisatieLayer(event.target.checked)}
+                />
+                Signalisatie context
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={showPostcodeBoundaries}
+                  onChange={(event) => setShowPostcodeBoundaries(event.target.checked)}
+                />
+                Postcoderanden
+              </label>
+            </div>
+            {showGipodLayer || showSignalisatieLayer ? (
+              <>
+                <label className="map-layer-toggle map-layer-mode-select">
+                  Kleurcode
+                  <select
+                    value={contextColorMode}
+                    onChange={(event) =>
+                      setContextColorMode(event.target.value as MapContextColorMode)
+                    }
+                  >
+                    <option value="gipod-phase">GIPOD fase</option>
+                    <option value="permit-status">Vergunningsstatus</option>
+                  </select>
+                </label>
+                <p className="muted-note">
+                  Contextpins kleuren op GIPOD fase of vergunningstatus.
+                </p>
+              </>
+            ) : null}
           </section>
 
           <section className="filter-group">
@@ -5488,7 +5717,8 @@ export default function App() {
             {terrainMode ? (
               <p className="muted-note">
                 Terrainmodus actief: filter vast op{" "}
-                {activeInspectorSession?.inspectorName || "actieve toezichter"}.
+                {activeInspectorSession?.inspectorName || "actieve toezichter"}. Klik op een chip om naar
+                desktopfiltering te schakelen.
               </p>
             ) : null}
             <div className="chip-wrap">
@@ -5497,9 +5727,7 @@ export default function App() {
                   key={inspector.id}
                   type="button"
                   className={effectiveInspectorFilter.includes(inspector.id) ? "chip active" : "chip"}
-                  onClick={() =>
-                    setSelectedInspectors((previous) => toggleArrayItem(previous, inspector.id))
-                  }
+                  onClick={() => handleToggleInspectorFilter(inspector.id)}
                   title={
                     absentInspectorIdSet.has(inspector.id)
                       ? `${inspector.name} (afwezig op ${selectedDate})`
@@ -5516,17 +5744,82 @@ export default function App() {
               ))}
             </div>
             <div className="quick-actions">
-              <button type="button" className="chip" onClick={() => setSelectedInspectors([])}>
+              <button type="button" className="chip" onClick={handleClearInspectorFilter}>
                 Leegmaken
               </button>
-              <button
-                type="button"
-                className="chip"
-                onClick={() => setSelectedInspectors(inspectors.map((inspector) => inspector.id))}
-              >
+              <button type="button" className="chip" onClick={handleSelectAllInspectors}>
                 Alles selecteren
               </button>
             </div>
+          </section>
+
+          <section className="filter-group">
+            <p className="group-title">Dispatch debug teller</p>
+            <div className="dispatch-debug-grid">
+              <p>
+                <span>Na contextfilters</span>
+                <strong>{contextWorks.length}</strong>
+              </p>
+              <p>
+                <span>Actief op {selectedDate}</span>
+                <strong>{activeContextWorksOnDateCount}</strong>
+              </p>
+              <p>
+                <span>Kandidaten vandaag</span>
+                <strong>{dispatchCandidateCount}</strong>
+              </p>
+              <p>
+                <span>Toegewezen bezoeken</span>
+                <strong>{dispatch.totals.plannedVisits}</strong>
+              </p>
+              <p>
+                <span>Niet toegewezen</span>
+                <strong>{dispatch.unassigned.length}</strong>
+              </p>
+              <p>
+                <span>Zichtbaar op kaart</span>
+                <strong>{visibleMapPointCount}</strong>
+              </p>
+            </div>
+            <button
+              type="button"
+              className={showActiveOnDateLayer ? "chip active" : "chip"}
+              onClick={() => setShowActiveOnDateLayer((previous) => !previous)}
+            >
+              {showActiveOnDateLayer
+                ? `Verberg extra actieve dossiers op ${selectedDate}`
+                : `Toon alle actieve dossiers op ${selectedDate}`}
+            </button>
+            {showActiveOnDateLayer ? (
+              <p className="muted-note">
+                Grijze bol = actief dossier dat vandaag niet in dispatch is ingepland (
+                {activeBacklogWorksOnDate.length}).
+              </p>
+            ) : null}
+            {dispatchInspectorDebugRows.length > 0 ? (
+              <div className="dispatch-debug-inspector-list">
+                {dispatchInspectorDebugRows.map((row) => (
+                  <p key={`debug-${row.inspectorId}`} className="dispatch-debug-inspector-row">
+                    <span>
+                      <strong>{row.initials}</strong>
+                      {row.inInspectorFilter ? " (filter)" : ""}
+                    </span>
+                    <span>
+                      gepland {row.assignedVisits} | kaart {row.visibleVisits}
+                    </span>
+                  </p>
+                ))}
+              </div>
+            ) : (
+              <p className="muted-note">Geen bezoeken zichtbaar met de huidige filterinstellingen.</p>
+            )}
+            <p className="muted-note">
+              Kandidaten = toegewezen bezoeken + niet toegewezen bezoeken voor {selectedDate}.
+            </p>
+            <p className="muted-note">
+              Na contextfilters = dossiers die voldoen aan de gekozen status-, bron-, categorie-,
+              vergunningstatus-, district- en postcodefilters (ongeacht datum).
+            </p>
           </section>
 
           <section className="filter-group">
@@ -5535,7 +5828,7 @@ export default function App() {
               <input
                 type="checkbox"
                 checked={terrainMode}
-                onChange={(event) => setTerrainMode(event.target.checked)}
+                onChange={(event) => handleTerrainModeToggle(event.target.checked)}
               />
               Focus op actieve toezichter
             </label>
@@ -5551,56 +5844,6 @@ export default function App() {
                 Wijzig actieve toezichter
               </button>
             </div>
-          </section>
-
-          <section className="filter-group">
-            <p className="group-title">Bronkoppelingen (toggle)</p>
-            <div className="toggle-list">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={integrations.nuts}
-                  onChange={(event) =>
-                    setIntegrations((prev) => ({ ...prev, nuts: event.target.checked }))
-                  }
-                />
-                Nuts basisdata
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={integrations.aSign}
-                  onChange={(event) =>
-                    setIntegrations((prev) => ({ ...prev, aSign: event.target.checked }))
-                  }
-                />
-                A-SIGN
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={integrations.gipod}
-                  onChange={(event) =>
-                    setIntegrations((prev) => ({ ...prev, gipod: event.target.checked }))
-                  }
-                />
-                GIPOD
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={integrations.antwerpenOpenData}
-                  onChange={(event) =>
-                    setIntegrations((prev) => ({
-                      ...prev,
-                      antwerpenOpenData: event.target.checked,
-                    }))
-                  }
-                />
-                Antwerpen Open Data
-              </label>
-            </div>
-            <p className="muted-note">{activeIntegrationCount} bron(nen) actief in deze view.</p>
           </section>
 
           <section className="filter-group">
@@ -5662,6 +5905,7 @@ export default function App() {
             <MapPanel
               works={works}
               contextWorks={nonDispatchContextWorks}
+              activeBacklogWorks={activeBacklogWorksOnDate}
               visits={mapVisits}
               selectedVisitId={selectedVisitId}
               onSelectVisit={setSelectedVisitId}
@@ -5673,11 +5917,20 @@ export default function App() {
               routeEnabled={routeEnabled}
               selectedDate={selectedDate}
               impactProfileByPostcode={impactProfileByPostcode}
+              showPostcodeBoundaries={showPostcodeBoundaries}
+              showDispatchLayer={showDispatchLayer}
+              showGipodLayer={showGipodLayer}
+              showSignalisatieLayer={showSignalisatieLayer}
+              showActiveBacklogLayer={showActiveOnDateLayer}
+              contextColorMode={contextColorMode}
               compactControlsEnabled={isDispatchMapFirstActive}
               onOpenCompactMenu={() => setLeftPanelCollapsed(false)}
               leftInsetPx={
                 isDispatchMapFirstActive && !leftPanelCollapsed ? leftPanelOpenWidthPx : 0
               }
+              mapStyleId={selectedMapStyle}
+              mapStyleOptions={mapStyleSelectOptions}
+              onChangeMapStyle={handleMapStyleChange}
             />
           </Suspense>
         </section>

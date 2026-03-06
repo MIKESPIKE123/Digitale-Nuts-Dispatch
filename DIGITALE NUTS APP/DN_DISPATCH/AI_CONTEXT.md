@@ -10,7 +10,9 @@
 - `src/App.tsx` is de orchestrator voor state, filtercontext, view-routing en synchronisatie-acties.
 - Domeinlogica staat in `src/lib/*` en blijft gescheiden van UI-componenten.
 - UI-componenten in `src/components/*` zijn props-gedreven en bevatten geen verborgen business rules.
+- Featuremodules staan in `src/modules/*` (o.a. `vaststelling`, `integrations`, `kpi`) met eigen contracts, gateways, views en tests.
 - Configuratie staat centraal in `src/config/*` (inspectors, holidays, postcode-centroids).
+- Integraties volgen een gateway-patroon met contracts, factory, mock/API implementaties en feature flags.
 - Data-import gebeurt via script (`scripts/import-nuts-data.mjs`), niet via handmatige edits in generated datafiles.
 - Wijzigingen moeten backward-compatible blijven met bestaande dispatchflow, filters en kaartinteractie.
 
@@ -24,7 +26,7 @@
 - UI labels/teksten: operationeel Nederlands; technische identifiers in Engels.
 
 ## data flow
-1. Brondataset komt uit DIGITALE NUTS: `DATA/Weekrapport Nutswerken totaallijst.xlsx` (sheet `Totaallijst`).
+1. Brondataset komt primair uit nieuwste `DATA/Export_*.xlsx` (GIPOD Innames, case-insensitive). Fallback: `DATA/Weekrapport Nutswerken totaallijst.xlsx` (sheet `Totaallijst`).
 2. Importscript `npm run import:data` (`scripts/import-nuts-data.mjs`) filtert, normaliseert en verrijkt records.
 3. Businessfilters op import:
    - relevante nutsdossiers (BONU/jaartallen), met exclusies (`SWPR*`, `SWOU*`, `DL*`)
@@ -39,10 +41,16 @@
 6. Outputbestanden:
    - `src/data/works.generated.json` (bundle fallback)
    - `public/data/works.generated.json` (runtime bron)
+   - `public/data/postcode-boundaries.geojson` (kaartlaag postcoderanden)
    - `DATA/dispatch_nuts_works.csv` (controle-export)
 7. Runtime in app:
    - fetch van `/data/works.generated.json`
    - impactprofielen worden mee geladen en gebruikt in prioriteitscore
+   - routevoorstel wordt berekend via `src/lib/routes.ts`
+   - kaartstijlen zitten in `public/styles/*` (OpenFreeMap + GRB/Luchtfoto)
+   - gedeelde filterbron zit in `src/lib/workFiltering.ts`; operationele basisselectie start op `VERGUND` + `IN EFFECT`
+   - A-SIGN referenties zijn contextueel/informatief en geen harde dispatch-poort
+   - expliciete signalen `vergunning afgelopen/verlopen` blijven wel een dispatch-exclusie
    - dispatchberekening via `buildDispatchPlan(...)`
    - gedeelde selectiecontext tussen action cards en kaart (`selectedVisitId`)
 8. Evaluatie/kalibratie:
@@ -57,5 +65,5 @@
 - Kaartprecisie hangt af van `locationSource` (`exact` vs `postcode`).
 - Werkdaglogica is gevoelig voor juiste feestdagenconfiguratie en geldige datuminvoer.
 - Grote overlays/popup-inhoud kunnen op kleine schermen UX beïnvloeden; responsive gedrag blijft randvoorwaarde.
-- Integraties (A-SIGN, GIPOD, Open Data) zijn deels gefaseerd en niet overal volledig bidirectioneel.
+- Integraties (A-SIGN, GIPOD, Open Data) zijn deels gefaseerd en niet overal volledig bidirectionieel; `ApiNotificationsGateway` en `ApiInspectionsGateway` hebben al werkende API-implementaties.
 - DN_DISPATCH deelt domeindata met DIGITALE NUTS, maar heeft eigen UI-flow, settings-keys en modulegrenzen.

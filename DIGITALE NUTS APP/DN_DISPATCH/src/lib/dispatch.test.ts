@@ -21,6 +21,9 @@ function createWork(overrides: Partial<WorkRecord> = {}): WorkRecord {
     durationDays: 1,
     location: { lat: 51.2052, lng: 4.4211 },
     locationSource: "exact",
+    permitStatus: "AFGELEVERD",
+    permitReferenceId: "GW2026-TEST-REF",
+    permitRefKey: "TEST-KEY",
     ...overrides,
   };
 }
@@ -126,6 +129,62 @@ describe("buildDispatchPlan - continuity/sticky inspector", () => {
 
     expect(plan.visitsByInspector["insp-2000"]).toHaveLength(1);
     expect(plan.visitsByInspector["insp-2020"]).toHaveLength(0);
+  });
+
+  it("bouwt default preferred inspecteurs deterministisch op zonder beurtrol-effect", () => {
+    const dualInspectors: Inspector[] = [
+      {
+        id: "insp-core",
+        initials: "CR",
+        name: "Inspecteur Core",
+        color: "#0a9396",
+        primaryPostcodes: ["2000"],
+        backupPostcodes: [],
+      },
+      {
+        id: "insp-wide",
+        initials: "WD",
+        name: "Inspecteur Wide",
+        color: "#005f73",
+        primaryPostcodes: ["2000", "2660"],
+        backupPostcodes: [],
+      },
+    ];
+
+    const plan = buildDispatchPlan({
+      date: "2026-02-16",
+      works: [
+        createWork({ id: "work-det-1", postcode: "2000" }),
+        createWork({ id: "work-det-2", dossierId: "BONU2026-0002", bonuNummer: "BONU2026-0002", postcode: "2000" }),
+      ],
+      inspectors: dualInspectors,
+      holidays: [],
+      statuses: ["VERGUND", "IN EFFECT"],
+      districts: [],
+      postcodes: [],
+    });
+
+    expect(plan.preferredInspectorByWorkId["work-det-1"]).toBe("insp-core");
+    expect(plan.preferredInspectorByWorkId["work-det-2"]).toBe("insp-core");
+  });
+
+  it("respecteert manuele override ook buiten primaire postcodepool", () => {
+    const manualPlan = buildDispatchPlan({
+      date: "2026-02-16",
+      works: [createWork({ id: "work-manual", postcode: "2000" })],
+      inspectors,
+      holidays: [],
+      statuses: ["VERGUND", "IN EFFECT"],
+      districts: [],
+      postcodes: [],
+      manualInspectorByWorkId: {
+        "work-manual": "insp-b",
+      },
+    });
+
+    expect(manualPlan.visitsByInspector["insp-a"]).toHaveLength(0);
+    expect(manualPlan.visitsByInspector["insp-b"]).toHaveLength(1);
+    expect(manualPlan.visitsByInspector["insp-b"]?.[0].work.id).toBe("work-manual");
   });
 });
 
@@ -313,11 +372,100 @@ describe("buildDispatchPlan - afwezigheid, backup en reserve", () => {
       },
     });
 
-    expect(plan.visitsByInspector["insp-main"]).toHaveLength(0);
-    expect(plan.visitsByInspector["insp-reserve"]).toHaveLength(2);
+    expect(plan.visitsByInspector["insp-main"]).toHaveLength(1);
+    expect(plan.visitsByInspector["insp-reserve"]).toHaveLength(1);
   });
 
-  it("beperkt categorie 3 tot maximaal 15% van toegewezen bezoeken", () => {
+  it("zet dedicated toezichter eerst vol tot limiet voor backup inzet", () => {
+    const dedicatedInspectors: Inspector[] = [
+      {
+        id: "insp-main",
+        initials: "MA",
+        name: "Inspecteur Main",
+        color: "#0a9396",
+        primaryPostcodes: ["2000"],
+        backupPostcodes: [],
+      },
+      {
+        id: "insp-backup",
+        initials: "BK",
+        name: "Inspecteur Backup",
+        color: "#005f73",
+        primaryPostcodes: ["2018"],
+        backupPostcodes: ["2000"],
+      },
+    ];
+
+    const plan = buildDispatchPlan({
+      date: "2026-02-16",
+      works: [
+        createWork({ id: "work-ded-1", postcode: "2000" }),
+        createWork({ id: "work-ded-2", postcode: "2000" }),
+        createWork({ id: "work-ded-3", postcode: "2000" }),
+        createWork({ id: "work-ded-4", postcode: "2000" }),
+      ],
+      inspectors: dedicatedInspectors,
+      holidays: [],
+      statuses: ["VERGUND", "IN EFFECT"],
+      districts: [],
+      postcodes: [],
+      dispatchCapacity: {
+        softDailyLimit: 1,
+        hardDailyLimit: 4,
+        standardVisitWeight: 1,
+        complexVisitWeight: 1.5,
+        inspectorOverrides: {
+          "insp-main": {
+            hardDailyLimit: 2,
+          },
+        },
+      },
+    });
+
+    expect(plan.visitsByInspector["insp-main"]).toHaveLength(2);
+    expect(plan.visitsByInspector["insp-backup"]).toHaveLength(2);
+  });
+
+  it("geeft binnen dezelfde pool voorrang aan lagere weeklast", () => {
+    const balancedInspectors: Inspector[] = [
+      {
+        id: "insp-heavy",
+        initials: "HV",
+        name: "Inspecteur Heavy",
+        color: "#0a9396",
+        primaryPostcodes: ["2000"],
+        backupPostcodes: [],
+      },
+      {
+        id: "insp-light",
+        initials: "LT",
+        name: "Inspecteur Light",
+        color: "#005f73",
+        primaryPostcodes: ["2000"],
+        backupPostcodes: [],
+      },
+    ];
+
+    const plan = buildDispatchPlan({
+      date: "2026-02-16",
+      works: [createWork({ id: "work-fair-1", postcode: "2000" })],
+      inspectors: balancedInspectors,
+      holidays: [],
+      statuses: ["VERGUND", "IN EFFECT"],
+      districts: [],
+      postcodes: [],
+      weeklyAssignedVisitsByInspector: {
+        "insp-heavy": 12,
+        "insp-light": 0,
+      },
+      weeklyFairnessWeight: 50,
+    });
+
+    expect(plan.visitsByInspector["insp-heavy"]).toHaveLength(0);
+    expect(plan.visitsByInspector["insp-light"]).toHaveLength(1);
+  });
+
+  it("laat categorie 3 vrij toe zolang capaciteit dit toelaat", () => {
     const capacityInspector: Inspector[] = [
       {
         id: "insp-cap",
@@ -370,12 +518,137 @@ describe("buildDispatchPlan - afwezigheid, backup en reserve", () => {
       (visit) => (visit.work.gipodCategorie ?? "").trim() === "Categorie 3"
     ).length;
 
-    expect(assigned).toHaveLength(11);
-    expect(assignedCategory3).toBe(1);
-    expect(assignedCategory3 / assigned.length).toBeLessThanOrEqual(0.15);
+    expect(assigned).toHaveLength(14);
+    expect(assignedCategory3).toBe(4);
     expect(
       plan.unassigned.filter((visit) => (visit.work.gipodCategorie ?? "").trim() === "Categorie 3")
-    ).toHaveLength(3);
+    ).toHaveLength(0);
+  });
+
+  it("vult kandidaten aan tot 75% van actieve dossiers op datum", () => {
+    const plan = buildDispatchPlan({
+      date: "2026-02-18",
+      works: [
+        createWork({
+          id: "work-topup-start",
+          dossierId: "BONU2026-TOPUP-1",
+          bonuNummer: "BONU2026-TOPUP-1",
+          postcode: "2018",
+          startDate: "2026-02-18",
+          endDate: "2026-02-20",
+        }),
+        createWork({
+          id: "work-topup-cadence",
+          dossierId: "BONU2026-TOPUP-2",
+          bonuNummer: "BONU2026-TOPUP-2",
+          postcode: "2018",
+          startDate: "2026-02-16",
+          endDate: "2026-02-20",
+        }),
+        createWork({
+          id: "work-topup-extra-a",
+          dossierId: "BONU2026-TOPUP-3",
+          bonuNummer: "BONU2026-TOPUP-3",
+          postcode: "2018",
+          startDate: "2026-02-17",
+          endDate: "2026-02-19",
+        }),
+        createWork({
+          id: "work-topup-extra-b",
+          dossierId: "BONU2026-TOPUP-4",
+          bonuNummer: "BONU2026-TOPUP-4",
+          postcode: "2018",
+          startDate: "2026-02-17",
+          endDate: "2026-02-20",
+        }),
+      ],
+      inspectors: [inspectors[1]],
+      holidays: [],
+      statuses: ["VERGUND", "IN EFFECT"],
+      districts: [],
+      postcodes: [],
+      dispatchCapacity: {
+        softDailyLimit: 8,
+        hardDailyLimit: 8,
+        standardVisitWeight: 1,
+        complexVisitWeight: 1,
+        inspectorOverrides: {},
+      },
+    });
+
+    const assigned = plan.visitsByInspector["insp-b"] ?? [];
+    const assignedWorkIds = new Set(assigned.map((visit) => visit.work.id));
+
+    expect(assigned).toHaveLength(3);
+    expect(plan.unassigned).toHaveLength(0);
+    expect(assignedWorkIds.has("work-topup-start")).toBe(true);
+    expect(assignedWorkIds.has("work-topup-cadence")).toBe(true);
+    expect(
+      assignedWorkIds.has("work-topup-extra-a") || assignedWorkIds.has("work-topup-extra-b")
+    ).toBe(true);
+  });
+
+  it("laat dossiers zonder A-sign koppeling toe in dispatch", () => {
+    const plan = buildDispatchPlan({
+      date: "2026-02-16",
+      works: [
+        createWork({
+          id: "work-asign-ok",
+          postcode: "2018",
+          permitReferenceId: "GW2026-OK",
+          permitRefKey: "OK-1",
+        }),
+        createWork({
+          id: "work-gipod-only",
+          postcode: "2018",
+          permitStatus: "ONBEKEND_MAAR_VERWACHT",
+          permitReferenceId: "",
+          permitRefKey: "",
+        }),
+      ],
+      inspectors: [inspectors[1]],
+      holidays: [],
+      statuses: ["VERGUND", "IN EFFECT"],
+      districts: [],
+      postcodes: [],
+    });
+
+    const assigned = plan.visitsByInspector["insp-b"] ?? [];
+    expect(assigned).toHaveLength(2);
+    expect(assigned.some((visit) => visit.work.id === "work-asign-ok")).toBe(true);
+    expect(assigned.some((visit) => visit.work.id === "work-gipod-only")).toBe(true);
+    expect(plan.unassigned).toHaveLength(0);
+  });
+
+  it("sluit dossiers met status vergunning afgelopen uit dispatch", () => {
+    const plan = buildDispatchPlan({
+      date: "2026-02-16",
+      works: [
+        createWork({
+          id: "work-regular",
+          postcode: "2018",
+        }),
+        createWork({
+          id: "work-permit-expired",
+          postcode: "2018",
+          sourceStatus: "Vergunning afgelopen",
+          permitDossierStatus: "Vergunning afgelopen",
+          permitReferenceId: "GW2026-EXPIRED",
+          permitRefKey: "EXPIRED-1",
+        }),
+      ],
+      inspectors: [inspectors[1]],
+      holidays: [],
+      statuses: ["VERGUND", "IN EFFECT"],
+      districts: [],
+      postcodes: [],
+    });
+
+    const assigned = plan.visitsByInspector["insp-b"] ?? [];
+    expect(assigned).toHaveLength(1);
+    expect(assigned[0].work.id).toBe("work-regular");
+    expect(assigned.some((visit) => visit.work.id === "work-permit-expired")).toBe(false);
+    expect(plan.unassigned).toHaveLength(0);
   });
 
   it("geeft voorrang aan grote signalisatieprojecten boven categorie 3 bij beperkte capaciteit", () => {

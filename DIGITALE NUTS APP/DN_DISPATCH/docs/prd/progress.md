@@ -1,6 +1,6 @@
 # PRD Progress
 
-Laatste update: 2026-02-28
+Laatste update: 2026-03-06
 
 ## Stories
 
@@ -15,3 +15,18 @@ Laatste update: 2026-02-28
 - [x] DN-GIPOD-OPS-001 - PX04 beta real-tenant validatiepakket
 - [x] DN-GIPOD-OPS-002 - Operationele acceptatiepakket 7 dagen
 - [x] DN-GIPOD-OPS-003 - Release gate v1.7 dossier
+
+## Gerealiseerde features buiten formele storyreeks
+
+- [x] Dispatchfilterlogica geharmoniseerd rond gedeelde basisselectie (`VERGUND` + `IN EFFECT`)
+- [x] Routeringsvoorstel per toezichter
+- [x] GRB-basiskaart + Luchtfoto Vlaanderen
+- [x] GIPOD/Webuniversum CSS-stijl
+- [x] Postcoderanden kaartlaag
+- [x] Toewijzingsarchief
+- [x] Impact prioritering (fase 1 t.e.m. 4)
+- [x] KPI Dashboard v1
+- [x] Tijdlijn view
+- [x] Dossiers view
+- [x] Handleiding view
+- [x] Governance view

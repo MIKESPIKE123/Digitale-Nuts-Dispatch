@@ -88,12 +88,17 @@ Dit draait:
 
 ## Dispatchregels
 
+- Runtimebasisselectie start op de operationele kernstatussen `VERGUND` en `IN EFFECT`.
+- A-SIGN/vergunningreferenties zijn context voor popup, links en latere integraties, maar geen harde toegangspoort tot dispatch.
+- Dossiers met expliciete signalen `vergunning afgelopen` of `vergunning verlopen` worden wel uit dispatchkandidaten gehouden.
 - Een project krijgt een vaste voorkeurtoezichter op basis van postcode + nabijheid.
 - Die voorkeurtoezichter blijft prioritair voor latere toewijzingen.
 - Projectkaarten zijn klikbaar en tonen een marker met locatieteken op de kaart.
 - In elk projectkaartje staat de einddatum (`Loopt t.e.m.`).
 
-## Recente aanvullingen (v1.6 - 2026-02-27)
+## Recente aanvullingen
+
+### v1.6 (2026-02-27)
 
 - Toewijzingsarchief met snapshots per dispatchdatum, export (`.json`) en lokale reset in `DN Data & Sync`.
 - Import/export van inspecteurinstellingen in `Instellingen` (inspecteurs, overrides, afwezigheden, dispatchcapaciteit).
@@ -104,6 +109,21 @@ Dit draait:
   - klikbare ReferentieID/A-SIGN en GIPOD-links,
   - toewijzingsrol (`Dedicated/Backup/Reserve`),
   - duidelijke manuele override-context.
+
+### v1.7+ (2026-02 t.e.m. 2026-03)
+
+- Routeringsvoorstel per toezichter — nearest-neighbor algo (`src/lib/routes.ts`) met curved route lines op kaart en UI toggle.
+- GRB-basiskaart (grijs + kleur) en Luchtfoto Vlaanderen als kaartlagen (`public/styles/grb-gray.json`, `grb-color.json`, `luchtfoto-vl.json`).
+- GIPOD/Webuniversum CSS-stijl — Flanders Art Sans/Mono fonts, Vlaamse overheid kleurenpalet.
+- Gateway architectuur voor A-SIGN/GIPOD/KLM/OpenData — contracts, factory, mock + API gateways.
+- GIPOD Notificaties — `ApiNotificationsGateway` met polling, taxonomy sync, dispatch alert block.
+- Postcoderanden kaartlaag — GeoJSON boundaries + labels voor 16 postcodes (direct MapLibre API).
+- Impact prioritering — open data scoring (bevolkingsdichtheid, kwetsbaarheid, dienstdruk, mobiliteit).
+- KPI Dashboard v1 — 6+ KPI cards met trend.
+- Handleiding view — Q&A, quick guides, pitch presentation, demo scripts.
+- Governance view — 8-weken planning, 60-dagen traject, subsidieroadmap, budget, OSLO homologatie.
+- Tijdlijn view — planning over de tijd met visuele balken.
+- Dossiers view — filterbare dossierlijst met sortering en zoekfunctie.
 
 ## Configuratie
 
@@ -134,14 +154,16 @@ Bij `true` gebruikt de app mock gateways. Bij `false` gebruikt de app de API-gat
 ## Navigatie (modulair)
 
 - `Dashboard` (live): operationeel overzicht + snelle acties
-- `Kaart` (live): kaartfocus en lagen
-- `Dispatch` (live): toewijzingen en action cards
+- `Dispatch` (live): toewijzingen, kaart en action cards per toezichter
+- `Vaststelling` (live): terreinregistratie per toezichter
 - `Dossiers` (live): filterbare dossierlijst
+- `Tijdlijn` (live): planning over de tijd met vergund/einde datums, visuele balken
+- `Oplevering` (roadmap): wekelijkse opvolging na einde werf
+- `Rapporten` (roadmap): output voor beleid en operationeel team
 - `Data & Sync` (live): dataflow/synchronisatie
-- `Instellingen` (live): configuratiebeheer
-- `Tijdlijn` (roadmap)
-- `Oplevering` (roadmap)
-- `Rapporten` (roadmap)
+- `Handleiding` (live): quick guide, Q&A en demo scripts
+- `Instellingen` (live): configuratiebeheer (inspecteurs, overrides, afwezigheden, dispatchcapaciteit)
+- `Governance` (live): programmaplanning, poorten, budgetopvolging, OSLO homologatie
 
 Roadmap detail iteratie 1:
 
@@ -159,9 +181,7 @@ Vorige lokatie (gearchiveerd): `https://github.com/MIKESPIKE123/Apps.git` branch
 
 ## Volgende uitbreidingen
 
-- routeringsvoorstel per toezichter
-- koppeling A-SIGN, GIPOD, Antwerpen Open Data
-- uitwisseling met vaststellingsapp via gedeelde dossier-ID
-- GRB-basiskaart en Luchtfoto Vlaanderen als kaartlagen (branch `feature/gipod-css-grb-kaart`)
-- GIPOD/Webuniversum CSS-stijl (branch `feature/gipod-css-grb-kaart`)
+- Koppeling A-SIGN, GIPOD, Antwerpen Open Data — gateway architectuur klaar, mocks functioneel; echte API stubs behalve `ApiNotificationsGateway` en `ApiInspectionsGateway` die al live werken
 - Standalone iPad/Android app via Capacitor (zie `docs/IPAD_APP_EVALUATIE.md` en `docs/ANDROID_APP_EVALUATIE.md`)
+- DN Rapporten (dag/week/export)
+- DN Oplevering (wekelijkse opvolging na einde werf)

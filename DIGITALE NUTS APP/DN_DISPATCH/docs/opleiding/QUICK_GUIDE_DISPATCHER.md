@@ -1,14 +1,15 @@
 # Quick Guide - Dispatcher
 
-Datum: 2026-02-27  
+Datum: 2026-03-06  
 Doel: dagplanning stabiel houden en dossiers correct toewijzen.
 
 ## 1. Snelstart
 1. Controleer dat de dispatchdatum op de juiste werkdag staat.
-2. Zet status-, district- en impactfilters bewust.
-3. Controleer toegewezen en niet-toegewezen dossiers.
-4. Gebruik action cards + kaart om conflicten/clustering te zien.
-5. Volg handover- en syncstatus op in de dag.
+2. Vertrek standaard van `VERGUND` + `IN EFFECT`; gebruik `VERGUNNING VERLOPEN` alleen als expliciete uitzonderingsfilter.
+3. Zet district-, bron-, categorie- en impactfilters bewust.
+4. Controleer toegewezen en niet-toegewezen dossiers.
+5. Gebruik action cards + kaart om conflicten/clustering te zien.
+6. Volg handover- en syncstatus op in de dag.
 
 ## 2. Waar let je operationeel op?
 1. Niet-toegewezen verplichte dossiers eerst oplossen.
@@ -34,9 +35,16 @@ Doel: dagplanning stabiel houden en dossiers correct toewijzen.
 2. Zorg dat open acties aan owner en timing gekoppeld zijn.
 3. Rapporteer korte dagstatus naar projectleider.
 
-## 5. 5 meest gemaakte fouten
+## 4bis. Nieuw na v1.6
+1. Gebruik `Routevoorstel tonen` om verplaatsingen per toezichter sneller te beoordelen.
+2. Schakel tussen standaardkaart, `GRB Grijs`, `GRB Kleur` en `Luchtfoto` voor extra terreincontext.
+3. Volg urgente GIPOD-notificaties op in het dispatch-actieblok.
+4. Gebruik impactbadges (`LAAG/MIDDEL/HOOG`) als extra prioriteringssignaal.
+
+## 5. 6 meest gemaakte fouten
 1. Met een oude datum blijven werken.
 2. Te strikte filters gebruiken waardoor dossiers verdwijnen.
-3. Niet-toegewezen lijst niet expliciet nalopen.
-4. Alleen kaart of alleen cards gebruiken in plaats van beide.
-5. Geen opvolging doen op failed sync, ontbrekende handover of niet-geexporteerd toewijzingsarchief.
+3. Veronderstellen dat een dossier zonder A-SIGN link automatisch uit dispatch moet vallen.
+4. Niet-toegewezen lijst niet expliciet nalopen.
+5. Alleen kaart of alleen cards gebruiken in plaats van beide.
+6. Geen opvolging doen op failed sync, ontbrekende handover of niet-geexporteerd toewijzingsarchief.

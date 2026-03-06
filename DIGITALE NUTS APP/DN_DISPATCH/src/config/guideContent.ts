@@ -148,6 +148,79 @@ export const GUIDE_FAQ: GuideFaqItem[] = [
   },
 ];
 
+export const GUIDE_DISPATCH_FILTER_FAQ: GuideFaqItem[] = [
+  {
+    question: "Welke bronbestanden bepalen de filters en toewijzing?",
+    answer:
+      "De kernlogica zit in src/lib/dispatch.ts (dispatch engine met buildDispatchPlan), src/config/inspectors.ts (toezichters + postcodezones), src/lib/appSettings.ts (afwezigheden, overrides, capaciteit), src/lib/decisionEngine.ts (prioriteitsscore), src/lib/inspectorContinuity.ts (continuïteit), src/lib/impactScoring.ts (maatschappelijke impact) en scripts/import-nuts-data.mjs (importfilters). In README.md staan de secties 'Filters in scope' en 'Dispatchregels' als leesbare samenvatting.",
+  },
+  {
+    question: "Welke dossiers komen binnen via de data-import?",
+    answer:
+      "Het importscript (scripts/import-nuts-data.mjs) selecteert alleen dossiernummers met BONU, 2024, 2025 of 2026 (exclusie: SWPR*, SWOU*, DL*), werftype NUTSWERKEN, en met geldige start-/einddatum en postcode. Bron is de GIPOD-export of het weekrapport.",
+  },
+  {
+    question: "Welke runtimefilters bepalen welke dossiers in de dispatch komen?",
+    answer:
+      "De dispatch vertrekt van de operationele basisselectie uit de importbeschrijving: statussen VERGUND en IN EFFECT. Daarbovenop gelden de gekozen runtimefilters voor bronstatus (bv. 'In uitvoering'), GIPOD-categorie, vergunningstatus, district en postcode. A-SIGN referenties blijven informatieve context en zijn geen harde toegangspoort. Dossiers met expliciete 'vergunning afgelopen/verlopen'-signalen worden wel uit de dispatchkandidaten gehouden. Bovendien moet het dossier actief zijn op de dispatchdatum.",
+  },
+  {
+    question: "Hoe wordt een toezichter aan een nutswerk gekoppeld?",
+    answer:
+      "Elke toezichter heeft primaryPostcodes en backupPostcodes (in src/config/inspectors.ts). Bij toewijzing loopt het systeem een pool-cascade af: (1) primaire zone, (2) backupzone, (3) reserve-inspecteurs, (4) noodpool (alleen voor verplichte bezoeken). Per pool wordt gescoord op postcodematch (+180 primair, +110 backup), continuïteit/sticky inspector (+340), routeclustering (+42 zelfde postcode), afstand (-km × gewicht), dagbelasting (-18 per bezoek) en weekbalans.",
+  },
+  {
+    question: "Wat is de 'sticky inspector' / continuïteitsregel?",
+    answer:
+      "De eerste toezichter die aan een nutswerk wordt toegewezen, wordt opgeslagen als voorkeurinspecteur (src/lib/inspectorContinuity.ts). Bij latere dispatches krijgt die inspecteur een scorebonus van +340, zodat hetzelfde dossier bij dezelfde persoon blijft tenzij die afwezig of overbelast is.",
+  },
+  {
+    question: "Hoe werkt de capaciteitsbeperking?",
+    answer:
+      "Standaard heeft elke toezichter een soft limit van 5 bezoeken/dag en een hard limit van 6. Complexe werken (Categorie 1, 2, Dringend) wegen 1.5× in plaats van 1.0×. Per toezichter kan in Instellingen een fixedDailyLoad of experienceFactor (0.5–1.5) worden ingesteld.",
+  },
+  {
+    question: "Wat zijn START, EIND en TUSSEN bezoeken?",
+    answer:
+      "Een START-bezoek is verplicht op de gecorrigeerde startdatum van het werk (prioriteit 120). Een EIND-bezoek is verplicht op de einddatum (prioriteit 116). TUSSEN-bezoeken zijn cadansbezoeken op elke tweede werkdag (prioriteit 80) en zijn optioneel. Er is ook een coverage top-up: als het aantal candidates < 75% van actieve werken is, worden extra tussenbezoeken toegevoegd.",
+  },
+  {
+    question: "Hoe worden afwezige of inactieve toezichters uitgesloten?",
+    answer:
+      "In src/lib/appSettings.ts worden per-toezichter afwezigheidsperiodes en een actief-venster (Actief van / Actief tot) opgeslagen. Als de dispatchdatum in een afwezigheidsperiode valt, of buiten het actief-venster, wordt die toezichter uit alle pools verwijderd. In de UI zie je dit als '(afw)' of '(niet actief)'.",
+  },
+  {
+    question: "Wat doet de maatschappelijke impactscore?",
+    answer:
+      "src/lib/impactScoring.ts berekent per postcode een impactscore op basis van bevolkingsdichtheid, kwetsbaarheid, dienstverleningsdruk en mobiliteitsgevoeligheid. De gewichten staan in src/config/impactWeights.ts. Zo krijgen dossiers in dichtbevolkte of kwetsbare zones een hogere prioriteit.",
+  },
+  {
+    question: "Hoe werkt manuele override in de dispatch?",
+    answer:
+      "In de dispatch-UI kan je handmatig een andere toezichter toewijzen aan een dossier. Die keuze wordt samengevoegd met de sticky inspector en weegt via preferredInspectorInputByWorkId mee als een sterke voorkeur bij volgende dispatches.",
+  },
+  {
+    question: "Wat is het verschil tussen Dedicated, Backup en Reserve?",
+    answer:
+      "Dedicated = het nutswerk ligt in de primaire postcodezone van de toezichter. Backup = het werk ligt in de backupzone. Reserve = een toezichter met isReserve-flag die pas ingezet wordt als dedicated/backup niet beschikbaar zijn. De toewijzingsrol wordt op de action card getoond.",
+  },
+  {
+    question: "Hoe werkt de weekbalans / fairness?",
+    answer:
+      "src/lib/assignmentHistory.ts slaat dagelijks snapshots op. Het verschil tussen het weekaantal van een toezichter en de weekbaseline wordt als penalty meegerekend (-(weeklyCount − baseline) × 18), zodat bij de volgende dispatch degene met minder recente toewijzingen voorkeur krijgt.",
+  },
+  {
+    question: "Hoe worden follow-up bezoeken na einddatum gepland?",
+    answer:
+      "Voor werken die hun einddatum voorbij zijn, plant dispatch.ts wekelijkse follow-up taken (elke 7 dagen, tot 56 dagen) en wijst die toe aan de voorkeurinspecteur.",
+  },
+  {
+    question: "In welke MD-documenten vind ik de filterregels terug?",
+    answer:
+      "README.md > 'Filters in scope' en 'Dispatchregels' beschrijft alle filter- en toewijzingsregels op hoog niveau. AI_CONTEXT.md > 'data flow' beschrijft de importfilters (BONU, status, werftype). Voor implementatiedetails: src/lib/dispatch.ts bevat de volledige enginecode.",
+  },
+];
+
 export const GUIDE_VASTSTELLING_HANDOVER_SYNC: GuideDefinitionItem[] = [
   {
     term: "Handover",
