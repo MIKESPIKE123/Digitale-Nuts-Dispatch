@@ -119,3 +119,9 @@ Doel: de roadmap-views `Tijdlijn`, `Afhankelijkheden` en `Capaciteit per week` c
 3. Weekcapaciteit toont util% en overload status per toezichter.
 4. Alle views reageren op bestaande contextfilters (status, district, toezichter).
 
+## Realisatiestatus (2026-03-06)
+
+- `Tijdlijn` view is live in de app en toont planning over de tijd met vergund/einde datums en visuele balken.
+- `Afhankelijkheden` view bestaat nog niet als aparte app-view; dit blijft onderdeel van de roadmapuitbreiding.
+- `Capaciteit per week` view bestaat nog niet als aparte app-view; relevante capaciteitsinfo zit vandaag in dispatch en KPI-overzichten.
+

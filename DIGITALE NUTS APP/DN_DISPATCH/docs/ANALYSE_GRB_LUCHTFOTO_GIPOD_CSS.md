@@ -1,11 +1,11 @@
 # Analyse: GRB-kaart, Luchtfoto Vlaanderen & GIPOD CSS voor DN_DISPATCH
 
-Datum: 2026-02-21  
-Status: Geanalyseerd — implementatie gepland  
-Git-branch: `feature/gipod-css-grb-kaart`  
-Git-backup tag: `v1.5-pre-css` (staat vóór wijzigingen, terugkeren: `git checkout v1.5-pre-css`)
+Datum: 2026-03-06  
+Status: Geanalyseerd en geïmplementeerd — live in app  
+Git-branch: `main` (historische featurebranch: `feature/gipod-css-grb-kaart`)  
+Git-backup tag: `v1.5-pre-css` (historische snapshot vóór CSS/kaartwijzigingen)
 
-Dit document analyseert drie mogelijke verbeteringen voor de kaartweergave en het visueel ontwerp van DN_DISPATCH:
+Dit document analyseert drie verbeteringen voor de kaartweergave en het visueel ontwerp van DN_DISPATCH. Die verbeteringen zijn intussen gerealiseerd in de app:
 
 1. **GRB (Grootschalig Referentie Bestand)** als achtergrondkaart
 2. **Luchtfoto Vlaanderen** als extra kaartlaag

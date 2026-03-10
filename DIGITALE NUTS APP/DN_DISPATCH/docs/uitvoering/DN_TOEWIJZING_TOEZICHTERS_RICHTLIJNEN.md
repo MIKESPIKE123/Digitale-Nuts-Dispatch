@@ -15,7 +15,8 @@ Doel: heldere afspraken over inzet, reserveplanning en automatische dispatchrege
 
 1. `Standaardtoezichter`: structureel in team, met primaire en backup-postcodes.
 2. `Reservetoezichter`: inzetbaar voor piek, afwezigheid of tijdelijke overname.
-3. Reservetoezichters kunnen ook langdurig primaire postzones opnemen.
+3. `Reserve` is een rol, geen afwezigheidsstatus: zonder afwezigheid of inzetvenster blijft een reserve technisch inzetbaar.
+4. Reservetoezichters kunnen ook langdurig primaire postzones opnemen, maar worden pas aangesproken in de reservefase.
 
 ## 3. Inzettermijn per toezichter
 
@@ -34,13 +35,21 @@ Regels:
 
 Voor elke kandidaat-werf hanteert dispatch deze volgorde:
 
-1. Primaire/backup-pool zonder overflow.
-2. Reserve-pool zonder overflow (`isReserve = true`).
-3. Primaire/backup-pool met overflow.
-4. Reserve-pool met overflow (`isReserve = true`).
-5. Noodpad enkel voor verplichte bezoeken:
+1. Manuele override (indien gekozen toezichter én inzetbaar).
+2. Dedicated-pool zonder overflow.
+3. Dedicated-pool met overflow.
+4. Backup-pool zonder overflow.
+5. Backup-pool met overflow.
+6. Reserve-pool zonder overflow (`isReserve = true`).
+7. Reserve-pool met overflow (`isReserve = true`).
+8. Noodpad enkel voor verplichte bezoeken:
    - enkel wanneer er **geen expliciete reserve** geconfigureerd is,
    - dan pas inzet van andere inspecteurs buiten primaire/backup-zone.
+
+Praktisch:
+
+1. `isReserve = true` sluit de toezichter uit de dedicated/backup-pools.
+2. Daardoor wordt een reservetoezichter pas "gelicht" nadat dedicated en backup uitgeput zijn.
 
 Binnen elke pool bepaalt score:
 
@@ -66,6 +75,7 @@ Regels:
 1. Afwezige toezichters krijgen geen dispatch-toewijzing op die dag.
 2. De UI toont expliciet `afwezig` op filterchips en in action cards.
 3. Afwezigheidsregels gelden boven continuiteit.
+4. Ook `niet inzetbaar` (buiten `Actief van/tot`) is een harde blokkering.
 
 ## 6. UI-conventies (helderheid)
 

@@ -1,8 +1,8 @@
 # DN_DISPATCH Docs - Structuur en Leeswijzer
 
-Laatste update: 2026-03-01  
+Laatste update: 2026-03-06  
 Doel: snelle oriëntatie, consistente naamgeving en duidelijke leesvolgorde voor projectsturing.
-Huidige release in app-hoofdbalk: `v1.6` (build `0.1.0`).
+Huidige release in app-hoofdbalk: `v1.7+` (build `0.1.0`).
 
 ## 1. Wat is hernoemd
 
@@ -105,13 +105,15 @@ Deze bestandsnamen zijn gestandaardiseerd:
 |---|---|
 | `docs/IPAD_APP_EVALUATIE.md` | Evaluatie iPad-app via Capacitor: ontbrekende elementen, kostenstructuur en roadmap. |
 | `docs/ANDROID_APP_EVALUATIE.md` | Evaluatie Android-app via Capacitor: kostenstructuur, hardware-vergelijking en dual-platform strategie. |
-| `docs/ANALYSE_GRB_LUCHTFOTO_GIPOD_CSS.md` | Analyse GRB/Luchtfoto Vlaanderen als kaartlagen en GIPOD CSS-stijl als ontwerp-referentie. |
+| `docs/ANALYSE_GRB_LUCHTFOTO_GIPOD_CSS.md` | Analyse + gerealiseerde implementatie van GRB/Luchtfoto Vlaanderen als kaartlagen en GIPOD CSS-stijl. |
 
 ### G. Governance workspace en docs-herorganisatie
 
 | Bestand | Samenvatting |
 |---|---|
 | `docs/governance.ini` | Referentiestructuur van de governance-workspace (template uit zip, niet de fysieke docs-boom). |
+| `docs/uitvoering/DN_GOVERNANCE_MASTERPLAN.md` | Hoofdplan voor governance, poorten, budget en uitvoeringssporen. |
+| `docs/techniek/DN_REFERENTIEARCHITECTUUR.md` | Referentiearchitectuur voor DN met modulegrenzen, integraties en evolutiepad. |
 | `docs/governance/DOCS_HERORGANISATIE_EVALUATIE_EN_MAPPING.md` | Evaluatie of herorganisatie zinvol is, met mapping van huidige docs naar doelstructuur en gefaseerde aanpak zonder big-bang migratie. |
 | `docs/governance/digitale-nuts-workspace.zip` | Bron-zip met template-structuur voor governance/architectuur/OSLO/regielaag/integratie/ADR. |
 | `docs/governance/00_governance/nis2.md` | Baseline voor NIS2-controls, eigenaarschap en opvolging in Schil 1. |
@@ -128,7 +130,7 @@ Deze bestandsnamen zijn gestandaardiseerd:
 
 ## 4. Versiebeheer en Backup (Git)
 
-**Repository:** `https://github.com/MIKESPIKE123/Apps.git`
+**Repository:** `https://github.com/MIKESPIKE123/Digitale-Nuts-Dispatch.git`
 
 ### Tags (snapshots)
 
@@ -144,8 +146,8 @@ Deze bestandsnamen zijn gestandaardiseerd:
 | Branch | Doel | Status |
 |---|---|---|
 | `main` | Stabiele productie-baseline | Beschermd |
-| `feature/objectbeheer-v2-2` | Hoofdontwikkelbranch (v1.6 functionaliteit) | Actief, up-to-date met remote |
-| `feature/gipod-css-grb-kaart` | GRB kaartlagen, Luchtfoto Vlaanderen, GIPOD CSS-stijl | Actief — wijzigingen geïsoleerd |
+| `feature/objectbeheer-v2-2` | Historische ontwikkelbranch voor v1.6-traject | Alleen referentie indien nog lokaal nodig |
+| `feature/gipod-css-grb-kaart` | Historische featurebranch voor kaartlagen/CSS | Functioneel ingehaald; wijzigingen zitten live in `main` |
 
 ### Terugkeren naar een veilig punt
 

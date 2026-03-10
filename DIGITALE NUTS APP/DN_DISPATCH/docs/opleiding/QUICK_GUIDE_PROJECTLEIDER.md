@@ -1,6 +1,6 @@
 # Quick Guide - Projectleider
 
-Datum: 2026-02-17  
+Datum: 2026-03-06  
 Doel: voortgang sturen, knelpunten oplossen en beslissingen versnellen.
 
 ## 1. Snelstart
@@ -14,6 +14,13 @@ Doel: voortgang sturen, knelpunten oplossen en beslissingen versnellen.
 1. KPI's altijd lezen samen met definitie en beperking.
 2. Demo-issues scheiden van structurele productissues.
 3. Scope bewaken: eerst stabiliteit, dan uitbreiding.
+
+## 2bis. Nieuwe stuurinformatie
+1. `Governance` view is live met 8-weken planning, budgetkaders en OSLO-homologatiecontext.
+2. GIPOD-notificaties zijn zichtbaar als operationeel opvolgspoor.
+3. Toewijzingsarchief helpt om dekking en overrides historisch te evalueren.
+4. Impact prioritering ondersteunt keuze van focuswerven.
+5. `Tijdlijn` view is live voor planning over de tijd.
 
 ## 3. Einde van je week
 1. Evalueer trends op vaststellingen, contextkwaliteit en sync.

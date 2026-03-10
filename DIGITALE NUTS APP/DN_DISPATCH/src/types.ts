@@ -1,4 +1,4 @@
-export type WorkStatus = "VERGUND" | "IN EFFECT";
+export type WorkStatus = "VERGUND" | "IN EFFECT" | "VERGUNNING VERLOPEN";
 export type InspectorAssignmentRole = "DEDICATED" | "BACKUP" | "RESERVE";
 
 export type GIPODPermitStatus =
@@ -136,6 +136,10 @@ export interface DispatchPlan {
     optionalVisits: number;
     overflowInspectors: number;
     followUps: number;
+    approvedPermitVisits: number;
+    permitBackedVisits: number;
+    withoutPermitVisits: number;
+    withoutPermitSharePct: number;
   };
 }
 

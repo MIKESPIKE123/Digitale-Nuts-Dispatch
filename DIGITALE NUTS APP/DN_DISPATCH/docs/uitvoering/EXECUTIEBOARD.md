@@ -1,6 +1,6 @@
 # DN Dispatch - EXECUTIEBOARD
 
-Datum laatste update: 2026-02-28 (scope-labeling MH/NN + termijnherplanning vanaf 2026-03-20)  
+Datum laatste update: 2026-03-06 (status bijgewerkt op live modules, kaartlagen en documentatie)  
 Doel: 1 werkdocument voor dagelijkse opvolging van sprintitems (`PRV`), platformuitbreidingen (`PX`) en veldenset-stappen (`Stap A/B/C`).
 Termijnkader: formele planning start op 2026-03-20; tot en met 2026-03-19 werken we in pre-fase (vibe coding + structuur).
 Governance-overzicht: zie `docs/uitvoering/DN_GOVERNANCE_MASTERPLAN.md` en app-tab `DN Governance`.
@@ -84,11 +84,11 @@ Bron: `docs/uitvoering/DN_RAPPORTEN_V1_STARTVERSIE.md`
 | `Fase 1` Repository + IndexedDB | `done` | `VaststellingRepository` toegevoegd met `IndexedDbVaststellingRepository` (default) en `LocalStorageVaststellingRepository` (fallback/migratie), storage API asynchroon gemaakt, `App` + `VaststellingView` + `VaststellingPhase0View` gekoppeld | `Fase 2`: centrale API + dual-write voorbereiden |
 | `Fase 2` Centrale API + dual-write | `done` | Sync-contract uitgebreid met `inspectionId`, `idempotencyKey`, `mutationVersion`; API gateway stuurt `X-Idempotency-Key`; endpoint `POST /api/inspecties/sync` actief op backend-middleware; persistente idempotency store + eventlog in `DATA/*.json`; finale backend statusmapping naar `planned/in_progress/temporary_restore/closed`; queue toont `serverOutcome` + `serverMappedStatus` | Volgende fase: dedicated backend service naast Vite middleware |
 
-## 5. Deze week topprioriteiten (week 2026-03-23 t.e.m. 2026-03-27)
-1. `PRV1-US-011` afronden (integratie-overzicht voor pitchteam).
-2. `PRV1-US-001` formeel afsluiten via regressie-checklist inclusief foto-stresstest.
-3. `PX-01` vervolg: lokale payload cleanup na sync + metadata-check afronden.
-4. `PX-08` baseline vastleggen: 8 kern-KPI's, definities en eerste weeksnapshot.
+## 5. Deze week topprioriteiten (week 2026-03-02 t.e.m. 2026-03-06)
+1. Postcoderanden stabiel zichtbaar houden over alle kaartstijlen.
+2. Documentatie en quick guides synchroniseren met live appstatus.
+3. `PRV1-US-001` formeel afsluiten via regressie-checklist inclusief foto-stresstest.
+4. `PX-08` volgende stap bepalen: snapshot export en negatieve-trend filter.
 5. `PX-02` regelset v1 voorbereiden (`ok`, `missing`, `conflict`) + testcases afbakenen.
 6. `RPT-US-003/004` kickoff: datasetcontract + auditmetadata definitief maken.
 
@@ -136,6 +136,11 @@ Bronplan: `docs/uitvoering/DN_RAPPORTEN_V1_STARTVERSIE.md`
 11. Nieuwe GIPOD-filters live in DN Dispatch: bronfase, categorie en vergunningstatus.
 12. Kaartpopup en action cards tonen nu vergunningstatus + GIPOD-contextvelden.
 13. DN Vaststelling bevat nu dropdown `Nuts-bedrijf (beheerder)` op basis van unieke datasetwaarden.
+14. Routeringsvoorstel per toezichter staat live op kaart.
+15. GRB grijs/kleur en Luchtfoto Vlaanderen staan live als kaartstijlen.
+16. GIPOD/Webuniversum CSS-stijl staat live in de app.
+17. Postcoderandenkaartlaag met labels is toegevoegd als toggle.
+18. Tijdlijn, Handleiding en Governance zijn live views.
 
 
 

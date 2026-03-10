@@ -28,6 +28,22 @@ function createWork(overrides: Partial<WorkRecord> = {}): WorkRecord {
   };
 }
 
+function createWorkWithoutPermit(overrides: Partial<WorkRecord> = {}): WorkRecord {
+  return createWork({
+    permitStatus: "ONBEKEND_MAAR_VERWACHT",
+    permitReferenceId: "",
+    permitRefKey: "",
+    ...overrides,
+  });
+}
+
+function createWorkInPermitPreparation(overrides: Partial<WorkRecord> = {}): WorkRecord {
+  return createWork({
+    permitStatus: "IN_VOORBEREIDING",
+    ...overrides,
+  });
+}
+
 const inspectors: Inspector[] = [
   {
     id: "insp-a",
@@ -294,6 +310,77 @@ describe("buildDispatchPlan - afwezigheid, backup en reserve", () => {
 
     expect(plan.visitsByInspector["insp-active"]).toHaveLength(0);
     expect(plan.visitsByInspector["insp-reserve"]).toHaveLength(1);
+  });
+
+  it("zet reservetoezichters pas in na dedicated/backup capaciteit", () => {
+    const reserveBenchInspectors: Inspector[] = [
+      {
+        id: "insp-main",
+        initials: "MA",
+        name: "Inspecteur Main",
+        color: "#0a9396",
+        primaryPostcodes: ["2018"],
+        backupPostcodes: [],
+      },
+      {
+        id: "insp-reserve",
+        initials: "RS",
+        name: "Inspecteur Reserve",
+        color: "#005f73",
+        primaryPostcodes: ["2018"],
+        backupPostcodes: ["2000"],
+        isReserve: true,
+      },
+    ];
+
+    const plan = buildDispatchPlan({
+      date: "2026-02-16",
+      works: [createWork({ id: "work-reserve-bench", postcode: "2018" })],
+      inspectors: reserveBenchInspectors,
+      holidays: [],
+      statuses: ["VERGUND", "IN EFFECT"],
+      districts: [],
+      postcodes: [],
+    });
+
+    expect(plan.visitsByInspector["insp-main"]).toHaveLength(1);
+    expect(plan.visitsByInspector["insp-reserve"]).toHaveLength(0);
+  });
+
+  it("labelt reserve-inzet expliciet als reserve", () => {
+    const reserveOnlyInspectors: Inspector[] = [
+      {
+        id: "insp-main",
+        initials: "MA",
+        name: "Inspecteur Main",
+        color: "#0a9396",
+        primaryPostcodes: ["2000"],
+        backupPostcodes: [],
+      },
+      {
+        id: "insp-reserve",
+        initials: "RS",
+        name: "Inspecteur Reserve",
+        color: "#005f73",
+        primaryPostcodes: ["2018"],
+        backupPostcodes: [],
+        isReserve: true,
+      },
+    ];
+
+    const plan = buildDispatchPlan({
+      date: "2026-02-16",
+      works: [createWork({ id: "work-reserve-label", postcode: "2018" })],
+      inspectors: reserveOnlyInspectors,
+      holidays: [],
+      statuses: ["VERGUND", "IN EFFECT"],
+      districts: [],
+      postcodes: [],
+    });
+
+    expect(plan.visitsByInspector["insp-main"]).toHaveLength(0);
+    expect(plan.visitsByInspector["insp-reserve"]).toHaveLength(1);
+    expect(plan.visitsByInspector["insp-reserve"]?.[0].inspectorAssignmentRole).toBe("RESERVE");
   });
 
   it("past globale soft/hard limieten toe als variabele capaciteit", () => {
@@ -588,35 +675,48 @@ describe("buildDispatchPlan - afwezigheid, backup en reserve", () => {
     ).toBe(true);
   });
 
-  it("laat dossiers zonder A-sign koppeling toe in dispatch", () => {
+  it("laat dossiers zonder vergunningcontext toe zodra de pool met vergunningcontext is opgebruikt", () => {
     const plan = buildDispatchPlan({
       date: "2026-02-16",
       works: [
-        createWork({
-          id: "work-asign-ok",
-          postcode: "2018",
-          permitReferenceId: "GW2026-OK",
-          permitRefKey: "OK-1",
-        }),
-        createWork({
-          id: "work-gipod-only",
-          postcode: "2018",
-          permitStatus: "ONBEKEND_MAAR_VERWACHT",
-          permitReferenceId: "",
-          permitRefKey: "",
-        }),
+        createWork({ id: "work-approved-1", postcode: "2018" }),
+        createWork({ id: "work-approved-2", postcode: "2018" }),
+        createWork({ id: "work-approved-3", postcode: "2018" }),
+        createWorkInPermitPreparation({ id: "work-prep-1", postcode: "2018" }),
+        createWorkInPermitPreparation({ id: "work-prep-2", postcode: "2018" }),
+        createWorkInPermitPreparation({ id: "work-prep-3", postcode: "2018" }),
+        createWorkWithoutPermit({ id: "work-no-permit-1", postcode: "2018" }),
+        createWorkWithoutPermit({ id: "work-no-permit-2", postcode: "2018" }),
       ],
       inspectors: [inspectors[1]],
       holidays: [],
       statuses: ["VERGUND", "IN EFFECT"],
       districts: [],
       postcodes: [],
+      dispatchCapacity: {
+        softDailyLimit: 10,
+        hardDailyLimit: 10,
+        standardVisitWeight: 1,
+        complexVisitWeight: 1,
+        inspectorOverrides: {},
+      },
     });
 
     const assigned = plan.visitsByInspector["insp-b"] ?? [];
-    expect(assigned).toHaveLength(2);
-    expect(assigned.some((visit) => visit.work.id === "work-asign-ok")).toBe(true);
-    expect(assigned.some((visit) => visit.work.id === "work-gipod-only")).toBe(true);
+    const assignedWithoutPermit = assigned.filter(
+      (visit) =>
+        visit.work.permitStatus !== "AFGELEVERD" &&
+        visit.work.permitStatus !== "IN_VOORBEREIDING" &&
+        !visit.work.permitReferenceId &&
+        !visit.work.permitRefKey
+    );
+
+    expect(assigned).toHaveLength(8);
+    expect(assignedWithoutPermit).toHaveLength(2);
+    expect(plan.totals.permitBackedVisits).toBe(6);
+    expect(plan.totals.withoutPermitVisits).toBe(2);
+    expect(plan.totals.withoutPermitSharePct).toBe(25);
+    expect(assigned.slice(0, 6).every((visit) => visit.work.id.startsWith("work-approved") || visit.work.id.startsWith("work-prep"))).toBe(true);
     expect(plan.unassigned).toHaveLength(0);
   });
 
@@ -689,5 +789,53 @@ describe("buildDispatchPlan - afwezigheid, backup en reserve", () => {
     expect(assigned).toHaveLength(1);
     expect(assigned[0].work.id).toBe("work-large-sign");
     expect(plan.unassigned[0].work.id).toBe("work-cat3-first");
+  });
+
+  it("plaatst goedgekeurde vergunningen voor dossiers in voorbereiding en zonder vergunningcontext", () => {
+    const plan = buildDispatchPlan({
+      date: "2026-02-16",
+      works: [
+        createWorkWithoutPermit({
+          id: "work-no-permit",
+          dossierId: "BONU2026-NOP",
+          bonuNummer: "BONU2026-NOP",
+          postcode: "2018",
+        }),
+        createWorkInPermitPreparation({
+          id: "work-preparing",
+          dossierId: "BONU2026-PREP",
+          bonuNummer: "BONU2026-PREP",
+          postcode: "2018",
+        }),
+        createWork({
+          id: "work-approved-priority",
+          dossierId: "BONU2026-APP",
+          bonuNummer: "BONU2026-APP",
+          postcode: "2018",
+        }),
+      ],
+      inspectors: [inspectors[1]],
+      holidays: [],
+      statuses: ["VERGUND", "IN EFFECT"],
+      districts: [],
+      postcodes: [],
+      dispatchCapacity: {
+        softDailyLimit: 2,
+        hardDailyLimit: 2,
+        standardVisitWeight: 1,
+        complexVisitWeight: 1,
+        inspectorOverrides: {},
+      },
+    });
+
+    const assigned = plan.visitsByInspector["insp-b"] ?? [];
+
+    expect(assigned).toHaveLength(2);
+    expect(assigned.map((visit) => visit.work.id)).toEqual([
+      "work-approved-priority",
+      "work-preparing",
+    ]);
+    expect(plan.unassigned).toHaveLength(1);
+    expect(plan.unassigned[0].work.id).toBe("work-no-permit");
   });
 });

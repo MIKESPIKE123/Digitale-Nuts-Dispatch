@@ -102,6 +102,10 @@ function makeDispatch(visitsByInspector: Record<string, PlannedVisit[]>): Dispat
       optionalVisits: 0,
       overflowInspectors: 0,
       followUps: 0,
+      approvedPermitVisits: 0,
+      permitBackedVisits: 0,
+      withoutPermitVisits: 0,
+      withoutPermitSharePct: 0,
     },
   };
 }

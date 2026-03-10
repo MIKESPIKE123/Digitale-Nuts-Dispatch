@@ -162,7 +162,7 @@ export const GUIDE_DISPATCH_FILTER_FAQ: GuideFaqItem[] = [
   {
     question: "Welke runtimefilters bepalen welke dossiers in de dispatch komen?",
     answer:
-      "De dispatch vertrekt van de operationele basisselectie uit de importbeschrijving: statussen VERGUND en IN EFFECT. Daarbovenop gelden de gekozen runtimefilters voor bronstatus (bv. 'In uitvoering'), GIPOD-categorie, vergunningstatus, district en postcode. A-SIGN referenties blijven informatieve context en zijn geen harde toegangspoort. Dossiers met expliciete 'vergunning afgelopen/verlopen'-signalen worden wel uit de dispatchkandidaten gehouden. Bovendien moet het dossier actief zijn op de dispatchdatum.",
+      "De dispatch vertrekt van de operationele basisselectie uit de importbeschrijving: statussen VERGUND en IN EFFECT. Daarbovenop gelden de gekozen runtimefilters voor bronstatus (bv. 'In uitvoering'), GIPOD-categorie, vergunningstatus, district en postcode. Binnen die set krijgen dossiers met goedgekeurde signalisatievergunning (`AFGELEVERD`) eerst voorrang, daarna dossiers met vergunningcontext (`IN_VOORBEREIDING` of vergunningreferentie). Dossiers zonder vergunningcontext blijven wel toelaatbaar als operationele opvulling zodra de vergunningspool is opgebruikt. Dossiers met expliciete 'vergunning afgelopen/verlopen'-signalen worden wel uit de dispatchkandidaten gehouden. Bovendien moet het dossier actief zijn op de dispatchdatum.",
   },
   {
     question: "Hoe wordt een toezichter aan een nutswerk gekoppeld?",

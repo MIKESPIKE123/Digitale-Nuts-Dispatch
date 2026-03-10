@@ -89,7 +89,9 @@ Dit draait:
 ## Dispatchregels
 
 - Runtimebasisselectie start op de operationele kernstatussen `VERGUND` en `IN EFFECT`.
-- A-SIGN/vergunningreferenties zijn context voor popup, links en latere integraties, maar geen harde toegangspoort tot dispatch.
+- Dispatch prioriteert eerst dossiers met goedgekeurde signalisatievergunning (`AFGELEVERD`).
+- Daarna volgen dossiers met vergunningcontext (`IN_VOORBEREIDING` of geldige vergunningreferentie).
+- Dossiers zonder vergunningcontext blijven mogelijk als operationele opvulling, maar pas nadat dossiers met vergunningcontext eerst aan bod kwamen.
 - Dossiers met expliciete signalen `vergunning afgelopen` of `vergunning verlopen` worden wel uit dispatchkandidaten gehouden.
 - Een project krijgt een vaste voorkeurtoezichter op basis van postcode + nabijheid.
 - Die voorkeurtoezichter blijft prioritair voor latere toewijzingen.

@@ -15,6 +15,7 @@ Doel: dagplanning stabiel houden en dossiers correct toewijzen.
 1. Niet-toegewezen verplichte dossiers eerst oplossen.
 2. Werkdruk over toezichters spreiden.
 3. Bij NOK: zorgen dat opvolging duidelijk gelogd staat.
+4. Controleer de mix vergunningcontext: dossiers met vergunningcontext moeten zichtbaar voorrang krijgen, maar operationele opvulling zonder vergunningcontext blijft mogelijk.
 
 ## 3. Nieuw in v1.6 (dagelijks gebruiken)
 1. Toewijzingsarchief (`DN Data & Sync`):
@@ -44,7 +45,7 @@ Doel: dagplanning stabiel houden en dossiers correct toewijzen.
 ## 5. 6 meest gemaakte fouten
 1. Met een oude datum blijven werken.
 2. Te strikte filters gebruiken waardoor dossiers verdwijnen.
-3. Veronderstellen dat een dossier zonder A-SIGN link automatisch uit dispatch moet vallen.
+3. Niet controleren of dossiers met vergunningcontext effectief eerst aan bod kwamen.
 4. Niet-toegewezen lijst niet expliciet nalopen.
 5. Alleen kaart of alleen cards gebruiken in plaats van beide.
 6. Geen opvolging doen op failed sync, ontbrekende handover of niet-geexporteerd toewijzingsarchief.

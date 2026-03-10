@@ -9,7 +9,11 @@ import {
   sameDate,
   workdaysBetween,
 } from "./dateUtils";
-import { buildOperationalWorkFilterOptions, filterWorks } from "./workFiltering";
+import {
+  buildOperationalWorkFilterOptions,
+  filterWorks,
+  hasASignPermitReference,
+} from "./workFiltering";
 import type {
   DispatchCapacitySettings,
   DispatchPlan,
@@ -184,30 +188,53 @@ function isCategory3Work(work: WorkRecord): boolean {
   return category === "categorie 3" || category === "cat 3" || category === "categorie3";
 }
 
-function isSignalisatiePriorityWork(work: WorkRecord): boolean {
-  if ((work.sourceDataset ?? "").trim().toLowerCase() === "weekrapport_fallback") {
+function normalizePermitStatus(status?: string): string {
+  return (status ?? "").trim().toUpperCase();
+}
+
+function hasApprovedSignalisatiePermit(work: Pick<WorkRecord, "permitStatus">): boolean {
+  return normalizePermitStatus(work.permitStatus) === "AFGELEVERD";
+}
+
+function hasDispatchPermitContext(
+  work: Pick<WorkRecord, "permitStatus" | "permitRefKey" | "permitReferenceId">
+): boolean {
+  if (hasApprovedSignalisatiePermit(work)) {
     return true;
   }
 
-  if ((work.permitRefKey ?? "").trim() || (work.permitReferenceId ?? "").trim()) {
+  if (normalizePermitStatus(work.permitStatus) === "IN_VOORBEREIDING") {
     return true;
   }
 
-  const permitStatus = (work.permitStatus ?? "").trim().toUpperCase();
-  return (
-    permitStatus === "AFGELEVERD" ||
-    permitStatus === "IN_VOORBEREIDING" ||
-    permitStatus === "GEWEIGERD_OF_STOPGEZET"
-  );
+  return hasASignPermitReference(work);
+}
+
+function getSignalisatiePermitPriorityTier(work: WorkRecord): 0 | 1 | 2 {
+  if (hasApprovedSignalisatiePermit(work)) {
+    return 2;
+  }
+
+  if (hasDispatchPermitContext(work)) {
+    return 1;
+  }
+
+  return 0;
 }
 
 function getStrategicProjectPriority(work: WorkRecord): number {
-  if (isCategory3Work(work)) {
-    return 0;
+  const permitTier = getSignalisatiePermitPriorityTier(work);
+
+  if (permitTier === 2) {
+    return isCategory3Work(work) ? 2 : 3;
   }
 
-  if (isSignalisatiePriorityWork(work)) {
+  if (permitTier === 1) {
     return 2;
+  }
+
+  if (isCategory3Work(work)) {
+    return 0;
   }
 
   return 1;
@@ -280,6 +307,10 @@ function resolveInspectorAssignmentRole(
   work: WorkRecord,
   inspector: Inspector
 ): InspectorAssignmentRole {
+  if (inspector.isReserve) {
+    return "RESERVE";
+  }
+
   if (isPrimaryInspectorForWork(work, inspector)) {
     return "DEDICATED";
   }
@@ -440,6 +471,31 @@ function sortCandidates(candidates: Candidate[]): Candidate[] {
   return candidates;
 }
 
+function prioritizeCandidatesByPermitContext(candidates: Candidate[]): Candidate[] {
+  const approvedPermitCandidates: Candidate[] = [];
+  const permitContextCandidates: Candidate[] = [];
+  const regularCandidates: Candidate[] = [];
+
+  for (const candidate of sortCandidates([...candidates])) {
+    const permitTier = getSignalisatiePermitPriorityTier(candidate.work);
+    if (permitTier === 2) {
+      approvedPermitCandidates.push(candidate);
+      continue;
+    }
+    if (permitTier === 1) {
+      permitContextCandidates.push(candidate);
+      continue;
+    }
+    regularCandidates.push(candidate);
+  }
+
+  return [
+    ...approvedPermitCandidates,
+    ...permitContextCandidates,
+    ...regularCandidates,
+  ];
+}
+
 function buildCoverageTopUpCandidates(
   selectedDate: Date,
   works: WorkRecord[],
@@ -525,13 +581,16 @@ function buildInspectorPools(
   candidate: Candidate,
   inspectors: Inspector[]
 ): InspectorPools {
-  const primary = inspectors.filter((inspector) =>
-    isPrimaryInspectorForWork(candidate.work, inspector)
+  const primary = inspectors.filter(
+    (inspector) =>
+      !inspector.isReserve && isPrimaryInspectorForWork(candidate.work, inspector)
   );
   const primaryIds = new Set(primary.map((inspector) => inspector.id));
   const backup = inspectors.filter(
     (inspector) =>
-      !primaryIds.has(inspector.id) && isBackupInspectorForWork(candidate.work, inspector)
+      !inspector.isReserve &&
+      !primaryIds.has(inspector.id) &&
+      isBackupInspectorForWork(candidate.work, inspector)
   );
   const dedicatedCoverageCount = primary.length + backup.length;
 
@@ -750,6 +809,9 @@ export function buildDispatchPlan(options: DispatchOptions): DispatchPlan {
   );
 
   const unassigned: PlannedVisit[] = [];
+  let approvedPermitVisits = 0;
+  let permitBackedVisits = 0;
+  let withoutPermitVisits = 0;
 
   if (workday) {
     let candidates = buildCandidates(selectedDate, filteredWorksResolved, holidaySet);
@@ -771,15 +833,18 @@ export function buildDispatchPlan(options: DispatchOptions): DispatchPlan {
         }
       }
     }
+    candidates = prioritizeCandidatesByPermitContext(candidates);
     let assignedCategory3Visits = 0;
     let assignedNonCategory3Visits = 0;
 
     for (const candidate of candidates) {
       const category3Candidate = isCategory3Work(candidate.work);
+      const candidateHasPermitContext = hasDispatchPermitContext(candidate.work);
       const manualInspectorId = options.manualInspectorByWorkId?.[candidate.work.id];
       const manualInspector = manualInspectorId
         ? activeInspectors.find((inspector) => inspector.id === manualInspectorId)
         : undefined;
+
       if (
         ENFORCE_CATEGORY3_ASSIGNMENT_SHARE &&
         category3Candidate &&
@@ -911,6 +976,14 @@ export function buildDispatchPlan(options: DispatchOptions): DispatchPlan {
         inspectorColor: pick.inspector.color,
         score: Math.round(pick.score * 10) / 10,
       });
+      if (candidateHasPermitContext) {
+        permitBackedVisits += 1;
+        if (hasApprovedSignalisatiePermit(candidate.work)) {
+          approvedPermitVisits += 1;
+        }
+      } else {
+        withoutPermitVisits += 1;
+      }
       if (category3Candidate) {
         assignedCategory3Visits += 1;
       } else {
@@ -979,6 +1052,12 @@ export function buildDispatchPlan(options: DispatchOptions): DispatchPlan {
       optionalVisits,
       overflowInspectors,
       followUps,
+      approvedPermitVisits,
+      permitBackedVisits,
+      withoutPermitVisits,
+      withoutPermitSharePct: plannedVisits
+        ? Math.round((withoutPermitVisits / plannedVisits) * 1000) / 10
+        : 0,
     },
   };
 }

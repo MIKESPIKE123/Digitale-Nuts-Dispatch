@@ -6,7 +6,6 @@ import {
   useMemo,
   useRef,
   useState,
-  type CSSProperties,
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import {
@@ -1275,15 +1274,35 @@ const toGovernanceTimelinePercent = (isoDate: string) => {
   return Math.min(100, Math.max(0, normalized));
 };
 
-const getGovernanceTimelineBlockStyle = (startIso: string, endIso: string): CSSProperties => {
+const getGovernanceTimelineBlockLayout = (startIso: string, endIso: string) => {
   const startPercent = toGovernanceTimelinePercent(startIso);
   const endPercent = toGovernanceTimelinePercent(endIso) + (DAY_IN_MS / GOVERNANCE_MS_TIMELINE_SPAN_MS) * 100;
   const widthPercent = Math.max(1.2, endPercent - startPercent);
   return {
-    left: `${Math.min(100, Math.max(0, startPercent))}%`,
-    width: `${Math.min(100, widthPercent)}%`,
+    leftPercent: Math.min(100, Math.max(0, startPercent)),
+    widthPercent: Math.min(100, widthPercent),
   };
 };
+
+const GOVERNANCE_TIMELINE_STYLE_TEXT = [
+  ...GOVERNANCE_MS_TIMELINE_MARKERS.map(
+    (marker, markerIndex) =>
+      `.governance-gantt-marker[data-marker-index="${markerIndex}"] { left: ${toGovernanceTimelinePercent(marker.isoDate)}%; }`
+  ),
+  ...GOVERNANCE_MS_VISUAL_LANES.flatMap((lane, laneIndex) =>
+    lane.blocks.map((block, blockIndex) => {
+      const { leftPercent, widthPercent } = getGovernanceTimelineBlockLayout(
+        block.startIso,
+        block.endIso
+      );
+      return `.governance-gantt-block[data-lane-index="${laneIndex}"][data-block-index="${blockIndex}"] { left: ${leftPercent}%; width: ${widthPercent}%; }`;
+    })
+  ),
+  ...GOVERNANCE_MS_STEERING_MARKERS.map(
+    (marker, milestoneIndex) =>
+      `.governance-gantt-milestone[data-milestone-index="${milestoneIndex}"] { left: ${toGovernanceTimelinePercent(marker.isoDate)}%; }`
+  ),
+].join("\n");
 
 const PLATFORM_EXPANSION_STORAGE_KEY = "dn_platform_expansion_custom_v1";
 const PLATFORM_SCHIL_FILTER_OPTIONS: PlatformSchilFilter[] = [
@@ -4760,6 +4779,7 @@ export default function App() {
                           <div className="governance-notification-actions">
                             <select
                               value={draftStatusId}
+                              aria-label={`Status voor melding ${item.notificationId}`}
                               onChange={(event) =>
                                 handleGovernanceNotificationStatusDraftChange(
                                   item.notificationId,
@@ -5041,11 +5061,11 @@ export default function App() {
                   <span className="governance-gantt-boundary governance-gantt-boundary-end">
                     Einde: {GOVERNANCE_MS_TIMELINE_END_ISO}
                   </span>
-                  {GOVERNANCE_MS_TIMELINE_MARKERS.map((marker) => (
+                  {GOVERNANCE_MS_TIMELINE_MARKERS.map((marker, markerIndex) => (
                     <span
                       key={marker.id}
                       className="governance-gantt-marker"
-                      style={{ left: `${toGovernanceTimelinePercent(marker.isoDate)}%` }}
+                      data-marker-index={markerIndex}
                     >
                       {marker.label}
                     </span>
@@ -5053,15 +5073,16 @@ export default function App() {
                 </div>
               </div>
 
-              {GOVERNANCE_MS_VISUAL_LANES.map((lane) => (
+              {GOVERNANCE_MS_VISUAL_LANES.map((lane, laneIndex) => (
                 <div key={lane.id} className="governance-gantt-row">
                   <div className="governance-gantt-label">{lane.label}</div>
                   <div className="governance-gantt-track">
-                    {lane.blocks.map((block) => (
+                    {lane.blocks.map((block, blockIndex) => (
                       <span
                         key={block.id}
                         className={`governance-gantt-block governance-gantt-block-${block.tone}`}
-                        style={getGovernanceTimelineBlockStyle(block.startIso, block.endIso)}
+                        data-lane-index={laneIndex}
+                        data-block-index={blockIndex}
                         title={`${block.label} (${block.startIso} t.e.m. ${block.endIso})`}
                       >
                         {block.label}
@@ -5074,11 +5095,11 @@ export default function App() {
               <div className="governance-gantt-row governance-gantt-row-milestones">
                 <div className="governance-gantt-label">Stuurgroep</div>
                 <div className="governance-gantt-track governance-gantt-track-milestones">
-                  {GOVERNANCE_MS_STEERING_MARKERS.map((marker) => (
+                  {GOVERNANCE_MS_STEERING_MARKERS.map((marker, milestoneIndex) => (
                     <span
                       key={marker.id}
                       className="governance-gantt-milestone"
-                      style={{ left: `${toGovernanceTimelinePercent(marker.isoDate)}%` }}
+                      data-milestone-index={milestoneIndex}
                       title={`${marker.label} (${marker.isoDate})`}
                     >
                       {marker.label}
@@ -5141,6 +5162,26 @@ export default function App() {
   const isIpadTerrainTabView =
     isCompactWorkspace && IPAD_TERRAIN_TAB_KEY_SET.has(effectiveActiveView);
   const isIpadTerrainTabsFloating = isIpadTerrainTabView && isCompactImmersiveMode;
+  const dispatchWorkspaceStyleText = useMemo(() => {
+    const panelWidth = rightPanelCollapsed
+      ? 0
+      : Math.min(RIGHT_PANEL_MAX_WIDTH, Math.max(RIGHT_PANEL_MIN_WIDTH, rightPanelWidth));
+
+    return [
+      "@media (min-width: 1221px) {",
+      `.workspace-grid.workspace-dynamic-right-panel { grid-template-columns: 290px minmax(0, 1fr) ${panelWidth}px; }`,
+      ".workspace-grid.workspace-dynamic-right-panel.right-panel-collapsed { grid-template-columns: 290px minmax(0, 1fr) 0; }",
+      "}",
+      "@media (min-width: 1221px) and (max-width: 1500px) {",
+      `.workspace-grid.workspace-dynamic-right-panel { grid-template-columns: 270px minmax(0, 1fr) ${panelWidth}px; }`,
+      ".workspace-grid.workspace-dynamic-right-panel.right-panel-collapsed { grid-template-columns: 270px minmax(0, 1fr) 0; }",
+      "}",
+    ].join("\n");
+  }, [rightPanelCollapsed, rightPanelWidth]);
+  const appDynamicStyleText = useMemo(
+    () => `${GOVERNANCE_TIMELINE_STYLE_TEXT}\n${dispatchWorkspaceStyleText}`,
+    [dispatchWorkspaceStyleText]
+  );
 
   useEffect(() => {
     if (!isDispatchMapFirstActive || leftPanelCollapsed) {
@@ -5180,6 +5221,7 @@ export default function App() {
         isVaststellingIpadActive ? "vaststelling-ipad" : ""
       } ${isIpadTerrainTabView ? "terrain-ipad-tabs" : ""}`}
     >
+      <style>{appDynamicStyleText}</style>
       <header className={`top-hero compact ${isCompactImmersiveMode ? "top-hero-map-first" : ""}`}>
         <div className="hero-brand">
           <img src="/dn-dispatch-logo.svg" alt="DN Dispatch logo" className="hero-logo" />
@@ -5365,12 +5407,9 @@ export default function App() {
       {effectiveActiveView === "dispatch" ? (
       <main
         ref={workspaceRef}
-        className={`workspace-grid ${
+        className={`workspace-grid workspace-dynamic-right-panel ${
           isDispatchMapFirstActive ? "workspace-map-first" : "workspace-standard"
         } ${rightPanelCollapsed ? "right-panel-collapsed" : ""}`}
-        style={
-          { "--right-panel-width": `${rightPanelCollapsed ? 0 : rightPanelWidth}px` } as CSSProperties
-        }
       >
         {isDispatchMapFirstActive && isCompactWorkspace && !leftPanelCollapsed ? (
           <button
@@ -5396,14 +5435,15 @@ export default function App() {
                 type="button"
                 className="chip panel-toggle-btn"
                 onClick={() => setLeftPanelCollapsed((previous) => !previous)}
-                aria-expanded={!leftPanelCollapsed}
+                aria-controls="dispatch-settings-panel"
+                aria-label={leftPanelCollapsed ? "Open instellingenpaneel" : "Klap instellingenpaneel in"}
               >
                 {leftPanelCollapsed ? "Open paneel" : "Inklappen"}
               </button>
             ) : null}
           </div>
 
-          <div className="panel-collapse-body">
+          <div id="dispatch-settings-panel" className="panel-collapse-body" hidden={leftPanelCollapsed}>
           <section className="filter-group">
             <div className="group-head-row">
               <p className="group-title">Synchronisatie</p>
@@ -5771,6 +5811,20 @@ export default function App() {
               <p>
                 <span>Toegewezen bezoeken</span>
                 <strong>{dispatch.totals.plannedVisits}</strong>
+              </p>
+              <p>
+                <span>Goedgekeurde vergunning</span>
+                <strong>{dispatch.totals.approvedPermitVisits}</strong>
+              </p>
+              <p>
+                <span>Met vergunningcontext</span>
+                <strong>{dispatch.totals.permitBackedVisits}</strong>
+              </p>
+              <p>
+                <span>Zonder vergunning</span>
+                <strong>
+                  {dispatch.totals.withoutPermitVisits} ({dispatch.totals.withoutPermitSharePct}%)
+                </strong>
               </p>
               <p>
                 <span>Niet toegewezen</span>

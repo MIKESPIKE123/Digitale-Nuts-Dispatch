@@ -1,16 +1,23 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type FormEvent,
+} from "react";
 import maplibregl from "maplibre-gl";
 import {
   Layer,
   Map as MapView,
   Marker,
-  NavigationControl,
   Popup,
   Source,
   type MapRef,
 } from "react-map-gl/maplibre";
 import { buildVisitDecision } from "../lib/decisionEngine";
 import { formatNlDate } from "../lib/dateUtils";
+import { isPermitExpiredViolationWork } from "../lib/workStatusFlags";
 import type { ImpactProfile } from "../lib/impactScoring";
 import type {
   GIPODPermitStatus,
@@ -19,12 +26,13 @@ import type {
   WorkRecord,
 } from "../types";
 
-const POSTCODE_BOUNDARY_SOURCE_URL = "/data/postcode-boundaries.geojson";
+const POSTCODE_BOUNDARY_SOURCE_PATH = "/data/postcode-boundaries.geojson";
 const SELECTED_VISIT_FOCUS_OFFSET_Y = 96;
 
 type MapPanelProps = {
   works: WorkRecord[];
   contextWorks: WorkRecord[];
+  activeBacklogWorks: WorkRecord[];
   visits: PlannedVisit[];
   selectedVisitId: string | null;
   onSelectVisit: (visitId: string | null) => void;
@@ -39,6 +47,15 @@ type MapPanelProps = {
   routeEnabled: boolean;
   selectedDate: string;
   impactProfileByPostcode: Record<string, ImpactProfile>;
+  showPostcodeBoundaries: boolean;
+  showDispatchLayer: boolean;
+  showGipodLayer: boolean;
+  showSignalisatieLayer: boolean;
+  showActiveBacklogLayer: boolean;
+  contextColorMode: ContextColorMode;
+  mapStyleId: string;
+  mapStyleOptions: Array<{ id: string; label: string }>;
+  onChangeMapStyle?: (nextStyleId: string) => void;
   compactControlsEnabled?: boolean;
   onOpenCompactMenu?: () => void;
   leftInsetPx?: number;
@@ -62,17 +79,55 @@ type MapBounds = {
   west: number;
 };
 
+type PostcodeBoundaryOverlayPath = {
+  key: string;
+  d: string;
+};
+
+type ProjectedPoint = {
+  x: number;
+  y: number;
+};
+
+type PostcodeBoundaryOverlayLabel = {
+  key: string;
+  x: number;
+  y: number;
+  text: string;
+};
+
+type PostcodeBoundaryOverlayState = {
+  width: number;
+  height: number;
+  paths: PostcodeBoundaryOverlayPath[];
+  labels: PostcodeBoundaryOverlayLabel[];
+};
+
 type ContextColorMode = "gipod-phase" | "permit-status";
-type ContextProjectSource = "GIPOD" | "SIGNALISATIE";
+type ContextProjectSource = "GIPOD" | "SIGNALISATIE" | "ACTIEF";
 
 type ContextProjectMarker = {
   work: WorkRecord;
   sources: ContextProjectSource[];
   color: string;
   distanceLevel: 0 | 1 | 2;
+  isPermitExpiredViolation: boolean;
 };
 
 const UNKNOWN_PERMIT_STATUS_LABEL: GIPODPermitStatus = "ONBEKEND";
+
+function getContextPinOpacity(project: ContextProjectMarker): number {
+  if (project.isPermitExpiredViolation) {
+    return 0.9;
+  }
+  if (project.distanceLevel === 0) {
+    return 1;
+  }
+  if (project.distanceLevel === 1) {
+    return 0.8;
+  }
+  return 0.62;
+}
 
 function getCenter(visits: PlannedVisit[], selectedVisitId: string | null): [number, number] {
   const selectedVisit = selectedVisitId
@@ -188,7 +243,7 @@ function buildASignUrl(permitRefKey?: string, permitReferenceId?: string): strin
   }
 
   const normalizedReference = (permitReferenceId ?? "").trim();
-  if (/^\d+$/.test(normalizedReference)) {
+  if (normalizedReference) {
     return `https://parkeerverbod.antwerpen.be/admin/sgw/requests/${encodeURIComponent(normalizedReference)}`;
   }
 
@@ -201,6 +256,200 @@ function buildGipodUrl(gipodId: string): string | null {
     return null;
   }
   return `https://gipod.vlaanderen.be/inname/${clean}`;
+}
+
+function resolveAppAbsoluteUrl(path: string): string {
+  if (typeof window === "undefined") {
+    return path;
+  }
+  try {
+    return new URL(path, window.location.origin).toString();
+  } catch {
+    return path;
+  }
+}
+
+function getFeaturePolygons(
+  geometry: GeoJSON.Geometry | null | undefined
+): CoordinatePair[][][] {
+  if (!geometry) {
+    return [];
+  }
+
+  if (geometry.type === "Polygon") {
+    return [geometry.coordinates as CoordinatePair[][]];
+  }
+
+  if (geometry.type === "MultiPolygon") {
+    return geometry.coordinates as CoordinatePair[][][];
+  }
+
+  return [];
+}
+
+function getFeatureLabelCoordinate(feature: GeoJSON.Feature): CoordinatePair | null {
+  const polygons = getFeaturePolygons(feature.geometry);
+  const outerRing = polygons[0]?.[0];
+  if (!outerRing || outerRing.length === 0) {
+    return null;
+  }
+
+  let west = outerRing[0][0];
+  let east = outerRing[0][0];
+  let south = outerRing[0][1];
+  let north = outerRing[0][1];
+
+  for (const [lng, lat] of outerRing) {
+    if (lng < west) west = lng;
+    if (lng > east) east = lng;
+    if (lat < south) south = lat;
+    if (lat > north) north = lat;
+  }
+
+  return [(west + east) / 2, (south + north) / 2];
+}
+
+function getPerpendicularDistance(point: ProjectedPoint, start: ProjectedPoint, end: ProjectedPoint): number {
+  const dx = end.x - start.x;
+  const dy = end.y - start.y;
+
+  if (dx === 0 && dy === 0) {
+    return Math.hypot(point.x - start.x, point.y - start.y);
+  }
+
+  return Math.abs(dy * point.x - dx * point.y + end.x * start.y - end.y * start.x) / Math.hypot(dx, dy);
+}
+
+function simplifyProjectedPoints(points: ProjectedPoint[], tolerance: number): ProjectedPoint[] {
+  if (points.length <= 2) {
+    return points;
+  }
+
+  let maxDistance = 0;
+  let index = 0;
+
+  for (let i = 1; i < points.length - 1; i += 1) {
+    const distance = getPerpendicularDistance(points[i], points[0], points[points.length - 1]);
+    if (distance > maxDistance) {
+      index = i;
+      maxDistance = distance;
+    }
+  }
+
+  if (maxDistance <= tolerance) {
+    return [points[0], points[points.length - 1]];
+  }
+
+  const left = simplifyProjectedPoints(points.slice(0, index + 1), tolerance);
+  const right = simplifyProjectedPoints(points.slice(index), tolerance);
+  return [...left.slice(0, -1), ...right];
+}
+
+function simplifyProjectedRing(points: ProjectedPoint[], tolerance = 2.1): ProjectedPoint[] {
+  if (points.length <= 4) {
+    return points;
+  }
+
+  const openPoints = points.slice(0, -1);
+  const simplified = simplifyProjectedPoints(openPoints, tolerance);
+
+  if (simplified.length < 3) {
+    return points;
+  }
+
+  return [...simplified, simplified[0]];
+}
+
+function buildSmoothClosedPath(points: ProjectedPoint[], tension = 0.28): string {
+  if (points.length === 0) {
+    return "";
+  }
+
+  const closedPoints = points[0].x === points[points.length - 1].x && points[0].y === points[points.length - 1].y
+    ? points.slice(0, -1)
+    : points;
+
+  if (closedPoints.length < 3) {
+    return closedPoints
+      .map((point, index) => `${index === 0 ? "M" : "L"}${point.x.toFixed(1)} ${point.y.toFixed(1)}`)
+      .join(" ");
+  }
+
+  let path = `M${closedPoints[0].x.toFixed(1)} ${closedPoints[0].y.toFixed(1)}`;
+
+  for (let index = 0; index < closedPoints.length; index += 1) {
+    const previous = closedPoints[(index - 1 + closedPoints.length) % closedPoints.length];
+    const current = closedPoints[index];
+    const next = closedPoints[(index + 1) % closedPoints.length];
+    const afterNext = closedPoints[(index + 2) % closedPoints.length];
+
+    const controlPoint1 = {
+      x: current.x + ((next.x - previous.x) / 6) * tension,
+      y: current.y + ((next.y - previous.y) / 6) * tension,
+    };
+    const controlPoint2 = {
+      x: next.x - ((afterNext.x - current.x) / 6) * tension,
+      y: next.y - ((afterNext.y - current.y) / 6) * tension,
+    };
+
+    path += ` C${controlPoint1.x.toFixed(1)} ${controlPoint1.y.toFixed(1)} ${controlPoint2.x.toFixed(1)} ${controlPoint2.y.toFixed(1)} ${next.x.toFixed(1)} ${next.y.toFixed(1)}`;
+  }
+
+  return `${path} Z`;
+}
+
+function buildProjectedPostcodeBoundaryOverlay(
+  map: maplibregl.Map,
+  geojson: GeoJSON.FeatureCollection
+): PostcodeBoundaryOverlayState {
+  const canvas = map.getCanvas();
+  const width = Math.max(canvas.clientWidth || canvas.width || 0, 1);
+  const height = Math.max(canvas.clientHeight || canvas.height || 0, 1);
+  const paths: PostcodeBoundaryOverlayPath[] = [];
+  const labels: PostcodeBoundaryOverlayLabel[] = [];
+
+  geojson.features.forEach((feature, featureIndex) => {
+    const postcode = String(feature.properties?.postcode ?? feature.id ?? featureIndex + 1);
+    const polygons = getFeaturePolygons(feature.geometry);
+
+    polygons.forEach((polygon, polygonIndex) => {
+      const pathParts = polygon
+        .map((ring) => {
+          if (!ring || ring.length === 0) {
+            return "";
+          }
+
+          const projectedRing = ring.map(([lng, lat]) => {
+            const projected = map.project({ lng, lat });
+            return { x: projected.x, y: projected.y };
+          });
+
+          const simplifiedRing = simplifyProjectedRing(projectedRing);
+          return buildSmoothClosedPath(simplifiedRing);
+        })
+        .filter(Boolean);
+
+      if (pathParts.length > 0) {
+        paths.push({
+          key: `${postcode}-${polygonIndex}`,
+          d: pathParts.join(" "),
+        });
+      }
+    });
+
+    const labelCoordinate = getFeatureLabelCoordinate(feature);
+    if (labelCoordinate) {
+      const projected = map.project({ lng: labelCoordinate[0], lat: labelCoordinate[1] });
+      labels.push({
+        key: `label-${postcode}`,
+        x: projected.x,
+        y: projected.y,
+        text: postcode,
+      });
+    }
+  });
+
+  return { width, height, paths, labels };
 }
 
 function isGipodSourceWork(work: WorkRecord): boolean {
@@ -424,9 +673,17 @@ function formatInspectorRole(role?: InspectorAssignmentRole): string {
   return "toegewezen";
 }
 
+function formatContextSourceLabel(source: ContextProjectSource): string {
+  if (source === "ACTIEF") {
+    return "Actief (niet ingepland)";
+  }
+  return source;
+}
+
 export function MapPanel({
   works,
   contextWorks,
+  activeBacklogWorks,
   visits,
   selectedVisitId,
   onSelectVisit,
@@ -438,12 +695,26 @@ export function MapPanel({
   routeEnabled,
   selectedDate,
   impactProfileByPostcode,
+  showPostcodeBoundaries,
+  showDispatchLayer,
+  showGipodLayer,
+  showSignalisatieLayer,
+  showActiveBacklogLayer,
+  contextColorMode,
+  mapStyleId,
+  mapStyleOptions,
+  onChangeMapStyle,
   compactControlsEnabled = false,
   onOpenCompactMenu,
   leftInsetPx = 0,
 }: MapPanelProps) {
   const normalizedLeftInsetPx = Math.max(0, leftInsetPx);
   const centerOffsetX = normalizedLeftInsetPx > 0 ? normalizedLeftInsetPx / 2 : 0;
+
+  // Postcode boundary GeoJSON cache (fetched once, reused across style changes)
+  const postcodeBoundaryDataRef = useRef<GeoJSON.FeatureCollection | null>(null);
+
+  const mapShellRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapRef | null>(null);
   const center = useMemo(() => getCenter(visits, selectedVisitId), [selectedVisitId, visits]);
   const selectedVisit = selectedVisitId
@@ -454,11 +725,6 @@ export function MapPanel({
   // not when filter changes cause center to recalculate.
   const prevSelectedVisitIdRef = useRef<string | null | undefined>(undefined);
 
-  const [showPostcodeBoundaries, setShowPostcodeBoundaries] = useState(false);
-  const [showDispatchLayer, setShowDispatchLayer] = useState(true);
-  const [showGipodLayer, setShowGipodLayer] = useState(false);
-  const [showSignalisatieLayer, setShowSignalisatieLayer] = useState(false);
-  const [contextColorMode, setContextColorMode] = useState<ContextColorMode>("gipod-phase");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [searchLoading, setSearchLoading] = useState(false);
@@ -471,7 +737,17 @@ export function MapPanel({
   const [legendCollapsed, setLegendCollapsed] = useState(true);
   const [isVisitPopupOpen, setIsVisitPopupOpen] = useState(false);
   const [visibleBounds, setVisibleBounds] = useState<MapBounds | null>(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const [postcodeBoundaryOverlay, setPostcodeBoundaryOverlay] = useState<PostcodeBoundaryOverlayState>({
+    width: 1,
+    height: 1,
+    paths: [],
+    labels: [],
+  });
   const [selectedContextWorkId, setSelectedContextWorkId] = useState<string | null>(null);
+  const [isMapStyleMenuOpen, setIsMapStyleMenuOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const mapStyleControlRef = useRef<HTMLDivElement | null>(null);
   const searchAbortRef = useRef<AbortController | null>(null);
   const searchCacheRef = useRef<Map<string, SearchResult[]>>(new Map());
 
@@ -533,46 +809,53 @@ export function MapPanel({
   }, [selectedVisitId, visibleBounds, visits]);
 
   const contextProjects = useMemo<ContextProjectMarker[]>(() => {
-    if (!showGipodLayer && !showSignalisatieLayer) {
+    if (!showGipodLayer && !showSignalisatieLayer && !showActiveBacklogLayer) {
       return [];
     }
 
     const byWorkId = new Map<string, { work: WorkRecord; sourceSet: Set<ContextProjectSource> }>();
-
-    for (const work of contextWorks) {
-      const sourceSet = new Set<ContextProjectSource>();
-
-      if (showGipodLayer && isGipodSourceWork(work)) {
-        sourceSet.add("GIPOD");
-      }
-      if (showSignalisatieLayer && isSignalisatieSourceWork(work)) {
-        sourceSet.add("SIGNALISATIE");
-      }
-
-      if (sourceSet.size === 0) {
-        continue;
-      }
-
+    const upsertSource = (work: WorkRecord, source: ContextProjectSource) => {
       const existing = byWorkId.get(work.id);
       if (existing) {
-        sourceSet.forEach((source) => existing.sourceSet.add(source));
-        continue;
+        existing.sourceSet.add(source);
+        return;
       }
 
       byWorkId.set(work.id, {
         work,
-        sourceSet,
+        sourceSet: new Set([source]),
       });
+    };
+
+    for (const work of contextWorks) {
+      if (showGipodLayer && isGipodSourceWork(work)) {
+        upsertSource(work, "GIPOD");
+      }
+      if (showSignalisatieLayer && isSignalisatieSourceWork(work)) {
+        upsertSource(work, "SIGNALISATIE");
+      }
+    }
+
+    if (showActiveBacklogLayer) {
+      for (const work of activeBacklogWorks) {
+        upsertSource(work, "ACTIEF");
+      }
     }
 
     return [...byWorkId.values()]
       .map(({ work, sourceSet }) => {
-        const visual = getContextMarkerVisual(work, contextColorMode);
+        const isPermitExpiredViolation = isPermitExpiredViolationWork(work);
+        const visual = isPermitExpiredViolation
+          ? { color: "#dc2626", distanceLevel: 1 as const }
+          : sourceSet.has("ACTIEF")
+            ? { color: "#94a3b8", distanceLevel: 2 as const }
+            : getContextMarkerVisual(work, contextColorMode);
         return {
           work,
           sources: [...sourceSet],
           color: visual.color,
           distanceLevel: visual.distanceLevel,
+          isPermitExpiredViolation,
         };
       })
       .sort((a, b) => {
@@ -581,7 +864,14 @@ export function MapPanel({
         }
         return a.work.dossierId.localeCompare(b.work.dossierId);
       });
-  }, [contextColorMode, contextWorks, showGipodLayer, showSignalisatieLayer]);
+  }, [
+    activeBacklogWorks,
+    contextColorMode,
+    contextWorks,
+    showActiveBacklogLayer,
+    showGipodLayer,
+    showSignalisatieLayer,
+  ]);
 
   const visibleContextProjects = useMemo(() => {
     if (!visibleBounds) {
@@ -594,6 +884,23 @@ export function MapPanel({
     );
   }, [contextProjects, selectedContextWorkId, visibleBounds]);
 
+  const hasPermitExpiredViolationsVisible = useMemo(
+    () => visibleContextProjects.some((project) => project.isPermitExpiredViolation),
+    [visibleContextProjects]
+  );
+  const mapDynamicStyleText = useMemo(() => {
+    const visitRules = visibleVisits.map(
+      (visit, visitIndex) =>
+        `.map-pin[data-visit-index="${visitIndex}"] { --inspector-color: ${visit.inspectorColor}; }`
+    );
+    const contextRules = visibleContextProjects.map(
+      (project, contextIndex) =>
+        `.map-context-pin[data-context-index="${contextIndex}"] { --context-pin-color: ${project.color}; --context-pin-opacity: ${getContextPinOpacity(project)}; }`
+    );
+
+    return [...visitRules, ...contextRules].join("\n");
+  }, [visibleContextProjects, visibleVisits]);
+
   const selectedContextProject = useMemo(
     () =>
       selectedContextWorkId
@@ -601,12 +908,6 @@ export function MapPanel({
         : null,
     [contextProjects, selectedContextWorkId]
   );
-
-  const toggleContextLayers = useCallback(() => {
-    const nextEnabled = !(showGipodLayer || showSignalisatieLayer);
-    setShowGipodLayer(nextEnabled);
-    setShowSignalisatieLayer(nextEnabled);
-  }, [showGipodLayer, showSignalisatieLayer]);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -638,6 +939,12 @@ export function MapPanel({
   useEffect(() => {
     setIsVisitPopupOpen(Boolean(selectedVisitId));
   }, [selectedVisitId]);
+
+  useEffect(() => {
+    if (!showDispatchLayer) {
+      setIsVisitPopupOpen(false);
+    }
+  }, [showDispatchLayer]);
 
   useEffect(() => {
     if (selectedVisitId) {
@@ -913,8 +1220,177 @@ export function MapPanel({
     }
   };
 
+  const activeMapStyleLabel = useMemo(
+    () => mapStyleOptions.find((option) => option.id === mapStyleId)?.label ?? "Basemap",
+    [mapStyleId, mapStyleOptions]
+  );
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (typeof document === "undefined") {
+        return;
+      }
+      setIsFullscreen(document.fullscreenElement === mapShellRef.current);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    handleFullscreenChange();
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isMapStyleMenuOpen) {
+      return;
+    }
+
+    const handlePointerOutside = (event: MouseEvent | TouchEvent) => {
+      const target = event.target;
+      if (!(target instanceof Node)) {
+        return;
+      }
+
+      if (!mapStyleControlRef.current?.contains(target)) {
+        setIsMapStyleMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerOutside);
+    document.addEventListener("touchstart", handlePointerOutside, { passive: true });
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerOutside);
+      document.removeEventListener("touchstart", handlePointerOutside);
+    };
+  }, [isMapStyleMenuOpen]);
+
+  const handleMapStyleChange = (nextStyleId: string) => {
+    onChangeMapStyle?.(nextStyleId);
+    setIsMapStyleMenuOpen(false);
+  };
+
+  const handleZoomIn = () => {
+    const map = mapRef.current?.getMap();
+    if (!map) {
+      return;
+    }
+    map.zoomIn({ duration: 180 });
+  };
+
+  const handleZoomOut = () => {
+    const map = mapRef.current?.getMap();
+    if (!map) {
+      return;
+    }
+    map.zoomOut({ duration: 180 });
+  };
+
+  const clearPostcodeBoundaryOverlay = useCallback(() => {
+    setPostcodeBoundaryOverlay((current) => {
+      if (current.paths.length === 0 && current.labels.length === 0) {
+        return current;
+      }
+      return { width: 1, height: 1, paths: [], labels: [] };
+    });
+  }, []);
+
+  const syncPostcodeBoundaryOverlay = useCallback(() => {
+    const map = mapRef.current?.getMap();
+    const geojson = postcodeBoundaryDataRef.current;
+
+    if (!showPostcodeBoundaries || !map || !geojson) {
+      clearPostcodeBoundaryOverlay();
+      return;
+    }
+
+    try {
+      setPostcodeBoundaryOverlay(buildProjectedPostcodeBoundaryOverlay(map, geojson));
+    } catch (error) {
+      console.warn("Postcode boundary overlay projecteren mislukt:", error);
+    }
+  }, [clearPostcodeBoundaryOverlay, showPostcodeBoundaries]);
+
+  useEffect(() => {
+    if (!mapLoaded) {
+      return;
+    }
+
+    const map = mapRef.current?.getMap();
+    if (!map) {
+      return;
+    }
+
+    let cancelled = false;
+
+    const ensureBoundaryData = async () => {
+      if (postcodeBoundaryDataRef.current) {
+        syncPostcodeBoundaryOverlay();
+        return;
+      }
+
+      try {
+        const response = await fetch(resolveAppAbsoluteUrl(POSTCODE_BOUNDARY_SOURCE_PATH));
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        const geojson = (await response.json()) as GeoJSON.FeatureCollection;
+        if (cancelled) {
+          return;
+        }
+        postcodeBoundaryDataRef.current = geojson;
+        syncPostcodeBoundaryOverlay();
+      } catch (error) {
+        console.warn("Postcode boundaries laden mislukt:", error);
+      }
+    };
+
+    const handleMapRedraw = () => {
+      if (!cancelled) {
+        syncPostcodeBoundaryOverlay();
+      }
+    };
+
+    void ensureBoundaryData();
+
+    map.on("move", handleMapRedraw);
+    map.on("rotate", handleMapRedraw);
+    map.on("pitch", handleMapRedraw);
+    map.on("resize", handleMapRedraw);
+    map.on("idle", handleMapRedraw);
+
+    return () => {
+      cancelled = true;
+      map.off("move", handleMapRedraw);
+      map.off("rotate", handleMapRedraw);
+      map.off("pitch", handleMapRedraw);
+      map.off("resize", handleMapRedraw);
+      map.off("idle", handleMapRedraw);
+    };
+  }, [mapLoaded, mapStyleUrl, syncPostcodeBoundaryOverlay]);
+
+  useEffect(() => {
+    syncPostcodeBoundaryOverlay();
+  }, [showPostcodeBoundaries, syncPostcodeBoundaryOverlay]);
+  // ── End postcode boundary overlay ───────────────────────────────────
+
+  const handleToggleFullscreen = async () => {
+    if (typeof document === "undefined") {
+      return;
+    }
+
+    if (document.fullscreenElement === mapShellRef.current) {
+      await document.exitFullscreen().catch(() => undefined);
+      return;
+    }
+
+    await mapShellRef.current?.requestFullscreen?.().catch(() => undefined);
+  };
+
   return (
-    <div className="map-shell">
+    <div ref={mapShellRef} className="map-shell">
+      <style>{mapDynamicStyleText}</style>
       <div className="dispatch-map">
         <MapView
           ref={mapRef}
@@ -925,10 +1401,100 @@ export function MapPanel({
           dragRotate={true}
           touchZoomRotate={true}
           touchPitch={false}
-          onLoad={() => syncVisibleBounds()}
+          onLoad={() => { syncVisibleBounds(); setMapLoaded(true); }}
           onMoveEnd={() => syncVisibleBounds()}
         >
-          <NavigationControl position="top-right" visualizePitch={false} />
+          {showPostcodeBoundaries && postcodeBoundaryOverlay.paths.length > 0 ? (
+            <svg
+              className="postcode-boundary-overlay"
+              width={postcodeBoundaryOverlay.width}
+              height={postcodeBoundaryOverlay.height}
+              viewBox={`0 0 ${postcodeBoundaryOverlay.width} ${postcodeBoundaryOverlay.height}`}
+              aria-hidden="true"
+            >
+              {postcodeBoundaryOverlay.paths.map((path) => (
+                <path
+                  key={`line-${path.key}`}
+                  d={path.d}
+                  className="postcode-boundary-overlay-line"
+                  fill="none"
+                />
+              ))}
+              {postcodeBoundaryOverlay.labels.map((label) => (
+                <g key={label.key} transform={`translate(${label.x}, ${label.y})`}>
+                  <text className="postcode-boundary-overlay-label postcode-boundary-overlay-label-halo">
+                    {label.text}
+                  </text>
+                  <text className="postcode-boundary-overlay-label postcode-boundary-overlay-label-text">
+                    {label.text}
+                  </text>
+                </g>
+              ))}
+            </svg>
+          ) : null}
+
+          <div ref={mapStyleControlRef} className="map-control-stack">
+            <button
+              type="button"
+              className="map-control-btn"
+              title={isFullscreen ? "Volledig scherm sluiten" : "Volledig scherm"}
+              aria-label={isFullscreen ? "Volledig scherm sluiten" : "Volledig scherm"}
+              onClick={() => {
+                void handleToggleFullscreen();
+              }}
+            >
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M6 2H2v4M10 2h4v4M2 10v4h4M14 10v4h-4" />
+              </svg>
+            </button>
+              {mapStyleOptions.length > 0 ? (
+                <div className={`map-style-control ${isMapStyleMenuOpen ? "open" : ""}`}>
+                  <button
+                    type="button"
+                    className="map-control-btn map-style-toggle-btn"
+                    title={`Lagen: ${activeMapStyleLabel}`}
+                    aria-controls="map-style-popout-menu"
+                    aria-haspopup="menu"
+                    aria-label={`Lagen. Basemap: ${activeMapStyleLabel}. Kies andere stijl.`}
+                    onClick={() => setIsMapStyleMenuOpen((previous) => !previous)}
+                  >
+                  <svg viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="m2.5 6 5.5-3 5.5 3-5.5 3-5.5-3Z" />
+                    <path d="m2.5 9.5 5.5 3 5.5-3" />
+                  </svg>
+                </button>
+                  <div
+                    id="map-style-popout-menu"
+                    className="map-style-popout"
+                    role="menu"
+                    aria-label="Basemap keuze"
+                    hidden={!isMapStyleMenuOpen}
+                  >
+                    <p className="map-style-popout-title">Basemap</p>
+                  {mapStyleOptions.map((option) => (
+                    <button
+                      key={option.id}
+                      type="button"
+                      role="menuitemradio"
+                      aria-checked={mapStyleId === option.id}
+                      className={`map-style-option-btn ${mapStyleId === option.id ? "active" : ""}`}
+                      onClick={() => handleMapStyleChange(option.id)}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+            <div className="map-zoom-control-group" role="group" aria-label="Zoom">
+              <button type="button" className="map-control-btn map-zoom-btn" onClick={handleZoomIn}>
+                +
+              </button>
+              <button type="button" className="map-control-btn map-zoom-btn" onClick={handleZoomOut}>
+                -
+              </button>
+            </div>
+          </div>
 
           <div className="map-top-overlays">
             <div className="map-overlay-stack">
@@ -973,6 +1539,8 @@ export function MapPanel({
                     type="button"
                     className="map-btn map-quick-btn"
                     onClick={() => setLegendCollapsed((previous) => !previous)}
+                    aria-controls="map-legend-content"
+                    aria-label={legendCollapsed ? "Open legenda" : "Sluit legenda"}
                   >
                     {legendCollapsed ? "Legende" : "Legende dicht"}
                   </button>
@@ -988,14 +1556,15 @@ export function MapPanel({
                         type="button"
                         className="map-overlay-toggle"
                         onClick={() => setLegendCollapsed((previous) => !previous)}
-                        aria-expanded={!legendCollapsed}
+                        aria-controls="map-legend-content"
+                        aria-label={legendCollapsed ? "Open legenda" : "Klap legenda in"}
                       >
                         {legendCollapsed ? "Open" : "Inklap"}
                       </button>
                     ) : null}
                   </div>
 
-                  {!legendCollapsed ? (
+                  <div id="map-legend-content" hidden={legendCollapsed}>
                     <>
                       <p className="map-overlay-line">
                         <span className="layer-dot mandatory" /> Verplicht (start/einde)
@@ -1007,8 +1576,13 @@ export function MapPanel({
                         <span className="layer-dot selected" /> Geselecteerde werf
                       </p>
                       <p className="map-overlay-line">
-                        <span className="layer-dot context-dark" /> Niet-toegewezen projectpin
+                        <span className="layer-dot context-dark" /> Contextpin (niet-toegewezen)
                       </p>
+                      {showActiveBacklogLayer ? (
+                        <p className="map-overlay-line">
+                          <span className="layer-dot context-light" /> Grijs = actief, niet ingepland
+                        </p>
+                      ) : null}
                       {routeEnabled ? (
                         <>
                           <p className="map-overlay-title map-overlay-subtitle">Nummers in bolletjes</p>
@@ -1029,75 +1603,27 @@ export function MapPanel({
                           </p>
                         </>
                       ) : null}
-                      <label className="map-layer-toggle">
-                        <input
-                          type="checkbox"
-                          checked={showPostcodeBoundaries}
-                          onChange={(event) => setShowPostcodeBoundaries(event.target.checked)}
-                        />
-                        Postcoderanden
-                      </label>
-                      <p className="map-overlay-title map-overlay-subtitle">Kaartlagen</p>
-                      <button type="button" className="map-btn" onClick={toggleContextLayers}>
-                        {showGipodLayer || showSignalisatieLayer
-                          ? "Verberg niet-toegewezen projecten"
-                          : "Toon niet-toegewezen projecten"}
-                      </button>
-                      <label className="map-layer-toggle">
-                        <input
-                          type="checkbox"
-                          checked={showDispatchLayer}
-                          onChange={(event) => {
-                            setShowDispatchLayer(event.target.checked);
-                            if (!event.target.checked) {
-                              setIsVisitPopupOpen(false);
-                            }
-                          }}
-                        />
-                        DISPATCH
-                      </label>
-                      <label className="map-layer-toggle">
-                        <input
-                          type="checkbox"
-                          checked={showGipodLayer}
-                          onChange={(event) => setShowGipodLayer(event.target.checked)}
-                        />
-                        GIPOD
-                      </label>
-                      <label className="map-layer-toggle">
-                        <input
-                          type="checkbox"
-                          checked={showSignalisatieLayer}
-                          onChange={(event) => setShowSignalisatieLayer(event.target.checked)}
-                        />
-                        SIGNALISATIE
-                      </label>
                       {showGipodLayer || showSignalisatieLayer ? (
                         <>
-                          <label className="map-layer-toggle map-layer-mode-select">
-                            Kleurcode
-                            <select
-                              value={contextColorMode}
-                              onChange={(event) =>
-                                setContextColorMode(event.target.value as ContextColorMode)
-                              }
-                            >
-                              <option value="gipod-phase">GIPOD fase</option>
-                              <option value="permit-status">Vergunningsstatus</option>
-                            </select>
-                          </label>
                           <p className="map-overlay-line">
                             <span className="layer-dot context-dark" /> Donker = dicht bij uitvoering
                           </p>
                           <p className="map-overlay-line">
                             <span className="layer-dot context-light" /> Licht = verder van uitvoering
                           </p>
+                          {hasPermitExpiredViolationsVisible ? (
+                            <p className="map-overlay-line">
+                              <span className="layer-dot permit-expired" /> Overtreding: vergunning
+                              afgelopen
+                            </p>
+                          ) : null}
                         </>
                       ) : null}
                     </>
-                  ) : (
+                  </div>
+                  {legendCollapsed ? (
                     <p className="map-overlay-line map-overlay-collapsed-note">Legenda ingeklapt</p>
-                  )}
+                  ) : null}
                 </div>
               ) : null}
             </div>
@@ -1109,8 +1635,8 @@ export function MapPanel({
                 ? `${visibleVisits.length}/${visits.length} dispatchpunten in kaartbeeld`
                 : "Dispatchlaag uitgeschakeld"}
             </p>
-            {showGipodLayer || showSignalisatieLayer ? (
-              <p>{visibleContextProjects.length}/{contextProjects.length} niet-toegewezen projecten</p>
+            {showGipodLayer || showSignalisatieLayer || showActiveBacklogLayer ? (
+              <p>{visibleContextProjects.length}/{contextProjects.length} contextpunten</p>
             ) : null}
             {!compactControlsEnabled ? (
               <button type="button" className="map-btn" onClick={handleCenterMap}>
@@ -1118,28 +1644,6 @@ export function MapPanel({
               </button>
             ) : null}
           </div>
-
-          {showPostcodeBoundaries ? (
-            <Source id="postcode-boundaries" type="geojson" data={POSTCODE_BOUNDARY_SOURCE_URL}>
-              <Layer
-                id="postcode-boundary-fill"
-                type="fill"
-                paint={{
-                  "fill-color": "#2563eb",
-                  "fill-opacity": 0.08,
-                }}
-              />
-              <Layer
-                id="postcode-boundary-line"
-                type="line"
-                paint={{
-                  "line-color": "#1d4ed8",
-                  "line-width": 1.5,
-                  "line-opacity": 0.64,
-                }}
-              />
-            </Source>
-          ) : null}
 
           {routeEnabled && showDispatchLayer
             ? Object.entries(routesByInspector).map(([inspectorId, routeVisits]) => {
@@ -1181,11 +1685,15 @@ export function MapPanel({
             : null}
 
           {showDispatchLayer
-            ? visibleVisits.map((visit) => {
+            ? visibleVisits.map((visit, visitIndex) => {
                 const isSelected = visit.id === selectedVisitId;
                 const mandatoryClass = visit.mandatory ? "mandatory" : "cadence";
                 const statusClass =
-                  visit.work.status === "VERGUND" ? "status-vergund" : "status-effect";
+                  visit.work.status === "VERGUND"
+                    ? "status-vergund"
+                    : visit.work.status === "VERGUNNING VERLOPEN"
+                      ? "status-verlopen"
+                      : "status-effect";
                 const locationClass =
                   visit.work.locationSource === "exact" ? "loc-exact" : "loc-approx";
                 const order = routeOrderByVisitId[visit.id];
@@ -1202,9 +1710,9 @@ export function MapPanel({
                       className={`map-pin ${mandatoryClass} ${statusClass} ${locationClass} ${
                         isSelected ? "selected" : ""
                       }`}
+                      data-visit-index={visitIndex}
                       onClick={() => handleVisitPinClick(visit.id)}
                       title={`${visit.work.dossierId} - ${visit.inspectorName}`}
-                      style={{ "--inspector-color": visit.inspectorColor } as CSSProperties}
                     >
                       <span>{routeEnabled && order ? order : visit.inspectorInitials}</span>
                     </button>
@@ -1213,31 +1721,33 @@ export function MapPanel({
               })
             : null}
 
-          {visibleContextProjects.map((project) => {
+          {visibleContextProjects.map((project, contextIndex) => {
             const isSelected = project.work.id === selectedContextWorkId;
-            const contextPinOpacity =
-              project.distanceLevel === 0 ? 1 : project.distanceLevel === 1 ? 0.8 : 0.62;
+            const isActiveBacklog =
+              project.sources.includes("ACTIEF") && !project.isPermitExpiredViolation;
+            const markerAnchor =
+              isActiveBacklog || project.isPermitExpiredViolation ? "center" : "bottom";
+            const markerTitlePrefix = project.isPermitExpiredViolation
+              ? "Overtreding (vergunning afgelopen)"
+              : project.sources.join(" + ");
 
             return (
               <Marker
                 key={`context-${project.work.id}`}
                 longitude={project.work.location.lng}
                 latitude={project.work.location.lat}
-                anchor="bottom"
+                anchor={markerAnchor}
               >
                 <button
                   type="button"
                   className={`map-context-pin distance-${project.distanceLevel} ${
                     project.sources.length > 1 ? "multi-source" : ""
+                  } ${project.isPermitExpiredViolation ? "permit-expired-violation" : ""} ${
+                    isActiveBacklog ? "active-backlog" : ""
                   } ${isSelected ? "selected" : ""}`}
+                  data-context-index={contextIndex}
                   onClick={() => handleContextPinClick(project.work.id)}
-                  style={
-                    {
-                      "--context-pin-color": project.color,
-                      "--context-pin-opacity": String(contextPinOpacity),
-                    } as CSSProperties
-                  }
-                  title={`${project.work.straat} ${project.work.huisnr}, ${project.work.postcode} - ${project.sources.join(" + ")}`}
+                  title={`${project.work.straat} ${project.work.huisnr}, ${project.work.postcode} - ${markerTitlePrefix}`}
                 >
                   <span />
                 </button>
@@ -1308,11 +1818,13 @@ export function MapPanel({
                     <span>{formatNlDate(selectedVisit.work.endDate)}</span>
                   </div>
                   <div className="timeline-track">
-                    <div
-                      className={`timeline-progress ${
+                    <progress
+                      className={`timeline-progress-bar ${
                         decision.daysToEnd <= 3 ? "timeline-risk" : "timeline-normal"
                       }`}
-                      style={{ width: `${decision.progressPct}%` }}
+                      value={decision.progressPct}
+                      max={100}
+                      aria-label={`Voortgang tot einddatum: ${Math.round(decision.progressPct)} procent`}
                     />
                   </div>
                 </section>
@@ -1394,7 +1906,11 @@ export function MapPanel({
                   <div className="popup-action-row">
                     <button
                       type="button"
-                      className="secondary-btn"
+                      className={
+                        selectedVisitHasVaststelling
+                          ? "secondary-btn"
+                          : "ghost-btn"
+                      }
                       onClick={() =>
                         onOpenVaststellingFromPopup(selectedVisit.id, "existing")
                       }
@@ -1404,7 +1920,11 @@ export function MapPanel({
                     </button>
                     <button
                       type="button"
-                      className="ghost-btn"
+                      className={
+                        selectedVisitHasVaststelling
+                          ? "ghost-btn"
+                          : "secondary-btn"
+                      }
                       onClick={() =>
                         onOpenVaststellingFromPopup(selectedVisit.id, "new")
                       }
@@ -1435,21 +1955,32 @@ export function MapPanel({
               maxWidth="340px"
             >
               <div className="context-project-popup">
-                <p className="zone-title">Niet-toegewezen project</p>
+                <p className="zone-title">
+                  {selectedContextProject.sources.includes("ACTIEF")
+                    ? "Actief dossier (niet ingepland vandaag)"
+                    : "Niet-toegewezen project"}
+                </p>
                 <p className="context-project-title">
                   {selectedContextProject.work.straat} {selectedContextProject.work.huisnr},{" "}
                   {selectedContextProject.work.postcode} {selectedContextProject.work.district}
                 </p>
                 <div className="context-tags">
                   {selectedContextProject.sources.map((source) => (
-                    <span key={`${selectedContextProject.work.id}-${source}`}>{source}</span>
+                    <span key={`${selectedContextProject.work.id}-${source}`}>
+                      {formatContextSourceLabel(source)}
+                    </span>
                   ))}
-                  <span>
-                    Kleur op{" "}
-                    {contextColorMode === "gipod-phase"
-                      ? "GIPOD fase"
-                      : "Vergunningsstatus"}
-                  </span>
+                  {selectedContextProject.isPermitExpiredViolation ? (
+                    <span>Overtreding: vergunning afgelopen</span>
+                  ) : null}
+                  {!selectedContextProject.sources.includes("ACTIEF") ? (
+                    <span>
+                      Kleur op{" "}
+                      {contextColorMode === "gipod-phase"
+                        ? "GIPOD fase"
+                        : "Vergunningsstatus"}
+                    </span>
+                  ) : null}
                 </div>
                 <p>
                   GIPOD fase: {selectedContextProject.work.sourceStatus || "-"}
@@ -1458,6 +1989,14 @@ export function MapPanel({
                   Vergunningstatus:{" "}
                   {selectedContextProject.work.permitStatus || UNKNOWN_PERMIT_STATUS_LABEL}
                 </p>
+                {selectedContextProject.work.permitDossierStatus ? (
+                  <p>Dossierstatus actueel: {selectedContextProject.work.permitDossierStatus}</p>
+                ) : null}
+                {selectedContextProject.isPermitExpiredViolation ? (
+                  <p className="warning-inline">
+                    Vergunning afgelopen: zichtbaar op terrein geldt als overtreding.
+                  </p>
+                ) : null}
                 <div className="context-project-links">
                   {buildGipodUrl(selectedContextProject.work.gipodId) ? (
                     <a

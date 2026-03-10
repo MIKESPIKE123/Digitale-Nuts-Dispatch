@@ -1,6 +1,6 @@
 # DN Vaststelling - Full Adoption Status
 
-Datum: 2026-02-15
+Datum: 2026-03-06
 
 ## Opgeleverd in deze iteratie
 - Verplichte actieve toezichter-sessie op app-niveau:
@@ -20,6 +20,16 @@ Datum: 2026-02-15
   - lokale wachtrij met deduplicatie per inspectie;
   - endpoint-instellingen + auto-sync on online + timeout;
   - sync-uitkomst teruggekoppeld naar recordstatus.
+- Foto-evidenceflow is live:
+  - camera/file picker als primaire invoer;
+  - opslagoptimalisatie en quota-hardening;
+  - PDF-export met ingesloten foto's.
+- Start vanuit kaartpopup is live:
+  - `Open bestaand verslag`;
+  - `Nieuw verslag`.
+- Data-ontsluiting is uitgebreid:
+  - repositorylaag met IndexedDB default en localStorage fallback;
+  - sync-contract met `inspectionId`, `idempotencyKey` en statusmapping.
 
 ## Nieuwe/gewijzigde bestanden
 - `src/App.tsx`
@@ -33,7 +43,7 @@ Datum: 2026-02-15
 - `src/modules/vaststelling/validation.test.ts`
 
 ## Restpunten voor volgende fase
-- Integratie van foto-evidenceflow uit legacy app (incl. limieten/compressie).
-- Verrijking met GPS-capture en reverse geocoding in dezelfde module.
+- Verdere verrijking met GPS-capture en reverse geocoding in dezelfde module.
 - Optionele SSO/Entra-authenticatie in plaats van lokale sessie.
-- Dispatcher-kaarten uitbreiden met zichtbare vaststellingsstatus per actiekaart.
+- Centrale media-opslag/backend upload na sync.
+- Nog fijnere zichtbaarheid van vaststellingsstatus in dispatch-overzichten.

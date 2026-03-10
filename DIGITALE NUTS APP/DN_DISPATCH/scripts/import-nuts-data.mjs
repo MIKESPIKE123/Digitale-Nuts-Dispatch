@@ -7,8 +7,21 @@ const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, "DATA");
 const EXPORT_FILE_PATTERN = /^export_\d+.*\.xlsx$/i;
 const EXPORT_SHEET_NAME = "resultaten";
-const WEEKRAPPORT_FILE = path.join(DATA_DIR, "Weekrapport Nutswerken totaallijst.xlsx");
+const WEEKRAPPORT_DN_DISPATCH_PATTERN =
+  /^weekrapport[_\s-]?nutswerken[_\s-]?dn[_\s-]?dispatch.*\.xlsx$/i;
+const WEEKRAPPORT_LEGACY_FILE = path.join(DATA_DIR, "Weekrapport Nutswerken totaallijst.xlsx");
 const WEEKRAPPORT_SHEET_NAME = "Totaallijst";
+const WEEKRAPPORT_REQUIRED_HEADERS = [
+  "BONU-Nummer",
+  "ReferentieID",
+  "Gipod ID",
+  "Startdatum werken",
+  "Einddatum werken",
+  "Straat",
+  "Postcode",
+  "Dossierstatus (actueel)",
+  "Werftype",
+];
 const OUTPUT_FILE = path.join(ROOT, "src", "data", "works.generated.json");
 const OUTPUT_PUBLIC_FILE = path.join(ROOT, "public", "data", "works.generated.json");
 const OUTPUT_CSV_FILE = path.join(DATA_DIR, "dispatch_nuts_works.csv");
@@ -250,6 +263,11 @@ function normalizeSourceStatus(value) {
 }
 
 function mapSourceStatusToDispatchStatus(sourceStatus) {
+  const raw = normalize(sourceStatus).toLowerCase();
+  if (raw.includes("vergunning afgelopen") || raw.includes("vergunning verlopen")) {
+    return "VERGUNNING VERLOPEN";
+  }
+
   const cleaned = normalizeSourceStatus(sourceStatus);
   if (cleaned === "In uitvoering" || cleaned === "Uitgevoerd") {
     return "IN EFFECT";
@@ -382,7 +400,110 @@ function pickLatestExportFile() {
   return candidates[0];
 }
 
-function loadWorkbookRows(inputFile, sheetName) {
+function pickLatestWeekrapportDispatchFile() {
+  if (!fs.existsSync(DATA_DIR)) {
+    return null;
+  }
+
+  const entries = fs.readdirSync(DATA_DIR, { withFileTypes: true });
+  const candidates = entries
+    .filter((entry) => entry.isFile() && WEEKRAPPORT_DN_DISPATCH_PATTERN.test(entry.name))
+    .map((entry) => {
+      const fullPath = path.join(DATA_DIR, entry.name);
+      const stat = fs.statSync(fullPath);
+      return {
+        name: entry.name,
+        fullPath,
+        modifiedAt: stat.mtimeMs,
+      };
+    });
+
+  if (candidates.length === 0) {
+    return null;
+  }
+
+  candidates.sort((a, b) => b.modifiedAt - a.modifiedAt);
+  return candidates[0];
+}
+
+function resolveWeekrapportSource() {
+  const latestDispatchWeekrapport = pickLatestWeekrapportDispatchFile();
+  if (latestDispatchWeekrapport) {
+    return latestDispatchWeekrapport;
+  }
+
+  if (fs.existsSync(WEEKRAPPORT_LEGACY_FILE)) {
+    return {
+      name: path.basename(WEEKRAPPORT_LEGACY_FILE),
+      fullPath: WEEKRAPPORT_LEGACY_FILE,
+      modifiedAt: fs.statSync(WEEKRAPPORT_LEGACY_FILE).mtimeMs,
+    };
+  }
+
+  return null;
+}
+
+function normalizeHeaderLabel(value) {
+  return normalize(value)
+    .toLowerCase()
+    .replace(/[_\-./]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getRowValue(row, ...headers) {
+  if (!row || typeof row !== "object") {
+    return "";
+  }
+
+  for (const header of headers) {
+    if (Object.prototype.hasOwnProperty.call(row, header)) {
+      return row[header];
+    }
+  }
+
+  const normalizedRowKeys = new Map(
+    Object.keys(row).map((key) => [normalizeHeaderLabel(key), key])
+  );
+
+  for (const header of headers) {
+    const matchedKey = normalizedRowKeys.get(normalizeHeaderLabel(header));
+    if (matchedKey !== undefined) {
+      return row[matchedKey];
+    }
+  }
+
+  return "";
+}
+
+function detectHeaderRowIndex(sheet, requiredHeaders) {
+  if (!Array.isArray(requiredHeaders) || requiredHeaders.length === 0) {
+    return 0;
+  }
+
+  const required = requiredHeaders.map((header) => normalizeHeaderLabel(header)).filter(Boolean);
+  if (required.length === 0) {
+    return 0;
+  }
+
+  const matrix = XLSX.utils.sheet_to_json(sheet, {
+    header: 1,
+    defval: "",
+  });
+  const maxRowsToScan = Math.min(matrix.length, 30);
+
+  for (let rowIndex = 0; rowIndex < maxRowsToScan; rowIndex += 1) {
+    const row = Array.isArray(matrix[rowIndex]) ? matrix[rowIndex] : [];
+    const rowLabels = new Set(row.map((cell) => normalizeHeaderLabel(cell)).filter(Boolean));
+    if (required.every((header) => rowLabels.has(header))) {
+      return rowIndex;
+    }
+  }
+
+  return 0;
+}
+
+function loadWorkbookRows(inputFile, sheetName, options = {}) {
   const workbook = XLSX.readFile(inputFile, {
     raw: true,
     cellDates: false,
@@ -395,8 +516,11 @@ function loadWorkbookRows(inputFile, sheetName) {
     throw new Error(`Worksheet '${sheetName}' not found in ${inputFile}`);
   }
 
+  const headerRowIndex = detectHeaderRowIndex(sheet, options.requiredHeaders ?? []);
+
   return XLSX.utils.sheet_to_json(sheet, {
     defval: "",
+    range: headerRowIndex,
   });
 }
 
@@ -585,6 +709,10 @@ function mapWeekrapportStatusToPermitStatus(statusText) {
     return null;
   }
 
+  if (cleaned.includes("vergunning afgelopen") || cleaned.includes("vergunning verlopen")) {
+    return "GEWEIGERD_OF_STOPGEZET";
+  }
+
   if (cleaned.includes("vergund")) {
     return "AFGELEVERD";
   }
@@ -606,32 +734,60 @@ function mapWeekrapportStatusToPermitStatus(statusText) {
   return null;
 }
 
-function buildWeekrapportPermitIndex() {
-  if (!fs.existsSync(WEEKRAPPORT_FILE)) {
+function matchesBonuSelectionFilter(value) {
+  const bonu = normalize(value).toUpperCase();
+  if (!bonu) {
+    return false;
+  }
+
+  const included =
+    bonu.includes("BONU") ||
+    bonu.includes("2024") ||
+    bonu.includes("2025") ||
+    bonu.includes("2026");
+  if (!included) {
+    return false;
+  }
+
+  if (bonu.includes("SWPR") || bonu.includes("SWOU")) {
+    return false;
+  }
+
+  return true;
+}
+
+function buildWeekrapportPermitIndex(weekrapportFile) {
+  if (!weekrapportFile || !fs.existsSync(weekrapportFile)) {
     return new Map();
   }
 
-  const rows = loadWorkbookRows(WEEKRAPPORT_FILE, WEEKRAPPORT_SHEET_NAME);
+  const rows = loadWorkbookRows(weekrapportFile, WEEKRAPPORT_SHEET_NAME, {
+    requiredHeaders: WEEKRAPPORT_REQUIRED_HEADERS,
+  });
   const index = new Map();
 
   for (const row of rows) {
-    const gipodId = normalizeDigits(row["Gipod ID"]);
+    const gipodId = normalizeDigits(getRowValue(row, "Gipod ID"));
     if (!gipodId) {
+      continue;
+    }
+    const bonuNummer = normalize(getRowValue(row, "BONU-Nummer"));
+    if (!matchesBonuSelectionFilter(bonuNummer)) {
       continue;
     }
 
     const next = {
       gipodId,
-      dossierStatus: normalizeWeekrapportStatus(row["Dossierstatus (actueel)"]),
-      bonuNummer: normalize(row["BONU-Nummer"]),
-      referentieId: normalize(row["ReferentieID"]),
-      refKey: normalize(row["Ref-key"]),
-      statusDateIso: toIsoDate(row["Datum status"]),
-      nutsBedrijf: canonicalizeNutsBedrijf(row["NUTS-bedrijf"]),
-      straat: normalize(row["Straat"]),
-      huisnr: normalizeHouseNumber(row["Huisnr"]),
-      postcode: normalize(row["Postcode"]),
-      district: normalize(row["District"]),
+      dossierStatus: normalizeWeekrapportStatus(getRowValue(row, "Dossierstatus (actueel)")),
+      bonuNummer,
+      referentieId: normalize(getRowValue(row, "ReferentieID")),
+      refKey: normalize(getRowValue(row, "Ref-key")),
+      statusDateIso: toIsoDate(getRowValue(row, "Datum status")),
+      nutsBedrijf: canonicalizeNutsBedrijf(getRowValue(row, "NUTS-bedrijf")),
+      straat: normalize(getRowValue(row, "Straat")),
+      huisnr: normalizeHouseNumber(getRowValue(row, "Huisnr")),
+      postcode: normalize(getRowValue(row, "Postcode")),
+      district: normalize(getRowValue(row, "District")),
     };
 
     const previous = index.get(gipodId);
@@ -797,32 +953,29 @@ function buildWorkFromExportRow(row, index, permitIndex) {
 }
 
 function isNutsDossier(value) {
-  const id = normalize(value).toUpperCase();
-
-  if (!id) {
-    return false;
-  }
-
-  if (id.startsWith("SWPR") || id.startsWith("SWOU") || id.startsWith("DL")) {
-    return false;
-  }
-
-  if (id.startsWith("BONU")) {
-    return true;
-  }
-
-  return id.includes("2025") || id.includes("2026") || id.includes("2027");
+  return matchesBonuSelectionFilter(value);
 }
 
-function normalizeLegacyStatus(value) {
-  const status = normalize(value).toUpperCase();
-
-  if (status === "VERGUND") {
-    return "VERGUND";
+function mapWeekrapportStatusToDispatchStatus(value) {
+  const cleaned = normalize(value).toLowerCase();
+  if (!cleaned) {
+    return null;
   }
 
-  if (status === "IN EFFECT") {
+  if (cleaned.includes("vergunning afgelopen") || cleaned.includes("vergunning verlopen")) {
+    return "VERGUNNING VERLOPEN";
+  }
+
+  if (
+    cleaned.includes("in effect") ||
+    cleaned.includes("in uitvoering") ||
+    cleaned.includes("lopende")
+  ) {
     return "IN EFFECT";
+  }
+
+  if (cleaned.includes("vergund")) {
+    return "VERGUND";
   }
 
   return null;
@@ -1378,27 +1531,27 @@ async function runLocationQa(records, { skipGeocode }) {
 }
 
 function buildWorkFromWeekrapportRow(row, index) {
-  const bonu = normalize(row["BONU-Nummer"]);
-  const refId = normalize(row["ReferentieID"]);
-  const gipodId = normalizeDigits(row["Gipod ID"]);
+  const bonu = normalize(getRowValue(row, "BONU-Nummer"));
+  const refId = normalize(getRowValue(row, "ReferentieID"));
+  const gipodId = normalizeDigits(getRowValue(row, "Gipod ID"));
   const dossierId = bonu && bonu.toUpperCase() !== "NIET VAN TOEPASSING" ? bonu : refId;
 
-  if (!isNutsDossier(dossierId)) {
+  if (!isNutsDossier(bonu)) {
     return null;
   }
 
-  const werftype = normalize(row["Werftype"]);
+  const werftype = normalize(getRowValue(row, "Werftype"));
   if (!isAllowedWerftype(werftype)) {
     return null;
   }
 
-  const status = normalizeLegacyStatus(row["Dossierstatus (actueel)"]);
+  const status = mapWeekrapportStatusToDispatchStatus(getRowValue(row, "Dossierstatus (actueel)"));
   if (!status) {
     return null;
   }
 
-  const startDate = toIsoDate(row["Startdatum werken"]);
-  const endDate = toIsoDate(row["Einddatum werken"]);
+  const startDate = toIsoDate(getRowValue(row, "Startdatum werken"));
+  const endDate = toIsoDate(getRowValue(row, "Einddatum werken"));
   if (!startDate || !endDate) {
     return null;
   }
@@ -1407,7 +1560,9 @@ function buildWorkFromWeekrapportRow(row, index) {
     return null;
   }
 
-  const permitStatus = mapWeekrapportStatusToPermitStatus(row["Dossierstatus (actueel)"]);
+  const permitStatus = mapWeekrapportStatusToPermitStatus(
+    getRowValue(row, "Dossierstatus (actueel)")
+  );
 
   return {
     id: `${dossierId}-${index + 1}`,
@@ -1418,16 +1573,16 @@ function buildWorkFromWeekrapportRow(row, index) {
     gipodReferentie: refId,
     werftype,
     status,
-    sourceStatus: normalizeWeekrapportStatus(row["Dossierstatus (actueel)"]) || status,
+    sourceStatus: normalizeWeekrapportStatus(getRowValue(row, "Dossierstatus (actueel)")) || status,
     startDate,
     endDate,
-    postcode: normalize(row["Postcode"]),
-    district: normalize(row["District"]),
-    straat: normalize(row["Straat"]),
-    huisnr: normalize(row["Huisnr"]),
-    nutsBedrijf: canonicalizeNutsBedrijf(row["NUTS-bedrijf"]),
+    postcode: normalize(getRowValue(row, "Postcode")),
+    district: normalize(getRowValue(row, "District")),
+    straat: normalize(getRowValue(row, "Straat")),
+    huisnr: normalize(getRowValue(row, "Huisnr")),
+    nutsBedrijf: canonicalizeNutsBedrijf(getRowValue(row, "NUTS-bedrijf")),
     durationDays: dateDiffInclusive(startDate, endDate),
-    location: POSTCODE_CENTROIDS[normalize(row["Postcode"])] ?? DEFAULT_CENTER,
+    location: POSTCODE_CENTROIDS[normalize(getRowValue(row, "Postcode"))] ?? DEFAULT_CENTER,
     locationSource: "postcode",
     gipodSoort: "",
     gipodType: "",
@@ -1437,9 +1592,9 @@ function buildWorkFromWeekrapportRow(row, index) {
     permitStatusSource: "weekrapport_status",
     permitJoinConfidence: "medium",
     permitReferenceId: refId,
-    permitRefKey: normalize(row["Ref-key"]),
+    permitRefKey: normalize(getRowValue(row, "Ref-key")),
     permitBonuNummer: bonu,
-    permitDossierStatus: normalizeWeekrapportStatus(row["Dossierstatus (actueel)"]),
+    permitDossierStatus: normalizeWeekrapportStatus(getRowValue(row, "Dossierstatus (actueel)")),
     sourceDataset: "weekrapport_fallback",
   };
 }
@@ -1592,7 +1747,7 @@ function toCsv(records) {
   return `${lines.join("\n")}\n`;
 }
 
-function resolveInputSource() {
+function resolveInputSource(weekrapportSource) {
   const latestExport = pickLatestExportFile();
   if (latestExport) {
     return {
@@ -1603,24 +1758,30 @@ function resolveInputSource() {
     };
   }
 
-  if (fs.existsSync(WEEKRAPPORT_FILE)) {
+  if (weekrapportSource) {
     return {
       kind: "weekrapport_fallback",
-      file: WEEKRAPPORT_FILE,
+      file: weekrapportSource.fullPath,
       sheet: WEEKRAPPORT_SHEET_NAME,
-      note: path.basename(WEEKRAPPORT_FILE),
+      note: weekrapportSource.name,
     };
   }
 
   throw new Error(
-    `Geen invoerbestand gevonden. Verwachtte bron: ${DATA_DIR} met Export_*.xlsx of ${WEEKRAPPORT_FILE}.`
+    `Geen invoerbestand gevonden. Verwachtte bron: ${DATA_DIR} met Export_*.xlsx of Weekrapport_Nutswerken_DN_DISPATCH*.xlsx (fallback: ${WEEKRAPPORT_LEGACY_FILE}).`
   );
 }
 
 async function run() {
-  const source = resolveInputSource();
-  const rows = loadWorkbookRows(source.file, source.sheet);
-  const permitIndex = buildWeekrapportPermitIndex();
+  const weekrapportSource = resolveWeekrapportSource();
+  const source = resolveInputSource(weekrapportSource);
+  const rows =
+    source.kind === "weekrapport_fallback"
+      ? loadWorkbookRows(source.file, source.sheet, {
+          requiredHeaders: WEEKRAPPORT_REQUIRED_HEADERS,
+        })
+      : loadWorkbookRows(source.file, source.sheet);
+  const permitIndex = buildWeekrapportPermitIndex(weekrapportSource?.fullPath ?? null);
 
   let output = [];
   let exactCount = 0;
@@ -1697,6 +1858,11 @@ async function run() {
   );
 
   console.log(`[dn-dispatch] Input source: ${source.kind} (${source.note})`);
+  console.log(
+    `[dn-dispatch] Permit weekrapport source: ${
+      weekrapportSource ? weekrapportSource.name : "geen weekrapport gevonden"
+    }`
+  );
   console.log(`[dn-dispatch] Input rows: ${rows.length}`);
   console.log(`[dn-dispatch] Output works: ${output.length}`);
   console.log(`[dn-dispatch] Exact locations: ${exactCount}`);

@@ -73,6 +73,10 @@ describe("buildDashboardKpis", () => {
         optionalVisits: 1,
         overflowInspectors: 0,
         followUps: 0,
+        approvedPermitVisits: 0,
+        permitBackedVisits: 0,
+        withoutPermitVisits: 0,
+        withoutPermitSharePct: 0,
       },
     };
 

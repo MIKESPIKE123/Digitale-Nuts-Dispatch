@@ -1,379 +1,19 @@
 {
-  "generatedAt": "2026-03-02T19:25:33.943Z",
+  "generatedAt": "2026-03-10T11:30:22.861Z",
   "enabled": true,
   "thresholdMeters": 25,
   "maxGeocodesPerRun": 120,
   "maxReportItems": 200,
-  "candidatesTotal": 4296,
-  "checked": 3996,
-  "alignedCount": 3991,
+  "candidatesTotal": 1217,
+  "checked": 1120,
+  "alignedCount": 1120,
   "geocodedNow": 0,
   "skippedReason": "",
   "budgetExhausted": false,
-  "maxDeviationMeters": 8791,
+  "maxDeviationMeters": 7509,
   "aligned": [
     {
-      "workId": "gipod-12473510-6973",
-      "gipodId": "12473510",
-      "adres": "Boekenberglei 0, 2100 Deurne",
-      "before": {
-        "lat": 51.19881151888095,
-        "lng": 4.457829457133213
-      },
-      "after": {
-        "lat": 51.2013587,
-        "lng": 4.4608695
-      },
-      "deviationMeters": 354,
-      "geocodeDisplayName": "Boekenberglei, Boekenberg-Unitas, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-15485932-6925",
-      "gipodId": "15485932",
-      "adres": "Baron Sadoinestraat 8, 2660 Hoboken",
-      "before": {
-        "lat": 51.17086512694132,
-        "lng": 4.336752584033971
-      },
-      "after": {
-        "lat": 51.1718872,
-        "lng": 4.3358344
-      },
-      "deviationMeters": 130,
-      "geocodeDisplayName": "8, Baron Sadoinestraat, Moretusburg, Hoboken-West, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-14549580-6949",
-      "gipodId": "14549580",
-      "adres": "De Borrekensstraat 1, 2100 Deurne",
-      "before": {
-        "lat": 51.206333380792834,
-        "lng": 4.457189484032972
-      },
-      "after": {
-        "lat": 51.2050515,
-        "lng": 4.4577999
-      },
-      "deviationMeters": 149,
-      "geocodeDisplayName": "1, De Borrekensstraat, Kriekenhof, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-14982445-6940",
-      "gipodId": "14982445",
-      "adres": "Thonetlaan 0, 2050 Antwerpen",
-      "before": {
-        "lat": 51.231288524303096,
-        "lng": 4.390268148095545
-      },
-      "after": {
-        "lat": 51.2273206,
-        "lng": 4.3915723
-      },
-      "deviationMeters": 450,
-      "geocodeDisplayName": "Thonetlaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-15094038-6934",
-      "gipodId": "15094038",
-      "adres": "Herentalsebaan (2100) 0, 2100 Deurne",
-      "before": {
-        "lat": 51.20458316551123,
-        "lng": 4.475879805319842
-      },
-      "after": {
-        "lat": 51.2060875,
-        "lng": 4.4694082
-      },
-      "deviationMeters": 481,
-      "geocodeDisplayName": "Herentalsebaan, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-15060515-6936",
-      "gipodId": "15060515",
-      "adres": "Antwerpsesteenweg 0, 2660 Hoboken",
-      "before": {
-        "lat": 51.179746506284424,
-        "lng": 4.36360395057598
-      },
-      "after": {
-        "lat": 51.1810033,
-        "lng": 4.3680513
-      },
-      "deviationMeters": 340,
-      "geocodeDisplayName": "Antwerpsesteenweg, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-12612373-6969",
-      "gipodId": "12612373",
-      "adres": "Balansstraat 0, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20089884561537,
-        "lng": 4.391045223637273
-      },
-      "after": {
-        "lat": 51.2022604,
-        "lng": 4.393588
-      },
-      "deviationMeters": 233,
-      "geocodeDisplayName": "Balansstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-16912682-6881",
-      "gipodId": "16912682",
-      "adres": "MINDERBROEDERSRUI 10, 2000 Antwerpen",
-      "before": {
-        "lat": 51.22288954463849,
-        "lng": 4.401554251003306
-      },
-      "after": {
-        "lat": 51.2231929,
-        "lng": 4.403383
-      },
-      "deviationMeters": 132,
-      "geocodeDisplayName": "10, Minderbroedersrui, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-15969242-6906",
-      "gipodId": "15969242",
-      "adres": "Lakenstraat 0, 2000 Antwerpen",
-      "before": {
-        "lat": 51.209198257083244,
-        "lng": 4.385845890705365
-      },
-      "after": {
-        "lat": 51.2094151,
-        "lng": 4.3875799
-      },
-      "deviationMeters": 123,
-      "geocodeDisplayName": "Lakenstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18325387-6010",
-      "gipodId": "18325387",
-      "adres": "Brusselstraat 0, 2018 Antwerpen",
-      "before": {
-        "lat": 51.201070239264254,
-        "lng": 4.3846477832296955
-      },
-      "after": {
-        "lat": 51.2017367,
-        "lng": 4.3907083
-      },
-      "deviationMeters": 429,
-      "geocodeDisplayName": "Brusselstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18325267-6011",
-      "gipodId": "18325267",
-      "adres": "Montignystraat 0, 2018 Antwerpen",
-      "before": {
-        "lat": 51.19935710604427,
-        "lng": 4.38625163497728
-      },
-      "after": {
-        "lat": 51.2045781,
-        "lng": 4.3921824
-      },
-      "deviationMeters": 713,
-      "geocodeDisplayName": "Montignystraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18185479-6221",
-      "gipodId": "18185479",
-      "adres": "Brusselstraat 0, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20112263064321,
-        "lng": 4.389211258175585
-      },
-      "after": {
-        "lat": 51.2017367,
-        "lng": 4.3907083
-      },
-      "deviationMeters": 125,
-      "geocodeDisplayName": "Brusselstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18185446-6222",
-      "gipodId": "18185446",
-      "adres": "Montignystraat 0, 2018 Antwerpen",
-      "before": {
-        "lat": 51.199963484737275,
-        "lng": 4.38871566645886
-      },
-      "after": {
-        "lat": 51.2045781,
-        "lng": 4.3921824
-      },
-      "deviationMeters": 567,
-      "geocodeDisplayName": "Montignystraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18184860-6228",
-      "gipodId": "18184860",
-      "adres": "Brederodestraat 0, 2018 Antwerpen",
-      "before": {
-        "lat": 51.19540012616711,
-        "lng": 4.377185205771984
-      },
-      "after": {
-        "lat": 51.2047659,
-        "lng": 4.3951378
-      },
-      "deviationMeters": 1628,
-      "geocodeDisplayName": "Brederodestraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18184808-6229",
-      "gipodId": "18184808",
-      "adres": "Montignystraat 0, 2018 Antwerpen",
-      "before": {
-        "lat": 51.1982991854028,
-        "lng": 4.3751377692446365
-      },
-      "after": {
-        "lat": 51.2045781,
-        "lng": 4.3921824
-      },
-      "deviationMeters": 1378,
-      "geocodeDisplayName": "Montignystraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18348464-6003",
-      "gipodId": "18348464",
-      "adres": "Jan De Voslei 0, 2020 Antwerpen",
-      "before": {
-        "lat": 51.1905735424707,
-        "lng": 4.386951352753151
-      },
-      "after": {
-        "lat": 51.1947591,
-        "lng": 4.3884373
-      },
-      "deviationMeters": 477,
-      "geocodeDisplayName": "Jan De Voslei, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18185291-6226",
-      "gipodId": "18185291",
-      "adres": "Camille Huysmanslaan 0, 2020 Antwerpen",
-      "before": {
-        "lat": 51.190100545979064,
-        "lng": 4.386659085110003
-      },
-      "after": {
-        "lat": 51.190238,
-        "lng": 4.3875418
-      },
-      "deviationMeters": 63,
-      "geocodeDisplayName": "Camille Huysmanslaan, Kiel, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18184763-6230",
-      "gipodId": "18184763",
-      "adres": "D'Herbouvillekaai 11, 2020 Antwerpen",
-      "before": {
-        "lat": 51.20329287555732,
-        "lng": 4.372934467267201
-      },
-      "after": {
-        "lat": 51.2039493,
-        "lng": 4.3764977
-      },
-      "deviationMeters": 259,
-      "geocodeDisplayName": "11, D'Herbouvillekaai, Nieuw Zuid, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18184675-6231",
-      "gipodId": "18184675",
-      "adres": "D'Herbouvillekaai 0, 2020 Antwerpen",
-      "before": {
-        "lat": 51.201655120065745,
-        "lng": 4.369581506994699
-      },
-      "after": {
-        "lat": 51.1997298,
-        "lng": 4.3618426
-      },
-      "deviationMeters": 580,
-      "geocodeDisplayName": "D'Herbouvillekaai, Blue gate, Petroleum-Zuid, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18184624-6232",
-      "gipodId": "18184624",
-      "adres": "Kolonel Silvertopstraat 0, 2020 Antwerpen",
-      "before": {
-        "lat": 51.19296022059783,
-        "lng": 4.372574571875268
-      },
-      "after": {
-        "lat": 51.1970172,
-        "lng": 4.3890586
-      },
-      "deviationMeters": 1234,
-      "geocodeDisplayName": "Kolonel Silvertopstraat, Nieuw Zuid, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18140776-6247",
-      "gipodId": "18140776",
-      "adres": "Kielsbroek 0, 2020 Antwerpen",
-      "before": {
-        "lat": 51.198850067677924,
-        "lng": 4.3733277741088035
-      },
-      "after": {
-        "lat": 51.199076,
-        "lng": 4.3757902
-      },
-      "deviationMeters": 173,
-      "geocodeDisplayName": "Kielsbroek, Petroleum-Zuid, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-12329812-6980",
-      "gipodId": "12329812",
-      "adres": "D'Herbouvillekaai 0, 2020 Antwerpen",
-      "before": {
-        "lat": 51.1982991854028,
-        "lng": 4.3751377692446365
-      },
-      "after": {
-        "lat": 51.1997298,
-        "lng": 4.3618426
-      },
-      "deviationMeters": 940,
-      "geocodeDisplayName": "D'Herbouvillekaai, Blue gate, Petroleum-Zuid, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-13697348-6956",
-      "gipodId": "13697348",
-      "adres": "Antwerpsesteenweg 38, 2660 Hoboken",
-      "before": {
-        "lat": 51.17801916018548,
-        "lng": 4.35422084161877
-      },
-      "after": {
-        "lat": 51.1778211,
-        "lng": 4.3531413
-      },
-      "deviationMeters": 78,
-      "geocodeDisplayName": "38-42, Antwerpsesteenweg, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17467143-6720",
-      "gipodId": "17467143",
-      "adres": "Augustijnenstraat 28, 2000 Antwerpen",
-      "before": {
-        "lat": 51.21630732024914,
-        "lng": 4.3968120119390415
-      },
-      "after": {
-        "lat": 51.2165085,
-        "lng": 4.3984725
-      },
-      "deviationMeters": 118,
-      "geocodeDisplayName": "28, Augustijnenstraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17511587-6711",
+      "workId": "gipod-17511587-1767",
       "gipodId": "17511587",
       "adres": "KERKSTRAAT 142, 2060 Antwerpen",
       "before": {
@@ -388,112 +28,7 @@
       "geocodeDisplayName": "142, Kerkstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-17693853-6413",
-      "gipodId": "17693853",
-      "adres": "JUSTITIESTRAAT 55, 2018 Antwerpen",
-      "before": {
-        "lat": 51.208224470665364,
-        "lng": 4.403070467280513
-      },
-      "after": {
-        "lat": 51.2084229,
-        "lng": 4.404861
-      },
-      "deviationMeters": 127,
-      "geocodeDisplayName": "55, Justitiestraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-16724560-6889",
-      "gipodId": "16724560",
-      "adres": "Lissabonstraat 1, 2660 Hoboken",
-      "before": {
-        "lat": 51.15958036566326,
-        "lng": 4.344358464722292
-      },
-      "after": {
-        "lat": 51.1600507,
-        "lng": 4.3460677
-      },
-      "deviationMeters": 130,
-      "geocodeDisplayName": "1, Lissabonstraat, Nachtegalenhof, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-15647751-6919",
-      "gipodId": "15647751",
-      "adres": "Olijftakstraat 2, 2060 Antwerpen",
-      "before": {
-        "lat": 51.22344416950049,
-        "lng": 4.41497584287226
-      },
-      "after": {
-        "lat": 51.2235915,
-        "lng": 4.4162619
-      },
-      "deviationMeters": 91,
-      "geocodeDisplayName": "2, Olijftakstraat, Atheneum, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-15470258-6929",
-      "gipodId": "15470258",
-      "adres": "Lamorinièrestraat 0, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20067090207786,
-        "lng": 4.414491881714768
-      },
-      "after": {
-        "lat": 51.2013022,
-        "lng": 4.4171041
-      },
-      "deviationMeters": 195,
-      "geocodeDisplayName": "Lamorinièrestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-12705065-6967",
-      "gipodId": "12705065",
-      "adres": "Arenaplein 0, 2100 Deurne",
-      "before": {
-        "lat": 51.206507824261266,
-        "lng": 4.456550408841732
-      },
-      "after": {
-        "lat": 51.207527,
-        "lng": 4.4590427
-      },
-      "deviationMeters": 207,
-      "geocodeDisplayName": "Arenaplein, Muggenberg-Arena, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-12480489-6972",
-      "gipodId": "12480489",
-      "adres": "Merksemsesteenweg 195, 2100 Deurne",
-      "before": {
-        "lat": 51.2329184107908,
-        "lng": 4.441635207886601
-      },
-      "after": {
-        "lat": 51.2314119,
-        "lng": 4.4583904
-      },
-      "deviationMeters": 1179,
-      "geocodeDisplayName": "Merksemsesteenweg, Conforta, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-13494617-6959",
-      "gipodId": "13494617",
-      "adres": "De Pretstraat 57, 2060 Antwerpen",
-      "before": {
-        "lat": 51.2275069204265,
-        "lng": 4.415171139145608
-      },
-      "after": {
-        "lat": 51.2269699,
-        "lng": 4.417463
-      },
-      "deviationMeters": 170,
-      "geocodeDisplayName": "57, De Pretstraat, Amandus, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17470554-6718",
+      "workId": "gipod-17470554-1772",
       "gipodId": "17470554",
       "adres": "BROEDERMINSTRAAT 18, 2018 Antwerpen",
       "before": {
@@ -508,67 +43,7 @@
       "geocodeDisplayName": "18, Broederminstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-15247205-6933",
-      "gipodId": "15247205",
-      "adres": "Krijgsbaan (2100) 150, 2100 Deurne",
-      "before": {
-        "lat": 51.216880937636944,
-        "lng": 4.4924896733291515
-      },
-      "after": {
-        "lat": 51.2171924,
-        "lng": 4.4949562
-      },
-      "deviationMeters": 175,
-      "geocodeDisplayName": "150, Krijgsbaan, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-16838339-6883",
-      "gipodId": "16838339",
-      "adres": "Simonsstraat 40, 2018 Antwerpen",
-      "before": {
-        "lat": 51.2111844871143,
-        "lng": 4.419760778624448
-      },
-      "after": {
-        "lat": 51.2114344,
-        "lng": 4.4209861
-      },
-      "deviationMeters": 90,
-      "geocodeDisplayName": "40, Simonsstraat, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18084794-6264",
-      "gipodId": "18084794",
-      "adres": "Desguinlei 216, 2018 Antwerpen",
-      "before": {
-        "lat": 51.19627445427033,
-        "lng": 4.395825481618241
-      },
-      "after": {
-        "lat": 51.1964602,
-        "lng": 4.3981153
-      },
-      "deviationMeters": 161,
-      "geocodeDisplayName": "216, Desguinlei, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18424179-5637",
-      "gipodId": "18424179",
-      "adres": "Van Schoonhovenstraat 32, 2060 Antwerpen",
-      "before": {
-        "lat": 51.21987845219871,
-        "lng": 4.420958079513348
-      },
-      "after": {
-        "lat": 51.219741,
-        "lng": 4.4219959
-      },
-      "deviationMeters": 74,
-      "geocodeDisplayName": "32, Van Schoonhovenstraat, Atheneum, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-15277243-6931",
+      "workId": "gipod-15277243-1889",
       "gipodId": "15277243",
       "adres": "Schuttershofstraat 0, 2000 Antwerpen",
       "before": {
@@ -583,22 +58,7 @@
       "geocodeDisplayName": "Schuttershofstraat, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-18735989-5205",
-      "gipodId": "18735989",
-      "adres": "Dokter Romain de Velstraat 24, 2100 Deurne",
-      "before": {
-        "lat": 51.20687916135855,
-        "lng": 4.455952623327343
-      },
-      "after": {
-        "lat": 51.2071282,
-        "lng": 4.457682
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "24, Dokter Romain De Velstraat, Muggenberg-Arena, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17511011-6712",
+      "workId": "gipod-17511011-1768",
       "gipodId": "17511011",
       "adres": "LYSENSTRAAT 9, 2600 Berchem",
       "before": {
@@ -613,7 +73,7 @@
       "geocodeDisplayName": "9, Lysenstraat, Pulhof, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-17511010-6713",
+      "workId": "gipod-17511010-1769",
       "gipodId": "17511010",
       "adres": "LYSENSTRAAT 9, 2600 Berchem",
       "before": {
@@ -628,82 +88,7 @@
       "geocodeDisplayName": "9, Lysenstraat, Pulhof, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-14769441-6947",
-      "gipodId": "14769441",
-      "adres": "Verenigde Natieslaan 0, 2660 Hoboken",
-      "before": {
-        "lat": 51.15961741676823,
-        "lng": 4.344457108194326
-      },
-      "after": {
-        "lat": 51.1674971,
-        "lng": 4.3607192
-      },
-      "deviationMeters": 1433,
-      "geocodeDisplayName": "Verenigde Natieslaan, Vogeltjeswijk, Nachtegalenhof, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18802928-5133",
-      "gipodId": "18802928",
-      "adres": "Muggenberglei 86, 2100 Deurne",
-      "before": {
-        "lat": 51.206431602999054,
-        "lng": 4.455284159530484
-      },
-      "after": {
-        "lat": 51.2067023,
-        "lng": 4.4570141
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "86, Muggenberglei, Kriekenhof, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18722399-5214",
-      "gipodId": "18722399",
-      "adres": "Xaveriusstraat 1A, 2140 Borgerhout",
-      "before": {
-        "lat": 51.21163812299818,
-        "lng": 4.449185972553939
-      },
-      "after": {
-        "lat": 51.2119936,
-        "lng": 4.4506512
-      },
-      "deviationMeters": 109,
-      "geocodeDisplayName": "1A, Xaveriusstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-14148009-6954",
-      "gipodId": "14148009",
-      "adres": "Antwerpsesteenweg 457, 2660 Hoboken",
-      "before": {
-        "lat": 51.17963331171519,
-        "lng": 4.362778119609424
-      },
-      "after": {
-        "lat": 51.1810033,
-        "lng": 4.3680513
-      },
-      "deviationMeters": 398,
-      "geocodeDisplayName": "Antwerpsesteenweg, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18752190-5195",
-      "gipodId": "18752190",
-      "adres": "BIST 28, 2180 Ekeren",
-      "before": {
-        "lat": 51.28259373565653,
-        "lng": 4.43444762594611
-      },
-      "after": {
-        "lat": 51.2828693,
-        "lng": 4.436171
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "28, Bist, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17513638-6705",
+      "workId": "gipod-17513638-1764",
       "gipodId": "17513638",
       "adres": "DE LEESCORFSTRAAT 50, 2140 Borgerhout",
       "before": {
@@ -718,877 +103,7 @@
       "geocodeDisplayName": "50, De Leescorfstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-18841181-5091",
-      "gipodId": "18841181",
-      "adres": "Van Schoonbekestraat 74, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20184314828914,
-        "lng": 4.404112867223713
-      },
-      "after": {
-        "lat": 51.2018565,
-        "lng": 4.4064344
-      },
-      "deviationMeters": 162,
-      "geocodeDisplayName": "74, Van Schoonbekestraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18835637-5097",
-      "gipodId": "18835637",
-      "adres": "Droogdokkenweg 0, 2030 Antwerpen",
-      "before": {
-        "lat": 51.23612515123132,
-        "lng": 4.402951211536639
-      },
-      "after": {
-        "lat": 51.2403743,
-        "lng": 4.4040268
-      },
-      "deviationMeters": 478,
-      "geocodeDisplayName": "Droogdokkenweg, Eilandje, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18790666-5149",
-      "gipodId": "18790666",
-      "adres": "TRANSVAALSTRAAT 2, 2600 Berchem",
-      "before": {
-        "lat": 51.20246902728166,
-        "lng": 4.428905980636795
-      },
-      "after": {
-        "lat": 51.2027362,
-        "lng": 4.4306415
-      },
-      "deviationMeters": 125,
-      "geocodeDisplayName": "2, Transvaalstraat, Zurenborg, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18790665-5150",
-      "gipodId": "18790665",
-      "adres": "GENERAAL VAN MERLENSTRAAT 29, 2600 Berchem",
-      "before": {
-        "lat": 51.20276600459825,
-        "lng": 4.430092853221481
-      },
-      "after": {
-        "lat": 51.2030417,
-        "lng": 4.4318281
-      },
-      "deviationMeters": 125,
-      "geocodeDisplayName": "Winter, 29, Generaal Van Merlenstraat, Zurenborg, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18890632-4995",
-      "gipodId": "18890632",
-      "adres": "JOZEF NUYTSSTRAAT 33, 2140 Borgerhout",
-      "before": {
-        "lat": 51.2103025275388,
-        "lng": 4.448361075737678
-      },
-      "after": {
-        "lat": 51.2105789,
-        "lng": 4.450099
-      },
-      "deviationMeters": 125,
-      "geocodeDisplayName": "33, Jozef Nuytsstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18643826-5277",
-      "gipodId": "18643826",
-      "adres": "GROENENDAALLAAN 118, 2170 Merksem",
-      "before": {
-        "lat": 51.242506036532994,
-        "lng": 4.430307254413906
-      },
-      "after": {
-        "lat": 51.2427746,
-        "lng": 4.4320341
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "118, Groenendaallaan, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18585979-5307",
-      "gipodId": "18585979",
-      "adres": "PASTORIJSTRAAT 2, 2060 Antwerpen",
-      "before": {
-        "lat": 51.22061064607349,
-        "lng": 4.430732598838361
-      },
-      "after": {
-        "lat": 51.2208743,
-        "lng": 4.4324641
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "2, Pastorijstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18585978-5308",
-      "gipodId": "18585978",
-      "adres": "PASTORIJSTRAAT 19, 2060 Antwerpen",
-      "before": {
-        "lat": 51.22003712725608,
-        "lng": 4.431231329880189
-      },
-      "after": {
-        "lat": 51.2203056,
-        "lng": 4.4329859
-      },
-      "deviationMeters": 126,
-      "geocodeDisplayName": "19, Pastorijstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18585977-5309",
-      "gipodId": "18585977",
-      "adres": "LANGE VAN BLOERSTRAAT 144, 2060 Antwerpen",
-      "before": {
-        "lat": 51.22000521081875,
-        "lng": 4.43388494129332
-      },
-      "after": {
-        "lat": 51.2202754,
-        "lng": 4.4356142
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "144, Lange Van Bloerstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18902693-4962",
-      "gipodId": "18902693",
-      "adres": "Jaak de Braeckeleerstraat 32, 2140 Borgerhout",
-      "before": {
-        "lat": 51.21494155940444,
-        "lng": 4.436101694895652
-      },
-      "after": {
-        "lat": 51.2152118,
-        "lng": 4.4378277
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "32, Jaak De Braeckeleerstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18818514-5122",
-      "gipodId": "18818514",
-      "adres": "AUGUST VAN PUTLEI 88, 2150 Borsbeek",
-      "before": {
-        "lat": 51.19672430752482,
-        "lng": 4.473203477382911
-      },
-      "after": {
-        "lat": 51.1969914,
-        "lng": 4.4749337
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "88, August Van Putlei, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18818513-5123",
-      "gipodId": "18818513",
-      "adres": "AUGUST VAN PUTLEI 94, 2150 Borsbeek",
-      "before": {
-        "lat": 51.19669165272738,
-        "lng": 4.47293160468385
-      },
-      "after": {
-        "lat": 51.1969775,
-        "lng": 4.4746783
-      },
-      "deviationMeters": 126,
-      "geocodeDisplayName": "94, August Van Putlei, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18818512-5124",
-      "gipodId": "18818512",
-      "adres": "AUGUST VAN PUTLEI 188, 2150 Borsbeek",
-      "before": {
-        "lat": 51.19802625322117,
-        "lng": 4.468631186221211
-      },
-      "after": {
-        "lat": 51.1970909,
-        "lng": 4.4751331
-      },
-      "deviationMeters": 465,
-      "geocodeDisplayName": "August Van Putlei, Borsbeek, Antwerpen, Vlaanderen, 2150, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18643829-5275",
-      "gipodId": "18643829",
-      "adres": "GROENENDAALLAAN 20, 2170 Merksem",
-      "before": {
-        "lat": 51.24059827725801,
-        "lng": 4.434576686408089
-      },
-      "after": {
-        "lat": 51.2409066,
-        "lng": 4.4363271
-      },
-      "deviationMeters": 127,
-      "geocodeDisplayName": "20, Groenendaallaan, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18643828-5276",
-      "gipodId": "18643828",
-      "adres": "GROENENDAALLAAN 14, 2170 Merksem",
-      "before": {
-        "lat": 51.2405276752458,
-        "lng": 4.434819573371051
-      },
-      "after": {
-        "lat": 51.240798,
-        "lng": 4.4365494
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "14, Groenendaallaan, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18575192-5323",
-      "gipodId": "18575192",
-      "adres": "Lange Herentalsestraat 74, 2018 Antwerpen",
-      "before": {
-        "lat": 51.213461266965496,
-        "lng": 4.415960810562329
-      },
-      "after": {
-        "lat": 51.2139844,
-        "lng": 4.4173998
-      },
-      "deviationMeters": 116,
-      "geocodeDisplayName": "74, Lange Herentalsestraat, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18752160-5196",
-      "gipodId": "18752160",
-      "adres": "MUGGENBERGLEI 73, 2100 Deurne",
-      "before": {
-        "lat": 51.206895287343784,
-        "lng": 4.455781239776282
-      },
-      "after": {
-        "lat": 51.2071754,
-        "lng": 4.4575183
-      },
-      "deviationMeters": 125,
-      "geocodeDisplayName": "73, Muggenberglei, Muggenberg-Arena, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18880997-5016",
-      "gipodId": "18880997",
-      "adres": "Drossaardplein 18, 2660 Hoboken",
-      "before": {
-        "lat": 51.18279060585826,
-        "lng": 4.365218254354549
-      },
-      "after": {
-        "lat": 51.1829479,
-        "lng": 4.367648
-      },
-      "deviationMeters": 170,
-      "geocodeDisplayName": "18, Drossaardplein, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18289589-6020",
-      "gipodId": "18289589",
-      "adres": "Merksemsestraat 6, 2060 Antwerpen",
-      "before": {
-        "lat": 51.23564262839577,
-        "lng": 4.4227849498071885
-      },
-      "after": {
-        "lat": 51.2357839,
-        "lng": 4.4246228
-      },
-      "deviationMeters": 129,
-      "geocodeDisplayName": "6, Merksemsestraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18904087-4955",
-      "gipodId": "18904087",
-      "adres": "STERLINGERSTRAAT 92, 2140 Borgerhout",
-      "before": {
-        "lat": 51.20993653115503,
-        "lng": 4.436818014638498
-      },
-      "after": {
-        "lat": 51.2102109,
-        "lng": 4.4385486
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "92-94, Sterlingerstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18904061-4956",
-      "gipodId": "18904061",
-      "adres": "COLLEGELAAN 101, 2140 Borgerhout",
-      "before": {
-        "lat": 51.21352092166333,
-        "lng": 4.452159008333111
-      },
-      "after": {
-        "lat": 51.2137993,
-        "lng": 4.4538594
-      },
-      "deviationMeters": 122,
-      "geocodeDisplayName": "101, Collegelaan, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18904060-4957",
-      "gipodId": "18904060",
-      "adres": "COLLEGELAAN 90, 2140 Borgerhout",
-      "before": {
-        "lat": 51.21297063677917,
-        "lng": 4.454210672003686
-      },
-      "after": {
-        "lat": 51.2132407,
-        "lng": 4.4559403
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "90, Collegelaan, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18904049-4958",
-      "gipodId": "18904049",
-      "adres": "NOORDERSINGEL 3, 2140 Borgerhout",
-      "before": {
-        "lat": 51.22466569161928,
-        "lng": 4.444440354462911
-      },
-      "after": {
-        "lat": 51.2245912,
-        "lng": 4.4453904
-      },
-      "deviationMeters": 67,
-      "geocodeDisplayName": "Noordersingel, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17058653-6851",
-      "gipodId": "17058653",
-      "adres": "Veltwijcklaan 0, 2180 Ekeren",
-      "before": {
-        "lat": 51.27753061293251,
-        "lng": 4.430309082880044
-      },
-      "after": {
-        "lat": 51.2830774,
-        "lng": 4.4461991
-      },
-      "deviationMeters": 1266,
-      "geocodeDisplayName": "Veltwijcklaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18867616-5051",
-      "gipodId": "18867616",
-      "adres": "REINAARTLAAN 2, 2000 Antwerpen",
-      "before": {
-        "lat": 51.227871655278385,
-        "lng": 4.382505155855728
-      },
-      "after": {
-        "lat": 51.2281411,
-        "lng": 4.3842352
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "2;4;6, Reinaartlaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18860948-5081",
-      "gipodId": "18860948",
-      "adres": "REINAARTLAAN 2, 2000 Antwerpen",
-      "before": {
-        "lat": 51.227871655278385,
-        "lng": 4.382505155855728
-      },
-      "after": {
-        "lat": 51.2281411,
-        "lng": 4.3842352
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "2;4;6, Reinaartlaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18604236-5295",
-      "gipodId": "18604236",
-      "adres": "FLORENT PAUWELSLEI 49, 2100 Deurne",
-      "before": {
-        "lat": 51.20753344215758,
-        "lng": 4.470110009270949
-      },
-      "after": {
-        "lat": 51.2078047,
-        "lng": 4.4718429
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "49, Florent Pauwelslei, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18890666-4989",
-      "gipodId": "18890666",
-      "adres": "VOSSTRAAT 168, 2140 Borgerhout",
-      "before": {
-        "lat": 51.19473382203675,
-        "lng": 4.449632141799862
-      },
-      "after": {
-        "lat": 51.1950252,
-        "lng": 4.4515301
-      },
-      "deviationMeters": 136,
-      "geocodeDisplayName": "168, Vosstraat, Vliegveld, Groenenhoek, Borgerhout, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18890665-4990",
-      "gipodId": "18890665",
-      "adres": "ALFRED OSTSTRAAT 2, 2140 Borgerhout",
-      "before": {
-        "lat": 51.19472554795781,
-        "lng": 4.450287993616401
-      },
-      "after": {
-        "lat": 51.1949949,
-        "lng": 4.4520165
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "2, Alfred Oststraat, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18890664-4991",
-      "gipodId": "18890664",
-      "adres": "VOSSTRAAT 78, 2140 Borgerhout",
-      "before": {
-        "lat": 51.195944824984075,
-        "lng": 4.45022305184112
-      },
-      "after": {
-        "lat": 51.1962128,
-        "lng": 4.4519536
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "78, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18890661-4993",
-      "gipodId": "18890661",
-      "adres": "VOSSTRAAT 34, 2140 Borgerhout",
-      "before": {
-        "lat": 51.19712361555927,
-        "lng": 4.450730678337699
-      },
-      "after": {
-        "lat": 51.1973853,
-        "lng": 4.452458
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "Frituur 't Voske, 34, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18223746-6148",
-      "gipodId": "18223746",
-      "adres": "Nieuwdreef 0, 2170 Merksem",
-      "before": {
-        "lat": 51.24775084512561,
-        "lng": 4.437396678674433
-      },
-      "after": {
-        "lat": 51.2445825,
-        "lng": 4.4346234
-      },
-      "deviationMeters": 402,
-      "geocodeDisplayName": "Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18364633-5733",
-      "gipodId": "18364633",
-      "adres": "Gallaitlaan 0, 2610 Wilrijk",
-      "before": {
-        "lat": 51.16278397901735,
-        "lng": 4.3867865694829815
-      },
-      "after": {
-        "lat": 51.1654374,
-        "lng": 4.3913319
-      },
-      "deviationMeters": 433,
-      "geocodeDisplayName": "Gallaitlaan, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18818559-5114",
-      "gipodId": "18818559",
-      "adres": "SINT-LUCASLAAN 55, 2180 Ekeren",
-      "before": {
-        "lat": 51.27219050433282,
-        "lng": 4.451195593704018
-      },
-      "after": {
-        "lat": 51.2724693,
-        "lng": 4.4529415
-      },
-      "deviationMeters": 125,
-      "geocodeDisplayName": "55, Sint-Lucaslaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18818558-5115",
-      "gipodId": "18818558",
-      "adres": "SINT-LUCASLAAN 59, 2180 Ekeren",
-      "before": {
-        "lat": 51.27253508935163,
-        "lng": 4.45158880969907
-      },
-      "after": {
-        "lat": 51.2727981,
-        "lng": 4.4532765
-      },
-      "deviationMeters": 121,
-      "geocodeDisplayName": "59, Sint-Lucaslaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18818557-5116",
-      "gipodId": "18818557",
-      "adres": "SINT-LUCASLAAN 48, 2180 Ekeren",
-      "before": {
-        "lat": 51.27161542439866,
-        "lng": 4.449834246011109
-      },
-      "after": {
-        "lat": 51.2718986,
-        "lng": 4.4515406
-      },
-      "deviationMeters": 123,
-      "geocodeDisplayName": "48, Sint-Lucaslaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18818556-5117",
-      "gipodId": "18818556",
-      "adres": "SINT-LUCASLAAN 73, 2180 Ekeren",
-      "before": {
-        "lat": 51.27302842285105,
-        "lng": 4.453238063024685
-      },
-      "after": {
-        "lat": 51.2733017,
-        "lng": 4.4549564
-      },
-      "deviationMeters": 123,
-      "geocodeDisplayName": "73, Sint-Lucaslaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18772515-5167",
-      "gipodId": "18772515",
-      "adres": "HARINGRODESTRAAT 87, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20076765582012,
-        "lng": 4.414269116086685
-      },
-      "after": {
-        "lat": 51.2010722,
-        "lng": 4.4159578
-      },
-      "deviationMeters": 122,
-      "geocodeDisplayName": "87, Haringrodestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18772514-5168",
-      "gipodId": "18772514",
-      "adres": "HARINGRODESTRAAT 34, 2018 Antwerpen",
-      "before": {
-        "lat": 51.203320753173024,
-        "lng": 4.412753360318729
-      },
-      "after": {
-        "lat": 51.2035896,
-        "lng": 4.4144773
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "34, Haringrodestraat, Klein-Antwerpen, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18772513-5169",
-      "gipodId": "18772513",
-      "adres": "HARINGRODESTRAAT 50, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20231858075106,
-        "lng": 4.4130057761989665
-      },
-      "after": {
-        "lat": 51.2025752,
-        "lng": 4.4147166
-      },
-      "deviationMeters": 123,
-      "geocodeDisplayName": "50, Haringrodestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18772512-5170",
-      "gipodId": "18772512",
-      "adres": "HARINGRODESTRAAT 29, 2018 Antwerpen",
-      "before": {
-        "lat": 51.202583377951726,
-        "lng": 4.413451551591705
-      },
-      "after": {
-        "lat": 51.2001679,
-        "lng": 4.4161875
-      },
-      "deviationMeters": 329,
-      "geocodeDisplayName": "Haringrodestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18772511-5171",
-      "gipodId": "18772511",
-      "adres": "HARINGRODESTRAAT 43, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20194611034845,
-        "lng": 4.413724764161188
-      },
-      "after": {
-        "lat": 51.2022147,
-        "lng": 4.4154517
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "43, Haringrodestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18108656-6257",
-      "gipodId": "18108656",
-      "adres": "Van Schoonhovenstraat 36, 2060 Antwerpen",
-      "before": {
-        "lat": 51.220110440449695,
-        "lng": 4.420026695220283
-      },
-      "after": {
-        "lat": 51.2199476,
-        "lng": 4.4221104
-      },
-      "deviationMeters": 146,
-      "geocodeDisplayName": "36, Van Schoonhovenstraat, Atheneum, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18809267-5126",
-      "gipodId": "18809267",
-      "adres": "BELGIËLEI 127, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20457216095497,
-        "lng": 4.415512782264095
-      },
-      "after": {
-        "lat": 51.2048336,
-        "lng": 4.417248
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "127, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18415834-5642",
-      "gipodId": "18415834",
-      "adres": "Te Boelaarlei 0, 2140 Borgerhout",
-      "before": {
-        "lat": 51.206677376819464,
-        "lng": 4.454862095706001
-      },
-      "after": {
-        "lat": 51.2056606,
-        "lng": 4.4522408
-      },
-      "deviationMeters": 215,
-      "geocodeDisplayName": "Te Boelaarlei, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18415780-5643",
-      "gipodId": "18415780",
-      "adres": "Morckhovenlei 0, 2140 Borgerhout",
-      "before": {
-        "lat": 51.21334042963882,
-        "lng": 4.456066892280821
-      },
-      "after": {
-        "lat": 51.211691,
-        "lng": 4.4554305
-      },
-      "deviationMeters": 189,
-      "geocodeDisplayName": "Morckhovenlei, Morckhoven, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18809260-5127",
-      "gipodId": "18809260",
-      "adres": "ISABELLALEI 52, 2018 Antwerpen",
-      "before": {
-        "lat": 51.204284150384325,
-        "lng": 4.415147933410063
-      },
-      "after": {
-        "lat": 51.2046294,
-        "lng": 4.4168304
-      },
-      "deviationMeters": 123,
-      "geocodeDisplayName": "52, Isabellalei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18809259-5128",
-      "gipodId": "18809259",
-      "adres": "BELGIËLEI 131, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20432254580139,
-        "lng": 4.415106480275565
-      },
-      "after": {
-        "lat": 51.2068354,
-        "lng": 4.4201005
-      },
-      "deviationMeters": 446,
-      "geocodeDisplayName": "Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18809258-5129",
-      "gipodId": "18809258",
-      "adres": "BELGIËLEI 153, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20355060302453,
-        "lng": 4.414092029161885
-      },
-      "after": {
-        "lat": 51.2038195,
-        "lng": 4.4158203
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "153, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18809241-5130",
-      "gipodId": "18809241",
-      "adres": "BELGIELEI 103, 2018 Antwerpen",
-      "before": {
-        "lat": 51.205250565045596,
-        "lng": 4.416431462574604
-      },
-      "after": {
-        "lat": 51.2055024,
-        "lng": 4.4181297
-      },
-      "deviationMeters": 122,
-      "geocodeDisplayName": "103, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18954923-4902",
-      "gipodId": "18954923",
-      "adres": "OOGSTSTRAAT 239, 2600 Berchem",
-      "before": {
-        "lat": 51.17892845831938,
-        "lng": 4.439595973526694
-      },
-      "after": {
-        "lat": 51.1792315,
-        "lng": 4.4412056
-      },
-      "deviationMeters": 117,
-      "geocodeDisplayName": "Colruyt, 239, Oogststraat, De Zepten-Zilverbeek, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18424707-5636",
-      "gipodId": "18424707",
-      "adres": "Gallaitlaan 1, 2610 Wilrijk",
-      "before": {
-        "lat": 51.164829332001595,
-        "lng": 4.389659408051973
-      },
-      "after": {
-        "lat": 51.1664515,
-        "lng": 4.391148
-      },
-      "deviationMeters": 208,
-      "geocodeDisplayName": "1, Gallaitlaan, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18889004-5002",
-      "gipodId": "18889004",
-      "adres": "Turnhoutsebaan (2100) 34, 2100 Deurne",
-      "before": {
-        "lat": 51.22008442832448,
-        "lng": 4.455839153509722
-      },
-      "after": {
-        "lat": 51.220084,
-        "lng": 4.4647113
-      },
-      "deviationMeters": 618,
-      "geocodeDisplayName": "Turnhoutsebaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18944088-4918",
-      "gipodId": "18944088",
-      "adres": "KIELSEVEST 74, 2018 Antwerpen",
-      "before": {
-        "lat": 51.19859840863156,
-        "lng": 4.389805786641621
-      },
-      "after": {
-        "lat": 51.1988664,
-        "lng": 4.3915309
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "74, Kielsevest, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17548208-6533",
-      "gipodId": "17548208",
-      "adres": "Houtdok-Noordkaai 0, 2030 Antwerpen",
-      "before": {
-        "lat": 51.23749715828011,
-        "lng": 4.407660086231937
-      },
-      "after": {
-        "lat": 51.2374295,
-        "lng": 4.4131988
-      },
-      "deviationMeters": 386,
-      "geocodeDisplayName": "Houtdok-Noordkaai, Eilandje, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17090671-6832",
-      "gipodId": "17090671",
-      "adres": "Beatrijslaan 0, 2050 Antwerpen",
-      "before": {
-        "lat": 51.20905743764702,
-        "lng": 4.3695802559539425
-      },
-      "after": {
-        "lat": 51.2089506,
-        "lng": 4.3705784
-      },
-      "deviationMeters": 71,
-      "geocodeDisplayName": "Beatrijslaan, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18236011-6127",
-      "gipodId": "18236011",
-      "adres": "Maasstraat 0, 2060 Antwerpen",
-      "before": {
-        "lat": 51.23392354466131,
-        "lng": 4.42564089853044
-      },
-      "after": {
-        "lat": 51.2338482,
-        "lng": 4.426983
-      },
-      "deviationMeters": 94,
-      "geocodeDisplayName": "Maasstraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19067346-4741",
-      "gipodId": "19067346",
-      "adres": "Steynstraat 100, 2660 Hoboken",
-      "before": {
-        "lat": 51.180055245018664,
-        "lng": 4.356348014779293
-      },
-      "after": {
-        "lat": 51.1802623,
-        "lng": 4.358154
-      },
-      "deviationMeters": 128,
-      "geocodeDisplayName": "100, Steynstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18820859-5108",
+      "workId": "gipod-18820859-1270",
       "gipodId": "18820859",
       "adres": "Guldenberg 0, 2000 Antwerpen",
       "before": {
@@ -1603,1414 +118,2899 @@
       "geocodeDisplayName": "Guldenberg, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19087804-4702",
-      "gipodId": "19087804",
-      "adres": "Fotografielaan 42, 2610 Wilrijk",
+      "workId": "gipod-19016047-1204",
+      "gipodId": "19016047",
+      "adres": "HANDELSTRAAT 92, 2000 Antwerpen",
       "before": {
-        "lat": 51.15794091873636,
-        "lng": 4.3634433999559565
+        "lat": 51.22389138738225,
+        "lng": 4.429972950180996
       },
       "after": {
-        "lat": 51.1581921,
-        "lng": 4.3651497
-      },
-      "deviationMeters": 122,
-      "geocodeDisplayName": "42, Fotografielaan, Terbekehof, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17471992-6717",
-      "gipodId": "17471992",
-      "adres": "Lamorinièrestraat 242, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20098097649412,
-        "lng": 4.415093883625887
-      },
-      "after": {
-        "lat": 51.201497,
-        "lng": 4.4172822
-      },
-      "deviationMeters": 163,
-      "geocodeDisplayName": "242, Lamorinièrestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19063421-4746",
-      "gipodId": "19063421",
-      "adres": "SIMONSSTRAAT 18, 2018 Antwerpen",
-      "before": {
-        "lat": 51.21191436552634,
-        "lng": 4.419228225034087
-      },
-      "after": {
-        "lat": 51.2121825,
-        "lng": 4.4209576
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "18, Simonsstraat, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19063419-4747",
-      "gipodId": "19063419",
-      "adres": "SIMONSSTRAAT 59, 2018 Antwerpen",
-      "before": {
-        "lat": 51.21128747693727,
-        "lng": 4.419790051087873
-      },
-      "after": {
-        "lat": 51.2121471,
-        "lng": 4.4212481
-      },
-      "deviationMeters": 139,
-      "geocodeDisplayName": "Simonsstraat, Diamant, Centraal Station, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18364402-5734",
-      "gipodId": "18364402",
-      "adres": "Standonklaan 0, 2610 Wilrijk",
-      "before": {
-        "lat": 51.1640977176938,
-        "lng": 4.390501558335063
-      },
-      "after": {
-        "lat": 51.1660009,
-        "lng": 4.3925452
-      },
-      "deviationMeters": 255,
-      "geocodeDisplayName": "Standonklaan, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18874778-5025",
-      "gipodId": "18874778",
-      "adres": "STEENSTRAAT 52, 2180 Ekeren",
-      "before": {
-        "lat": 51.275728753399,
-        "lng": 4.415879012417084
-      },
-      "after": {
-        "lat": 51.2759906,
-        "lng": 4.4175756
-      },
-      "deviationMeters": 122,
-      "geocodeDisplayName": "52, Steenstraat, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18941504-4921",
-      "gipodId": "18941504",
-      "adres": "Lange Lozanastraat 292, 2018 Antwerpen",
-      "before": {
-        "lat": 51.19888895355564,
-        "lng": 4.40542420376893
-      },
-      "after": {
-        "lat": 51.1981299,
-        "lng": 4.4072978
-      },
-      "deviationMeters": 155,
-      "geocodeDisplayName": "292, Lange Lozanastraat, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18941350-4922",
-      "gipodId": "18941350",
-      "adres": "Lange Lozanastraat 294, 2018 Antwerpen",
-      "before": {
-        "lat": 51.197596007925476,
-        "lng": 4.405750411804487
-      },
-      "after": {
-        "lat": 51.1979393,
-        "lng": 4.4073785
-      },
-      "deviationMeters": 120,
-      "geocodeDisplayName": "294, Lange Lozanastraat, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18936095-4930",
-      "gipodId": "18936095",
-      "adres": "Lange Lozanastraat 223, 2018 Antwerpen",
-      "before": {
-        "lat": 51.19769978052859,
-        "lng": 4.405874042049371
-      },
-      "after": {
-        "lat": 51.1992631,
-        "lng": 4.4076247
-      },
-      "deviationMeters": 212,
-      "geocodeDisplayName": "Lozanagebouw, 223, Lange Lozanastraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17945331-6328",
-      "gipodId": "17945331",
-      "adres": "Werkstraat 0, 2018 Antwerpen",
-      "before": {
-        "lat": 51.202308635892656,
-        "lng": 4.4171087039439145
-      },
-      "after": {
-        "lat": 51.2025601,
-        "lng": 4.4179493
-      },
-      "deviationMeters": 65,
-      "geocodeDisplayName": "Werkstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19139879-4578",
-      "gipodId": "19139879",
-      "adres": "Rector Vermeylenlaan 39, 2660 Hoboken",
-      "before": {
-        "lat": 51.1702322339574,
-        "lng": 4.366446285572818
-      },
-      "after": {
-        "lat": 51.1704496,
-        "lng": 4.3682348
-      },
-      "deviationMeters": 127,
-      "geocodeDisplayName": "39, Rector Vermeylenlaan, Stuivenberg, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18385938-5717",
-      "gipodId": "18385938",
-      "adres": "Lumbeeckstraat 0, 2660 Hoboken",
-      "before": {
-        "lat": 51.173291190491966,
-        "lng": 4.337546576293999
-      },
-      "after": {
-        "lat": 51.1759359,
-        "lng": 4.3437793
-      },
-      "deviationMeters": 525,
-      "geocodeDisplayName": "Lumbeeckstraat, Hertogvelden, Hoboken-West, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18837332-5092",
-      "gipodId": "18837332",
-      "adres": "Kasterveldenstraat 10, 2170 Merksem",
-      "before": {
-        "lat": 51.25269044130478,
-        "lng": 4.454293493431895
-      },
-      "after": {
-        "lat": 51.2524221,
-        "lng": 4.45544
-      },
-      "deviationMeters": 85,
-      "geocodeDisplayName": "10,10/1, Kasterveldenstraat, Merksemheide, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18078512-6268",
-      "gipodId": "18078512",
-      "adres": "Vuurkruisenlaan 3, 2170 Merksem",
-      "before": {
-        "lat": 51.248080902727,
-        "lng": 4.436973507037848
-      },
-      "after": {
-        "lat": 51.245268,
-        "lng": 4.4406085
-      },
-      "deviationMeters": 402,
-      "geocodeDisplayName": "3, Vuurkruisenlaan, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18384262-5719",
-      "gipodId": "18384262",
-      "adres": "Grammestraat 0, 2660 Hoboken",
-      "before": {
-        "lat": 51.171658530823564,
-        "lng": 4.337169668941258
-      },
-      "after": {
-        "lat": 51.1717071,
-        "lng": 4.3405976
-      },
-      "deviationMeters": 239,
-      "geocodeDisplayName": "Grammestraat, Moretusburg, Hoboken-West, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18061321-6273",
-      "gipodId": "18061321",
-      "adres": "Nijverheidslei 0, 2180 Ekeren",
-      "before": {
-        "lat": 51.29401682754071,
-        "lng": 4.434938410919285
-      },
-      "after": {
-        "lat": 51.2916017,
-        "lng": 4.4382881
-      },
-      "deviationMeters": 355,
-      "geocodeDisplayName": "Nijverheidslei, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17355502-6741",
-      "gipodId": "17355502",
-      "adres": "Gagelveldenstraat 1, 2170 Merksem",
-      "before": {
-        "lat": 51.242226672766016,
-        "lng": 4.43367087879422
-      },
-      "after": {
-        "lat": 51.2418269,
-        "lng": 4.434417
-      },
-      "deviationMeters": 68,
-      "geocodeDisplayName": "1, Gagelveldenstraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18692486-5226",
-      "gipodId": "18692486",
-      "adres": "Herman Vosstraat (2180) 1, 2180 Ekeren",
-      "before": {
-        "lat": 51.27133898685295,
-        "lng": 4.410439588657544
-      },
-      "after": {
-        "lat": 51.2718073,
-        "lng": 4.4123392
-      },
-      "deviationMeters": 142,
-      "geocodeDisplayName": "1,1A, Herman Vosstraat, Rozemaai, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18505213-5578",
-      "gipodId": "18505213",
-      "adres": "Boekstraat 0, 2610 Wilrijk",
-      "before": {
-        "lat": 51.1678209877827,
-        "lng": 4.388188710222201
-      },
-      "after": {
-        "lat": 51.1679364,
-        "lng": 4.3888361
-      },
-      "deviationMeters": 47,
-      "geocodeDisplayName": "Boekstraat, De Bist, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18537694-5398",
-      "gipodId": "18537694",
-      "adres": "De Beukelaerlaan 1, 2180 Ekeren",
-      "before": {
-        "lat": 51.27656431485392,
-        "lng": 4.417274412469712
-      },
-      "after": {
-        "lat": 51.276445,
-        "lng": 4.419174
-      },
-      "deviationMeters": 133,
-      "geocodeDisplayName": "1, De Beukelaerlaan, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18080028-6267",
-      "gipodId": "18080028",
-      "adres": "Van Reyenstraat 1, 2100 Deurne",
-      "before": {
-        "lat": 51.22692579824342,
-        "lng": 4.4582366209725315
-      },
-      "after": {
-        "lat": 51.2271807,
-        "lng": 4.4594574
-      },
-      "deviationMeters": 90,
-      "geocodeDisplayName": "1, Van Reyenstraat, Conforta, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19225457-4319",
-      "gipodId": "19225457",
-      "adres": "Mutsaardstraat 20, 2000 Antwerpen",
-      "before": {
-        "lat": 51.223639589795795,
-        "lng": 4.4037101121050055
-      },
-      "after": {
-        "lat": 51.223906,
-        "lng": 4.4054412
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "20, Mutsaardstraat, Universiteitsbuurt, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18567321-5369",
-      "gipodId": "18567321",
-      "adres": "Doornelei 2, 2018 Antwerpen",
-      "before": {
-        "lat": 51.19524635708894,
-        "lng": 4.40844620082257
-      },
-      "after": {
-        "lat": 51.1953898,
-        "lng": 4.409464
-      },
-      "deviationMeters": 73,
-      "geocodeDisplayName": "2, Doornelei, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17942407-6332",
-      "gipodId": "17942407",
-      "adres": "Doornelei 0, 2018 Antwerpen",
-      "before": {
-        "lat": 51.19543303833551,
-        "lng": 4.407785691003548
-      },
-      "after": {
-        "lat": 51.1956031,
-        "lng": 4.4107037
-      },
-      "deviationMeters": 204,
-      "geocodeDisplayName": "Doornelei, Markgrave, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17069005-6849",
-      "gipodId": "17069005",
-      "adres": "Plankenbergstraat 92, 2100 Deurne",
-      "before": {
-        "lat": 51.220949868036676,
-        "lng": 4.464895485918961
-      },
-      "after": {
-        "lat": 51.2210742,
-        "lng": 4.4666552
+        "lat": 51.2241449,
+        "lng": 4.4316931
       },
       "deviationMeters": 123,
-      "geocodeDisplayName": "92-94, Plankenbergstraat, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+      "geocodeDisplayName": "92, Handelstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-18458496-5626",
-      "gipodId": "18458496",
-      "adres": "Kapelsesteenweg 317, 2180 Ekeren",
+      "workId": "gipod-19305190-1013",
+      "gipodId": "19305190",
+      "adres": "N177 288, 2020 Antwerpen",
       "before": {
-        "lat": 51.279637678965074,
-        "lng": 4.451150726111898
+        "lat": 51.18481950238089,
+        "lng": 4.38932298525523
       },
       "after": {
-        "lat": 51.2792273,
-        "lng": 4.4529468
-      },
-      "deviationMeters": 133,
-      "geocodeDisplayName": "317, Kapelsesteenweg, Donk, Vriesdonk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18634397-5280",
-      "gipodId": "18634397",
-      "adres": "Lodewijk Ontropstraat 0, 2020 Antwerpen",
-      "before": {
-        "lat": 51.18109717079425,
-        "lng": 4.38663345728207
-      },
-      "after": {
-        "lat": 51.1812098,
-        "lng": 4.3887769
-      },
-      "deviationMeters": 150,
-      "geocodeDisplayName": "Lodewijk Ontropstraat, Kiel, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19240685-4241",
-      "gipodId": "19240685",
-      "adres": "De Marbaixstraat 10, 2060 Antwerpen",
-      "before": {
-        "lat": 51.22723975462303,
-        "lng": 4.436045060133142
-      },
-      "after": {
-        "lat": 51.2275078,
-        "lng": 4.4377708
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "10, De Marbaixstraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19241459-4239",
-      "gipodId": "19241459",
-      "adres": "Sterlingerstraat 40, 2140 Borgerhout",
-      "before": {
-        "lat": 51.21039775148858,
-        "lng": 4.434218244986735
-      },
-      "after": {
-        "lat": 51.2106484,
-        "lng": 4.4360078
-      },
-      "deviationMeters": 128,
-      "geocodeDisplayName": "40, Sterlingerstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19245126-4203",
-      "gipodId": "19245126",
-      "adres": "Juul Grietensstraat 39, 2140 Borgerhout",
-      "before": {
-        "lat": 51.21048252209861,
-        "lng": 4.44867733803268
-      },
-      "after": {
-        "lat": 51.2107505,
-        "lng": 4.4504065
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "39, Juul Grietensstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19250035-4195",
-      "gipodId": "19250035",
-      "adres": "Lange Lozanastraat 158, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20157420671369,
-        "lng": 4.404028605460648
-      },
-      "after": {
-        "lat": 51.2021587,
-        "lng": 4.4057353
-      },
-      "deviationMeters": 136,
-      "geocodeDisplayName": "Lange Lozanastraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19248572-4197",
-      "gipodId": "19248572",
-      "adres": "Sterlingerstraat 62, 2140 Borgerhout",
-      "before": {
-        "lat": 51.210228914835746,
-        "lng": 4.4354065410000665
-      },
-      "after": {
-        "lat": 51.2104983,
-        "lng": 4.4371359
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "62, Sterlingerstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-14932007-6942",
-      "gipodId": "14932007",
-      "adres": "Bleekhofstraat 0, 2140 Borgerhout",
-      "before": {
-        "lat": 51.21153338279585,
-        "lng": 4.425266995431615
-      },
-      "after": {
-        "lat": 51.2117148,
-        "lng": 4.427742
-      },
-      "deviationMeters": 174,
-      "geocodeDisplayName": "Bleekhofstraat, Kievitwijk, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19246325-4200",
-      "gipodId": "19246325",
-      "adres": "N106 221, 2610 Wilrijk",
-      "before": {
-        "lat": 51.162408895485015,
-        "lng": 4.397421739888053
-      },
-      "after": {
-        "lat": 51.1626782,
-        "lng": 4.3992144
-      },
-      "deviationMeters": 129,
-      "geocodeDisplayName": "221, Doornstraat, Slijkhoek - Fort 6 - Drie Eiken, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17725301-6408",
-      "gipodId": "17725301",
-      "adres": "Grammestraat 0, 2660 Hoboken",
-      "before": {
-        "lat": 51.17144645613846,
-        "lng": 4.336158250991221
-      },
-      "after": {
-        "lat": 51.1717071,
-        "lng": 4.3405976
-      },
-      "deviationMeters": 311,
-      "geocodeDisplayName": "Grammestraat, Moretusburg, Hoboken-West, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19256667-4108",
-      "gipodId": "19256667",
-      "adres": "Predikerinnenstraat 2, 2000 Antwerpen",
-      "before": {
-        "lat": 51.22378939058782,
-        "lng": 4.402594631028418
-      },
-      "after": {
-        "lat": 51.2240612,
-        "lng": 4.4043188
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "2, Predikerinnenstraat, Universiteitsbuurt, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19256566-4109",
-      "gipodId": "19256566",
-      "adres": "Predikerinnenstraat 7, 2000 Antwerpen",
-      "before": {
-        "lat": 51.22373645229594,
-        "lng": 4.4028983243345765
-      },
-      "after": {
-        "lat": 51.2240053,
-        "lng": 4.404625
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "7, Predikerinnenstraat, Universiteitsbuurt, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19252361-4184",
-      "gipodId": "19252361",
-      "adres": "Justitiestraat 6, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20932654246971,
-        "lng": 4.405259724742442
-      },
-      "after": {
-        "lat": 51.2095872,
-        "lng": 4.4069899
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "6, Justitiestraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18275353-6028",
-      "gipodId": "18275353",
-      "adres": "Spitsenstraat 28, 2030 Antwerpen",
-      "before": {
-        "lat": 51.237353975385396,
-        "lng": 4.415941275308414
-      },
-      "after": {
-        "lat": 51.2379894,
-        "lng": 4.417904
-      },
-      "deviationMeters": 154,
-      "geocodeDisplayName": "28,28A, Spitsenstraat, Eilandje, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19258630-4096",
-      "gipodId": "19258630",
-      "adres": "Diepestraat 159A, 2060 Antwerpen",
-      "before": {
-        "lat": 51.22142024361978,
-        "lng": 4.424755376060237
-      },
-      "after": {
-        "lat": 51.2240027,
-        "lng": 4.4237478
-      },
-      "deviationMeters": 296,
-      "geocodeDisplayName": "Diepestraat, Atheneum, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17404343-6737",
-      "gipodId": "17404343",
-      "adres": "Paul Vekemanslaan 0, 2660 Hoboken",
-      "before": {
-        "lat": 51.17573445136783,
-        "lng": 4.362030309723075
-      },
-      "after": {
-        "lat": 51.1757295,
-        "lng": 4.3625175
-      },
-      "deviationMeters": 34,
-      "geocodeDisplayName": "Paul Vekemanslaan, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19259977-4088",
-      "gipodId": "19259977",
-      "adres": "Luxemburgstraat 56, 2020 Antwerpen",
-      "before": {
-        "lat": 51.187825862709786,
-        "lng": 4.382659968491717
-      },
-      "after": {
-        "lat": 51.1884479,
-        "lng": 4.3837562
-      },
-      "deviationMeters": 103,
-      "geocodeDisplayName": "Luxemburgstraat, Kiel, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19260203-4081",
-      "gipodId": "19260203",
-      "adres": "Betogingstraat 43, 2140 Borgerhout",
-      "before": {
-        "lat": 51.20905004766921,
-        "lng": 4.432335702124773
-      },
-      "after": {
-        "lat": 51.209319,
-        "lng": 4.4340635
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "43, Betogingstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19264310-4073",
-      "gipodId": "19264310",
-      "adres": "Sint-Bernardsesteenweg 0, 2660 Hoboken",
-      "before": {
-        "lat": 51.15930913252574,
-        "lng": 4.3484411528464
-      },
-      "after": {
-        "lat": 51.1713438,
-        "lng": 4.3643241
-      },
-      "deviationMeters": 1737,
-      "geocodeDisplayName": "Sint-Bernardsesteenweg, Vogeltjeswijk, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19258539-4106",
-      "gipodId": "19258539",
-      "adres": "RIJNKAAI 100, 2000 Antwerpen",
-      "before": {
-        "lat": 51.228885968930015,
-        "lng": 4.399527819500122
-      },
-      "after": {
-        "lat": 51.2296312,
-        "lng": 4.4015158
-      },
-      "deviationMeters": 161,
-      "geocodeDisplayName": "Hangar 26-27, 100, Rijnkaai, Nieuwstad-Cadix, Eilandje, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19271562-4021",
-      "gipodId": "19271562",
-      "adres": "Duinsteeg 7, 2060 Antwerpen",
-      "before": {
-        "lat": 51.221790074088574,
-        "lng": 4.429137722042379
-      },
-      "after": {
-        "lat": 51.2220573,
-        "lng": 4.4308748
+        "lat": 51.1851396,
+        "lng": 4.3910375
       },
       "deviationMeters": 125,
-      "geocodeDisplayName": "7, Duinsteeg, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+      "geocodeDisplayName": "288, Jan Van Rijswijcklaan, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19272503-4020",
-      "gipodId": "19272503",
-      "adres": "Gallifortlei 127, 2100 Deurne",
+      "workId": "gipod-18836936-1264",
+      "gipodId": "18836936",
+      "adres": "Augustijnenstraat 1, 2000 Antwerpen",
       "before": {
-        "lat": 51.22243974205462,
-        "lng": 4.461340493115106
+        "lat": 51.21639445599456,
+        "lng": 4.396638310565703
       },
       "after": {
-        "lat": 51.2227345,
-        "lng": 4.463013
+        "lat": 51.2169924,
+        "lng": 4.3974278
       },
-      "deviationMeters": 121,
-      "geocodeDisplayName": "127, Gallifortlei, Deurne-Dorp - Expo, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+      "deviationMeters": 86,
+      "geocodeDisplayName": "1, Augustijnenstraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-18127635-6252",
-      "gipodId": "18127635",
-      "adres": "Sprangweelstraat 0, 2180 Ekeren",
+      "workId": "gipod-18620237-1310",
+      "gipodId": "18620237",
+      "adres": "Mechelseplein 0, 2000 Antwerpen",
       "before": {
-        "lat": 51.27512267971302,
-        "lng": 4.405178736521633
+        "lat": 51.212407907129084,
+        "lng": 4.403339342768091
       },
       "after": {
-        "lat": 51.2755648,
-        "lng": 4.4069713
+        "lat": 51.2137414,
+        "lng": 4.4047095
+      },
+      "deviationMeters": 176,
+      "geocodeDisplayName": "Mechelseplein, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19589718-577",
+      "gipodId": "19589718",
+      "adres": "Lamorinierestraat 26, 2018 Antwerpen",
+      "before": {
+        "lat": 51.20700863805196,
+        "lng": 4.421611770405012
+      },
+      "after": {
+        "lat": 51.2074052,
+        "lng": 4.4224954
+      },
+      "deviationMeters": 76,
+      "geocodeDisplayName": "26-28, Lamorinièrestraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18241781-1560",
+      "gipodId": "18241781",
+      "adres": "VAN VARICKSTRAAT 2, 2020 Antwerpen",
+      "before": {
+        "lat": 51.19110726511131,
+        "lng": 4.390961738783773
+      },
+      "after": {
+        "lat": 51.1913985,
+        "lng": 4.392825
       },
       "deviationMeters": 134,
-      "geocodeDisplayName": "Sprangweelstraat, Schoonbroek, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+      "geocodeDisplayName": "2, Van Varickstraat, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19278120-3989",
-      "gipodId": "19278120",
-      "adres": "Schildersstraat 55, 2000 Antwerpen",
+      "workId": "gipod-18241507-1566",
+      "gipodId": "18241507",
+      "adres": "VAN VARICKSTRAAT 2, 2020 Antwerpen",
       "before": {
-        "lat": 51.20799358217943,
-        "lng": 4.39553277297789
+        "lat": 51.19110726511131,
+        "lng": 4.390961738783773
       },
       "after": {
-        "lat": 51.2082633,
-        "lng": 4.3972403
+        "lat": 51.1913985,
+        "lng": 4.392825
+      },
+      "deviationMeters": 134,
+      "geocodeDisplayName": "2, Van Varickstraat, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19558586-672",
+      "gipodId": "19558586",
+      "adres": "VAN DE WERVESTRAAT 6, 2060 Antwerpen",
+      "before": {
+        "lat": 51.22916534789644,
+        "lng": 4.413523518803001
+      },
+      "after": {
+        "lat": 51.2294031,
+        "lng": 4.4150258
+      },
+      "deviationMeters": 108,
+      "geocodeDisplayName": "6, Van de Wervestraat, Amandus, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19579194-611",
+      "gipodId": "19579194",
+      "adres": "VICTOR DELA MONTAGNESTRAAT 3, 2050 Antwerpen",
+      "before": {
+        "lat": 51.221997794534104,
+        "lng": 4.37766297924831
+      },
+      "after": {
+        "lat": 51.22228,
+        "lng": 4.3793751
       },
       "deviationMeters": 123,
-      "geocodeDisplayName": "55, Schildersstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+      "geocodeDisplayName": "3, Victor dela Montagnestraat, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-17180365-6785",
-      "gipodId": "17180365",
-      "adres": "BOEKENBERGLEI 209, 2100 Deurne",
+      "workId": "gipod-19579192-612",
+      "gipodId": "19579192",
+      "adres": "VICTOR DELA MONTAGNESTRAAT 1, 2050 Antwerpen",
       "before": {
-        "lat": 51.19652608156493,
-        "lng": 4.458003221914685
+        "lat": 51.2220644978357,
+        "lng": 4.377506981409011
       },
       "after": {
-        "lat": 51.1967913,
-        "lng": 4.459907
+        "lat": 51.2223289,
+        "lng": 4.379359
       },
-      "deviationMeters": 136,
-      "geocodeDisplayName": "209, Boekenberglei, Boekenberg-Unitas, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+      "deviationMeters": 132,
+      "geocodeDisplayName": "1, Victor dela Montagnestraat, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-18372975-5728",
-      "gipodId": "18372975",
-      "adres": "COPPENOLSTRAAT 7, 2000 Antwerpen",
+      "workId": "gipod-19529165-713",
+      "gipodId": "19529165",
+      "adres": "NIEUWDREEF 75, 2170 Merksem",
       "before": {
-        "lat": 51.22167738018375,
-        "lng": 4.402032432409343
+        "lat": 51.24506159350754,
+        "lng": 4.439338172937455
       },
       "after": {
-        "lat": 51.2219251,
-        "lng": 4.403874
+        "lat": 51.2453809,
+        "lng": 4.4412534
+      },
+      "deviationMeters": 138,
+      "geocodeDisplayName": "75, Nieuwdreef, Oud-Merksem, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19209454-1083",
+      "gipodId": "19209454",
+      "adres": "KARDELAAN 28, 2180 Ekeren",
+      "before": {
+        "lat": 51.27942940728091,
+        "lng": 4.431172008031023
+      },
+      "after": {
+        "lat": 51.2796787,
+        "lng": 4.4330404
+      },
+      "deviationMeters": 133,
+      "geocodeDisplayName": "28, Kardelaan, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19328820-1001",
+      "gipodId": "19328820",
+      "adres": "BOSHEIDELAAN 30, 2610 Wilrijk",
+      "before": {
+        "lat": 51.176158483282805,
+        "lng": 4.3784148373530885
+      },
+      "after": {
+        "lat": 51.1764076,
+        "lng": 4.3801623
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "30, Bosheidelaan, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19593389-555",
+      "gipodId": "19593389",
+      "adres": "WAMBACHSTRAAT 30, 2018 Antwerpen",
+      "before": {
+        "lat": 51.20204498479958,
+        "lng": 4.416201948358356
+      },
+      "after": {
+        "lat": 51.2023071,
+        "lng": 4.4179381
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "30, Wambachstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19114862-1176",
+      "gipodId": "19114862",
+      "adres": "GOUNODSTRAAT 11, 2018 Antwerpen",
+      "before": {
+        "lat": 51.2052672347483,
+        "lng": 4.406802020973034
+      },
+      "after": {
+        "lat": 51.2055098,
+        "lng": 4.4085384
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "11, Gounodstraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19442483-856",
+      "gipodId": "19442483",
+      "adres": "GALGENWEELLAAN 59, 2050 Antwerpen",
+      "before": {
+        "lat": 51.21870129099092,
+        "lng": 4.37623425471567
+      },
+      "after": {
+        "lat": 51.2189623,
+        "lng": 4.3778949
+      },
+      "deviationMeters": 119,
+      "geocodeDisplayName": "59, Galgenweellaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19361448-956",
+      "gipodId": "19361448",
+      "adres": "VAN NOTENSTRAAT 21, 2100 Deurne",
+      "before": {
+        "lat": 51.20001508357598,
+        "lng": 4.456432828774729
+      },
+      "after": {
+        "lat": 51.2003033,
+        "lng": 4.4581724
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "21, Van Notenstraat, Vliegveld, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19599715-538",
+      "gipodId": "19599715",
+      "adres": "Florastraat 93, 2140 Borgerhout",
+      "before": {
+        "lat": 51.217058972138986,
+        "lng": 4.441042093152521
+      },
+      "after": {
+        "lat": 51.2173313,
+        "lng": 4.4427875
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "93, Florastraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19471856-801",
+      "gipodId": "19471856",
+      "adres": "LEUGENBERG 108, 2180 Ekeren",
+      "before": {
+        "lat": 51.29680864577827,
+        "lng": 4.410078534519659
+      },
+      "after": {
+        "lat": 51.2970689,
+        "lng": 4.4117807
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "108, Leugenberg, Edison, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19471823-809",
+      "gipodId": "19471823",
+      "adres": "LEUGENBERG 108, 2180 Ekeren",
+      "before": {
+        "lat": 51.29680864577827,
+        "lng": 4.410078534519659
+      },
+      "after": {
+        "lat": 51.2970689,
+        "lng": 4.4117807
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "108, Leugenberg, Edison, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19593366-558",
+      "gipodId": "19593366",
+      "adres": "BERKENRODELEI 3, 2660 Hoboken",
+      "before": {
+        "lat": 51.1775152695986,
+        "lng": 4.348137605053289
+      },
+      "after": {
+        "lat": 51.1776695,
+        "lng": 4.3496362
+      },
+      "deviationMeters": 106,
+      "geocodeDisplayName": "1-3, Berkenrodelei, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19599125-540",
+      "gipodId": "19599125",
+      "adres": "WAMBACHSTRAAT 38, 2018 Antwerpen",
+      "before": {
+        "lat": 51.201904474423756,
+        "lng": 4.416047862185923
+      },
+      "after": {
+        "lat": 51.2022263,
+        "lng": 4.4177244
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "38, Wambachstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19528845-722",
+      "gipodId": "19528845",
+      "adres": "JAN BREYDELSTRAAT 57, 2600 Berchem",
+      "before": {
+        "lat": 51.19299979624708,
+        "lng": 4.415221943854711
+      },
+      "after": {
+        "lat": 51.1933389,
+        "lng": 4.416977
+      },
+      "deviationMeters": 128,
+      "geocodeDisplayName": "57, Jan Breydelstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19529145-715",
+      "gipodId": "19529145",
+      "adres": "MAARSCHALK GÉRARDSTRAAT 13, 2000 Antwerpen",
+      "before": {
+        "lat": 51.21249964974183,
+        "lng": 4.402354595070671
+      },
+      "after": {
+        "lat": 51.2127214,
+        "lng": 4.4041954
       },
       "deviationMeters": 131,
-      "geocodeDisplayName": "7, Coppenolstraat, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+      "geocodeDisplayName": "13, Maarschalk Gérardstraat, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19279902-3973",
-      "gipodId": "19279902",
-      "adres": "Venneborglaan 99, 2100 Deurne",
+      "workId": "gipod-19599124-541",
+      "gipodId": "19599124",
+      "adres": "WAMBACHSTRAAT 22, 2018 Antwerpen",
       "before": {
-        "lat": 51.22280425408319,
-        "lng": 4.471955052083583
+        "lat": 51.20206869081938,
+        "lng": 4.416476950552627
       },
       "after": {
-        "lat": 51.2231147,
-        "lng": 4.4735228
+        "lat": 51.2023851,
+        "lng": 4.4181578
       },
-      "deviationMeters": 115,
-      "geocodeDisplayName": "99, Venneborglaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+      "deviationMeters": 122,
+      "geocodeDisplayName": "22, Wambachstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-18435994-5630",
-      "gipodId": "18435994",
-      "adres": "KAPELSESTEENWEG 335, 2180 Ekeren",
+      "workId": "gipod-19599122-542",
+      "gipodId": "19599122",
+      "adres": "WAMBACHSTRAAT 18, 2018 Antwerpen",
       "before": {
-        "lat": 51.27955833815518,
-        "lng": 4.451056409362561
+        "lat": 51.20210918347857,
+        "lng": 4.416582863380443
+      },
+      "after": {
+        "lat": 51.2024257,
+        "lng": 4.4182628
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "18, Wambachstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19552268-684",
+      "gipodId": "19552268",
+      "adres": "WAMBACHSTRAAT 34, 2018 Antwerpen",
+      "before": {
+        "lat": 51.20194649386555,
+        "lng": 4.416157638682103
+      },
+      "after": {
+        "lat": 51.2022678,
+        "lng": 4.4178325
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "34, Wambachstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19492533-764",
+      "gipodId": "19492533",
+      "adres": "LANGE BEELDEKENSSTRAAT 326, 2060 Antwerpen",
+      "before": {
+        "lat": 51.222155438274704,
+        "lng": 4.434947282730278
+      },
+      "after": {
+        "lat": 51.222378,
+        "lng": 4.4367101
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "326, Lange Beeldekensstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611894-495",
+      "gipodId": "19611894",
+      "adres": "IEPERSTRAAT 16, 2018 Antwerpen",
+      "before": {
+        "lat": 51.20286918015591,
+        "lng": 4.389250371636813
+      },
+      "after": {
+        "lat": 51.2031733,
+        "lng": 4.3909328
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "16, Ieperstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19593387-557",
+      "gipodId": "19593387",
+      "adres": "WAMBACHSTRAAT 6, 2018 Antwerpen",
+      "before": {
+        "lat": 51.202232366837286,
+        "lng": 4.416904896824069
+      },
+      "after": {
+        "lat": 51.2025508,
+        "lng": 4.4185785
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "6, Wambachstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611990-483",
+      "gipodId": "19611990",
+      "adres": "TER RIVIERENLAAN 227, 2100 Deurne",
+      "before": {
+        "lat": 51.22712959678117,
+        "lng": 4.46727781784851
+      },
+      "after": {
+        "lat": 51.2273879,
+        "lng": 4.4688352
+      },
+      "deviationMeters": 112,
+      "geocodeDisplayName": "227, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611985-486",
+      "gipodId": "19611985",
+      "adres": "TER RIVIERENLAAN 211, 2100 Deurne",
+      "before": {
+        "lat": 51.2266827661627,
+        "lng": 4.467324247815062
+      },
+      "after": {
+        "lat": 51.2269243,
+        "lng": 4.468903
+      },
+      "deviationMeters": 113,
+      "geocodeDisplayName": "Verdi, 211, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611982-487",
+      "gipodId": "19611982",
+      "adres": "TER RIVIERENLAAN 211, 2100 Deurne",
+      "before": {
+        "lat": 51.2266827661627,
+        "lng": 4.467324247815062
+      },
+      "after": {
+        "lat": 51.2269243,
+        "lng": 4.468903
+      },
+      "deviationMeters": 113,
+      "geocodeDisplayName": "Verdi, 211, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19579078-624",
+      "gipodId": "19579078",
+      "adres": "TERLOSTRAAT 11, 2140 Borgerhout",
+      "before": {
+        "lat": 51.21790040170513,
+        "lng": 4.439762797495966
+      },
+      "after": {
+        "lat": 51.2183014,
+        "lng": 4.4413707
+      },
+      "deviationMeters": 121,
+      "geocodeDisplayName": "11, Terlostraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19579076-625",
+      "gipodId": "19579076",
+      "adres": "TERLOSTRAAT 11, 2140 Borgerhout",
+      "before": {
+        "lat": 51.21790040170513,
+        "lng": 4.439762797495966
+      },
+      "after": {
+        "lat": 51.2183014,
+        "lng": 4.4413707
+      },
+      "deviationMeters": 121,
+      "geocodeDisplayName": "11, Terlostraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19618948-462",
+      "gipodId": "19618948",
+      "adres": "De Oude Landen 135, 2180 Ekeren",
+      "before": {
+        "lat": 51.272165729643724,
+        "lng": 4.439140501439152
+      },
+      "after": {
+        "lat": 51.272449,
+        "lng": 4.4408685
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "135, De Oude Landen, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611835-498",
+      "gipodId": "19611835",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 46, 2180 Ekeren",
+      "before": {
+        "lat": 51.29254396537155,
+        "lng": 4.440882449253071
+      },
+      "after": {
+        "lat": 51.2928206,
+        "lng": 4.4426292
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "46, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611831-500",
+      "gipodId": "19611831",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 34, 2180 Ekeren",
+      "before": {
+        "lat": 51.292068016270626,
+        "lng": 4.441108333627642
+      },
+      "after": {
+        "lat": 51.2923568,
+        "lng": 4.442934
+      },
+      "deviationMeters": 131,
+      "geocodeDisplayName": "34, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611828-502",
+      "gipodId": "19611828",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 32, 2180 Ekeren",
+      "before": {
+        "lat": 51.29201981621207,
+        "lng": 4.441150258102199
+      },
+      "after": {
+        "lat": 51.2923271,
+        "lng": 4.4430402
+      },
+      "deviationMeters": 136,
+      "geocodeDisplayName": "32, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611825-503",
+      "gipodId": "19611825",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 16, 2180 Ekeren",
+      "before": {
+        "lat": 51.29153322817524,
+        "lng": 4.441574077825078
+      },
+      "after": {
+        "lat": 51.2918471,
+        "lng": 4.4434247
+      },
+      "deviationMeters": 133,
+      "geocodeDisplayName": "16, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19584587-603",
+      "gipodId": "19584587",
+      "adres": "LAAR 91, 2180 Ekeren",
+      "before": {
+        "lat": 51.26889353564473,
+        "lng": 4.445592144514629
+      },
+      "after": {
+        "lat": 51.2691607,
+        "lng": 4.4473112
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "91, Laar, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17546587-1719",
+      "gipodId": "17546587",
+      "adres": "BIESTHOEVELAAN 6, 2610 Wilrijk",
+      "before": {
+        "lat": 51.16651512195712,
+        "lng": 4.3932218819027895
+      },
+      "after": {
+        "lat": 51.1667592,
+        "lng": 4.3948426
+      },
+      "deviationMeters": 116,
+      "geocodeDisplayName": "6, Biesthoevelaan, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17546150-1730",
+      "gipodId": "17546150",
+      "adres": "BIESTHOEVELAAN 6, 2610 Wilrijk",
+      "before": {
+        "lat": 51.16651512195712,
+        "lng": 4.3932218819027895
+      },
+      "after": {
+        "lat": 51.1667592,
+        "lng": 4.3948426
+      },
+      "deviationMeters": 116,
+      "geocodeDisplayName": "6, Biesthoevelaan, Duivelshoek - Oversnes, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19627624-403",
+      "gipodId": "19627624",
+      "adres": "Luxemburgstraat 40, 2020 Antwerpen",
+      "before": {
+        "lat": 51.18790716344673,
+        "lng": 4.382262527168935
+      },
+      "after": {
+        "lat": 51.1881566,
+        "lng": 4.3839659
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "40, Luxemburgstraat, Kiel, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19402210-897",
+      "gipodId": "19402210",
+      "adres": "BLANCEFLOERLAAN 31, 2050 Antwerpen",
+      "before": {
+        "lat": 51.219821742728065,
+        "lng": 4.38192344616936
+      },
+      "after": {
+        "lat": 51.2200914,
+        "lng": 4.3836499
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "31, Blancefloerlaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19402209-898",
+      "gipodId": "19402209",
+      "adres": "BLANCEFLOERLAAN 11, 2050 Antwerpen",
+      "before": {
+        "lat": 51.2198299403573,
+        "lng": 4.383237460945838
+      },
+      "after": {
+        "lat": 51.2201084,
+        "lng": 4.3849616
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "11, Blancefloerlaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19402208-899",
+      "gipodId": "19402208",
+      "adres": "BLANCEFLOERLAAN 11, 2050 Antwerpen",
+      "before": {
+        "lat": 51.2198299403573,
+        "lng": 4.383237460945838
+      },
+      "after": {
+        "lat": 51.2201084,
+        "lng": 4.3849616
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "11, Blancefloerlaan, Europark, Linkeroever, Antwerpen, Vlaanderen, 2050, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19633939-362",
+      "gipodId": "19633939",
+      "adres": "Lange Lobroekstraat 49, 2060 Antwerpen",
+      "before": {
+        "lat": 51.22869159839494,
+        "lng": 4.431311479661341
+      },
+      "after": {
+        "lat": 51.2289611,
+        "lng": 4.4330405
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "49, Lange Lobroekstraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19632077-364",
+      "gipodId": "19632077",
+      "adres": "Turnhoutsebaan 108, 2100 Deurne",
+      "before": {
+        "lat": 51.21958356260807,
+        "lng": 4.45935453943276
+      },
+      "after": {
+        "lat": 51.2198195,
+        "lng": 4.4610636
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "108, Turnhoutsebaan, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19632072-365",
+      "gipodId": "19632072",
+      "adres": "N12 104, 2100 Deurne",
+      "before": {
+        "lat": 51.219840362909586,
+        "lng": 4.459103861005902
+      },
+      "after": {
+        "lat": 51.220059,
+        "lng": 4.4607528
+      },
+      "deviationMeters": 117,
+      "geocodeDisplayName": "104, Turnhoutsebaan, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18269405-1551",
+      "gipodId": "18269405",
+      "adres": "TER RIVIERENLAAN 236, 2100 Deurne",
+      "before": {
+        "lat": 51.22750881903633,
+        "lng": 4.467574795302125
+      },
+      "after": {
+        "lat": 51.2277847,
+        "lng": 4.4694848
+      },
+      "deviationMeters": 136,
+      "geocodeDisplayName": "236, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17522700-1761",
+      "gipodId": "17522700",
+      "adres": "GITSCHOTELLEI 314, 2140 Borgerhout",
+      "before": {
+        "lat": 51.19758180396122,
+        "lng": 4.454408714902101
+      },
+      "after": {
+        "lat": 51.1979217,
+        "lng": 4.4561911
+      },
+      "deviationMeters": 130,
+      "geocodeDisplayName": "314, Gitschotellei, Vliegveld, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17071881-1839",
+      "gipodId": "17071881",
+      "adres": "GITSCHOTELLEI 314A, 2140 Borgerhout",
+      "before": {
+        "lat": 51.19764333511047,
+        "lng": 4.454459470253491
+      },
+      "after": {
+        "lat": 51.2002957,
+        "lng": 4.4479944
+      },
+      "deviationMeters": 538,
+      "geocodeDisplayName": "Gitschotellei, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19360588-963",
+      "gipodId": "19360588",
+      "adres": "COÖPERATIELAAN THV 27, 2660 Hoboken",
+      "before": {
+        "lat": 51.176662180135345,
+        "lng": 4.367573542243585
+      },
+      "after": {
+        "lat": 51.1769248,
+        "lng": 4.3692991
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "27, Coöperatielaan, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19628203-391",
+      "gipodId": "19628203",
+      "adres": "ORTELIUSKAAI 1, 2000 Antwerpen",
+      "before": {
+        "lat": 51.22545372469357,
+        "lng": 4.398550718831161
+      },
+      "after": {
+        "lat": 51.2257641,
+        "lng": 4.400295
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "1, Orteliuskaai, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19343197-970",
+      "gipodId": "19343197",
+      "adres": "TABAKVEST 26, 2000 Antwerpen",
+      "before": {
+        "lat": 51.215645502049505,
+        "lng": 4.41075618722068
+      },
+      "after": {
+        "lat": 51.2159074,
+        "lng": 4.4125055
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "26, Tabakvest, Theaterbuurt, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19343194-971",
+      "gipodId": "19343194",
+      "adres": "TABAKVEST 26, 2000 Antwerpen",
+      "before": {
+        "lat": 51.215645502049505,
+        "lng": 4.41075618722068
+      },
+      "after": {
+        "lat": 51.2159074,
+        "lng": 4.4125055
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "26, Tabakvest, Theaterbuurt, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19382631-929",
+      "gipodId": "19382631",
+      "adres": "HARMONIESTRAAT 68, 2018 Antwerpen",
+      "before": {
+        "lat": 51.20166775443263,
+        "lng": 4.408269192340987
+      },
+      "after": {
+        "lat": 51.2018521,
+        "lng": 4.4098243
+      },
+      "deviationMeters": 110,
+      "geocodeDisplayName": "68, Harmoniestraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19382630-930",
+      "gipodId": "19382630",
+      "adres": "HARMONIESTRAAT 54, 2018 Antwerpen",
+      "before": {
+        "lat": 51.2021939098108,
+        "lng": 4.408283094177673
+      },
+      "after": {
+        "lat": 51.2024649,
+        "lng": 4.4100103
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "54, Harmoniestraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19382629-931",
+      "gipodId": "19382629",
+      "adres": "VALKENBURGSTRAAT 2, 2018 Antwerpen",
+      "before": {
+        "lat": 51.20221848482904,
+        "lng": 4.408172236891508
+      },
+      "after": {
+        "lat": 51.2024612,
+        "lng": 4.4099043
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "2, Valkenburgstraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19382628-932",
+      "gipodId": "19382628",
+      "adres": "VALKENBURGSTRAAT 38, 2018 Antwerpen",
+      "before": {
+        "lat": 51.20149476637024,
+        "lng": 4.406553243504383
+      },
+      "after": {
+        "lat": 51.2017625,
+        "lng": 4.40828
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "38, Valkenburgstraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17551326-1698",
+      "gipodId": "17551326",
+      "adres": "CUYLITSSTRAAT 60, 2018 Antwerpen",
+      "before": {
+        "lat": 51.204116215256846,
+        "lng": 4.389555973190826
+      },
+      "after": {
+        "lat": 51.2044456,
+        "lng": 4.3912551
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "60, Cuylitsstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17550906-1709",
+      "gipodId": "17550906",
+      "adres": "CUYLITSSTRAAT 60, 2018 Antwerpen",
+      "before": {
+        "lat": 51.204116215256846,
+        "lng": 4.389555973190826
+      },
+      "after": {
+        "lat": 51.2044456,
+        "lng": 4.3912551
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "60, Cuylitsstraat, Brederode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19306283-1011",
+      "gipodId": "19306283",
+      "adres": "BESCHAVINGSTRAAT 14, 2020 Antwerpen",
+      "before": {
+        "lat": 51.19087866620303,
+        "lng": 4.394557077520209
+      },
+      "after": {
+        "lat": 51.1911516,
+        "lng": 4.3963004
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "14, Beschavingstraat, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19306278-1012",
+      "gipodId": "19306278",
+      "adres": "BESCHAVINGSTRAAT 14, 2020 Antwerpen",
+      "before": {
+        "lat": 51.19087866620303,
+        "lng": 4.394557077520209
+      },
+      "after": {
+        "lat": 51.1911516,
+        "lng": 4.3963004
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "14, Beschavingstraat, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19203629-1084",
+      "gipodId": "19203629",
+      "adres": "KRUISHOFSTRAAT 42, 2020 Antwerpen",
+      "before": {
+        "lat": 51.18615704688618,
+        "lng": 4.392450434702779
+      },
+      "after": {
+        "lat": 51.1864343,
+        "lng": 4.3941872
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "42, Kruishofstraat, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19203626-1085",
+      "gipodId": "19203626",
+      "adres": "KRUISHOFSTRAAT 42, 2020 Antwerpen",
+      "before": {
+        "lat": 51.186156495902644,
+        "lng": 4.392507070228991
+      },
+      "after": {
+        "lat": 51.1864343,
+        "lng": 4.3941872
+      },
+      "deviationMeters": 121,
+      "geocodeDisplayName": "42, Kruishofstraat, Tentoonstellingswijk, Antwerpen, Vlaanderen, 2020, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19630323-367",
+      "gipodId": "19630323",
+      "adres": "VAN DEN HAUTELEI 101, 2100 Deurne",
+      "before": {
+        "lat": 51.20360334593913,
+        "lng": 4.465948851604487
+      },
+      "after": {
+        "lat": 51.2038706,
+        "lng": 4.4677091
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "101, Van den Hautelei, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19630120-387",
+      "gipodId": "19630120",
+      "adres": "JOZEF VERBOVENLEI 52, 2100 Deurne",
+      "before": {
+        "lat": 51.20131576158861,
+        "lng": 4.456530574568844
+      },
+      "after": {
+        "lat": 51.2016622,
+        "lng": 4.4583709
+      },
+      "deviationMeters": 134,
+      "geocodeDisplayName": "52, Jozef Verbovenlei, Kriekenhof, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611987-484",
+      "gipodId": "19611987",
+      "adres": "TER RIVIERENLAAN 225, 2100 Deurne",
+      "before": {
+        "lat": 51.22707141281518,
+        "lng": 4.467101338955483
+      },
+      "after": {
+        "lat": 51.2273384,
+        "lng": 4.4688111
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "225, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611986-485",
+      "gipodId": "19611986",
+      "adres": "TER RIVIERENLAAN 225, 2100 Deurne",
+      "before": {
+        "lat": 51.22707141281518,
+        "lng": 4.467101338955483
+      },
+      "after": {
+        "lat": 51.2273384,
+        "lng": 4.4688111
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "225, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19471477-818",
+      "gipodId": "19471477",
+      "adres": "VAN DEN HAUTELEI 101, 2100 Deurne",
+      "before": {
+        "lat": 51.20360334593913,
+        "lng": 4.465948851604487
+      },
+      "after": {
+        "lat": 51.2038706,
+        "lng": 4.4677091
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "101, Van den Hautelei, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19471476-819",
+      "gipodId": "19471476",
+      "adres": "VAN DEN HAUTELEI 101, 2100 Deurne",
+      "before": {
+        "lat": 51.20360334593913,
+        "lng": 4.465948851604487
+      },
+      "after": {
+        "lat": 51.2038706,
+        "lng": 4.4677091
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "101, Van den Hautelei, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19322337-1006",
+      "gipodId": "19322337",
+      "adres": "TURNHOUTSEBAAN 104, 2100 Deurne",
+      "before": {
+        "lat": 51.21986571308273,
+        "lng": 4.459156958237471
+      },
+      "after": {
+        "lat": 51.220059,
+        "lng": 4.4607528
+      },
+      "deviationMeters": 113,
+      "geocodeDisplayName": "104, Turnhoutsebaan, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18269575-1545",
+      "gipodId": "18269575",
+      "adres": "VAN DEN HAUTELEI 104, 2100 Deurne",
+      "before": {
+        "lat": 51.20347790967517,
+        "lng": 4.465469007857647
+      },
+      "after": {
+        "lat": 51.2037458,
+        "lng": 4.4672029
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "104, Van den Hautelei, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18269455-1547",
+      "gipodId": "18269455",
+      "adres": "VAN WAELWIJCKSTRAAT 6, 2100 Deurne",
+      "before": {
+        "lat": 51.226257713935084,
+        "lng": 4.4612626743199035
+      },
+      "after": {
+        "lat": 51.2265237,
+        "lng": 4.4630185
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "6, Van Waelwijckstraat, Deurne-Dorp - Expo, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18269373-1553",
+      "gipodId": "18269373",
+      "adres": "MORTSELSESTEENWEG 214, 2100 Deurne",
+      "before": {
+        "lat": 51.19313742318324,
+        "lng": 4.465999990860971
+      },
+      "after": {
+        "lat": 51.1934073,
+        "lng": 4.4677429
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "214, Mortselsesteenweg, Vliegveld, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18269343-1554",
+      "gipodId": "18269343",
+      "adres": "VAN DEN HAUTELEI 104, 2100 Deurne",
+      "before": {
+        "lat": 51.20347790967517,
+        "lng": 4.465469007857647
+      },
+      "after": {
+        "lat": 51.2037458,
+        "lng": 4.4672029
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "104, Van den Hautelei, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17669720-1667",
+      "gipodId": "17669720",
+      "adres": "JOZEF VERBOVENLEI 52, 2100 Deurne",
+      "before": {
+        "lat": 51.20140627969837,
+        "lng": 4.456639333746403
+      },
+      "after": {
+        "lat": 51.2016622,
+        "lng": 4.4583709
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "52, Jozef Verbovenlei, Kriekenhof, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17532952-1743",
+      "gipodId": "17532952",
+      "adres": "TER RIVIERENLAAN 24, 2100 Deurne",
+      "before": {
+        "lat": 51.22112828900066,
+        "lng": 4.467643907443159
+      },
+      "after": {
+        "lat": 51.2214065,
+        "lng": 4.4693514
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "24, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17532951-1744",
+      "gipodId": "17532951",
+      "adres": "TER RIVIERENLAAN 22, 2100 Deurne",
+      "before": {
+        "lat": 51.22107849734647,
+        "lng": 4.467641797342207
+      },
+      "after": {
+        "lat": 51.2213469,
+        "lng": 4.4693661
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "22, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17532816-1752",
+      "gipodId": "17532816",
+      "adres": "TER RIVIERENLAAN 24, 2100 Deurne",
+      "before": {
+        "lat": 51.22112828900066,
+        "lng": 4.467643907443159
+      },
+      "after": {
+        "lat": 51.2214065,
+        "lng": 4.4693514
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "24, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17532814-1753",
+      "gipodId": "17532814",
+      "adres": "TER RIVIERENLAAN 22, 2100 Deurne",
+      "before": {
+        "lat": 51.22107849734647,
+        "lng": 4.467641797342207
+      },
+      "after": {
+        "lat": 51.2213469,
+        "lng": 4.4693661
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "22, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19630202-375",
+      "gipodId": "19630202",
+      "adres": "JOOS ROBIJNSLEI 24, 2140 Borgerhout",
+      "before": {
+        "lat": 51.198957993435826,
+        "lng": 4.453505268645392
+      },
+      "after": {
+        "lat": 51.1992066,
+        "lng": 4.4552869
+      },
+      "deviationMeters": 127,
+      "geocodeDisplayName": "24, Joos Robijnslei, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18354555-1507",
+      "gipodId": "18354555",
+      "adres": "DE LEESCORFSTRAAT 48, 2140 Borgerhout",
+      "before": {
+        "lat": 51.20151525404575,
+        "lng": 4.447074516531623
+      },
+      "after": {
+        "lat": 51.2017831,
+        "lng": 4.4488129
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "48, De Leescorfstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18354191-1526",
+      "gipodId": "18354191",
+      "adres": "DE LEESCORFSTRAAT 48, 2140 Borgerhout",
+      "before": {
+        "lat": 51.20151525404575,
+        "lng": 4.447074516531623
+      },
+      "after": {
+        "lat": 51.2017831,
+        "lng": 4.4488129
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "48, De Leescorfstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18354160-1528",
+      "gipodId": "18354160",
+      "adres": "JOE ENGLISHSTRAAT 27, 2140 Borgerhout",
+      "before": {
+        "lat": 51.2111029848212,
+        "lng": 4.446374273590499
+      },
+      "after": {
+        "lat": 51.211367,
+        "lng": 4.4481047
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "27, Joe Englishstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19593296-559",
+      "gipodId": "19593296",
+      "adres": "BREDABAAN 600, 2170 Merksem",
+      "before": {
+        "lat": 51.24626909822613,
+        "lng": 4.447817426308995
+      },
+      "after": {
+        "lat": 51.2466665,
+        "lng": 4.4494133
+      },
+      "deviationMeters": 120,
+      "geocodeDisplayName": "600, Bredabaan, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19593289-560",
+      "gipodId": "19593289",
+      "adres": "BREDABAAN 600, 2170 Merksem",
+      "before": {
+        "lat": 51.24626909822613,
+        "lng": 4.447817426308995
+      },
+      "after": {
+        "lat": 51.2466665,
+        "lng": 4.4494133
+      },
+      "deviationMeters": 120,
+      "geocodeDisplayName": "600, Bredabaan, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19442323-857",
+      "gipodId": "19442323",
+      "adres": "ELFNOVEMBERSTRAAT 16, 2170 Merksem",
+      "before": {
+        "lat": 51.24633527840181,
+        "lng": 4.444365595376643
+      },
+      "after": {
+        "lat": 51.2465791,
+        "lng": 4.4460866
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "16, Elfnovemberstraat, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19638075-302",
+      "gipodId": "19638075",
+      "adres": "Kapelsesteenweg 335, 2180 Ekeren",
+      "before": {
+        "lat": 51.279584815077044,
+        "lng": 4.450980933887153
       },
       "after": {
         "lat": 51.2798271,
         "lng": 4.4527541
       },
-      "deviationMeters": 122,
+      "deviationMeters": 126,
       "geocodeDisplayName": "335, Kapelsesteenweg, Vriesdonk, Brasschaat, Antwerpen, Vlaanderen, 2930, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19284117-3967",
-      "gipodId": "19284117",
-      "adres": "Lange Nieuwstraat 150, 2000 Antwerpen",
+      "workId": "gipod-19630223-372",
+      "gipodId": "19630223",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 29, 2180 Ekeren",
       "before": {
-        "lat": 51.219421733612165,
-        "lng": 4.4126572952547525
+        "lat": 51.29280516345243,
+        "lng": 4.44012325976215
       },
       "after": {
-        "lat": 51.2196907,
-        "lng": 4.4143852
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "150, Lange Nieuwstraat, Meir, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19280397-3972",
-      "gipodId": "19280397",
-      "adres": "Vleminckveld 68, 2000 Antwerpen",
-      "before": {
-        "lat": 51.21354811886435,
-        "lng": 4.4026005024371635
-      },
-      "after": {
-        "lat": 51.2137932,
-        "lng": 4.403848
-      },
-      "deviationMeters": 91,
-      "geocodeDisplayName": "68, Vleminckveld, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19253058-4159",
-      "gipodId": "19253058",
-      "adres": "SINT-PAULUSPLAATS 23, 2000 Antwerpen",
-      "before": {
-        "lat": 51.22459825520748,
-        "lng": 4.399222190974828
-      },
-      "after": {
-        "lat": 51.2247837,
-        "lng": 4.4007928
-      },
-      "deviationMeters": 111,
-      "geocodeDisplayName": "23, Sint-Paulusplaats, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19282043-3970",
-      "gipodId": "19282043",
-      "adres": "Sint-Jozefstraat 9, 2018 Antwerpen",
-      "before": {
-        "lat": 51.206825434789856,
-        "lng": 4.409353914447378
-      },
-      "after": {
-        "lat": 51.2071209,
-        "lng": 4.4110801
+        "lat": 51.2930778,
+        "lng": 4.4418656
       },
       "deviationMeters": 125,
-      "geocodeDisplayName": "9, Sint-Jozefstraat, Klein-Antwerpen, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+      "geocodeDisplayName": "29, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19284575-3966",
-      "gipodId": "19284575",
-      "adres": "Ferdinand Verbieststraat 59, 2030 Antwerpen",
+      "workId": "gipod-19630220-373",
+      "gipodId": "19630220",
+      "adres": "AUGUST SCHEYVAERTSLAAN 66, 2180 Ekeren",
       "before": {
-        "lat": 51.27278829239926,
-        "lng": 4.4131731950106134
+        "lat": 51.279806180498134,
+        "lng": 4.420876599838434
       },
       "after": {
-        "lat": 51.2730166,
-        "lng": 4.4149462
-      },
-      "deviationMeters": 126,
-      "geocodeDisplayName": "59, Ferdinand Verbieststraat, Rozemaai, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18997744-4828",
-      "gipodId": "18997744",
-      "adres": "BOTERLAARBAAN 263, 2100 Deurne",
-      "before": {
-        "lat": 51.20879028965342,
-        "lng": 4.469318613421714
-      },
-      "after": {
-        "lat": 51.2091676,
-        "lng": 4.4710447
-      },
-      "deviationMeters": 127,
-      "geocodeDisplayName": "263, Boterlaarbaan, Driekoningen, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19288860-3954",
-      "gipodId": "19288860",
-      "adres": "Vaderlandstraat 59, 2610 Wilrijk",
-      "before": {
-        "lat": 51.16998651996793,
-        "lng": 4.403731203416242
-      },
-      "after": {
-        "lat": 51.170254,
-        "lng": 4.4054568
-      },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "59, Vaderlandstraat, Yperman - Steytelinck, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18652073-5262",
-      "gipodId": "18652073",
-      "adres": "WILLEM TELLSTRAAT 3, 2000 Antwerpen",
-      "before": {
-        "lat": 51.21451415509809,
-        "lng": 4.4055337602855404
-      },
-      "after": {
-        "lat": 51.2148275,
-        "lng": 4.4073884
-      },
-      "deviationMeters": 134,
-      "geocodeDisplayName": "3, Willem Tellstraat, Theaterbuurt, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19024389-4803",
-      "gipodId": "19024389",
-      "adres": "MECHELSESTEENWEG 175, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20393099038034,
-        "lng": 4.409691154397126
-      },
-      "after": {
-        "lat": 51.204194,
-        "lng": 4.4114499
-      },
-      "deviationMeters": 126,
-      "geocodeDisplayName": "175, Mechelsesteenweg, Klein-Antwerpen, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-17124214-6802",
-      "gipodId": "17124214",
-      "adres": "BELGIËLEI 137, 2018 Antwerpen",
-      "before": {
-        "lat": 51.20420519500061,
-        "lng": 4.414796747454417
-      },
-      "after": {
-        "lat": 51.2044104,
-        "lng": 4.416633
-      },
-      "deviationMeters": 130,
-      "geocodeDisplayName": "137, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18664456-5250",
-      "gipodId": "18664456",
-      "adres": "ASTERLAAN 14, 2180 Ekeren",
-      "before": {
-        "lat": 51.28273175143623,
-        "lng": 4.436251316221038
-      },
-      "after": {
-        "lat": 51.2829196,
-        "lng": 4.4378943
-      },
-      "deviationMeters": 116,
-      "geocodeDisplayName": "14, Asterlaan, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19294099-3892",
-      "gipodId": "19294099",
-      "adres": "SINT-PAULUSPLAATS 21B, 2000 Antwerpen",
-      "before": {
-        "lat": 51.2244370774249,
-        "lng": 4.398969446215988
-      },
-      "after": {
-        "lat": 51.2251453,
-        "lng": 4.4013584
-      },
-      "deviationMeters": 184,
-      "geocodeDisplayName": "Sint-Paulusplaats, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19253057-4160",
-      "gipodId": "19253057",
-      "adres": "SINT-PAULUSPLAATS 23, 2000 Antwerpen",
-      "before": {
-        "lat": 51.22456213843817,
-        "lng": 4.3991657706553715
-      },
-      "after": {
-        "lat": 51.2247837,
-        "lng": 4.4007928
-      },
-      "deviationMeters": 116,
-      "geocodeDisplayName": "23, Sint-Paulusplaats, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19253056-4161",
-      "gipodId": "19253056",
-      "adres": "SINT-PAULUSPLAATS 22, 2000 Antwerpen",
-      "before": {
-        "lat": 51.22451848470211,
-        "lng": 4.399059962999957
-      },
-      "after": {
-        "lat": 51.2246999,
-        "lng": 4.4007783
-      },
-      "deviationMeters": 121,
-      "geocodeDisplayName": "22, Sint-Paulusplaats, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19253055-4162",
-      "gipodId": "19253055",
-      "adres": "SINT-PAULUSPLAATS 21B, 2000 Antwerpen",
-      "before": {
-        "lat": 51.2244370774249,
-        "lng": 4.398969446215988
-      },
-      "after": {
-        "lat": 51.2251453,
-        "lng": 4.4013584
-      },
-      "deviationMeters": 184,
-      "geocodeDisplayName": "Sint-Paulusplaats, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19253054-4163",
-      "gipodId": "19253054",
-      "adres": "KLEINE KRAAIWIJK 14, 2000 Antwerpen",
-      "before": {
-        "lat": 51.22416107502537,
-        "lng": 4.39890041477205
-      },
-      "after": {
-        "lat": 51.2244359,
-        "lng": 4.4006452
-      },
-      "deviationMeters": 125,
-      "geocodeDisplayName": "14, Kleine Kraaiwijk, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19189830-4438",
-      "gipodId": "19189830",
-      "adres": "GIJZELAARSSTRAAT 46, 2000 Antwerpen",
-      "before": {
-        "lat": 51.206345177412764,
-        "lng": 4.386794522575944
-      },
-      "after": {
-        "lat": 51.206626,
-        "lng": 4.3884008
-      },
-      "deviationMeters": 116,
-      "geocodeDisplayName": "46-50, Gijzelaarsstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19107732-4674",
-      "gipodId": "19107732",
-      "adres": "KORTE KLARENSTRAAT 13, 2000 Antwerpen",
-      "before": {
-        "lat": 51.21886481015279,
-        "lng": 4.406321982429574
-      },
-      "after": {
-        "lat": 51.2191452,
-        "lng": 4.4079878
-      },
-      "deviationMeters": 120,
-      "geocodeDisplayName": "13, Korte Klarenstraat, Meir, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18373187-5725",
-      "gipodId": "18373187",
-      "adres": "KORTE KLARENSTRAAT 13, 2000 Antwerpen",
-      "before": {
-        "lat": 51.21886481015279,
-        "lng": 4.406321982429574
-      },
-      "after": {
-        "lat": 51.2191452,
-        "lng": 4.4079878
-      },
-      "deviationMeters": 120,
-      "geocodeDisplayName": "13, Korte Klarenstraat, Meir, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19115832-4627",
-      "gipodId": "19115832",
-      "adres": "KOTTERSTRAAT 10, 2030 Antwerpen",
-      "before": {
-        "lat": 51.243683260382554,
-        "lng": 4.416494249768502
-      },
-      "after": {
-        "lat": 51.2436963,
-        "lng": 4.4183514
+        "lat": 51.2800869,
+        "lng": 4.4226782
       },
       "deviationMeters": 129,
-      "geocodeDisplayName": "Kotterstraat, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+      "geocodeDisplayName": "66, August Scheyvaertslaan, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19294095-3893",
-      "gipodId": "19294095",
-      "adres": "VOSSTRAAT 72, 2140 Borgerhout",
+      "workId": "gipod-19630214-374",
+      "gipodId": "19630214",
+      "adres": "AUGUST SCHEYVAERTSLAAN 66, 2180 Ekeren",
       "before": {
-        "lat": 51.19612479021472,
-        "lng": 4.450317638918652
+        "lat": 51.279806180498134,
+        "lng": 4.420876599838434
       },
       "after": {
-        "lat": 51.1963914,
-        "lng": 4.4520522
+        "lat": 51.2800869,
+        "lng": 4.4226782
+      },
+      "deviationMeters": 129,
+      "geocodeDisplayName": "66, August Scheyvaertslaan, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611829-501",
+      "gipodId": "19611829",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 34, 2180 Ekeren",
+      "before": {
+        "lat": 51.29211430881828,
+        "lng": 4.44124458427387
+      },
+      "after": {
+        "lat": 51.2923568,
+        "lng": 4.442934
+      },
+      "deviationMeters": 121,
+      "geocodeDisplayName": "34, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611822-504",
+      "gipodId": "19611822",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 13, 2180 Ekeren",
+      "before": {
+        "lat": 51.29229014990701,
+        "lng": 4.440593067126445
+      },
+      "after": {
+        "lat": 51.2925712,
+        "lng": 4.4423513
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "13, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611821-505",
+      "gipodId": "19611821",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 13, 2180 Ekeren",
+      "before": {
+        "lat": 51.29229014990701,
+        "lng": 4.440593067126445
+      },
+      "after": {
+        "lat": 51.2925712,
+        "lng": 4.4423513
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "13, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19471433-820",
+      "gipodId": "19471433",
+      "adres": "CONSTANT JORDAENSLAAN 19, 2180 Ekeren",
+      "before": {
+        "lat": 51.274399974996555,
+        "lng": 4.448856732495502
+      },
+      "after": {
+        "lat": 51.2746576,
+        "lng": 4.4505502
+      },
+      "deviationMeters": 121,
+      "geocodeDisplayName": "19, Constant Jordaenslaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19471360-821",
+      "gipodId": "19471360",
+      "adres": "CONSTANT JORDAENSLAAN 19, 2180 Ekeren",
+      "before": {
+        "lat": 51.274399974996555,
+        "lng": 4.448856732495502
+      },
+      "after": {
+        "lat": 51.2746576,
+        "lng": 4.4505502
+      },
+      "deviationMeters": 121,
+      "geocodeDisplayName": "19, Constant Jordaenslaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18534850-1350",
+      "gipodId": "18534850",
+      "adres": "NIJVERHEIDSLEI 119, 2180 Ekeren",
+      "before": {
+        "lat": 51.29382479732942,
+        "lng": 4.435585642480617
+      },
+      "after": {
+        "lat": 51.2940984,
+        "lng": 4.4373502
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "119, Nijverheidslei, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18534839-1355",
+      "gipodId": "18534839",
+      "adres": "LEERHOEKLAAN 84, 2180 Ekeren",
+      "before": {
+        "lat": 51.27824126170591,
+        "lng": 4.435347668342922
+      },
+      "after": {
+        "lat": 51.2785011,
+        "lng": 4.4370351
+      },
+      "deviationMeters": 121,
+      "geocodeDisplayName": "84, Leerhoeklaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18534766-1363",
+      "gipodId": "18534766",
+      "adres": "NIJVERHEIDSLEI 119, 2180 Ekeren",
+      "before": {
+        "lat": 51.29382479732942,
+        "lng": 4.435585642480617
+      },
+      "after": {
+        "lat": 51.2940984,
+        "lng": 4.4373502
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "119, Nijverheidslei, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18534745-1369",
+      "gipodId": "18534745",
+      "adres": "LEERHOEKLAAN 84, 2180 Ekeren",
+      "before": {
+        "lat": 51.27824126170591,
+        "lng": 4.435347668342922
+      },
+      "after": {
+        "lat": 51.2785011,
+        "lng": 4.4370351
+      },
+      "deviationMeters": 121,
+      "geocodeDisplayName": "84, Leerhoeklaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19630242-371",
+      "gipodId": "19630242",
+      "adres": "CAMELIASTRAAT 6, 2600 Berchem",
+      "before": {
+        "lat": 51.195735512809264,
+        "lng": 4.421117760093611
+      },
+      "after": {
+        "lat": 51.1960019,
+        "lng": 4.4228502
       },
       "deviationMeters": 124,
-      "geocodeDisplayName": "72, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+      "geocodeDisplayName": "6, Cameliastraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19294094-3894",
-      "gipodId": "19294094",
-      "adres": "VOSSTRAAT 56, 2140 Borgerhout",
+      "workId": "gipod-19593391-554",
+      "gipodId": "19593391",
+      "adres": "DE VILLEGASSTRAAT 53, 2600 Berchem",
       "before": {
-        "lat": 51.19655070491558,
-        "lng": 4.4504894795460475
+        "lat": 51.195167681467794,
+        "lng": 4.422620971693291
       },
       "after": {
-        "lat": 51.1968214,
-        "lng": 4.4521938
+        "lat": 51.1954487,
+        "lng": 4.4243772
       },
-      "deviationMeters": 123,
-      "geocodeDisplayName": "56, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+      "deviationMeters": 126,
+      "geocodeDisplayName": "53, De Villegasstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19294093-3895",
-      "gipodId": "19294093",
-      "adres": "VOSSTRAAT 46, 2140 Borgerhout",
+      "workId": "gipod-19586417-587",
+      "gipodId": "19586417",
+      "adres": "DE VILLEGASSTRAAT 48, 2600 Berchem",
       "before": {
-        "lat": 51.196842015113255,
-        "lng": 4.45060829863297
+        "lat": 51.19527430781065,
+        "lng": 4.422949104763854
       },
       "after": {
-        "lat": 51.1971163,
-        "lng": 4.4522986
-      },
-      "deviationMeters": 122,
-      "geocodeDisplayName": "46, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19294092-3896",
-      "gipodId": "19294092",
-      "adres": "VOSSTRAAT 44, 2140 Borgerhout",
-      "before": {
-        "lat": 51.1968917947492,
-        "lng": 4.450628700184276
-      },
-      "after": {
-        "lat": 51.1971655,
-        "lng": 4.4523306
-      },
-      "deviationMeters": 122,
-      "geocodeDisplayName": "44, Vosstraat, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-18899072-4967",
-      "gipodId": "18899072",
-      "adres": "OUDEBAREELLEI 3, 2170 Merksem",
-      "before": {
-        "lat": 51.247418867271804,
-        "lng": 4.452175489360427
-      },
-      "after": {
-        "lat": 51.2477831,
-        "lng": 4.4538725
-      },
-      "deviationMeters": 125,
-      "geocodeDisplayName": "3,3A, Oudebareellei, Oud-Merksem, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19295443-3880",
-      "gipodId": "19295443",
-      "adres": "Sint-Lambertusstraat 50, 2600 Berchem",
-      "before": {
-        "lat": 51.19810766344185,
-        "lng": 4.418608100720087
-      },
-      "after": {
-        "lat": 51.1982837,
-        "lng": 4.4204735
-      },
-      "deviationMeters": 131,
-      "geocodeDisplayName": "50-56, Sint-Lambertusstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19294087-3897",
-      "gipodId": "19294087",
-      "adres": "WILLEM VAN LAARSTRAAT 78, 2600 Berchem",
-      "before": {
-        "lat": 51.194349700210374,
-        "lng": 4.420585917213764
-      },
-      "after": {
-        "lat": 51.1946217,
-        "lng": 4.4223196
-      },
-      "deviationMeters": 125,
-      "geocodeDisplayName": "78, Willem Van Laarstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19294086-3898",
-      "gipodId": "19294086",
-      "adres": "WILLEM VAN LAARSTRAAT 78, 2600 Berchem",
-      "before": {
-        "lat": 51.194349700210374,
-        "lng": 4.420585917213764
-      },
-      "after": {
-        "lat": 51.1946217,
-        "lng": 4.4223196
-      },
-      "deviationMeters": 125,
-      "geocodeDisplayName": "78, Willem Van Laarstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
-    },
-    {
-      "workId": "gipod-19294085-3899",
-      "gipodId": "19294085",
-      "adres": "ANTWERPSESTEENWEG 22, 2660 Hoboken",
-      "before": {
-        "lat": 51.177478384009326,
-        "lng": 4.350771125393117
-      },
-      "after": {
-        "lat": 51.1777151,
-        "lng": 4.3525086
+        "lat": 51.1955443,
+        "lng": 4.4246784
       },
       "deviationMeters": 124,
-      "geocodeDisplayName": "22, Antwerpsesteenweg, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+      "geocodeDisplayName": "48, De Villegasstraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19174204-4476",
-      "gipodId": "19174204",
-      "adres": "COLLEGELAAN 85, 2140 Borgerhout",
+      "workId": "gipod-19630299-368",
+      "gipodId": "19630299",
+      "adres": "DOORNSTRAAT 63, 2610 Wilrijk",
       "before": {
-        "lat": 51.21348493129537,
-        "lng": 4.451068493821622
+        "lat": 51.16671128062326,
+        "lng": 4.394693905378074
       },
       "after": {
-        "lat": 51.2137449,
-        "lng": 4.4527881
+        "lat": 51.1669115,
+        "lng": 4.3961433
       },
-      "deviationMeters": 123,
-      "geocodeDisplayName": "85, Collegelaan, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+      "deviationMeters": 103,
+      "geocodeDisplayName": "63, Doornstraat, Yperman - Steytelinck, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19252813-4173",
-      "gipodId": "19252813",
-      "adres": "BELGIËLEI 129A, 2018 Antwerpen",
+      "workId": "gipod-19630298-369",
+      "gipodId": "19630298",
+      "adres": "DOORNSTRAAT 63, 2610 Wilrijk",
       "before": {
-        "lat": 51.204520856144896,
-        "lng": 4.4152460363094255
+        "lat": 51.16671128062326,
+        "lng": 4.394693905378074
       },
       "after": {
-        "lat": 51.204732,
-        "lng": 4.4170948
+        "lat": 51.1669115,
+        "lng": 4.3961433
       },
-      "deviationMeters": 131,
-      "geocodeDisplayName": "129A, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+      "deviationMeters": 103,
+      "geocodeDisplayName": "63, Doornstraat, Yperman - Steytelinck, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19252812-4174",
-      "gipodId": "19252812",
-      "adres": "BELGIËLEI 129, 2018 Antwerpen",
+      "workId": "gipod-19579133-615",
+      "gipodId": "19579133",
+      "adres": "BRAAMBESLEI 7, 2610 Wilrijk",
       "before": {
-        "lat": 51.204580053614336,
-        "lng": 4.415330368080718
+        "lat": 51.17287633445718,
+        "lng": 4.380684331457301
       },
       "after": {
-        "lat": 51.2047957,
-        "lng": 4.41714
+        "lat": 51.173157,
+        "lng": 4.3824622
       },
       "deviationMeters": 128,
-      "geocodeDisplayName": "129, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+      "geocodeDisplayName": "6-7, Braambeslei, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-17124203-6811",
-      "gipodId": "17124203",
-      "adres": "BELGIËLEI 129B, 2018 Antwerpen",
+      "workId": "gipod-19579131-616",
+      "gipodId": "19579131",
+      "adres": "BRAAMBESLEI 6, 2610 Wilrijk",
       "before": {
-        "lat": 51.204451959622794,
-        "lng": 4.415366579578835
+        "lat": 51.172846131533106,
+        "lng": 4.380710202487353
       },
       "after": {
-        "lat": 51.2079509,
-        "lng": 4.4212695
+        "lat": 51.173157,
+        "lng": 4.3824622
       },
-      "deviationMeters": 566,
-      "geocodeDisplayName": "Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+      "deviationMeters": 127,
+      "geocodeDisplayName": "6-7, Braambeslei, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-17124202-6812",
-      "gipodId": "17124202",
-      "adres": "BELGIËLEI 129B, 2018 Antwerpen",
+      "workId": "gipod-19579123-620",
+      "gipodId": "19579123",
+      "adres": "BRAAMBESLEI 7, 2610 Wilrijk",
       "before": {
-        "lat": 51.204451959622794,
-        "lng": 4.415366579578835
+        "lat": 51.17287633445718,
+        "lng": 4.380684331457301
       },
       "after": {
-        "lat": 51.2079509,
-        "lng": 4.4212695
+        "lat": 51.173157,
+        "lng": 4.3824622
       },
-      "deviationMeters": 566,
-      "geocodeDisplayName": "Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+      "deviationMeters": 128,
+      "geocodeDisplayName": "6-7, Braambeslei, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-17124201-6813",
-      "gipodId": "17124201",
-      "adres": "BELGIËLEI 129, 2018 Antwerpen",
+      "workId": "gipod-19579122-621",
+      "gipodId": "19579122",
+      "adres": "BRAAMBESLEI 6, 2610 Wilrijk",
       "before": {
-        "lat": 51.204520856144896,
-        "lng": 4.4152460363094255
+        "lat": 51.172846131533106,
+        "lng": 4.380710202487353
       },
       "after": {
-        "lat": 51.2047957,
-        "lng": 4.41714
+        "lat": 51.173157,
+        "lng": 4.3824622
       },
-      "deviationMeters": 135,
-      "geocodeDisplayName": "129, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+      "deviationMeters": 127,
+      "geocodeDisplayName": "6-7, Braambeslei, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-17124191-6816",
-      "gipodId": "17124191",
-      "adres": "BELGIËLEI 121, 2018 Antwerpen",
+      "workId": "gipod-18362252-1483",
+      "gipodId": "18362252",
+      "adres": "GROENENBORGERLAAN 63, 2610 Wilrijk",
       "before": {
-        "lat": 51.204737345637525,
-        "lng": 4.415551151740094
+        "lat": 51.17383248513597,
+        "lng": 4.403938891526399
       },
       "after": {
-        "lat": 51.204931,
-        "lng": 4.417404
+        "lat": 51.174087,
+        "lng": 4.4056546
       },
-      "deviationMeters": 131,
-      "geocodeDisplayName": "121-123, Belgiëlei, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+      "deviationMeters": 123,
+      "geocodeDisplayName": "63, Groenenborgerlaan, Middelheim, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19297611-3863",
-      "gipodId": "19297611",
-      "adres": "De Francqueslei 130, 2100 Deurne",
+      "workId": "gipod-17546864-1714",
+      "gipodId": "17546864",
+      "adres": "LAAGLANDWEG 13, 2610 Wilrijk",
       "before": {
-        "lat": 51.22887943255787,
-        "lng": 4.449810976552928
+        "lat": 51.15585736647416,
+        "lng": 4.392450911553022
       },
       "after": {
-        "lat": 51.2291406,
-        "lng": 4.4515463
+        "lat": 51.156143,
+        "lng": 4.3944668
       },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "128,130, De Francqueslei, Ten Eekhove-Lakbors, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+      "deviationMeters": 144,
+      "geocodeDisplayName": "13, Laaglandweg, Neerland, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19300219-3853",
-      "gipodId": "19300219",
-      "adres": "Pastoor van de Wouwerstraat 17, 2600 Berchem",
+      "workId": "gipod-17546681-1717",
+      "gipodId": "17546681",
+      "adres": "DOORNSTRAAT 69, 2610 Wilrijk",
       "before": {
-        "lat": 51.17825697904595,
-        "lng": 4.431195241354547
+        "lat": 51.16648634255758,
+        "lng": 4.39453509210683
       },
       "after": {
-        "lat": 51.1785245,
-        "lng": 4.4329225
+        "lat": 51.1667512,
+        "lng": 4.3962543
       },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "17, Pastoor Van de Wouwerstraat, De Zepten-Zilverbeek, Nieuw Kwartier, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+      "deviationMeters": 123,
+      "geocodeDisplayName": "69, Doornstraat, Yperman - Steytelinck, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19303158-3826",
-      "gipodId": "19303158",
-      "adres": "Hoogpadlaan 56, 2180 Ekeren",
+      "workId": "gipod-17546260-1726",
+      "gipodId": "17546260",
+      "adres": "DOORNSTRAAT 69, 2610 Wilrijk",
       "before": {
-        "lat": 51.274157715866664,
-        "lng": 4.449828821822946
+        "lat": 51.16648634255758,
+        "lng": 4.39453509210683
       },
       "after": {
-        "lat": 51.2744332,
-        "lng": 4.4515307
+        "lat": 51.1667512,
+        "lng": 4.3962543
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "69, Doornstraat, Yperman - Steytelinck, Wilrijk-Centrum, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19630288-370",
+      "gipodId": "19630288",
+      "adres": "JULES DESTRÉESTRAAT 35, 2660 Hoboken",
+      "before": {
+        "lat": 51.182223274037284,
+        "lng": 4.351841065479201
+      },
+      "after": {
+        "lat": 51.1824984,
+        "lng": 4.3535152
+      },
+      "deviationMeters": 121,
+      "geocodeDisplayName": "35, Jules Destréestraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19619510-429",
+      "gipodId": "19619510",
+      "adres": "VERENIGDE NATIESLAAN 176, 2660 Hoboken",
+      "before": {
+        "lat": 51.16211076326143,
+        "lng": 4.349356509103808
+      },
+      "after": {
+        "lat": 51.1623987,
+        "lng": 4.3510538
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "176, Verenigde Natieslaan, Nachtegalenhof, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19619509-430",
+      "gipodId": "19619509",
+      "adres": "VERENIGDE NATIESLAAN 176, 2660 Hoboken",
+      "before": {
+        "lat": 51.16211076326143,
+        "lng": 4.349356509103808
+      },
+      "after": {
+        "lat": 51.1623987,
+        "lng": 4.3510538
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "176, Verenigde Natieslaan, Nachtegalenhof, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19619508-431",
+      "gipodId": "19619508",
+      "adres": "VERENIGDE NATIESLAAN 170, 2660 Hoboken",
+      "before": {
+        "lat": 51.16234486756961,
+        "lng": 4.34968833767835
+      },
+      "after": {
+        "lat": 51.1626282,
+        "lng": 4.3513797
       },
       "deviationMeters": 122,
-      "geocodeDisplayName": "56, Hoogpadlaan, Donk, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+      "geocodeDisplayName": "170, Verenigde Natieslaan, Nachtegalenhof, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19168497-4501",
-      "gipodId": "19168497",
-      "adres": "SLEUTELSTRAAT 5, 2000 Antwerpen",
+      "workId": "gipod-19611949-490",
+      "gipodId": "19611949",
+      "adres": "VERENIGDE NATIESLAAN 200, 2660 Hoboken",
       "before": {
-        "lat": 51.21604480098567,
-        "lng": 4.397999315682339
+        "lat": 51.1615197969671,
+        "lng": 4.348293955469711
       },
       "after": {
-        "lat": 51.2162989,
-        "lng": 4.3997263
+        "lat": 51.1618021,
+        "lng": 4.3499972
       },
-      "deviationMeters": 124,
-      "geocodeDisplayName": "5, Sleutelstraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+      "deviationMeters": 123,
+      "geocodeDisplayName": "200, Verenigde Natieslaan, Nachtegalenhof, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
     },
     {
-      "workId": "gipod-19168496-4502",
-      "gipodId": "19168496",
-      "adres": "SLEUTELSTRAAT 5, 2000 Antwerpen",
+      "workId": "gipod-19611948-491",
+      "gipodId": "19611948",
+      "adres": "VERENIGDE NATIESLAAN 200, 2660 Hoboken",
       "before": {
-        "lat": 51.21604480098567,
-        "lng": 4.397999315682339
+        "lat": 51.1615197969671,
+        "lng": 4.348293955469711
       },
       "after": {
-        "lat": 51.2162989,
-        "lng": 4.3997263
+        "lat": 51.1618021,
+        "lng": 4.3499972
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "200, Verenigde Natieslaan, Nachtegalenhof, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19529091-716",
+      "gipodId": "19529091",
+      "adres": "WINDMOLENSTRAAT 26, 2660 Hoboken",
+      "before": {
+        "lat": 51.179424273347266,
+        "lng": 4.364689220811779
+      },
+      "after": {
+        "lat": 51.1796958,
+        "lng": 4.3663511
+      },
+      "deviationMeters": 120,
+      "geocodeDisplayName": "26, Windmolenstraat, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19529090-717",
+      "gipodId": "19529090",
+      "adres": "WINDMOLENSTRAAT 26, 2660 Hoboken",
+      "before": {
+        "lat": 51.179424273347266,
+        "lng": 4.364689220811779
+      },
+      "after": {
+        "lat": 51.1796958,
+        "lng": 4.3663511
+      },
+      "deviationMeters": 120,
+      "geocodeDisplayName": "26, Windmolenstraat, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19529088-718",
+      "gipodId": "19529088",
+      "adres": "WINDMOLENSTRAAT 108, 2660 Hoboken",
+      "before": {
+        "lat": 51.17757486780183,
+        "lng": 4.364379917221755
+      },
+      "after": {
+        "lat": 51.1778492,
+        "lng": 4.3660105
+      },
+      "deviationMeters": 118,
+      "geocodeDisplayName": "108, Windmolenstraat, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19529086-719",
+      "gipodId": "19529086",
+      "adres": "WINDMOLENSTRAAT 108, 2660 Hoboken",
+      "before": {
+        "lat": 51.17757486780183,
+        "lng": 4.364379917221755
+      },
+      "after": {
+        "lat": 51.1778492,
+        "lng": 4.3660105
+      },
+      "deviationMeters": 118,
+      "geocodeDisplayName": "108, Windmolenstraat, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19529082-720",
+      "gipodId": "19529082",
+      "adres": "WINDMOLENSTRAAT 4, 2660 Hoboken",
+      "before": {
+        "lat": 51.17987610827757,
+        "lng": 4.364765550281702
+      },
+      "after": {
+        "lat": 51.1801471,
+        "lng": 4.3664479
+      },
+      "deviationMeters": 121,
+      "geocodeDisplayName": "4, Windmolenstraat, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19529078-721",
+      "gipodId": "19529078",
+      "adres": "WINDMOLENSTRAAT 4, 2660 Hoboken",
+      "before": {
+        "lat": 51.17987610827757,
+        "lng": 4.364765550281702
+      },
+      "after": {
+        "lat": 51.1801471,
+        "lng": 4.3664479
+      },
+      "deviationMeters": 121,
+      "geocodeDisplayName": "4, Windmolenstraat, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19627893-398",
+      "gipodId": "19627893",
+      "adres": "ZIRKSTRAAT 21, 2000 Antwerpen",
+      "before": {
+        "lat": 51.22287169318899,
+        "lng": 4.399121417521048
+      },
+      "after": {
+        "lat": 51.2227499,
+        "lng": 4.4020539
+      },
+      "deviationMeters": 205,
+      "geocodeDisplayName": "Zirkstraat, Historisch Centrum, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19442632-853",
+      "gipodId": "19442632",
+      "adres": "GRAAF VAN HOORNESTRAAT 31, 2000 Antwerpen",
+      "before": {
+        "lat": 51.207176331465526,
+        "lng": 4.391189400666606
+      },
+      "after": {
+        "lat": 51.2074328,
+        "lng": 4.3930489
+      },
+      "deviationMeters": 133,
+      "geocodeDisplayName": "31, Graaf van Hoornestraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19406408-886",
+      "gipodId": "19406408",
+      "adres": "GRAAF VAN HOORNESTRAAT 57, 2000 Antwerpen",
+      "before": {
+        "lat": 51.20652203047481,
+        "lng": 4.391049285145864
+      },
+      "after": {
+        "lat": 51.2067776,
+        "lng": 4.3928341
+      },
+      "deviationMeters": 128,
+      "geocodeDisplayName": "57,57A, Graaf van Hoornestraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17388714-1784",
+      "gipodId": "17388714",
+      "adres": "BEELDHOUWERSSTRAAT 42, 2000 Antwerpen",
+      "before": {
+        "lat": 51.20715781719505,
+        "lng": 4.393378578661307
+      },
+      "after": {
+        "lat": 51.2073669,
+        "lng": 4.395032
+      },
+      "deviationMeters": 118,
+      "geocodeDisplayName": "42, Beeldhouwersstraat, Zuid, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19599138-539",
+      "gipodId": "19599138",
+      "adres": "JAN BLOCKXSTRAAT 25, 2018 Antwerpen",
+      "before": {
+        "lat": 51.20372411315789,
+        "lng": 4.404721594188222
+      },
+      "after": {
+        "lat": 51.2040002,
+        "lng": 4.4064397
       },
       "deviationMeters": 124,
-      "geocodeDisplayName": "5, Sleutelstraat, Sint-Andries, Antwerpen, Vlaanderen, 2000, België / Belgique / Belgien"
+      "geocodeDisplayName": "25, Jan Blockxstraat, Harmonie, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19125265-1151",
+      "gipodId": "19125265",
+      "adres": "CUPERUSSTRAAT 7, 2018 Antwerpen",
+      "before": {
+        "lat": 51.20495852298069,
+        "lng": 4.424394991575734
+      },
+      "after": {
+        "lat": 51.2052349,
+        "lng": 4.4261465
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "7,8, Cuperusstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19125100-1156",
+      "gipodId": "19125100",
+      "adres": "CUPERUSSTRAAT 7, 2018 Antwerpen",
+      "before": {
+        "lat": 51.20495852298069,
+        "lng": 4.424394991575734
+      },
+      "after": {
+        "lat": 51.2052349,
+        "lng": 4.4261465
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "7,8, Cuperusstraat, Haringrode, Antwerpen, Vlaanderen, 2018, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19253621-1047",
+      "gipodId": "19253621",
+      "adres": "LIVERPOOLLAAN 35, 2030 Antwerpen",
+      "before": {
+        "lat": 51.25655897406548,
+        "lng": 4.421007671205091
+      },
+      "after": {
+        "lat": 51.2568092,
+        "lng": 4.4227482
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "35, Liverpoollaan, Luchtbal, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19253450-1056",
+      "gipodId": "19253450",
+      "adres": "LIVERPOOLLAAN 35, 2030 Antwerpen",
+      "before": {
+        "lat": 51.25655897406548,
+        "lng": 4.421007671205091
+      },
+      "after": {
+        "lat": 51.2568092,
+        "lng": 4.4227482
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "35, Liverpoollaan, Luchtbal, Antwerpen, Vlaanderen, 2030, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19636792-304",
+      "gipodId": "19636792",
+      "adres": "VAN DE WERVESTRAAT 29, 2060 Antwerpen",
+      "before": {
+        "lat": 51.22839607879428,
+        "lng": 4.414195284451088
+      },
+      "after": {
+        "lat": 51.228662,
+        "lng": 4.4158994
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "29, Van de Wervestraat, Amandus, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19636690-306",
+      "gipodId": "19636690",
+      "adres": "VAN DE WERVESTRAAT 29, 2060 Antwerpen",
+      "before": {
+        "lat": 51.22839607879428,
+        "lng": 4.414195284451088
+      },
+      "after": {
+        "lat": 51.228662,
+        "lng": 4.4158994
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "29, Van de Wervestraat, Amandus, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19636689-307",
+      "gipodId": "19636689",
+      "adres": "VAN DE WERVESTRAAT 29, 2060 Antwerpen",
+      "before": {
+        "lat": 51.22839607879428,
+        "lng": 4.414195284451088
+      },
+      "after": {
+        "lat": 51.228662,
+        "lng": 4.4158994
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "29, Van de Wervestraat, Amandus, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19636688-308",
+      "gipodId": "19636688",
+      "adres": "VAN DE WERVESTRAAT 27, 2060 Antwerpen",
+      "before": {
+        "lat": 51.228443991590986,
+        "lng": 4.414177295014236
+      },
+      "after": {
+        "lat": 51.2287072,
+        "lng": 4.4158851
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "27, Van de Wervestraat, Amandus, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19636686-309",
+      "gipodId": "19636686",
+      "adres": "LANGE LOBROEKSTRAAT 206, 2060 Antwerpen",
+      "before": {
+        "lat": 51.23142796174557,
+        "lng": 4.425901217183666
+      },
+      "after": {
+        "lat": 51.2316987,
+        "lng": 4.4276341
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "206, Lange Lobroekstraat, Dam, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19636683-312",
+      "gipodId": "19636683",
+      "adres": "NACHTEGAALSTRAAT 13, 2060 Antwerpen",
+      "before": {
+        "lat": 51.22319397315416,
+        "lng": 4.422169680861773
+      },
+      "after": {
+        "lat": 51.223452,
+        "lng": 4.423904
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "13, Nachtegaalstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19636678-313",
+      "gipodId": "19636678",
+      "adres": "NACHTEGAALSTRAAT 13, 2060 Antwerpen",
+      "before": {
+        "lat": 51.22319397315416,
+        "lng": 4.422169680861773
+      },
+      "after": {
+        "lat": 51.223452,
+        "lng": 4.423904
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "13, Nachtegaalstraat, Seefhoek-Stuivenberg, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19635985-331",
+      "gipodId": "19635985",
+      "adres": "VAN DE WERVESTRAAT 33, 2060 Antwerpen",
+      "before": {
+        "lat": 51.22828969221778,
+        "lng": 4.414116304107428
+      },
+      "after": {
+        "lat": 51.2285791,
+        "lng": 4.4159782
+      },
+      "deviationMeters": 134,
+      "geocodeDisplayName": "33, Van de Wervestraat, Amandus, Amandus-Atheneum, Antwerpen-Noord, Antwerpen, Vlaanderen, 2060, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19636794-303",
+      "gipodId": "19636794",
+      "adres": "JOZEF VERBOVENLEI 39, 2100 Deurne",
+      "before": {
+        "lat": 51.20086841273032,
+        "lng": 4.456548610879754
+      },
+      "after": {
+        "lat": 51.2011514,
+        "lng": 4.4582843
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "39, Jozef Verbovenlei, Vliegveld, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611980-488",
+      "gipodId": "19611980",
+      "adres": "TER RIVIERENLAAN 234, 2100 Deurne",
+      "before": {
+        "lat": 51.227464437524404,
+        "lng": 4.467765658112367
+      },
+      "after": {
+        "lat": 51.2277276,
+        "lng": 4.46949
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "234, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611977-489",
+      "gipodId": "19611977",
+      "adres": "TER RIVIERENLAAN 234, 2100 Deurne",
+      "before": {
+        "lat": 51.227464437524404,
+        "lng": 4.467765658112367
+      },
+      "after": {
+        "lat": 51.2277276,
+        "lng": 4.46949
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "234, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19125288-1150",
+      "gipodId": "19125288",
+      "adres": "RUGGEVELDLAAN 692, 2100 Deurne",
+      "before": {
+        "lat": 51.226466563535865,
+        "lng": 4.477846983620485
+      },
+      "after": {
+        "lat": 51.2267339,
+        "lng": 4.4795859
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "692, Ruggeveldlaan, Ertbrugge (Deurne), Ertbrugge, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19125225-1155",
+      "gipodId": "19125225",
+      "adres": "RUGGEVELDLAAN 692, 2100 Deurne",
+      "before": {
+        "lat": 51.226466563535865,
+        "lng": 4.477846983620485
+      },
+      "after": {
+        "lat": 51.2267339,
+        "lng": 4.4795859
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "692, Ruggeveldlaan, Ertbrugge (Deurne), Ertbrugge, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17670275-1664",
+      "gipodId": "17670275",
+      "adres": "JOZEF VERBOVENLEI 39, 2100 Deurne",
+      "before": {
+        "lat": 51.20086841273032,
+        "lng": 4.456548610879754
+      },
+      "after": {
+        "lat": 51.2011514,
+        "lng": 4.4582843
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "39, Jozef Verbovenlei, Vliegveld, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17669718-1668",
+      "gipodId": "17669718",
+      "adres": "JOZEF VERBOVENLEI 39, 2100 Deurne",
+      "before": {
+        "lat": 51.20086841273032,
+        "lng": 4.456548610879754
+      },
+      "after": {
+        "lat": 51.2011514,
+        "lng": 4.4582843
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "39, Jozef Verbovenlei, Vliegveld, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17532955-1741",
+      "gipodId": "17532955",
+      "adres": "TER RIVIERENLAAN 30, 2100 Deurne",
+      "before": {
+        "lat": 51.2212854830065,
+        "lng": 4.467650826981136
+      },
+      "after": {
+        "lat": 51.2215629,
+        "lng": 4.4693884
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "30, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17532954-1742",
+      "gipodId": "17532954",
+      "adres": "TER RIVIERENLAAN 28, 2100 Deurne",
+      "before": {
+        "lat": 51.22123020893649,
+        "lng": 4.467648418903239
+      },
+      "after": {
+        "lat": 51.2215046,
+        "lng": 4.4694012
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "28, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17532825-1750",
+      "gipodId": "17532825",
+      "adres": "TER RIVIERENLAAN 30, 2100 Deurne",
+      "before": {
+        "lat": 51.2212854830065,
+        "lng": 4.467650826981136
+      },
+      "after": {
+        "lat": 51.2215629,
+        "lng": 4.4693884
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "30, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17532822-1751",
+      "gipodId": "17532822",
+      "adres": "TER RIVIERENLAAN 28, 2100 Deurne",
+      "before": {
+        "lat": 51.22123020893649,
+        "lng": 4.467648418903239
+      },
+      "after": {
+        "lat": 51.2215046,
+        "lng": 4.4694012
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "28, Ter Rivierenlaan, Gallifort-Ter Rivieren, Deurne-Noord, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17071806-1841",
+      "gipodId": "17071806",
+      "adres": "DRAKENHOFLAAN 42, 2100 Deurne",
+      "before": {
+        "lat": 51.196448043435794,
+        "lng": 4.456603456801589
+      },
+      "after": {
+        "lat": 51.1967124,
+        "lng": 4.4583447
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "42, Drakenhoflaan, Vliegveld, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17071559-1844",
+      "gipodId": "17071559",
+      "adres": "DRAKENHOFLAAN 42, 2100 Deurne",
+      "before": {
+        "lat": 51.196448043435794,
+        "lng": 4.456603456801589
+      },
+      "after": {
+        "lat": 51.1967124,
+        "lng": 4.4583447
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "42, Drakenhoflaan, Vliegveld, Deurne-Zuid, Deurne, Antwerpen, Vlaanderen, 2100, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18354592-1505",
+      "gipodId": "18354592",
+      "adres": "SERGEYSELSSTRAAT 40, 2140 Borgerhout",
+      "before": {
+        "lat": 51.21182053244342,
+        "lng": 4.431301196886844
+      },
+      "after": {
+        "lat": 51.2120915,
+        "lng": 4.4330112
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "40, Sergeyselsstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18354242-1524",
+      "gipodId": "18354242",
+      "adres": "SERGEYSELSSTRAAT 40, 2140 Borgerhout",
+      "before": {
+        "lat": 51.21182053244342,
+        "lng": 4.431301196886844
+      },
+      "after": {
+        "lat": 51.2120915,
+        "lng": 4.4330112
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "40, Sergeyselsstraat, Borgerhout Intra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17071879-1840",
+      "gipodId": "17071879",
+      "adres": "GITSCHOTELLEI 314, 2140 Borgerhout",
+      "before": {
+        "lat": 51.19764333511047,
+        "lng": 4.454459470253491
+      },
+      "after": {
+        "lat": 51.1979217,
+        "lng": 4.4561911
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "314, Gitschotellei, Vliegveld, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-17071770-1843",
+      "gipodId": "17071770",
+      "adres": "GITSCHOTELLEI 314, 2140 Borgerhout",
+      "before": {
+        "lat": 51.19764333511047,
+        "lng": 4.454459470253491
+      },
+      "after": {
+        "lat": 51.1979217,
+        "lng": 4.4561911
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "314, Gitschotellei, Vliegveld, Borgerhout Extra Muros, Borgerhout, Antwerpen, Vlaanderen, 2140, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19636776-305",
+      "gipodId": "19636776",
+      "adres": "NIEUWDREEF 95, 2170 Merksem",
+      "before": {
+        "lat": 51.24551137767828,
+        "lng": 4.439138950799739
+      },
+      "after": {
+        "lat": 51.2457772,
+        "lng": 4.4408882
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "95, Nieuwdreef, Oud-Merksem, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19619475-432",
+      "gipodId": "19619475",
+      "adres": "NIEUWDREEF 95, 2170 Merksem",
+      "before": {
+        "lat": 51.24551137767828,
+        "lng": 4.439138950799739
+      },
+      "after": {
+        "lat": 51.2457772,
+        "lng": 4.4408882
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "95, Nieuwdreef, Oud-Merksem, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19619474-433",
+      "gipodId": "19619474",
+      "adres": "NIEUWDREEF 95, 2170 Merksem",
+      "before": {
+        "lat": 51.24551137767828,
+        "lng": 4.439138950799739
+      },
+      "after": {
+        "lat": 51.2457772,
+        "lng": 4.4408882
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "95, Nieuwdreef, Oud-Merksem, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19619473-434",
+      "gipodId": "19619473",
+      "adres": "NIEUWDREEF 93, 2170 Merksem",
+      "before": {
+        "lat": 51.24545760698086,
+        "lng": 4.439177390085882
+      },
+      "after": {
+        "lat": 51.245731,
+        "lng": 4.4409211
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "93, Nieuwdreef, Oud-Merksem, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19619471-435",
+      "gipodId": "19619471",
+      "adres": "NIEUWDREEF 93, 2170 Merksem",
+      "before": {
+        "lat": 51.24545760698086,
+        "lng": 4.439177390085882
+      },
+      "after": {
+        "lat": 51.245731,
+        "lng": 4.4409211
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "93, Nieuwdreef, Oud-Merksem, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18573114-1323",
+      "gipodId": "18573114",
+      "adres": "MICHIEL DE SWAENSTRAAT 22, 2170 Merksem",
+      "before": {
+        "lat": 51.26087405027443,
+        "lng": 4.443238539345766
+      },
+      "after": {
+        "lat": 51.26114,
+        "lng": 4.4449688
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "22, Michiel De Swaenstraat, Tuinwijk, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18514668-1403",
+      "gipodId": "18514668",
+      "adres": "HOUTHULSTSTRAAT 34, 2170 Merksem",
+      "before": {
+        "lat": 51.243290818388836,
+        "lng": 4.437489680269422
+      },
+      "after": {
+        "lat": 51.2435687,
+        "lng": 4.4392301
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "34, Houthulststraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18514504-1418",
+      "gipodId": "18514504",
+      "adres": "HOUTHULSTSTRAAT 34, 2170 Merksem",
+      "before": {
+        "lat": 51.243290818388836,
+        "lng": 4.437489680269422
+      },
+      "after": {
+        "lat": 51.2435687,
+        "lng": 4.4392301
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "34, Houthulststraat, Nieuwdreef, Merksem, Antwerpen, Vlaanderen, 2170, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611832-499",
+      "gipodId": "19611832",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 46, 2180 Ekeren",
+      "before": {
+        "lat": 51.29254396537155,
+        "lng": 4.440882449253071
+      },
+      "after": {
+        "lat": 51.2928206,
+        "lng": 4.4426292
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "46, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611820-506",
+      "gipodId": "19611820",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 11, 2180 Ekeren",
+      "before": {
+        "lat": 51.29221497266336,
+        "lng": 4.440658172276958
+      },
+      "after": {
+        "lat": 51.2924979,
+        "lng": 4.4423507
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "11, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611819-507",
+      "gipodId": "19611819",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 11, 2180 Ekeren",
+      "before": {
+        "lat": 51.29221497266336,
+        "lng": 4.440658172276958
+      },
+      "after": {
+        "lat": 51.2924979,
+        "lng": 4.4423507
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "11, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611817-508",
+      "gipodId": "19611817",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 3, 2180 Ekeren",
+      "before": {
+        "lat": 51.291862896964055,
+        "lng": 4.440994052969139
+      },
+      "after": {
+        "lat": 51.2921429,
+        "lng": 4.4427224
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "3, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19611816-509",
+      "gipodId": "19611816",
+      "adres": "ALFONS DE SCHUTTERSTRAAT 3, 2180 Ekeren",
+      "before": {
+        "lat": 51.291862896964055,
+        "lng": 4.440994052969139
+      },
+      "after": {
+        "lat": 51.2921429,
+        "lng": 4.4427224
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "3, Alfons De Schutterstraat, Sint-Mariaburg (Antwerpen), Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19189824-1101",
+      "gipodId": "19189824",
+      "adres": "VAN DE WOUWERSTRAAT 32, 2180 Ekeren",
+      "before": {
+        "lat": 51.27678102009637,
+        "lng": 4.414809799318135
+      },
+      "after": {
+        "lat": 51.2770604,
+        "lng": 4.416508
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "32, Van de Wouwerstraat, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19189823-1102",
+      "gipodId": "19189823",
+      "adres": "VAN DE WOUWERSTRAAT 32, 2180 Ekeren",
+      "before": {
+        "lat": 51.27678102009637,
+        "lng": 4.414809799318135
+      },
+      "after": {
+        "lat": 51.2770604,
+        "lng": 4.416508
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "32, Van de Wouwerstraat, Ekeren-Centrum, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18514709-1393",
+      "gipodId": "18514709",
+      "adres": "LEERWIJK 26, 2180 Ekeren",
+      "before": {
+        "lat": 51.28006997635854,
+        "lng": 4.4072051557280165
+      },
+      "after": {
+        "lat": 51.2803277,
+        "lng": 4.4089413
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "26, Leerwijk, Schoonbroek, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-18514549-1411",
+      "gipodId": "18514549",
+      "adres": "LEERWIJK 26, 2180 Ekeren",
+      "before": {
+        "lat": 51.28006997635854,
+        "lng": 4.4072051557280165
+      },
+      "after": {
+        "lat": 51.2803277,
+        "lng": 4.4089413
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "26, Leerwijk, Schoonbroek, Ekeren, Antwerpen, Vlaanderen, 2180, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19586444-581",
+      "gipodId": "19586444",
+      "adres": "DE LESCLUZESTRAAT 32, 2600 Berchem",
+      "before": {
+        "lat": 51.19490840711289,
+        "lng": 4.410992840822929
+      },
+      "after": {
+        "lat": 51.1951737,
+        "lng": 4.4127182
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "32, De Lescluzestraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19586438-585",
+      "gipodId": "19586438",
+      "adres": "DE LESCLUZESTRAAT 32, 2600 Berchem",
+      "before": {
+        "lat": 51.19490840711289,
+        "lng": 4.410992840822929
+      },
+      "after": {
+        "lat": 51.1951737,
+        "lng": 4.4127182
+      },
+      "deviationMeters": 124,
+      "geocodeDisplayName": "32, De Lescluzestraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19252751-1058",
+      "gipodId": "19252751",
+      "adres": "DE LESCLUZESTRAAT 52, 2600 Berchem",
+      "before": {
+        "lat": 51.19462154732001,
+        "lng": 4.411622264110832
+      },
+      "after": {
+        "lat": 51.1948973,
+        "lng": 4.4133389
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "52, De Lescluzestraat, Oud-Berchem, Berchem, Antwerpen, Vlaanderen, 2600, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19579129-617",
+      "gipodId": "19579129",
+      "adres": "BRAAMBESLEI 4, 2610 Wilrijk",
+      "before": {
+        "lat": 51.17277008526927,
+        "lng": 4.3807715197696915
+      },
+      "after": {
+        "lat": 51.1730739,
+        "lng": 4.3825128
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "4-5, Braambeslei, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19529211-711",
+      "gipodId": "19529211",
+      "adres": "BRAAMBESLEI 3, 2610 Wilrijk",
+      "before": {
+        "lat": 51.172751920912084,
+        "lng": 4.380848580323908
+      },
+      "after": {
+        "lat": 51.1730349,
+        "lng": 4.3825597
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "3, Braambeslei, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19529205-712",
+      "gipodId": "19529205",
+      "adres": "BRAAMBESLEI 3, 2610 Wilrijk",
+      "before": {
+        "lat": 51.172751920912084,
+        "lng": 4.380848580323908
+      },
+      "after": {
+        "lat": 51.1730349,
+        "lng": 4.3825597
+      },
+      "deviationMeters": 123,
+      "geocodeDisplayName": "3, Braambeslei, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19481723-787",
+      "gipodId": "19481723",
+      "adres": "VALAARDREEF 9, 2610 Wilrijk",
+      "before": {
+        "lat": 51.172413568509256,
+        "lng": 4.37946946861014
+      },
+      "after": {
+        "lat": 51.1726845,
+        "lng": 4.3812089
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "9, Valaardreef, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19481716-788",
+      "gipodId": "19481716",
+      "adres": "VALAARDREEF 9, 2610 Wilrijk",
+      "before": {
+        "lat": 51.172413568509256,
+        "lng": 4.37946946861014
+      },
+      "after": {
+        "lat": 51.1726845,
+        "lng": 4.3812089
+      },
+      "deviationMeters": 125,
+      "geocodeDisplayName": "9, Valaardreef, Valaar-De Brem, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19442922-846",
+      "gipodId": "19442922",
+      "adres": "PASTOOR DE CONINCKLAAN 43, 2610 Wilrijk",
+      "before": {
+        "lat": 51.179648647932844,
+        "lng": 4.392544418365381
+      },
+      "after": {
+        "lat": 51.1797741,
+        "lng": 4.3943851
+      },
+      "deviationMeters": 129,
+      "geocodeDisplayName": "43, Pastoor De Conincklaan, Hoogte, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19442885-849",
+      "gipodId": "19442885",
+      "adres": "PASTOOR DE CONINCKLAAN 43, 2610 Wilrijk",
+      "before": {
+        "lat": 51.179648647932844,
+        "lng": 4.392544418365381
+      },
+      "after": {
+        "lat": 51.1797741,
+        "lng": 4.3943851
+      },
+      "deviationMeters": 129,
+      "geocodeDisplayName": "43, Pastoor De Conincklaan, Hoogte, Wilrijk, Antwerpen, Vlaanderen, 2610, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19579102-622",
+      "gipodId": "19579102",
+      "adres": "KREKELSTRAAT 112, 2660 Hoboken",
+      "before": {
+        "lat": 51.180574425532306,
+        "lng": 4.354897462050347
+      },
+      "after": {
+        "lat": 51.1808575,
+        "lng": 4.3566426
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "112, Krekelstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19579101-623",
+      "gipodId": "19579101",
+      "adres": "KREKELSTRAAT 112, 2660 Hoboken",
+      "before": {
+        "lat": 51.180574425532306,
+        "lng": 4.354897462050347
+      },
+      "after": {
+        "lat": 51.1808575,
+        "lng": 4.3566426
+      },
+      "deviationMeters": 126,
+      "geocodeDisplayName": "112, Krekelstraat, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19426359-863",
+      "gipodId": "19426359",
+      "adres": "HAGELANDSTRAAT 26, 2660 Hoboken",
+      "before": {
+        "lat": 51.184743033404295,
+        "lng": 4.363384105410292
+      },
+      "after": {
+        "lat": 51.1850574,
+        "lng": 4.3650544
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "26, Hagelandstraat, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
+    },
+    {
+      "workId": "gipod-19426348-864",
+      "gipodId": "19426348",
+      "adres": "HAGELANDSTRAAT 26, 2660 Hoboken",
+      "before": {
+        "lat": 51.184743033404295,
+        "lng": 4.363384105410292
+      },
+      "after": {
+        "lat": 51.1850574,
+        "lng": 4.3650544
+      },
+      "deviationMeters": 122,
+      "geocodeDisplayName": "26, Hagelandstraat, Zwaantjes, Hoboken, Antwerpen, Vlaanderen, 2660, België / Belgique / Belgien"
     }
   ]
 }

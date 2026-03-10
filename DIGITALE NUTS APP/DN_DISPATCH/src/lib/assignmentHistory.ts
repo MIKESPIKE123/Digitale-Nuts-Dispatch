@@ -1,5 +1,6 @@
 import type { DispatchPlan, InspectorAssignmentRole, PlannedVisit } from "../types";
 
+
 export const ASSIGNMENT_HISTORY_STORAGE_KEY = "dn_dispatch_assignment_history_v1";
 export const MAX_ASSIGNMENT_HISTORY_ITEMS = 180;
 

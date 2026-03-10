@@ -49,7 +49,8 @@
    - routevoorstel wordt berekend via `src/lib/routes.ts`
    - kaartstijlen zitten in `public/styles/*` (OpenFreeMap + GRB/Luchtfoto)
    - gedeelde filterbron zit in `src/lib/workFiltering.ts`; operationele basisselectie start op `VERGUND` + `IN EFFECT`
-   - A-SIGN referenties zijn contextueel/informatief en geen harde dispatch-poort
+   - dispatch geeft eerst voorrang aan dossiers met goedgekeurde signalisatievergunning (`AFGELEVERD`), daarna aan dossiers met vergunningcontext (`IN_VOORBEREIDING` of vergunningreferentie)
+   - dossiers zonder vergunningcontext blijven toelaatbaar als operationele opvulling, maar komen pas na dossiers met vergunningcontext in de dispatchvolgorde
    - expliciete signalen `vergunning afgelopen/verlopen` blijven wel een dispatch-exclusie
    - dispatchberekening via `buildDispatchPlan(...)`
    - gedeelde selectiecontext tussen action cards en kaart (`selectedVisitId`)
