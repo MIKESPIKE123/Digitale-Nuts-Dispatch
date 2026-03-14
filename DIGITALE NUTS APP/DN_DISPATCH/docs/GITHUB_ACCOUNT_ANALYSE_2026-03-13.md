@@ -777,3 +777,38 @@ Aanbevolen GitHub metadata zodra push/moment juist is:
   - `vite`
   - `typescript`
   - `city-of-things`
+
+### 2026-03-14 - DN_DISPATCH - branch gepusht en GitHub metadata ingesteld
+
+Context:
+
+- uitgevoerd vanaf schone branch `dn-dispatch-collab-ready-main`
+- branch vertrekt van `origin/main` en bevat alleen de collaboration-ready set
+
+Uitgevoerd:
+
+- branch `dn-dispatch-collab-ready-main` gepusht naar `origin`
+- GitHub repository description ingesteld op:
+  - `Digitale Nuts Dispatch: collaboration-ready dispatch, inspection and monitoring app for utility works in public space.`
+- GitHub topics ingesteld op:
+  - `digitale-nuts`
+  - `dispatch`
+  - `inspection`
+  - `utility-works`
+  - `public-space`
+  - `gipod`
+  - `react`
+  - `vite`
+  - `typescript`
+  - `city-of-things`
+
+Validatie:
+
+- push naar `origin/dn-dispatch-collab-ready-main` geslaagd
+- GitHub API-verificatie bevestigt description en topics
+
+Statusbeoordeling:
+
+- `Digitale-Nuts-Dispatch` kan hiermee op GitHub als `collaboration-ready` beschouwd worden op repository-niveau
+- de collaboration-ready wijzigingen staan momenteel op de branch `dn-dispatch-collab-ready-main`
+- formele opname in `main` vraagt nog een merge of pull request
