@@ -39,6 +39,28 @@ Dit draait:
 - typecheck (`tsc -b`)
 - unit tests (`vitest`)
 
+## Samenwerking en documentatie
+
+Voor samenwerking en repo-afspraken:
+
+- `CONTRIBUTING.md`
+- `CODE_OF_CONDUCT.md`
+- `docs/ARCHITECTURE.md`
+- `docs/ROADMAP.md`
+- `docs/DECISIONS.md`
+- `docs/README.md`
+
+Licentie:
+
+- Deze repo gebruikt een aangepaste, purpose-limited licentie: `LICENSE`
+- Kernvoorwaarden:
+  - gebruik en afgeleiden moeten bijdragen aan de publieke doelstelling van Digitale Nuts;
+  - winstgedreven software-exploitatie is niet toegestaan onder deze licentie;
+  - redelijke en aantoonbare kostenterugwinning voor implementatie, beheer en ondersteuning is wel toegestaan;
+  - naamsvermelding van `Stad Antwerpen / Publieke Ruimte / Nuts` en de `VLAIO City of Things 2025` context is verplicht;
+  - logo's en merkgebruik vallen niet onder de licentie.
+- Verplichte attributietekst staat in `NOTICE`.
+
 ## Dataflow
 
 1. Bronselectie:

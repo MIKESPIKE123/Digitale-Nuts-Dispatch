@@ -1,0 +1,127 @@
+Digitale Nuts Public Purpose License 1.0
+
+Copyright (c) 2025-2026 Stad Antwerpen / Publieke Ruimte / Nuts
+
+This license applies to the source code and repository materials in this repository, except where a file
+states otherwise.
+
+This is not an OSI-approved open source license. It is a purpose-limited, attribution-required,
+non-profit-oriented license created for the Digitale Nuts project in the VLAIO City of Things 2025
+context.
+
+1. Definitions
+
+"Software" means the code, documentation, and repository materials made available under this license,
+excluding third-party components that carry their own license terms.
+
+"Permitted Purpose" means use that materially contributes to one or more of the following public-interest
+goals of Digitale Nuts:
+
+- reducing nuisance caused by utility works in the public space;
+- improving the quality, speed, traceability, and consistency of follow-up and restoration of utility works;
+- supporting a shared data chain between local authorities, utility actors, contractors, GIPOD, and related
+  public-interest stakeholders;
+- supporting inspection, reporting, communication, KPI monitoring, standardization, training, pilots, or
+  operational roll-out in line with the Digitale Nuts City of Things 2025 application context;
+- enabling transfer, reuse, or scaling of the above goals for Flemish local authorities or comparable
+  public-interest collaborations.
+
+"Derivative Work" means any modified version, extension, adaptation, integration, or redistributed copy of
+the Software.
+
+"Cost Recovery" means charging only documented and reasonable amounts needed to cover implementation,
+configuration, integration, migration, hosting, infrastructure, maintenance, training, support, compliance,
+or public procurement execution costs related to the Permitted Purpose.
+
+2. Grant of Rights
+
+Subject to this license, you may use, copy, study, modify, and share the Software, and create Derivative
+Works, only for the Permitted Purpose.
+
+3. Mandatory Conditions
+
+You may exercise the rights above only if all of the following remain true:
+
+- you preserve this license and all existing copyright, attribution, and notice files;
+- you clearly mark material changes in redistributed Derivative Works;
+- you include the attribution notice from the repository NOTICE file, or an equivalent notice with the same
+  substance, in source distributions and in a user-visible location where reasonably possible;
+- you do not suggest that Stad Antwerpen, Publieke Ruimte, Nuts, VLAIO, or City of Things endorses your
+  version unless you have separate written permission;
+- if you distribute a Derivative Work, you must do so under this license or under terms that are not less
+  restrictive regarding Permitted Purpose, attribution, non-profit orientation, and downstream obligations.
+
+4. Commercial Restriction
+
+You may not use the Software or any Derivative Work primarily for commercial advantage, profit-seeking
+software exploitation, or sale as a proprietary product or service.
+
+The following remains allowed:
+
+- Cost Recovery for work that serves the Permitted Purpose;
+- internal or contracted implementation work for local authorities, public-interest partnerships, utilities,
+  or comparable actors, provided that the main objective is the Permitted Purpose and not profit extraction
+  from the Software itself.
+
+The following is not allowed without separate written permission from the copyright holder:
+
+- selling software licenses based on the Software;
+- offering the Software as a standalone commercial SaaS product for profit;
+- relicensing the Software or a Derivative Work under a permissive or proprietary commercial license;
+- using the Software mainly as a vehicle for private monetization unrelated to the City of Things-style
+  public-interest goals described above.
+
+5. Attribution
+
+Every redistributed copy or material Derivative Work must retain the following attribution, or a faithful
+equivalent:
+
+"Based on Digitale Nuts Dispatch. Copyright (c) 2025-2026 Stad Antwerpen / Publieke Ruimte / Nuts.
+Developed as a starting point for the Digitale Nuts project within the VLAIO City of Things 2025 subsidy
+context."
+
+Where practical, the attribution must also mention that reuse must remain aligned with the public-interest
+goals of Digitale Nuts.
+
+6. No Trademark or Logo License
+
+This license does not grant any right to use names, logos, seals, visual identities, or trademarks of Stad
+Antwerpen, Publieke Ruimte, Nuts, VLAIO, or City of Things, except for factual attribution required by this
+license.
+
+7. Data, Third-Party Components, and External Rights
+
+This license does not automatically apply to:
+
+- datasets that are subject to separate legal, privacy, confidentiality, or database-right restrictions;
+- third-party dependencies or assets included under other licenses;
+- personal data, operational exports, or documents that require a separate legal basis to use.
+
+You remain responsible for complying with all applicable procurement, privacy, security, and data-sharing
+rules.
+
+8. Termination
+
+Any right granted under this license terminates automatically if you breach this license.
+
+If you cure the breach within 30 days after becoming aware of it, the license is reinstated unless the
+copyright holder has expressly withdrawn that reinstatement right for repeated or serious breaches.
+
+9. Warranty and Liability
+
+The Software is provided "as is", without warranties or conditions of any kind, express or implied, to the
+maximum extent permitted by law.
+
+The copyright holder is not liable for any claim, damages, losses, or other liability arising from the
+Software or its use.
+
+10. Interpretation
+
+This license must be interpreted in good faith with the following priorities:
+
+- broad public-interest reuse within the Permitted Purpose is intended;
+- exclusive capture, private lock-in, and profit-driven exploitation are not intended;
+- attribution to Stad Antwerpen / Publieke Ruimte / Nuts and the City of Things 2025 context is a material
+  condition of reuse.
+
+For repository guidance, see NOTICE and README.md.
